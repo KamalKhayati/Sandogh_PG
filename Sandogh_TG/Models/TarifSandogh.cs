@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sandogh_TG.Models
+namespace Sandogh_TG
 {
    public class TarifSandogh
     {
@@ -15,8 +15,6 @@ namespace Sandogh_TG.Models
         public string NameSandogh { get; set; }
         [MaxLength(150)]
         public string NameModir { get; set; }
-        public float? Karmozd { get; set; }
-        public int? Dirkard { get; set; }
         [MaxLength(400)]
         public string Adress { get; set; }
         [MaxLength(23)]
@@ -25,9 +23,12 @@ namespace Sandogh_TG.Models
         public string Mobile { get; set; }
         [Column(TypeName = "Date")]
         public DateTime? TarikhEjad { get; set; }
-        [MaxLength(400)]
-        public string Path { get; set; }
         public byte[]  Pictuer { get; set; }
-
+        [Required]
+        public bool IsDefault { get; set; }
+        public virtual Tanzimat Tanzimat1 { get; set; }
+        public virtual ICollection<SalMali> SalMalis { get; set; }
+        public virtual ICollection<AazaSandogh> AazaSandoghs { get; set; }
+        public virtual ICollection<HesabBanki> HesabBankis { get; set; }
     }
 }

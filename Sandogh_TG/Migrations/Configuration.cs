@@ -23,6 +23,9 @@ namespace Sandogh_TG.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
+            context.Entry(new TarifSandogh() { Id = 1, NameSandogh = "ÕäÏæÞ ÞÑÖ ÇáÍÓäå", IsDefault = true, }).State = context.TarifSandoghs.Any(s => s.Id == 1) ? EntityState.Unchanged : EntityState.Added;
+            context.Entry(new SalMali() { Id = 1, TarifSandoghId = 1, NameSandogh = "ÕäÏæÞ ÞÑÖ ÇáÍÓäå", SaleMali = 1398, StartDate = Convert.ToDateTime("2019/03/21"), EndDate = Convert.ToDateTime("2020/03/19"), IsDefault = true }).State = context.SalMalis.Any(s => s.Id == 1) ? EntityState.Unchanged : EntityState.Added;
+
         }
     }
 }

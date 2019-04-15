@@ -118,6 +118,22 @@ namespace Sandogh_TG
         {
             System.Diagnostics.Process.Start("NotePad.exe");
         }
+        public static void MoveLast(GridView gridView)
+        {
+            gridView.MoveLast();
+        }
+        public static void MoveNext(GridView gridView)
+        {
+            gridView.MoveNext();
+        }
+        public static void MovePrev(GridView gridView)
+        {
+            gridView.MovePrev();
+        }
+        public static void MoveFirst(GridView gridView)
+        {
+            gridView.MoveFirst();
+        }
 
         #region عملیات مربوط به PictuerBox
         //private void btnBrowse_Click(object sender, EventArgs e)

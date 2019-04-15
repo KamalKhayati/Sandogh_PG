@@ -9,20 +9,23 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Data.Entity;
-using Sandogh_TG.Models;
+using Sandogh_TG;
+using System.Data.Entity.Infrastructure;
 
 namespace Sandogh_TG
 {
     public partial class FrmTarifHesabBanki : DevExpress.XtraEditors.XtraForm
     {
-        public FrmTarifHesabBanki()
+        FrmMain Fm;
+        public FrmTarifHesabBanki(FrmMain fm)
         {
             InitializeComponent();
+            Fm = fm;
         }
 
         private void cmbGroupHesab_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbGroupHesab.SelectedIndex==0)
+            if (cmbGroupHesab.SelectedIndex == 0)
             {
                 labelControl5.Text = "نام صندوق";
                 ActiveControls();
@@ -70,7 +73,7 @@ namespace Sandogh_TG
                     }
                     else
                     {
-                        var q = dataContext.HesabBankis.Where(p => p.IsActive == false).OrderBy(s => s.Code);
+                        var q = dataContext.HesabBankis.Where(s => s.IsActive == false).OrderBy(s => s.Code);
                         if (q.Count() > 0)
                             hesabBankisBindingSource.DataSource = q.ToList();
                         else
@@ -86,7 +89,7 @@ namespace Sandogh_TG
 
         }
 
-        private void btnNewCode(object sender, EventArgs e)
+        private void NewCode(object sender, EventArgs e)
         {
             using (var db = new MyContext())
             {
@@ -96,21 +99,21 @@ namespace Sandogh_TG
                     if (q.Any())
                     {
                         var MaximumCod = q.Max(p => p.Code);
-                        if (MaximumCod.ToString() != "999")
+                        if (MaximumCod.ToString() != "9999999")
                         {
                             txtCode.Text = (MaximumCod + 1).ToString();
                         }
                         else
                         {
                             if (En == EnumCED.Create)
-                                XtraMessageBox.Show("اعمال محدودیت تعریف 999 حساب  ..." + "\n" +
-                                    "توجه : نمیتوان بیشتر از 999 حساب تعریف کرد مگر اینکه در صورت امکان از کدهای خالی مابین 1 تا 999 استفاده نمایید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                XtraMessageBox.Show("اعمال محدودیت تعریف 9999999 حساب  ..." + "\n" +
+                                    "توجه : نمیتوان بیشتر از این تعداد حساب تعریف کرد ", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
 
                     }
                     else
                     {
-                        txtCode.Text = "001";
+                        txtCode.Text = "0000001";
                     }
                 }
                 catch (Exception ex)
@@ -194,7 +197,7 @@ namespace Sandogh_TG
 
         private void FrmTarifHesabBanki_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F2)
+            if (e.KeyCode == Keys.F5)
             {
                 btnCreate_Click(sender, null);
             }
@@ -349,10 +352,11 @@ namespace Sandogh_TG
             txtShomareKart.Text = string.Empty;
             txtShomareShaba.Text = string.Empty;
             txtShomareMoshtari.Text = string.Empty;
-            txtMojodiAvali.Text = string.Empty;
+            //txtMojodiAvali.Text = string.Empty;
             txtStartDate.Text = string.Empty;
             txtTell.Text = string.Empty;
             txtSharhHesab.Text = string.Empty;
+            chkIsDefault.Checked = false;
         }
 
         public void ActiveControls()
@@ -362,9 +366,10 @@ namespace Sandogh_TG
                 cmbGroupHesab.ReadOnly = false;
                 txtNameBank.ReadOnly = false;
                 txtStartDate.ReadOnly = false;
+                chkIsDefault.ReadOnly = false;
                 chkIsActive.ReadOnly = false;
                 txtSharhHesab.ReadOnly = false;
-                txtMojodiAvali.ReadOnly = false;
+                //txtMojodiAvali.ReadOnly = false;
             }
         }
 
@@ -381,9 +386,10 @@ namespace Sandogh_TG
                 txtShomareKart.ReadOnly = true;
                 txtShomareShaba.ReadOnly = true;
                 txtShomareMoshtari.ReadOnly = true;
-                txtMojodiAvali.ReadOnly = true;
+                //txtMojodiAvali.ReadOnly = true;
                 txtStartDate.ReadOnly = true;
                 txtTell.ReadOnly = true;
+                chkIsDefault.ReadOnly = true;
                 chkIsActive.ReadOnly = true;
                 txtSharhHesab.ReadOnly = true;
             }
@@ -396,8 +402,9 @@ namespace Sandogh_TG
             ClearControls();
             cmbGroupHesab.SelectedIndex = 0;
             ActiveControls();
-            btnNewCode(null, null);
-            cmbGroupHesab.Focus();
+            NewCode(null, null);
+            txtStartDate.Text = DateTime.Now.ToString().Substring(0, 10);
+            gridControl1.Enabled = false;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -433,6 +440,12 @@ namespace Sandogh_TG
                             else
                                 XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
+                        catch (DbUpdateException)
+                        {
+                            XtraMessageBox.Show("عملیات حذف با خطا مواجه شد \n حذف این حساب مقدور نیست \n" +
+                                " جهت حذف حساب مورد نظر در ابتدا بایستی زیر شاخه های این حساب یعنی پس انداز ماهیانه اعضاء،\n وامهای دریافتی اعضا،ریز اقساط وام، انتقالی بین حسابها، سند های درآمد و هزینه ، و سایر دریافتها و\n پرداختها مربوط به این حساب در صورت وجود حذف گردد" +
+                                "", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                         catch (Exception ex)
                         {
                             XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message, "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -464,9 +477,10 @@ namespace Sandogh_TG
                 txtShomareKart.Text = gridView1.GetFocusedRowCellValue("ShomareKart").ToString();
                 txtShomareShaba.Text = gridView1.GetFocusedRowCellValue("ShomareShaba").ToString();
                 txtShomareMoshtari.Text = gridView1.GetFocusedRowCellValue("ShomareMoshtari").ToString();
-                txtMojodiAvali.Text = gridView1.GetFocusedRowCellValue("Mojodi").ToString();
+                //txtMojodiAvali.Text = gridView1.GetFocusedRowCellValue("Mojodi").ToString();
                 txtStartDate.EditValue = gridView1.GetFocusedRowCellValue("StartDate").ToString().Substring(0, 10);
                 txtTell.Text = gridView1.GetFocusedRowCellValue("Tell").ToString();
+                chkIsDefault.Checked = Convert.ToBoolean(gridView1.GetFocusedRowCellValue("IsDefault"));
                 chkIsActive.Checked = Convert.ToBoolean(gridView1.GetFocusedRowCellValue("IsActive"));
                 txtSharhHesab.Text = gridView1.GetFocusedRowCellValue("SharhHesab").ToString();
 
@@ -501,12 +515,15 @@ namespace Sandogh_TG
                             obj.ShomareKart = txtShomareKart.Text;
                             obj.ShomareShaba = txtShomareShaba.Text;
                             obj.ShomareMoshtari = txtShomareMoshtari.Text;
-                            obj.Mojodi = !string.IsNullOrEmpty(txtMojodiAvali.Text) ? Convert.ToDecimal(txtMojodiAvali.Text) : 0;
+                            //obj.Mojodi = !string.IsNullOrEmpty(txtMojodiAvali.Text) ? Convert.ToDecimal(txtMojodiAvali.Text) : 0;
                             if (!string.IsNullOrEmpty(txtStartDate.Text))
                                 obj.StartDate = Convert.ToDateTime(txtStartDate.Text);
                             obj.Tell = txtTell.Text;
+                            obj.IsDefault = chkIsDefault.Checked;
                             obj.IsActive = chkIsActive.Checked;
                             obj.SharhHesab = txtSharhHesab.Text;
+                            obj.TarifSandoghId = Convert.ToInt32(Fm.IDSandogh.Caption);
+                            obj.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
 
                             db.HesabBankis.Add(obj);
                             db.SaveChanges();
@@ -530,6 +547,7 @@ namespace Sandogh_TG
                                 btnDisplyNotActiveList_Click(null, null);
 
                             XtraMessageBox.Show("عملیات ایجاد با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                            gridControl1.Enabled = true;
                             gridView1.MoveLast();
                             ActiveButtons();
                             ClearControls();
@@ -565,10 +583,11 @@ namespace Sandogh_TG
                                 q.ShomareKart = txtShomareKart.Text;
                                 q.ShomareShaba = txtShomareShaba.Text;
                                 q.ShomareMoshtari = txtShomareMoshtari.Text;
-                                q.Mojodi = !string.IsNullOrEmpty(txtMojodiAvali.Text) ? Convert.ToDecimal(txtMojodiAvali.Text) : 0;
+                                //q.Mojodi = !string.IsNullOrEmpty(txtMojodiAvali.Text) ? Convert.ToDecimal(txtMojodiAvali.Text) : 0;
                                 if (!string.IsNullOrEmpty(txtStartDate.Text))
                                     q.StartDate = Convert.ToDateTime(txtStartDate.Text);
                                 q.Tell = txtTell.Text;
+                                q.IsDefault = chkIsDefault.Checked;
                                 q.IsActive = chkIsActive.Checked;
                                 q.SharhHesab = txtSharhHesab.Text;
 

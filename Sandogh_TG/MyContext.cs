@@ -1,7 +1,7 @@
 ﻿namespace Sandogh_TG
 {
     using Sandogh_TG.Migrations;
-    using Sandogh_TG.Models;
+    using Sandogh_TG;
     using System;
     using System.Data.Entity;
     using System.Data.SqlClient;
@@ -42,6 +42,25 @@
         public virtual DbSet<TarifSandogh> TarifSandoghs { get; set; }
         public virtual DbSet<HesabBanki> HesabBankis { get; set; }
         public virtual DbSet<AazaSandogh> AazaSandoghs { get; set; }
+        public virtual DbSet<HaghOzviat> HaghOzviats { get; set; }
+        public virtual DbSet<VamPardakhti> VamPardakhtis { get; set; }
+        public virtual DbSet<Tanzimat> Tanzimats { get; set; }
+        public virtual DbSet<RizeAghsatVam> RizeAghsatVams { get; set; }
+        public virtual DbSet<SalMali> SalMalis { get; set; }
+
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<AazaSandogh>().HasMany(m => m.HaghOzviats).WithRequired(m => m.AazaSandogh1).HasForeignKey(m => m.AazaId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<AazaSandogh>().HasMany(m => m.VamPardakhtis).WithRequired(m => m.AazaSandogh1).HasForeignKey(m => m.AazaId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<HesabBanki>().HasMany(m => m.HaghOzviats).WithRequired(m => m.HesabBanki1).HasForeignKey(m => m.NameHesabId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<HesabBanki>().HasMany(m => m.VamPardakhtis).WithRequired(m => m.HesabBanki1).HasForeignKey(m => m.NameHesabId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<TarifSandogh>().HasOptional(m => m.Tanzimat1).WithRequired(m => m.TarifSandogh1).WillCascadeOnDelete(true);
+            modelBuilder.Entity<VamPardakhti>().HasMany(m => m.RizeAghsatVams).WithRequired(m => m.VamPardakhti1).HasForeignKey(m => m.VamPardakhtiId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<TarifSandogh>().HasMany(m => m.SalMalis).WithRequired(m => m.TarifSandogh1).HasForeignKey(m => m.TarifSandoghId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<TarifSandogh>().HasMany(m => m.HesabBankis).WithRequired(m => m.TarifSandogh1).HasForeignKey(m => m.TarifSandoghId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<TarifSandogh>().HasMany(m => m.AazaSandoghs).WithRequired(m => m.TarifSandogh1).HasForeignKey(m => m.TarifSandoghId).WillCascadeOnDelete(false);
+        }
 
     }
 

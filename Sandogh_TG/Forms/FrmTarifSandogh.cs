@@ -8,20 +8,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using Sandogh_TG.Models;
+using Sandogh_TG;
 using System.IO;
 
-namespace Sandogh_TG.Forms
+namespace Sandogh_TG
 {
     public partial class FrmTarifSandogh : DevExpress.XtraEditors.XtraForm
     {
-        public FrmTarifSandogh()
+        FrmMain Fm;
+        public FrmTarifSandogh(FrmMain fm)
         {
             InitializeComponent();
+            Fm = fm;
         }
 
         private void FrmTarifSandogh_Load(object sender, EventArgs e)
         {
+            txtTarikhEjad.Text = DateTime.Now.ToString().Substring(0, 10);
             using (var db = new MyContext())
             {
                 try
@@ -31,17 +34,18 @@ namespace Sandogh_TG.Forms
                     {
                         txtNameSandogh.Text = q1.NameSandogh;
                         txtNameModir.Text = q1.NameModir;
-                        txtKarmozdVam.Text = q1.Karmozd.ToString();
-                        txtDirkard.Text = q1.Dirkard.ToString();
                         txtAdress.Text = q1.Adress;
                         txtTell.Text = q1.Tell;
                         txtMobile.Text = q1.Mobile;
-                        txtTarikhEjad.Text = q1.TarikhEjad.ToString().Substring(0,10);
-                        txtPath.Text = q1.Path;
+                        if (q1.TarikhEjad != null)
+                            txtTarikhEjad.Text = q1.TarikhEjad.ToString().Substring(0, 10);
+                        chkIsDefault.Checked = q1.IsDefault;
                         if (q1.Pictuer != null)
                         {
                             MemoryStream ms = new MemoryStream(q1.Pictuer);
                             pictureEdit1.Image = Image.FromStream(ms);
+                            img = pictureEdit1.Image;
+
                         }
                         else
                             pictureEdit1.Image = null;
@@ -59,7 +63,7 @@ namespace Sandogh_TG.Forms
 
         private void FrmTarifSandogh_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F2)
+            if (e.KeyCode == Keys.F5)
             {
                 btnSaveClose_Click(sender, null);
             }
@@ -129,13 +133,16 @@ namespace Sandogh_TG.Forms
                         {
                             q1.NameSandogh = txtNameSandogh.Text;
                             q1.NameModir = txtNameModir.Text;
-                            q1.Karmozd = Convert.ToSingle(txtKarmozdVam.Text);
-                            q1.Dirkard = Convert.ToInt32(txtDirkard.Text);
                             q1.Adress = txtAdress.Text;
                             q1.Tell = txtTell.Text;
                             q1.Mobile = txtMobile.Text;
-                            q1.TarikhEjad = Convert.ToDateTime(txtTarikhEjad.Text.Substring(0, 10));
-                            q1.Path = txtPath.Text;
+                            q1.IsDefault = chkIsDefault.Checked;
+                            q1.IsDefault = chkIsDefault.Checked;
+                            if (!string.IsNullOrEmpty(txtTarikhEjad.Text))
+                            {
+                                q1.TarikhEjad = Convert.ToDateTime(txtTarikhEjad.Text.Substring(0, 10));
+
+                            }
                             if (pictureEdit1.Image != null)
                             {
                                 MemoryStream ms = new MemoryStream();
@@ -152,14 +159,12 @@ namespace Sandogh_TG.Forms
                             TarifSandogh obj = new TarifSandogh();
                             obj.NameSandogh = txtNameSandogh.Text;
                             obj.NameModir = txtNameModir.Text;
-                            obj.Karmozd =!string.IsNullOrEmpty(txtKarmozdVam.Text)? Convert.ToSingle(txtKarmozdVam.Text):0;
-                            obj.Dirkard = !string.IsNullOrEmpty(txtDirkard.Text) ? Convert.ToInt32(txtDirkard.Text):0;
                             obj.Adress = txtAdress.Text;
                             obj.Tell = txtTell.Text;
                             obj.Mobile = txtMobile.Text;
-                            if(!string.IsNullOrEmpty(txtTarikhEjad.Text))
-                                obj.TarikhEjad =  Convert.ToDateTime(txtTarikhEjad.Text.Substring(0, 10));
-                            obj.Path = txtPath.Text;
+                            obj.IsDefault = chkIsDefault.Checked;
+                            if (!string.IsNullOrEmpty(txtTarikhEjad.Text))
+                                obj.TarikhEjad = Convert.ToDateTime(txtTarikhEjad.Text.Substring(0, 10));
                             if (pictureEdit1.Image != null)
                             {
                                 MemoryStream ms = new MemoryStream();
@@ -171,9 +176,10 @@ namespace Sandogh_TG.Forms
                                 obj.Pictuer = null;
                             db.TarifSandoghs.Add(obj);
                         }
-                        
+
                         db.SaveChanges();
-                        XtraMessageBox.Show("اطلاعات با موفقیت ثبت گردید" , "پیغام ثبت ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        XtraMessageBox.Show("اطلاعات با موفقیت ثبت گردید", "پیغام ثبت ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Fm.FrmMain_Load(null, null);
                         this.Close();
                     }
                     catch (Exception ex)
@@ -189,36 +195,5 @@ namespace Sandogh_TG.Forms
             this.Close();
         }
 
-        FolderBrowserDialog SPath = new FolderBrowserDialog();
-        private void btnSelectPath_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (SPath.ShowDialog() == DialogResult.OK)
-                {
-                    if (SPath.SelectedPath.Length == 3)
-                    {
-                        txtPath.Text = SPath.SelectedPath + "BackupFile_Sandogh_TG";
-                        //+"_Date_" + DateTime.Now.ToString().Replace("/", "").Substring(0, 8) + "_Time_" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(".", " ").Substring(8, 11) + ".BAK";
-                        //txtSelectPath.Text = SPath.SelectedPath + "BackupFile_" +
-                        //    DateTime.Now.Date.Year + DateTime.Now.Date.Month + DateTime.Now.Date.Day + "_" +
-                        //    DateTime.Now.TimeOfDay.Hours + DateTime.Now.TimeOfDay.Minutes + DateTime.Now.TimeOfDay.Seconds + ".BAK";
-                    }
-                    else
-                    {
-                        txtPath.Text = SPath.SelectedPath + "\\BackupFile_Sandogh_TG";
-                        //+"_Date_" + DateTime.Now.ToString().Replace("/", "").Substring(0, 8) + "_Time_" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(".", " ").Substring(8, 11) + ".BAK";
-                        //txtSelectPath.Text = SPath.SelectedPath + "\\BackupFile_" +
-                        //    DateTime.Now.Date.Year + DateTime.Now.Date.Month + DateTime.Now.Date.Day + "_" +
-                        //    DateTime.Now.TimeOfDay.Hours + DateTime.Now.TimeOfDay.Minutes + DateTime.Now.TimeOfDay.Seconds + ".BAK";
-                    }
-                }
-            }
-            catch (PathTooLongException)
-            {
-
-                MessageBox.Show("مسیر فایل طولانی است");
-            }
-        }
     }
 }

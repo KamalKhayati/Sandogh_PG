@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sandogh_TG.Models
+namespace Sandogh_TG
 {
    public class HesabBanki
     {
@@ -32,14 +32,24 @@ namespace Sandogh_TG.Models
         public string ShomareShaba { get; set; }
         [MaxLength(40)]
         public string ShomareMoshtari { get; set; }
-        public decimal? Mojodi { get; set; }
+        //public decimal? Mojodi { get; set; }
         [Column(TypeName = "Date")]
         public DateTime StartDate { get; set; }
+        [Required]
+        public bool IsDefault { get; set; }
         [Required]
         public bool IsActive { get; set; }
         [MaxLength(500)]
         public string SharhHesab { get; set; }
         [MaxLength(23)]
         public string Tell { get; set; }
+        [Required]
+        public int TarifSandoghId { get; set; }
+        [Required]
+        public int SalMaliId { get; set; }
+        public virtual TarifSandogh TarifSandogh1 { get; set; }
+        public virtual ICollection<HaghOzviat> HaghOzviats { get; set; }
+        public virtual ICollection<VamPardakhti> VamPardakhtis { get; set; }
+
     }
 }

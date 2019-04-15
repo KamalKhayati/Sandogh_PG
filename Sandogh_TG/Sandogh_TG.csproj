@@ -67,11 +67,60 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cultures.cs" />
+    <Compile Include="Forms\CheckTazmin.cs" />
+    <Compile Include="Forms\FrmDaryafteAghsateVam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmDaryafteAghsateVam.Designer.cs">
+      <DependentUpon>FrmDaryafteAghsateVam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmDaryaftHaghOzviat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmDaryaftHaghOzviat.Designer.cs">
+      <DependentUpon>FrmDaryaftHaghOzviat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmDaryafti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmDaryafti.Designer.cs">
+      <DependentUpon>FrmDaryafti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmListVamhayePardakhti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmListVamhayePardakhti.Designer.cs">
+      <DependentUpon>FrmListVamhayePardakhti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmRizAghsatVam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmRizAghsatVam.Designer.cs">
+      <DependentUpon>FrmRizAghsatVam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmTanzimat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmTanzimat.Designer.cs">
+      <DependentUpon>FrmTanzimat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmTarifSalMali.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmTarifSalMali.Designer.cs">
+      <DependentUpon>FrmTarifSalMali.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmTarifSandogh.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FrmTarifSandogh.Designer.cs">
       <DependentUpon>FrmTarifSandogh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmVamPardakhti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmVamPardakhti.Designer.cs">
+      <DependentUpon>FrmVamPardakhti.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
@@ -79,36 +128,66 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmTarifAaza.cs">
+    <Compile Include="Forms\FrmTarifAaza_1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTarifAaza.Designer.cs">
-      <DependentUpon>FrmTarifAaza.cs</DependentUpon>
+    <Compile Include="Forms\FrmTarifAaza_1.Designer.cs">
+      <DependentUpon>FrmTarifAaza_1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmTarifHesabBanki.cs">
+    <Compile Include="Forms\FrmTarifHesabBanki.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTarifHesabBanki.Designer.cs">
+    <Compile Include="Forms\FrmTarifHesabBanki.Designer.cs">
       <DependentUpon>FrmTarifHesabBanki.cs</DependentUpon>
     </Compile>
     <Compile Include="HelpClass1.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AazaSandogh.cs" />
+    <Compile Include="Models\HaghOzviat.cs" />
     <Compile Include="Models\HesabBanki.cs" />
+    <Compile Include="Models\RizeAghsatVam.cs" />
+    <Compile Include="Models\SalMali.cs" />
+    <Compile Include="Models\Tanzimat.cs" />
     <Compile Include="Models\TarifSandogh.cs" />
+    <Compile Include="Models\VamPardakhti.cs" />
     <Compile Include="MyContext.cs" />
+    <Compile Include="MyDate.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\FrmDaryafteAghsateVam.resx">
+      <DependentUpon>FrmDaryafteAghsateVam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmDaryaftHaghOzviat.resx">
+      <DependentUpon>FrmDaryaftHaghOzviat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmDaryafti.resx">
+      <DependentUpon>FrmDaryafti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmListVamhayePardakhti.resx">
+      <DependentUpon>FrmListVamhayePardakhti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmRizAghsatVam.resx">
+      <DependentUpon>FrmRizAghsatVam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmTanzimat.resx">
+      <DependentUpon>FrmTanzimat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmTarifSalMali.resx">
+      <DependentUpon>FrmTarifSalMali.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmTarifSandogh.resx">
       <DependentUpon>FrmTarifSandogh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmVamPardakhti.resx">
+      <DependentUpon>FrmVamPardakhti.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmTarifAaza.resx">
-      <DependentUpon>FrmTarifAaza.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmTarifAaza_1.resx">
+      <DependentUpon>FrmTarifAaza_1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmTarifHesabBanki.resx">
+    <EmbeddedResource Include="Forms\FrmTarifHesabBanki.resx">
       <DependentUpon>FrmTarifHesabBanki.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />

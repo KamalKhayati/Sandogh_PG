@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTarifHesabBanki));
             this.txtStartDate = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.chkIsActive = new DevExpress.XtraEditors.CheckEdit();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtSharhHesab = new DevExpress.XtraEditors.MemoEdit();
@@ -81,9 +80,9 @@
             this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colGroupHesab = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMojodi = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colStartDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTell = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsDefault = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsActive = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEpGroupTafzili1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colGroupTafziliId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -95,6 +94,7 @@
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.xtraScrollableControl2 = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.chkIsDefault = new DevExpress.XtraEditors.CheckEdit();
             this.txtMojodiAvali = new DevExpress.XtraEditors.TextEdit();
             this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
             this.txtTell = new DevExpress.XtraEditors.TextEdit();
@@ -125,6 +125,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             this.panelControl4.SuspendLayout();
             this.xtraScrollableControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIsDefault.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMojodiAvali.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTell.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameBank.Properties)).BeginInit();
@@ -148,17 +149,7 @@
             this.txtStartDate.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtStartDate.Properties.ReadOnly = true;
             this.txtStartDate.Size = new System.Drawing.Size(194, 32);
-            this.txtStartDate.TabIndex = 8;
-            // 
-            // labelControl6
-            // 
-            this.labelControl6.AutoEllipsis = true;
-            this.labelControl6.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl6.Location = new System.Drawing.Point(65, 235);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(101, 32);
-            this.labelControl6.TabIndex = 35;
-            this.labelControl6.Text = "وضعیت حساب";
+            this.txtStartDate.TabIndex = 9;
             // 
             // chkIsActive
             // 
@@ -170,15 +161,15 @@
             this.chkIsActive.Properties.Caption = "فعال";
             this.chkIsActive.Properties.ReadOnly = true;
             this.chkIsActive.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkIsActive.Size = new System.Drawing.Size(52, 33);
-            this.chkIsActive.TabIndex = 10;
+            this.chkIsActive.Size = new System.Drawing.Size(86, 33);
+            this.chkIsActive.TabIndex = 12;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtSharhHesab);
             this.groupBox2.Location = new System.Drawing.Point(6, 52);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(306, 105);
+            this.groupBox2.Size = new System.Drawing.Size(306, 140);
             this.groupBox2.TabIndex = 34;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "توضیح یا تشریح حساب (اختیاری)";
@@ -190,7 +181,7 @@
             this.txtSharhHesab.Name = "txtSharhHesab";
             this.txtSharhHesab.Properties.MaxLength = 500;
             this.txtSharhHesab.Properties.ReadOnly = true;
-            this.txtSharhHesab.Size = new System.Drawing.Size(300, 73);
+            this.txtSharhHesab.Size = new System.Drawing.Size(300, 108);
             this.txtSharhHesab.TabIndex = 0;
             this.txtSharhHesab.TabStop = false;
             // 
@@ -451,7 +442,7 @@
             this.colCodeShobe.FieldName = "CodeShobe";
             this.colCodeShobe.Name = "colCodeShobe";
             this.colCodeShobe.Visible = true;
-            this.colCodeShobe.VisibleIndex = 6;
+            this.colCodeShobe.VisibleIndex = 5;
             this.colCodeShobe.Width = 130;
             // 
             // colNoeHesab
@@ -466,7 +457,7 @@
             this.colNoeHesab.FieldName = "NoeHesab";
             this.colNoeHesab.Name = "colNoeHesab";
             this.colNoeHesab.Visible = true;
-            this.colNoeHesab.VisibleIndex = 7;
+            this.colNoeHesab.VisibleIndex = 6;
             this.colNoeHesab.Width = 150;
             // 
             // colShomareHesab
@@ -481,7 +472,7 @@
             this.colShomareHesab.FieldName = "ShomareHesab";
             this.colShomareHesab.Name = "colShomareHesab";
             this.colShomareHesab.Visible = true;
-            this.colShomareHesab.VisibleIndex = 8;
+            this.colShomareHesab.VisibleIndex = 7;
             this.colShomareHesab.Width = 180;
             // 
             // colShomareKart
@@ -496,7 +487,7 @@
             this.colShomareKart.FieldName = "ShomareKart";
             this.colShomareKart.Name = "colShomareKart";
             this.colShomareKart.Visible = true;
-            this.colShomareKart.VisibleIndex = 9;
+            this.colShomareKart.VisibleIndex = 8;
             this.colShomareKart.Width = 180;
             // 
             // txtShomareShaba
@@ -507,12 +498,12 @@
             this.txtShomareShaba.Properties.MaxLength = 40;
             this.txtShomareShaba.Properties.ReadOnly = true;
             this.txtShomareShaba.Size = new System.Drawing.Size(194, 32);
-            this.txtShomareShaba.TabIndex = 7;
+            this.txtShomareShaba.TabIndex = 6;
             // 
             // txtShomareKart
             // 
             this.txtShomareKart.EnterMoveNextControl = true;
-            this.txtShomareKart.Location = new System.Drawing.Point(6, 161);
+            this.txtShomareKart.Location = new System.Drawing.Point(5, 199);
             this.txtShomareKart.Name = "txtShomareKart";
             this.txtShomareKart.Properties.Mask.BeepOnError = true;
             this.txtShomareKart.Properties.Mask.EditMask = "0000-0000-0000-0000";
@@ -521,7 +512,7 @@
             this.txtShomareKart.Properties.MaxLength = 40;
             this.txtShomareKart.Properties.ReadOnly = true;
             this.txtShomareKart.Size = new System.Drawing.Size(197, 32);
-            this.txtShomareKart.TabIndex = 6;
+            this.txtShomareKart.TabIndex = 8;
             // 
             // txtShomareHesab
             // 
@@ -577,7 +568,7 @@
             this.colShomareShaba.FieldName = "ShomareShaba";
             this.colShomareShaba.Name = "colShomareShaba";
             this.colShomareShaba.Visible = true;
-            this.colShomareShaba.VisibleIndex = 10;
+            this.colShomareShaba.VisibleIndex = 9;
             this.colShomareShaba.Width = 180;
             // 
             // labelControl12
@@ -604,7 +595,7 @@
             // 
             this.labelControl11.AutoEllipsis = true;
             this.labelControl11.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl11.Location = new System.Drawing.Point(209, 160);
+            this.labelControl11.Location = new System.Drawing.Point(208, 198);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(75, 32);
             this.labelControl11.TabIndex = 31;
@@ -659,7 +650,7 @@
             this.colNameShobe.FieldName = "NameShobe";
             this.colNameShobe.Name = "colNameShobe";
             this.colNameShobe.Visible = true;
-            this.colNameShobe.VisibleIndex = 5;
+            this.colNameShobe.VisibleIndex = 4;
             this.colNameShobe.Width = 170;
             // 
             // colShomareMoshtari
@@ -674,7 +665,7 @@
             this.colShomareMoshtari.FieldName = "ShomareMoshtari";
             this.colShomareMoshtari.Name = "colShomareMoshtari";
             this.colShomareMoshtari.Visible = true;
-            this.colShomareMoshtari.VisibleIndex = 11;
+            this.colShomareMoshtari.VisibleIndex = 10;
             this.colShomareMoshtari.Width = 150;
             // 
             // gridControl1
@@ -693,7 +684,7 @@
             // 
             // hesabBankisBindingSource
             // 
-            this.hesabBankisBindingSource.DataSource = typeof(Sandogh_TG.Models.HesabBanki);
+            this.hesabBankisBindingSource.DataSource = typeof(Sandogh_TG.HesabBanki);
             // 
             // gridView1
             // 
@@ -704,7 +695,6 @@
             this.colGroupHesab,
             this.colName,
             this.colNameBank,
-            this.colMojodi,
             this.colNameShobe,
             this.colCodeShobe,
             this.colNoeHesab,
@@ -714,6 +704,7 @@
             this.colShomareMoshtari,
             this.colStartDate,
             this.colTell,
+            this.colIsDefault,
             this.colIsActive,
             this.colSharhHesab,
             this.colEpGroupTafzili1,
@@ -808,23 +799,6 @@
             this.colName.VisibleIndex = 3;
             this.colName.Width = 370;
             // 
-            // colMojodi
-            // 
-            this.colMojodi.AppearanceCell.Options.UseTextOptions = true;
-            this.colMojodi.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colMojodi.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colMojodi.AppearanceHeader.Options.UseTextOptions = true;
-            this.colMojodi.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colMojodi.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colMojodi.Caption = "موجودی اولیه";
-            this.colMojodi.DisplayFormat.FormatString = "n";
-            this.colMojodi.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colMojodi.FieldName = "Mojodi";
-            this.colMojodi.Name = "colMojodi";
-            this.colMojodi.Visible = true;
-            this.colMojodi.VisibleIndex = 4;
-            this.colMojodi.Width = 130;
-            // 
             // colStartDate
             // 
             this.colStartDate.AppearanceCell.Options.UseTextOptions = true;
@@ -837,7 +811,7 @@
             this.colStartDate.FieldName = "StartDate";
             this.colStartDate.Name = "colStartDate";
             this.colStartDate.Visible = true;
-            this.colStartDate.VisibleIndex = 12;
+            this.colStartDate.VisibleIndex = 11;
             this.colStartDate.Width = 150;
             // 
             // colTell
@@ -852,8 +826,23 @@
             this.colTell.FieldName = "Tell";
             this.colTell.Name = "colTell";
             this.colTell.Visible = true;
-            this.colTell.VisibleIndex = 13;
+            this.colTell.VisibleIndex = 12;
             this.colTell.Width = 130;
+            // 
+            // colIsDefault
+            // 
+            this.colIsDefault.AppearanceCell.Options.UseTextOptions = true;
+            this.colIsDefault.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colIsDefault.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colIsDefault.AppearanceHeader.Options.UseTextOptions = true;
+            this.colIsDefault.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colIsDefault.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colIsDefault.Caption = "پیش فرض";
+            this.colIsDefault.FieldName = "IsDefault";
+            this.colIsDefault.Name = "colIsDefault";
+            this.colIsDefault.Visible = true;
+            this.colIsDefault.VisibleIndex = 13;
+            this.colIsDefault.Width = 100;
             // 
             // colIsActive
             // 
@@ -959,15 +948,16 @@
             // 
             // xtraScrollableControl2
             // 
+            this.xtraScrollableControl2.Controls.Add(this.txtShomareKart);
+            this.xtraScrollableControl2.Controls.Add(this.labelControl11);
+            this.xtraScrollableControl2.Controls.Add(this.chkIsDefault);
             this.xtraScrollableControl2.Controls.Add(this.txtMojodiAvali);
             this.xtraScrollableControl2.Controls.Add(this.labelControl19);
             this.xtraScrollableControl2.Controls.Add(this.panelControl2);
             this.xtraScrollableControl2.Controls.Add(this.txtStartDate);
-            this.xtraScrollableControl2.Controls.Add(this.labelControl6);
             this.xtraScrollableControl2.Controls.Add(this.chkIsActive);
             this.xtraScrollableControl2.Controls.Add(this.groupBox2);
             this.xtraScrollableControl2.Controls.Add(this.txtShomareShaba);
-            this.xtraScrollableControl2.Controls.Add(this.txtShomareKart);
             this.xtraScrollableControl2.Controls.Add(this.txtShomareHesab);
             this.xtraScrollableControl2.Controls.Add(this.txtShomareMoshtari);
             this.xtraScrollableControl2.Controls.Add(this.txtTell);
@@ -978,7 +968,6 @@
             this.xtraScrollableControl2.Controls.Add(this.labelControl12);
             this.xtraScrollableControl2.Controls.Add(this.labelControl9);
             this.xtraScrollableControl2.Controls.Add(this.labelControl13);
-            this.xtraScrollableControl2.Controls.Add(this.labelControl11);
             this.xtraScrollableControl2.Controls.Add(this.labelControl15);
             this.xtraScrollableControl2.Controls.Add(this.labelControl10);
             this.xtraScrollableControl2.Controls.Add(this.labelControl8);
@@ -997,6 +986,18 @@
             this.xtraScrollableControl2.Size = new System.Drawing.Size(902, 279);
             this.xtraScrollableControl2.TabIndex = 30;
             // 
+            // chkIsDefault
+            // 
+            this.chkIsDefault.EnterMoveNextControl = true;
+            this.chkIsDefault.Location = new System.Drawing.Point(100, 234);
+            this.chkIsDefault.Name = "chkIsDefault";
+            this.chkIsDefault.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
+            this.chkIsDefault.Properties.Caption = "پیش فرض";
+            this.chkIsDefault.Properties.ReadOnly = true;
+            this.chkIsDefault.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkIsDefault.Size = new System.Drawing.Size(103, 33);
+            this.chkIsDefault.TabIndex = 11;
+            // 
             // txtMojodiAvali
             // 
             this.txtMojodiAvali.EnterMoveNextControl = true;
@@ -1007,7 +1008,9 @@
             this.txtMojodiAvali.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtMojodiAvali.Properties.ReadOnly = true;
             this.txtMojodiAvali.Size = new System.Drawing.Size(196, 32);
-            this.txtMojodiAvali.TabIndex = 42;
+            this.txtMojodiAvali.TabIndex = 9;
+            this.txtMojodiAvali.TabStop = false;
+            this.txtMojodiAvali.Visible = false;
             // 
             // labelControl19
             // 
@@ -1018,6 +1021,7 @@
             this.labelControl19.Size = new System.Drawing.Size(96, 32);
             this.labelControl19.TabIndex = 43;
             this.labelControl19.Text = "موجودی اولیه";
+            this.labelControl19.Visible = false;
             // 
             // txtTell
             // 
@@ -1027,7 +1031,7 @@
             this.txtTell.Properties.MaxLength = 23;
             this.txtTell.Properties.ReadOnly = true;
             this.txtTell.Size = new System.Drawing.Size(197, 32);
-            this.txtTell.TabIndex = 9;
+            this.txtTell.TabIndex = 10;
             // 
             // txtNameBank
             // 
@@ -1070,7 +1074,7 @@
             this.txtCode.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtCode.Properties.Mask.EditMask = "00000";
             this.txtCode.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtCode.Properties.MaxLength = 3;
+            this.txtCode.Properties.MaxLength = 7;
             this.txtCode.Properties.ReadOnly = true;
             this.txtCode.Size = new System.Drawing.Size(95, 32);
             this.txtCode.TabIndex = 20;
@@ -1171,6 +1175,7 @@
             this.panelControl4.PerformLayout();
             this.xtraScrollableControl2.ResumeLayout(false);
             this.xtraScrollableControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIsDefault.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMojodiAvali.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTell.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameBank.Properties)).EndInit();
@@ -1185,7 +1190,6 @@
         #endregion
 
         private DevExpress.XtraEditors.TextEdit txtStartDate;
-        private DevExpress.XtraEditors.LabelControl labelControl6;
         public DevExpress.XtraEditors.CheckEdit chkIsActive;
         private System.Windows.Forms.GroupBox groupBox2;
         private DevExpress.XtraEditors.MemoEdit txtSharhHesab;
@@ -1259,6 +1263,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colTell;
         public DevExpress.XtraEditors.TextEdit txtMojodiAvali;
         private DevExpress.XtraEditors.LabelControl labelControl19;
-        private DevExpress.XtraGrid.Columns.GridColumn colMojodi;
+        public DevExpress.XtraEditors.CheckEdit chkIsDefault;
+        private DevExpress.XtraGrid.Columns.GridColumn colIsDefault;
     }
 }
