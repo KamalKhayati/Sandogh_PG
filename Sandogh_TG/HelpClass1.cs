@@ -13,6 +13,13 @@ namespace Sandogh_TG
 {
     public class HelpClass1
     {
+        //تنظیم EditMask تکس باکس تاریخ
+        //RightToLeft=No
+        //RegEx
+        //([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][1-9]|[123]0))|((1[2])/([012][1-9])))
+        //Show Placeholdes=true
+
+
         public static void SwitchToPersianLanguage()
         {
             InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(System.Globalization.CultureInfo.CreateSpecificCulture("fa-IR"));

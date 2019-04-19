@@ -36,7 +36,10 @@
             this.btnSaveClose = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.cmbDaryaftKonande = new DevExpress.XtraEditors.LookUpEdit();
+            this.aazaSandoghsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.xtraScrollableControl2 = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.txtShomareGhest = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.txtMablaghGest = new DevExpress.XtraEditors.TextEdit();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.txtSarresidGhest = new DevExpress.XtraEditors.TextEdit();
@@ -44,20 +47,17 @@
             this.txtCode = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
-            this.txtShomareGhest = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.aazaSandoghsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbDaryaftKonande.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).BeginInit();
             this.xtraScrollableControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtShomareGhest.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMablaghGest.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSarresidGhest.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             this.panelControl4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtShomareGhest.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl2
@@ -85,14 +85,14 @@
             // 
             // btnSaveNext
             // 
-            this.btnSaveNext.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveNext.ImageOptions.Image")));
+            this.btnSaveNext.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSaveNext.ImageOptions.SvgImage")));
             this.btnSaveNext.Location = new System.Drawing.Point(255, 5);
             this.btnSaveNext.Name = "btnSaveNext";
             this.btnSaveNext.Size = new System.Drawing.Size(142, 40);
             this.btnSaveNext.TabIndex = 0;
             this.btnSaveNext.Text = "ذخیره و بعدی";
-            this.btnSaveNext.ToolTip = "F5";
-            this.btnSaveNext.ToolTipTitle = "ذخیره";
+            this.btnSaveNext.ToolTip = "F9";
+            this.btnSaveNext.ToolTipTitle = "ذخیره و بعدی";
             this.btnSaveNext.Click += new System.EventHandler(this.btnSaveNext_Click);
             // 
             // btnSaveClose
@@ -104,7 +104,7 @@
             this.btnSaveClose.TabIndex = 1;
             this.btnSaveClose.Text = "ذخیره و بستن";
             this.btnSaveClose.ToolTip = "F5";
-            this.btnSaveClose.ToolTipTitle = "ذخیره";
+            this.btnSaveClose.ToolTipTitle = "ذخیره و بستن";
             this.btnSaveClose.Click += new System.EventHandler(this.btnSaveClose_Click);
             // 
             // labelControl5
@@ -141,6 +141,10 @@
             this.cmbDaryaftKonande.TabIndex = 15;
             this.cmbDaryaftKonande.TabStop = false;
             // 
+            // aazaSandoghsBindingSource
+            // 
+            this.aazaSandoghsBindingSource.DataSource = typeof(Sandogh_TG.AazaSandogh);
+            // 
             // xtraScrollableControl2
             // 
             this.xtraScrollableControl2.Controls.Add(this.txtShomareGhest);
@@ -158,6 +162,33 @@
             this.xtraScrollableControl2.Name = "xtraScrollableControl2";
             this.xtraScrollableControl2.Size = new System.Drawing.Size(402, 249);
             this.xtraScrollableControl2.TabIndex = 36;
+            // 
+            // txtShomareGhest
+            // 
+            this.txtShomareGhest.EditValue = "";
+            this.txtShomareGhest.EnterMoveNextControl = true;
+            this.txtShomareGhest.Location = new System.Drawing.Point(204, 88);
+            this.txtShomareGhest.Name = "txtShomareGhest";
+            this.txtShomareGhest.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtShomareGhest.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.txtShomareGhest.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.txtShomareGhest.Properties.Mask.EditMask = "000000";
+            this.txtShomareGhest.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtShomareGhest.Properties.MaxLength = 7;
+            this.txtShomareGhest.Properties.ReadOnly = true;
+            this.txtShomareGhest.Size = new System.Drawing.Size(95, 32);
+            this.txtShomareGhest.TabIndex = 67;
+            this.txtShomareGhest.TabStop = false;
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
+            this.labelControl4.Appearance.Options.UseForeColor = true;
+            this.labelControl4.Location = new System.Drawing.Point(305, 91);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(33, 25);
+            this.labelControl4.TabIndex = 68;
+            this.labelControl4.Text = "قسط";
             // 
             // txtMablaghGest
             // 
@@ -195,9 +226,12 @@
             this.txtSarresidGhest.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtSarresidGhest.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtSarresidGhest.Properties.Mask.BeepOnError = true;
-            this.txtSarresidGhest.Properties.Mask.EditMask = "yyyy/MM/dd";
-            this.txtSarresidGhest.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
+            this.txtSarresidGhest.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
+    "1-9]|[123]0))|((1[2])/([012][1-9])))";
+            this.txtSarresidGhest.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtSarresidGhest.Properties.Mask.PlaceHolder = '-';
             this.txtSarresidGhest.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtSarresidGhest.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtSarresidGhest.Size = new System.Drawing.Size(139, 32);
             this.txtSarresidGhest.TabIndex = 0;
             // 
@@ -247,37 +281,6 @@
             this.panelControl4.Size = new System.Drawing.Size(404, 251);
             this.panelControl4.TabIndex = 35;
             // 
-            // txtShomareGhest
-            // 
-            this.txtShomareGhest.EditValue = "";
-            this.txtShomareGhest.EnterMoveNextControl = true;
-            this.txtShomareGhest.Location = new System.Drawing.Point(204, 88);
-            this.txtShomareGhest.Name = "txtShomareGhest";
-            this.txtShomareGhest.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtShomareGhest.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.txtShomareGhest.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.txtShomareGhest.Properties.Mask.EditMask = "000000";
-            this.txtShomareGhest.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtShomareGhest.Properties.MaxLength = 7;
-            this.txtShomareGhest.Properties.ReadOnly = true;
-            this.txtShomareGhest.Size = new System.Drawing.Size(95, 32);
-            this.txtShomareGhest.TabIndex = 67;
-            this.txtShomareGhest.TabStop = false;
-            // 
-            // labelControl4
-            // 
-            this.labelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
-            this.labelControl4.Appearance.Options.UseForeColor = true;
-            this.labelControl4.Location = new System.Drawing.Point(305, 91);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(33, 25);
-            this.labelControl4.TabIndex = 68;
-            this.labelControl4.Text = "قسط";
-            // 
-            // aazaSandoghsBindingSource
-            // 
-            this.aazaSandoghsBindingSource.DataSource = typeof(Sandogh_TG.AazaSandogh);
-            // 
             // FrmRizAghsatVam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
@@ -298,15 +301,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cmbDaryaftKonande.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).EndInit();
             this.xtraScrollableControl2.ResumeLayout(false);
             this.xtraScrollableControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtShomareGhest.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMablaghGest.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSarresidGhest.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
             this.panelControl4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtShomareGhest.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

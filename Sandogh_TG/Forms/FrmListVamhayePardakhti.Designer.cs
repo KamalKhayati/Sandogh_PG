@@ -47,7 +47,6 @@
             this.gridColumn34 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn35 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn36 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn37 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn38 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn39 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFaseleAghsat = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -183,7 +182,6 @@
             this.gridColumn34,
             this.gridColumn35,
             this.gridColumn36,
-            this.gridColumn37,
             this.gridColumn38,
             this.gridColumn39,
             this.colFaseleAghsat,
@@ -407,27 +405,12 @@
             this.gridColumn36.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn36.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn36.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn36.Caption = "چک تضمین";
+            this.gridColumn36.Caption = "چک/سفته تضمین";
             this.gridColumn36.FieldName = "HaveCheckTazmin";
             this.gridColumn36.Name = "gridColumn36";
             this.gridColumn36.Visible = true;
             this.gridColumn36.VisibleIndex = 10;
-            this.gridColumn36.Width = 100;
-            // 
-            // gridColumn37
-            // 
-            this.gridColumn37.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn37.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn37.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn37.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn37.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn37.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn37.Caption = "سفته تضمین";
-            this.gridColumn37.FieldName = "HaveSefteTazmin";
-            this.gridColumn37.Name = "gridColumn37";
-            this.gridColumn37.Visible = true;
-            this.gridColumn37.VisibleIndex = 11;
-            this.gridColumn37.Width = 100;
+            this.gridColumn36.Width = 130;
             // 
             // gridColumn38
             // 
@@ -441,7 +424,7 @@
             this.gridColumn38.FieldName = "NahveyePardakht";
             this.gridColumn38.Name = "gridColumn38";
             this.gridColumn38.Visible = true;
-            this.gridColumn38.VisibleIndex = 12;
+            this.gridColumn38.VisibleIndex = 11;
             this.gridColumn38.Width = 130;
             // 
             // gridColumn39
@@ -456,7 +439,7 @@
             this.gridColumn39.FieldName = "NoeVam";
             this.gridColumn39.Name = "gridColumn39";
             this.gridColumn39.Visible = true;
-            this.gridColumn39.VisibleIndex = 13;
+            this.gridColumn39.VisibleIndex = 12;
             this.gridColumn39.Width = 100;
             // 
             // colFaseleAghsat
@@ -471,7 +454,7 @@
             this.colFaseleAghsat.FieldName = "FaseleAghsat";
             this.colFaseleAghsat.Name = "colFaseleAghsat";
             this.colFaseleAghsat.Visible = true;
-            this.colFaseleAghsat.VisibleIndex = 14;
+            this.colFaseleAghsat.VisibleIndex = 13;
             this.colFaseleAghsat.Width = 100;
             // 
             // gridColumn40
@@ -486,7 +469,7 @@
             this.gridColumn40.FieldName = "DarsadeKarmozd";
             this.gridColumn40.Name = "gridColumn40";
             this.gridColumn40.Visible = true;
-            this.gridColumn40.VisibleIndex = 15;
+            this.gridColumn40.VisibleIndex = 14;
             this.gridColumn40.Width = 100;
             // 
             // gridColumn41
@@ -503,7 +486,7 @@
             this.gridColumn41.FieldName = "MablaghDirkard";
             this.gridColumn41.Name = "gridColumn41";
             this.gridColumn41.Visible = true;
-            this.gridColumn41.VisibleIndex = 16;
+            this.gridColumn41.VisibleIndex = 15;
             this.gridColumn41.Width = 100;
             // 
             // gridColumn42
@@ -520,7 +503,7 @@
             this.gridColumn42.FieldName = "TarikhDarkhast";
             this.gridColumn42.Name = "gridColumn42";
             this.gridColumn42.Visible = true;
-            this.gridColumn42.VisibleIndex = 17;
+            this.gridColumn42.VisibleIndex = 16;
             this.gridColumn42.Width = 150;
             // 
             // gridColumn43
@@ -535,7 +518,7 @@
             this.gridColumn43.FieldName = "ShomareDarkhast";
             this.gridColumn43.Name = "gridColumn43";
             this.gridColumn43.Visible = true;
-            this.gridColumn43.VisibleIndex = 18;
+            this.gridColumn43.VisibleIndex = 17;
             this.gridColumn43.Width = 140;
             // 
             // gridColumn44
@@ -549,7 +532,7 @@
             this.gridColumn44.FieldName = "NameHesab";
             this.gridColumn44.Name = "gridColumn44";
             this.gridColumn44.Visible = true;
-            this.gridColumn44.VisibleIndex = 19;
+            this.gridColumn44.VisibleIndex = 18;
             this.gridColumn44.Width = 350;
             // 
             // gridColumn45
@@ -565,7 +548,7 @@
             this.gridColumn45.MinWidth = 19;
             this.gridColumn45.Name = "gridColumn45";
             this.gridColumn45.Visible = true;
-            this.gridColumn45.VisibleIndex = 20;
+            this.gridColumn45.VisibleIndex = 19;
             this.gridColumn45.Width = 100;
             // 
             // AazaId
@@ -1152,7 +1135,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn34;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn35;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn36;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn37;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn38;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn39;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn40;

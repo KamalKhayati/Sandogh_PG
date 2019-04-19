@@ -57,7 +57,6 @@ namespace Sandogh_TG
         [MaxLength(150)]
         public string ZameninName { get; set; }
         public bool? HaveCheckTazmin { get; set; }
-        public bool? HaveSefteTazmin { get; set; }
         public bool? IsTasviye { get; set; }
         [Required]
         public int SalMaliId { get; set; }

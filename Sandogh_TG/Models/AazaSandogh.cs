@@ -72,6 +72,7 @@ namespace Sandogh_TG
         public virtual TarifSandogh TarifSandogh1 { get; set; }
         public virtual ICollection<HaghOzviat> HaghOzviats { get; set; }
         public virtual ICollection<VamPardakhti> VamPardakhtis { get; set; }
+        public virtual ICollection<CheckTazmin> CheckTazmins { get; set; }
 
     }
 }

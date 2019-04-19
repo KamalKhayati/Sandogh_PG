@@ -146,9 +146,12 @@
             this.txtTarikhEjad.Location = new System.Drawing.Point(309, 157);
             this.txtTarikhEjad.Name = "txtTarikhEjad";
             this.txtTarikhEjad.Properties.Mask.BeepOnError = true;
-            this.txtTarikhEjad.Properties.Mask.EditMask = "yyyy/MM/dd";
-            this.txtTarikhEjad.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
+            this.txtTarikhEjad.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
+    "1-9]|[123]0))|((1[2])/([012][1-9])))";
+            this.txtTarikhEjad.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtTarikhEjad.Properties.Mask.PlaceHolder = '-';
             this.txtTarikhEjad.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtTarikhEjad.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtTarikhEjad.Size = new System.Drawing.Size(196, 32);
             this.txtTarikhEjad.TabIndex = 4;
             // 
@@ -247,7 +250,7 @@
             this.btnSaveClose.TabIndex = 0;
             this.btnSaveClose.Text = "ذخیره و بستن";
             this.btnSaveClose.ToolTip = "F2";
-            this.btnSaveClose.ToolTipTitle = "ایجاد و بستن";
+            this.btnSaveClose.ToolTipTitle = "ذخیره و بستن";
             this.btnSaveClose.Click += new System.EventHandler(this.btnSaveClose_Click);
             // 
             // btnClose

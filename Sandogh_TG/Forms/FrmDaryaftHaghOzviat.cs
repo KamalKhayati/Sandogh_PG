@@ -203,39 +203,6 @@ namespace Sandogh_TG
                 btnSaveNext.Visible = false;
             }
 
-            //using (var db = new MyContext())
-            //{
-            //    try
-            //    {
-            //        var q1 = db.TarifSandoghs.FirstOrDefault(s => s.Id == 1);
-            //        if (q1 != null)
-            //        {
-            //            txtNameSandogh.Text = q1.NameSandogh;
-            //            txtNameModir.Text = q1.NameModir;
-            //            txtKarmozdVam.Text = q1.Karmozd.ToString();
-            //            txtDirkard.Text = q1.Dirkard.ToString();
-            //            txtSharh.Text = q1.Adress;
-            //            txtTell.Text = q1.Tell;
-            //            txtMobile.Text = q1.Mobile;
-            //            txtTarikhEjad.Text = q1.TarikhEjad.ToString().Substring(0, 10);
-            //            txtPath.Text = q1.Path;
-            //            if (q1.Pictuer != null)
-            //            {
-            //                MemoryStream ms = new MemoryStream(q1.Pictuer);
-            //                pictureEdit1.Image = Image.FromStream(ms);
-            //            }
-            //            else
-            //                pictureEdit1.Image = null;
-
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-            //            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //}
-
         }
 
         private void FrmDaryaftHaghOzviat_KeyDown(object sender, KeyEventArgs e)
@@ -243,6 +210,10 @@ namespace Sandogh_TG
             if (e.KeyCode == Keys.F5)
             {
                 btnSaveClose_Click(sender, null);
+            }
+            else if (e.KeyCode == Keys.F9 && btnSaveNext.Visible == true)
+            {
+                btnSaveNext_Click(sender, null);
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -387,10 +358,12 @@ namespace Sandogh_TG
         private void btnSaveNext_Click(object sender, EventArgs e)
         {
             btnSaveClose_Click(null, null);
-            ActiveForm(this);
-            this.Visible = false;
-            Fm.btnCreate2_Click(null, null);
-
+            if (En == EnumCED.Save)
+            {
+                ActiveForm(this);
+                this.Visible = false;
+                Fm.btnCreate2_Click(null, null);
+            }
         }
     }
 }

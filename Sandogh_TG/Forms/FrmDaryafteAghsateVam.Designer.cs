@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDaryafteAghsateVam));
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.btnSaveNext = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSaveClose = new DevExpress.XtraEditors.SimpleButton();
             this.xtraScrollableControl2 = new DevExpress.XtraEditors.XtraScrollableControl();
@@ -58,7 +59,6 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.aazaSandoghsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.hesabBankisBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnSaveNext = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             this.xtraScrollableControl2.SuspendLayout();
@@ -92,6 +92,18 @@
             this.panelControl2.Size = new System.Drawing.Size(531, 49);
             this.panelControl2.TabIndex = 26;
             // 
+            // btnSaveNext
+            // 
+            this.btnSaveNext.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSaveNext.ImageOptions.SvgImage")));
+            this.btnSaveNext.Location = new System.Drawing.Point(384, 4);
+            this.btnSaveNext.Name = "btnSaveNext";
+            this.btnSaveNext.Size = new System.Drawing.Size(142, 40);
+            this.btnSaveNext.TabIndex = 0;
+            this.btnSaveNext.Text = "ذخیره و بعدی";
+            this.btnSaveNext.ToolTip = "F9";
+            this.btnSaveNext.ToolTipTitle = "ذخیره و بعدی";
+            this.btnSaveNext.Click += new System.EventHandler(this.btnSaveNext_Click);
+            // 
             // btnClose
             // 
             this.btnClose.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnClose.ImageOptions.SvgImage")));
@@ -113,7 +125,7 @@
             this.btnSaveClose.TabIndex = 1;
             this.btnSaveClose.Text = "ذخیره و بستن";
             this.btnSaveClose.ToolTip = "F5";
-            this.btnSaveClose.ToolTipTitle = "ذخیره";
+            this.btnSaveClose.ToolTipTitle = "ذخیره و بستن";
             this.btnSaveClose.Click += new System.EventHandler(this.btnSaveClose_Click);
             // 
             // xtraScrollableControl2
@@ -163,10 +175,13 @@
             this.txtSarresidGhest.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtSarresidGhest.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtSarresidGhest.Properties.Mask.BeepOnError = true;
-            this.txtSarresidGhest.Properties.Mask.EditMask = "yyyy/MM/dd";
-            this.txtSarresidGhest.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
+            this.txtSarresidGhest.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
+    "1-9]|[123]0))|((1[2])/([012][1-9])))";
+            this.txtSarresidGhest.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtSarresidGhest.Properties.Mask.PlaceHolder = '-';
             this.txtSarresidGhest.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtSarresidGhest.Properties.ReadOnly = true;
+            this.txtSarresidGhest.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtSarresidGhest.Size = new System.Drawing.Size(153, 32);
             this.txtSarresidGhest.TabIndex = 74;
             this.txtSarresidGhest.TabStop = false;
@@ -380,9 +395,12 @@
             this.txtTarikhDaryaft.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtTarikhDaryaft.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtTarikhDaryaft.Properties.Mask.BeepOnError = true;
-            this.txtTarikhDaryaft.Properties.Mask.EditMask = "yyyy/MM/dd";
-            this.txtTarikhDaryaft.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
+            this.txtTarikhDaryaft.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
+    "1-9]|[123]0))|((1[2])/([012][1-9])))";
+            this.txtTarikhDaryaft.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtTarikhDaryaft.Properties.Mask.PlaceHolder = '-';
             this.txtTarikhDaryaft.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtTarikhDaryaft.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtTarikhDaryaft.Size = new System.Drawing.Size(154, 32);
             this.txtTarikhDaryaft.TabIndex = 0;
             // 
@@ -456,18 +474,6 @@
             // hesabBankisBindingSource
             // 
             this.hesabBankisBindingSource.DataSource = typeof(Sandogh_TG.HesabBanki);
-            // 
-            // btnSaveNext
-            // 
-            this.btnSaveNext.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveNext.ImageOptions.Image")));
-            this.btnSaveNext.Location = new System.Drawing.Point(384, 4);
-            this.btnSaveNext.Name = "btnSaveNext";
-            this.btnSaveNext.Size = new System.Drawing.Size(142, 40);
-            this.btnSaveNext.TabIndex = 0;
-            this.btnSaveNext.Text = "ذخیره و بعدی";
-            this.btnSaveNext.ToolTip = "F5";
-            this.btnSaveNext.ToolTipTitle = "ذخیره";
-            this.btnSaveNext.Click += new System.EventHandler(this.btnSaveNext_Click);
             // 
             // FrmDaryafteAghsateVam
             // 

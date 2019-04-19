@@ -145,7 +145,7 @@ namespace Sandogh_TG
             {
                 btnSaveClose_Click(sender, null);
             }
-            if (e.KeyCode == Keys.F6 && btnSaveNext.Visible == true)
+            else if (e.KeyCode == Keys.F9 && btnSaveNext.Visible == true)
             {
                 btnSaveNext_Click(sender, null);
             }
@@ -272,10 +272,13 @@ namespace Sandogh_TG
             //btnSaveClose_Clicked = true;
             //En = EnumCED.Create;
             btnSaveClose_Click(null, null);
-            ActiveForm(this);
-            this.Visible = false;
-            Fm.btnCreate2_Click(null, null);
+            if (En == EnumCED.Save)
+            {
+                ActiveForm(this);
+                this.Visible = false;
+                Fm.btnCreate2_Click(null, null);
 
+            }
         }
 
     }

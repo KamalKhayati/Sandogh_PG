@@ -39,6 +39,8 @@
             this.btnSaveClose = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCreate = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.lstZamenin = new DevExpress.XtraEditors.ListBoxControl();
@@ -47,20 +49,24 @@
             this.aazaSandoghsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.checkTazminsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMoinId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colEpHesabMoin1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
-            this.gridControl2 = new DevExpress.XtraGrid.GridControl();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Line = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSeryalDaryaft = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTarikhDaryaft = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colVaziyatCheck = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colVamGerandeName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNoeSanad = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colShCheck = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTarikhCheck = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMablagh = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colShomareHesab = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNameBank = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSahebCheck = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSharhDaryaftCheck = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTarikhOdatCheck = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSharhOdatCheck = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl7 = new DevExpress.XtraEditors.PanelControl();
             this.cmbNameHesab = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -123,10 +129,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource1)).BeginInit();
             this.xtraTabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkTazminsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            this.xtraTabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl7)).BeginInit();
             this.panelControl7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNameHesab.Properties)).BeginInit();
@@ -226,7 +230,7 @@
             this.btnSaveClose.TabIndex = 0;
             this.btnSaveClose.Text = "ذخیره و بستن";
             this.btnSaveClose.ToolTip = "F5";
-            this.btnSaveClose.ToolTipTitle = "ذخیره";
+            this.btnSaveClose.ToolTipTitle = "ذخیره و بستن";
             this.btnSaveClose.Click += new System.EventHandler(this.btnSaveClose_Click);
             // 
             // panelControl4
@@ -240,6 +244,8 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.btnDelete);
+            this.groupControl1.Controls.Add(this.btnCreate);
             this.groupControl1.Controls.Add(this.xtraTabControl1);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(2, 2);
@@ -247,6 +253,31 @@
             this.groupControl1.Size = new System.Drawing.Size(640, 262);
             this.groupControl1.TabIndex = 1;
             this.groupControl1.Text = "نوع تضمین";
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDelete.ImageOptions.SvgImage")));
+            this.btnDelete.Location = new System.Drawing.Point(52, 31);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(38, 34);
+            this.btnDelete.TabIndex = 4;
+            this.btnDelete.Text = "simpleButton1";
+            this.btnDelete.ToolTip = "F3";
+            this.btnDelete.ToolTipTitle = "حذف";
+            this.btnDelete.Visible = false;
+            // 
+            // btnCreate
+            // 
+            this.btnCreate.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCreate.ImageOptions.SvgImage")));
+            this.btnCreate.Location = new System.Drawing.Point(6, 31);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(40, 34);
+            this.btnCreate.TabIndex = 3;
+            this.btnCreate.Text = "simpleButton1";
+            this.btnCreate.ToolTip = "F2";
+            this.btnCreate.ToolTipTitle = "ایجاد";
+            this.btnCreate.Visible = false;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click_1);
             // 
             // xtraTabControl1
             // 
@@ -258,9 +289,9 @@
             this.xtraTabControl1.TabIndex = 0;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
-            this.xtraTabPage2,
-            this.xtraTabPage3});
+            this.xtraTabPage2});
             this.xtraTabControl1.TabStop = false;
+            this.xtraTabControl1.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControl1_SelectedPageChanged);
             // 
             // xtraTabPage1
             // 
@@ -269,7 +300,7 @@
             this.xtraTabPage1.Controls.Add(this.chkcmbEntekhabZamenin);
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(630, 188);
-            this.xtraTabPage1.Text = "اعضای صندوق";
+            this.xtraTabPage1.Text = "اعضاء صندوق";
             // 
             // lstZamenin
             // 
@@ -285,11 +316,11 @@
             this.labelControl6.Appearance.Options.UseForeColor = true;
             this.labelControl6.AutoEllipsis = true;
             this.labelControl6.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl6.Location = new System.Drawing.Point(491, 12);
+            this.labelControl6.Location = new System.Drawing.Point(471, 12);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(101, 32);
+            this.labelControl6.Size = new System.Drawing.Size(139, 32);
             this.labelControl6.TabIndex = 33;
-            this.labelControl6.Text = "انتخاب ضامنین";
+            this.labelControl6.Text = "انتخاب اعضاء ضامن";
             // 
             // chkcmbEntekhabZamenin
             // 
@@ -305,7 +336,7 @@
             this.chkcmbEntekhabZamenin.Properties.DisplayMember = "NameVFamil";
             this.chkcmbEntekhabZamenin.Properties.ValueMember = "Id";
             this.chkcmbEntekhabZamenin.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkcmbEntekhabZamenin.Size = new System.Drawing.Size(482, 32);
+            this.chkcmbEntekhabZamenin.Size = new System.Drawing.Size(461, 32);
             this.chkcmbEntekhabZamenin.TabIndex = 2;
             this.chkcmbEntekhabZamenin.TabStop = false;
             this.chkcmbEntekhabZamenin.EditValueChanged += new System.EventHandler(this.chkcmbAazaSandoogh_EditValueChanged);
@@ -319,176 +350,286 @@
             this.xtraTabPage2.Controls.Add(this.gridControl1);
             this.xtraTabPage2.Name = "xtraTabPage2";
             this.xtraTabPage2.Size = new System.Drawing.Size(630, 188);
-            this.xtraTabPage2.Text = "چک";
+            this.xtraTabPage2.Text = "چک / سفته";
             // 
             // gridControl1
             // 
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.DataSource = this.checkTazminsBindingSource;
             this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(630, 188);
-            this.gridControl1.TabIndex = 29;
-            this.gridControl1.TabStop = false;
-            this.gridControl1.UseEmbeddedNavigator = true;
+            this.gridControl1.Size = new System.Drawing.Size(632, 188);
+            this.gridControl1.TabIndex = 33;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            // 
+            // checkTazminsBindingSource
+            // 
+            this.checkTazminsBindingSource.DataSource = typeof(Sandogh_TG.CheckTazmin);
             // 
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
-            this.gridColumn2,
-            this.gridColumn8,
-            this.colMoinId,
-            this.colEpHesabMoin1});
+            this.colId,
+            this.Line,
+            this.colSeryalDaryaft,
+            this.colTarikhDaryaft,
+            this.colVaziyatCheck,
+            this.colVamGerandeName,
+            this.colNoeSanad,
+            this.colShCheck,
+            this.colTarikhCheck,
+            this.colMablagh,
+            this.colShomareHesab,
+            this.colNameBank,
+            this.colSahebCheck,
+            this.colSharhDaryaftCheck,
+            this.colTarikhOdatCheck,
+            this.colSharhOdatCheck});
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.IndicatorWidth = 25;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.AutoSelectAllInEditor = false;
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsFind.AllowFindPanel = false;
             this.gridView1.OptionsFind.FindMode = DevExpress.XtraEditors.FindMode.Always;
+            this.gridView1.OptionsFind.FindNullPrompt = "متنی برای جستجو تایپ کنید ...";
             this.gridView1.OptionsMenu.ShowFooterItem = true;
             this.gridView1.OptionsNavigation.AutoFocusNewRow = true;
             this.gridView1.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
-            this.gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.gridView1.OptionsView.RowAutoHeight = true;
+            this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView1_CustomUnboundColumnData);
             // 
-            // gridColumn1
+            // colId
             // 
-            this.gridColumn1.FieldName = "Id";
-            this.gridColumn1.MinWidth = 19;
-            this.gridColumn1.Name = "gridColumn1";
+            this.colId.FieldName = "Id";
+            this.colId.MinWidth = 19;
+            this.colId.Name = "colId";
             // 
-            // gridColumn2
+            // Line
             // 
-            this.gridColumn2.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn2.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn2.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn2.Caption = "ردیف";
-            this.gridColumn2.FieldName = "Line";
-            this.gridColumn2.MinWidth = 19;
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
-            this.gridColumn2.Width = 60;
+            this.Line.AppearanceCell.Options.UseTextOptions = true;
+            this.Line.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Line.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.Line.AppearanceHeader.Options.UseTextOptions = true;
+            this.Line.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Line.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.Line.Caption = "ردیف";
+            this.Line.FieldName = "Line";
+            this.Line.MinWidth = 19;
+            this.Line.Name = "Line";
+            this.Line.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+            this.Line.Visible = true;
+            this.Line.VisibleIndex = 0;
+            this.Line.Width = 70;
             // 
-            // gridColumn8
+            // colSeryalDaryaft
             // 
-            this.gridColumn8.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn8.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn8.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn8.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn8.Caption = "شرح";
-            this.gridColumn8.FieldName = "Name";
-            this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 0;
-            this.gridColumn8.Width = 600;
+            this.colSeryalDaryaft.AppearanceCell.Options.UseTextOptions = true;
+            this.colSeryalDaryaft.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSeryalDaryaft.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colSeryalDaryaft.AppearanceHeader.Options.UseTextOptions = true;
+            this.colSeryalDaryaft.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSeryalDaryaft.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colSeryalDaryaft.Caption = "سریال";
+            this.colSeryalDaryaft.FieldName = "SeryalDaryaft";
+            this.colSeryalDaryaft.Name = "colSeryalDaryaft";
+            this.colSeryalDaryaft.Visible = true;
+            this.colSeryalDaryaft.VisibleIndex = 1;
+            this.colSeryalDaryaft.Width = 85;
             // 
-            // colMoinId
+            // colTarikhDaryaft
             // 
-            this.colMoinId.FieldName = "MoinId";
-            this.colMoinId.Name = "colMoinId";
+            this.colTarikhDaryaft.AppearanceCell.Options.UseTextOptions = true;
+            this.colTarikhDaryaft.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colTarikhDaryaft.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colTarikhDaryaft.AppearanceHeader.Options.UseTextOptions = true;
+            this.colTarikhDaryaft.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colTarikhDaryaft.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colTarikhDaryaft.Caption = "تاریخ";
+            this.colTarikhDaryaft.FieldName = "TarikhDaryaft";
+            this.colTarikhDaryaft.Name = "colTarikhDaryaft";
+            this.colTarikhDaryaft.Visible = true;
+            this.colTarikhDaryaft.VisibleIndex = 2;
+            this.colTarikhDaryaft.Width = 110;
             // 
-            // colEpHesabMoin1
+            // colVaziyatCheck
             // 
-            this.colEpHesabMoin1.FieldName = "EpHesabMoin1";
-            this.colEpHesabMoin1.Name = "colEpHesabMoin1";
+            this.colVaziyatCheck.AppearanceCell.Options.UseTextOptions = true;
+            this.colVaziyatCheck.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colVaziyatCheck.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colVaziyatCheck.AppearanceHeader.Options.UseTextOptions = true;
+            this.colVaziyatCheck.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colVaziyatCheck.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colVaziyatCheck.Caption = "وضعیت سند";
+            this.colVaziyatCheck.FieldName = "VaziyatCheck";
+            this.colVaziyatCheck.Name = "colVaziyatCheck";
+            this.colVaziyatCheck.Visible = true;
+            this.colVaziyatCheck.VisibleIndex = 3;
+            this.colVaziyatCheck.Width = 120;
             // 
-            // xtraTabPage3
+            // colVamGerandeName
             // 
-            this.xtraTabPage3.Controls.Add(this.gridControl2);
-            this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(630, 188);
-            this.xtraTabPage3.Text = "سفته";
+            this.colVamGerandeName.AppearanceCell.Options.UseTextOptions = true;
+            this.colVamGerandeName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colVamGerandeName.AppearanceHeader.Options.UseTextOptions = true;
+            this.colVamGerandeName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colVamGerandeName.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colVamGerandeName.Caption = "نام وام گیرنده";
+            this.colVamGerandeName.FieldName = "VamGerandeName";
+            this.colVamGerandeName.Name = "colVamGerandeName";
+            this.colVamGerandeName.Width = 250;
             // 
-            // gridControl2
+            // colNoeSanad
             // 
-            this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl2.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gridControl2.Location = new System.Drawing.Point(0, 0);
-            this.gridControl2.MainView = this.gridView2;
-            this.gridControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(630, 188);
-            this.gridControl2.TabIndex = 30;
-            this.gridControl2.TabStop = false;
-            this.gridControl2.UseEmbeddedNavigator = true;
-            this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView2});
+            this.colNoeSanad.AppearanceCell.Options.UseTextOptions = true;
+            this.colNoeSanad.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colNoeSanad.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colNoeSanad.AppearanceHeader.Options.UseTextOptions = true;
+            this.colNoeSanad.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colNoeSanad.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colNoeSanad.Caption = "نوع سند";
+            this.colNoeSanad.FieldName = "NoeSanad";
+            this.colNoeSanad.Name = "colNoeSanad";
+            this.colNoeSanad.Visible = true;
+            this.colNoeSanad.VisibleIndex = 4;
+            this.colNoeSanad.Width = 100;
             // 
-            // gridView2
+            // colShCheck
             // 
-            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn3,
-            this.gridColumn4,
-            this.gridColumn5,
-            this.gridColumn6,
-            this.gridColumn7});
-            this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
-            this.gridView2.GridControl = this.gridControl2;
-            this.gridView2.IndicatorWidth = 25;
-            this.gridView2.Name = "gridView2";
-            this.gridView2.OptionsFind.FindMode = DevExpress.XtraEditors.FindMode.Always;
-            this.gridView2.OptionsMenu.ShowFooterItem = true;
-            this.gridView2.OptionsNavigation.AutoFocusNewRow = true;
-            this.gridView2.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
-            this.gridView2.OptionsView.ColumnAutoWidth = false;
-            this.gridView2.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
-            this.gridView2.OptionsView.RowAutoHeight = true;
-            this.gridView2.OptionsView.ShowGroupPanel = false;
+            this.colShCheck.AppearanceCell.Options.UseTextOptions = true;
+            this.colShCheck.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colShCheck.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colShCheck.AppearanceHeader.Options.UseTextOptions = true;
+            this.colShCheck.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colShCheck.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colShCheck.Caption = "شماره سند";
+            this.colShCheck.FieldName = "ShCheck";
+            this.colShCheck.Name = "colShCheck";
+            this.colShCheck.Visible = true;
+            this.colShCheck.VisibleIndex = 5;
+            this.colShCheck.Width = 110;
             // 
-            // gridColumn3
+            // colTarikhCheck
             // 
-            this.gridColumn3.FieldName = "Id";
-            this.gridColumn3.MinWidth = 19;
-            this.gridColumn3.Name = "gridColumn3";
+            this.colTarikhCheck.AppearanceCell.Options.UseTextOptions = true;
+            this.colTarikhCheck.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colTarikhCheck.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colTarikhCheck.AppearanceHeader.Options.UseTextOptions = true;
+            this.colTarikhCheck.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colTarikhCheck.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colTarikhCheck.Caption = "تاریخ سند";
+            this.colTarikhCheck.FieldName = "TarikhCheck";
+            this.colTarikhCheck.Name = "colTarikhCheck";
+            this.colTarikhCheck.Visible = true;
+            this.colTarikhCheck.VisibleIndex = 6;
+            this.colTarikhCheck.Width = 110;
             // 
-            // gridColumn4
+            // colMablagh
             // 
-            this.gridColumn4.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn4.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn4.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn4.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn4.Caption = "ردیف";
-            this.gridColumn4.FieldName = "Line";
-            this.gridColumn4.MinWidth = 19;
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
-            this.gridColumn4.Width = 60;
+            this.colMablagh.AppearanceCell.Options.UseTextOptions = true;
+            this.colMablagh.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colMablagh.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colMablagh.AppearanceHeader.Options.UseTextOptions = true;
+            this.colMablagh.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colMablagh.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colMablagh.Caption = "مبلغ";
+            this.colMablagh.DisplayFormat.FormatString = "n";
+            this.colMablagh.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colMablagh.FieldName = "Mablagh";
+            this.colMablagh.Name = "colMablagh";
+            this.colMablagh.Visible = true;
+            this.colMablagh.VisibleIndex = 7;
+            this.colMablagh.Width = 150;
             // 
-            // gridColumn5
+            // colShomareHesab
             // 
-            this.gridColumn5.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn5.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn5.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn5.Caption = "شرح";
-            this.gridColumn5.FieldName = "Name";
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 0;
-            this.gridColumn5.Width = 600;
+            this.colShomareHesab.AppearanceCell.Options.UseTextOptions = true;
+            this.colShomareHesab.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colShomareHesab.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colShomareHesab.AppearanceHeader.Options.UseTextOptions = true;
+            this.colShomareHesab.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colShomareHesab.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colShomareHesab.Caption = "شماره حساب";
+            this.colShomareHesab.FieldName = "ShomareHesab";
+            this.colShomareHesab.Name = "colShomareHesab";
+            this.colShomareHesab.Visible = true;
+            this.colShomareHesab.VisibleIndex = 8;
+            this.colShomareHesab.Width = 150;
             // 
-            // gridColumn6
+            // colNameBank
             // 
-            this.gridColumn6.FieldName = "MoinId";
-            this.gridColumn6.Name = "gridColumn6";
+            this.colNameBank.AppearanceCell.Options.UseTextOptions = true;
+            this.colNameBank.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colNameBank.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colNameBank.AppearanceHeader.Options.UseTextOptions = true;
+            this.colNameBank.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colNameBank.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colNameBank.Caption = "نام بانک وشعبه";
+            this.colNameBank.FieldName = "NameBank";
+            this.colNameBank.Name = "colNameBank";
+            this.colNameBank.Visible = true;
+            this.colNameBank.VisibleIndex = 9;
+            this.colNameBank.Width = 170;
             // 
-            // gridColumn7
+            // colSahebCheck
             // 
-            this.gridColumn7.FieldName = "EpHesabMoin1";
-            this.gridColumn7.Name = "gridColumn7";
+            this.colSahebCheck.AppearanceCell.Options.UseTextOptions = true;
+            this.colSahebCheck.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colSahebCheck.AppearanceHeader.Options.UseTextOptions = true;
+            this.colSahebCheck.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSahebCheck.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colSahebCheck.Caption = "صاحب/ضامن سند";
+            this.colSahebCheck.FieldName = "SahebCheck";
+            this.colSahebCheck.Name = "colSahebCheck";
+            this.colSahebCheck.Visible = true;
+            this.colSahebCheck.VisibleIndex = 10;
+            this.colSahebCheck.Width = 170;
+            // 
+            // colSharhDaryaftCheck
+            // 
+            this.colSharhDaryaftCheck.AppearanceCell.Options.UseTextOptions = true;
+            this.colSharhDaryaftCheck.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colSharhDaryaftCheck.AppearanceHeader.Options.UseTextOptions = true;
+            this.colSharhDaryaftCheck.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSharhDaryaftCheck.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colSharhDaryaftCheck.Caption = "شرح دریافت سند";
+            this.colSharhDaryaftCheck.FieldName = "SharhDaryaftCheck";
+            this.colSharhDaryaftCheck.Name = "colSharhDaryaftCheck";
+            this.colSharhDaryaftCheck.Visible = true;
+            this.colSharhDaryaftCheck.VisibleIndex = 11;
+            this.colSharhDaryaftCheck.Width = 400;
+            // 
+            // colTarikhOdatCheck
+            // 
+            this.colTarikhOdatCheck.AppearanceCell.Options.UseTextOptions = true;
+            this.colTarikhOdatCheck.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colTarikhOdatCheck.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colTarikhOdatCheck.AppearanceHeader.Options.UseTextOptions = true;
+            this.colTarikhOdatCheck.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colTarikhOdatCheck.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colTarikhOdatCheck.Caption = "تاریخ عودت";
+            this.colTarikhOdatCheck.FieldName = "TarikhOdatCheck";
+            this.colTarikhOdatCheck.Name = "colTarikhOdatCheck";
+            this.colTarikhOdatCheck.Width = 110;
+            // 
+            // colSharhOdatCheck
+            // 
+            this.colSharhOdatCheck.AppearanceCell.Options.UseTextOptions = true;
+            this.colSharhOdatCheck.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colSharhOdatCheck.AppearanceHeader.Options.UseTextOptions = true;
+            this.colSharhOdatCheck.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSharhOdatCheck.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colSharhOdatCheck.Caption = "شرح عودت";
+            this.colSharhOdatCheck.FieldName = "SharhOdatCheck";
+            this.colSharhOdatCheck.Name = "colSharhOdatCheck";
+            this.colSharhOdatCheck.Width = 400;
             // 
             // panelControl7
             // 
@@ -606,9 +747,12 @@
             this.txtSarresidAvalinGhest.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtSarresidAvalinGhest.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtSarresidAvalinGhest.Properties.Mask.BeepOnError = true;
-            this.txtSarresidAvalinGhest.Properties.Mask.EditMask = "yyyy/MM/dd";
-            this.txtSarresidAvalinGhest.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
+            this.txtSarresidAvalinGhest.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
+    "1-9]|[123]0))|((1[2])/([012][1-9])))";
+            this.txtSarresidAvalinGhest.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtSarresidAvalinGhest.Properties.Mask.PlaceHolder = '-';
             this.txtSarresidAvalinGhest.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtSarresidAvalinGhest.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtSarresidAvalinGhest.Size = new System.Drawing.Size(153, 32);
             this.txtSarresidAvalinGhest.TabIndex = 6;
             // 
@@ -779,9 +923,12 @@
             this.txtTarikhPardakht.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtTarikhPardakht.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtTarikhPardakht.Properties.Mask.BeepOnError = true;
-            this.txtTarikhPardakht.Properties.Mask.EditMask = "yyyy/MM/dd";
-            this.txtTarikhPardakht.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
+            this.txtTarikhPardakht.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
+    "1-9]|[123]0))|((1[2])/([012][1-9])))";
+            this.txtTarikhPardakht.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtTarikhPardakht.Properties.Mask.PlaceHolder = '-';
             this.txtTarikhPardakht.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtTarikhPardakht.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtTarikhPardakht.Size = new System.Drawing.Size(154, 32);
             this.txtTarikhPardakht.TabIndex = 0;
             // 
@@ -857,9 +1004,12 @@
             this.txtTarikhDarkhast.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtTarikhDarkhast.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtTarikhDarkhast.Properties.Mask.BeepOnError = true;
-            this.txtTarikhDarkhast.Properties.Mask.EditMask = "yyyy/MM/dd";
-            this.txtTarikhDarkhast.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
+            this.txtTarikhDarkhast.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
+    "1-9]|[123]0))|((1[2])/([012][1-9])))";
+            this.txtTarikhDarkhast.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtTarikhDarkhast.Properties.Mask.PlaceHolder = '-';
             this.txtTarikhDarkhast.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtTarikhDarkhast.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtTarikhDarkhast.Size = new System.Drawing.Size(154, 32);
             this.txtTarikhDarkhast.TabIndex = 0;
             // 
@@ -1028,8 +1178,8 @@
             this.cmbDaryaftkonande.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbDaryaftkonande.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Code", "کد", 50, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Center, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NameVFamil", "نام و نام خانوادگی", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Code", "کد", 50, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Center, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NameVFamil", "نام و نام خانوادگی", 200, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.cmbDaryaftkonande.Properties.DataSource = this.aazaSandoghsBindingSource;
             this.cmbDaryaftkonande.Properties.DisplayMember = "NameVFamil";
             this.cmbDaryaftkonande.Properties.ImmediatePopup = true;
@@ -1119,10 +1269,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource1)).EndInit();
             this.xtraTabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkTazminsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            this.xtraTabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl7)).EndInit();
             this.panelControl7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cmbNameHesab.Properties)).EndInit();
@@ -1208,22 +1356,7 @@
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
         public DevExpress.XtraEditors.CheckedComboBoxEdit chkcmbEntekhabZamenin;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        public DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
-        private DevExpress.XtraGrid.Columns.GridColumn colMoinId;
-        private DevExpress.XtraGrid.Columns.GridColumn colEpHesabMoin1;
-        private DevExpress.XtraGrid.GridControl gridControl2;
-        public DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraEditors.ComboBoxEdit cmbNoeVam;
         private DevExpress.XtraEditors.LabelControl labelControl21;
         private DevExpress.XtraEditors.ListBoxControl lstZamenin;
@@ -1235,5 +1368,26 @@
         private DevExpress.XtraEditors.CheckEdit checkEdit2;
         private DevExpress.XtraEditors.CheckEdit checkEdit1;
         private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private System.Windows.Forms.BindingSource checkTazminsBindingSource;
+        public DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn colId;
+        private DevExpress.XtraGrid.Columns.GridColumn Line;
+        private DevExpress.XtraGrid.Columns.GridColumn colSeryalDaryaft;
+        private DevExpress.XtraGrid.Columns.GridColumn colTarikhDaryaft;
+        private DevExpress.XtraGrid.Columns.GridColumn colVaziyatCheck;
+        private DevExpress.XtraGrid.Columns.GridColumn colVamGerandeName;
+        private DevExpress.XtraGrid.Columns.GridColumn colNoeSanad;
+        private DevExpress.XtraGrid.Columns.GridColumn colShCheck;
+        private DevExpress.XtraGrid.Columns.GridColumn colTarikhCheck;
+        private DevExpress.XtraGrid.Columns.GridColumn colMablagh;
+        private DevExpress.XtraGrid.Columns.GridColumn colShomareHesab;
+        private DevExpress.XtraGrid.Columns.GridColumn colNameBank;
+        private DevExpress.XtraGrid.Columns.GridColumn colSahebCheck;
+        private DevExpress.XtraGrid.Columns.GridColumn colSharhDaryaftCheck;
+        private DevExpress.XtraGrid.Columns.GridColumn colTarikhOdatCheck;
+        private DevExpress.XtraGrid.Columns.GridColumn colSharhOdatCheck;
+        private DevExpress.XtraEditors.SimpleButton btnDelete;
+        private DevExpress.XtraEditors.SimpleButton btnCreate;
     }
 }

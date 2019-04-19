@@ -41,6 +41,7 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.salMalisBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.btnSaveNext = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.btnNext = new DevExpress.XtraEditors.SimpleButton();
@@ -235,6 +236,7 @@
             // 
             // panelControl2
             // 
+            this.panelControl2.Controls.Add(this.btnSaveNext);
             this.panelControl2.Controls.Add(this.btnClose);
             this.panelControl2.Controls.Add(this.btnPrint);
             this.panelControl2.Controls.Add(this.btnNext);
@@ -254,13 +256,26 @@
             this.panelControl2.Size = new System.Drawing.Size(772, 45);
             this.panelControl2.TabIndex = 26;
             // 
+            // btnSaveNext
+            // 
+            this.btnSaveNext.Enabled = false;
+            this.btnSaveNext.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveNext.ImageOptions.Image")));
+            this.btnSaveNext.Location = new System.Drawing.Point(552, 6);
+            this.btnSaveNext.Name = "btnSaveNext";
+            this.btnSaveNext.Size = new System.Drawing.Size(38, 33);
+            this.btnSaveNext.TabIndex = 4;
+            this.btnSaveNext.Text = "simpleButton1";
+            this.btnSaveNext.ToolTip = "F9";
+            this.btnSaveNext.ToolTipTitle = "ذخیره و بعدی";
+            this.btnSaveNext.Click += new System.EventHandler(this.btnSaveNext_Click);
+            // 
             // btnClose
             // 
             this.btnClose.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnClose.ImageOptions.SvgImage")));
             this.btnClose.Location = new System.Drawing.Point(5, 7);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(87, 33);
-            this.btnClose.TabIndex = 15;
+            this.btnClose.TabIndex = 13;
             this.btnClose.Text = "بستن ";
             this.btnClose.ToolTip = "Escape";
             this.btnClose.ToolTipTitle = "بستن ";
@@ -272,7 +287,7 @@
             this.btnPrint.Location = new System.Drawing.Point(133, 6);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(38, 33);
-            this.btnPrint.TabIndex = 14;
+            this.btnPrint.TabIndex = 12;
             this.btnPrint.Text = "simpleButton1";
             this.btnPrint.ToolTip = "F12";
             this.btnPrint.ToolTipTitle = "چاپ لیست";
@@ -283,12 +298,12 @@
             // 
             this.btnNext.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.ImageOptions.Image")));
             this.btnNext.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNext.ImageOptions.SvgImage")));
-            this.btnNext.Location = new System.Drawing.Point(408, 6);
+            this.btnNext.Location = new System.Drawing.Point(389, 6);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(38, 33);
-            this.btnNext.TabIndex = 6;
+            this.btnNext.TabIndex = 7;
             this.btnNext.Text = "simpleButton1";
-            this.btnNext.ToolTipTitle = "بعدی";
+            this.btnNext.ToolTip = "بعدی";
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnPrintPreview
@@ -297,7 +312,7 @@
             this.btnPrintPreview.Location = new System.Drawing.Point(177, 6);
             this.btnPrintPreview.Name = "btnPrintPreview";
             this.btnPrintPreview.Size = new System.Drawing.Size(38, 33);
-            this.btnPrintPreview.TabIndex = 13;
+            this.btnPrintPreview.TabIndex = 11;
             this.btnPrintPreview.Text = "simpleButton1";
             this.btnPrintPreview.ToolTip = "F11";
             this.btnPrintPreview.ToolTipTitle = "نمایش چاپ";
@@ -333,12 +348,12 @@
             // 
             this.btnFirst.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnFirst.ImageOptions.Image")));
             this.btnFirst.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnFirst.ImageOptions.SvgImage")));
-            this.btnFirst.Location = new System.Drawing.Point(320, 6);
+            this.btnFirst.Location = new System.Drawing.Point(301, 6);
             this.btnFirst.Name = "btnFirst";
             this.btnFirst.Size = new System.Drawing.Size(38, 33);
-            this.btnFirst.TabIndex = 8;
+            this.btnFirst.TabIndex = 9;
             this.btnFirst.Text = "simpleButton1";
-            this.btnFirst.ToolTipTitle = "اولین رکورد";
+            this.btnFirst.ToolTip = "اولین رکورد";
             this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
             // 
             // btnSave
@@ -358,23 +373,23 @@
             // 
             this.btnPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPreview.ImageOptions.Image")));
             this.btnPreview.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPreview.ImageOptions.SvgImage")));
-            this.btnPreview.Location = new System.Drawing.Point(364, 6);
+            this.btnPreview.Location = new System.Drawing.Point(345, 6);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(38, 33);
-            this.btnPreview.TabIndex = 7;
+            this.btnPreview.TabIndex = 8;
             this.btnPreview.Text = "simpleButton1";
-            this.btnPreview.ToolTipTitle = "قبلی";
+            this.btnPreview.ToolTip = "قبلی";
             this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
             // btnLast
             // 
             this.btnLast.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLast.ImageOptions.SvgImage")));
-            this.btnLast.Location = new System.Drawing.Point(452, 6);
+            this.btnLast.Location = new System.Drawing.Point(433, 6);
             this.btnLast.Name = "btnLast";
             this.btnLast.Size = new System.Drawing.Size(38, 33);
-            this.btnLast.TabIndex = 5;
+            this.btnLast.TabIndex = 6;
             this.btnLast.Text = "simpleButton1";
-            this.btnLast.ToolTipTitle = "آخرین رکورد";
+            this.btnLast.ToolTip = "آخرین رکورد";
             this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
             // 
             // btnDisplyActiveList
@@ -383,20 +398,20 @@
             this.btnDisplyActiveList.Location = new System.Drawing.Point(221, 7);
             this.btnDisplyActiveList.Name = "btnDisplyActiveList";
             this.btnDisplyActiveList.Size = new System.Drawing.Size(38, 33);
-            this.btnDisplyActiveList.TabIndex = 9;
+            this.btnDisplyActiveList.TabIndex = 10;
             this.btnDisplyActiveList.Text = "simpleButton1";
             this.btnDisplyActiveList.ToolTip = "F7";
-            this.btnDisplyActiveList.ToolTipTitle = "نمایش لیست فعال";
+            this.btnDisplyActiveList.ToolTipTitle = "لیست فعال";
             this.btnDisplyActiveList.Click += new System.EventHandler(this.btnDisplyActiveList_Click);
             // 
             // btnCancel
             // 
             this.btnCancel.Enabled = false;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
-            this.btnCancel.Location = new System.Drawing.Point(552, 6);
+            this.btnCancel.Location = new System.Drawing.Point(508, 6);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(38, 33);
-            this.btnCancel.TabIndex = 4;
+            this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "simpleButton1";
             this.btnCancel.ToolTip = "F6";
             this.btnCancel.ToolTipTitle = "انصراف";
@@ -458,10 +473,13 @@
             this.txtEndDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtEndDate.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtEndDate.Properties.Mask.BeepOnError = true;
-            this.txtEndDate.Properties.Mask.EditMask = "yyyy/MM/dd";
-            this.txtEndDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
+            this.txtEndDate.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
+    "1-9]|[123]0))|((1[2])/([012][1-9])))";
+            this.txtEndDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtEndDate.Properties.Mask.PlaceHolder = '-';
             this.txtEndDate.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtEndDate.Properties.ReadOnly = true;
+            this.txtEndDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtEndDate.Size = new System.Drawing.Size(148, 32);
             this.txtEndDate.TabIndex = 2;
             // 
@@ -474,10 +492,13 @@
             this.txtStartDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtStartDate.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtStartDate.Properties.Mask.BeepOnError = true;
-            this.txtStartDate.Properties.Mask.EditMask = "yyyy/MM/dd";
-            this.txtStartDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
+            this.txtStartDate.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
+    "1-9]|[123]0))|((1[2])/([012][1-9])))";
+            this.txtStartDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtStartDate.Properties.Mask.PlaceHolder = '-';
             this.txtStartDate.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtStartDate.Properties.ReadOnly = true;
+            this.txtStartDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtStartDate.Size = new System.Drawing.Size(148, 32);
             this.txtStartDate.TabIndex = 1;
             // 
@@ -688,5 +709,6 @@
         private DevExpress.XtraEditors.PanelControl panelControl4;
         private System.Windows.Forms.BindingSource salMalisBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn EndDate;
+        private DevExpress.XtraEditors.SimpleButton btnSaveNext;
     }
 }

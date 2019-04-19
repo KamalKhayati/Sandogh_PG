@@ -104,5 +104,17 @@ namespace Sandogh_TG
             }
 
         }
+
+        private void btnDayaftCheckTazmin_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmDaryaftCheckTazmin fm = new FrmDaryaftCheckTazmin(this);
+            ActiveForm(fm);
+        }
+
+        private void btnOdateCheckTazmin_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmOdatCheckTazmin fm = new FrmOdatCheckTazmin(this);
+            ActiveForm(fm);
+        }
     }
 }

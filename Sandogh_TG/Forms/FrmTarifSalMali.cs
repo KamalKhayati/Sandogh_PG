@@ -71,7 +71,7 @@ namespace Sandogh_TG.Forms
 
         private void FrmTarifSalMali_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F5)
+            if (e.KeyCode == Keys.F2)
             {
                 btnCreate_Click(sender, null);
             }
@@ -94,6 +94,10 @@ namespace Sandogh_TG.Forms
             else if (e.KeyCode == Keys.F7)
             {
                 btnDisplyActiveList_Click(sender, null);
+            }
+            else if (e.KeyCode == Keys.F9)
+            {
+                btnSaveNext_Click(sender, null);
             }
             else if (e.KeyCode == Keys.F11)
             {
@@ -156,7 +160,7 @@ namespace Sandogh_TG.Forms
                             ActiveButtons();
                             ClearControls();
                             InActiveControls();
-                            //En = EnumCED.Save;
+                            En = EnumCED.Save;
                         }
                         else if (En == EnumCED.Edit)
                         {
@@ -179,7 +183,7 @@ namespace Sandogh_TG.Forms
                                 ActiveButtons();
                                 ClearControls();
                                 InActiveControls();
-                                //En = EnumCED.Save;
+                                En = EnumCED.Save;
                             }
                         }
 
@@ -253,6 +257,7 @@ namespace Sandogh_TG.Forms
                     item.Enabled = false;
                 }
                 btnSave.Enabled = true;
+                btnSaveNext.Enabled = true;
                 btnCancel.Enabled = true;
                 btnClose.Enabled = true;
             }
@@ -267,6 +272,7 @@ namespace Sandogh_TG.Forms
                     item.Enabled = true;
                 }
                 btnSave.Enabled = false;
+                btnSaveNext.Enabled = false;
                 btnCancel.Enabled = false;
             }
         }
@@ -297,10 +303,10 @@ namespace Sandogh_TG.Forms
 
         public void ClearControls()
         {
-                cmbNameSandoogh.EditValue = 0;
-                txtSalMali.Text = string.Empty;
-                txtStartDate.Text = string.Empty;
-                txtEndDate.Text = string.Empty;
+            cmbNameSandoogh.EditValue = 0;
+            txtSalMali.Text = string.Empty;
+            txtStartDate.Text = string.Empty;
+            txtEndDate.Text = string.Empty;
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -407,5 +413,11 @@ namespace Sandogh_TG.Forms
             btnDelete.Enabled = btnEdit.Enabled = gridView1.RowCount > 0 ? true : false;
         }
 
+        private void btnSaveNext_Click(object sender, EventArgs e)
+        {
+            btnSave_Click(null, null);
+            if (En == EnumCED.Save)
+                btnCreate_Click(null, null);
+        }
     }
 }

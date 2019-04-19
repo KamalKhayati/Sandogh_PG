@@ -36,8 +36,8 @@
             this.txtSharhHesab = new DevExpress.XtraEditors.MemoEdit();
             this.colSharhHesab = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.btnSaveNext = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
-            this.btnSahrhHesab = new DevExpress.XtraEditors.SimpleButton();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.btnNext = new DevExpress.XtraEditors.SimpleButton();
             this.btnPrintPreview = new DevExpress.XtraEditors.SimpleButton();
@@ -144,10 +144,13 @@
             this.txtStartDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.txtStartDate.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtStartDate.Properties.Mask.BeepOnError = true;
-            this.txtStartDate.Properties.Mask.EditMask = "yyyy/MM/dd";
-            this.txtStartDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
+            this.txtStartDate.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
+    "1-9]|[123]0))|((1[2])/([012][1-9])))";
+            this.txtStartDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtStartDate.Properties.Mask.PlaceHolder = '-';
             this.txtStartDate.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtStartDate.Properties.ReadOnly = true;
+            this.txtStartDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtStartDate.Size = new System.Drawing.Size(194, 32);
             this.txtStartDate.TabIndex = 9;
             // 
@@ -196,12 +199,14 @@
             this.colSharhHesab.FieldName = "SharhHesab";
             this.colSharhHesab.MinWidth = 19;
             this.colSharhHesab.Name = "colSharhHesab";
+            this.colSharhHesab.Visible = true;
+            this.colSharhHesab.VisibleIndex = 15;
             this.colSharhHesab.Width = 400;
             // 
             // panelControl2
             // 
+            this.panelControl2.Controls.Add(this.btnSaveNext);
             this.panelControl2.Controls.Add(this.btnClose);
-            this.panelControl2.Controls.Add(this.btnSahrhHesab);
             this.panelControl2.Controls.Add(this.btnPrint);
             this.panelControl2.Controls.Add(this.btnNext);
             this.panelControl2.Controls.Add(this.btnPrintPreview);
@@ -221,6 +226,19 @@
             this.panelControl2.Size = new System.Drawing.Size(899, 44);
             this.panelControl2.TabIndex = 26;
             // 
+            // btnSaveNext
+            // 
+            this.btnSaveNext.Enabled = false;
+            this.btnSaveNext.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveNext.ImageOptions.Image")));
+            this.btnSaveNext.Location = new System.Drawing.Point(675, 5);
+            this.btnSaveNext.Name = "btnSaveNext";
+            this.btnSaveNext.Size = new System.Drawing.Size(38, 33);
+            this.btnSaveNext.TabIndex = 4;
+            this.btnSaveNext.Text = "simpleButton1";
+            this.btnSaveNext.ToolTip = "F9";
+            this.btnSaveNext.ToolTipTitle = "ذخیره و بعدی";
+            this.btnSaveNext.Click += new System.EventHandler(this.btnSaveNext_Click);
+            // 
             // btnClose
             // 
             this.btnClose.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnClose.ImageOptions.SvgImage")));
@@ -232,18 +250,6 @@
             this.btnClose.ToolTip = "Escape";
             this.btnClose.ToolTipTitle = "بستن ";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // btnSahrhHesab
-            // 
-            this.btnSahrhHesab.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSahrhHesab.ImageOptions.SvgImage")));
-            this.btnSahrhHesab.Location = new System.Drawing.Point(257, 5);
-            this.btnSahrhHesab.Name = "btnSahrhHesab";
-            this.btnSahrhHesab.Size = new System.Drawing.Size(38, 33);
-            this.btnSahrhHesab.TabIndex = 11;
-            this.btnSahrhHesab.Text = "simpleButton1";
-            this.btnSahrhHesab.ToolTip = "F9";
-            this.btnSahrhHesab.ToolTipTitle = "توضیح یا تشریح حساب";
-            this.btnSahrhHesab.Click += new System.EventHandler(this.btnSharhHesab_Click);
             // 
             // btnPrint
             // 
@@ -262,12 +268,12 @@
             // 
             this.btnNext.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.ImageOptions.Image")));
             this.btnNext.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNext.ImageOptions.SvgImage")));
-            this.btnNext.Location = new System.Drawing.Point(541, 5);
+            this.btnNext.Location = new System.Drawing.Point(491, 5);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(38, 33);
-            this.btnNext.TabIndex = 6;
+            this.btnNext.TabIndex = 7;
             this.btnNext.Text = "simpleButton1";
-            this.btnNext.ToolTipTitle = "بعدی";
+            this.btnNext.ToolTip = "بعدی";
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnPrintPreview
@@ -324,12 +330,12 @@
             // 
             this.btnFirst.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnFirst.ImageOptions.Image")));
             this.btnFirst.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnFirst.ImageOptions.SvgImage")));
-            this.btnFirst.Location = new System.Drawing.Point(453, 5);
+            this.btnFirst.Location = new System.Drawing.Point(403, 5);
             this.btnFirst.Name = "btnFirst";
             this.btnFirst.Size = new System.Drawing.Size(38, 33);
-            this.btnFirst.TabIndex = 8;
+            this.btnFirst.TabIndex = 9;
             this.btnFirst.Text = "simpleButton1";
-            this.btnFirst.ToolTipTitle = "اولین رکورد";
+            this.btnFirst.ToolTip = "اولین رکورد";
             this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
             // 
             // btnSave
@@ -349,57 +355,57 @@
             // 
             this.btnPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPreview.ImageOptions.Image")));
             this.btnPreview.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPreview.ImageOptions.SvgImage")));
-            this.btnPreview.Location = new System.Drawing.Point(497, 5);
+            this.btnPreview.Location = new System.Drawing.Point(447, 5);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(38, 33);
-            this.btnPreview.TabIndex = 7;
+            this.btnPreview.TabIndex = 8;
             this.btnPreview.Text = "simpleButton1";
-            this.btnPreview.ToolTipTitle = "قبلی";
+            this.btnPreview.ToolTip = "قبلی";
             this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
             // btnLast
             // 
             this.btnLast.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLast.ImageOptions.SvgImage")));
-            this.btnLast.Location = new System.Drawing.Point(585, 5);
+            this.btnLast.Location = new System.Drawing.Point(535, 5);
             this.btnLast.Name = "btnLast";
             this.btnLast.Size = new System.Drawing.Size(38, 33);
-            this.btnLast.TabIndex = 5;
+            this.btnLast.TabIndex = 6;
             this.btnLast.Text = "simpleButton1";
-            this.btnLast.ToolTipTitle = "آخرین رکورد";
+            this.btnLast.ToolTip = "آخرین رکورد";
             this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
             // 
             // btnDisplyActiveList
             // 
             this.btnDisplyActiveList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyActiveList.ImageOptions.SvgImage")));
-            this.btnDisplyActiveList.Location = new System.Drawing.Point(345, 5);
+            this.btnDisplyActiveList.Location = new System.Drawing.Point(301, 5);
             this.btnDisplyActiveList.Name = "btnDisplyActiveList";
             this.btnDisplyActiveList.Size = new System.Drawing.Size(38, 33);
-            this.btnDisplyActiveList.TabIndex = 9;
+            this.btnDisplyActiveList.TabIndex = 10;
             this.btnDisplyActiveList.Text = "simpleButton1";
             this.btnDisplyActiveList.ToolTip = "F7";
-            this.btnDisplyActiveList.ToolTipTitle = "نمایش لیست فعال";
+            this.btnDisplyActiveList.ToolTipTitle = "لیست فعال";
             this.btnDisplyActiveList.Click += new System.EventHandler(this.btnDisplyActiveList_Click);
             // 
             // btnDisplyNotActiveList
             // 
             this.btnDisplyNotActiveList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyNotActiveList.ImageOptions.SvgImage")));
-            this.btnDisplyNotActiveList.Location = new System.Drawing.Point(301, 5);
+            this.btnDisplyNotActiveList.Location = new System.Drawing.Point(257, 5);
             this.btnDisplyNotActiveList.Name = "btnDisplyNotActiveList";
             this.btnDisplyNotActiveList.Size = new System.Drawing.Size(38, 33);
-            this.btnDisplyNotActiveList.TabIndex = 10;
+            this.btnDisplyNotActiveList.TabIndex = 11;
             this.btnDisplyNotActiveList.Text = "simpleButton1";
             this.btnDisplyNotActiveList.ToolTip = "F8";
-            this.btnDisplyNotActiveList.ToolTipTitle = "نمایش لیست غیرفعال";
+            this.btnDisplyNotActiveList.ToolTipTitle = "لیست غیرفعال";
             this.btnDisplyNotActiveList.Click += new System.EventHandler(this.btnDisplyNotActiveList_Click);
             // 
             // btnCancel
             // 
             this.btnCancel.Enabled = false;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
-            this.btnCancel.Location = new System.Drawing.Point(675, 5);
+            this.btnCancel.Location = new System.Drawing.Point(631, 5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(38, 33);
-            this.btnCancel.TabIndex = 4;
+            this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "simpleButton1";
             this.btnCancel.ToolTip = "F6";
             this.btnCancel.ToolTipTitle = "انصراف";
@@ -1053,6 +1059,7 @@
             this.txtNoeHesab.Properties.ReadOnly = true;
             this.txtNoeHesab.Size = new System.Drawing.Size(194, 32);
             this.txtNoeHesab.TabIndex = 4;
+            this.txtNoeHesab.EditValueChanged += new System.EventHandler(this.txtNoeHesab_EditValueChanged);
             // 
             // labelControl15
             // 
@@ -1136,6 +1143,7 @@
             this.cmbGroupHesab.Size = new System.Drawing.Size(194, 32);
             this.cmbGroupHesab.TabIndex = 0;
             this.cmbGroupHesab.SelectedIndexChanged += new System.EventHandler(this.cmbGroupHesab_SelectedIndexChanged);
+            this.cmbGroupHesab.Enter += new System.EventHandler(this.cmbGroupHesab_Enter);
             // 
             // FrmTarifHesabBanki
             // 
@@ -1196,7 +1204,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colSharhHesab;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         public DevExpress.XtraEditors.SimpleButton btnClose;
-        private DevExpress.XtraEditors.SimpleButton btnSahrhHesab;
         private DevExpress.XtraEditors.SimpleButton btnPrint;
         private DevExpress.XtraEditors.SimpleButton btnNext;
         private DevExpress.XtraEditors.SimpleButton btnPrintPreview;
@@ -1265,5 +1272,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl19;
         public DevExpress.XtraEditors.CheckEdit chkIsDefault;
         private DevExpress.XtraGrid.Columns.GridColumn colIsDefault;
+        private DevExpress.XtraEditors.SimpleButton btnSaveNext;
     }
 }

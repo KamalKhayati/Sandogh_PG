@@ -47,12 +47,14 @@
         public virtual DbSet<Tanzimat> Tanzimats { get; set; }
         public virtual DbSet<RizeAghsatVam> RizeAghsatVams { get; set; }
         public virtual DbSet<SalMali> SalMalis { get; set; }
+        public virtual DbSet<CheckTazmin> CheckTazmins { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AazaSandogh>().HasMany(m => m.HaghOzviats).WithRequired(m => m.AazaSandogh1).HasForeignKey(m => m.AazaId).WillCascadeOnDelete(false);
             modelBuilder.Entity<AazaSandogh>().HasMany(m => m.VamPardakhtis).WithRequired(m => m.AazaSandogh1).HasForeignKey(m => m.AazaId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<AazaSandogh>().HasMany(m => m.CheckTazmins).WithRequired(m => m.AazaSandogh1).HasForeignKey(m => m.VamGerandeId).WillCascadeOnDelete(false);
             modelBuilder.Entity<HesabBanki>().HasMany(m => m.HaghOzviats).WithRequired(m => m.HesabBanki1).HasForeignKey(m => m.NameHesabId).WillCascadeOnDelete(false);
             modelBuilder.Entity<HesabBanki>().HasMany(m => m.VamPardakhtis).WithRequired(m => m.HesabBanki1).HasForeignKey(m => m.NameHesabId).WillCascadeOnDelete(false);
             modelBuilder.Entity<TarifSandogh>().HasOptional(m => m.Tanzimat1).WithRequired(m => m.TarifSandogh1).WillCascadeOnDelete(true);

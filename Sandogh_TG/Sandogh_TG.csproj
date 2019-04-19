@@ -67,7 +67,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cultures.cs" />
-    <Compile Include="Forms\CheckTazmin.cs" />
+    <Compile Include="Forms\FrmDaryaftCheckTazmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmDaryaftCheckTazmin.Designer.cs">
+      <DependentUpon>FrmDaryaftCheckTazmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmOdatCheckTazmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmOdatCheckTazmin.Designer.cs">
+      <DependentUpon>FrmOdatCheckTazmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CheckTazmin.cs" />
     <Compile Include="Forms\FrmDaryafteAghsateVam.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +166,9 @@
     <Compile Include="MyDate.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\FrmDaryaftCheckTazmin.resx">
+      <DependentUpon>FrmDaryaftCheckTazmin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmDaryafteAghsateVam.resx">
       <DependentUpon>FrmDaryafteAghsateVam.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmListVamhayePardakhti.resx">
       <DependentUpon>FrmListVamhayePardakhti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmOdatCheckTazmin.resx">
+      <DependentUpon>FrmOdatCheckTazmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmRizAghsatVam.resx">
       <DependentUpon>FrmRizAghsatVam.cs</DependentUpon>

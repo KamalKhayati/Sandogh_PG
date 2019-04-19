@@ -99,21 +99,21 @@ namespace Sandogh_TG
                     if (q.Any())
                     {
                         var MaximumCod = q.Max(p => p.Code);
-                        if (MaximumCod.ToString() != "9999999")
+                        if (MaximumCod.ToString() != "3999999")
                         {
                             txtCode.Text = (MaximumCod + 1).ToString();
                         }
                         else
                         {
                             if (En == EnumCED.Create)
-                                XtraMessageBox.Show("اعمال محدودیت تعریف 9999999 حساب  ..." + "\n" +
+                                XtraMessageBox.Show("اعمال محدودیت تعریف 999999 حساب  ..." + "\n" +
                                     "توجه : نمیتوان بیشتر از این تعداد حساب تعریف کرد ", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
 
                     }
                     else
                     {
-                        txtCode.Text = "0000001";
+                        txtCode.Text = "3000001";
                     }
                 }
                 catch (Exception ex)
@@ -144,9 +144,9 @@ namespace Sandogh_TG
                 XtraMessageBox.Show("لطفا کد حساب را وارد کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else if (Convert.ToInt32(txtCode.Text) == 0 || Convert.ToInt32(txtCode.Text) > 999)
+            else if (Convert.ToInt32(txtCode.Text) <= 3000000 || Convert.ToInt32(txtCode.Text) >= 4000000)
             {
-                XtraMessageBox.Show("کد وارده بایستی عددی بزرگتر از صفر و کمتر از 1000 باشد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                XtraMessageBox.Show("کد وارده بایستی عددی بزرگتر از 3000000 و کمتر از 4000000 باشد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtCode.Focus();
                 return false;
             }
@@ -197,7 +197,7 @@ namespace Sandogh_TG
 
         private void FrmTarifHesabBanki_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F5)
+            if (e.KeyCode == Keys.F2)
             {
                 btnCreate_Click(sender, null);
             }
@@ -227,7 +227,7 @@ namespace Sandogh_TG
             }
             else if (e.KeyCode == Keys.F9)
             {
-                btnSharhHesab_Click(sender, null);
+                btnSaveNext_Click(sender, null);
             }
             else if (e.KeyCode == Keys.F10)
             {
@@ -306,11 +306,6 @@ namespace Sandogh_TG
             gridView1.OptionsFind.AlwaysVisible = gridView1.OptionsFind.AlwaysVisible ? false : true;
         }
 
-        private void btnSharhHesab_Click(object sender, EventArgs e)
-        {
-            gridView1.Columns["SharhHesab"].Visible = gridView1.Columns["SharhHesab"].Visible == false ? true : false;
-        }
-
         public void InActiveButtons()
         {
             if (En == EnumCED.Create || En == EnumCED.Edit)
@@ -320,6 +315,7 @@ namespace Sandogh_TG
                     item.Enabled = false;
                 }
                 btnSave.Enabled = true;
+                btnSaveNext.Enabled = true;
                 btnCancel.Enabled = true;
                 btnClose.Enabled = true;
             }
@@ -334,6 +330,7 @@ namespace Sandogh_TG
                     item.Enabled = true;
                 }
                 btnSave.Enabled = false;
+                btnSaveNext.Enabled = false;
                 btnCancel.Enabled = false;
             }
         }
@@ -405,6 +402,7 @@ namespace Sandogh_TG
             NewCode(null, null);
             txtStartDate.Text = DateTime.Now.ToString().Substring(0, 10);
             gridControl1.Enabled = false;
+            cmbGroupHesab.Focus();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -478,7 +476,7 @@ namespace Sandogh_TG
                 txtShomareShaba.Text = gridView1.GetFocusedRowCellValue("ShomareShaba").ToString();
                 txtShomareMoshtari.Text = gridView1.GetFocusedRowCellValue("ShomareMoshtari").ToString();
                 //txtMojodiAvali.Text = gridView1.GetFocusedRowCellValue("Mojodi").ToString();
-                txtStartDate.EditValue = gridView1.GetFocusedRowCellValue("StartDate").ToString().Substring(0, 10);
+                txtStartDate.Text = gridView1.GetFocusedRowCellValue("StartDate").ToString().Substring(0, 10);
                 txtTell.Text = gridView1.GetFocusedRowCellValue("Tell").ToString();
                 chkIsDefault.Checked = Convert.ToBoolean(gridView1.GetFocusedRowCellValue("IsDefault"));
                 chkIsActive.Checked = Convert.ToBoolean(gridView1.GetFocusedRowCellValue("IsActive"));
@@ -546,12 +544,13 @@ namespace Sandogh_TG
                             else
                                 btnDisplyNotActiveList_Click(null, null);
 
-                            XtraMessageBox.Show("عملیات ایجاد با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                            //XtraMessageBox.Show("عملیات ایجاد با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                             gridControl1.Enabled = true;
                             gridView1.MoveLast();
                             ActiveButtons();
                             ClearControls();
                             InActiveControls();
+                            En = EnumCED.Save;
                         }
                         catch (Exception ex)
                         {
@@ -597,13 +596,14 @@ namespace Sandogh_TG
                                 else
                                     btnDisplyNotActiveList_Click(null, null);
 
-                                XtraMessageBox.Show("عملیات ویرایش با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                                //XtraMessageBox.Show("عملیات ویرایش با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                                 if (gridView1.RowCount > 0)
                                     gridView1.FocusedRowHandle = EditRowIndex;
                                 gridControl1.Enabled = true;
                                 ActiveButtons();
                                 ClearControls();
                                 InActiveControls();
+                                En = EnumCED.Save;
                             }
                             else
                                 XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -643,24 +643,50 @@ namespace Sandogh_TG
 
         string _NameBank = string.Empty;
         string _NameShobe = string.Empty;
+        string _NoeHesab = string.Empty;
         string _ShomareHesab = string.Empty;
         private void txtNameBank_EditValueChanged(object sender, EventArgs e)
         {
             _NameBank = txtNameBank.Text;
-            txtNameHesab.Text = _NameBank + " " + _NameShobe + " " + _ShomareHesab;
+            txtNameHesab.Text = _NameBank + " " + _NameShobe + " " + _NoeHesab + " " + _ShomareHesab;
         }
 
         private void txtNameShobe_EditValueChanged(object sender, EventArgs e)
         {
             _NameShobe = txtNameShobe.Text;
-            txtNameHesab.Text = _NameBank + " " + _NameShobe + " " + _ShomareHesab;
+            txtNameHesab.Text = _NameBank + " " + _NameShobe + " " + _NoeHesab + " " + _ShomareHesab;
         }
 
         private void txtShomareHesab_EditValueChanged(object sender, EventArgs e)
         {
             _ShomareHesab = txtShomareHesab.Text;
-            txtNameHesab.Text = _NameBank + " " + _NameShobe + " " + _ShomareHesab;
+            txtNameHesab.Text = _NameBank + " " + _NameShobe + " " + _NoeHesab + " " + _ShomareHesab;
         }
 
+        private void btnSaveNext_Click(object sender, EventArgs e)
+        {
+            btnSave_Click(null, null);
+            if (En == EnumCED.Save)
+                btnCreate_Click(null, null);
+        }
+
+        private void btnCreate_Enter(object sender, EventArgs e)
+        {
+        }
+
+        private void txtNoeHesab_EditValueChanged(object sender, EventArgs e)
+        {
+            _NoeHesab = txtNoeHesab.Text;
+            txtNameHesab.Text = _NameBank + " " + _NameShobe + " " + _NoeHesab + " " + _ShomareHesab;
+
+        }
+
+        private void cmbGroupHesab_Enter(object sender, EventArgs e)
+        {
+            if (En == EnumCED.Create)
+            {
+                cmbGroupHesab.ShowPopup();
+            }
+        }
     }
 }

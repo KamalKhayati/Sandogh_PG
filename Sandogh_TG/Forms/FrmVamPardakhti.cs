@@ -14,7 +14,7 @@ namespace Sandogh_TG
 {
     public partial class FrmVamPardakhti : DevExpress.XtraEditors.XtraForm
     {
-        FrmListVamhayePardakhti Fm;
+        public FrmListVamhayePardakhti Fm;
         public FrmVamPardakhti(FrmListVamhayePardakhti fm)
         {
             InitializeComponent();
@@ -111,6 +111,27 @@ namespace Sandogh_TG
                         else
                             hesabBankisBindingSource.DataSource = null;
                     }
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
+        public void FillDataGridCheckTazmin()
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    int AazaId = Convert.ToInt32(cmbDaryaftkonande.EditValue);
+                    var q1 = db.CheckTazmins.Where(s => s.IsInSandogh == true && s.VamGerandeId == AazaId).OrderBy(s => s.SeryalDaryaft).ToList();
+                    if (q1.Count > 0)
+                        checkTazminsBindingSource.DataSource = q1;
+                    else
+                        checkTazminsBindingSource.DataSource = null;
                 }
                 catch (Exception ex)
                 {
@@ -250,64 +271,93 @@ namespace Sandogh_TG
 
         }
 
-        private void btnSaveClose_Click(object sender, EventArgs e)
+        public bool Validation()
         {
             if (string.IsNullOrEmpty(cmbDaryaftkonande.Text))
             {
                 XtraMessageBox.Show("لطفا نام دریافت کننده وام را انتخاب کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return false;
             }
             else if (string.IsNullOrEmpty(cmbNahveyePardakht.Text))
             {
                 XtraMessageBox.Show("لطفاً نحوه پرداخت وام را انتخاب کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return false;
             }
             else if (string.IsNullOrEmpty(cmbNoeVam.Text))
             {
                 XtraMessageBox.Show("لطفاً نوع وام را انتخاب کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return false;
             }
             else if (string.IsNullOrEmpty(txtCode.Text))
             {
                 XtraMessageBox.Show("فیلد کد وام نبایستی خالی باشد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return false;
             }
             else if (string.IsNullOrEmpty(txtTarikhPardakht.Text))
             {
                 XtraMessageBox.Show("لطفا تاریخ پرداخت را وارد کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return false;
             }
             else if (string.IsNullOrEmpty(txtMablaghAsli.Text) || Convert.ToInt32(txtMablaghAsli.Text.Replace(",", "")) == 0)
             {
                 XtraMessageBox.Show("لطفا مبلغ اصلی وام را وارد کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return false;
             }
             else if (string.IsNullOrEmpty(cmbFaseleAghsat.Text))
             {
                 XtraMessageBox.Show("لطفا فاصله اقساط وام را انتخاب کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return false;
             }
             else if (string.IsNullOrEmpty(txtTedadAghsat.Text) || Convert.ToInt32(txtTedadAghsat.Text.Replace(",", "")) == 0)
             {
                 XtraMessageBox.Show("لطفا تعداد اقساط وام را وارد کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return false;
             }
             else if (string.IsNullOrEmpty(txtMablaghAghsat.Text) || Convert.ToInt32(txtMablaghAghsat.Text.Replace(",", "")) == 0)
             {
                 XtraMessageBox.Show("مبلغ اقساط تعیین نشده است", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return false;
             }
             else if (string.IsNullOrEmpty(txtSarresidAvalinGhest.Text))
             {
                 XtraMessageBox.Show("لطفا سررسید اولین قسط وام را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return false;
             }
             else if (string.IsNullOrEmpty(cmbNameHesab.Text))
             {
                 XtraMessageBox.Show("لطفا نام بانک یا صندوق را انتخاب کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return false;
             }
             else
+            {
+                using (var db = new MyContext())
+                {
+                    try
+                    {
+                        int _IDSandogh = Convert.ToInt32(Fm.Fm.IDSandogh.Caption);
+                        var q = db.Tanzimats.FirstOrDefault(f => f.Id == _IDSandogh).checkEdit1;
+                        if (q)
+                        {
+                            if (chkcmbEntekhabZamenin.Text == string.Empty && checkTazminsBindingSource.DataSource == null)
+                            {
+                                XtraMessageBox.Show("لطفاً نوع ضمانت وام را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return false;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+            }
+            return true;
+        }
+        private void btnSaveClose_Click(object sender, EventArgs e)
+        {
+            if (Validation())
             {
                 int yyyy1 = Convert.ToInt32(txtTarikhPardakht.Text.Substring(0, 4));
                 int MM1 = Convert.ToInt32(txtTarikhPardakht.Text.Substring(5, 2));
@@ -379,20 +429,22 @@ namespace Sandogh_TG
                                 obj.SarresidAvalinGhest = Convert.ToDateTime(txtSarresidAvalinGhest.Text.Substring(0, 10));
                             obj.NameHesabId = Convert.ToInt32(cmbNameHesab.EditValue);
                             obj.NameHesab = cmbNameHesab.Text;
-                            obj.ZameninName = !string.IsNullOrEmpty(chkcmbEntekhabZamenin.Text) ? chkcmbEntekhabZamenin.Text : "";
-
-                            string CheckedItems = string.Empty;
-                            var CheckedList = chkcmbEntekhabZamenin.Properties.GetItems().GetCheckedValues();
-                            if (CheckedList != null)
+                            if (!string.IsNullOrEmpty(chkcmbEntekhabZamenin.Text))
                             {
-                                foreach (var item in CheckedList)
+                                obj.ZameninName = chkcmbEntekhabZamenin.Text;
+
+                                string CheckedItems = string.Empty;
+                                var CheckedList = chkcmbEntekhabZamenin.Properties.GetItems().GetCheckedValues();
+                                if (CheckedList != null)
                                 {
-                                    CheckedItems += item.ToString() + ",";
+                                    foreach (var item in CheckedList)
+                                    {
+                                        CheckedItems += item.ToString() + ",";
+                                    }
                                 }
+                                obj.ZameninId = CheckedItems;
                             }
-                            obj.ZameninId = CheckedItems;
-                            obj.HaveCheckTazmin = false;
-                            obj.HaveSefteTazmin = false;
+                            obj.HaveCheckTazmin = checkTazminsBindingSource.DataSource != null ? true : false;
                             obj.IsTasviye = chkIsTasviye.Checked ? true : false;
                             obj.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
                             db.VamPardakhtis.Add(obj);
@@ -479,19 +531,22 @@ namespace Sandogh_TG
                                     q.SarresidAvalinGhest = Convert.ToDateTime(txtSarresidAvalinGhest.Text.Substring(0, 10));
                                 q.NameHesabId = Convert.ToInt32(cmbNameHesab.EditValue);
                                 q.NameHesab = cmbNameHesab.Text;
-                                q.ZameninName = !string.IsNullOrEmpty(chkcmbEntekhabZamenin.Text) ? chkcmbEntekhabZamenin.Text : "";
-                                string CheckedItems = string.Empty;
-                                var CheckedList = chkcmbEntekhabZamenin.Properties.GetItems().GetCheckedValues();
-                                if (CheckedList != null)
+                                if (!string.IsNullOrEmpty(chkcmbEntekhabZamenin.Text))
                                 {
-                                    foreach (var item in CheckedList)
+                                    q.ZameninName = chkcmbEntekhabZamenin.Text;
+
+                                    string CheckedItems = string.Empty;
+                                    var CheckedList = chkcmbEntekhabZamenin.Properties.GetItems().GetCheckedValues();
+                                    if (CheckedList != null)
                                     {
-                                        CheckedItems += item.ToString() + ",";
+                                        foreach (var item in CheckedList)
+                                        {
+                                            CheckedItems += item.ToString() + ",";
+                                        }
                                     }
+                                    q.ZameninId = CheckedItems;
                                 }
-                                q.ZameninId = CheckedItems;
-                                q.HaveCheckTazmin = false;
-                                q.HaveSefteTazmin = false;
+                                q.HaveCheckTazmin = checkTazminsBindingSource.DataSource != null ? true : false;
                                 q.IsTasviye = chkIsTasviye.Checked ? true : false;
                                 db.SaveChanges();
 
@@ -746,7 +801,7 @@ namespace Sandogh_TG
 
             }
             FillchkcmbEntekhabZamenin();
-
+            FillDataGridCheckTazmin();
         }
 
         private void checkEdit1_CheckedChanged(object sender, EventArgs e)
@@ -762,5 +817,26 @@ namespace Sandogh_TG
 
         }
 
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void xtraTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+        {
+            btnCreate.Visible = xtraTabControl1.SelectedTabPageIndex == 1 ? true : false;
+        }
+
+        private void btnCreate_Click_1(object sender, EventArgs e)
+        {
+            FrmDaryaftCheckTazmin fm = new FrmDaryaftCheckTazmin(this);
+            fm.ShowDialog();
+        }
+
+        private void gridView1_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
+        {
+            HelpClass1.SetNumberRowsColumnUnboundGirdView(sender, e);
+
+        }
     }
 }

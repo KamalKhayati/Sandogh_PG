@@ -134,7 +134,7 @@
             this.btnSaveClose.TabIndex = 5;
             this.btnSaveClose.Text = "ذخیره و بستن";
             this.btnSaveClose.ToolTip = "F5";
-            this.btnSaveClose.ToolTipTitle = "ذخیره";
+            this.btnSaveClose.ToolTipTitle = "ذخیره و بستن";
             this.btnSaveClose.Click += new System.EventHandler(this.btnSaveClose_Click);
             // 
             // btnSelectPath

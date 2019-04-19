@@ -77,14 +77,14 @@ namespace Sandogh_TG
                         else
                         {
                             if (En == EnumCED.Create)
-                                XtraMessageBox.Show("اعمال محدودیت تعریف 9999999 حساب  ..." + "\n" +
+                                XtraMessageBox.Show("اعمال محدودیت تعریف 2999999 حساب  ..." + "\n" +
                                     "توجه : نمیتوان بیشتر از این تعداد حساب تعریف کرد ", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
 
                     }
                     else
                     {
-                        txtCode.Text = "0000001";
+                        txtCode.Text = "7000001";
                     }
                 }
                 catch (Exception ex)
@@ -115,9 +115,9 @@ namespace Sandogh_TG
                 XtraMessageBox.Show("لطفا کد حساب را وارد کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else if (Convert.ToInt32(txtCode.Text) == 0 || Convert.ToInt32(txtCode.Text) > 99999)
+            else if (Convert.ToInt32(txtCode.Text) <= 7000000 || Convert.ToInt32(txtCode.Text) >= 10000000)
             {
-                XtraMessageBox.Show("کد وارده بایستی عددی بزرگتر از صفر و کمتر از 100000 باشد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                XtraMessageBox.Show("کد وارده بایستی عددی بزرگتر از 7000000 و کمتر از 10000000 باشد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtCode.Focus();
                 return false;
             }
@@ -206,7 +206,7 @@ namespace Sandogh_TG
 
         private void FrmTarifAaza_1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F5)
+            if (e.KeyCode == Keys.F2)
             {
                 btnCreate_Click(sender, null);
             }
@@ -236,7 +236,7 @@ namespace Sandogh_TG
             }
             else if (e.KeyCode == Keys.F9)
             {
-                btnSharhHesab_Click(sender, null);
+                btnSaveNext_Click(sender, null);
             }
             else if (e.KeyCode == Keys.F10)
             {
@@ -315,9 +315,12 @@ namespace Sandogh_TG
             gridView1.OptionsFind.AlwaysVisible = gridView1.OptionsFind.AlwaysVisible ? false : true;
         }
 
-        private void btnSharhHesab_Click(object sender, EventArgs e)
+        private void btnSaveNext_Click(object sender, EventArgs e)
         {
-            gridView1.Columns["SharhHesab"].Visible = gridView1.Columns["SharhHesab"].Visible == false ? true : false;
+            //gridView1.Columns["SharhHesab"].Visible = gridView1.Columns["SharhHesab"].Visible == false ? true : false;
+            btnSave_Click(null, null);
+            if (En == EnumCED.Save)
+                btnCreate_Click(null, null);
         }
 
         public void InActiveButtons()
@@ -329,6 +332,7 @@ namespace Sandogh_TG
                     item.Enabled = false;
                 }
                 btnSave.Enabled = true;
+                btnSaveNext.Enabled = true;
                 btnCancel.Enabled = true;
                 btnClose.Enabled = true;
             }
@@ -343,6 +347,7 @@ namespace Sandogh_TG
                     item.Enabled = true;
                 }
                 btnSave.Enabled = false;
+                btnSaveNext.Enabled = false;
                 btnCancel.Enabled = false;
             }
         }
@@ -673,12 +678,13 @@ namespace Sandogh_TG
                             else
                                 btnDisplyNotActiveList_Click(null, null);
 
-                            XtraMessageBox.Show("عملیات ایجاد با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                            //XtraMessageBox.Show("عملیات ایجاد با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                             gridControl1.Enabled = true;
                             gridView1.MoveLast();
                             ActiveButtons();
                             ClearControls();
                             InActiveControls();
+                            En = EnumCED.Save;
                         }
                         catch (Exception ex)
                         {
@@ -760,13 +766,14 @@ namespace Sandogh_TG
                                 else
                                     btnDisplyNotActiveList_Click(null, null);
 
-                                XtraMessageBox.Show("عملیات ویرایش با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                                //XtraMessageBox.Show("عملیات ویرایش با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                                 if (gridView1.RowCount > 0)
                                     gridView1.FocusedRowHandle = EditRowIndex;
                                 gridControl1.Enabled = true;
                                 ActiveButtons();
                                 ClearControls();
                                 InActiveControls();
+                                En = EnumCED.Save;
                             }
                             else
                                 XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -35,15 +35,19 @@
             this.btnTarifAaza = new DevExpress.XtraBars.BarButtonItem();
             this.btnDaryaft1 = new DevExpress.XtraBars.BarButtonItem();
             this.btnSabtDaramad = new DevExpress.XtraBars.BarButtonItem();
-            this.btnDaryaft2 = new DevExpress.XtraBars.BarButtonItem();
             this.btnSabtHazine = new DevExpress.XtraBars.BarButtonItem();
             this.btnEetayVam = new DevExpress.XtraBars.BarButtonItem();
-            this.btnPardakht2 = new DevExpress.XtraBars.BarButtonItem();
             this.btnEnteghali = new DevExpress.XtraBars.BarButtonItem();
             this.btnTanzimat = new DevExpress.XtraBars.BarButtonItem();
             this.IDSandogh = new DevExpress.XtraBars.BarStaticItem();
             this.btnTarifSalMali = new DevExpress.XtraBars.BarButtonItem();
             this.IDSalMali = new DevExpress.XtraBars.BarStaticItem();
+            this.btnDaryaft2 = new DevExpress.XtraBars.BarSubItem();
+            this.btnDayaftNaghdiBanki = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDayaftCheckTazmin = new DevExpress.XtraBars.BarButtonItem();
+            this.btnPardakht2 = new DevExpress.XtraBars.BarSubItem();
+            this.btnPardakhtNaghdiBanki = new DevExpress.XtraBars.BarButtonItem();
+            this.btnOdateCheckTazmin = new DevExpress.XtraBars.BarButtonItem();
             this.infoBase = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgInfoBase = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.DaryaftVPardakht = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -59,6 +63,7 @@
             this.Other = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,18 +77,22 @@
             this.btnTarifAaza,
             this.btnDaryaft1,
             this.btnSabtDaramad,
-            this.btnDaryaft2,
             this.btnSabtHazine,
             this.btnEetayVam,
-            this.btnPardakht2,
             this.btnEnteghali,
             this.btnTanzimat,
             this.IDSandogh,
             this.btnTarifSalMali,
-            this.IDSalMali});
+            this.IDSalMali,
+            this.btnDaryaft2,
+            this.btnDayaftNaghdiBanki,
+            this.btnDayaftCheckTazmin,
+            this.btnPardakht2,
+            this.btnPardakhtNaghdiBanki,
+            this.btnOdateCheckTazmin});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.ribbonControl1.MaxItemId = 15;
+            this.ribbonControl1.MaxItemId = 21;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.infoBase,
@@ -141,14 +150,6 @@
             this.btnSabtDaramad.Name = "btnSabtDaramad";
             this.btnSabtDaramad.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
-            // btnDaryaft2
-            // 
-            this.btnDaryaft2.Caption = "سایر دریافتها";
-            this.btnDaryaft2.Id = 6;
-            this.btnDaryaft2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDaryaft2.ImageOptions.Image")));
-            this.btnDaryaft2.Name = "btnDaryaft2";
-            this.btnDaryaft2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
             // btnSabtHazine
             // 
             this.btnSabtHazine.Caption = "ثبت هزینه";
@@ -165,14 +166,6 @@
             this.btnEetayVam.Name = "btnEetayVam";
             this.btnEetayVam.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.btnEetayVam.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEetayVam_ItemClick);
-            // 
-            // btnPardakht2
-            // 
-            this.btnPardakht2.Caption = "سایر پرداختها";
-            this.btnPardakht2.Id = 9;
-            this.btnPardakht2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPardakht2.ImageOptions.SvgImage")));
-            this.btnPardakht2.Name = "btnPardakht2";
-            this.btnPardakht2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
             // btnEnteghali
             // 
@@ -212,6 +205,54 @@
             this.IDSalMali.Id = 14;
             this.IDSalMali.Name = "IDSalMali";
             // 
+            // btnDaryaft2
+            // 
+            this.btnDaryaft2.Caption = "سایر دریافتها";
+            this.btnDaryaft2.Id = 15;
+            this.btnDaryaft2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDaryaft2.ImageOptions.Image")));
+            this.btnDaryaft2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnDayaftNaghdiBanki),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnDayaftCheckTazmin)});
+            this.btnDaryaft2.Name = "btnDaryaft2";
+            this.btnDaryaft2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // btnDayaftNaghdiBanki
+            // 
+            this.btnDayaftNaghdiBanki.Caption = "دریافت نقدی/بانکی";
+            this.btnDayaftNaghdiBanki.Id = 16;
+            this.btnDayaftNaghdiBanki.Name = "btnDayaftNaghdiBanki";
+            // 
+            // btnDayaftCheckTazmin
+            // 
+            this.btnDayaftCheckTazmin.Caption = "دریافت چک/سفته تضمینی";
+            this.btnDayaftCheckTazmin.Id = 17;
+            this.btnDayaftCheckTazmin.Name = "btnDayaftCheckTazmin";
+            this.btnDayaftCheckTazmin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDayaftCheckTazmin_ItemClick);
+            // 
+            // btnPardakht2
+            // 
+            this.btnPardakht2.Caption = "سایر پرداختها";
+            this.btnPardakht2.Id = 18;
+            this.btnPardakht2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPardakht2.ImageOptions.SvgImage")));
+            this.btnPardakht2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnPardakhtNaghdiBanki),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnOdateCheckTazmin)});
+            this.btnPardakht2.Name = "btnPardakht2";
+            this.btnPardakht2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // btnPardakhtNaghdiBanki
+            // 
+            this.btnPardakhtNaghdiBanki.Caption = "پرداخت نقدی/بانکی";
+            this.btnPardakhtNaghdiBanki.Id = 19;
+            this.btnPardakhtNaghdiBanki.Name = "btnPardakhtNaghdiBanki";
+            // 
+            // btnOdateCheckTazmin
+            // 
+            this.btnOdateCheckTazmin.Caption = "عودت چک/سفته تضمینی";
+            this.btnOdateCheckTazmin.Id = 20;
+            this.btnOdateCheckTazmin.Name = "btnOdateCheckTazmin";
+            this.btnOdateCheckTazmin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnOdateCheckTazmin_ItemClick);
+            // 
             // infoBase
             // 
             this.infoBase.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -240,14 +281,14 @@
             // rpgDaryaft
             // 
             this.rpgDaryaft.ItemLinks.Add(this.btnDaryaft1);
-            this.rpgDaryaft.ItemLinks.Add(this.btnDaryaft2, true);
+            this.rpgDaryaft.ItemLinks.Add(this.btnDaryaft2);
             this.rpgDaryaft.Name = "rpgDaryaft";
             this.rpgDaryaft.Text = "دریافتها";
             // 
             // rpgPardakhtha
             // 
             this.rpgPardakhtha.ItemLinks.Add(this.btnEetayVam);
-            this.rpgPardakhtha.ItemLinks.Add(this.btnPardakht2, true);
+            this.rpgPardakhtha.ItemLinks.Add(this.btnPardakht2);
             this.rpgPardakhtha.Name = "rpgPardakhtha";
             this.rpgPardakhtha.Text = "پرداختها";
             // 
@@ -317,6 +358,14 @@
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
             this.ribbonStatusBar1.Size = new System.Drawing.Size(1301, 41);
             // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "سایر دریافتها";
+            this.barButtonItem1.Id = 6;
+            this.barButtonItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
+            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
@@ -359,10 +408,8 @@
         private DevExpress.XtraBars.BarButtonItem btnTarifAaza;
         private DevExpress.XtraBars.BarButtonItem btnDaryaft1;
         private DevExpress.XtraBars.BarButtonItem btnSabtDaramad;
-        private DevExpress.XtraBars.BarButtonItem btnDaryaft2;
         private DevExpress.XtraBars.BarButtonItem btnSabtHazine;
         private DevExpress.XtraBars.BarButtonItem btnEetayVam;
-        private DevExpress.XtraBars.BarButtonItem btnPardakht2;
         private DevExpress.XtraBars.BarButtonItem btnEnteghali;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgPardakhtha;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgEnteghali;
@@ -372,6 +419,13 @@
         private DevExpress.XtraBars.BarButtonItem btnTarifSalMali;
         public DevExpress.XtraBars.BarStaticItem IDSandogh;
         public DevExpress.XtraBars.BarStaticItem IDSalMali;
+        private DevExpress.XtraBars.BarSubItem btnDaryaft2;
+        private DevExpress.XtraBars.BarButtonItem btnDayaftNaghdiBanki;
+        private DevExpress.XtraBars.BarButtonItem btnDayaftCheckTazmin;
+        private DevExpress.XtraBars.BarSubItem btnPardakht2;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem btnPardakhtNaghdiBanki;
+        private DevExpress.XtraBars.BarButtonItem btnOdateCheckTazmin;
     }
 }
 
