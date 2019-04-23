@@ -73,6 +73,8 @@ namespace Sandogh_TG
         public virtual ICollection<HaghOzviat> HaghOzviats { get; set; }
         public virtual ICollection<VamPardakhti> VamPardakhtis { get; set; }
         public virtual ICollection<CheckTazmin> CheckTazmins { get; set; }
+        public virtual ICollection<DaryaftNaghdiVBanki> DaryaftNaghdiVBankis { get; set; }
+        public virtual ICollection<PardakhtNaghdiVBanki> PardakhtNaghdiVBankis { get; set; }
 
     }
 }

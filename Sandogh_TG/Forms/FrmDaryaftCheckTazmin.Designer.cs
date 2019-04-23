@@ -137,6 +137,8 @@
             this.Line.FieldName = "Line";
             this.Line.MinWidth = 19;
             this.Line.Name = "Line";
+            this.Line.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Line", "{0}")});
             this.Line.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
             this.Line.Visible = true;
             this.Line.VisibleIndex = 0;
@@ -150,6 +152,9 @@
             // 
             // gridView1
             // 
+            this.gridView1.Appearance.FooterPanel.Options.UseTextOptions = true;
+            this.gridView1.Appearance.FooterPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.Appearance.FooterPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colId,
             this.Line,
@@ -182,6 +187,7 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.RowAutoHeight = true;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
+            this.gridView1.OptionsView.ShowFooter = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
@@ -306,6 +312,8 @@
             this.colMablagh.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colMablagh.FieldName = "Mablagh";
             this.colMablagh.Name = "colMablagh";
+            this.colMablagh.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Mablagh", "{0:n}")});
             this.colMablagh.Visible = true;
             this.colMablagh.VisibleIndex = 8;
             this.colMablagh.Width = 150;
@@ -674,7 +682,7 @@
             this.txtSharhOdat.EnterMoveNextControl = true;
             this.txtSharhOdat.Location = new System.Drawing.Point(5, 6);
             this.txtSharhOdat.Name = "txtSharhOdat";
-            this.txtSharhOdat.Properties.MaxLength = 150;
+            this.txtSharhOdat.Properties.MaxLength = 200;
             this.txtSharhOdat.Properties.ReadOnly = true;
             this.txtSharhOdat.Size = new System.Drawing.Size(539, 32);
             this.txtSharhOdat.TabIndex = 1;
@@ -691,6 +699,8 @@
             // 
             // labelControl7
             // 
+            this.labelControl7.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl7.Appearance.Options.UseForeColor = true;
             this.labelControl7.AutoEllipsis = true;
             this.labelControl7.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl7.Location = new System.Drawing.Point(858, 5);
@@ -807,7 +817,7 @@
             this.txtSharhSanad.EnterMoveNextControl = true;
             this.txtSharhSanad.Location = new System.Drawing.Point(5, 119);
             this.txtSharhSanad.Name = "txtSharhSanad";
-            this.txtSharhSanad.Properties.MaxLength = 150;
+            this.txtSharhSanad.Properties.MaxLength = 200;
             this.txtSharhSanad.Properties.ReadOnly = true;
             this.txtSharhSanad.Size = new System.Drawing.Size(842, 32);
             this.txtSharhSanad.TabIndex = 10;
@@ -901,6 +911,8 @@
             // 
             // labelControl2
             // 
+            this.labelControl2.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl2.Appearance.Options.UseForeColor = true;
             this.labelControl2.AutoEllipsis = true;
             this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl2.Location = new System.Drawing.Point(647, 4);
@@ -911,7 +923,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
+            this.labelControl4.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl4.Appearance.Options.UseForeColor = true;
             this.labelControl4.AutoEllipsis = true;
             this.labelControl4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
@@ -927,6 +939,8 @@
             this.txtSeryalDaryaft.EnterMoveNextControl = true;
             this.txtSeryalDaryaft.Location = new System.Drawing.Point(750, 5);
             this.txtSeryalDaryaft.Name = "txtSeryalDaryaft";
+            this.txtSeryalDaryaft.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.txtSeryalDaryaft.Properties.Appearance.Options.UseBackColor = true;
             this.txtSeryalDaryaft.Properties.Appearance.Options.UseTextOptions = true;
             this.txtSeryalDaryaft.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtSeryalDaryaft.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -969,7 +983,7 @@
             // 
             this.labelControl3.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl3.Appearance.Options.UseForeColor = true;
-            this.labelControl3.Location = new System.Drawing.Point(420, 8);
+            this.labelControl3.Location = new System.Drawing.Point(429, 8);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(66, 25);
             this.labelControl3.TabIndex = 58;

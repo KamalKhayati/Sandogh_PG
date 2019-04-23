@@ -30,5 +30,8 @@ namespace Sandogh_TG
         public virtual ICollection<SalMali> SalMalis { get; set; }
         public virtual ICollection<AazaSandogh> AazaSandoghs { get; set; }
         public virtual ICollection<HesabBanki> HesabBankis { get; set; }
+        public virtual ICollection<CodingDaramadVHazine> CodingDaramadVHazines { get; set; }
+        public virtual ICollection<SabDaramad> SabDaramads { get; set; }
+        public virtual ICollection<SabtHazine> SabtHazines { get; set; }
     }
 }

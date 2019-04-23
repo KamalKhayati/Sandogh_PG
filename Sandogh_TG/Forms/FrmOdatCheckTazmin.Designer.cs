@@ -520,6 +520,8 @@
             this.txtSeryalDaryaft.EnterMoveNextControl = true;
             this.txtSeryalDaryaft.Location = new System.Drawing.Point(750, 5);
             this.txtSeryalDaryaft.Name = "txtSeryalDaryaft";
+            this.txtSeryalDaryaft.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.txtSeryalDaryaft.Properties.Appearance.Options.UseBackColor = true;
             this.txtSeryalDaryaft.Properties.Appearance.Options.UseTextOptions = true;
             this.txtSeryalDaryaft.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtSeryalDaryaft.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -672,6 +674,8 @@
             this.Line.FieldName = "Line";
             this.Line.MinWidth = 19;
             this.Line.Name = "Line";
+            this.Line.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Line", "{0}")});
             this.Line.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
             this.Line.Visible = true;
             this.Line.VisibleIndex = 0;
@@ -685,6 +689,9 @@
             // 
             // gridView1
             // 
+            this.gridView1.Appearance.FooterPanel.Options.UseTextOptions = true;
+            this.gridView1.Appearance.FooterPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.Appearance.FooterPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colId,
             this.Line,
@@ -717,6 +724,7 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.RowAutoHeight = true;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
+            this.gridView1.OptionsView.ShowFooter = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
@@ -841,6 +849,8 @@
             this.colMablagh.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colMablagh.FieldName = "Mablagh";
             this.colMablagh.Name = "colMablagh";
+            this.colMablagh.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Mablagh", "{0:n}")});
             this.colMablagh.Visible = true;
             this.colMablagh.VisibleIndex = 8;
             this.colMablagh.Width = 150;

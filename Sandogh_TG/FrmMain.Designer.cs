@@ -37,17 +37,21 @@
             this.btnSabtDaramad = new DevExpress.XtraBars.BarButtonItem();
             this.btnSabtHazine = new DevExpress.XtraBars.BarButtonItem();
             this.btnEetayVam = new DevExpress.XtraBars.BarButtonItem();
-            this.btnEnteghali = new DevExpress.XtraBars.BarButtonItem();
             this.btnTanzimat = new DevExpress.XtraBars.BarButtonItem();
             this.IDSandogh = new DevExpress.XtraBars.BarStaticItem();
             this.btnTarifSalMali = new DevExpress.XtraBars.BarButtonItem();
             this.IDSalMali = new DevExpress.XtraBars.BarStaticItem();
             this.btnDaryaft2 = new DevExpress.XtraBars.BarSubItem();
-            this.btnDayaftNaghdiBanki = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDaryaftNaghdiVBanki = new DevExpress.XtraBars.BarButtonItem();
             this.btnDayaftCheckTazmin = new DevExpress.XtraBars.BarButtonItem();
             this.btnPardakht2 = new DevExpress.XtraBars.BarSubItem();
-            this.btnPardakhtNaghdiBanki = new DevExpress.XtraBars.BarButtonItem();
+            this.btnPardakhtNaghdiVBanki = new DevExpress.XtraBars.BarButtonItem();
             this.btnOdateCheckTazmin = new DevExpress.XtraBars.BarButtonItem();
+            this.btnCodingDaramadVHazine = new DevExpress.XtraBars.BarButtonItem();
+            this.btnEnteghali = new DevExpress.XtraBars.BarSubItem();
+            this.btnEnteghalatHesabBanki = new DevExpress.XtraBars.BarButtonItem();
+            this.btnEnteghalatHesabAaza = new DevExpress.XtraBars.BarButtonItem();
+            this.btnEnteghalatHesabDaramadVHazine = new DevExpress.XtraBars.BarButtonItem();
             this.infoBase = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgInfoBase = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.DaryaftVPardakht = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -79,20 +83,24 @@
             this.btnSabtDaramad,
             this.btnSabtHazine,
             this.btnEetayVam,
-            this.btnEnteghali,
             this.btnTanzimat,
             this.IDSandogh,
             this.btnTarifSalMali,
             this.IDSalMali,
             this.btnDaryaft2,
-            this.btnDayaftNaghdiBanki,
+            this.btnDaryaftNaghdiVBanki,
             this.btnDayaftCheckTazmin,
             this.btnPardakht2,
-            this.btnPardakhtNaghdiBanki,
-            this.btnOdateCheckTazmin});
+            this.btnPardakhtNaghdiVBanki,
+            this.btnOdateCheckTazmin,
+            this.btnCodingDaramadVHazine,
+            this.btnEnteghali,
+            this.btnEnteghalatHesabBanki,
+            this.btnEnteghalatHesabAaza,
+            this.btnEnteghalatHesabDaramadVHazine});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.ribbonControl1.MaxItemId = 21;
+            this.ribbonControl1.MaxItemId = 30;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.infoBase,
@@ -149,6 +157,7 @@
             this.btnSabtDaramad.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSabtDaramad.ImageOptions.SvgImage")));
             this.btnSabtDaramad.Name = "btnSabtDaramad";
             this.btnSabtDaramad.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.btnSabtDaramad.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSabtDaramad_ItemClick);
             // 
             // btnSabtHazine
             // 
@@ -157,6 +166,7 @@
             this.btnSabtHazine.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSabtHazine.ImageOptions.Image")));
             this.btnSabtHazine.Name = "btnSabtHazine";
             this.btnSabtHazine.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.btnSabtHazine.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSabtHazine_ItemClick);
             // 
             // btnEetayVam
             // 
@@ -166,14 +176,6 @@
             this.btnEetayVam.Name = "btnEetayVam";
             this.btnEetayVam.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.btnEetayVam.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEetayVam_ItemClick);
-            // 
-            // btnEnteghali
-            // 
-            this.btnEnteghali.Caption = "انتقالی بین بانکها و صندوقها";
-            this.btnEnteghali.Id = 10;
-            this.btnEnteghali.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnEnteghali.ImageOptions.SvgImage")));
-            this.btnEnteghali.Name = "btnEnteghali";
-            this.btnEnteghali.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
             // btnTanzimat
             // 
@@ -211,16 +213,17 @@
             this.btnDaryaft2.Id = 15;
             this.btnDaryaft2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDaryaft2.ImageOptions.Image")));
             this.btnDaryaft2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnDayaftNaghdiBanki),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnDaryaftNaghdiVBanki),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnDayaftCheckTazmin)});
             this.btnDaryaft2.Name = "btnDaryaft2";
             this.btnDaryaft2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
-            // btnDayaftNaghdiBanki
+            // btnDaryaftNaghdiVBanki
             // 
-            this.btnDayaftNaghdiBanki.Caption = "دریافت نقدی/بانکی";
-            this.btnDayaftNaghdiBanki.Id = 16;
-            this.btnDayaftNaghdiBanki.Name = "btnDayaftNaghdiBanki";
+            this.btnDaryaftNaghdiVBanki.Caption = "دریافت نقدی/بانکی";
+            this.btnDaryaftNaghdiVBanki.Id = 16;
+            this.btnDaryaftNaghdiVBanki.Name = "btnDaryaftNaghdiVBanki";
+            this.btnDaryaftNaghdiVBanki.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDaryaftNaghdiVBanki_ItemClick);
             // 
             // btnDayaftCheckTazmin
             // 
@@ -235,16 +238,17 @@
             this.btnPardakht2.Id = 18;
             this.btnPardakht2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPardakht2.ImageOptions.SvgImage")));
             this.btnPardakht2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnPardakhtNaghdiBanki),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnPardakhtNaghdiVBanki),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnOdateCheckTazmin)});
             this.btnPardakht2.Name = "btnPardakht2";
             this.btnPardakht2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
-            // btnPardakhtNaghdiBanki
+            // btnPardakhtNaghdiVBanki
             // 
-            this.btnPardakhtNaghdiBanki.Caption = "پرداخت نقدی/بانکی";
-            this.btnPardakhtNaghdiBanki.Id = 19;
-            this.btnPardakhtNaghdiBanki.Name = "btnPardakhtNaghdiBanki";
+            this.btnPardakhtNaghdiVBanki.Caption = "پرداخت نقدی/بانکی";
+            this.btnPardakhtNaghdiVBanki.Id = 19;
+            this.btnPardakhtNaghdiVBanki.Name = "btnPardakhtNaghdiVBanki";
+            this.btnPardakhtNaghdiVBanki.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPardakhtNaghdiVBanki_ItemClick);
             // 
             // btnOdateCheckTazmin
             // 
@@ -252,6 +256,48 @@
             this.btnOdateCheckTazmin.Id = 20;
             this.btnOdateCheckTazmin.Name = "btnOdateCheckTazmin";
             this.btnOdateCheckTazmin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnOdateCheckTazmin_ItemClick);
+            // 
+            // btnCodingDaramadVHazine
+            // 
+            this.btnCodingDaramadVHazine.Caption = "تعریف کدینگ درآمد و هزینه";
+            this.btnCodingDaramadVHazine.Id = 25;
+            this.btnCodingDaramadVHazine.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCodingDaramadVHazine.ImageOptions.Image")));
+            this.btnCodingDaramadVHazine.Name = "btnCodingDaramadVHazine";
+            this.btnCodingDaramadVHazine.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.btnCodingDaramadVHazine.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCodingDaramadVHazine_ItemClick);
+            // 
+            // btnEnteghali
+            // 
+            this.btnEnteghali.Caption = "انتقالی بین حسابها";
+            this.btnEnteghali.Id = 26;
+            this.btnEnteghali.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnEnteghali.ImageOptions.SvgImage")));
+            this.btnEnteghali.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnEnteghalatHesabBanki),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnEnteghalatHesabAaza),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnEnteghalatHesabDaramadVHazine)});
+            this.btnEnteghali.Name = "btnEnteghali";
+            this.btnEnteghali.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // btnEnteghalatHesabBanki
+            // 
+            this.btnEnteghalatHesabBanki.Caption = "انتقالی بین بانک ها/صندوق ها";
+            this.btnEnteghalatHesabBanki.Id = 27;
+            this.btnEnteghalatHesabBanki.Name = "btnEnteghalatHesabBanki";
+            this.btnEnteghalatHesabBanki.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEnteghalatHesabBanki_ItemClick);
+            // 
+            // btnEnteghalatHesabAaza
+            // 
+            this.btnEnteghalatHesabAaza.Caption = "انتقالی بین حساب اعضاء صندوق";
+            this.btnEnteghalatHesabAaza.Id = 28;
+            this.btnEnteghalatHesabAaza.Name = "btnEnteghalatHesabAaza";
+            this.btnEnteghalatHesabAaza.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEnteghalatHesabAaza_ItemClick);
+            // 
+            // btnEnteghalatHesabDaramadVHazine
+            // 
+            this.btnEnteghalatHesabDaramadVHazine.Caption = "انتقالی به حساب درآمدوهزینه";
+            this.btnEnteghalatHesabDaramadVHazine.Id = 29;
+            this.btnEnteghalatHesabDaramadVHazine.Name = "btnEnteghalatHesabDaramadVHazine";
+            this.btnEnteghalatHesabDaramadVHazine.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEnteghalatHesabDaramadVHazine_ItemClick);
             // 
             // infoBase
             // 
@@ -266,6 +312,7 @@
             this.rpgInfoBase.ItemLinks.Add(this.btnTarifSalMali, true);
             this.rpgInfoBase.ItemLinks.Add(this.btnTarifHesabBanki, true);
             this.rpgInfoBase.ItemLinks.Add(this.btnTarifAaza, true);
+            this.rpgInfoBase.ItemLinks.Add(this.btnCodingDaramadVHazine, true);
             this.rpgInfoBase.Name = "rpgInfoBase";
             this.rpgInfoBase.Text = "اطلاعات پایه ";
             // 
@@ -281,22 +328,22 @@
             // rpgDaryaft
             // 
             this.rpgDaryaft.ItemLinks.Add(this.btnDaryaft1);
-            this.rpgDaryaft.ItemLinks.Add(this.btnDaryaft2);
+            this.rpgDaryaft.ItemLinks.Add(this.btnDaryaft2, true);
             this.rpgDaryaft.Name = "rpgDaryaft";
             this.rpgDaryaft.Text = "دریافتها";
             // 
             // rpgPardakhtha
             // 
             this.rpgPardakhtha.ItemLinks.Add(this.btnEetayVam);
-            this.rpgPardakhtha.ItemLinks.Add(this.btnPardakht2);
+            this.rpgPardakhtha.ItemLinks.Add(this.btnPardakht2, true);
             this.rpgPardakhtha.Name = "rpgPardakhtha";
             this.rpgPardakhtha.Text = "پرداختها";
             // 
             // rpgEnteghali
             // 
-            this.rpgEnteghali.ItemLinks.Add(this.btnEnteghali);
+            this.rpgEnteghali.ItemLinks.Add(this.btnEnteghali, true);
             this.rpgEnteghali.Name = "rpgEnteghali";
-            this.rpgEnteghali.Text = "انتقالی به حسابها";
+            this.rpgEnteghali.Text = "انتقالی بین حسابها";
             // 
             // SabteDaramadVHazine
             // 
@@ -410,7 +457,6 @@
         private DevExpress.XtraBars.BarButtonItem btnSabtDaramad;
         private DevExpress.XtraBars.BarButtonItem btnSabtHazine;
         private DevExpress.XtraBars.BarButtonItem btnEetayVam;
-        private DevExpress.XtraBars.BarButtonItem btnEnteghali;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgPardakhtha;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgEnteghali;
         private DevExpress.XtraBars.BarButtonItem btnTanzimat;
@@ -420,12 +466,17 @@
         public DevExpress.XtraBars.BarStaticItem IDSandogh;
         public DevExpress.XtraBars.BarStaticItem IDSalMali;
         private DevExpress.XtraBars.BarSubItem btnDaryaft2;
-        private DevExpress.XtraBars.BarButtonItem btnDayaftNaghdiBanki;
+        private DevExpress.XtraBars.BarButtonItem btnDaryaftNaghdiVBanki;
         private DevExpress.XtraBars.BarButtonItem btnDayaftCheckTazmin;
         private DevExpress.XtraBars.BarSubItem btnPardakht2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.BarButtonItem btnPardakhtNaghdiBanki;
+        private DevExpress.XtraBars.BarButtonItem btnPardakhtNaghdiVBanki;
         private DevExpress.XtraBars.BarButtonItem btnOdateCheckTazmin;
+        private DevExpress.XtraBars.BarButtonItem btnCodingDaramadVHazine;
+        private DevExpress.XtraBars.BarSubItem btnEnteghali;
+        private DevExpress.XtraBars.BarButtonItem btnEnteghalatHesabBanki;
+        private DevExpress.XtraBars.BarButtonItem btnEnteghalatHesabAaza;
+        private DevExpress.XtraBars.BarButtonItem btnEnteghalatHesabDaramadVHazine;
     }
 }
 

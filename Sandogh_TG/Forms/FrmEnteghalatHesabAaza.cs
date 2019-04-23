@@ -12,65 +12,62 @@ using System.Data.Entity;
 
 namespace Sandogh_TG
 {
-    public partial class FrmDaryaftCheckTazmin : DevExpress.XtraEditors.XtraForm
+    public partial class FrmEnteghalatHesabAaza : DevExpress.XtraEditors.XtraForm
     {
         FrmMain Fm;
-        public FrmDaryaftCheckTazmin(FrmMain fm)
+        public FrmEnteghalatHesabAaza(FrmMain fm)
         {
             InitializeComponent();
             Fm = fm;
         }
 
-        FrmVamPardakhti Am;
-        public FrmDaryaftCheckTazmin(FrmVamPardakhti am)
-        {
-            InitializeComponent();
-            Am = am;
-        }
         public EnumCED En;
-        public bool IsCheckInSandogh = true;
 
-        private void cmbNoeSanad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbNoeSanad.SelectedIndex == 0 || cmbNoeSanad.SelectedIndex == -1)
-            {
-                labelControl4.Text = "شماره چک";
-                labelControl14.Text = "تاریخ چک";
-                labelControl19.Text = "مبلغ چک";
-                labelControl8.Text = "صاحب چک";
-                txtShomareHesab.ReadOnly = false;
-            }
-            else
-            {
-                labelControl4.Text = "شماره سفته";
-                labelControl14.Text = "تاریخ سفته";
-                labelControl19.Text = "مبلغ سفته";
-                labelControl8.Text = "ضامن سفته";
-                txtShomareHesab.ReadOnly = true;
-            }
-        }
-
-        public void FillDataGridCheckTazmin()
+        public void FillDataGridEnteghalatHesabAaza()
         {
             using (var db = new MyContext())
             {
                 try
                 {
-                    if (IsCheckInSandogh == true)
+                    var q1 = db.EnteghalatHesabAazas.OrderBy(s => s.Seryal).ToList();
+                    if (q1.Count > 0)
+                        enteghalatHesabAazasBindingSource.DataSource = q1;
+                    else
+                        enteghalatHesabAazasBindingSource.DataSource = null;
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
+
+        public void FillcmbHesabAaza1()
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    if (En == EnumCED.Create)
                     {
-                        var q1 = db.CheckTazmins.Where(s => s.IsInSandogh == true).OrderBy(s => s.SeryalDaryaft).ToList();
+                        var q1 = db.AazaSandoghs.Where(f => f.IsActive == true).ToList();
                         if (q1.Count > 0)
-                            checkTazminsBindingSource.DataSource = q1;
+                            aazaSandoghsBindingSource.DataSource = q1;
                         else
-                            checkTazminsBindingSource.DataSource = null;
+                            aazaSandoghsBindingSource.DataSource = null;
+
                     }
                     else
                     {
-                        var q = db.CheckTazmins.Where(s => s.IsInSandogh == false).OrderBy(s => s.SeryalDaryaft);
-                        if (q.Count() > 0)
-                            checkTazminsBindingSource.DataSource = q.ToList();
+                        var q1 = db.AazaSandoghs.Select(f => f).ToList();
+                        if (q1.Count > 0)
+                            aazaSandoghsBindingSource.DataSource = q1;
                         else
-                            checkTazminsBindingSource.DataSource = null;
+                            aazaSandoghsBindingSource.DataSource = null;
+
+
                     }
                 }
                 catch (Exception ex)
@@ -82,17 +79,32 @@ namespace Sandogh_TG
 
         }
 
-        public void FillcmbVamGerande()
+        public void FillcmbHesabAaza2()
         {
             using (var db = new MyContext())
             {
                 try
                 {
-                    var q1 = db.AazaSandoghs.Select(f => f).ToList();
-                    if (q1.Count > 0)
-                        aazaSandoghsBindingSource.DataSource = q1;
+                    if (En == EnumCED.Create)
+                    {
+                        int _HesabAazaId = Convert.ToInt32(cmbHesabAaza1.EditValue);
+                        var q1 = db.AazaSandoghs.Where(f => f.IsActive == true && f.Id != _HesabAazaId).ToList();
+                        if (q1.Count > 0)
+                            aazaSandoghsBindingSource1.DataSource = q1;
+                        else
+                            aazaSandoghsBindingSource1.DataSource = null;
+
+                    }
                     else
-                        aazaSandoghsBindingSource.DataSource = null;
+                    {
+                        var q1 = db.AazaSandoghs.Select(f => f).ToList();
+                        if (q1.Count > 0)
+                            aazaSandoghsBindingSource1.DataSource = q1;
+                        else
+                            aazaSandoghsBindingSource1.DataSource = null;
+
+
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -109,25 +121,25 @@ namespace Sandogh_TG
             {
                 try
                 {
-                    var q = db.CheckTazmins.Select(s => s);
+                    var q = db.EnteghalatHesabAazas.Select(s => s);
                     if (q.Any())
                     {
-                        var MaximumCod = q.Max(p => p.SeryalDaryaft);
+                        var MaximumCod = q.Max(p => p.Seryal);
                         if (MaximumCod.ToString() != "9999999")
                         {
-                            txtSeryalDaryaft.Text = (MaximumCod + 1).ToString();
+                            txtSeryal.Text = (MaximumCod + 1).ToString();
                         }
                         else
                         {
                             if (En == EnumCED.Create)
-                                XtraMessageBox.Show("اعمال محدودیت ثبت حداکثر 9999999 سریال دریافت" + "\n" +
-                                    "توجه : نمیتوان بیشتر از این تعداد ثبت نمود ", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                XtraMessageBox.Show("اعمال محدودیت ثبت حداکثر 9999999 سریال انتقالی" + "\n" +
+                                    "توجه : نمیتوان بیشتر از این تعداد سریال، انتقالی ثبت نمود ", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
 
                     }
                     else
                     {
-                        txtSeryalDaryaft.Text = "0000001";
+                        txtSeryal.Text = "0000001";
                     }
                 }
                 catch (Exception ex)
@@ -137,9 +149,9 @@ namespace Sandogh_TG
             }
         }
 
-        private void FrmDaryaftCheckTazmin_Load(object sender, EventArgs e)
+        private void FrmEnteghalatHesabAaza_Load(object sender, EventArgs e)
         {
-            FillDataGridCheckTazmin();
+            FillDataGridEnteghalatHesabAaza();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -149,40 +161,40 @@ namespace Sandogh_TG
 
         private bool TextEditValidation()
         {
-            if (string.IsNullOrEmpty(txtSeryalDaryaft.Text))
+            if (string.IsNullOrEmpty(txtSeryal.Text))
             {
-                XtraMessageBox.Show("فیلد سریال دریافت نبایستی خالی باشد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtSeryalDaryaft.Focus();
+                XtraMessageBox.Show("فیلد سریال نبایستی خالی باشد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSeryal.Focus();
                 return false;
             }
-            else if (string.IsNullOrEmpty(txtTarikhDaryaft.Text))
+            else if (string.IsNullOrEmpty(txtTarikh.Text))
             {
-                XtraMessageBox.Show("فیلد تاریخ نبایستی خالی باشد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtTarikhDaryaft.Focus();
+                XtraMessageBox.Show("لطفاً تاریخ را وارد کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTarikh.Focus();
                 return false;
             }
-            else if (string.IsNullOrEmpty(cmbVamGerande.Text))
+            else if (string.IsNullOrEmpty(cmbHesabAaza1.Text))
             {
-                XtraMessageBox.Show("لطفا نام وام گیرنده را انتخاب کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cmbVamGerande.Focus();
+                XtraMessageBox.Show("انتقالی از چه حسابی انجام شود؟", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbHesabAaza1.Focus();
                 return false;
             }
-            else if (string.IsNullOrEmpty(cmbNoeSanad.Text))
+            else if (string.IsNullOrEmpty(cmbHesabAaza2.Text))
             {
-                XtraMessageBox.Show("لطفا نوع سند را انتخاب کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cmbNoeSanad.Focus();
+                XtraMessageBox.Show("انتقالی به چه حسابی انجام شود؟", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbHesabAaza2.Focus();
                 return false;
             }
-            else if (string.IsNullOrEmpty(txtShCheck.Text))
+            else if (txtMablagh.Text == "0")
             {
-                XtraMessageBox.Show("لطفا شماره چک/سفته را وارد کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtShCheck.Focus();
+                XtraMessageBox.Show("لطفاً مبلغ را وارد کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtMablagh.Focus();
                 return false;
             }
             return true;
         }
 
-        private void FrmDaryaftCheckTazmin_KeyDown(object sender, KeyEventArgs e)
+        private void FrmEnteghalatHesabAaza_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F2)
             {
@@ -206,11 +218,7 @@ namespace Sandogh_TG
             }
             else if (e.KeyCode == Keys.F7)
             {
-                btnDisplayCheckInSandogh_Click(sender, null);
-            }
-            else if (e.KeyCode == Keys.F8)
-            {
-                btnDisplayCheckOdatShode_Click(sender, null);
+                btnDisplayList_Click(sender, null);
             }
             else if (e.KeyCode == Keys.F9)
             {
@@ -262,16 +270,9 @@ namespace Sandogh_TG
             HelpClass1.PrintPreview(gridControl1, gridView1);
         }
 
-        public void btnDisplayCheckInSandogh_Click(object sender, EventArgs e)
+        public void btnDisplayList_Click(object sender, EventArgs e)
         {
-            IsCheckInSandogh = true;
-            FillDataGridCheckTazmin();
-        }
-
-        public void btnDisplayCheckOdatShode_Click(object sender, EventArgs e)
-        {
-            IsCheckInSandogh = false;
-            FillDataGridCheckTazmin();
+            FillDataGridEnteghalatHesabAaza();
         }
 
         private void gridView1_KeyPress(object sender, KeyPressEventArgs e)
@@ -324,52 +325,36 @@ namespace Sandogh_TG
 
         public void ClearControls()
         {
-            txtSeryalDaryaft.Text = string.Empty;
-            txtTarikhDaryaft.Text = string.Empty;
-            cmbVamGerande.Text = string.Empty;
-            cmbNoeSanad.SelectedIndex = -1;
-            txtShCheck.Text = string.Empty;
-            txtTarikhCheck.Text = string.Empty;
-            txtMamlaghCheck.Text = string.Empty;
-            txtShomareHesab.Text = string.Empty;
-            txtNameBankVShobe.Text = string.Empty;
-            txtSahebCheck.Text = string.Empty;
-            txtSharhSanad.Text = string.Empty;
+            txtSeryal.Text = string.Empty;
+            txtTarikh.Text = string.Empty;
+            cmbHesabAaza1.EditValue = 0;
+            txtMablagh.Text = string.Empty;
+            cmbHesabAaza2.EditValue = 0;
+            txtSharh.Text = string.Empty;
         }
 
         public void ActiveControls()
         {
             if (En == EnumCED.Create || En == EnumCED.Edit)
             {
-                cmbVamGerande.ReadOnly = false;
-                txtTarikhDaryaft.ReadOnly = false;
-                cmbNoeSanad.ReadOnly = false;
-                txtShCheck.ReadOnly = false;
-                txtTarikhCheck.ReadOnly = false;
-                txtMamlaghCheck.ReadOnly = false;
-                txtShomareHesab.ReadOnly = false;
-                txtNameBankVShobe.ReadOnly = false;
-                txtSahebCheck.ReadOnly = false;
-                txtSharhSanad.ReadOnly = false;
+                txtTarikh.ReadOnly = false;
+                cmbHesabAaza1.ReadOnly = false;
+                txtMablagh.ReadOnly = false;
+                cmbHesabAaza2.ReadOnly = false;
+                txtSharh.ReadOnly = false;
             }
-            FillcmbVamGerande();
-
+            FillcmbHesabAaza1();
         }
 
         public void InActiveControls()
         {
             if (En == EnumCED.Create || En == EnumCED.Edit)
             {
-                cmbVamGerande.ReadOnly = true;
-                txtTarikhDaryaft.ReadOnly = true;
-                cmbNoeSanad.ReadOnly = true;
-                txtShCheck.ReadOnly = true;
-                txtTarikhCheck.ReadOnly = true;
-                txtMamlaghCheck.ReadOnly = true;
-                txtShomareHesab.ReadOnly = true;
-                txtNameBankVShobe.ReadOnly = true;
-                txtSahebCheck.ReadOnly = true;
-                txtSharhSanad.ReadOnly = true;
+                txtTarikh.ReadOnly = true;
+                cmbHesabAaza1.ReadOnly = true;
+                txtMablagh.ReadOnly = true;
+                cmbHesabAaza2.ReadOnly = true;
+                txtSharh.ReadOnly = true;
             }
         }
 
@@ -379,19 +364,18 @@ namespace Sandogh_TG
             En = EnumCED.Create;
             InActiveButtons();
             ClearControls();
-            cmbNoeSanad.SelectedIndex = 0;
             NewSeryal();
             ActiveControls();
-            txtTarikhDaryaft.Text = DateTime.Now.ToString().Substring(0, 10);
+            txtTarikh.Text = DateTime.Now.ToString().Substring(0, 10);
             gridControl1.Enabled = false;
-            txtTarikhDaryaft.Focus();
+            txtTarikh.Focus();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (gridView1.SelectedRowsCount > 0)
             {
-                if (XtraMessageBox.Show("آیا دریافت فوق حذف گردد؟", "پیغام حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                if (XtraMessageBox.Show("آیا انتقالی فوق حذف گردد؟", "پیغام حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
                     EditRowIndex = gridView1.FocusedRowHandle;
                     using (var db = new MyContext())
@@ -399,17 +383,14 @@ namespace Sandogh_TG
                         try
                         {
                             int RowId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id").ToString());
-                            var q = db.CheckTazmins.FirstOrDefault(p => p.Id == RowId);
+                            var q = db.EnteghalatHesabAazas.FirstOrDefault(p => p.Id == RowId);
                             if (q != null)
                             {
-                                db.CheckTazmins.Remove(q);
+                                db.EnteghalatHesabAazas.Remove(q);
                                 /////////////////////////////////////////////////////////////////////////////
                                 db.SaveChanges();
 
-                                if (IsCheckInSandogh)
-                                    btnDisplayCheckInSandogh_Click(null, null);
-                                else
-                                    btnDisplayCheckOdatShode_Click(null, null);
+                                btnDisplayList_Click(null, null);
                                 XtraMessageBox.Show("عملیات حذف با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                                 if (gridView1.RowCount > 0)
                                     gridView1.FocusedRowHandle = EditRowIndex - 1;
@@ -443,20 +424,15 @@ namespace Sandogh_TG
                 ActiveControls();
 
                 txtId.Text = gridView1.GetFocusedRowCellValue("Id").ToString();
-                txtSeryalDaryaft.Text = gridView1.GetFocusedRowCellValue("SeryalDaryaft").ToString();
-                txtTarikhDaryaft.Text = gridView1.GetFocusedRowCellValue("TarikhDaryaft").ToString().Substring(0, 10); ;
-                cmbVamGerande.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("VamGerandeId"));
-                cmbNoeSanad.SelectedIndex = Convert.ToInt32(gridView1.GetFocusedRowCellValue("NoeSanadId"));
-                txtShCheck.Text = gridView1.GetFocusedRowCellValue("ShCheck").ToString();
-                if (gridView1.GetFocusedRowCellValue("TarikhCheck") != null)
-                    txtTarikhCheck.Text = gridView1.GetFocusedRowCellValue("TarikhCheck").ToString().Substring(0, 10);
-                txtMamlaghCheck.Text = gridView1.GetFocusedRowCellValue("Mablagh").ToString();
-                txtShomareHesab.Text = gridView1.GetFocusedRowCellValue("ShomareHesab").ToString();
-                txtNameBankVShobe.Text = gridView1.GetFocusedRowCellValue("NameBank").ToString();
-                txtSahebCheck.Text = gridView1.GetFocusedRowCellValue("SahebCheck").ToString();
-                txtSharhSanad.Text = gridView1.GetFocusedRowCellValue("SharhDaryaftCheck").ToString();
+                txtSeryal.Text = gridView1.GetFocusedRowCellValue("Seryal").ToString();
+                if (gridView1.GetFocusedRowCellValue("Tarikh") != null)
+                    txtTarikh.Text = gridView1.GetFocusedRowCellValue("Tarikh").ToString().Substring(0, 10); ;
+                cmbHesabAaza1.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabAaza1Id"));
+                txtMablagh.Text = gridView1.GetFocusedRowCellValue("Mablagh").ToString();
+                cmbHesabAaza2.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabAaza2Id"));
+                txtSharh.Text = gridView1.GetFocusedRowCellValue("Sharh").ToString();
 
-                txtTarikhDaryaft.Focus();
+                txtTarikh.Focus();
             }
         }
 
@@ -470,35 +446,21 @@ namespace Sandogh_TG
                     {
                         try
                         {
-                            CheckTazmin obj = new CheckTazmin();
-                            obj.SeryalDaryaft = Convert.ToInt32(txtSeryalDaryaft.Text);
-                            if (!string.IsNullOrEmpty(txtTarikhDaryaft.Text))
-                                obj.TarikhDaryaft = Convert.ToDateTime(txtTarikhDaryaft.Text);
-                            obj.VamGerandeId = Convert.ToInt32(cmbVamGerande.EditValue);
-                            obj.VamGerandeName = cmbVamGerande.Text;
-                            obj.NoeSanadId = cmbNoeSanad.SelectedIndex;
-                            obj.NoeSanad = cmbNoeSanad.Text;
-                            obj.ShCheck = txtShCheck.Text;
-                            if (!string.IsNullOrEmpty(txtTarikhCheck.Text))
-                                obj.TarikhCheck = Convert.ToDateTime(txtTarikhCheck.Text);
-                            obj.Mablagh = !string.IsNullOrEmpty(txtMamlaghCheck.Text) ? Convert.ToDecimal(txtMamlaghCheck.Text) : 0;
-                            obj.ShomareHesab = txtShomareHesab.Text;
-                            obj.NameBank = txtNameBankVShobe.Text;
-                            obj.SahebCheck = txtSahebCheck.Text;
-                            obj.SharhDaryaftCheck = txtSharhSanad.Text;
-                            obj.VaziyatCheck = "نزد صندوق";
-                            obj.IsInSandogh = true;
-                            if (Application.OpenForms["FrmVamPardakhti"] == null)
-                                obj.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
-                            else
-                                obj.SalMaliId = Convert.ToInt32(Am.Fm.Fm.IDSalMali.Caption);
+                            EnteghalatHesabAaza obj = new EnteghalatHesabAaza();
+                            obj.Seryal = Convert.ToInt32(txtSeryal.Text);
+                            if (!string.IsNullOrEmpty(txtTarikh.Text))
+                                obj.Tarikh = Convert.ToDateTime(txtTarikh.Text);
+                            obj.Mablagh = Convert.ToDecimal(txtMablagh.Text);
+                            obj.HesabAaza1Id = Convert.ToInt32(cmbHesabAaza1.EditValue);
+                            obj.HesabAaza1Name = cmbHesabAaza1.Text;
+                            obj.HesabAaza2Id = Convert.ToInt32(cmbHesabAaza2.EditValue);
+                            obj.HesabAaza2Name = cmbHesabAaza2.Text;
+                            obj.Sharh = txtSharh.Text;
+                            obj.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
 
-                            db.CheckTazmins.Add(obj);
+                            db.EnteghalatHesabAazas.Add(obj);
                             db.SaveChanges();
-                            if (IsCheckInSandogh)
-                                btnDisplayCheckInSandogh_Click(null, null);
-                            else
-                                btnDisplayCheckOdatShode_Click(null, null);
+                            btnDisplayList_Click(null, null);
 
                             //XtraMessageBox.Show("عملیات ایجاد با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                             gridControl1.Enabled = true;
@@ -521,29 +483,20 @@ namespace Sandogh_TG
                         try
                         {
                             int RowId = Convert.ToInt32(txtId.Text);
-                            var q = db.CheckTazmins.FirstOrDefault(p => p.Id == RowId);
+                            var q = db.EnteghalatHesabAazas.FirstOrDefault(p => p.Id == RowId);
                             if (q != null)
                             {
-                                if (!string.IsNullOrEmpty(txtTarikhDaryaft.Text))
-                                    q.TarikhDaryaft = Convert.ToDateTime(txtTarikhDaryaft.Text);
-                                q.VamGerandeId = Convert.ToInt32(cmbVamGerande.EditValue);
-                                q.VamGerandeName = cmbVamGerande.Text;
-                                q.NoeSanadId = cmbNoeSanad.SelectedIndex;
-                                q.NoeSanad = cmbNoeSanad.Text;
-                                q.ShCheck = txtShCheck.Text;
-                                if (!string.IsNullOrEmpty(txtTarikhCheck.Text))
-                                    q.TarikhCheck = Convert.ToDateTime(txtTarikhCheck.Text);
-                                q.Mablagh = !string.IsNullOrEmpty(txtMamlaghCheck.Text) ? Convert.ToDecimal(txtMamlaghCheck.Text) : 0;
-                                q.ShomareHesab = txtShomareHesab.Text;
-                                q.NameBank = txtNameBankVShobe.Text;
-                                q.SahebCheck = txtSahebCheck.Text;
-                                q.SharhDaryaftCheck = txtSharhSanad.Text;
+                                if (!string.IsNullOrEmpty(txtTarikh.Text))
+                                    q.Tarikh = Convert.ToDateTime(txtTarikh.Text);
+                                q.Mablagh = Convert.ToDecimal(txtMablagh.Text);
+                                q.HesabAaza1Id = Convert.ToInt32(cmbHesabAaza1.EditValue);
+                                q.HesabAaza1Name = cmbHesabAaza1.Text;
+                                q.HesabAaza2Id = Convert.ToInt32(cmbHesabAaza2.EditValue);
+                                q.HesabAaza2Name = cmbHesabAaza2.Text;
+                                q.Sharh = txtSharh.Text;
 
                                 db.SaveChanges();
-                                if (IsCheckInSandogh)
-                                    btnDisplayCheckInSandogh_Click(null, null);
-                                else
-                                    btnDisplayCheckOdatShode_Click(null, null);
+                                btnDisplayList_Click(null, null);
 
                                 //XtraMessageBox.Show("عملیات ویرایش با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                                 if (gridView1.RowCount > 0)
@@ -601,12 +554,34 @@ namespace Sandogh_TG
             btnDelete.Enabled = btnEdit.Enabled = gridView1.RowCount > 0 ? true : false;
         }
 
-        private void FrmDaryaftCheckTazmin_FormClosed(object sender, FormClosedEventArgs e)
+        private void cmbHesabAaza1_Enter(object sender, EventArgs e)
         {
-            if (Application.OpenForms["FrmVamPardakhti"] != null)
+            if (En == EnumCED.Create)
             {
-                Am.FillDataGridCheckTazmin();
+                cmbHesabAaza1.ShowPopup();
             }
         }
+
+        private void cmbHesabAaza2_Enter(object sender, EventArgs e)
+        {
+            if (En == EnumCED.Create)
+            {
+                cmbHesabAaza2.ShowPopup();
+            }
+        }
+
+        private void txtMablagh_EditValueChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtMablagh.Text) && txtMablagh.Text != "0")
+            {
+                txtSharh.Text = "بابت انتقال حساب";
+            }
+        }
+
+        private void cmbHesabAaza1_EditValueChanged(object sender, EventArgs e)
+        {
+            FillcmbHesabAaza2();
+        }
+
     }
 }

@@ -17,7 +17,7 @@ namespace Sandogh_TG
         public DateTime TarikhDaryaft { get; set; }
         [Required]
         public int VamGerandeId { get; set; }
-        [Required, MaxLength(150)]
+        [Required, MaxLength(100)]
         public string VamGerandeName { get; set; }
         [Required]
         public int NoeSanadId { get; set; }
@@ -34,13 +34,13 @@ namespace Sandogh_TG
         public string NameBank { get; set; }
         [MaxLength(40)]
         public string SahebCheck { get; set; }
-        [MaxLength(150)]
+        [MaxLength(200)]
         public string SharhDaryaftCheck { get; set; }
         [Required,MaxLength(40)]
         public string VaziyatCheck { get; set; }
         [Column(TypeName = "Date")]
         public DateTime? TarikhOdatCheck { get; set; }
-        [MaxLength(150)]
+        [MaxLength(200)]
         public string SharhOdatCheck { get; set; }
         [Required]
         public int SalMaliId { get; set; }

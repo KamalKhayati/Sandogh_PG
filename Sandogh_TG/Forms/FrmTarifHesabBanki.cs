@@ -466,6 +466,7 @@ namespace Sandogh_TG
                 txtId.Text = gridView1.GetFocusedRowCellValue("Id").ToString();
                 txtCode.Text = gridView1.GetFocusedRowCellValue("Code").ToString();
                 txtNameHesab.Text = gridView1.GetFocusedRowCellValue("NameHesab").ToString();
+                cmbGroupHesab.SelectedIndex = Convert.ToInt32(gridView1.GetFocusedRowCellValue("GroupHesabIndex"));
                 cmbGroupHesab.Text = gridView1.GetFocusedRowCellValue("GroupHesab").ToString();
                 txtNameBank.Text = gridView1.GetFocusedRowCellValue("NameBank").ToString();
                 txtNameShobe.Text = gridView1.GetFocusedRowCellValue("NameShobe").ToString();
@@ -503,6 +504,7 @@ namespace Sandogh_TG
                             HesabBanki obj = new HesabBanki();
                             obj.Code = Convert.ToInt32(txtCode.Text);
                             obj.NameHesab = txtNameHesab.Text;
+                            obj.GroupHesabIndex = cmbGroupHesab.SelectedIndex;
                             obj.GroupHesab = cmbGroupHesab.Text;
                             obj.NameBank = txtNameBank.Text;
                             obj.NameShobe = txtNameShobe.Text;
@@ -554,7 +556,7 @@ namespace Sandogh_TG
                         }
                         catch (Exception ex)
                         {
-                            XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.ToString(), "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message, "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -572,6 +574,7 @@ namespace Sandogh_TG
                             {
                                 q.Code = Convert.ToInt32(txtCode.Text);
                                 q.NameHesab = txtNameHesab.Text;
+                                q.GroupHesabIndex = cmbGroupHesab.SelectedIndex;
                                 q.GroupHesab = cmbGroupHesab.Text;
                                 q.NameBank = txtNameBank.Text;
                                 q.NameShobe = txtNameShobe.Text;

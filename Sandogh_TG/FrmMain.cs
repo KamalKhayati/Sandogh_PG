@@ -116,5 +116,56 @@ namespace Sandogh_TG
             FrmOdatCheckTazmin fm = new FrmOdatCheckTazmin(this);
             ActiveForm(fm);
         }
+
+        private void btnDaryaftNaghdiVBanki_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmDaryaftNaghdiVBanki fm = new FrmDaryaftNaghdiVBanki(this);
+            ActiveForm(fm);
+        }
+
+        private void btnPardakhtNaghdiVBanki_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmPardakhtNaghdiVBanki fm = new FrmPardakhtNaghdiVBanki(this);
+            ActiveForm(fm);
+        }
+
+        private void btnCodingDaramadVHazine_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmCodingDaramadVHazine fm = new FrmCodingDaramadVHazine(this);
+            ActiveForm(fm);
+        }
+
+        private void btnSabtDaramad_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmSabtDaramad fm = new FrmSabtDaramad(this);
+            ActiveForm(fm);
+        }
+
+        private void btnSabtHazine_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmSabtHazine fm = new FrmSabtHazine(this);
+            ActiveForm(fm);
+
+        }
+
+        private void btnEnteghalatHesabBanki_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmEnteghalatHesabBanki fm = new FrmEnteghalatHesabBanki(this);
+            ActiveForm(fm);
+        }
+
+        private void btnEnteghalatHesabAaza_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmEnteghalatHesabAaza fm = new FrmEnteghalatHesabAaza(this);
+            ActiveForm(fm);
+
+        }
+
+        private void btnEnteghalatHesabDaramadVHazine_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmEnteghaliBeHesabDaramadVHazine fm = new FrmEnteghaliBeHesabDaramadVHazine(this);
+            ActiveForm(fm);
+
+        }
     }
 }

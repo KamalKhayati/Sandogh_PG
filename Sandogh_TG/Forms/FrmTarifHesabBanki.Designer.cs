@@ -141,7 +141,7 @@
             this.txtStartDate.Location = new System.Drawing.Point(610, 237);
             this.txtStartDate.Name = "txtStartDate";
             this.txtStartDate.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtStartDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.txtStartDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtStartDate.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtStartDate.Properties.Mask.BeepOnError = true;
             this.txtStartDate.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +

@@ -192,7 +192,7 @@ namespace Sandogh_TG
                 {
                     try
                     {
-                        var q2 = db.HesabBankis.FirstOrDefault(s => s.IsActive == true && s.IsDefault == true);
+                        var q2 = db.HesabBankis.FirstOrDefault(s => s.IsActive == true && s.IsDefault == true && s.GroupHesabIndex==1);
                         if (q2 != null)
                             cmbNameHesab.EditValue = q2.Id;
                         var q1 = db.Tanzimats.FirstOrDefault(s => s.Id == _IDSandogh);

@@ -15,6 +15,8 @@ namespace Sandogh_TG
         public int Code { get; set; }
         [Required, MaxLength(200)]
         public string NameHesab { get; set; }
+        [Required]
+        public int GroupHesabIndex { get; set; }
         [Required, MaxLength(5)]
         public string GroupHesab { get; set; }
         [Required, MaxLength(40)]
