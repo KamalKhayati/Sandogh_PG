@@ -96,24 +96,38 @@ namespace Sandogh_TG
                 {
                     try
                     {
-                        int RowId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id").ToString());
-                        var q = db.RizeAghsatVams.FirstOrDefault(p => p.VamPardakhtiId == RowId && p.MablaghDaryafti > 0);
-                        if (q != null)
+                        if (ListTasviyeNashode)
                         {
-                            XtraMessageBox.Show("به دلیل اقساط دریافتی ، بعضی از اطلاعات قابل ویرایش نیست \nجهت ویرایش کلیه اطلاعات ، بایستی در ابتدا اقساط دریافت شده از طریق منوی (دریافت پس انداز ماهیانه و اقساط وام) حذف شود \nضمناً در صورت نداشتن اقساط دریافتی ، جهت حذف و یا ویرایش اطلاعات مربوط به تاریخ سررسید اقساط و مبلغ اقساط میتوانید\n از طریق منوی سمت چپ اقدام نمایید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
-                            FrmVamPardakhti fm = new FrmVamPardakhti(this);
-                            fm.En = EnumCED.Edit;
-                            fm.IsEditRizAghsat = false;
-                            fm.panelControl1.Enabled = false;
-                            fm.panelControl3.Enabled = false;
-                            fm.panelControl6.Enabled = false;
-                            fm.ShowDialog();
+                            int RowId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id").ToString());
+                            var q = db.RizeAghsatVams.FirstOrDefault(p => p.VamPardakhtiId == RowId && p.MablaghDaryafti > 0);
+                            if (q != null)
+                            {
+                                XtraMessageBox.Show("به دلیل اقساط دریافتی ، بعضی از اطلاعات قابل ویرایش نیست \nجهت ویرایش کلیه اطلاعات ، بایستی در ابتدا اقساط دریافت شده از طریق منوی (دریافت پس انداز ماهیانه و اقساط وام) حذف شود \nضمناً در صورت نداشتن اقساط دریافتی ، جهت حذف و یا ویرایش اطلاعات مربوط به تاریخ سررسید اقساط و مبلغ اقساط میتوانید\n از طریق منوی سمت چپ اقدام نمایید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                                FrmVamPardakhti fm = new FrmVamPardakhti(this);
+                                fm.En = EnumCED.Edit;
+                                fm.IsEditRizAghsat = false;
+                                fm.panelControl1.Enabled = false;
+                                fm.panelControl3.Enabled = false;
+                                fm.panelControl5.Enabled = false;
+                                fm.panelControl6.Enabled = false;
+                                fm.panelControl7.Enabled = false;
+                                fm.ShowDialog();
+                            }
+                            else
+                            {
+                                FrmVamPardakhti fm = new FrmVamPardakhti(this);
+                                fm.En = EnumCED.Edit;
+                                fm.IsEditRizAghsat = true;
+                                fm.ShowDialog();
+                            }
+
                         }
                         else
                         {
                             FrmVamPardakhti fm = new FrmVamPardakhti(this);
                             fm.En = EnumCED.Edit;
-                            fm.IsEditRizAghsat = true;
+                            //fm.IsEditRizAghsat = true;
+                            fm.panelControl1.Enabled = fm.panelControl3.Enabled = fm.panelControl4.Enabled = fm.panelControl5.Enabled = fm.panelControl6.Enabled = fm.panelControl7.Enabled= false;
                             fm.ShowDialog();
                         }
                     }
@@ -192,6 +206,9 @@ namespace Sandogh_TG
                             if (q != null)
                             {
                                 db.VamPardakhtis.Remove(q);
+                                var q1 = db.AsnadeHesabdariRows.Where(f => f.ShomareSanad == q.ShomareSanad);
+                                if (q1.Count() > 0)
+                                    db.AsnadeHesabdariRows.RemoveRange(q1);
                                 /////////////////////////////////////////////////////////////////////////////
                                 db.SaveChanges();
 
@@ -209,7 +226,7 @@ namespace Sandogh_TG
                         catch (DbUpdateException)
                         {
                             XtraMessageBox.Show("حذف این وام مقدور نیست \n" +
-                                "جهت حذف وام مورد نظر ، در ابتدا بایستی ریز اقساط وام مذکور حذف گردد"
+                                "جهت حذف وام مورد نظر ، در ابتدا بایستی ریز اقساط وام حذف گردد"
                                 , "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         catch (Exception ex)

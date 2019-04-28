@@ -473,15 +473,15 @@ namespace Sandogh_TG
                 txtCodeShobe.Text = gridView1.GetFocusedRowCellValue("CodeShobe").ToString();
                 txtNoeHesab.Text = gridView1.GetFocusedRowCellValue("NoeHesab").ToString();
                 txtShomareHesab.Text = gridView1.GetFocusedRowCellValue("ShomareHesab").ToString();
-                txtShomareKart.Text = gridView1.GetFocusedRowCellValue("ShomareKart").ToString();
-                txtShomareShaba.Text = gridView1.GetFocusedRowCellValue("ShomareShaba").ToString();
-                txtShomareMoshtari.Text = gridView1.GetFocusedRowCellValue("ShomareMoshtari").ToString();
+                txtShomareKart.Text = gridView1.GetFocusedRowCellDisplayText("ShomareKart");
+                txtShomareShaba.Text = gridView1.GetFocusedRowCellDisplayText("ShomareShaba");
+                txtShomareMoshtari.Text = gridView1.GetFocusedRowCellDisplayText("ShomareMoshtari");
                 //txtMojodiAvali.Text = gridView1.GetFocusedRowCellValue("Mojodi").ToString();
-                txtStartDate.Text = gridView1.GetFocusedRowCellValue("StartDate").ToString().Substring(0, 10);
-                txtTell.Text = gridView1.GetFocusedRowCellValue("Tell").ToString();
+                txtStartDate.Text = gridView1.GetFocusedRowCellDisplayText("StartDate").Substring(0, 10);
+                txtTell.Text = gridView1.GetFocusedRowCellDisplayText("Tell");
                 chkIsDefault.Checked = Convert.ToBoolean(gridView1.GetFocusedRowCellValue("IsDefault"));
                 chkIsActive.Checked = Convert.ToBoolean(gridView1.GetFocusedRowCellValue("IsActive"));
-                txtSharhHesab.Text = gridView1.GetFocusedRowCellValue("SharhHesab").ToString();
+                txtSharhHesab.Text = gridView1.GetFocusedRowCellDisplayText("SharhHesab");
 
                 CodeBeforeEdit = txtCode.Text;
                 NameBeforeEdit = txtNameHesab.Text;

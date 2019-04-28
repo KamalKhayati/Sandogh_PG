@@ -73,11 +73,23 @@
     <Compile Include="Forms\FrmCodingDaramadVHazine.Designer.cs">
       <DependentUpon>FrmCodingDaramadVHazine.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmDaftarRozname.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmDaftarRozname.Designer.cs">
+      <DependentUpon>FrmDaftarRozname.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmDaryaftCheckTazmin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FrmDaryaftCheckTazmin.Designer.cs">
       <DependentUpon>FrmDaryaftCheckTazmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmDaryaftPardakhtBinHesabha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmDaryaftPardakhtBinHesabha.Designer.cs">
+      <DependentUpon>FrmDaryaftPardakhtBinHesabha.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmDeryaftNaghdiVBanki.cs">
       <SubType>Form</SubType>
@@ -127,6 +139,7 @@
     <Compile Include="Forms\FrmSabtHazine.Designer.cs">
       <DependentUpon>FrmSabtHazine.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\AsnadeHesabdariRow.cs" />
     <Compile Include="Models\CheckTazmin.cs" />
     <Compile Include="Forms\FrmDaryafteAghsateVam.cs">
       <SubType>Form</SubType>
@@ -204,6 +217,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AazaSandogh.cs" />
     <Compile Include="Models\CodingDaramadVHazine.cs" />
+    <Compile Include="Models\CodeMoin.cs" />
+    <Compile Include="Models\DaryaftPardakhtBinHesabha.cs" />
     <Compile Include="Models\EnteghalatBeDaramadVhazine.cs" />
     <Compile Include="Models\EnteghalatHesabAaza.cs" />
     <Compile Include="Models\EnteghalatHesabBanki.cs" />
@@ -222,8 +237,17 @@
     <Compile Include="MyDate.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XtraForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XtraForm1.Designer.cs">
+      <DependentUpon>XtraForm1.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\FrmCodingDaramadVHazine.resx">
       <DependentUpon>FrmCodingDaramadVHazine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmDaftarRozname.resx">
+      <DependentUpon>FrmDaftarRozname.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmDaryaftCheckTazmin.resx">
       <DependentUpon>FrmDaryaftCheckTazmin.cs</DependentUpon>
@@ -236,6 +260,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmDaryafti.resx">
       <DependentUpon>FrmDaryafti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmDaryaftPardakhtBinHesabha.resx">
+      <DependentUpon>FrmDaryaftPardakhtBinHesabha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmDeryaftNaghdiVBanki.resx">
       <DependentUpon>FrmDeryaftNaghdiVBanki.cs</DependentUpon>
@@ -299,6 +326,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="XtraForm1.resx">
+      <DependentUpon>XtraForm1.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -266,13 +266,13 @@
             // cmbNameHesab
             // 
             this.cmbNameHesab.EnterMoveNextControl = true;
-            this.cmbNameHesab.Location = new System.Drawing.Point(118, 81);
+            this.cmbNameHesab.Location = new System.Drawing.Point(98, 82);
             this.cmbNameHesab.Name = "cmbNameHesab";
             this.cmbNameHesab.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbNameHesab.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Code", "کد", 50, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Center, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NameHesab", "نام بانک", 250, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NameHesab", "", 250, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.cmbNameHesab.Properties.DataSource = this.hesabBankisBindingSource;
             this.cmbNameHesab.Properties.DisplayMember = "NameHesab";
             this.cmbNameHesab.Properties.ImmediatePopup = true;
@@ -281,7 +281,7 @@
             this.cmbNameHesab.Properties.ReadOnly = true;
             this.cmbNameHesab.Properties.ValueMember = "Id";
             this.cmbNameHesab.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmbNameHesab.Size = new System.Drawing.Size(334, 32);
+            this.cmbNameHesab.Size = new System.Drawing.Size(313, 32);
             this.cmbNameHesab.TabIndex = 3;
             this.cmbNameHesab.EditValueChanged += new System.EventHandler(this.cmbNameHesab_EditValueChanged);
             // 
@@ -295,7 +295,7 @@
             this.labelControl6.Appearance.Options.UseForeColor = true;
             this.labelControl6.AutoEllipsis = true;
             this.labelControl6.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl6.Location = new System.Drawing.Point(458, 80);
+            this.labelControl6.Location = new System.Drawing.Point(427, 81);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(62, 32);
             this.labelControl6.TabIndex = 70;
@@ -304,7 +304,7 @@
             // txtMablagh
             // 
             this.txtMablagh.EnterMoveNextControl = true;
-            this.txtMablagh.Location = new System.Drawing.Point(543, 81);
+            this.txtMablagh.Location = new System.Drawing.Point(542, 81);
             this.txtMablagh.Name = "txtMablagh";
             this.txtMablagh.Properties.Appearance.Options.UseTextOptions = true;
             this.txtMablagh.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -323,7 +323,7 @@
             this.labelControl5.Appearance.Options.UseForeColor = true;
             this.labelControl5.AutoEllipsis = true;
             this.labelControl5.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl5.Location = new System.Drawing.Point(705, 81);
+            this.labelControl5.Location = new System.Drawing.Point(704, 81);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(30, 32);
             this.labelControl5.TabIndex = 68;
@@ -332,7 +332,7 @@
             // txtTarikh
             // 
             this.txtTarikh.EnterMoveNextControl = true;
-            this.txtTarikh.Location = new System.Drawing.Point(543, 43);
+            this.txtTarikh.Location = new System.Drawing.Point(542, 43);
             this.txtTarikh.Name = "txtTarikh";
             this.txtTarikh.Properties.Appearance.Options.UseTextOptions = true;
             this.txtTarikh.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -351,18 +351,18 @@
             // txtSharh
             // 
             this.txtSharh.EnterMoveNextControl = true;
-            this.txtSharh.Location = new System.Drawing.Point(12, 119);
+            this.txtSharh.Location = new System.Drawing.Point(5, 120);
             this.txtSharh.Name = "txtSharh";
             this.txtSharh.Properties.MaxLength = 150;
             this.txtSharh.Properties.ReadOnly = true;
-            this.txtSharh.Size = new System.Drawing.Size(681, 32);
+            this.txtSharh.Size = new System.Drawing.Size(687, 32);
             this.txtSharh.TabIndex = 6;
             // 
             // labelControl13
             // 
             this.labelControl13.AutoEllipsis = true;
             this.labelControl13.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl13.Location = new System.Drawing.Point(705, 118);
+            this.labelControl13.Location = new System.Drawing.Point(701, 119);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(33, 32);
             this.labelControl13.TabIndex = 63;
@@ -374,7 +374,7 @@
             this.labelControl2.Appearance.Options.UseForeColor = true;
             this.labelControl2.AutoEllipsis = true;
             this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl2.Location = new System.Drawing.Point(705, 43);
+            this.labelControl2.Location = new System.Drawing.Point(704, 43);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(40, 32);
             this.labelControl2.TabIndex = 61;
@@ -384,7 +384,7 @@
             // 
             this.txtSeryal.EditValue = "";
             this.txtSeryal.EnterMoveNextControl = true;
-            this.txtSeryal.Location = new System.Drawing.Point(587, 5);
+            this.txtSeryal.Location = new System.Drawing.Point(586, 5);
             this.txtSeryal.Name = "txtSeryal";
             this.txtSeryal.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.txtSeryal.Properties.Appearance.Options.UseBackColor = true;
@@ -402,7 +402,7 @@
             // txtId
             // 
             this.txtId.EditValue = "آیدی";
-            this.txtId.Location = new System.Drawing.Point(598, 5);
+            this.txtId.Location = new System.Drawing.Point(597, 5);
             this.txtId.Name = "txtId";
             this.txtId.Properties.Appearance.Options.UseTextOptions = true;
             this.txtId.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -420,7 +420,7 @@
             // 
             this.labelControl3.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl3.Appearance.Options.UseForeColor = true;
-            this.labelControl3.Location = new System.Drawing.Point(458, 46);
+            this.labelControl3.Location = new System.Drawing.Point(427, 47);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(61, 25);
             this.labelControl3.TabIndex = 58;
@@ -430,7 +430,7 @@
             // 
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Location = new System.Drawing.Point(705, 8);
+            this.labelControl1.Location = new System.Drawing.Point(704, 8);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(39, 25);
             this.labelControl1.TabIndex = 56;
@@ -439,13 +439,13 @@
             // cmbPardakhtKonande
             // 
             this.cmbPardakhtKonande.EnterMoveNextControl = true;
-            this.cmbPardakhtKonande.Location = new System.Drawing.Point(118, 43);
+            this.cmbPardakhtKonande.Location = new System.Drawing.Point(98, 44);
             this.cmbPardakhtKonande.Name = "cmbPardakhtKonande";
             this.cmbPardakhtKonande.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbPardakhtKonande.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "آیدی", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NameVFamil", "نام و نام خانوادگی", 250, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NameVFamil", "", 250, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.cmbPardakhtKonande.Properties.DataSource = this.aazaSandoghsBindingSource;
             this.cmbPardakhtKonande.Properties.DisplayMember = "NameVFamil";
             this.cmbPardakhtKonande.Properties.ImmediatePopup = true;
@@ -454,7 +454,7 @@
             this.cmbPardakhtKonande.Properties.ReadOnly = true;
             this.cmbPardakhtKonande.Properties.ValueMember = "Id";
             this.cmbPardakhtKonande.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmbPardakhtKonande.Size = new System.Drawing.Size(334, 32);
+            this.cmbPardakhtKonande.Size = new System.Drawing.Size(313, 32);
             this.cmbPardakhtKonande.TabIndex = 1;
             this.cmbPardakhtKonande.EditValueChanged += new System.EventHandler(this.cmbPardakhtKonande_EditValueChanged);
             this.cmbPardakhtKonande.Enter += new System.EventHandler(this.cmbPardakhtKonande_Enter);

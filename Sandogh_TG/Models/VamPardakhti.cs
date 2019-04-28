@@ -49,15 +49,21 @@ namespace Sandogh_TG
         [Required, Column(TypeName = "Date")]
         public DateTime SarresidAvalinGhest { get; set; }
         [Required]
-        public int NameHesabId { get; set; }
+        public int HesabMoinCode { get; set; }
+        [Required, MaxLength(50)]
+        public string HesabMoin { get; set; }
+        [Required]
+        public int HesabTafziliId { get; set; }
         [Required, MaxLength(200)]
-        public string NameHesab { get; set; }
+        public string HesabTafzili { get; set; }
         [MaxLength(25)]
         public string ZameninId { get; set; }
         [MaxLength(150)]
         public string ZameninName { get; set; }
         public bool? HaveCheckTazmin { get; set; }
         public bool? IsTasviye { get; set; }
+        [Required]
+        public int ShomareSanad { get; set; }
         [Required]
         public int SalMaliId { get; set; }
         public virtual AazaSandogh AazaSandogh1 { get; set; }

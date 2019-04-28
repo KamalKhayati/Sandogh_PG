@@ -62,6 +62,8 @@ namespace Sandogh_TG
         public decimal? HazineEftetah { get; set; }
         [Required]
         public bool IsActive { get; set; }
+        [Required]
+        public bool IsOzveSandogh { get; set; }
         [MaxLength(400)]
         public string SharhHesab { get; set; }
         public byte[] Pictuer { get; set; }
@@ -73,8 +75,8 @@ namespace Sandogh_TG
         public virtual ICollection<HaghOzviat> HaghOzviats { get; set; }
         public virtual ICollection<VamPardakhti> VamPardakhtis { get; set; }
         public virtual ICollection<CheckTazmin> CheckTazmins { get; set; }
-        public virtual ICollection<DaryaftNaghdiVBanki> DaryaftNaghdiVBankis { get; set; }
-        public virtual ICollection<PardakhtNaghdiVBanki> PardakhtNaghdiVBankis { get; set; }
+        //public virtual ICollection<DaryaftNaghdiVBanki> DaryaftNaghdiVBankis { get; set; }
+        //public virtual ICollection<PardakhtNaghdiVBanki> PardakhtNaghdiVBankis { get; set; }
 
     }
 }

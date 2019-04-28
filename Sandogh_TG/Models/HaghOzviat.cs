@@ -33,6 +33,8 @@ namespace Sandogh_TG
         public string Sharh { get; set; }
         [Required]
         public int SalMaliId { get; set; }
+        [Required]
+        public int ShomareSanad { get; set; }
         public virtual AazaSandogh AazaSandogh1 { get; set; }
         public virtual HesabBanki HesabBanki1 { get; set; }
     }

@@ -34,10 +34,10 @@
             this.btnSaveNext = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSaveClose = new DevExpress.XtraEditors.SimpleButton();
-            this.xtraScrollableControl2 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.txtSarresidGhest = new DevExpress.XtraEditors.TextEdit();
             this.cmbPardakhtKonande = new DevExpress.XtraEditors.LookUpEdit();
+            this.aazaSandoghsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtMablaghGhest = new DevExpress.XtraEditors.TextEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
@@ -45,6 +45,7 @@
             this.txtShomareGhest = new DevExpress.XtraEditors.TextEdit();
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
             this.cmbNameHesab = new DevExpress.XtraEditors.LookUpEdit();
+            this.hesabBankisBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtMablaghDaryaft = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
@@ -57,40 +58,39 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.aazaSandoghsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.hesabBankisBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
-            this.xtraScrollableControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             this.panelControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSarresidGhest.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPardakhtKonande.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMablaghGhest.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodeVam.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtShomareGhest.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNameHesab.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hesabBankisBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMablaghDaryaft.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtId.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTarikhDaryaft.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeryal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSharh.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hesabBankisBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl2
             // 
-            this.panelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelControl2.Controls.Add(this.btnSaveNext);
             this.panelControl2.Controls.Add(this.btnClose);
             this.panelControl2.Controls.Add(this.btnSaveClose);
-            this.panelControl2.Location = new System.Drawing.Point(0, 251);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelControl2.Location = new System.Drawing.Point(0, 306);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(531, 49);
-            this.panelControl2.TabIndex = 26;
+            this.panelControl2.Size = new System.Drawing.Size(531, 50);
+            this.panelControl2.TabIndex = 36;
             // 
             // btnSaveNext
             // 
@@ -128,17 +128,10 @@
             this.btnSaveClose.ToolTipTitle = "ذخیره و بستن";
             this.btnSaveClose.Click += new System.EventHandler(this.btnSaveClose_Click);
             // 
-            // xtraScrollableControl2
-            // 
-            this.xtraScrollableControl2.Controls.Add(this.panelControl2);
-            this.xtraScrollableControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraScrollableControl2.Location = new System.Drawing.Point(0, 0);
-            this.xtraScrollableControl2.Name = "xtraScrollableControl2";
-            this.xtraScrollableControl2.Size = new System.Drawing.Size(531, 301);
-            this.xtraScrollableControl2.TabIndex = 36;
-            // 
             // panelControl4
             // 
+            this.panelControl4.Controls.Add(this.textEdit1);
+            this.panelControl4.Controls.Add(this.textEdit2);
             this.panelControl4.Controls.Add(this.txtSarresidGhest);
             this.panelControl4.Controls.Add(this.cmbPardakhtKonande);
             this.panelControl4.Controls.Add(this.txtMablaghGhest);
@@ -163,13 +156,13 @@
             this.panelControl4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl4.Location = new System.Drawing.Point(0, 0);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(531, 245);
+            this.panelControl4.Size = new System.Drawing.Size(531, 304);
             this.panelControl4.TabIndex = 35;
             // 
             // txtSarresidGhest
             // 
             this.txtSarresidGhest.EnterMoveNextControl = true;
-            this.txtSarresidGhest.Location = new System.Drawing.Point(12, 88);
+            this.txtSarresidGhest.Location = new System.Drawing.Point(11, 127);
             this.txtSarresidGhest.Name = "txtSarresidGhest";
             this.txtSarresidGhest.Properties.Appearance.Options.UseTextOptions = true;
             this.txtSarresidGhest.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -189,7 +182,7 @@
             // cmbPardakhtKonande
             // 
             this.cmbPardakhtKonande.EnterMoveNextControl = true;
-            this.cmbPardakhtKonande.Location = new System.Drawing.Point(171, 12);
+            this.cmbPardakhtKonande.Location = new System.Drawing.Point(118, 12);
             this.cmbPardakhtKonande.Name = "cmbPardakhtKonande";
             this.cmbPardakhtKonande.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -204,15 +197,19 @@
             this.cmbPardakhtKonande.Properties.ReadOnly = true;
             this.cmbPardakhtKonande.Properties.ValueMember = "Id";
             this.cmbPardakhtKonande.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmbPardakhtKonande.Size = new System.Drawing.Size(249, 32);
+            this.cmbPardakhtKonande.Size = new System.Drawing.Size(302, 32);
             this.cmbPardakhtKonande.TabIndex = 62;
             this.cmbPardakhtKonande.TabStop = false;
+            // 
+            // aazaSandoghsBindingSource
+            // 
+            this.aazaSandoghsBindingSource.DataSource = typeof(Sandogh_TG.AazaSandogh);
             // 
             // txtMablaghGhest
             // 
             this.txtMablaghGhest.EditValue = "";
             this.txtMablaghGhest.EnterMoveNextControl = true;
-            this.txtMablaghGhest.Location = new System.Drawing.Point(12, 126);
+            this.txtMablaghGhest.Location = new System.Drawing.Point(11, 165);
             this.txtMablaghGhest.Name = "txtMablaghGhest";
             this.txtMablaghGhest.Properties.Appearance.Options.UseTextOptions = true;
             this.txtMablaghGhest.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -243,7 +240,7 @@
             // 
             this.labelControl12.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
             this.labelControl12.Appearance.Options.UseForeColor = true;
-            this.labelControl12.Location = new System.Drawing.Point(171, 129);
+            this.labelControl12.Location = new System.Drawing.Point(170, 168);
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(65, 25);
             this.labelControl12.TabIndex = 75;
@@ -253,7 +250,7 @@
             // 
             this.txtCodeVam.EditValue = "";
             this.txtCodeVam.EnterMoveNextControl = true;
-            this.txtCodeVam.Location = new System.Drawing.Point(12, 12);
+            this.txtCodeVam.Location = new System.Drawing.Point(324, 89);
             this.txtCodeVam.Name = "txtCodeVam";
             this.txtCodeVam.Properties.Appearance.Options.UseTextOptions = true;
             this.txtCodeVam.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -270,7 +267,7 @@
             // 
             this.txtShomareGhest.EditValue = "";
             this.txtShomareGhest.EnterMoveNextControl = true;
-            this.txtShomareGhest.Location = new System.Drawing.Point(70, 50);
+            this.txtShomareGhest.Location = new System.Drawing.Point(69, 89);
             this.txtShomareGhest.Name = "txtShomareGhest";
             this.txtShomareGhest.Properties.Appearance.Options.UseTextOptions = true;
             this.txtShomareGhest.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -287,7 +284,7 @@
             // 
             this.labelControl20.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
             this.labelControl20.Appearance.Options.UseForeColor = true;
-            this.labelControl20.Location = new System.Drawing.Point(171, 91);
+            this.labelControl20.Location = new System.Drawing.Point(170, 130);
             this.labelControl20.Name = "labelControl20";
             this.labelControl20.Size = new System.Drawing.Size(88, 25);
             this.labelControl20.TabIndex = 76;
@@ -296,7 +293,7 @@
             // cmbNameHesab
             // 
             this.cmbNameHesab.EnterMoveNextControl = true;
-            this.cmbNameHesab.Location = new System.Drawing.Point(12, 164);
+            this.cmbNameHesab.Location = new System.Drawing.Point(118, 203);
             this.cmbNameHesab.Name = "cmbNameHesab";
             this.cmbNameHesab.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -310,13 +307,17 @@
             this.cmbNameHesab.Properties.NullText = "";
             this.cmbNameHesab.Properties.ValueMember = "Id";
             this.cmbNameHesab.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmbNameHesab.Size = new System.Drawing.Size(408, 32);
+            this.cmbNameHesab.Size = new System.Drawing.Size(301, 32);
             this.cmbNameHesab.TabIndex = 2;
+            // 
+            // hesabBankisBindingSource
+            // 
+            this.hesabBankisBindingSource.DataSource = typeof(Sandogh_TG.HesabBanki);
             // 
             // txtMablaghDaryaft
             // 
             this.txtMablaghDaryaft.EnterMoveNextControl = true;
-            this.txtMablaghDaryaft.Location = new System.Drawing.Point(266, 126);
+            this.txtMablaghDaryaft.Location = new System.Drawing.Point(265, 165);
             this.txtMablaghDaryaft.Name = "txtMablaghDaryaft";
             this.txtMablaghDaryaft.Properties.Appearance.Options.UseTextOptions = true;
             this.txtMablaghDaryaft.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -343,7 +344,7 @@
             this.labelControl19.Appearance.Options.UseForeColor = true;
             this.labelControl19.AutoEllipsis = true;
             this.labelControl19.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl19.Location = new System.Drawing.Point(426, 125);
+            this.labelControl19.Location = new System.Drawing.Point(425, 164);
             this.labelControl19.Name = "labelControl19";
             this.labelControl19.Size = new System.Drawing.Size(89, 32);
             this.labelControl19.TabIndex = 72;
@@ -353,7 +354,7 @@
             // 
             this.labelControl6.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
             this.labelControl6.Appearance.Options.UseForeColor = true;
-            this.labelControl6.Location = new System.Drawing.Point(113, 15);
+            this.labelControl6.Location = new System.Drawing.Point(425, 92);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(42, 25);
             this.labelControl6.TabIndex = 66;
@@ -380,7 +381,7 @@
             // 
             this.labelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
             this.labelControl4.Appearance.Options.UseForeColor = true;
-            this.labelControl4.Location = new System.Drawing.Point(171, 53);
+            this.labelControl4.Location = new System.Drawing.Point(170, 92);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(33, 25);
             this.labelControl4.TabIndex = 66;
@@ -389,7 +390,7 @@
             // txtTarikhDaryaft
             // 
             this.txtTarikhDaryaft.EnterMoveNextControl = true;
-            this.txtTarikhDaryaft.Location = new System.Drawing.Point(266, 88);
+            this.txtTarikhDaryaft.Location = new System.Drawing.Point(265, 127);
             this.txtTarikhDaryaft.Name = "txtTarikhDaryaft";
             this.txtTarikhDaryaft.Properties.Appearance.Options.UseTextOptions = true;
             this.txtTarikhDaryaft.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -424,7 +425,7 @@
             // txtSharh
             // 
             this.txtSharh.EnterMoveNextControl = true;
-            this.txtSharh.Location = new System.Drawing.Point(12, 202);
+            this.txtSharh.Location = new System.Drawing.Point(11, 241);
             this.txtSharh.Name = "txtSharh";
             this.txtSharh.Properties.MaxLength = 400;
             this.txtSharh.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -437,7 +438,7 @@
             this.labelControl2.Appearance.Options.UseForeColor = true;
             this.labelControl2.AutoEllipsis = true;
             this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl2.Location = new System.Drawing.Point(426, 87);
+            this.labelControl2.Location = new System.Drawing.Point(425, 126);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(89, 32);
             this.labelControl2.TabIndex = 68;
@@ -449,7 +450,7 @@
             this.labelControl14.Appearance.Options.UseForeColor = true;
             this.labelControl14.AutoEllipsis = true;
             this.labelControl14.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl14.Location = new System.Drawing.Point(429, 201);
+            this.labelControl14.Location = new System.Drawing.Point(428, 240);
             this.labelControl14.Name = "labelControl14";
             this.labelControl14.Size = new System.Drawing.Size(36, 32);
             this.labelControl14.TabIndex = 70;
@@ -461,27 +462,53 @@
             this.labelControl3.Appearance.Options.UseForeColor = true;
             this.labelControl3.AutoEllipsis = true;
             this.labelControl3.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl3.Location = new System.Drawing.Point(426, 163);
+            this.labelControl3.Location = new System.Drawing.Point(425, 202);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(53, 32);
             this.labelControl3.TabIndex = 69;
             this.labelControl3.Text = "واریز به ";
             // 
-            // aazaSandoghsBindingSource
+            // textEdit2
             // 
-            this.aazaSandoghsBindingSource.DataSource = typeof(Sandogh_TG.AazaSandogh);
+            this.textEdit2.EditValue = "صندوق / بانک";
+            this.textEdit2.EnterMoveNextControl = true;
+            this.textEdit2.Location = new System.Drawing.Point(12, 202);
+            this.textEdit2.Name = "textEdit2";
+            this.textEdit2.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.textEdit2.Properties.Appearance.Options.UseBackColor = true;
+            this.textEdit2.Properties.Appearance.Options.UseTextOptions = true;
+            this.textEdit2.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.textEdit2.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.textEdit2.Properties.Mask.EditMask = "000000";
+            this.textEdit2.Properties.MaxLength = 7;
+            this.textEdit2.Size = new System.Drawing.Size(100, 32);
+            this.textEdit2.TabIndex = 77;
+            this.textEdit2.TabStop = false;
             // 
-            // hesabBankisBindingSource
+            // textEdit1
             // 
-            this.hesabBankisBindingSource.DataSource = typeof(Sandogh_TG.HesabBanki);
+            this.textEdit1.EditValue = "وام اعضاء";
+            this.textEdit1.EnterMoveNextControl = true;
+            this.textEdit1.Location = new System.Drawing.Point(11, 12);
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.textEdit1.Properties.Appearance.Options.UseBackColor = true;
+            this.textEdit1.Properties.Appearance.Options.UseTextOptions = true;
+            this.textEdit1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.textEdit1.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.textEdit1.Properties.Mask.EditMask = "000000";
+            this.textEdit1.Properties.MaxLength = 7;
+            this.textEdit1.Size = new System.Drawing.Size(100, 32);
+            this.textEdit1.TabIndex = 77;
+            this.textEdit1.TabStop = false;
             // 
             // FrmDaryafteAghsateVam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(531, 301);
+            this.ClientSize = new System.Drawing.Size(531, 356);
+            this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl4);
-            this.Controls.Add(this.xtraScrollableControl2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -495,23 +522,24 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmDaryafteAghsateVam_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
-            this.xtraScrollableControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
             this.panelControl4.ResumeLayout(false);
             this.panelControl4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSarresidGhest.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPardakhtKonande.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMablaghGhest.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodeVam.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtShomareGhest.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNameHesab.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hesabBankisBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMablaghDaryaft.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtId.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTarikhDaryaft.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeryal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSharh.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hesabBankisBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -522,7 +550,6 @@
         private DevExpress.XtraEditors.SimpleButton btnSaveClose;
         private System.Windows.Forms.BindingSource hesabBankisBindingSource;
         private System.Windows.Forms.BindingSource aazaSandoghsBindingSource;
-        private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl2;
         private DevExpress.XtraEditors.PanelControl panelControl4;
         public DevExpress.XtraEditors.TextEdit txtSarresidGhest;
         public DevExpress.XtraEditors.LookUpEdit cmbPardakhtKonande;
@@ -546,5 +573,7 @@
         public DevExpress.XtraEditors.TextEdit txtCodeVam;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.SimpleButton btnSaveNext;
+        public DevExpress.XtraEditors.TextEdit textEdit1;
+        public DevExpress.XtraEditors.TextEdit textEdit2;
     }
 }

@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDaryaftHaghOzviat));
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.cmbPardakhtKonande = new DevExpress.XtraEditors.LookUpEdit();
-            this.aazaSandoghsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtId = new DevExpress.XtraEditors.TextEdit();
             this.txtSeryal = new DevExpress.XtraEditors.TextEdit();
@@ -53,11 +52,13 @@
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.cmbNameHesab = new DevExpress.XtraEditors.LookUpEdit();
-            this.hesabBankisBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbMonth = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.hesabBankisBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.aazaSandoghsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPardakhtKonande.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtId.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeryal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSharh.Properties)).BeginInit();
@@ -68,8 +69,11 @@
             this.xtraScrollableControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNameHesab.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hesabBankisBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMonth.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hesabBankisBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl4
@@ -83,7 +87,7 @@
             // cmbPardakhtKonande
             // 
             this.cmbPardakhtKonande.EnterMoveNextControl = true;
-            this.cmbPardakhtKonande.Location = new System.Drawing.Point(128, 3);
+            this.cmbPardakhtKonande.Location = new System.Drawing.Point(111, 3);
             this.cmbPardakhtKonande.Name = "cmbPardakhtKonande";
             this.cmbPardakhtKonande.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -98,13 +102,9 @@
             this.cmbPardakhtKonande.Properties.ReadOnly = true;
             this.cmbPardakhtKonande.Properties.ValueMember = "Id";
             this.cmbPardakhtKonande.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmbPardakhtKonande.Size = new System.Drawing.Size(249, 32);
+            this.cmbPardakhtKonande.Size = new System.Drawing.Size(266, 32);
             this.cmbPardakhtKonande.TabIndex = 15;
             this.cmbPardakhtKonande.TabStop = false;
-            // 
-            // aazaSandoghsBindingSource
-            // 
-            this.aazaSandoghsBindingSource.DataSource = typeof(Sandogh_TG.AazaSandogh);
             // 
             // labelControl1
             // 
@@ -234,7 +234,7 @@
             this.panelControl2.Location = new System.Drawing.Point(0, 270);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(480, 48);
-            this.panelControl2.TabIndex = 26;
+            this.panelControl2.TabIndex = 35;
             // 
             // btnSaveNext
             // 
@@ -312,6 +312,8 @@
             this.xtraScrollableControl2.Controls.Add(this.labelControl3);
             this.xtraScrollableControl2.Controls.Add(this.labelControl2);
             this.xtraScrollableControl2.Controls.Add(this.labelControl5);
+            this.xtraScrollableControl2.Controls.Add(this.textEdit2);
+            this.xtraScrollableControl2.Controls.Add(this.textEdit1);
             this.xtraScrollableControl2.Controls.Add(this.txtSeryal);
             this.xtraScrollableControl2.Controls.Add(this.txtId);
             this.xtraScrollableControl2.Controls.Add(this.labelControl1);
@@ -323,11 +325,12 @@
             this.xtraScrollableControl2.Name = "xtraScrollableControl2";
             this.xtraScrollableControl2.Size = new System.Drawing.Size(480, 318);
             this.xtraScrollableControl2.TabIndex = 34;
+            this.xtraScrollableControl2.TabStop = false;
             // 
             // txtSal
             // 
             this.txtSal.EnterMoveNextControl = true;
-            this.txtSal.Location = new System.Drawing.Point(128, 193);
+            this.txtSal.Location = new System.Drawing.Point(111, 193);
             this.txtSal.Name = "txtSal";
             this.txtSal.Properties.Appearance.Options.UseTextOptions = true;
             this.txtSal.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -345,7 +348,7 @@
             this.labelControl4.Appearance.Options.UseForeColor = true;
             this.labelControl4.AutoEllipsis = true;
             this.labelControl4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl4.Location = new System.Drawing.Point(202, 192);
+            this.labelControl4.Location = new System.Drawing.Point(194, 192);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(34, 32);
             this.labelControl4.TabIndex = 31;
@@ -366,7 +369,7 @@
             // cmbNameHesab
             // 
             this.cmbNameHesab.EnterMoveNextControl = true;
-            this.cmbNameHesab.Location = new System.Drawing.Point(3, 155);
+            this.cmbNameHesab.Location = new System.Drawing.Point(111, 155);
             this.cmbNameHesab.Name = "cmbNameHesab";
             this.cmbNameHesab.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -380,12 +383,8 @@
             this.cmbNameHesab.Properties.NullText = "";
             this.cmbNameHesab.Properties.ValueMember = "Id";
             this.cmbNameHesab.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmbNameHesab.Size = new System.Drawing.Size(374, 32);
+            this.cmbNameHesab.Size = new System.Drawing.Size(266, 32);
             this.cmbNameHesab.TabIndex = 2;
-            // 
-            // hesabBankisBindingSource
-            // 
-            this.hesabBankisBindingSource.DataSource = typeof(Sandogh_TG.HesabBanki);
             // 
             // cmbMonth
             // 
@@ -416,6 +415,48 @@
             this.cmbMonth.TabIndex = 3;
             this.cmbMonth.SelectedIndexChanged += new System.EventHandler(this.cmbMonth_SelectedIndexChanged);
             // 
+            // hesabBankisBindingSource
+            // 
+            this.hesabBankisBindingSource.DataSource = typeof(Sandogh_TG.HesabBanki);
+            // 
+            // aazaSandoghsBindingSource
+            // 
+            this.aazaSandoghsBindingSource.DataSource = typeof(Sandogh_TG.AazaSandogh);
+            // 
+            // textEdit1
+            // 
+            this.textEdit1.EditValue = "سرمایه";
+            this.textEdit1.EnterMoveNextControl = true;
+            this.textEdit1.Location = new System.Drawing.Point(5, 3);
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.textEdit1.Properties.Appearance.Options.UseBackColor = true;
+            this.textEdit1.Properties.Appearance.Options.UseTextOptions = true;
+            this.textEdit1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.textEdit1.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.textEdit1.Properties.Mask.EditMask = "000000";
+            this.textEdit1.Properties.MaxLength = 7;
+            this.textEdit1.Size = new System.Drawing.Size(100, 32);
+            this.textEdit1.TabIndex = 20;
+            this.textEdit1.TabStop = false;
+            // 
+            // textEdit2
+            // 
+            this.textEdit2.EditValue = "صندوق / بانک";
+            this.textEdit2.EnterMoveNextControl = true;
+            this.textEdit2.Location = new System.Drawing.Point(5, 155);
+            this.textEdit2.Name = "textEdit2";
+            this.textEdit2.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.textEdit2.Properties.Appearance.Options.UseBackColor = true;
+            this.textEdit2.Properties.Appearance.Options.UseTextOptions = true;
+            this.textEdit2.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.textEdit2.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.textEdit2.Properties.Mask.EditMask = "000000";
+            this.textEdit2.Properties.MaxLength = 7;
+            this.textEdit2.Size = new System.Drawing.Size(100, 32);
+            this.textEdit2.TabIndex = 20;
+            this.textEdit2.TabStop = false;
+            // 
             // FrmDaryaftHaghOzviat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
@@ -435,7 +476,6 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmDaryaftHaghOzviat_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPardakhtKonande.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtId.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeryal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSharh.Properties)).EndInit();
@@ -447,8 +487,11 @@
             this.xtraScrollableControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNameHesab.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hesabBankisBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMonth.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hesabBankisBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -480,5 +523,7 @@
         public DevExpress.XtraEditors.TextEdit txtSal;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.SimpleButton btnSaveNext;
+        public DevExpress.XtraEditors.TextEdit textEdit2;
+        public DevExpress.XtraEditors.TextEdit textEdit1;
     }
 }

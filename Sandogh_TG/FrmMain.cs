@@ -167,5 +167,11 @@ namespace Sandogh_TG
             ActiveForm(fm);
 
         }
+
+        private void btnDaftarRozname_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmDaftarRozname fm = new FrmDaftarRozname(this);
+            ActiveForm(fm);
+        }
     }
 }

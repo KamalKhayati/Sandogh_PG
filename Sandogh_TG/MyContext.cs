@@ -22,7 +22,7 @@
             //پیش فرض
             //Database.SetInitializer<MyContext>(new CreateDatabaseIfNotExists<MyContext>());
             //حذف دیتابیس قبلی بهمراه داده های داخلش و ایجاد دیتابیس جدید بدون داده در صورت تغییرویاعدم تغییر(در هرصورت) کلاس مدل
-            //Database.SetInitializer<MyContext>(new DropCreateDatabaseAlways<MyContext>());
+           //Database.SetInitializer<MyContext>(new DropCreateDatabaseAlways<MyContext>());
             // حذف دیتابیس قبلی بهمراه داده های داخلش و ایجاد دیتابیس جدید بدون داده در صورت تغییر کلاس مدل
             //Database.SetInitializer<MyContext>(new DropCreateDatabaseIfModelChanges<MyContext>());
             // غیرفعال کردن پیکربندی دیتابیس برای اینکه داده های فعلی موجود در دیتا بیس حذف نشود
@@ -48,14 +48,17 @@
         public virtual DbSet<RizeAghsatVam> RizeAghsatVams { get; set; }
         public virtual DbSet<SalMali> SalMalis { get; set; }
         public virtual DbSet<CheckTazmin> CheckTazmins { get; set; }
-        public virtual DbSet<DaryaftNaghdiVBanki> DaryaftNaghdiVBankis { get; set; }
-        public virtual DbSet<PardakhtNaghdiVBanki> PardakhtNaghdiVBankis { get; set; }
+        //public virtual DbSet<DaryaftNaghdiVBanki> DaryaftNaghdiVBankis { get; set; }
+        //public virtual DbSet<PardakhtNaghdiVBanki> PardakhtNaghdiVBankis { get; set; }
         public virtual DbSet<CodingDaramadVHazine> CodingDaramadVHazines { get; set; }
         public virtual DbSet<SabDaramad> SabDaramads { get; set; }
         public virtual DbSet<SabtHazine> SabtHazines { get; set; }
-        public virtual DbSet<EnteghalatHesabBanki> EnteghalatHesabBankis { get; set; }
-        public virtual DbSet<EnteghalatHesabAaza> EnteghalatHesabAazas { get; set; }
-        public virtual DbSet<EnteghalatBeDaramadVhazine> EnteghalatBeDaramadVhazines { get; set; }
+        //public virtual DbSet<EnteghalatHesabBanki> EnteghalatHesabBankis { get; set; }
+        //public virtual DbSet<EnteghalatHesabAaza> EnteghalatHesabAazas { get; set; }
+        //public virtual DbSet<EnteghalatBeDaramadVhazine> EnteghalatBeDaramadVhazines { get; set; }
+        public virtual DbSet<AsnadeHesabdariRow> AsnadeHesabdariRows { get; set; }
+        public virtual DbSet<CodeMoin> CodeMoins { get; set; }
+        public virtual DbSet<DaryaftPardakhtBinHesabha> DaryaftPardakhtBinHesabhas { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -63,10 +66,10 @@
             modelBuilder.Entity<AazaSandogh>().HasMany(m => m.HaghOzviats).WithRequired(m => m.AazaSandogh1).HasForeignKey(m => m.AazaId).WillCascadeOnDelete(false);
             modelBuilder.Entity<AazaSandogh>().HasMany(m => m.VamPardakhtis).WithRequired(m => m.AazaSandogh1).HasForeignKey(m => m.AazaId).WillCascadeOnDelete(false);
             modelBuilder.Entity<AazaSandogh>().HasMany(m => m.CheckTazmins).WithRequired(m => m.AazaSandogh1).HasForeignKey(m => m.VamGerandeId).WillCascadeOnDelete(false);
-            modelBuilder.Entity<AazaSandogh>().HasMany(m => m.DaryaftNaghdiVBankis).WithRequired(m => m.AazaSandogh1).HasForeignKey(m => m.PardakhtkonandeId).WillCascadeOnDelete(false);
-            modelBuilder.Entity<AazaSandogh>().HasMany(m => m.PardakhtNaghdiVBankis).WithRequired(m => m.AazaSandogh1).HasForeignKey(m => m.DaryaftkonandeId).WillCascadeOnDelete(false);
+            //modelBuilder.Entity<AazaSandogh>().HasMany(m => m.DaryaftNaghdiVBankis).WithRequired(m => m.AazaSandogh1).HasForeignKey(m => m.PardakhtkonandeId).WillCascadeOnDelete(false);
+            //modelBuilder.Entity<AazaSandogh>().HasMany(m => m.PardakhtNaghdiVBankis).WithRequired(m => m.AazaSandogh1).HasForeignKey(m => m.DaryaftkonandeId).WillCascadeOnDelete(false);
             modelBuilder.Entity<HesabBanki>().HasMany(m => m.HaghOzviats).WithRequired(m => m.HesabBanki1).HasForeignKey(m => m.NameHesabId).WillCascadeOnDelete(false);
-            modelBuilder.Entity<HesabBanki>().HasMany(m => m.VamPardakhtis).WithRequired(m => m.HesabBanki1).HasForeignKey(m => m.NameHesabId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<HesabBanki>().HasMany(m => m.VamPardakhtis).WithRequired(m => m.HesabBanki1).HasForeignKey(m => m.HesabTafziliId).WillCascadeOnDelete(false);
             modelBuilder.Entity<TarifSandogh>().HasOptional(m => m.Tanzimat1).WithRequired(m => m.TarifSandogh1).WillCascadeOnDelete(true);
             modelBuilder.Entity<TarifSandogh>().HasMany(m => m.CodingDaramadVHazines).WithRequired(m => m.TarifSandogh1).HasForeignKey(m => m.SandoghId).WillCascadeOnDelete(false);
             modelBuilder.Entity<TarifSandogh>().HasMany(m => m.SabDaramads).WithRequired(m => m.TarifSandogh1).HasForeignKey(m => m.SandoghId).WillCascadeOnDelete(false);

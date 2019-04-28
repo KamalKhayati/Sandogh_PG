@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sandogh_TG
 {
-   public class DaryaftNaghdiVBanki
+   public class DaryaftPardakhtBinHesabha
     {
         public int Id { get; set; }
         [Required]
@@ -16,21 +16,28 @@ namespace Sandogh_TG
         [Required, Column(TypeName = "Date")]
         public DateTime Tarikh { get; set; }
         [Required]
-        public int PardakhtkonandeId { get; set; }
-        [Required, MaxLength(100)]
-        public string PardakhtkonandeName { get; set; }
-        [Required]
         public decimal Mablagh { get; set; }
         [Required]
-        public int HesabId { get; set; }
-        [Required,MaxLength(100)]
-        public string HesabName { get; set; }
+        public int HesabMoinCode1 { get; set; }
+        [Required, MaxLength(50)]
+        public string HesabMoineName1 { get; set; }
+        [Required]
+        public int HesabTafziliCode1 { get; set; }
+        [Required, MaxLength(50)]
+        public string HesabTafziliName1 { get; set; }
+        [Required]
+        public int HesabMoinCode2 { get; set; }
+        [Required, MaxLength(50)]
+        public string HesabMoineName2 { get; set; }
+        [Required]
+        public int HesabTafziliCode2 { get; set; }
+        [Required, MaxLength(50)]
+        public string HesabTafziliName2 { get; set; }
         [MaxLength(200)]
         public string Sharh { get; set; }
         [Required]
         public int ShomareSanad { get; set; }
         [Required]
         public int SalMaliId { get; set; }
-        public virtual AazaSandogh AazaSandogh1 { get; set; }
     }
 }

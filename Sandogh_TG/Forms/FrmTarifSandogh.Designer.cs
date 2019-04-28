@@ -145,6 +145,9 @@
             this.txtTarikhEjad.EnterMoveNextControl = true;
             this.txtTarikhEjad.Location = new System.Drawing.Point(309, 157);
             this.txtTarikhEjad.Name = "txtTarikhEjad";
+            this.txtTarikhEjad.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtTarikhEjad.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtTarikhEjad.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtTarikhEjad.Properties.Mask.BeepOnError = true;
             this.txtTarikhEjad.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
     "1-9]|[123]0))|((1[2])/([012][1-9])))";

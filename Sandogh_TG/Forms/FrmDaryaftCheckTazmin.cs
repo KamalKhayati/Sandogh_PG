@@ -127,7 +127,7 @@ namespace Sandogh_TG
                     }
                     else
                     {
-                        txtSeryalDaryaft.Text = "0000001";
+                        txtSeryalDaryaft.Text = "1";
                     }
                 }
                 catch (Exception ex)

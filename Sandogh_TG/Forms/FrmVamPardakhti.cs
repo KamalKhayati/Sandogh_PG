@@ -25,7 +25,7 @@ namespace Sandogh_TG
         public int EditRowIndex = 0;
         public int _IDSandogh = 0;
         public bool IsEditRizAghsat = true;
-        public bool ListTasviyeNashode = true;
+        //public bool ListTasviyeNashode = true;
         public void FillcmbDaryaftkonande()
         {
             using (var db = new MyContext())
@@ -47,6 +47,98 @@ namespace Sandogh_TG
                             aazaSandoghsBindingSource.DataSource = q1;
                         else
                             aazaSandoghsBindingSource.DataSource = null;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
+        public void FillcmbHesabMoin()
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    var q1 = db.CodeMoins.Where(s => s.Code == 1001 || s.Code == 6001).OrderBy(s => s.Code).ToList();
+                    if (q1.Count > 0)
+                        codeMoinsBindingSource.DataSource = q1;
+
+                    else
+                        codeMoinsBindingSource.DataSource = null;
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
+        public void FillcmbHesabTafzili()
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    if (Convert.ToInt32(cmbHesabMoin.EditValue) == 1001)
+                    {
+                        if (Fm.ListTasviyeNashode)
+                        {
+                            var q1 = db.HesabBankis.Where(s => s.IsActive == true).OrderBy(s => s.Code).ToList();
+                            cmbHesabTafzili.Properties.DisplayMember = "NameHesab";
+                            cmbHesabTafzili.Properties.ValueMember = "Id";
+                            cmbHesabTafzili.Properties.Columns[1].FieldName = "NameHesab";
+
+                            if (q1.Count > 0)
+                            {
+                                cmbHesabTafzili.Properties.DataSource = q1;
+                            }
+                            else
+                                cmbHesabTafzili.Properties.DataSource = null;
+                        }
+                        else
+                        {
+                            var q1 = db.HesabBankis.OrderBy(s => s.Code).ToList();
+                            if (q1.Count > 0)
+                                cmbHesabTafzili.Properties.DataSource = q1;
+                            else
+                                cmbHesabTafzili.Properties.DataSource = null;
+                        }
+                    }
+                    if (Convert.ToInt32(cmbHesabMoin.EditValue) == 6001)
+                    {
+                        try
+                        {
+                            int _Id = Convert.ToInt32(cmbDaryaftkonande.EditValue);
+                            cmbHesabTafzili.Properties.DisplayMember = "NameVFamil";
+                            cmbHesabTafzili.Properties.ValueMember = "Id";
+                            cmbHesabTafzili.Properties.Columns[1].FieldName = "NameVFamil";
+                            if (Fm.ListTasviyeNashode)
+                            {
+                                var q1 = db.AazaSandoghs.Where(s => s.IsActive == true && s.Id == _Id).ToList();
+                                if (q1.Count > 0)
+                                    cmbHesabTafzili.Properties.DataSource = q1;
+                                else
+                                    cmbHesabTafzili.Properties.DataSource = null;
+                            }
+                            else
+                            {
+                                var q1 = db.AazaSandoghs.Where(s => s.Id == _Id).OrderBy(s => s.Code).ToList();
+                                if (q1.Count > 0)
+                                    cmbHesabTafzili.Properties.DataSource = q1;
+                                else
+                                    cmbHesabTafzili.Properties.DataSource = null;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                                "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -79,37 +171,6 @@ namespace Sandogh_TG
                             aazaSandoghsBindingSource1.DataSource = q1;
                         else
                             aazaSandoghsBindingSource1.DataSource = null;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-
-        }
-        public void FillcmbNameHesab()
-        {
-            using (var db = new MyContext())
-            {
-                try
-                {
-                    if (Fm.ListTasviyeNashode)
-                    {
-                        var q1 = db.HesabBankis.Where(s => s.IsActive == true).OrderBy(s => s.Code).ToList();
-                        if (q1.Count > 0)
-                            hesabBankisBindingSource.DataSource = q1;
-                        else
-                            hesabBankisBindingSource.DataSource = null;
-                    }
-                    else
-                    {
-                        var q1 = db.HesabBankis.OrderBy(s => s.Code).ToList();
-                        if (q1.Count > 0)
-                            hesabBankisBindingSource.DataSource = q1;
-                        else
-                            hesabBankisBindingSource.DataSource = null;
                     }
                 }
                 catch (Exception ex)
@@ -166,7 +227,7 @@ namespace Sandogh_TG
                     }
                     else
                     {
-                        txtCode.Text = "0000001";
+                        txtCode.Text = "1";
                     }
                 }
                 catch (Exception ex)
@@ -178,7 +239,7 @@ namespace Sandogh_TG
         private void FrmVamPardakhti_Load(object sender, EventArgs e)
         {
             FillcmbDaryaftkonande();
-            FillcmbNameHesab();
+            FillcmbHesabMoin();
             _IDSandogh = Convert.ToInt32(Fm.Fm.IDSandogh.Caption);
             if (En == EnumCED.Create)
             {
@@ -188,13 +249,14 @@ namespace Sandogh_TG
                 txtTarikhPardakht.Text = DateTime.Now.ToString().Substring(0, 10);
                 cmbFaseleAghsat.SelectedIndex = 0;
                 chkIsTasviye.Visible = false;
+                cmbHesabMoin.EditValue = 1001;
                 using (var db = new MyContext())
                 {
                     try
                     {
-                        var q2 = db.HesabBankis.FirstOrDefault(s => s.IsActive == true && s.IsDefault == true && s.GroupHesabIndex==1);
+                        var q2 = db.HesabBankis.FirstOrDefault(s => s.IsActive == true && s.IsDefault == true && s.GroupHesabIndex == 1);
                         if (q2 != null)
-                            cmbNameHesab.EditValue = q2.Id;
+                            cmbHesabTafzili.EditValue = q2.Id;
                         var q1 = db.Tanzimats.FirstOrDefault(s => s.Id == _IDSandogh);
                         if (q1 != null)
                         {
@@ -245,7 +307,8 @@ namespace Sandogh_TG
                     txtSarresidAvalinGhest.Text = Fm.gridView1.GetFocusedRowCellDisplayText("SarresidAvalinGhest").Substring(0, 10);
 
                 }
-                cmbNameHesab.EditValue = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("NameHesabId"));
+                cmbHesabMoin.EditValue = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("HesabMoinCode"));
+                cmbHesabTafzili.EditValue = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("HesabTafziliId"));
                 lstZamenin.Items.Add(Fm.gridView1.GetFocusedRowCellDisplayText("ZameninName"));
                 if (!string.IsNullOrEmpty(Fm.gridView1.GetFocusedRowCellDisplayText("ZameninId")))
                 {
@@ -255,7 +318,7 @@ namespace Sandogh_TG
                 chkIsTasviye.Visible = true;
                 chkIsTasviye.Checked = Convert.ToBoolean(Fm.gridView1.GetFocusedRowCellValue("IsTasviye"));
             }
-
+            cmbDaryaftkonande.Focus();
         }
 
         private void FrmVamPardakhti_KeyDown(object sender, KeyEventArgs e)
@@ -323,7 +386,7 @@ namespace Sandogh_TG
                 XtraMessageBox.Show("لطفا سررسید اولین قسط وام را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else if (string.IsNullOrEmpty(cmbNameHesab.Text))
+            else if (string.IsNullOrEmpty(cmbHesabTafzili.Text))
             {
                 XtraMessageBox.Show("لطفا نام بانک یا صندوق را انتخاب کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -402,6 +465,7 @@ namespace Sandogh_TG
                     {
                         if (En == EnumCED.Create)
                         {
+                            var q1 = db.AsnadeHesabdariRows.Any() ? db.AsnadeHesabdariRows.Max(f => f.ShomareSanad) : 0;
                             VamPardakhti obj = new VamPardakhti();
                             obj.AazaId = Convert.ToInt32(cmbDaryaftkonande.EditValue);
                             obj.NameAaza = cmbDaryaftkonande.Text;
@@ -427,8 +491,10 @@ namespace Sandogh_TG
                             obj.MablaghAghsat = !string.IsNullOrEmpty(txtMablaghAghsat.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghAghsat.Text.Replace(",", "")) : 0;
                             if (!string.IsNullOrEmpty(txtSarresidAvalinGhest.Text))
                                 obj.SarresidAvalinGhest = Convert.ToDateTime(txtSarresidAvalinGhest.Text.Substring(0, 10));
-                            obj.NameHesabId = Convert.ToInt32(cmbNameHesab.EditValue);
-                            obj.NameHesab = cmbNameHesab.Text;
+                            obj.HesabMoinCode = Convert.ToInt32(cmbHesabMoin.EditValue);
+                            obj.HesabMoin = cmbHesabMoin.Text;
+                            obj.HesabTafziliId = Convert.ToInt32(cmbHesabTafzili.EditValue);
+                            obj.HesabTafzili = cmbHesabTafzili.Text;
                             if (!string.IsNullOrEmpty(chkcmbEntekhabZamenin.Text))
                             {
                                 obj.ZameninName = chkcmbEntekhabZamenin.Text;
@@ -447,20 +513,87 @@ namespace Sandogh_TG
                             obj.HaveCheckTazmin = checkTazminsBindingSource.DataSource != null ? true : false;
                             obj.IsTasviye = chkIsTasviye.Checked ? true : false;
                             obj.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
+                            obj.ShomareSanad = q1 + 1;
                             db.VamPardakhtis.Add(obj);
+                            //db.SaveChanges();
+                            //////////////////////////////////////////////////////////////////////////////////////
+                            int _HesabId2 = Convert.ToInt32(cmbDaryaftkonande.EditValue);
+                            AsnadeHesabdariRow obj2 = new AsnadeHesabdariRow();
+                            obj2.ShomareSanad = q1 + 1;
+                            obj2.Tarikh = Convert.ToDateTime(txtTarikhPardakht.Text.Substring(0, 10));
+                            obj2.MoinCode = 2001;
+                            obj2.MoinName = db.CodeMoins.FirstOrDefault(f => f.Code == 2001).Name;
+                            //obj2.HesabTafId = _HesabId2;
+                            obj2.HesabTafCode = db.AazaSandoghs.FirstOrDefault(f => f.Id == _HesabId2).Code;
+                            obj2.HesabTafName = cmbDaryaftkonande.Text;
+                            obj2.Bed = _MablaghVam;
+                            obj2.Sharh = "بابت پرداخت وام شماره " + txtCode.Text + " به " + cmbDaryaftkonande.Text;
+                            obj2.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
+                            db.AsnadeHesabdariRows.Add(obj2);
+
+                            if (Convert.ToInt32(cmbHesabMoin.EditValue)==1001)
+                            {
+                                int _HesabId1 = Convert.ToInt32(cmbHesabTafzili.EditValue);
+                                AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
+                                obj1.ShomareSanad = q1 + 1;
+                                obj1.Tarikh = Convert.ToDateTime(txtTarikhPardakht.Text.Substring(0, 10));
+                                obj1.MoinCode = 1001;
+                                obj1.MoinName = db.CodeMoins.FirstOrDefault(f => f.Code == 1001).Name;
+                                //obj1.HesabTafId = _HesabId1;
+                                obj1.HesabTafCode = db.HesabBankis.FirstOrDefault(f => f.Id == _HesabId1).Code;
+                                obj1.HesabTafName = cmbHesabTafzili.Text;
+                                obj1.Bes = _MablaghVam - Convert.ToDecimal(txtMablaghKarmozd.Text.Replace(",", ""));
+                                obj1.Sharh = "بابت پرداخت وام شماره " + txtCode.Text + " به " + cmbDaryaftkonande.Text;
+                                obj1.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
+                                db.AsnadeHesabdariRows.Add(obj1);
+                            }
+                            else if (Convert.ToInt32(cmbHesabMoin.EditValue) == 6001)
+                            {
+                                int _HesabId4 = Convert.ToInt32(cmbDaryaftkonande.EditValue);
+                                AsnadeHesabdariRow obj4 = new AsnadeHesabdariRow();
+                                obj4.ShomareSanad = q1 + 1;
+                                obj4.Tarikh = Convert.ToDateTime(txtTarikhPardakht.Text.Substring(0, 10));
+                                obj4.MoinCode = 6001;
+                                obj4.MoinName = db.CodeMoins.FirstOrDefault(f => f.Code == 6001).Name;
+                                //obj4.HesabTafId = _HesabId4;
+                                obj4.HesabTafCode = db.AazaSandoghs.FirstOrDefault(f => f.Id == _HesabId4).Code;
+                                obj4.HesabTafName = cmbDaryaftkonande.Text;
+                                obj4.Bes = _MablaghVam - Convert.ToDecimal(txtMablaghKarmozd.Text.Replace(",", ""));
+                                obj4.Sharh = "بابت اختصاص وام شماره " + txtCode.Text + " به " + cmbDaryaftkonande.Text;
+                                obj4.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
+                                db.AsnadeHesabdariRows.Add(obj4);
+                                XtraMessageBox.Show("مبلغ وام به حساب وام پرداختنی منظور شد تا بعداً به وام گیرنده پرداخت شود", "پیغام ثبت ", MessageBoxButtons.OK);
+                            }
+
+                            if (Convert.ToInt32(txtMablaghKarmozd.Text.Replace(",", "")) != 0)
+                            {
+                                AsnadeHesabdariRow obj3 = new AsnadeHesabdariRow();
+                                obj3.ShomareSanad = q1 + 1;
+                                obj3.Tarikh = Convert.ToDateTime(txtTarikhPardakht.Text.Substring(0, 10));
+                                obj3.MoinCode = 8001;
+                                obj3.MoinName = db.CodeMoins.FirstOrDefault(f => f.Code == 8001).Name;
+                                //obj3.HesabTafId = 1;
+                                obj3.HesabTafCode = 1000001;
+                                obj3.HesabTafName = db.CodingDaramadVHazines.FirstOrDefault(f => f.Code == 1000001).HesabName;
+                                obj3.Bes = Convert.ToDecimal(txtMablaghKarmozd.Text.Replace(",", ""));
+                                obj3.Sharh = "بابت کارمزد وام شماره " + txtCode.Text + " " + cmbDaryaftkonande.Text;
+                                obj3.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
+                                db.AsnadeHesabdariRows.Add(obj3);
+                            }
                             db.SaveChanges();
+
                             /////////////////////////////////////////////////////////////////////////////////////////////////////////
                             if (XtraMessageBox.Show("آیا قسط بندی وام انجام شود؟", "پیغام ثبت ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                             {
-                                var q1 = db.VamPardakhtis.FirstOrDefault(s => s.Code == _Code);
-                                Fm._VamPardakhtiId = q1.Id;
+                                var q2 = db.VamPardakhtis.FirstOrDefault(s => s.Code == _Code);
+                                Fm._VamPardakhtiId = q2.Id;
                                 if (cmbFaseleAghsat.SelectedIndex == 0)
                                 {
                                     for (int i = 1; i <= _Tedad; i++)
                                     {
                                         RizeAghsatVam ct = new RizeAghsatVam();
                                         ct.ShomareGhest = i;
-                                        ct.VamPardakhtiId = q1.Id;
+                                        ct.VamPardakhtiId = q2.Id;
                                         ct.VamPardakhtiCode = _Code;
                                         d1.IncrementMonth();
                                         ct.TarikhSarresid = Convert.ToDateTime(d1.ToString());
@@ -475,7 +608,7 @@ namespace Sandogh_TG
                                     {
                                         RizeAghsatVam ct = new RizeAghsatVam();
                                         ct.ShomareGhest = i;
-                                        ct.VamPardakhtiId = q1.Id;
+                                        ct.VamPardakhtiId = q2.Id;
                                         ct.VamPardakhtiCode = _Code;
                                         d1.IncrementYear();
                                         ct.TarikhSarresid = Convert.ToDateTime(d1.ToString());
@@ -484,9 +617,7 @@ namespace Sandogh_TG
                                         db.RizeAghsatVams.Add(ct);
                                     }
                                 }
-
                                 db.SaveChanges();
-
                             }
                             /////////////////////////////////////////////////////////////////////////////////////////////////////////
                             En = EnumCED.Save;
@@ -505,102 +636,184 @@ namespace Sandogh_TG
                             var q = db.VamPardakhtis.FirstOrDefault(s => s.Id == RowId);
                             if (q != null)
                             {
-                                q.AazaId = Convert.ToInt32(cmbDaryaftkonande.EditValue);
-                                q.NameAaza = cmbDaryaftkonande.Text;
-                                q.IndexNahveyePardakht = cmbNahveyePardakht.SelectedIndex;
-                                q.NahveyePardakht = cmbNahveyePardakht.Text;
-                                q.IndexNoeVam = cmbNoeVam.SelectedIndex;
-                                q.NoeVam = cmbNoeVam.Text;
-                                q.DarsadeKarmozd = !string.IsNullOrEmpty(txtDarsadeKarmozd.Text.Replace("/", ".").Replace(",", "")) ? Convert.ToSingle(txtDarsadeKarmozd.Text.Replace("/", ".").Replace(",", "")) : 0;
-                                q.MablaghDirkard = !string.IsNullOrEmpty(txtMablaghDirkard.Text.Replace(",", "")) ? Convert.ToInt32(txtMablaghDirkard.Text.Replace(",", "")) : 0;
-                                q.checkEdit1 = checkEdit1.Checked ? true : false;
-                                q.checkEdit2 = checkEdit2.Checked ? true : false;
-                                if (!string.IsNullOrEmpty(txtTarikhDarkhast.Text))
-                                    q.TarikhDarkhast = Convert.ToDateTime(txtTarikhDarkhast.Text.Substring(0, 10));
-                                q.ShomareDarkhast = txtShomareDarkhast.Text;
-                                q.Code = Convert.ToInt32(txtCode.Text);
-                                if (!string.IsNullOrEmpty(txtTarikhPardakht.Text))
-                                    q.TarikhPardakht = Convert.ToDateTime(txtTarikhPardakht.Text.Substring(0, 10));
-                                q.MablaghAsli = !string.IsNullOrEmpty(txtMablaghAsli.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghAsli.Text.Replace(",", "")) : 0;
-                                q.MablaghKarmozd = !string.IsNullOrEmpty(txtMablaghKarmozd.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghKarmozd.Text.Replace(",", "")) : 0;
-                                q.IndexFaseleAghsat = cmbFaseleAghsat.SelectedIndex;
-                                q.FaseleAghsat = cmbFaseleAghsat.Text;
-                                q.TedadAghsat = Convert.ToInt32(txtTedadAghsat.Text);
-                                q.MablaghAghsat = !string.IsNullOrEmpty(txtMablaghAghsat.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghAghsat.Text.Replace(",", "")) : 0;
-                                if (!string.IsNullOrEmpty(txtSarresidAvalinGhest.Text))
-                                    q.SarresidAvalinGhest = Convert.ToDateTime(txtSarresidAvalinGhest.Text.Substring(0, 10));
-                                q.NameHesabId = Convert.ToInt32(cmbNameHesab.EditValue);
-                                q.NameHesab = cmbNameHesab.Text;
-                                if (!string.IsNullOrEmpty(chkcmbEntekhabZamenin.Text))
+                                if (Fm.ListTasviyeNashode == true && chkIsTasviye.Checked == false)
                                 {
-                                    q.ZameninName = chkcmbEntekhabZamenin.Text;
-
-                                    string CheckedItems = string.Empty;
-                                    var CheckedList = chkcmbEntekhabZamenin.Properties.GetItems().GetCheckedValues();
-                                    if (CheckedList != null)
+                                    q.AazaId = Convert.ToInt32(cmbDaryaftkonande.EditValue);
+                                    q.NameAaza = cmbDaryaftkonande.Text;
+                                    q.IndexNahveyePardakht = cmbNahveyePardakht.SelectedIndex;
+                                    q.NahveyePardakht = cmbNahveyePardakht.Text;
+                                    q.IndexNoeVam = cmbNoeVam.SelectedIndex;
+                                    q.NoeVam = cmbNoeVam.Text;
+                                    q.DarsadeKarmozd = !string.IsNullOrEmpty(txtDarsadeKarmozd.Text.Replace("/", ".").Replace(",", "")) ? Convert.ToSingle(txtDarsadeKarmozd.Text.Replace("/", ".").Replace(",", "")) : 0;
+                                    q.MablaghDirkard = !string.IsNullOrEmpty(txtMablaghDirkard.Text.Replace(",", "")) ? Convert.ToInt32(txtMablaghDirkard.Text.Replace(",", "")) : 0;
+                                    q.checkEdit1 = checkEdit1.Checked ? true : false;
+                                    q.checkEdit2 = checkEdit2.Checked ? true : false;
+                                    if (!string.IsNullOrEmpty(txtTarikhDarkhast.Text))
+                                        q.TarikhDarkhast = Convert.ToDateTime(txtTarikhDarkhast.Text.Substring(0, 10));
+                                    q.ShomareDarkhast = txtShomareDarkhast.Text;
+                                    q.Code = Convert.ToInt32(txtCode.Text);
+                                    if (!string.IsNullOrEmpty(txtTarikhPardakht.Text))
+                                        q.TarikhPardakht = Convert.ToDateTime(txtTarikhPardakht.Text.Substring(0, 10));
+                                    q.MablaghAsli = !string.IsNullOrEmpty(txtMablaghAsli.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghAsli.Text.Replace(",", "")) : 0;
+                                    q.MablaghKarmozd = !string.IsNullOrEmpty(txtMablaghKarmozd.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghKarmozd.Text.Replace(",", "")) : 0;
+                                    q.IndexFaseleAghsat = cmbFaseleAghsat.SelectedIndex;
+                                    q.FaseleAghsat = cmbFaseleAghsat.Text;
+                                    q.TedadAghsat = Convert.ToInt32(txtTedadAghsat.Text);
+                                    q.MablaghAghsat = !string.IsNullOrEmpty(txtMablaghAghsat.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghAghsat.Text.Replace(",", "")) : 0;
+                                    if (!string.IsNullOrEmpty(txtSarresidAvalinGhest.Text))
+                                        q.SarresidAvalinGhest = Convert.ToDateTime(txtSarresidAvalinGhest.Text.Substring(0, 10));
+                                    q.HesabMoinCode = Convert.ToInt32(cmbHesabMoin.EditValue);
+                                    q.HesabMoin = cmbHesabMoin.Text;
+                                    q.HesabTafziliId = Convert.ToInt32(cmbHesabTafzili.EditValue);
+                                    q.HesabTafzili = cmbHesabTafzili.Text;
+                                    if (!string.IsNullOrEmpty(chkcmbEntekhabZamenin.Text))
                                     {
-                                        foreach (var item in CheckedList)
+                                        q.ZameninName = chkcmbEntekhabZamenin.Text;
+
+                                        string CheckedItems = string.Empty;
+                                        var CheckedList = chkcmbEntekhabZamenin.Properties.GetItems().GetCheckedValues();
+                                        if (CheckedList != null)
                                         {
-                                            CheckedItems += item.ToString() + ",";
+                                            foreach (var item in CheckedList)
+                                            {
+                                                CheckedItems += item.ToString() + ",";
+                                            }
+                                        }
+                                        q.ZameninId = CheckedItems;
+                                    }
+                                    q.HaveCheckTazmin = checkTazminsBindingSource.DataSource != null ? true : false;
+                                    q.IsTasviye = chkIsTasviye.Checked ? true : false;
+                                    ////////////////////////////////////////////////////////////////////////////////////////////
+                                    if (IsEditRizAghsat)
+                                    {
+                                        var q2 = db.AsnadeHesabdariRows.Where(f => f.ShomareSanad == q.ShomareSanad);
+                                        if (q2.Count() > 0)
+                                            db.AsnadeHesabdariRows.RemoveRange(q2);
+
+                                        int _HesabId2 = Convert.ToInt32(cmbDaryaftkonande.EditValue);
+                                        AsnadeHesabdariRow obj2 = new AsnadeHesabdariRow();
+                                        obj2.ShomareSanad = q.ShomareSanad;
+                                        obj2.Tarikh = Convert.ToDateTime(txtTarikhPardakht.Text.Substring(0, 10));
+                                        obj2.MoinCode = 2001;
+                                        obj2.MoinName = db.CodeMoins.FirstOrDefault(f => f.Code == 2001).Name;
+                                        //obj2.HesabTafId = _HesabId2;
+                                        obj2.HesabTafCode = db.AazaSandoghs.FirstOrDefault(f => f.Id == _HesabId2).Code;
+                                        obj2.HesabTafName = cmbDaryaftkonande.Text;
+                                        obj2.Bed = _MablaghVam;
+                                        obj2.Sharh = "بابت پرداخت وام شماره " + txtCode.Text + " به " + cmbDaryaftkonande.Text;
+                                        obj2.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
+                                        db.AsnadeHesabdariRows.Add(obj2);
+
+                                        if (XtraMessageBox.Show("آیا مبلغ وام مستقیماً از حساب انتخابی کسر شود؟", "پیغام ثبت ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                                        {
+                                            int _HesabId1 = Convert.ToInt32(cmbHesabTafzili.EditValue);
+                                            AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
+                                            obj1.ShomareSanad = q.ShomareSanad;
+                                            obj1.Tarikh = Convert.ToDateTime(txtTarikhPardakht.Text.Substring(0, 10));
+                                            obj1.MoinCode = 1001;
+                                            obj1.MoinName = db.CodeMoins.FirstOrDefault(f => f.Code == 1001).Name;
+                                            //obj1.HesabTafId = _HesabId1;
+                                            obj1.HesabTafCode = db.HesabBankis.FirstOrDefault(f => f.Id == _HesabId1).Code;
+                                            obj1.HesabTafName = cmbHesabTafzili.Text;
+                                            obj1.Bes = _MablaghVam - Convert.ToDecimal(txtMablaghKarmozd.Text.Replace(",", ""));
+                                            obj1.Sharh = "بابت پرداخت وام شماره " + txtCode.Text + " به " + cmbDaryaftkonande.Text;
+                                            obj1.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
+                                            db.AsnadeHesabdariRows.Add(obj1);
+                                        }
+                                        else
+                                        {
+                                            int _HesabId4 = Convert.ToInt32(cmbDaryaftkonande.EditValue);
+                                            AsnadeHesabdariRow obj4 = new AsnadeHesabdariRow();
+                                            obj4.ShomareSanad = q.ShomareSanad;
+                                            obj4.Tarikh = Convert.ToDateTime(txtTarikhPardakht.Text.Substring(0, 10));
+                                            obj4.MoinCode = 6001;
+                                            obj4.MoinName = db.CodeMoins.FirstOrDefault(f => f.Code == 6001).Name;
+                                            //obj4.HesabTafId = _HesabId4;
+                                            obj4.HesabTafCode = db.AazaSandoghs.FirstOrDefault(f => f.Id == _HesabId4).Code;
+                                            obj4.HesabTafName = cmbDaryaftkonande.Text;
+                                            obj4.Bes = _MablaghVam - Convert.ToDecimal(txtMablaghKarmozd.Text.Replace(",", ""));
+                                            obj4.Sharh = "بابت اختصاص وام شماره " + txtCode.Text + " به " + cmbDaryaftkonande.Text;
+                                            obj4.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
+                                            db.AsnadeHesabdariRows.Add(obj4);
+                                            XtraMessageBox.Show("مبلغ وام به حساب وام پرداختنی منظور شد تا بعداً به وام گیرنده پرداخت شود", "پیغام ثبت ", MessageBoxButtons.OK);
+                                        }
+
+                                        if (Convert.ToInt32(txtMablaghKarmozd.Text.Replace(",", "")) != 0)
+                                        {
+                                            AsnadeHesabdariRow obj3 = new AsnadeHesabdariRow();
+                                            obj3.ShomareSanad = q.ShomareSanad;
+                                            obj3.Tarikh = Convert.ToDateTime(txtTarikhPardakht.Text.Substring(0, 10));
+                                            obj3.MoinCode = 8001;
+                                            obj3.MoinName = db.CodeMoins.FirstOrDefault(f => f.Code == 8001).Name;
+                                            //obj3.HesabTafId = 1;
+                                            obj3.HesabTafCode = 1000001;
+                                            obj3.HesabTafName = db.CodingDaramadVHazines.FirstOrDefault(f => f.Code == 1000001).HesabName;
+                                            obj3.Bes = Convert.ToDecimal(txtMablaghKarmozd.Text.Replace(",", ""));
+                                            obj3.Sharh = "بابت کارمزد وام شماره " + txtCode.Text + " " + cmbDaryaftkonande.Text;
+                                            obj3.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
+                                            db.AsnadeHesabdariRows.Add(obj3);
+                                        }
+
+                                    }
+                                    db.SaveChanges();
+                                    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                    if (IsEditRizAghsat == true)
+                                    {
+                                        if (XtraMessageBox.Show("آیا قسط بندی وام مجدداً انجام شود؟", "پیغام ثبت ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                                        {
+
+                                            var q3 = db.RizeAghsatVams.Where(s => s.VamPardakhtiId == RowId);
+                                            if (q3.Count() > 0)
+                                            {
+                                                db.RizeAghsatVams.RemoveRange(q3);
+                                            }
+                                            /////////////////////////////////////////////////////////////////
+
+                                            var q4 = db.VamPardakhtis.FirstOrDefault(s => s.Code == _Code);
+                                            Fm._VamPardakhtiId = q4.Id;
+                                            if (cmbFaseleAghsat.SelectedIndex == 0)
+                                            {
+                                                for (int i = 1; i <= _Tedad; i++)
+                                                {
+                                                    RizeAghsatVam ct = new RizeAghsatVam();
+                                                    ct.ShomareGhest = i;
+                                                    ct.VamPardakhtiId = q4.Id;
+                                                    ct.VamPardakhtiCode = _Code;
+                                                    d1.IncrementMonth();
+                                                    ct.TarikhSarresid = Convert.ToDateTime(d1.ToString());
+                                                    ct.MablaghAghsat = i != _Tedad ? Convert.ToDecimal(txtMablaghAghsat.Text.Replace(",", "")) : _Tafazol;
+                                                    ct.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
+                                                    db.RizeAghsatVams.Add(ct);
+                                                }
+                                            }
+                                            else if (cmbFaseleAghsat.SelectedIndex == 1)
+                                            {
+                                                for (int i = 1; i <= _Tedad; i++)
+                                                {
+                                                    RizeAghsatVam ct = new RizeAghsatVam();
+                                                    ct.ShomareGhest = i;
+                                                    ct.VamPardakhtiId = q4.Id;
+                                                    ct.VamPardakhtiCode = _Code;
+                                                    d1.IncrementYear();
+                                                    ct.TarikhSarresid = Convert.ToDateTime(d1.ToString());
+                                                    ct.MablaghAghsat = i != _Tedad ? Convert.ToDecimal(txtMablaghAghsat.Text.Replace(",", "")) : _Tafazol;
+                                                    ct.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
+                                                    db.RizeAghsatVams.Add(ct);
+                                                }
+                                            }
                                         }
                                     }
-                                    q.ZameninId = CheckedItems;
+
                                 }
-                                q.HaveCheckTazmin = checkTazminsBindingSource.DataSource != null ? true : false;
-                                q.IsTasviye = chkIsTasviye.Checked ? true : false;
+                                else if (Fm.ListTasviyeNashode == true && chkIsTasviye.Checked == true)
+                                {
+                                    q.IsTasviye = chkIsTasviye.Checked;
+                                }
+                                else if (Fm.ListTasviyeNashode == false)
+                                {
+                                    q.IsTasviye = chkIsTasviye.Checked;
+                                }
                                 db.SaveChanges();
-
-                                /////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                if (IsEditRizAghsat == true)
-                                {
-                                    if (XtraMessageBox.Show("آیا قسط بندی وام مجدداً انجام شود؟", "پیغام ثبت ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-                                    {
-
-                                        var q3 = db.RizeAghsatVams.Where(s => s.VamPardakhtiId == RowId);
-                                        if (q3.Count() > 0)
-                                        {
-                                            db.RizeAghsatVams.RemoveRange(q3);
-                                        }
-                                        /////////////////////////////////////////////////////////////////
-
-                                        var q1 = db.VamPardakhtis.FirstOrDefault(s => s.Code == _Code);
-                                        Fm._VamPardakhtiId = q1.Id;
-                                        if (cmbFaseleAghsat.SelectedIndex == 0)
-                                        {
-                                            for (int i = 1; i <= _Tedad; i++)
-                                            {
-                                                RizeAghsatVam ct = new RizeAghsatVam();
-                                                ct.ShomareGhest = i;
-                                                ct.VamPardakhtiId = q1.Id;
-                                                ct.VamPardakhtiCode = _Code;
-                                                d1.IncrementMonth();
-                                                ct.TarikhSarresid = Convert.ToDateTime(d1.ToString());
-                                                ct.MablaghAghsat = i != _Tedad ? Convert.ToDecimal(txtMablaghAghsat.Text.Replace(",", "")) : _Tafazol;
-                                                ct.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
-                                                db.RizeAghsatVams.Add(ct);
-                                            }
-                                        }
-                                        else if (cmbFaseleAghsat.SelectedIndex == 1)
-                                        {
-                                            for (int i = 1; i <= _Tedad; i++)
-                                            {
-                                                RizeAghsatVam ct = new RizeAghsatVam();
-                                                ct.ShomareGhest = i;
-                                                ct.VamPardakhtiId = q1.Id;
-                                                ct.VamPardakhtiCode = _Code;
-                                                d1.IncrementYear();
-                                                ct.TarikhSarresid = Convert.ToDateTime(d1.ToString());
-                                                ct.MablaghAghsat = i != _Tedad ? Convert.ToDecimal(txtMablaghAghsat.Text.Replace(",", "")) : _Tafazol;
-                                                ct.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
-                                                db.RizeAghsatVams.Add(ct);
-                                            }
-                                        }
-
-                                        db.SaveChanges();
-
-                                    }
-
-                                }
                                 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                                 En = EnumCED.Save;
@@ -837,6 +1050,19 @@ namespace Sandogh_TG
         {
             HelpClass1.SetNumberRowsColumnUnboundGirdView(sender, e);
 
+        }
+
+        private void cmbDaryaftkonande_Enter(object sender, EventArgs e)
+        {
+            if (En == EnumCED.Create)
+            {
+                cmbDaryaftkonande.ShowPopup();
+            }
+        }
+
+        private void cmbHesabMoin_EditValueChanged(object sender, EventArgs e)
+        {
+            FillcmbHesabTafzili();
         }
     }
 }

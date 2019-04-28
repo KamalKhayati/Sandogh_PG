@@ -1190,7 +1190,7 @@
             this.txtTarikhOzviat.Location = new System.Drawing.Point(213, 50);
             this.txtTarikhOzviat.Name = "txtTarikhOzviat";
             this.txtTarikhOzviat.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtTarikhOzviat.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.txtTarikhOzviat.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtTarikhOzviat.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtTarikhOzviat.Properties.Mask.BeepOnError = true;
             this.txtTarikhOzviat.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +

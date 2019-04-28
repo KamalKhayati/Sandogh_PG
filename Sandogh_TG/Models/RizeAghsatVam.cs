@@ -30,6 +30,8 @@ namespace Sandogh_TG
         public string NameHesab { get; set; }
         [MaxLength(300)]
         public string Sharh { get; set; }
+        //[Required]
+        public int ShomareSanad { get; set; }
         [Required]
         public int SalMaliId { get; set; }
         public virtual VamPardakhti VamPardakhti1 { get; set; }

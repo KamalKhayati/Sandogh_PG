@@ -54,7 +54,7 @@
             this.gridColumn41 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn42 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn44 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colHesabTafzili = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn45 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.AazaId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colZameninId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -98,6 +98,8 @@
             this.btnPreview2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnLast2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnDisplyActiveList2 = new DevExpress.XtraEditors.SimpleButton();
+            this.colHesabMoin = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colShomareSanad = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -172,6 +174,7 @@
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn25,
             this.gridColumn26,
+            this.colShomareSanad,
             this.gridColumn27,
             this.gridColumn28,
             this.gridColumn29,
@@ -189,7 +192,8 @@
             this.gridColumn41,
             this.gridColumn42,
             this.gridColumn43,
-            this.gridColumn44,
+            this.colHesabMoin,
+            this.colHesabTafzili,
             this.gridColumn45,
             this.AazaId,
             this.colZameninId});
@@ -260,8 +264,8 @@
             this.gridColumn27.MinWidth = 19;
             this.gridColumn27.Name = "gridColumn27";
             this.gridColumn27.Visible = true;
-            this.gridColumn27.VisibleIndex = 1;
-            this.gridColumn27.Width = 100;
+            this.gridColumn27.VisibleIndex = 2;
+            this.gridColumn27.Width = 80;
             // 
             // gridColumn28
             // 
@@ -270,11 +274,11 @@
             this.gridColumn28.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn28.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn28.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn28.Caption = "دریافت کننده وام";
+            this.gridColumn28.Caption = "گیرنده وام";
             this.gridColumn28.FieldName = "NameAaza";
             this.gridColumn28.Name = "gridColumn28";
             this.gridColumn28.Visible = true;
-            this.gridColumn28.VisibleIndex = 2;
+            this.gridColumn28.VisibleIndex = 3;
             this.gridColumn28.Width = 250;
             // 
             // gridColumn29
@@ -291,7 +295,7 @@
             this.gridColumn29.FieldName = "TarikhPardakht";
             this.gridColumn29.Name = "gridColumn29";
             this.gridColumn29.Visible = true;
-            this.gridColumn29.VisibleIndex = 3;
+            this.gridColumn29.VisibleIndex = 4;
             this.gridColumn29.Width = 130;
             // 
             // gridColumn30
@@ -310,7 +314,7 @@
             this.gridColumn30.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MablaghAsli", "{0:n}")});
             this.gridColumn30.Visible = true;
-            this.gridColumn30.VisibleIndex = 4;
+            this.gridColumn30.VisibleIndex = 5;
             this.gridColumn30.Width = 140;
             // 
             // gridColumn31
@@ -329,7 +333,7 @@
             this.gridColumn31.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MablaghKarmozd", "{0:n}")});
             this.gridColumn31.Visible = true;
-            this.gridColumn31.VisibleIndex = 5;
+            this.gridColumn31.VisibleIndex = 6;
             this.gridColumn31.Width = 130;
             // 
             // gridColumn32
@@ -344,7 +348,7 @@
             this.gridColumn32.FieldName = "TedadAghsat";
             this.gridColumn32.Name = "gridColumn32";
             this.gridColumn32.Visible = true;
-            this.gridColumn32.VisibleIndex = 6;
+            this.gridColumn32.VisibleIndex = 7;
             this.gridColumn32.Width = 100;
             // 
             // gridColumn33
@@ -363,7 +367,7 @@
             this.gridColumn33.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MablaghAghsat", "{0:n}")});
             this.gridColumn33.Visible = true;
-            this.gridColumn33.VisibleIndex = 7;
+            this.gridColumn33.VisibleIndex = 8;
             this.gridColumn33.Width = 130;
             // 
             // gridColumn34
@@ -380,7 +384,7 @@
             this.gridColumn34.FieldName = "SarresidAvalinGhest";
             this.gridColumn34.Name = "gridColumn34";
             this.gridColumn34.Visible = true;
-            this.gridColumn34.VisibleIndex = 8;
+            this.gridColumn34.VisibleIndex = 9;
             this.gridColumn34.Width = 150;
             // 
             // gridColumn35
@@ -394,7 +398,7 @@
             this.gridColumn35.FieldName = "ZameninName";
             this.gridColumn35.Name = "gridColumn35";
             this.gridColumn35.Visible = true;
-            this.gridColumn35.VisibleIndex = 9;
+            this.gridColumn35.VisibleIndex = 10;
             this.gridColumn35.Width = 350;
             // 
             // gridColumn36
@@ -409,7 +413,7 @@
             this.gridColumn36.FieldName = "HaveCheckTazmin";
             this.gridColumn36.Name = "gridColumn36";
             this.gridColumn36.Visible = true;
-            this.gridColumn36.VisibleIndex = 10;
+            this.gridColumn36.VisibleIndex = 11;
             this.gridColumn36.Width = 130;
             // 
             // gridColumn38
@@ -424,7 +428,7 @@
             this.gridColumn38.FieldName = "NahveyePardakht";
             this.gridColumn38.Name = "gridColumn38";
             this.gridColumn38.Visible = true;
-            this.gridColumn38.VisibleIndex = 11;
+            this.gridColumn38.VisibleIndex = 12;
             this.gridColumn38.Width = 130;
             // 
             // gridColumn39
@@ -439,7 +443,7 @@
             this.gridColumn39.FieldName = "NoeVam";
             this.gridColumn39.Name = "gridColumn39";
             this.gridColumn39.Visible = true;
-            this.gridColumn39.VisibleIndex = 12;
+            this.gridColumn39.VisibleIndex = 13;
             this.gridColumn39.Width = 100;
             // 
             // colFaseleAghsat
@@ -454,7 +458,7 @@
             this.colFaseleAghsat.FieldName = "FaseleAghsat";
             this.colFaseleAghsat.Name = "colFaseleAghsat";
             this.colFaseleAghsat.Visible = true;
-            this.colFaseleAghsat.VisibleIndex = 13;
+            this.colFaseleAghsat.VisibleIndex = 14;
             this.colFaseleAghsat.Width = 100;
             // 
             // gridColumn40
@@ -469,7 +473,7 @@
             this.gridColumn40.FieldName = "DarsadeKarmozd";
             this.gridColumn40.Name = "gridColumn40";
             this.gridColumn40.Visible = true;
-            this.gridColumn40.VisibleIndex = 14;
+            this.gridColumn40.VisibleIndex = 15;
             this.gridColumn40.Width = 100;
             // 
             // gridColumn41
@@ -486,7 +490,7 @@
             this.gridColumn41.FieldName = "MablaghDirkard";
             this.gridColumn41.Name = "gridColumn41";
             this.gridColumn41.Visible = true;
-            this.gridColumn41.VisibleIndex = 15;
+            this.gridColumn41.VisibleIndex = 16;
             this.gridColumn41.Width = 100;
             // 
             // gridColumn42
@@ -503,7 +507,7 @@
             this.gridColumn42.FieldName = "TarikhDarkhast";
             this.gridColumn42.Name = "gridColumn42";
             this.gridColumn42.Visible = true;
-            this.gridColumn42.VisibleIndex = 16;
+            this.gridColumn42.VisibleIndex = 17;
             this.gridColumn42.Width = 150;
             // 
             // gridColumn43
@@ -518,22 +522,22 @@
             this.gridColumn43.FieldName = "ShomareDarkhast";
             this.gridColumn43.Name = "gridColumn43";
             this.gridColumn43.Visible = true;
-            this.gridColumn43.VisibleIndex = 17;
+            this.gridColumn43.VisibleIndex = 18;
             this.gridColumn43.Width = 140;
             // 
-            // gridColumn44
+            // colHesabTafzili
             // 
-            this.gridColumn44.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn44.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn44.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn44.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn44.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn44.Caption = "پرداخت وام از حساب";
-            this.gridColumn44.FieldName = "NameHesab";
-            this.gridColumn44.Name = "gridColumn44";
-            this.gridColumn44.Visible = true;
-            this.gridColumn44.VisibleIndex = 18;
-            this.gridColumn44.Width = 350;
+            this.colHesabTafzili.AppearanceCell.Options.UseTextOptions = true;
+            this.colHesabTafzili.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colHesabTafzili.AppearanceHeader.Options.UseTextOptions = true;
+            this.colHesabTafzili.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colHesabTafzili.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colHesabTafzili.Caption = "حساب تفضیلی";
+            this.colHesabTafzili.FieldName = "HesabTafzili";
+            this.colHesabTafzili.Name = "colHesabTafzili";
+            this.colHesabTafzili.Visible = true;
+            this.colHesabTafzili.VisibleIndex = 20;
+            this.colHesabTafzili.Width = 350;
             // 
             // gridColumn45
             // 
@@ -548,7 +552,7 @@
             this.gridColumn45.MinWidth = 19;
             this.gridColumn45.Name = "gridColumn45";
             this.gridColumn45.Visible = true;
-            this.gridColumn45.VisibleIndex = 19;
+            this.gridColumn45.VisibleIndex = 21;
             this.gridColumn45.Width = 100;
             // 
             // AazaId
@@ -1078,6 +1082,35 @@
             this.btnDisplyActiveList2.ToolTip = "نمایش لیست";
             this.btnDisplyActiveList2.Click += new System.EventHandler(this.btnDisplyActiveList2_Click);
             // 
+            // colHesabMoin
+            // 
+            this.colHesabMoin.AppearanceCell.Options.UseTextOptions = true;
+            this.colHesabMoin.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colHesabMoin.AppearanceHeader.Options.UseTextOptions = true;
+            this.colHesabMoin.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colHesabMoin.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colHesabMoin.Caption = "حساب معین";
+            this.colHesabMoin.FieldName = "HesabMoin";
+            this.colHesabMoin.Name = "colHesabMoin";
+            this.colHesabMoin.Visible = true;
+            this.colHesabMoin.VisibleIndex = 19;
+            this.colHesabMoin.Width = 140;
+            // 
+            // colShomareSanad
+            // 
+            this.colShomareSanad.AppearanceCell.Options.UseTextOptions = true;
+            this.colShomareSanad.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colShomareSanad.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colShomareSanad.AppearanceHeader.Options.UseTextOptions = true;
+            this.colShomareSanad.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colShomareSanad.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colShomareSanad.Caption = "شماره سند";
+            this.colShomareSanad.FieldName = "ShomareSanad";
+            this.colShomareSanad.Name = "colShomareSanad";
+            this.colShomareSanad.Visible = true;
+            this.colShomareSanad.VisibleIndex = 1;
+            this.colShomareSanad.Width = 80;
+            // 
             // FrmListVamhayePardakhti
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
@@ -1141,7 +1174,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn41;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn42;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn43;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn44;
+        private DevExpress.XtraGrid.Columns.GridColumn colHesabTafzili;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn45;
         private DevExpress.XtraEditors.PanelControl panelControl3;
         private DevExpress.XtraEditors.SimpleButton btnPrint1;
@@ -1187,5 +1220,7 @@
         private DevExpress.XtraEditors.PanelControl panelControl6;
         private DevExpress.XtraEditors.PanelControl panelControl5;
         private DevExpress.XtraGrid.Columns.GridColumn colShomareGhest;
+        private DevExpress.XtraGrid.Columns.GridColumn colShomareSanad;
+        private DevExpress.XtraGrid.Columns.GridColumn colHesabMoin;
     }
 }

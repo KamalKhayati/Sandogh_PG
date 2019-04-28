@@ -124,7 +124,7 @@ namespace Sandogh_TG
                     }
                     else
                     {
-                        txtSeryal.Text = "0000001";
+                        txtSeryal.Text = "1";
                     }
                 }
                 catch (Exception ex)

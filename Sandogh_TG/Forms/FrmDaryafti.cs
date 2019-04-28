@@ -323,6 +323,25 @@ namespace Sandogh_TG
             //btnDisplyList2_Click(null, null);
             FillDataGridVamhayePardakhti();
             gridView3_RowCellClick(null, null);
+            if (IsActiveList1 == true)
+            {
+                if (gridView1.RowCount > 0)
+                {
+                    btnCreate2.Visible = true;
+                    btnDelete2.Visible = true;
+                    btnEdit2.Visible = true;
+                }
+            }
+            else
+            {
+                btnCreate2.Visible = false;
+                btnDelete2.Visible = false;
+                btnEdit2.Visible = false;
+                btnCreate4.Visible = false;
+                btnDelete4.Visible = false;
+                btnEdit4.Visible = false;
+            }
+
         }
         int EditRowIndex = 0;
         private void btnDelete2_Click(object sender, EventArgs e)
@@ -341,6 +360,10 @@ namespace Sandogh_TG
                             if (q != null)
                             {
                                 db.HaghOzviats.Remove(q);
+                                var q1 = db.AsnadeHesabdariRows.Where(f => f.ShomareSanad == q.ShomareSanad);
+                                if (q1.Count() > 0)
+                                    db.AsnadeHesabdariRows.RemoveRange(q1);
+
                                 /////////////////////////////////////////////////////////////////////////////
                                 db.SaveChanges();
 
@@ -482,22 +505,27 @@ namespace Sandogh_TG
                                     q.NameHesabId = 0;
                                     q.NameHesab = string.Empty;
                                     q.Sharh = string.Empty;
+                                    ///////////////////////////////////////////////////////////////////
+                                    var q1 = db.AsnadeHesabdariRows.Where(f => f.ShomareSanad == q.ShomareSanad);
+                                    if (q1.Count() > 0)
+                                        db.AsnadeHesabdariRows.RemoveRange(q1);
+                                    //////////////////////////////////////////////////////////////////
                                     db.SaveChanges();
                                     btnDisplyActiveList4_Click(null, null);
                                     //XtraMessageBox.Show("عملیات حذف با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                                     if (gridView4.RowCount > 0)
                                         gridView4.FocusedRowHandle = EditRowIndex - 1;
 
-                                    var q1 = db.VamPardakhtis.FirstOrDefault(s => s.Id == q.VamPardakhtiId);
-                                    if (q1.IsTasviye == false)
+                                    var q2 = db.VamPardakhtis.FirstOrDefault(s => s.Id == q.VamPardakhtiId);
+                                    if (q2.IsTasviye == false)
                                     {
                                         if (Convert.ToInt32(gridView4.Columns["Mande"].SummaryItem.SummaryValue) == 0)
                                         {
                                             if (XtraMessageBox.Show("آیا وام فوق به لیست وامهای تسویه شده انتقال یابد؟", "پیغام ثبت ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                                             {
-                                                if (q1 != null)
+                                                if (q2 != null)
                                                 {
-                                                    q1.IsTasviye = true;
+                                                    q2.IsTasviye = true;
                                                     db.SaveChanges();
                                                     btnDisplyActiveList3_Click(null, null);
                                                 }
@@ -511,9 +539,9 @@ namespace Sandogh_TG
                                         {
                                             if (XtraMessageBox.Show("با حذف دریافت این قسط ، وام مذکور از حالت تسویه خارج شد آیا وام فوق به لیست وامهای تسویه نشده انتقال یابد؟", "پیغام ثبت ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                                             {
-                                                if (q1 != null)
+                                                if (q2 != null)
                                                 {
-                                                    q1.IsTasviye = false;
+                                                    q2.IsTasviye = false;
                                                     db.SaveChanges();
                                                     btnDisplyActiveList3_Click(null, null);
                                                 }
@@ -647,24 +675,6 @@ namespace Sandogh_TG
 
         private void gridView2_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            if (IsActiveList1 == true)
-            {
-                if (gridView1.RowCount > 0)
-                {
-                    btnCreate2.Visible = true;
-                    btnDelete2.Visible = true;
-                    btnEdit2.Visible = true;
-                }
-            }
-            else
-            {
-                btnCreate2.Visible = false;
-                btnDelete2.Visible = false;
-                btnEdit2.Visible = false;
-                btnCreate4.Visible = false;
-                btnDelete4.Visible = false;
-                btnEdit4.Visible = false;
-            }
         }
 
         private void gridView4_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)

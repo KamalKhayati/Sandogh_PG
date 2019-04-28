@@ -28,6 +28,8 @@ namespace Sandogh_TG
         [MaxLength(200)]
         public string Sharh { get; set; }
         [Required]
+        public int ShomareSanad { get; set; }
+        [Required]
         public int SalMaliId { get; set; }
         public virtual AazaSandogh AazaSandogh1 { get; set; }
     }
