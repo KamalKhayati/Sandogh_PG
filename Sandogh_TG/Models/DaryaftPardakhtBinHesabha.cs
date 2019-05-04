@@ -13,24 +13,28 @@ namespace Sandogh_TG
         public int Id { get; set; }
         [Required]
         public int Seryal { get; set; }
+        [Required]
+        public int NoeSanadIndex { get; set; }
+        [Required, MaxLength(10)]
+        public string NoeSanadName { get; set; }
         [Required, Column(TypeName = "Date")]
         public DateTime Tarikh { get; set; }
         [Required]
         public decimal Mablagh { get; set; }
         [Required]
-        public int HesabMoinCode1 { get; set; }
+        public int HesabMoinId1 { get; set; }
         [Required, MaxLength(50)]
         public string HesabMoineName1 { get; set; }
         [Required]
-        public int HesabTafziliCode1 { get; set; }
+        public int HesabTafziliId1 { get; set; }
         [Required, MaxLength(50)]
         public string HesabTafziliName1 { get; set; }
         [Required]
-        public int HesabMoinCode2 { get; set; }
+        public int HesabMoinId2 { get; set; }
         [Required, MaxLength(50)]
         public string HesabMoineName2 { get; set; }
         [Required]
-        public int HesabTafziliCode2 { get; set; }
+        public int HesabTafziliId2 { get; set; }
         [Required, MaxLength(50)]
         public string HesabTafziliName2 { get; set; }
         [MaxLength(200)]

@@ -127,7 +127,7 @@ namespace Sandogh_TG
                             FrmVamPardakhti fm = new FrmVamPardakhti(this);
                             fm.En = EnumCED.Edit;
                             //fm.IsEditRizAghsat = true;
-                            fm.panelControl1.Enabled = fm.panelControl3.Enabled = fm.panelControl4.Enabled = fm.panelControl5.Enabled = fm.panelControl6.Enabled = fm.panelControl7.Enabled= false;
+                            fm.panelControl1.Enabled = fm.panelControl3.Enabled = fm.panelControl4.Enabled = fm.panelControl5.Enabled = fm.panelControl6.Enabled = fm.panelControl7.Enabled = false;
                             fm.ShowDialog();
                         }
                     }
@@ -202,33 +202,47 @@ namespace Sandogh_TG
                         try
                         {
                             int RowId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id").ToString());
-                            var q = db.VamPardakhtis.FirstOrDefault(p => p.Id == RowId);
-                            if (q != null)
+                            var qq1 = db.RizeAghsatVams.FirstOrDefault(p => p.VamPardakhtiId == RowId && p.MablaghDaryafti > 0);
+                            if (qq1 != null)
                             {
-                                db.VamPardakhtis.Remove(q);
-                                var q1 = db.AsnadeHesabdariRows.Where(f => f.ShomareSanad == q.ShomareSanad);
-                                if (q1.Count() > 0)
-                                    db.AsnadeHesabdariRows.RemoveRange(q1);
-                                /////////////////////////////////////////////////////////////////////////////
-                                db.SaveChanges();
-
-                                if (ListTasviyeNashode)
-                                    btnDisplyActiveList1_Click(null, null);
-                                else
-                                    btnDisplyNotActiveList1_Click(null, null);
-                                //XtraMessageBox.Show("عملیات حذف با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
-                                if (gridView1.RowCount > 0)
-                                    gridView1.FocusedRowHandle = EditRowIndex - 1;
+                                XtraMessageBox.Show("به دلیل اقساط دریافتی ، وام فوق قابل حذف نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return;
                             }
                             else
-                                XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            {
+                                var q = db.VamPardakhtis.FirstOrDefault(p => p.Id == RowId);
+                                if (q != null)
+                                {
+                                    db.VamPardakhtis.Remove(q);
+                                    var q1 = db.AsnadeHesabdariRows.Where(f => f.ShomareSanad == q.ShomareSanad);
+                                    if (q1.Count() > 0)
+                                        db.AsnadeHesabdariRows.RemoveRange(q1);
+                                    /////////////////////////////////////////////////////////////////////////////
+                                    db.SaveChanges();
+
+                                    if (ListTasviyeNashode)
+                                        btnDisplyActiveList1_Click(null, null);
+                                    else
+                                        btnDisplyNotActiveList1_Click(null, null);
+                                    //XtraMessageBox.Show("عملیات حذف با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                                    if (gridView1.RowCount > 0)
+                                        gridView1.FocusedRowHandle = EditRowIndex - 1;
+                                }
+                                else
+                                    XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+
+
+
+
+
                         }
-                        catch (DbUpdateException)
-                        {
-                            XtraMessageBox.Show("حذف این وام مقدور نیست \n" +
-                                "جهت حذف وام مورد نظر ، در ابتدا بایستی ریز اقساط وام حذف گردد"
-                                , "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
+                        //catch (DbUpdateException)
+                        //{
+                        //    XtraMessageBox.Show("حذف این وام مقدور نیست \n" +
+                        //        "جهت حذف وام مورد نظر ، در ابتدا بایستی ریز اقساط وام حذف گردد"
+                        //        , "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        //}
                         catch (Exception ex)
                         {
                             XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message, "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -509,6 +523,12 @@ namespace Sandogh_TG
             //    btnEdit2.Visible = false;
             //    chkSelectAll.Visible = false;
             //}
+        }
+
+        private void gridView2_CustomSummaryCalculate(object sender, DevExpress.Data.CustomSummaryEventArgs e)
+        {
+            HelpClass1.gridView_CustomSummaryCalculate(sender, e, gridView2, "MablaghAghsat", "MablaghDaryafti", "Mande");
+
         }
     }
 }

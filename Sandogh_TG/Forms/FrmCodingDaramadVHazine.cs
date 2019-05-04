@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
 namespace Sandogh_TG
 {
@@ -22,7 +23,7 @@ namespace Sandogh_TG
         }
 
         public EnumCED En;
-
+        public bool IsActiveList = true;
         private void cmbGroupHesab_SelectedIndexChanged(object sender, EventArgs e)
         {
             NewCode();
@@ -34,11 +35,22 @@ namespace Sandogh_TG
             {
                 try
                 {
-                    var q1 = db.CodingDaramadVHazines.OrderBy(s => s.Code).ToList();
-                    if (q1.Count > 0)
-                        codingDaramadVHazinesBindingSource.DataSource = q1;
+                    if (IsActiveList)
+                    {
+                        var q1 = db.CodingDaramadVHazines.Where(s => s.IsActive == true).OrderBy(s => s.Code).ToList();
+                        if (q1.Count > 0)
+                            codingDaramadVHazinesBindingSource.DataSource = q1;
+                        else
+                            codingDaramadVHazinesBindingSource.DataSource = null;
+                    }
                     else
-                        codingDaramadVHazinesBindingSource.DataSource = null;
+                    {
+                        var q1 = db.CodingDaramadVHazines.Where(s => s.IsActive == false).OrderBy(s => s.Code).ToList();
+                        if (q1.Count > 0)
+                            codingDaramadVHazinesBindingSource.DataSource = q1;
+                        else
+                            codingDaramadVHazinesBindingSource.DataSource = null;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -158,7 +170,7 @@ namespace Sandogh_TG
             }
             else if (e.KeyCode == Keys.F7)
             {
-                btnDisplyList_Click(sender, null);
+                btnDisplayActiveList_Click(sender, null);
             }
             else if (e.KeyCode == Keys.F9)
             {
@@ -210,8 +222,14 @@ namespace Sandogh_TG
             HelpClass1.PrintPreview(gridControl1, gridView1);
         }
 
-        public void btnDisplyList_Click(object sender, EventArgs e)
+        public void btnDisplayActiveList_Click(object sender, EventArgs e)
         {
+            IsActiveList = true;
+            FillDataGridCodingDaramadVHazine();
+        }
+        public void btnDisplayNotActiveList_Click(object sender, EventArgs e)
+        {
+            IsActiveList = false;
             FillDataGridCodingDaramadVHazine();
         }
 
@@ -277,6 +295,7 @@ namespace Sandogh_TG
             {
                 cmbGroupHesab.ReadOnly = false;
                 txtNameHesab.ReadOnly = false;
+                chkIsActive.ReadOnly = false;
             }
         }
 
@@ -286,6 +305,7 @@ namespace Sandogh_TG
             {
                 cmbGroupHesab.ReadOnly = true;
                 txtNameHesab.ReadOnly = true;
+                chkIsActive.ReadOnly = true;
             }
         }
 
@@ -306,25 +326,38 @@ namespace Sandogh_TG
                 if (XtraMessageBox.Show("آیا حساب مورد نظر حذف گردد؟", "پیغام حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
                     EditRowIndex = gridView1.FocusedRowHandle;
+                    if (gridView1.GetFocusedRowCellDisplayText("Code") == "1000001" || gridView1.GetFocusedRowCellDisplayText("Code") == "1000002"
+                        || gridView1.GetFocusedRowCellDisplayText("Code") == "2000001")
+                    {
+                        XtraMessageBox.Show("این کد سیستمی است لذا قابل حذف نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
                     using (var db = new MyContext())
                     {
                         try
                         {
                             int RowId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id").ToString());
-                            var q = db.CodingDaramadVHazines.FirstOrDefault(p => p.Id == RowId);
-                            if (q != null)
+                            var qq = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 4 || f.GroupTafziliId == 5 && f.Id2 == RowId);
+                            if (qq != null)
                             {
-                                db.CodingDaramadVHazines.Remove(q);
+                                db.AllHesabTafzilis.Remove(qq);
+                                var q = db.CodingDaramadVHazines.FirstOrDefault(p => p.Id == RowId);
+                                if (q != null)
+                                    db.CodingDaramadVHazines.Remove(q);
                                 /////////////////////////////////////////////////////////////////////////////
                                 db.SaveChanges();
 
-                                    btnDisplyList_Click(null, null);
-                                XtraMessageBox.Show("عملیات حذف با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                                btnDisplayActiveList_Click(null, null);
+                                XtraMessageBox.Show("عملیات حذف با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 if (gridView1.RowCount > 0)
                                     gridView1.FocusedRowHandle = EditRowIndex - 1;
                             }
                             else
                                 XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        catch (DbUpdateException)
+                        {
+                            XtraMessageBox.Show("به دلیل اینکه از حساب فوق جهت صدور سند استفاده شده است لذا قابل حذف نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         catch (Exception ex)
                         {
@@ -340,17 +373,25 @@ namespace Sandogh_TG
         {
             if (gridView1.SelectedRowsCount > 0 && btnEdit.Visible == true)
             {
+                if (gridView1.GetFocusedRowCellDisplayText("Code") == "1000001" || gridView1.GetFocusedRowCellDisplayText("Code") == "1000002"
+                    || gridView1.GetFocusedRowCellDisplayText("Code") == "2000001")
+                {
+                    XtraMessageBox.Show("این کد سیستمی است لذا قابل ویرایش نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
                 gridControl1.Enabled = false;
                 EditRowIndex = gridView1.FocusedRowHandle;
                 En = EnumCED.Edit;
                 InActiveButtons();
 
                 cmbGroupHesab.SelectedIndex = Convert.ToInt32(gridView1.GetFocusedRowCellValue("GroupIndex"));
-                txtId.Text = gridView1.GetFocusedRowCellValue("Id").ToString();
-                txtCode.Text = gridView1.GetFocusedRowCellValue("Code").ToString();
-                txtNameHesab.Text = gridView1.GetFocusedRowCellValue("HesabName").ToString();
+                txtId.Text = gridView1.GetFocusedRowCellDisplayText("Id");
+                txtCode.Text = gridView1.GetFocusedRowCellDisplayText("Code");
+                txtNameHesab.Text = gridView1.GetFocusedRowCellDisplayText("HesabName");
+                chkIsActive.Checked = Convert.ToBoolean(gridView1.GetFocusedRowCellValue("IsActive"));
                 ActiveControls();
-                cmbGroupHesab.Focus();
+                cmbGroupHesab.ReadOnly = true;
+                txtNameHesab.Focus();
             }
         }
 
@@ -369,11 +410,29 @@ namespace Sandogh_TG
                             obj.GroupIndex = cmbGroupHesab.SelectedIndex;
                             obj.GroupName = cmbGroupHesab.Text;
                             obj.HesabName = txtNameHesab.Text;
-                            obj.SandoghId= Convert.ToInt32(Fm.IDSandogh.Caption);
-                            obj.SalMaliId= Convert.ToInt32(Fm.IDSalMali.Caption);
+                            obj.SandoghId = Convert.ToInt32(Fm.IDSandogh.Caption);
+                            obj.IsActive = chkIsActive.Checked;
+                            obj.GroupTafziliId = cmbGroupHesab.SelectedIndex == 0 ? 4 : 5;
+                            //obj.SalMaliId= Convert.ToInt32(Fm.IDSalMali.Caption);
                             db.CodingDaramadVHazines.Add(obj);
                             db.SaveChanges();
-                                btnDisplyList_Click(null, null);
+                            //////////////////////////////////////////
+                            int _Code = Convert.ToInt32(txtCode.Text);
+                            AllHesabTafzili obj1 = new AllHesabTafzili();
+                            obj1.Id2 = db.CodingDaramadVHazines.FirstOrDefault(f => f.Code == _Code).Id;
+                            obj1.Code = _Code;
+                            obj1.Name = txtNameHesab.Text;
+                            obj1.GroupTafziliId = cmbGroupHesab.SelectedIndex == 0 ? 4 : 5;
+                            obj1.IsActive = chkIsActive.Checked;
+                            obj1.SandoghId = Convert.ToInt32(Fm.IDSandogh.Caption);
+                            db.AllHesabTafzilis.Add(obj1);
+                            db.SaveChanges();
+                            /////////////////////////////////////////////////////////////////////////////////////
+                            if (IsActiveList)
+                                btnDisplayActiveList_Click(null, null);
+                            else
+                                btnDisplayNotActiveList_Click(null, null);
+
                             //XtraMessageBox.Show("عملیات ایجاد با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                             gridControl1.Enabled = true;
                             gridView1.MoveLast();
@@ -402,9 +461,25 @@ namespace Sandogh_TG
                                 q.GroupIndex = cmbGroupHesab.SelectedIndex;
                                 q.GroupName = cmbGroupHesab.Text;
                                 q.HesabName = txtNameHesab.Text;
+                                q.IsActive = chkIsActive.Checked;
+                                q.GroupTafziliId = cmbGroupHesab.SelectedIndex == 0 ? 4 : 5;
+                                //////////////////////////////////////////
+                                int _Code = Convert.ToInt32(txtCode.Text);
+                                var qq1 = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 4 || f.GroupTafziliId == 5 && f.Id2 == RowId);
+                                if (qq1 != null)
+                                {
+                                    qq1.Code = _Code;
+                                    qq1.Name = txtNameHesab.Text;
+                                    qq1.GroupTafziliId = cmbGroupHesab.SelectedIndex == 0 ? 4 : 5;
+                                    qq1.IsActive = chkIsActive.Checked;
+                                }
+                                /////////////////////////////////////////////////////////////////////////////////////
 
                                 db.SaveChanges();
-                                    btnDisplyList_Click(null, null);
+                                if (IsActiveList)
+                                    btnDisplayActiveList_Click(null, null);
+                                else
+                                    btnDisplayNotActiveList_Click(null, null);
                                 //XtraMessageBox.Show("عملیات ویرایش با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                                 if (gridView1.RowCount > 0)
                                     gridView1.FocusedRowHandle = EditRowIndex;
@@ -446,7 +521,8 @@ namespace Sandogh_TG
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            gridView1_RowCellClick(null, null);
+            //gridView1_RowCellClick(null, null);
+            btnDelete.Enabled = btnEdit.Enabled = gridView1.RowCount > 0 ? true : false;
         }
 
         private void btnSaveNext_Click(object sender, EventArgs e)
@@ -462,12 +538,6 @@ namespace Sandogh_TG
             {
                 cmbGroupHesab.ShowPopup();
             }
-        }
-
-        private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
-        {
-            btnDelete.Enabled = btnEdit.Enabled = gridView1.RowCount > 0 ? true : false;
-
         }
     }
 }

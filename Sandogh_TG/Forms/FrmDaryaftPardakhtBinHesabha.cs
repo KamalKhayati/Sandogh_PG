@@ -72,102 +72,129 @@ namespace Sandogh_TG
             {
                 try
                 {
-                    switch (Convert.ToInt32(cmbHesabMoin1.EditValue))
+                    int _HesabMoinId = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                    var q = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId);
+                    if (q!=null)
                     {
-                        case 1001:
-                            {
-                                cmbHesabTafzili1.Properties.DisplayMember = "NameHesab";
-                                cmbHesabTafzili1.Properties.ValueMember = "Code";
-                                cmbHesabTafzili1.Properties.Columns[1].FieldName = "NameHesab";
-                                if (En == EnumCED.Create)
+                        switch (q.Code)
+                        {
+                            case 1001:
                                 {
-                                    var q1 = db.HesabBankis.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList();
-                                    if (q1.Count > 0)
-                                        cmbHesabTafzili1.Properties.DataSource = q1;
-                                    else
-                                        cmbHesabTafzili1.Properties.DataSource = null;
+                                    //allHesabTafzilisBindingSource.DisplayMember = "NameHesab";
+                                    //allHesabTafzilisBindingSource.ValueMember = "Id";
+                                    //allHesabTafzilisBindingSource.Columns[1].FieldName = "NameHesab";
+                                    if (En == EnumCED.Create)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource.DataSource = null;
+                                    }
+                                    else if (En == EnumCED.Edit)
+                                    {
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2).OrderBy(s => s.Code).ToList();
+                                        if (q2.Count > 0)
+                                            allHesabTafzilisBindingSource.DataSource = q2;
+                                        else
+                                            allHesabTafzilisBindingSource.DataSource = null;
+                                    }
+                                    break;
                                 }
-                                else if (En == EnumCED.Edit)
+                            case 2001:
                                 {
-                                    var q2 = db.HesabBankis.OrderBy(s => s.Code).ToList();
-                                    if (q2.Count > 0)
-                                        cmbHesabTafzili1.Properties.DataSource = q2;
-                                    else
-                                        cmbHesabTafzili1.Properties.DataSource = null;
+                                    //allHesabTafzilisBindingSource.DisplayMember = "NameVFamil";
+                                    //allHesabTafzilisBindingSource.ValueMember = "Id";
+                                    //allHesabTafzilisBindingSource.Columns[1].FieldName = "NameVFamil";
+                                    if (En == EnumCED.Create)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource.DataSource = null;
+                                    }
+                                    else if (En == EnumCED.Edit)
+                                    {
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3).OrderBy(s => s.Code).ToList();
+                                        if (q2.Count > 0)
+                                            allHesabTafzilisBindingSource.DataSource = q2;
+                                        else
+                                            allHesabTafzilisBindingSource.DataSource = null;
+                                    }
+                                    break;
                                 }
-                                break;
-                            }
-                        case 2001:
-                            {
-                                cmbHesabTafzili1.Properties.DisplayMember = "NameVFamil";
-                                cmbHesabTafzili1.Properties.ValueMember = "Code";
-                                cmbHesabTafzili1.Properties.Columns[1].FieldName = "NameVFamil";
-                                if (En == EnumCED.Create)
+                            case 3001:
                                 {
-                                    var q1 = db.AazaSandoghs.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList();
-                                    if (q1.Count > 0)
-                                        cmbHesabTafzili1.Properties.DataSource = q1;
-                                    else
-                                        cmbHesabTafzili1.Properties.DataSource = null;
+                                    goto case 2001;
                                 }
-                                else if (En == EnumCED.Edit)
+                            case 4001:
                                 {
-                                    var q2 = db.AazaSandoghs.OrderBy(s => s.Code).ToList();
-                                    if (q2.Count > 0)
-                                        cmbHesabTafzili1.Properties.DataSource = q2;
-                                    else
-                                        cmbHesabTafzili1.Properties.DataSource = null;
+                                    goto case 2001;
                                 }
-                                break;
-                            }
-                        case 3001:
-                            {
-                                goto case 2001;
-                            }
-                        case 4001:
-                            {
-                                goto case 2001;
-                            }
-                        case 6001:
-                            {
-                                goto case 2001;
-                            }
-                        case 6002:
-                            {
-                                goto case 2001;
-                            }
-                        case 6003:
-                            {
-                                goto case 2001;
-                            }
-                        case 7001:
-                            {
-                                goto case 2001;
-                            }
-                        case 8001:
-                            {
-                                cmbHesabTafzili1.Properties.DisplayMember = "HesabName";
-                                cmbHesabTafzili1.Properties.ValueMember = "Code";
-                                cmbHesabTafzili1.Properties.Columns[1].FieldName = "HesabName";
-                                var q1 = db.CodingDaramadVHazines.Where(s => s.GroupIndex == 0).OrderBy(s => s.Code).ToList();
-                                if (q1.Count > 0)
-                                    cmbHesabTafzili1.Properties.DataSource = q1;
-                                else
-                                    cmbHesabTafzili1.Properties.DataSource = null;
-                                break;
-                            }
-                        case 9001:
-                            {
-                                cmbHesabTafzili1.Properties.DisplayMember = "HesabName";
-                                cmbHesabTafzili1.Properties.ValueMember = "Code";
-                                cmbHesabTafzili1.Properties.Columns[1].FieldName = "HesabName";
-                                var q1 = db.CodingDaramadVHazines.Where(s => s.GroupIndex == 1).OrderBy(s => s.Code).ToList();
-                                if (q1.Count > 0)
-                                    cmbHesabTafzili1.Properties.DataSource = q1;
-                                else
-                                    cmbHesabTafzili1.Properties.DataSource = null;
-                                break;
-                            }
+                            case 6001:
+                                {
+                                    goto case 2001;
+                                }
+                            case 6002:
+                                {
+                                    goto case 2001;
+                                }
+                            case 6003:
+                                {
+                                    goto case 2001;
+                                }
+                            case 7001:
+                                {
+                                    goto case 2001;
+                                }
+                            case 8001:
+                                {
+                                    //allHesabTafzilisBindingSource.DisplayMember = "HesabName";
+                                    //allHesabTafzilisBindingSource.ValueMember = "Id";
+                                    //allHesabTafzilisBindingSource.Columns[1].FieldName = "HesabName";
+                                    if (En == EnumCED.Create)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource.DataSource = null;
+                                    }
+                                    else if (En == EnumCED.Edit)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource.DataSource = null;
+                                    }
+                                    break;
+                                }
+                            case 9001:
+                                {
+                                    //allHesabTafzilisBindingSource.DisplayMember = "HesabName";
+                                    //allHesabTafzilisBindingSource.ValueMember = "Id";
+                                    //allHesabTafzilisBindingSource.Columns[1].FieldName = "HesabName";
+                                    if (En == EnumCED.Create)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource.DataSource = null;
+                                    }
+                                    else if (En == EnumCED.Edit)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource.DataSource = null;
+                                    }
+                                    break;
+                                }
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -184,102 +211,129 @@ namespace Sandogh_TG
             {
                 try
                 {
-                    switch (Convert.ToInt32(cmbHesabMoin2.EditValue))
+                    int _HesabMoinId = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                    var q = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId);
+                    if (q!=null)
                     {
-                        case 1001:
-                            {
-                                cmbHesabTafzili2.Properties.DisplayMember = "NameHesab";
-                                cmbHesabTafzili2.Properties.ValueMember = "Code";
-                                cmbHesabTafzili2.Properties.Columns[1].FieldName = "NameHesab";
-                                if (En == EnumCED.Create)
+                        switch (q.Code)
+                        {
+                            case 1001:
                                 {
-                                    var q1 = db.HesabBankis.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList();
-                                    if (q1.Count > 0)
-                                        cmbHesabTafzili2.Properties.DataSource = q1;
-                                    else
-                                        cmbHesabTafzili2.Properties.DataSource = null;
+                                    //allHesabTafzilisBindingSource1.DisplayMember = "NameHesab";
+                                    //allHesabTafzilisBindingSource1.ValueMember = "Id";
+                                    //allHesabTafzilisBindingSource1.Columns[1].FieldName = "NameHesab";
+                                    if (En == EnumCED.Create)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    else if (En == EnumCED.Edit)
+                                    {
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2).OrderBy(s => s.Code).ToList();
+                                        if (q2.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q2;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    break;
                                 }
-                                else if (En == EnumCED.Edit)
+                            case 2001:
                                 {
-                                    var q2 = db.HesabBankis.OrderBy(s => s.Code).ToList();
-                                    if (q2.Count > 0)
-                                        cmbHesabTafzili2.Properties.DataSource = q2;
-                                    else
-                                        cmbHesabTafzili2.Properties.DataSource = null;
+                                    //allHesabTafzilisBindingSource1.DisplayMember = "NameVFamil";
+                                    //allHesabTafzilisBindingSource1.ValueMember = "Id";
+                                    //allHesabTafzilisBindingSource1.Columns[1].FieldName = "NameVFamil";
+                                    if (En == EnumCED.Create)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    else if (En == EnumCED.Edit)
+                                    {
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3).OrderBy(s => s.Code).ToList();
+                                        if (q2.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q2;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    break;
                                 }
-                                break;
-                            }
-                        case 2001:
-                            {
-                                cmbHesabTafzili2.Properties.DisplayMember = "NameVFamil";
-                                cmbHesabTafzili2.Properties.ValueMember = "Code";
-                                cmbHesabTafzili2.Properties.Columns[1].FieldName = "NameVFamil";
-                                if (En == EnumCED.Create)
+                            case 3001:
                                 {
-                                    var q1 = db.AazaSandoghs.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList();
-                                    if (q1.Count > 0)
-                                        cmbHesabTafzili2.Properties.DataSource = q1;
-                                    else
-                                        cmbHesabTafzili2.Properties.DataSource = null;
+                                    goto case 2001;
                                 }
-                                else if (En == EnumCED.Edit)
+                            case 4001:
                                 {
-                                    var q2 = db.AazaSandoghs.OrderBy(s => s.Code).ToList();
-                                    if (q2.Count > 0)
-                                        cmbHesabTafzili2.Properties.DataSource = q2;
-                                    else
-                                        cmbHesabTafzili2.Properties.DataSource = null;
+                                    goto case 2001;
                                 }
-                                break;
-                            }
-                        case 3001:
-                            {
-                                goto case 2001;
-                            }
-                        case 4001:
-                            {
-                                goto case 2001;
-                            }
-                        case 6001:
-                            {
-                                goto case 2001;
-                            }
-                        case 6002:
-                            {
-                                goto case 2001;
-                            }
-                        case 6003:
-                            {
-                                goto case 2001;
-                            }
-                        case 7001:
-                            {
-                                goto case 2001;
-                            }
-                        case 8001:
-                            {
-                                cmbHesabTafzili2.Properties.DisplayMember = "HesabName";
-                                cmbHesabTafzili2.Properties.ValueMember = "Code";
-                                cmbHesabTafzili2.Properties.Columns[1].FieldName = "HesabName";
-                                var q1 = db.CodingDaramadVHazines.Where(s => s.GroupIndex == 0).OrderBy(s => s.Code).ToList();
-                                if (q1.Count > 0)
-                                    cmbHesabTafzili2.Properties.DataSource = q1;
-                                else
-                                    cmbHesabTafzili2.Properties.DataSource = null;
-                                break;
-                            }
-                        case 9001:
-                            {
-                                cmbHesabTafzili2.Properties.DisplayMember = "HesabName";
-                                cmbHesabTafzili2.Properties.ValueMember = "Code";
-                                cmbHesabTafzili2.Properties.Columns[1].FieldName = "HesabName";
-                                var q1 = db.CodingDaramadVHazines.Where(s => s.GroupIndex == 1).OrderBy(s => s.Code).ToList();
-                                if (q1.Count > 0)
-                                    cmbHesabTafzili2.Properties.DataSource = q1;
-                                else
-                                    cmbHesabTafzili2.Properties.DataSource = null;
-                                break;
-                            }
+                            case 6001:
+                                {
+                                    goto case 2001;
+                                }
+                            case 6002:
+                                {
+                                    goto case 2001;
+                                }
+                            case 6003:
+                                {
+                                    goto case 2001;
+                                }
+                            case 7001:
+                                {
+                                    goto case 2001;
+                                }
+                            case 8001:
+                                {
+                                    //allHesabTafzilisBindingSource1.DisplayMember = "HesabName";
+                                    //allHesabTafzilisBindingSource1.ValueMember = "Id";
+                                    //allHesabTafzilisBindingSource1.Columns[1].FieldName = "HesabName";
+                                    if (En == EnumCED.Create)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    else if (En == EnumCED.Edit)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    break;
+                                }
+                            case 9001:
+                                {
+                                    //allHesabTafzilisBindingSource1.DisplayMember = "HesabName";
+                                    //allHesabTafzilisBindingSource1.ValueMember = "Id";
+                                    //allHesabTafzilisBindingSource1.Columns[1].FieldName = "HesabName";
+                                    if (En == EnumCED.Create)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    else if (En == EnumCED.Edit)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    break;
+                                }
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -345,7 +399,7 @@ namespace Sandogh_TG
         //    }
         //}
 
-        private void FrmDaryaftNaghdiVBanki_Load(object sender, EventArgs e)
+        private void FrmDaryaftPardakhtBinHesabha_Load(object sender, EventArgs e)
         {
             FillDataGridDaryaftPardakhtBinHesabha();
         }
@@ -402,7 +456,7 @@ namespace Sandogh_TG
             return true;
         }
 
-        private void FrmDaryaftNaghdiVBanki_KeyDown(object sender, KeyEventArgs e)
+        private void FrmDaryaftPardakhtBinHesabha_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F2)
             {
@@ -534,6 +588,7 @@ namespace Sandogh_TG
         public void ClearControls()
         {
             txtSeryal.Text = string.Empty;
+            cmbNoeSanad.SelectedIndex = -1;
             txtTarikh.Text = string.Empty;
             txtMablagh.Text = string.Empty;
             cmbHesabMoin1.EditValue = 0;
@@ -548,14 +603,15 @@ namespace Sandogh_TG
             if (En == EnumCED.Create || En == EnumCED.Edit)
             {
                 txtTarikh.ReadOnly = false;
+                cmbNoeSanad.ReadOnly = false;
                 txtMablagh.ReadOnly = false;
                 cmbHesabMoin1.ReadOnly = false;
                 cmbHesabMoin2.ReadOnly = false;
                 cmbHesabTafzili1.ReadOnly = false;
                 cmbHesabTafzili2.ReadOnly = false;
                 txtSharh.ReadOnly = false;
+                FillcmbHesabMoin();
             }
-            FillcmbHesabMoin();
         }
 
         public void InActiveControls()
@@ -563,6 +619,7 @@ namespace Sandogh_TG
             if (En == EnumCED.Create || En == EnumCED.Edit)
             {
                 txtTarikh.ReadOnly = true;
+                cmbNoeSanad.ReadOnly = true;
                 txtMablagh.ReadOnly = true;
                 cmbHesabMoin1.ReadOnly = true;
                 cmbHesabMoin2.ReadOnly = true;
@@ -583,7 +640,7 @@ namespace Sandogh_TG
             txtTarikh.Text = DateTime.Now.ToString().Substring(0, 10);
             gridControl1.Enabled = false;
             //DefaultBankVSandogh();
-            txtTarikh.Focus();
+            cmbNoeSanad.Focus();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -647,13 +704,14 @@ namespace Sandogh_TG
                 if (gridView1.GetFocusedRowCellValue("Tarikh") != null)
                     txtTarikh.Text = gridView1.GetFocusedRowCellValue("Tarikh").ToString().Substring(0, 10); ;
                 txtMablagh.Text = gridView1.GetFocusedRowCellValue("Mablagh").ToString();
-                cmbHesabMoin1.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinCode1"));
-                cmbHesabTafzili1.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabTafziliCode1"));
-                cmbHesabMoin2.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinCode2"));
-                cmbHesabTafzili2.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabTafziliCode2"));
+                cmbHesabMoin1.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId1"));
+                cmbHesabTafzili1.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabTafziliId1"));
+                cmbHesabMoin2.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId2"));
+                cmbHesabTafzili2.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabTafziliId2"));
                 txtSharh.Text = gridView1.GetFocusedRowCellValue("Sharh").ToString();
+                cmbNoeSanad.SelectedIndex = Convert.ToInt32(gridView1.GetFocusedRowCellValue("NoeSanadIndex"));
 
-                txtTarikh.Focus();
+                cmbNoeSanad.Focus();
             }
         }
 
@@ -675,41 +733,48 @@ namespace Sandogh_TG
                             if (txtMablagh.Text != "0")
                             {
                                 obj.Mablagh = Convert.ToDecimal(txtMablagh.Text);
-                                obj.HesabMoinCode1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                                obj.HesabMoinId1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
                                 obj.HesabMoineName1 = cmbHesabMoin1.Text;
-                                obj.HesabMoinCode2 = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                                obj.HesabMoinId2 = Convert.ToInt32(cmbHesabMoin2.EditValue);
                                 obj.HesabMoineName2 = cmbHesabMoin2.Text;
-                                obj.HesabTafziliCode1 = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                                obj.HesabTafziliId1 = Convert.ToInt32(cmbHesabTafzili1.EditValue);
                                 obj.HesabTafziliName1 = cmbHesabTafzili1.Text;
-                                obj.HesabTafziliCode2 = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                                obj.HesabTafziliId2 = Convert.ToInt32(cmbHesabTafzili2.EditValue);
                                 obj.HesabTafziliName2 = cmbHesabTafzili2.Text;
                             }
                             obj.Sharh = txtSharh.Text;
                             obj.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
                             obj.ShomareSanad = q2 + 1;
+                            obj.NoeSanadIndex = cmbNoeSanad.SelectedIndex;
+                            obj.NoeSanadName = cmbNoeSanad.Text;
                             db.DaryaftPardakhtBinHesabhas.Add(obj);
                             //////////////////////////////////////////////////////////////////////////////////////////
-                            int _HesabTafziliCode1 = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                            int _HesabMoinId1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                            int _HesabTafziliId1 = Convert.ToInt32(cmbHesabTafzili1.EditValue);
                             AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
                             obj1.ShomareSanad = q2 + 1;
                             obj1.Tarikh = Convert.ToDateTime(txtTarikh.Text.Substring(0, 10));
-                            obj1.MoinCode = Convert.ToInt32(cmbHesabMoin1.EditValue);
-                            obj1.MoinName = cmbHesabMoin1.Text; ;
-                            obj1.HesabTafCode = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                            obj1.HesabMoinId = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                            obj1.HesabMoinCode = db.CodeMoins.FirstOrDefault(f=>f.Id== _HesabMoinId1).Code;
+                            obj1.HesabMoinName = cmbHesabMoin1.Text; ;
+                            obj1.HesabTafId = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                            obj1.HesabTafCode = db.AllHesabTafzilis.FirstOrDefault(f => f.Id == _HesabTafziliId1).Code;
                             obj1.HesabTafName = cmbHesabTafzili1.Text;
                             obj1.Bed = Convert.ToDecimal(txtMablagh.Text.Replace(",", ""));
                             obj1.Sharh = txtSharh.Text;
                             obj1.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
                             db.AsnadeHesabdariRows.Add(obj1);
 
-                            int _HesabTafziliCode2 = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                            int _HesabMoinId2 = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                            int _HesabTafziliId2 = Convert.ToInt32(cmbHesabTafzili2.EditValue);
                             AsnadeHesabdariRow obj2 = new AsnadeHesabdariRow();
                             obj2.ShomareSanad = q2 + 1;
                             obj2.Tarikh = Convert.ToDateTime(txtTarikh.Text.Substring(0, 10));
-                            obj2.MoinCode = Convert.ToInt32(cmbHesabMoin2.EditValue);
-                            obj2.MoinName = cmbHesabMoin2.Text;
-                            //obj2.HesabTafId = _HesabTafziliCode2;
-                            obj2.HesabTafCode = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                            obj2.HesabMoinId = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                            obj2.HesabMoinCode = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId2).Code;
+                            obj2.HesabMoinName = cmbHesabMoin2.Text; ;
+                            obj2.HesabTafId = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                            obj2.HesabTafCode = db.AllHesabTafzilis.FirstOrDefault(f => f.Id == _HesabTafziliId2).Code;
                             obj2.HesabTafName = cmbHesabTafzili2.Text;
                             obj2.Bes = Convert.ToDecimal(txtMablagh.Text.Replace(",", ""));
                             obj2.Sharh = txtSharh.Text;
@@ -748,43 +813,50 @@ namespace Sandogh_TG
                                 if (txtMablagh.Text != "0")
                                 {
                                     q.Mablagh = Convert.ToDecimal(txtMablagh.Text);
-                                    q.HesabMoinCode1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                                    q.HesabMoinId1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
                                     q.HesabMoineName1 = cmbHesabMoin1.Text;
-                                    q.HesabMoinCode2 = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                                    q.HesabMoinId2 = Convert.ToInt32(cmbHesabMoin2.EditValue);
                                     q.HesabMoineName2 = cmbHesabMoin2.Text;
-                                    q.HesabTafziliCode1 = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                                    q.HesabTafziliId1 = Convert.ToInt32(cmbHesabTafzili1.EditValue);
                                     q.HesabTafziliName1 = cmbHesabTafzili1.Text;
-                                    q.HesabTafziliCode2 = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                                    q.HesabTafziliId2 = Convert.ToInt32(cmbHesabTafzili2.EditValue);
                                     q.HesabTafziliName2 = cmbHesabTafzili2.Text;
                                 }
                                 q.Sharh = txtSharh.Text;
+                                q.NoeSanadIndex = cmbNoeSanad.SelectedIndex;
+                                q.NoeSanadName = cmbNoeSanad.Text;
                                 /////////////////////////////////////////////////////////////////////////////////////
                                 var q2 = db.AsnadeHesabdariRows.Where(f => f.ShomareSanad == q.ShomareSanad);
                                 if (q2.Count() > 0)
                                     db.AsnadeHesabdariRows.RemoveRange(q2);
 
 
-                                int _HesabTafziliCode1 = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                                int _HesabMoinId1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                                int _HesabTafziliId1 = Convert.ToInt32(cmbHesabTafzili1.EditValue);
                                 AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
                                 obj1.ShomareSanad = q.ShomareSanad;
                                 obj1.Tarikh = Convert.ToDateTime(txtTarikh.Text.Substring(0, 10));
-                                obj1.MoinCode = Convert.ToInt32(cmbHesabMoin1.EditValue);
-                                obj1.MoinName = cmbHesabMoin1.Text; ;
-                                obj1.HesabTafCode = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                                obj1.HesabMoinId = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                                obj1.HesabMoinCode = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId1).Code;
+                                obj1.HesabMoinName = cmbHesabMoin1.Text; ;
+                                obj1.HesabTafId = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                                obj1.HesabTafCode = db.AllHesabTafzilis.FirstOrDefault(f => f.Id == _HesabTafziliId1).Code;
                                 obj1.HesabTafName = cmbHesabTafzili1.Text;
                                 obj1.Bed = Convert.ToDecimal(txtMablagh.Text.Replace(",", ""));
                                 obj1.Sharh = txtSharh.Text;
                                 obj1.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
                                 db.AsnadeHesabdariRows.Add(obj1);
 
-                                int _HesabTafziliCode2 = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                                int _HesabMoinId2 = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                                int _HesabTafziliId2 = Convert.ToInt32(cmbHesabTafzili2.EditValue);
                                 AsnadeHesabdariRow obj2 = new AsnadeHesabdariRow();
                                 obj2.ShomareSanad = q.ShomareSanad;
                                 obj2.Tarikh = Convert.ToDateTime(txtTarikh.Text.Substring(0, 10));
-                                obj2.MoinCode = Convert.ToInt32(cmbHesabMoin2.EditValue);
-                                obj2.MoinName = cmbHesabMoin2.Text;
-                                //obj2.HesabTafId = _HesabTafziliCode2;
-                                obj2.HesabTafCode = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                                obj2.HesabMoinId = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                                obj2.HesabMoinCode = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId2).Code;
+                                obj2.HesabMoinName = cmbHesabMoin2.Text; ;
+                                obj2.HesabTafId = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                                obj2.HesabTafCode = db.AllHesabTafzilis.FirstOrDefault(f => f.Id == _HesabTafziliId2).Code;
                                 obj2.HesabTafName = cmbHesabTafzili2.Text;
                                 obj2.Bes = Convert.ToDecimal(txtMablagh.Text.Replace(",", ""));
                                 obj2.Sharh = txtSharh.Text;
@@ -852,31 +924,19 @@ namespace Sandogh_TG
 
         private void cmbHesabMoin1_Enter(object sender, EventArgs e)
         {
-            if (En == EnumCED.Create)
-            {
                 cmbHesabMoin1.ShowPopup();
-            }
         }
         private void cmbHesabMoin2_Enter(object sender, EventArgs e)
         {
-            if (En == EnumCED.Create)
-            {
                 cmbHesabMoin2.ShowPopup();
-            }
         }
         private void cmbHesabTafzili1_Enter(object sender, EventArgs e)
         {
-            if (En == EnumCED.Create)
-            {
                 cmbHesabTafzili1.ShowPopup();
-            }
         }
         private void cmbHesabTafzili2_Enter(object sender, EventArgs e)
         {
-            if (En == EnumCED.Create)
-            {
                 cmbHesabTafzili2.ShowPopup();
-            }
         }
 
         private void cmbHesabMoin1_EditValueChanged(object sender, EventArgs e)
@@ -887,6 +947,12 @@ namespace Sandogh_TG
         private void cmbHesabMoin2_EditValueChanged(object sender, EventArgs e)
         {
             FillcmbHesabTafzili2();
+        }
+
+        private void cmbNoeSanad_Enter(object sender, EventArgs e)
+        {
+            if(En==EnumCED.Create)
+                cmbNoeSanad.ShowPopup();
         }
 
         //string _PardakhtKonandeName = string.Empty;

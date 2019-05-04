@@ -88,11 +88,22 @@ namespace Sandogh_TG
             {
                 try
                 {
-                    var q1 = db.AazaSandoghs.Select(f => f).ToList();
-                    if (q1.Count > 0)
-                        aazaSandoghsBindingSource.DataSource = q1;
+                    if (En == EnumCED.Create)
+                    {
+                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3 && IsActive == true).ToList();
+                        if (q1.Count > 0)
+                            allHesabTafzilisBindingSource.DataSource = q1;
+                        else
+                            allHesabTafzilisBindingSource.DataSource = null;
+                    }
                     else
-                        aazaSandoghsBindingSource.DataSource = null;
+                    {
+                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3).ToList();
+                        if (q1.Count > 0)
+                            allHesabTafzilisBindingSource.DataSource = q1;
+                        else
+                            allHesabTafzilisBindingSource.DataSource = null;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -266,12 +277,14 @@ namespace Sandogh_TG
         {
             IsCheckInSandogh = true;
             FillDataGridCheckTazmin();
+            btnCreate.Visible = btnDelete.Visible = btnEdit.Visible = btnSave.Visible = btnSaveNext.Visible = btnCancel.Visible = true;
         }
 
         public void btnDisplayCheckOdatShode_Click(object sender, EventArgs e)
         {
             IsCheckInSandogh = false;
             FillDataGridCheckTazmin();
+            btnCreate.Visible = btnDelete.Visible = btnEdit.Visible = btnSave.Visible = btnSaveNext.Visible = btnCancel.Visible = false;
         }
 
         private void gridView1_KeyPress(object sender, KeyPressEventArgs e)
@@ -326,7 +339,7 @@ namespace Sandogh_TG
         {
             txtSeryalDaryaft.Text = string.Empty;
             txtTarikhDaryaft.Text = string.Empty;
-            cmbVamGerande.Text = string.Empty;
+            cmbVamGerande.EditValue = 0;
             cmbNoeSanad.SelectedIndex = -1;
             txtShCheck.Text = string.Empty;
             txtTarikhCheck.Text = string.Empty;
@@ -379,6 +392,7 @@ namespace Sandogh_TG
             En = EnumCED.Create;
             InActiveButtons();
             ClearControls();
+            cmbVamGerande.EditValue = 0;
             cmbNoeSanad.SelectedIndex = 0;
             NewSeryal();
             ActiveControls();
@@ -406,10 +420,7 @@ namespace Sandogh_TG
                                 /////////////////////////////////////////////////////////////////////////////
                                 db.SaveChanges();
 
-                                if (IsCheckInSandogh)
-                                    btnDisplayCheckInSandogh_Click(null, null);
-                                else
-                                    btnDisplayCheckOdatShode_Click(null, null);
+                                btnDisplayCheckInSandogh_Click(null, null);
                                 XtraMessageBox.Show("عملیات حذف با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                                 if (gridView1.RowCount > 0)
                                     gridView1.FocusedRowHandle = EditRowIndex - 1;
@@ -495,10 +506,7 @@ namespace Sandogh_TG
 
                             db.CheckTazmins.Add(obj);
                             db.SaveChanges();
-                            if (IsCheckInSandogh)
-                                btnDisplayCheckInSandogh_Click(null, null);
-                            else
-                                btnDisplayCheckOdatShode_Click(null, null);
+                            btnDisplayCheckInSandogh_Click(null, null);
 
                             //XtraMessageBox.Show("عملیات ایجاد با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                             gridControl1.Enabled = true;
@@ -540,10 +548,7 @@ namespace Sandogh_TG
                                 q.SharhDaryaftCheck = txtSharhSanad.Text;
 
                                 db.SaveChanges();
-                                if (IsCheckInSandogh)
-                                    btnDisplayCheckInSandogh_Click(null, null);
-                                else
-                                    btnDisplayCheckOdatShode_Click(null, null);
+                                btnDisplayCheckInSandogh_Click(null, null);
 
                                 //XtraMessageBox.Show("عملیات ویرایش با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                                 if (gridView1.RowCount > 0)
@@ -586,7 +591,8 @@ namespace Sandogh_TG
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            gridView1_RowCellClick(null, null);
+            //gridView1_RowCellClick(null, null);
+            btnDelete.Enabled = btnEdit.Enabled = gridView1.RowCount > 0 ? true : false;
         }
 
         private void btnSaveNext_Click(object sender, EventArgs e)
@@ -598,7 +604,6 @@ namespace Sandogh_TG
 
         private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
-            btnDelete.Enabled = btnEdit.Enabled = gridView1.RowCount > 0 ? true : false;
         }
 
         private void FrmDaryaftCheckTazmin_FormClosed(object sender, FormClosedEventArgs e)
@@ -607,6 +612,23 @@ namespace Sandogh_TG
             {
                 Am.FillDataGridCheckTazmin();
             }
+        }
+
+        private void cmbVamGerande_Enter(object sender, EventArgs e)
+        {
+            cmbVamGerande.ShowPopup();
+        }
+
+        private void cmbNoeSanad_Enter(object sender, EventArgs e)
+        {
+            cmbNoeSanad.ShowPopup();
+
+        }
+
+        private void txtShCheck_EditValueChanged(object sender, EventArgs e)
+        {
+            txtSharhSanad.Text = "بابت دریافت " + cmbNoeSanad.Text + " تضمین به شماره " + txtShCheck.Text;
+
         }
     }
 }

@@ -95,7 +95,7 @@ namespace Sandogh_TG
                         obj.checkEdit2 = checkEdit2.Checked;
                         obj.checkEdit3 = checkEdit3.Checked;
                         obj.Id = _SandoghId;
-                        obj.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
+                        //obj.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
                         db.Tanzimats.Add(obj);
                     }
 
@@ -115,7 +115,8 @@ namespace Sandogh_TG
             this.Close();
         }
 
-        FolderBrowserDialog SPath = new FolderBrowserDialog();
+        //FolderBrowserDialog SPath = new FolderBrowserDialog();
+        XtraFolderBrowserDialog SPath = new XtraFolderBrowserDialog();
         private void btnSelectPath_Click(object sender, EventArgs e)
         {
             try
@@ -124,7 +125,7 @@ namespace Sandogh_TG
                 {
                     if (SPath.SelectedPath.Length == 3)
                     {
-                        txtPath.Text = SPath.SelectedPath + "BackupFile_Sandogh_TG";
+                        txtPath.Text = SPath.SelectedPath;// + "BackupFile_Sandogh_TG";
                         //+"_Date_" + DateTime.Now.ToString().Replace("/", "").Substring(0, 8) + "_Time_" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(".", " ").Substring(8, 11) + ".BAK";
                         //txtSelectPath.Text = SPath.SelectedPath + "BackupFile_" +
                         //    DateTime.Now.Date.Year + DateTime.Now.Date.Month + DateTime.Now.Date.Day + "_" +
@@ -132,7 +133,7 @@ namespace Sandogh_TG
                     }
                     else
                     {
-                        txtPath.Text = SPath.SelectedPath + "\\BackupFile_Sandogh_TG";
+                        txtPath.Text = SPath.SelectedPath; //+ "\\BackupFile_Sandogh_TG";
                         //+"_Date_" + DateTime.Now.ToString().Replace("/", "").Substring(0, 8) + "_Time_" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(".", " ").Substring(8, 11) + ".BAK";
                         //txtSelectPath.Text = SPath.SelectedPath + "\\BackupFile_" +
                         //    DateTime.Now.Date.Year + DateTime.Now.Date.Month + DateTime.Now.Date.Day + "_" +

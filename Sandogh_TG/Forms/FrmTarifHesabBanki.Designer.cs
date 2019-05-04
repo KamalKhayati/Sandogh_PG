@@ -166,6 +166,7 @@
             this.chkIsActive.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkIsActive.Size = new System.Drawing.Size(86, 33);
             this.chkIsActive.TabIndex = 12;
+            this.chkIsActive.CheckedChanged += new System.EventHandler(this.chkIsActive_CheckedChanged);
             // 
             // groupBox2
             // 

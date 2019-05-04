@@ -67,6 +67,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cultures.cs" />
+    <Compile Include="Forms\FrmBackupRestore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmBackupRestore.Designer.cs">
+      <DependentUpon>FrmBackupRestore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmCalling.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmCalling.Designer.cs">
+      <DependentUpon>FrmCalling.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmCalling_1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmCalling_1.Designer.cs">
+      <DependentUpon>FrmCalling_1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmCodingDaramadVHazine.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +133,12 @@
     <Compile Include="Forms\FrmEnteghaliBeHesabDaramadVHazine.Designer.cs">
       <DependentUpon>FrmEnteghaliBeHesabDaramadVHazine.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmListCheckTazminNazdeSandogh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmListCheckTazminNazdeSandogh.Designer.cs">
+      <DependentUpon>FrmListCheckTazminNazdeSandogh.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmOdatCheckTazmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +163,13 @@
     <Compile Include="Forms\FrmSabtHazine.Designer.cs">
       <DependentUpon>FrmSabtHazine.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmSoratHesabTafzili.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSoratHesabTafzili.Designer.cs">
+      <DependentUpon>FrmSoratHesabTafzili.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AllHesabTafzili.cs" />
     <Compile Include="Models\AsnadeHesabdariRow.cs" />
     <Compile Include="Models\CheckTazmin.cs" />
     <Compile Include="Forms\FrmDaryafteAghsateVam.cs">
@@ -222,6 +253,7 @@
     <Compile Include="Models\EnteghalatBeDaramadVhazine.cs" />
     <Compile Include="Models\EnteghalatHesabAaza.cs" />
     <Compile Include="Models\EnteghalatHesabBanki.cs" />
+    <Compile Include="Models\GroupTafzili.cs" />
     <Compile Include="Models\HaghOzviat.cs" />
     <Compile Include="Models\HesabBanki.cs" />
     <Compile Include="Models\PardakhtNaghdiVBanki.cs" />
@@ -243,6 +275,15 @@
     <Compile Include="XtraForm1.Designer.cs">
       <DependentUpon>XtraForm1.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\FrmBackupRestore.resx">
+      <DependentUpon>FrmBackupRestore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmCalling.resx">
+      <DependentUpon>FrmCalling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmCalling_1.resx">
+      <DependentUpon>FrmCalling_1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmCodingDaramadVHazine.resx">
       <DependentUpon>FrmCodingDaramadVHazine.cs</DependentUpon>
     </EmbeddedResource>
@@ -277,6 +318,9 @@
     <EmbeddedResource Include="Forms\FrmEnteghaliBeHesabDaramadVHazine.resx">
       <DependentUpon>FrmEnteghaliBeHesabDaramadVHazine.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmListCheckTazminNazdeSandogh.resx">
+      <DependentUpon>FrmListCheckTazminNazdeSandogh.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmListVamhayePardakhti.resx">
       <DependentUpon>FrmListVamhayePardakhti.cs</DependentUpon>
     </EmbeddedResource>
@@ -294,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmSabtHazine.resx">
       <DependentUpon>FrmSabtHazine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSoratHesabTafzili.resx">
+      <DependentUpon>FrmSoratHesabTafzili.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmTanzimat.resx">
       <DependentUpon>FrmTanzimat.cs</DependentUpon>

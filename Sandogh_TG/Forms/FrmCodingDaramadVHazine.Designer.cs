@@ -36,12 +36,14 @@
             this.colGroupName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHesabName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsActive = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.codingDaramadVHazinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.btnDisplyNotActiveList = new DevExpress.XtraEditors.SimpleButton();
             this.btnSaveNext = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
@@ -53,11 +55,13 @@
             this.btnFirst = new DevExpress.XtraEditors.SimpleButton();
             this.btnPreview = new DevExpress.XtraEditors.SimpleButton();
             this.btnLast = new DevExpress.XtraEditors.SimpleButton();
-            this.btnDisplayList = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDisplayActiveList = new DevExpress.XtraEditors.SimpleButton();
             this.btnCreate = new DevExpress.XtraEditors.SimpleButton();
             this.txtNameHesab = new DevExpress.XtraEditors.TextEdit();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.chkIsActive = new DevExpress.XtraEditors.CheckEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.cmbGroupHesab = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtCode = new DevExpress.XtraEditors.TextEdit();
@@ -73,6 +77,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtNameHesab.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIsActive.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbGroupHesab.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtId.Properties)).BeginInit();
@@ -108,7 +113,8 @@
             this.Line,
             this.colGroupName,
             this.colCode,
-            this.colHesabName});
+            this.colHesabName,
+            this.colIsActive});
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.IndicatorWidth = 25;
@@ -125,7 +131,6 @@
             this.gridView1.OptionsView.RowAutoHeight = true;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
             this.gridView1.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView1_CustomUnboundColumnData);
             this.gridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gridView1_KeyPress);
@@ -175,6 +180,21 @@
             this.colHesabName.VisibleIndex = 3;
             this.colHesabName.Width = 420;
             // 
+            // colIsActive
+            // 
+            this.colIsActive.AppearanceCell.Options.UseTextOptions = true;
+            this.colIsActive.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colIsActive.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colIsActive.AppearanceHeader.Options.UseTextOptions = true;
+            this.colIsActive.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colIsActive.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colIsActive.Caption = "فعال";
+            this.colIsActive.FieldName = "IsActive";
+            this.colIsActive.Name = "colIsActive";
+            this.colIsActive.Visible = true;
+            this.colIsActive.VisibleIndex = 4;
+            this.colIsActive.Width = 120;
+            // 
             // gridControl1
             // 
             this.gridControl1.DataSource = this.codingDaramadVHazinesBindingSource;
@@ -184,7 +204,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(753, 313);
+            this.gridControl1.Size = new System.Drawing.Size(871, 313);
             this.gridControl1.TabIndex = 32;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -197,7 +217,7 @@
             // 
             this.btnSave.Enabled = false;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(582, 5);
+            this.btnSave.Location = new System.Drawing.Point(697, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(38, 33);
             this.btnSave.TabIndex = 0;
@@ -212,14 +232,14 @@
             this.panelControl4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl4.Location = new System.Drawing.Point(0, 0);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(757, 317);
+            this.panelControl4.Size = new System.Drawing.Size(875, 317);
             this.panelControl4.TabIndex = 40;
             // 
             // btnCancel
             // 
             this.btnCancel.Enabled = false;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
-            this.btnCancel.Location = new System.Drawing.Point(494, 5);
+            this.btnCancel.Location = new System.Drawing.Point(609, 5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(38, 33);
             this.btnCancel.TabIndex = 5;
@@ -232,6 +252,7 @@
             // 
             this.panelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelControl2.Controls.Add(this.btnDisplyNotActiveList);
             this.panelControl2.Controls.Add(this.btnSaveNext);
             this.panelControl2.Controls.Add(this.btnClose);
             this.panelControl2.Controls.Add(this.btnPrint);
@@ -244,19 +265,31 @@
             this.panelControl2.Controls.Add(this.btnSave);
             this.panelControl2.Controls.Add(this.btnPreview);
             this.panelControl2.Controls.Add(this.btnLast);
-            this.panelControl2.Controls.Add(this.btnDisplayList);
+            this.panelControl2.Controls.Add(this.btnDisplayActiveList);
             this.panelControl2.Controls.Add(this.btnCancel);
             this.panelControl2.Controls.Add(this.btnCreate);
             this.panelControl2.Location = new System.Drawing.Point(0, 323);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(757, 44);
+            this.panelControl2.Size = new System.Drawing.Size(875, 44);
             this.panelControl2.TabIndex = 39;
+            // 
+            // btnDisplyNotActiveList
+            // 
+            this.btnDisplyNotActiveList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyNotActiveList.ImageOptions.SvgImage")));
+            this.btnDisplyNotActiveList.Location = new System.Drawing.Point(230, 5);
+            this.btnDisplyNotActiveList.Name = "btnDisplyNotActiveList";
+            this.btnDisplyNotActiveList.Size = new System.Drawing.Size(38, 33);
+            this.btnDisplyNotActiveList.TabIndex = 11;
+            this.btnDisplyNotActiveList.Text = "simpleButton1";
+            this.btnDisplyNotActiveList.ToolTip = "F8";
+            this.btnDisplyNotActiveList.ToolTipTitle = "لیست غیرفعال";
+            this.btnDisplyNotActiveList.Click += new System.EventHandler(this.btnDisplayNotActiveList_Click);
             // 
             // btnSaveNext
             // 
             this.btnSaveNext.Enabled = false;
             this.btnSaveNext.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveNext.ImageOptions.Image")));
-            this.btnSaveNext.Location = new System.Drawing.Point(538, 5);
+            this.btnSaveNext.Location = new System.Drawing.Point(653, 5);
             this.btnSaveNext.Name = "btnSaveNext";
             this.btnSaveNext.Size = new System.Drawing.Size(38, 33);
             this.btnSaveNext.TabIndex = 4;
@@ -294,7 +327,7 @@
             // 
             this.btnNext.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.ImageOptions.Image")));
             this.btnNext.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNext.ImageOptions.SvgImage")));
-            this.btnNext.Location = new System.Drawing.Point(383, 5);
+            this.btnNext.Location = new System.Drawing.Point(457, 5);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(38, 33);
             this.btnNext.TabIndex = 7;
@@ -318,7 +351,7 @@
             // 
             this.btnEdit.Enabled = false;
             this.btnEdit.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnEdit.ImageOptions.SvgImage")));
-            this.btnEdit.Location = new System.Drawing.Point(626, 5);
+            this.btnEdit.Location = new System.Drawing.Point(741, 5);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(38, 33);
             this.btnEdit.TabIndex = 3;
@@ -343,7 +376,7 @@
             // 
             this.btnDelete.Enabled = false;
             this.btnDelete.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDelete.ImageOptions.SvgImage")));
-            this.btnDelete.Location = new System.Drawing.Point(670, 5);
+            this.btnDelete.Location = new System.Drawing.Point(785, 5);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(38, 33);
             this.btnDelete.TabIndex = 2;
@@ -356,7 +389,7 @@
             // 
             this.btnFirst.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnFirst.ImageOptions.Image")));
             this.btnFirst.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnFirst.ImageOptions.SvgImage")));
-            this.btnFirst.Location = new System.Drawing.Point(295, 5);
+            this.btnFirst.Location = new System.Drawing.Point(369, 5);
             this.btnFirst.Name = "btnFirst";
             this.btnFirst.Size = new System.Drawing.Size(38, 33);
             this.btnFirst.TabIndex = 9;
@@ -368,7 +401,7 @@
             // 
             this.btnPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPreview.ImageOptions.Image")));
             this.btnPreview.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPreview.ImageOptions.SvgImage")));
-            this.btnPreview.Location = new System.Drawing.Point(339, 5);
+            this.btnPreview.Location = new System.Drawing.Point(413, 5);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(38, 33);
             this.btnPreview.TabIndex = 8;
@@ -379,7 +412,7 @@
             // btnLast
             // 
             this.btnLast.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLast.ImageOptions.SvgImage")));
-            this.btnLast.Location = new System.Drawing.Point(427, 5);
+            this.btnLast.Location = new System.Drawing.Point(501, 5);
             this.btnLast.Name = "btnLast";
             this.btnLast.Size = new System.Drawing.Size(38, 33);
             this.btnLast.TabIndex = 6;
@@ -387,22 +420,22 @@
             this.btnLast.ToolTip = "آخرین رکورد";
             this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
             // 
-            // btnDisplayList
+            // btnDisplayActiveList
             // 
-            this.btnDisplayList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplayList.ImageOptions.SvgImage")));
-            this.btnDisplayList.Location = new System.Drawing.Point(230, 5);
-            this.btnDisplayList.Name = "btnDisplayList";
-            this.btnDisplayList.Size = new System.Drawing.Size(38, 33);
-            this.btnDisplayList.TabIndex = 10;
-            this.btnDisplayList.Text = "simpleButton1";
-            this.btnDisplayList.ToolTip = "F7";
-            this.btnDisplayList.ToolTipTitle = "لیست چکهای تضمینی نزد صندوق";
-            this.btnDisplayList.Click += new System.EventHandler(this.btnDisplyList_Click);
+            this.btnDisplayActiveList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplayActiveList.ImageOptions.SvgImage")));
+            this.btnDisplayActiveList.Location = new System.Drawing.Point(274, 5);
+            this.btnDisplayActiveList.Name = "btnDisplayActiveList";
+            this.btnDisplayActiveList.Size = new System.Drawing.Size(38, 33);
+            this.btnDisplayActiveList.TabIndex = 10;
+            this.btnDisplayActiveList.Text = "simpleButton1";
+            this.btnDisplayActiveList.ToolTip = "F7";
+            this.btnDisplayActiveList.ToolTipTitle = "لیست فعال";
+            this.btnDisplayActiveList.Click += new System.EventHandler(this.btnDisplayActiveList_Click);
             // 
             // btnCreate
             // 
             this.btnCreate.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCreate.ImageOptions.SvgImage")));
-            this.btnCreate.Location = new System.Drawing.Point(714, 5);
+            this.btnCreate.Location = new System.Drawing.Point(829, 5);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(38, 33);
             this.btnCreate.TabIndex = 1;
@@ -414,11 +447,11 @@
             // txtNameHesab
             // 
             this.txtNameHesab.EnterMoveNextControl = true;
-            this.txtNameHesab.Location = new System.Drawing.Point(5, 6);
+            this.txtNameHesab.Location = new System.Drawing.Point(179, 6);
             this.txtNameHesab.Name = "txtNameHesab";
             this.txtNameHesab.Properties.MaxLength = 100;
             this.txtNameHesab.Properties.ReadOnly = true;
-            this.txtNameHesab.Size = new System.Drawing.Size(352, 32);
+            this.txtNameHesab.Size = new System.Drawing.Size(323, 32);
             this.txtNameHesab.TabIndex = 1;
             // 
             // labelControl13
@@ -427,7 +460,7 @@
             this.labelControl13.Appearance.Options.UseForeColor = true;
             this.labelControl13.AutoEllipsis = true;
             this.labelControl13.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl13.Location = new System.Drawing.Point(363, 5);
+            this.labelControl13.Location = new System.Drawing.Point(508, 5);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(69, 32);
             this.labelControl13.TabIndex = 63;
@@ -437,6 +470,8 @@
             // 
             this.panelControl3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelControl3.Controls.Add(this.labelControl2);
+            this.panelControl3.Controls.Add(this.chkIsActive);
             this.panelControl3.Controls.Add(this.labelControl6);
             this.panelControl3.Controls.Add(this.cmbGroupHesab);
             this.panelControl3.Controls.Add(this.txtNameHesab);
@@ -446,14 +481,37 @@
             this.panelControl3.Controls.Add(this.labelControl1);
             this.panelControl3.Location = new System.Drawing.Point(0, 373);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(757, 45);
+            this.panelControl3.Size = new System.Drawing.Size(875, 45);
             this.panelControl3.TabIndex = 41;
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.AutoEllipsis = true;
+            this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl2.Location = new System.Drawing.Point(63, 5);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(101, 32);
+            this.labelControl2.TabIndex = 67;
+            this.labelControl2.Text = "وضعیت حساب";
+            // 
+            // chkIsActive
+            // 
+            this.chkIsActive.EditValue = true;
+            this.chkIsActive.EnterMoveNextControl = true;
+            this.chkIsActive.Location = new System.Drawing.Point(5, 5);
+            this.chkIsActive.Name = "chkIsActive";
+            this.chkIsActive.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
+            this.chkIsActive.Properties.Caption = "فعال";
+            this.chkIsActive.Properties.ReadOnly = true;
+            this.chkIsActive.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkIsActive.Size = new System.Drawing.Size(52, 33);
+            this.chkIsActive.TabIndex = 2;
             // 
             // labelControl6
             // 
             this.labelControl6.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl6.Appearance.Options.UseForeColor = true;
-            this.labelControl6.Location = new System.Drawing.Point(677, 9);
+            this.labelControl6.Location = new System.Drawing.Point(829, 9);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(75, 25);
             this.labelControl6.TabIndex = 65;
@@ -462,7 +520,7 @@
             // cmbGroupHesab
             // 
             this.cmbGroupHesab.EnterMoveNextControl = true;
-            this.cmbGroupHesab.Location = new System.Drawing.Point(576, 6);
+            this.cmbGroupHesab.Location = new System.Drawing.Point(728, 6);
             this.cmbGroupHesab.Name = "cmbGroupHesab";
             this.cmbGroupHesab.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -484,7 +542,7 @@
             // 
             this.txtCode.EditValue = "";
             this.txtCode.EnterMoveNextControl = true;
-            this.txtCode.Location = new System.Drawing.Point(438, 6);
+            this.txtCode.Location = new System.Drawing.Point(590, 6);
             this.txtCode.Name = "txtCode";
             this.txtCode.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.txtCode.Properties.Appearance.Options.UseBackColor = true;
@@ -495,14 +553,14 @@
             this.txtCode.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtCode.Properties.MaxLength = 7;
             this.txtCode.Properties.ReadOnly = true;
-            this.txtCode.Size = new System.Drawing.Size(106, 32);
+            this.txtCode.Size = new System.Drawing.Size(103, 32);
             this.txtCode.TabIndex = 55;
             this.txtCode.TabStop = false;
             // 
             // txtId
             // 
             this.txtId.EditValue = "آیدی";
-            this.txtId.Location = new System.Drawing.Point(438, 6);
+            this.txtId.Location = new System.Drawing.Point(590, 6);
             this.txtId.Name = "txtId";
             this.txtId.Properties.Appearance.Options.UseTextOptions = true;
             this.txtId.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -520,7 +578,7 @@
             // 
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Location = new System.Drawing.Point(550, 9);
+            this.labelControl1.Location = new System.Drawing.Point(699, 9);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(16, 25);
             this.labelControl1.TabIndex = 56;
@@ -530,7 +588,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(757, 419);
+            this.ClientSize = new System.Drawing.Size(875, 419);
             this.Controls.Add(this.panelControl4);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl3);
@@ -555,6 +613,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIsActive.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbGroupHesab.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtId.Properties)).EndInit();
@@ -585,7 +644,7 @@
         private DevExpress.XtraEditors.SimpleButton btnFirst;
         private DevExpress.XtraEditors.SimpleButton btnPreview;
         private DevExpress.XtraEditors.SimpleButton btnLast;
-        private DevExpress.XtraEditors.SimpleButton btnDisplayList;
+        private DevExpress.XtraEditors.SimpleButton btnDisplayActiveList;
         private DevExpress.XtraEditors.SimpleButton btnCreate;
         public DevExpress.XtraEditors.TextEdit txtNameHesab;
         private DevExpress.XtraEditors.LabelControl labelControl13;
@@ -596,5 +655,9 @@
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.ComboBoxEdit cmbGroupHesab;
         private System.Windows.Forms.BindingSource codingDaramadVHazinesBindingSource;
+        public DevExpress.XtraEditors.CheckEdit chkIsActive;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.SimpleButton btnDisplyNotActiveList;
+        private DevExpress.XtraGrid.Columns.GridColumn colIsActive;
     }
 }

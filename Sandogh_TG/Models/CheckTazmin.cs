@@ -45,6 +45,7 @@ namespace Sandogh_TG
         [Required]
         public int SalMaliId { get; set; }
         public bool IsInSandogh { get; set; }
-        public virtual AazaSandogh AazaSandogh1 { get; set; }
+        public virtual AllHesabTafzili AllHesabTafzili1 { get; set; }
+        public virtual SalMali SalMali1 { get; set; }
     }
 }

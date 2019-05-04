@@ -67,10 +67,9 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.cmbNoeSanad = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cmbVamGerande = new DevExpress.XtraEditors.LookUpEdit();
-            this.aazaSandoghsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.allHesabTafzilisBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
-            this.btnDisplayCheckOdatShode = new DevExpress.XtraEditors.SimpleButton();
             this.Line = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -111,7 +110,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtId.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNoeSanad.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbVamGerande.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkTazminsBindingSource)).BeginInit();
@@ -273,14 +272,15 @@
             // btnDisplayCheckInSandogh
             // 
             this.btnDisplayCheckInSandogh.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplayCheckInSandogh.ImageOptions.SvgImage")));
-            this.btnDisplayCheckInSandogh.Location = new System.Drawing.Point(301, 5);
+            this.btnDisplayCheckInSandogh.Location = new System.Drawing.Point(257, 5);
             this.btnDisplayCheckInSandogh.Name = "btnDisplayCheckInSandogh";
             this.btnDisplayCheckInSandogh.Size = new System.Drawing.Size(38, 33);
             this.btnDisplayCheckInSandogh.TabIndex = 10;
             this.btnDisplayCheckInSandogh.Text = "simpleButton1";
             this.btnDisplayCheckInSandogh.ToolTip = "F7";
-            this.btnDisplayCheckInSandogh.ToolTipTitle = "لیست چکهای تضمینی نزد صندوق";
-            this.btnDisplayCheckInSandogh.Click += new System.EventHandler(this.btnDisplayCheckInSandogh_Click);
+            this.btnDisplayCheckInSandogh.ToolTipTitle = "لیست چکهای تضمینی عودت شده";
+            this.btnDisplayCheckInSandogh.Visible = false;
+            this.btnDisplayCheckInSandogh.Click += new System.EventHandler(this.btnDisplayCheckOdatShode_Click);
             // 
             // txtMamlaghCheck
             // 
@@ -609,10 +609,9 @@
             this.cmbVamGerande.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbVamGerande.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "آیدی", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NameVFamil", "نام و نام خانوادگی", 200, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.cmbVamGerande.Properties.DataSource = this.aazaSandoghsBindingSource;
-            this.cmbVamGerande.Properties.DisplayMember = "NameVFamil";
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "نام و نام خانوادگی", 200, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.cmbVamGerande.Properties.DataSource = this.allHesabTafzilisBindingSource;
+            this.cmbVamGerande.Properties.DisplayMember = "Name";
             this.cmbVamGerande.Properties.ImmediatePopup = true;
             this.cmbVamGerande.Properties.MaxLength = 5;
             this.cmbVamGerande.Properties.NullText = "";
@@ -623,9 +622,9 @@
             this.cmbVamGerande.TabIndex = 1;
             this.cmbVamGerande.TabStop = false;
             // 
-            // aazaSandoghsBindingSource
+            // allHesabTafzilisBindingSource
             // 
-            this.aazaSandoghsBindingSource.DataSource = typeof(Sandogh_TG.AazaSandogh);
+            this.allHesabTafzilisBindingSource.DataSource = typeof(Sandogh_TG.AllHesabTafzili);
             // 
             // btnSave
             // 
@@ -649,18 +648,6 @@
             this.labelControl15.Size = new System.Drawing.Size(76, 32);
             this.labelControl15.TabIndex = 35;
             this.labelControl15.Text = "شرح عودت";
-            // 
-            // btnDisplayCheckOdatShode
-            // 
-            this.btnDisplayCheckOdatShode.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplayCheckOdatShode.ImageOptions.SvgImage")));
-            this.btnDisplayCheckOdatShode.Location = new System.Drawing.Point(257, 5);
-            this.btnDisplayCheckOdatShode.Name = "btnDisplayCheckOdatShode";
-            this.btnDisplayCheckOdatShode.Size = new System.Drawing.Size(38, 33);
-            this.btnDisplayCheckOdatShode.TabIndex = 11;
-            this.btnDisplayCheckOdatShode.Text = "simpleButton1";
-            this.btnDisplayCheckOdatShode.ToolTip = "F8";
-            this.btnDisplayCheckOdatShode.ToolTipTitle = "لیست چکهای تضمینی عودت شده";
-            this.btnDisplayCheckOdatShode.Click += new System.EventHandler(this.btnDisplayCheckOdatShode_Click);
             // 
             // Line
             // 
@@ -726,7 +713,6 @@
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowFooter = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
             this.gridView1.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView1_CustomUnboundColumnData);
             this.gridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gridView1_KeyPress);
@@ -987,7 +973,6 @@
             this.panelControl2.Controls.Add(this.btnPreview);
             this.panelControl2.Controls.Add(this.btnLast);
             this.panelControl2.Controls.Add(this.btnDisplayCheckInSandogh);
-            this.panelControl2.Controls.Add(this.btnDisplayCheckOdatShode);
             this.panelControl2.Controls.Add(this.btnCancel);
             this.panelControl2.Controls.Add(this.btnCreate);
             this.panelControl2.Location = new System.Drawing.Point(0, 322);
@@ -1010,7 +995,6 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Enabled = false;
             this.btnCreate.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCreate.ImageOptions.SvgImage")));
             this.btnCreate.Location = new System.Drawing.Point(907, 5);
             this.btnCreate.Name = "btnCreate";
@@ -1096,7 +1080,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtId.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNoeSanad.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbVamGerande.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkTazminsBindingSource)).EndInit();
@@ -1129,9 +1113,7 @@
         private DevExpress.XtraEditors.SimpleButton btnDisplayCheckInSandogh;
         public DevExpress.XtraEditors.TextEdit txtMamlaghCheck;
         private DevExpress.XtraEditors.LabelControl labelControl19;
-        private DevExpress.XtraEditors.TextEdit txtTarikhCheck;
         private DevExpress.XtraEditors.PanelControl panelControl3;
-        private DevExpress.XtraEditors.TextEdit txtTarikhDaryaft;
         public DevExpress.XtraEditors.TextEdit txtShomareHesab;
         public DevExpress.XtraEditors.TextEdit txtSharhSanad;
         public DevExpress.XtraEditors.TextEdit txtSahebCheck;
@@ -1149,12 +1131,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.ComboBoxEdit cmbNoeSanad;
-        private DevExpress.XtraEditors.LookUpEdit cmbVamGerande;
-        private System.Windows.Forms.BindingSource aazaSandoghsBindingSource;
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.LabelControl labelControl15;
-        private DevExpress.XtraEditors.SimpleButton btnDisplayCheckOdatShode;
         private DevExpress.XtraGrid.Columns.GridColumn Line;
         private DevExpress.XtraGrid.Columns.GridColumn colId;
         public DevExpress.XtraGrid.Views.Grid.GridView gridView1;
@@ -1172,14 +1150,19 @@
         private DevExpress.XtraGrid.Columns.GridColumn colSharhDaryaftCheck;
         private DevExpress.XtraGrid.Columns.GridColumn colTarikhOdatCheck;
         private DevExpress.XtraGrid.Columns.GridColumn colSharhOdatCheck;
-        private DevExpress.XtraGrid.GridControl gridControl1;
         private System.Windows.Forms.BindingSource checkTazminsBindingSource;
         public DevExpress.XtraEditors.TextEdit txtSharhOdat;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.SimpleButton btnCreate;
         private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.TextEdit txtTarikhOdat;
         private DevExpress.XtraEditors.PanelControl panelControl4;
+        public DevExpress.XtraEditors.TextEdit txtTarikhCheck;
+        public DevExpress.XtraEditors.TextEdit txtTarikhDaryaft;
+        public DevExpress.XtraEditors.ComboBoxEdit cmbNoeSanad;
+        public DevExpress.XtraEditors.LookUpEdit cmbVamGerande;
+        public DevExpress.XtraEditors.TextEdit txtTarikhOdat;
+        public DevExpress.XtraGrid.GridControl gridControl1;
+        private System.Windows.Forms.BindingSource allHesabTafzilisBindingSource;
     }
 }

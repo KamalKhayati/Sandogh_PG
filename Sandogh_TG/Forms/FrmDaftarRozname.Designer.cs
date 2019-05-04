@@ -29,7 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDaftarRozname));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.ChkTarikh = new DevExpress.XtraEditors.CheckEdit();
+            this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
+            this.txtTaTarikh = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.txtAzTarikh = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.asnadeHesabdariRowsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -44,21 +51,124 @@
             this.colBed = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBes = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSharh = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkTarikh.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaTarikh.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAzTarikh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.asnadeHesabdariRowsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.gridControl1);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl1.Controls.Add(this.ChkTarikh);
+            this.panelControl1.Controls.Add(this.btnSearch);
+            this.panelControl1.Controls.Add(this.txtTaTarikh);
+            this.panelControl1.Controls.Add(this.labelControl1);
+            this.panelControl1.Controls.Add(this.txtAzTarikh);
+            this.panelControl1.Controls.Add(this.labelControl2);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1248, 541);
+            this.panelControl1.Size = new System.Drawing.Size(1248, 60);
             this.panelControl1.TabIndex = 0;
+            // 
+            // ChkTarikh
+            // 
+            this.ChkTarikh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ChkTarikh.Location = new System.Drawing.Point(1222, 14);
+            this.ChkTarikh.Name = "ChkTarikh";
+            this.ChkTarikh.Properties.Caption = "checkEdit1";
+            this.ChkTarikh.Size = new System.Drawing.Size(16, 29);
+            this.ChkTarikh.TabIndex = 0;
+            this.ChkTarikh.TabStop = false;
+            this.ChkTarikh.CheckedChanged += new System.EventHandler(this.ChkTarikh_CheckedChanged);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearch.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSearch.ImageOptions.SvgImage")));
+            this.btnSearch.Location = new System.Drawing.Point(783, 12);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(38, 33);
+            this.btnSearch.TabIndex = 2;
+            this.btnSearch.Text = "simpleButton1";
+            this.btnSearch.ToolTip = "F7";
+            this.btnSearch.ToolTipTitle = "لیست فعال";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtTaTarikh
+            // 
+            this.txtTaTarikh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTaTarikh.Enabled = false;
+            this.txtTaTarikh.EnterMoveNextControl = true;
+            this.txtTaTarikh.Location = new System.Drawing.Point(827, 13);
+            this.txtTaTarikh.Name = "txtTaTarikh";
+            this.txtTaTarikh.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtTaTarikh.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.txtTaTarikh.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.txtTaTarikh.Properties.Mask.BeepOnError = true;
+            this.txtTaTarikh.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
+    "1-9]|[123]0))|((1[2])/([012][1-9])))";
+            this.txtTaTarikh.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtTaTarikh.Properties.Mask.PlaceHolder = '-';
+            this.txtTaTarikh.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtTaTarikh.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtTaTarikh.Size = new System.Drawing.Size(130, 32);
+            this.txtTaTarikh.TabIndex = 1;
+            this.txtTaTarikh.EditValueChanged += new System.EventHandler(this.txtTaTarikh_EditValueChanged);
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl1.Appearance.Options.UseForeColor = true;
+            this.labelControl1.AutoEllipsis = true;
+            this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl1.Location = new System.Drawing.Point(963, 13);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(50, 32);
+            this.labelControl1.TabIndex = 34;
+            this.labelControl1.Text = "تا تاریخ";
+            // 
+            // txtAzTarikh
+            // 
+            this.txtAzTarikh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAzTarikh.Enabled = false;
+            this.txtAzTarikh.EnterMoveNextControl = true;
+            this.txtAzTarikh.Location = new System.Drawing.Point(1024, 12);
+            this.txtAzTarikh.Name = "txtAzTarikh";
+            this.txtAzTarikh.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtAzTarikh.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.txtAzTarikh.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.txtAzTarikh.Properties.Mask.BeepOnError = true;
+            this.txtAzTarikh.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
+    "1-9]|[123]0))|((1[2])/([012][1-9])))";
+            this.txtAzTarikh.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtAzTarikh.Properties.Mask.PlaceHolder = '-';
+            this.txtAzTarikh.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtAzTarikh.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtAzTarikh.Size = new System.Drawing.Size(130, 32);
+            this.txtAzTarikh.TabIndex = 0;
+            this.txtAzTarikh.EditValueChanged += new System.EventHandler(this.txtAzTarikh_EditValueChanged);
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl2.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl2.Appearance.Options.UseForeColor = true;
+            this.labelControl2.AutoEllipsis = true;
+            this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl2.Location = new System.Drawing.Point(1160, 12);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(50, 32);
+            this.labelControl2.TabIndex = 32;
+            this.labelControl2.Text = "از تاریخ";
             // 
             // gridControl1
             // 
@@ -69,7 +179,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1244, 537);
+            this.gridControl1.Size = new System.Drawing.Size(1244, 477);
             this.gridControl1.TabIndex = 33;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -171,7 +281,7 @@
             // 
             // colCodeMoin
             // 
-            this.colCodeMoin.FieldName = "CodeMoin";
+            this.colCodeMoin.FieldName = "HesabMoinCode";
             this.colCodeMoin.Name = "colCodeMoin";
             // 
             // colMoinName
@@ -182,7 +292,7 @@
             this.colMoinName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colMoinName.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colMoinName.Caption = "شرح معین";
-            this.colMoinName.FieldName = "MoinName";
+            this.colMoinName.FieldName = "HesabMoinName";
             this.colMoinName.Name = "colMoinName";
             this.colMoinName.Visible = true;
             this.colMoinName.VisibleIndex = 3;
@@ -269,22 +379,38 @@
             this.colSharh.VisibleIndex = 8;
             this.colSharh.Width = 400;
             // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.gridControl1);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl2.Location = new System.Drawing.Point(0, 60);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(1248, 481);
+            this.panelControl2.TabIndex = 34;
+            // 
             // FrmDaftarRozname
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1248, 541);
+            this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
             this.KeyPreview = true;
             this.Name = "FrmDaftarRozname";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "دفتر روزنامه";
+            this.Load += new System.EventHandler(this.FrmDaftarRozname_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ChkTarikh.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaTarikh.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAzTarikh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.asnadeHesabdariRowsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -306,5 +432,12 @@
         private DevExpress.XtraGrid.Columns.GridColumn colBes;
         private DevExpress.XtraGrid.Columns.GridColumn colCodeMoin;
         private DevExpress.XtraGrid.Columns.GridColumn colMoinName;
+        private DevExpress.XtraEditors.PanelControl panelControl2;
+        private DevExpress.XtraEditors.TextEdit txtTaTarikh;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.TextEdit txtAzTarikh;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.SimpleButton btnSearch;
+        private DevExpress.XtraEditors.CheckEdit ChkTarikh;
     }
 }

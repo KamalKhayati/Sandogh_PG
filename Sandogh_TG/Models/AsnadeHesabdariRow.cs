@@ -16,11 +16,13 @@ namespace Sandogh_TG
         [Required, Column(TypeName = "Date")]
         public DateTime Tarikh { get; set; }
         [Required]
-        public int MoinCode { get; set; }
+        public int HesabMoinId { get; set; }
+        [Required]
+        public int HesabMoinCode { get; set; }
         [Required, MaxLength(50)]
-        public string MoinName { get; set; }
-        //[Required]
-        //public int HesabTafId { get; set; }
+        public string HesabMoinName { get; set; }
+        [Required]
+        public int HesabTafId { get; set; }
         [Required]
         public int HesabTafCode { get; set; }
         [Required,MaxLength(50)]
@@ -31,5 +33,12 @@ namespace Sandogh_TG
         public string Sharh { get; set; }
         [Required]
         public int SalMaliId { get; set; }
+        public virtual SalMali SalMali1 { get; set; }
+        public virtual CodeMoin CodeMoin1 { get; set; }
+        public virtual AllHesabTafzili AllHesabTafzili1 { get; set; }
+        //public virtual HesabBanki HesabBanki1 { get; set; }
+        //public virtual AazaSandogh AazaSandogh1 { get; set; }
+        //public virtual CodingDaramadVHazine CodingDaramadVHazine1 { get; set; }
+
     }
 }

@@ -69,12 +69,13 @@ namespace Sandogh_TG
         public byte[] Pictuer { get; set; }
         [Required]
         public int TarifSandoghId { get; set; }
+        //public virtual TarifSandogh TarifSandogh1 { get; set; }
         [Required]
-        public int SalMaliId { get; set; }
-        public virtual TarifSandogh TarifSandogh1 { get; set; }
-        public virtual ICollection<HaghOzviat> HaghOzviats { get; set; }
-        public virtual ICollection<VamPardakhti> VamPardakhtis { get; set; }
-        public virtual ICollection<CheckTazmin> CheckTazmins { get; set; }
+        public int GroupTafziliId { get; set; }
+        [Required]
+        public int ShomareSanad { get; set; }
+        //public virtual ICollection<AsnadeHesabdariRow> AsnadeHesabdariRows { get; set; }
+        //public virtual GroupTafzili GroupTafzili1 { get; set; }
         //public virtual ICollection<DaryaftNaghdiVBanki> DaryaftNaghdiVBankis { get; set; }
         //public virtual ICollection<PardakhtNaghdiVBanki> PardakhtNaghdiVBankis { get; set; }
 

@@ -47,11 +47,11 @@ namespace Sandogh_TG
         public string Tell { get; set; }
         [Required]
         public int TarifSandoghId { get; set; }
+        //public virtual TarifSandogh TarifSandogh1 { get; set; }
         [Required]
-        public int SalMaliId { get; set; }
-        public virtual TarifSandogh TarifSandogh1 { get; set; }
-        public virtual ICollection<HaghOzviat> HaghOzviats { get; set; }
-        public virtual ICollection<VamPardakhti> VamPardakhtis { get; set; }
+        public int GroupTafziliId { get; set; }
+        //public virtual GroupTafzili GroupTafzili1 { get; set; }
+        //public virtual ICollection<AsnadeHesabdariRow> AsnadeHesabdariRows { get; set; }
 
     }
 }

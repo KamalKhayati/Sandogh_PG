@@ -145,6 +145,7 @@ namespace Sandogh_TG.Forms
                         if (En == EnumCED.Create)
                         {
                             SalMali obj = new SalMali();
+                            obj.Id = db.SalMalis.Any() ? db.SalMalis.Max(f => f.Id) + 1 : 1;
                             obj.TarifSandoghId = Convert.ToInt32(cmbNameSandoogh.EditValue);
                             obj.NameSandogh = cmbNameSandoogh.Text;
                             obj.SaleMali = Convert.ToInt32(txtSalMali.Text);
@@ -355,9 +356,7 @@ namespace Sandogh_TG.Forms
                             }
                             catch (DbUpdateException)
                             {
-                                XtraMessageBox.Show("حذف سال مالی مورد نظر مقدور نیست \n" +
-                                    " جهت حذف سال مالی بایستی کلیه کدینگها و اسناد حسابداری که در سالی مورد نظر تعریف شده است حذف گردد" +
-                                    "", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                XtraMessageBox.Show("به دلیل اینکه از سال مالی فوق جهت صدور سند استفاده شده است لذا قابل حذف نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                             catch (Exception ex)
                             {
@@ -387,6 +386,7 @@ namespace Sandogh_TG.Forms
                 txtEndDate.Text = gridView1.GetFocusedRowCellDisplayText("EndDate").Substring(0, 10);
                 chkIsDefault.Checked = Convert.ToBoolean(gridView1.GetFocusedRowCellValue("IsDefault"));
                 txtSalMali.ReadOnly = true;
+                txtStartDate.Focus();
             }
         }
 
@@ -418,6 +418,12 @@ namespace Sandogh_TG.Forms
             btnSave_Click(null, null);
             if (En == EnumCED.Save)
                 btnCreate_Click(null, null);
+        }
+
+        private void cmbNameSandoogh_Enter(object sender, EventArgs e)
+        {
+            if(En==EnumCED.Create)
+            cmbNameSandoogh.ShowPopup();
         }
     }
 }

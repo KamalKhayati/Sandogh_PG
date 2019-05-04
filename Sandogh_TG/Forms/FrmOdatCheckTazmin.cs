@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using System.Data.Entity;
 
 namespace Sandogh_TG
 {
@@ -21,7 +22,6 @@ namespace Sandogh_TG
         }
 
         public EnumCED En;
-        public bool IsALLCheckList = true;
 
         private void cmbNoeSanad_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -49,22 +49,11 @@ namespace Sandogh_TG
             {
                 try
                 {
-                    if (IsALLCheckList == true)
-                    {
-                        var q1 = db.CheckTazmins.Where(s => s.IsInSandogh == true).OrderBy(s => s.SeryalDaryaft).ToList();
-                        if (q1.Count > 0)
-                            checkTazminsBindingSource.DataSource = q1;
-                        else
-                            checkTazminsBindingSource.DataSource = null;
-                    }
+                    var q = db.CheckTazmins.Where(s => s.IsInSandogh == false).OrderBy(s => s.SeryalDaryaft);
+                    if (q.Count() > 0)
+                        checkTazminsBindingSource.DataSource = q.ToList();
                     else
-                    {
-                        var q = db.CheckTazmins.Where(s => s.IsInSandogh == false).OrderBy(s => s.SeryalDaryaft);
-                        if (q.Count() > 0)
-                            checkTazminsBindingSource.DataSource = q.ToList();
-                        else
-                            checkTazminsBindingSource.DataSource = null;
-                    }
+                        checkTazminsBindingSource.DataSource = null;
                 }
                 catch (Exception ex)
                 {
@@ -81,11 +70,11 @@ namespace Sandogh_TG
             {
                 try
                 {
-                    var q1 = db.AazaSandoghs.Select(f => f).ToList();
+                    var q1 = db.AllHesabTafzilis.Where(f=>f.GroupTafziliId==3).ToList();
                     if (q1.Count > 0)
-                        aazaSandoghsBindingSource.DataSource = q1;
+                        allHesabTafzilisBindingSource.DataSource = q1;
                     else
-                        aazaSandoghsBindingSource.DataSource = null;
+                        allHesabTafzilisBindingSource.DataSource = null;
                 }
                 catch (Exception ex)
                 {
@@ -139,11 +128,11 @@ namespace Sandogh_TG
             {
                 btnCancel_Click(sender, null);
             }
+            //else if (e.KeyCode == Keys.F7)
+            //{
+            //    btnDisplayCheckInSandogh_Click(sender, null);
+            //}
             else if (e.KeyCode == Keys.F7)
-            {
-                btnDisplayCheckInSandogh_Click(sender, null);
-            }
-            else if (e.KeyCode == Keys.F8)
             {
                 btnDisplayCheckOdatShode_Click(sender, null);
             }
@@ -197,15 +186,8 @@ namespace Sandogh_TG
             HelpClass1.PrintPreview(gridControl1, gridView1);
         }
 
-        public void btnDisplayCheckInSandogh_Click(object sender, EventArgs e)
-        {
-            IsALLCheckList = true;
-            FillDataGridCheckTazmin();
-        }
-
         public void btnDisplayCheckOdatShode_Click(object sender, EventArgs e)
         {
-            IsALLCheckList = false;
             FillDataGridCheckTazmin();
         }
 
@@ -298,31 +280,12 @@ namespace Sandogh_TG
         public int EditRowIndex = 0;
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            if (gridView1.SelectedRowsCount > 0)
-            {
-                gridControl1.Enabled = false;
-                EditRowIndex = gridView1.FocusedRowHandle;
-                En = EnumCED.Create;
-                InActiveButtons();
-                ActiveControls();
+            //gridControl1.Enabled = false;
+            FrmListCheckTazminNazdeSandogh fm = new FrmListCheckTazminNazdeSandogh(this);
+            fm.ShowDialog();
+            txtTarikhOdat.Focus();
+            txtSharhOdat.Text="بابت عودت "+cmbNoeSanad.Text+" تضمین به شماره "+txtShCheck.Text;
 
-                txtId.Text = gridView1.GetFocusedRowCellValue("Id").ToString();
-                txtSeryalDaryaft.Text = gridView1.GetFocusedRowCellValue("SeryalDaryaft").ToString();
-                txtTarikhDaryaft.Text = gridView1.GetFocusedRowCellValue("TarikhDaryaft").ToString().Substring(0, 10); ;
-                cmbVamGerande.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("VamGerandeId"));
-                cmbNoeSanad.SelectedIndex = Convert.ToInt32(gridView1.GetFocusedRowCellValue("NoeSanadId"));
-                txtShCheck.Text = gridView1.GetFocusedRowCellValue("ShCheck").ToString();
-                if (gridView1.GetFocusedRowCellValue("TarikhCheck") != null)
-                    txtTarikhCheck.Text = gridView1.GetFocusedRowCellValue("TarikhCheck").ToString().Substring(0, 10);
-                txtMamlaghCheck.Text = gridView1.GetFocusedRowCellValue("Mablagh").ToString();
-                txtShomareHesab.Text = gridView1.GetFocusedRowCellValue("ShomareHesab").ToString();
-                txtNameBankVShobe.Text = gridView1.GetFocusedRowCellValue("NameBank").ToString();
-                txtSahebCheck.Text = gridView1.GetFocusedRowCellValue("SahebCheck").ToString();
-                txtSharhSanad.Text = gridView1.GetFocusedRowCellValue("SharhDaryaftCheck").ToString();
-
-                txtTarikhOdat.Text = DateTime.Now.ToString().Substring(0, 10);
-                txtTarikhOdat.Focus();
-            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -347,7 +310,7 @@ namespace Sandogh_TG
                                 /////////////////////////////////////////////////////////////////////////////
                                 db.SaveChanges();
 
-                                btnDisplayCheckInSandogh_Click(null, null);
+                                btnDisplayCheckOdatShode_Click(null, null);
                                 XtraMessageBox.Show("عملیات ابطال عودت با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                                 if (gridView1.RowCount > 0)
                                     gridView1.FocusedRowHandle = EditRowIndex - 1;
@@ -502,7 +465,10 @@ namespace Sandogh_TG
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            gridView1_RowCellClick(null, null);
+            //gridView1_RowCellClick(null, null);
+            //btnDelete.Enabled = btnEdit.Enabled = gridView1.RowCount > 0 && gridView1.GetFocusedRowCellValue("TarikhOdatCheck") != null ? true : false;
+            btnDelete.Enabled = btnEdit.Enabled = gridView1.RowCount > 0 ? true : false;
+
         }
 
         private void btnSaveNext_Click(object sender, EventArgs e)
@@ -514,8 +480,7 @@ namespace Sandogh_TG
 
         private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
-            btnDelete.Enabled = btnEdit.Enabled = gridView1.RowCount > 0 && gridView1.GetFocusedRowCellValue("TarikhOdatCheck") != null ? true : false;
-            btnCreate.Enabled = gridView1.RowCount > 0 && gridView1.GetFocusedRowCellValue("TarikhOdatCheck") == null ? true : false;
+            //btnCreate.Enabled = gridView1.RowCount > 0 && gridView1.GetFocusedRowCellValue("TarikhOdatCheck") == null ? true : false;
         }
     }
 }

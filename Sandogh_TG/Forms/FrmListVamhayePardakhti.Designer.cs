@@ -37,6 +37,7 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colShomareSanad = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn27 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn28 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn29 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -54,6 +55,7 @@
             this.gridColumn41 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn42 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colHesabMoin = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHesabTafzili = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn45 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.AazaId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -98,8 +100,6 @@
             this.btnPreview2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnLast2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnDisplyActiveList2 = new DevExpress.XtraEditors.SimpleButton();
-            this.colHesabMoin = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colShomareSanad = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -250,6 +250,21 @@
             this.gridColumn26.Visible = true;
             this.gridColumn26.VisibleIndex = 0;
             this.gridColumn26.Width = 60;
+            // 
+            // colShomareSanad
+            // 
+            this.colShomareSanad.AppearanceCell.Options.UseTextOptions = true;
+            this.colShomareSanad.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colShomareSanad.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colShomareSanad.AppearanceHeader.Options.UseTextOptions = true;
+            this.colShomareSanad.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colShomareSanad.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colShomareSanad.Caption = "شماره سند";
+            this.colShomareSanad.FieldName = "ShomareSanad";
+            this.colShomareSanad.Name = "colShomareSanad";
+            this.colShomareSanad.Visible = true;
+            this.colShomareSanad.VisibleIndex = 1;
+            this.colShomareSanad.Width = 80;
             // 
             // gridColumn27
             // 
@@ -525,6 +540,20 @@
             this.gridColumn43.VisibleIndex = 18;
             this.gridColumn43.Width = 140;
             // 
+            // colHesabMoin
+            // 
+            this.colHesabMoin.AppearanceCell.Options.UseTextOptions = true;
+            this.colHesabMoin.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colHesabMoin.AppearanceHeader.Options.UseTextOptions = true;
+            this.colHesabMoin.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colHesabMoin.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colHesabMoin.Caption = "حساب معین";
+            this.colHesabMoin.FieldName = "HesabMoinName";
+            this.colHesabMoin.Name = "colHesabMoin";
+            this.colHesabMoin.Visible = true;
+            this.colHesabMoin.VisibleIndex = 19;
+            this.colHesabMoin.Width = 140;
+            // 
             // colHesabTafzili
             // 
             this.colHesabTafzili.AppearanceCell.Options.UseTextOptions = true;
@@ -533,7 +562,7 @@
             this.colHesabTafzili.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colHesabTafzili.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colHesabTafzili.Caption = "حساب تفضیلی";
-            this.colHesabTafzili.FieldName = "HesabTafzili";
+            this.colHesabTafzili.FieldName = "HesabTafziliName";
             this.colHesabTafzili.Name = "colHesabTafzili";
             this.colHesabTafzili.Visible = true;
             this.colHesabTafzili.VisibleIndex = 20;
@@ -787,6 +816,7 @@
             this.gridView2.OptionsView.ShowAutoFilterRow = true;
             this.gridView2.OptionsView.ShowFooter = true;
             this.gridView2.OptionsView.ShowGroupPanel = false;
+            this.gridView2.CustomSummaryCalculate += new DevExpress.Data.CustomSummaryEventHandler(this.gridView2_CustomSummaryCalculate);
             this.gridView2.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView2_FocusedRowChanged);
             this.gridView2.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView2_CustomUnboundColumnData);
             this.gridView2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gridView2_KeyPress);
@@ -924,7 +954,7 @@
             this.Mande.FieldName = "Mande";
             this.Mande.Name = "Mande";
             this.Mande.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Max, "Mande", "{0:n}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "Mande", "{0:n}")});
             this.Mande.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
             this.Mande.Visible = true;
             this.Mande.VisibleIndex = 5;
@@ -1081,35 +1111,6 @@
             this.btnDisplyActiveList2.Text = "simpleButton1";
             this.btnDisplyActiveList2.ToolTip = "نمایش لیست";
             this.btnDisplyActiveList2.Click += new System.EventHandler(this.btnDisplyActiveList2_Click);
-            // 
-            // colHesabMoin
-            // 
-            this.colHesabMoin.AppearanceCell.Options.UseTextOptions = true;
-            this.colHesabMoin.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colHesabMoin.AppearanceHeader.Options.UseTextOptions = true;
-            this.colHesabMoin.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colHesabMoin.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colHesabMoin.Caption = "حساب معین";
-            this.colHesabMoin.FieldName = "HesabMoin";
-            this.colHesabMoin.Name = "colHesabMoin";
-            this.colHesabMoin.Visible = true;
-            this.colHesabMoin.VisibleIndex = 19;
-            this.colHesabMoin.Width = 140;
-            // 
-            // colShomareSanad
-            // 
-            this.colShomareSanad.AppearanceCell.Options.UseTextOptions = true;
-            this.colShomareSanad.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colShomareSanad.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colShomareSanad.AppearanceHeader.Options.UseTextOptions = true;
-            this.colShomareSanad.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colShomareSanad.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colShomareSanad.Caption = "شماره سند";
-            this.colShomareSanad.FieldName = "ShomareSanad";
-            this.colShomareSanad.Name = "colShomareSanad";
-            this.colShomareSanad.Visible = true;
-            this.colShomareSanad.VisibleIndex = 1;
-            this.colShomareSanad.Width = 80;
             // 
             // FrmListVamhayePardakhti
             // 

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -86,15 +87,29 @@ namespace Sandogh_TG
                 try
                 {
                     var q = db.TarifSandoghs.FirstOrDefault(s => s.IsDefault == true);
-                    if (q!=null)
+                    if (q != null)
                     {
                         IDSandogh.Caption = q.Id.ToString();
+                        ribbonControl1.ApplicationDocumentCaption = q.NameSandogh;
+                        int _SId = Convert.ToInt32(IDSandogh.Caption);
+                        var q2 = db.TarifSandoghs.FirstOrDefault(s => s.Id == _SId);
+                        if (q2.Pictuer != null)
+                        {
+                            MemoryStream ms = new MemoryStream(q2.Pictuer);
+                            pictureEdit1.Image = Image.FromStream(ms);
+                            img = pictureEdit1.Image;
+                        }
+                        else
+                            pictureEdit1.Image = null;
                     }
+
                     var q1 = db.SalMalis.FirstOrDefault(s => s.IsDefault == true);
                     if (q1 != null)
                     {
                         IDSalMali.Caption = q1.Id.ToString();
                     }
+
+
                 }
                 catch (Exception ex)
                 {
@@ -172,6 +187,97 @@ namespace Sandogh_TG
         {
             FrmDaftarRozname fm = new FrmDaftarRozname(this);
             ActiveForm(fm);
+        }
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmDaryaftPardakhtBinHesabha fm = new FrmDaryaftPardakhtBinHesabha(this);
+            ActiveForm(fm);
+
+        }
+
+        private void btnSoratHesabTafzili_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmSoratHesabTafzili fm = new FrmSoratHesabTafzili();
+            ActiveForm(fm);
+
+        }
+
+        private void btnCalculate_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            HelpClass1.StartCalculater();
+        }
+
+        private void btnBackupRestore_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmBackupRestore fm = new FrmBackupRestore(this);
+            fm.ShowDialog();
+        }
+        Image img;
+
+        private void btnChangeBackground_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "Image Files|*.bmp;*.jpg;*.jpeg;*.png;*.gif";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                img = Image.FromFile(openFileDialog1.FileName);
+                this.pictureEdit1.Image = img;
+                //this.pictureEdit1.Tag = openFileDialog1.FileName;
+                using (var db = new MyContext())
+                {
+                    try
+                    {
+                        int _SId = Convert.ToInt32(IDSandogh.Caption);
+                        var q = db.TarifSandoghs.FirstOrDefault(f => f.Id == _SId);
+                        if (q != null)
+                        {
+                            MemoryStream ms = new MemoryStream();
+                            img.Save(ms, pictureEdit1.Image.RawFormat);
+                            byte[] myarrey = ms.GetBuffer();
+                            q.Pictuer = myarrey;
+                            db.SaveChanges();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                if (XtraMessageBox.Show("آیا عکس پس زمینه حذف گردد؟", "پیغام حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    pictureEdit1.Image = null;
+                    using (var db = new MyContext())
+                    {
+                        try
+                        {
+                            int _SId = Convert.ToInt32(IDSandogh.Caption);
+                            var q = db.TarifSandoghs.FirstOrDefault(f => f.Id == _SId);
+                            if (q != null)
+                            {
+                                q.Pictuer = null;
+                                db.SaveChanges();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                                "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnCalling_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmCalling_1 fm = new FrmCalling_1();
+            fm.ShowDialog();
         }
     }
 }

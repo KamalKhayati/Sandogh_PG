@@ -530,7 +530,7 @@
             this.txtSalMali.Name = "txtSalMali";
             this.txtSalMali.Properties.Appearance.Options.UseTextOptions = true;
             this.txtSalMali.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.txtSalMali.Properties.Mask.EditMask = "00000";
+            this.txtSalMali.Properties.Mask.EditMask = "f0";
             this.txtSalMali.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtSalMali.Properties.MaxLength = 4;
             this.txtSalMali.Properties.ReadOnly = true;
@@ -578,6 +578,7 @@
             this.cmbNameSandoogh.Size = new System.Drawing.Size(407, 32);
             this.cmbNameSandoogh.TabIndex = 0;
             this.cmbNameSandoogh.TabStop = false;
+            this.cmbNameSandoogh.Enter += new System.EventHandler(this.cmbNameSandoogh_Enter);
             // 
             // tarifSandoghsBindingSource
             // 

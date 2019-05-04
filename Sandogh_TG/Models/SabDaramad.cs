@@ -28,9 +28,6 @@ namespace Sandogh_TG
         [MaxLength(200)]
         public string Sharh { get; set; }
         [Required]
-        public int SandoghId { get; set; }
-        [Required]
         public int SalMaliId { get; set; }
-        public virtual TarifSandogh TarifSandogh1 { get; set; }
     }
 }

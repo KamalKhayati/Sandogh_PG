@@ -152,7 +152,6 @@ namespace Sandogh_TG
                             }
                             else
                                 q1.Pictuer = null;
-
                         }
                         else
                         {
@@ -174,6 +173,7 @@ namespace Sandogh_TG
                             }
                             else
                                 obj.Pictuer = null;
+                            obj.PicBackground = null;
                             db.TarifSandoghs.Add(obj);
                         }
 

@@ -21,7 +21,12 @@ namespace Sandogh_TG
         [MaxLength(100)]
         public string HesabName { get; set; }
         [Required]
-        public int SalMaliId { get; set; }
-        public virtual TarifSandogh TarifSandogh1 { get; set; }
+        public bool IsActive { get; set; }
+        //public virtual TarifSandogh TarifSandogh1 { get; set; }
+        [Required]
+        public int GroupTafziliId { get; set; }
+        //public virtual ICollection<AsnadeHesabdariRow> AsnadeHesabdariRows { get; set; }
+        //public virtual GroupTafzili GroupTafzili1 { get; set; }
+
     }
 }

@@ -96,7 +96,7 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.cmbNoeSanad = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cmbVamGerande = new DevExpress.XtraEditors.LookUpEdit();
-            this.aazaSandoghsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.allHesabTafzilisBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkTazminsBindingSource)).BeginInit();
@@ -122,7 +122,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtId.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNoeSanad.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbVamGerande.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // Line
@@ -854,6 +854,7 @@
             this.txtShCheck.Properties.ReadOnly = true;
             this.txtShCheck.Size = new System.Drawing.Size(139, 32);
             this.txtShCheck.TabIndex = 4;
+            this.txtShCheck.EditValueChanged += new System.EventHandler(this.txtShCheck_EditValueChanged);
             // 
             // labelControl9
             // 
@@ -1018,6 +1019,7 @@
             this.cmbNoeSanad.Size = new System.Drawing.Size(95, 32);
             this.cmbNoeSanad.TabIndex = 3;
             this.cmbNoeSanad.SelectedIndexChanged += new System.EventHandler(this.cmbNoeSanad_SelectedIndexChanged);
+            this.cmbNoeSanad.Enter += new System.EventHandler(this.cmbNoeSanad_Enter);
             // 
             // cmbVamGerande
             // 
@@ -1027,10 +1029,9 @@
             this.cmbVamGerande.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbVamGerande.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "آیدی", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NameVFamil", "نام و نام خانوادگی", 200, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.cmbVamGerande.Properties.DataSource = this.aazaSandoghsBindingSource;
-            this.cmbVamGerande.Properties.DisplayMember = "NameVFamil";
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "نام وام گیرنده را انتخاب کنید", 250, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.cmbVamGerande.Properties.DataSource = this.allHesabTafzilisBindingSource;
+            this.cmbVamGerande.Properties.DisplayMember = "Name";
             this.cmbVamGerande.Properties.ImmediatePopup = true;
             this.cmbVamGerande.Properties.MaxLength = 5;
             this.cmbVamGerande.Properties.NullText = "";
@@ -1039,10 +1040,11 @@
             this.cmbVamGerande.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbVamGerande.Size = new System.Drawing.Size(398, 32);
             this.cmbVamGerande.TabIndex = 1;
+            this.cmbVamGerande.Enter += new System.EventHandler(this.cmbVamGerande_Enter);
             // 
-            // aazaSandoghsBindingSource
+            // allHesabTafzilisBindingSource
             // 
-            this.aazaSandoghsBindingSource.DataSource = typeof(Sandogh_TG.AazaSandogh);
+            this.allHesabTafzilisBindingSource.DataSource = typeof(Sandogh_TG.AllHesabTafzili);
             // 
             // FrmDaryaftCheckTazmin
             // 
@@ -1090,7 +1092,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtId.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNoeSanad.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbVamGerande.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1147,7 +1149,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.ComboBoxEdit cmbNoeSanad;
         private DevExpress.XtraEditors.LookUpEdit cmbVamGerande;
-        private System.Windows.Forms.BindingSource aazaSandoghsBindingSource;
         private System.Windows.Forms.BindingSource checkTazminsBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colSeryalDaryaft;
         private DevExpress.XtraGrid.Columns.GridColumn colTarikhDaryaft;
@@ -1163,5 +1164,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colSharhDaryaftCheck;
         private DevExpress.XtraGrid.Columns.GridColumn colTarikhOdatCheck;
         private DevExpress.XtraGrid.Columns.GridColumn colSharhOdatCheck;
+        private System.Windows.Forms.BindingSource allHesabTafzilisBindingSource;
     }
 }

@@ -10,6 +10,7 @@ namespace Sandogh_TG
 {
    public class TarifSandogh
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
         [Required, MaxLength(150)]
         public string NameSandogh { get; set; }
@@ -24,14 +25,16 @@ namespace Sandogh_TG
         [Column(TypeName = "Date")]
         public DateTime? TarikhEjad { get; set; }
         public byte[]  Pictuer { get; set; }
+        public byte[]  PicBackground { get; set; }
         [Required]
         public bool IsDefault { get; set; }
         public virtual Tanzimat Tanzimat1 { get; set; }
         public virtual ICollection<SalMali> SalMalis { get; set; }
-        public virtual ICollection<AazaSandogh> AazaSandoghs { get; set; }
-        public virtual ICollection<HesabBanki> HesabBankis { get; set; }
-        public virtual ICollection<CodingDaramadVHazine> CodingDaramadVHazines { get; set; }
-        public virtual ICollection<SabDaramad> SabDaramads { get; set; }
-        public virtual ICollection<SabtHazine> SabtHazines { get; set; }
+        //public virtual ICollection<AazaSandogh> AazaSandoghs { get; set; }
+        //public virtual ICollection<HesabBanki> HesabBankis { get; set; }
+        //public virtual ICollection<CodingDaramadVHazine> CodingDaramadVHazines { get; set; }
+        public virtual ICollection<CodeMoin> CodeMoins { get; set; }
+        public virtual ICollection<GroupTafzili> GroupTafzilis { get; set; }
+        public virtual ICollection<AllHesabTafzili> AllHesabTafzilis { get; set; }
     }
 }

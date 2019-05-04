@@ -23,8 +23,6 @@ namespace Sandogh_TG
         public bool checkEdit1 { get; set; }
         public bool checkEdit2 { get; set; }
         public bool checkEdit3 { get; set; }
-        [Required]
-        public int SalMaliId { get; set; }
         public virtual TarifSandogh TarifSandogh1 { get; set; }
     }
 }

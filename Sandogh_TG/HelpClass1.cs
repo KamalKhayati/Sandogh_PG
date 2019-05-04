@@ -1,5 +1,7 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Data;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using Microsoft.Win32;
 using System;
@@ -18,7 +20,6 @@ namespace Sandogh_TG
         //RegEx
         //([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][1-9]|[123]0))|((1[2])/([012][1-9])))
         //Show Placeholdes=true
-
 
         public static void SwitchToPersianLanguage()
         {
@@ -216,7 +217,7 @@ namespace Sandogh_TG
             }
         }
 
-        public static void SetNumberRowsColumnUnboundGirdView(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
+        public static void SetNumberRowsColumnUnboundGirdView(object sender, CustomColumnDataEventArgs e)
         {
             GridView view = (GridView)sender;
             if (view == null) return;
@@ -229,6 +230,60 @@ namespace Sandogh_TG
             //    e.Value = visibleIndex;
             //if (e.Column.FieldName == "gridColumnListSourceIndex")
             //    e.Value = e.ListSourceRowIndex;
+
+        }
+
+        public static void gridView_CustomSummaryCalculate(object sender, CustomSummaryEventArgs e, GridView gridView1, string Bed = "Bed", string Bes = "Bes", string Mande = "Mande")
+        {
+            if (gridView1.RowCount == 0)
+                return;
+
+            long SumBed = Convert.ToInt32(gridView1.Columns[Bed].SummaryItem.SummaryValue);
+            long SumBes = Convert.ToInt32(gridView1.Columns[Bes].SummaryItem.SummaryValue);
+            long _Mande = SumBed - SumBes;
+
+            var item = e.Item as GridColumnSummaryItem;
+
+            if (item == null || item.FieldName != Mande)
+                return;
+
+            if (e.SummaryProcess == CustomSummaryProcess.Finalize)
+                e.TotalValue = _Mande;
+        }
+
+        public static List<long> Result2;
+        public static int IndexAkharinDaruaft = -1;
+        public static void gridView_CustomUnboundColumnData(object sender, CustomColumnDataEventArgs e, GridView gridView1, string Bed = "Bed", string Bes = "Bes", string Mande = "Mande")
+        {
+            if (gridView1.RowCount == 0)
+                return;
+
+            SetNumberRowsColumnUnboundGirdView(sender, e);
+            int rowIndex = e.ListSourceRowIndex;
+            long bed = Convert.ToInt64(gridView1.GetListSourceRowCellValue(rowIndex, Bed));
+            long bes = Convert.ToInt64(gridView1.GetListSourceRowCellValue(rowIndex, Bes));
+            if (e.Column.FieldName != Mande) return;
+            if (e.IsGetData)
+            {
+                if (rowIndex == 0)
+                {
+                    Result2.Add(bed - bes);
+                    e.Value = Result2[rowIndex];
+                    if (Convert.ToInt32(e.Value) == 0)
+                    {
+                        IndexAkharinDaruaft = rowIndex;
+                    }
+                }
+                else
+                {
+                    Result2.Add(Result2[rowIndex - 1] + bed - bes);
+                    e.Value = Result2[rowIndex];
+                    if (Convert.ToInt32(e.Value) == 0)
+                    {
+                        IndexAkharinDaruaft = rowIndex;
+                    }
+                }
+            }
 
         }
 

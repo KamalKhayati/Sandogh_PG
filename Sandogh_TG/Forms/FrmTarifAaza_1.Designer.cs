@@ -55,10 +55,12 @@
             this.colShomareKart = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colShomareShaba = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colShoghl = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsOzveSandogh = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsActive = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAdressManzel = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAdressMohalKar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSharhHesab = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colShomareSanad = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.aazaSandoghsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtShomareShaba = new DevExpress.XtraEditors.TextEdit();
@@ -88,6 +90,8 @@
             this.btnCreate = new DevExpress.XtraEditors.SimpleButton();
             this.txtBesAvali = new DevExpress.XtraEditors.TextEdit();
             this.xtraScrollableControl2 = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.chkIsActive = new DevExpress.XtraEditors.CheckEdit();
+            this.chkIsOzveSandogh = new DevExpress.XtraEditors.CheckEdit();
             this.txtHazineEftetah = new DevExpress.XtraEditors.TextEdit();
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
             this.btnDeletePictuer = new DevExpress.XtraEditors.SimpleButton();
@@ -103,7 +107,6 @@
             this.txtTarikhOzviat = new DevExpress.XtraEditors.TextEdit();
             this.txtBirthDate = new DevExpress.XtraEditors.TextEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.chkIsActive = new DevExpress.XtraEditors.CheckEdit();
             this.txtSharhHesab = new DevExpress.XtraEditors.TextEdit();
             this.txtMohaleKar = new DevExpress.XtraEditors.TextEdit();
             this.txtAdress = new DevExpress.XtraEditors.TextEdit();
@@ -152,13 +155,14 @@
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBesAvali.Properties)).BeginInit();
             this.xtraScrollableControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIsActive.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIsOzveSandogh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHazineEftetah.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHaghOzviat.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBedAvali.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTarikhOzviat.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBirthDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkIsActive.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSharhHesab.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMohaleKar.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAdress.Properties)).BeginInit();
@@ -187,7 +191,7 @@
             this.colCode.AppearanceHeader.Options.UseTextOptions = true;
             this.colCode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colCode.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colCode.Caption = "کد عضویت";
+            this.colCode.Caption = "کد حساب";
             this.colCode.FieldName = "Code";
             this.colCode.MinWidth = 19;
             this.colCode.Name = "colCode";
@@ -248,10 +252,12 @@
             this.colShomareKart,
             this.colShomareShaba,
             this.colShoghl,
+            this.colIsOzveSandogh,
             this.colIsActive,
             this.colAdressManzel,
             this.colAdressMohalKar,
-            this.colSharhHesab});
+            this.colSharhHesab,
+            this.colShomareSanad});
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.IndicatorWidth = 25;
@@ -296,7 +302,7 @@
             this.colTarikhOzviat.AppearanceHeader.Options.UseTextOptions = true;
             this.colTarikhOzviat.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colTarikhOzviat.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colTarikhOzviat.Caption = "تاریخ عضویت";
+            this.colTarikhOzviat.Caption = "تاریخ ایجاد";
             this.colTarikhOzviat.FieldName = "TarikhOzviat";
             this.colTarikhOzviat.Name = "colTarikhOzviat";
             this.colTarikhOzviat.Visible = true;
@@ -591,6 +597,21 @@
             this.colShoghl.VisibleIndex = 22;
             this.colShoghl.Width = 130;
             // 
+            // colIsOzveSandogh
+            // 
+            this.colIsOzveSandogh.AppearanceCell.Options.UseTextOptions = true;
+            this.colIsOzveSandogh.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colIsOzveSandogh.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colIsOzveSandogh.AppearanceHeader.Options.UseTextOptions = true;
+            this.colIsOzveSandogh.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colIsOzveSandogh.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colIsOzveSandogh.Caption = "عضو صندوق";
+            this.colIsOzveSandogh.FieldName = "IsOzveSandogh";
+            this.colIsOzveSandogh.Name = "colIsOzveSandogh";
+            this.colIsOzveSandogh.Visible = true;
+            this.colIsOzveSandogh.VisibleIndex = 23;
+            this.colIsOzveSandogh.Width = 110;
+            // 
             // colIsActive
             // 
             this.colIsActive.AppearanceCell.Options.UseTextOptions = true;
@@ -604,7 +625,7 @@
             this.colIsActive.MinWidth = 19;
             this.colIsActive.Name = "colIsActive";
             this.colIsActive.Visible = true;
-            this.colIsActive.VisibleIndex = 23;
+            this.colIsActive.VisibleIndex = 24;
             // 
             // colAdressManzel
             // 
@@ -615,7 +636,7 @@
             this.colAdressManzel.FieldName = "AdressManzel";
             this.colAdressManzel.Name = "colAdressManzel";
             this.colAdressManzel.Visible = true;
-            this.colAdressManzel.VisibleIndex = 24;
+            this.colAdressManzel.VisibleIndex = 25;
             this.colAdressManzel.Width = 400;
             // 
             // colAdressMohalKar
@@ -627,7 +648,7 @@
             this.colAdressMohalKar.FieldName = "AdressMohalKar";
             this.colAdressMohalKar.Name = "colAdressMohalKar";
             this.colAdressMohalKar.Visible = true;
-            this.colAdressMohalKar.VisibleIndex = 25;
+            this.colAdressMohalKar.VisibleIndex = 26;
             this.colAdressMohalKar.Width = 400;
             // 
             // colSharhHesab
@@ -640,8 +661,23 @@
             this.colSharhHesab.MinWidth = 19;
             this.colSharhHesab.Name = "colSharhHesab";
             this.colSharhHesab.Visible = true;
-            this.colSharhHesab.VisibleIndex = 26;
+            this.colSharhHesab.VisibleIndex = 27;
             this.colSharhHesab.Width = 400;
+            // 
+            // colShomareSanad
+            // 
+            this.colShomareSanad.AppearanceCell.Options.UseTextOptions = true;
+            this.colShomareSanad.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colShomareSanad.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colShomareSanad.AppearanceHeader.Options.UseTextOptions = true;
+            this.colShomareSanad.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colShomareSanad.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colShomareSanad.Caption = "شماره سند";
+            this.colShomareSanad.FieldName = "ShomareSanad";
+            this.colShomareSanad.Name = "colShomareSanad";
+            this.colShomareSanad.Visible = true;
+            this.colShomareSanad.VisibleIndex = 28;
+            this.colShomareSanad.Width = 100;
             // 
             // gridControl1
             // 
@@ -980,6 +1016,8 @@
             // 
             // xtraScrollableControl2
             // 
+            this.xtraScrollableControl2.Controls.Add(this.chkIsActive);
+            this.xtraScrollableControl2.Controls.Add(this.chkIsOzveSandogh);
             this.xtraScrollableControl2.Controls.Add(this.txtHazineEftetah);
             this.xtraScrollableControl2.Controls.Add(this.labelControl20);
             this.xtraScrollableControl2.Controls.Add(this.btnDeletePictuer);
@@ -998,7 +1036,6 @@
             this.xtraScrollableControl2.Controls.Add(this.txtTarikhOzviat);
             this.xtraScrollableControl2.Controls.Add(this.txtBirthDate);
             this.xtraScrollableControl2.Controls.Add(this.labelControl6);
-            this.xtraScrollableControl2.Controls.Add(this.chkIsActive);
             this.xtraScrollableControl2.Controls.Add(this.txtShomareShaba);
             this.xtraScrollableControl2.Controls.Add(this.txtShomareKart);
             this.xtraScrollableControl2.Controls.Add(this.txtShomareHesab);
@@ -1044,6 +1081,29 @@
             this.xtraScrollableControl2.Name = "xtraScrollableControl2";
             this.xtraScrollableControl2.Size = new System.Drawing.Size(1165, 430);
             this.xtraScrollableControl2.TabIndex = 32;
+            // 
+            // chkIsActive
+            // 
+            this.chkIsActive.EditValue = true;
+            this.chkIsActive.EnterMoveNextControl = true;
+            this.chkIsActive.Location = new System.Drawing.Point(5, 392);
+            this.chkIsActive.Name = "chkIsActive";
+            this.chkIsActive.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
+            this.chkIsActive.Properties.Caption = "فعال";
+            this.chkIsActive.Size = new System.Drawing.Size(56, 33);
+            this.chkIsActive.TabIndex = 26;
+            this.chkIsActive.CheckedChanged += new System.EventHandler(this.chkIsActive_CheckedChanged);
+            // 
+            // chkIsOzveSandogh
+            // 
+            this.chkIsOzveSandogh.EditValue = true;
+            this.chkIsOzveSandogh.EnterMoveNextControl = true;
+            this.chkIsOzveSandogh.Location = new System.Drawing.Point(5, 355);
+            this.chkIsOzveSandogh.Name = "chkIsOzveSandogh";
+            this.chkIsOzveSandogh.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
+            this.chkIsOzveSandogh.Properties.Caption = "عضو صندوق";
+            this.chkIsOzveSandogh.Size = new System.Drawing.Size(104, 33);
+            this.chkIsOzveSandogh.TabIndex = 25;
             // 
             // txtHazineEftetah
             // 
@@ -1231,19 +1291,6 @@
             this.labelControl6.Size = new System.Drawing.Size(101, 32);
             this.labelControl6.TabIndex = 35;
             this.labelControl6.Text = "وضعیت حساب";
-            // 
-            // chkIsActive
-            // 
-            this.chkIsActive.EditValue = true;
-            this.chkIsActive.EnterMoveNextControl = true;
-            this.chkIsActive.Location = new System.Drawing.Point(8, 389);
-            this.chkIsActive.Name = "chkIsActive";
-            this.chkIsActive.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
-            this.chkIsActive.Properties.Caption = "فعال";
-            this.chkIsActive.Properties.ReadOnly = true;
-            this.chkIsActive.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkIsActive.Size = new System.Drawing.Size(52, 33);
-            this.chkIsActive.TabIndex = 25;
             // 
             // txtSharhHesab
             // 
@@ -1493,9 +1540,9 @@
             this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl2.Location = new System.Drawing.Point(426, 49);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(93, 32);
+            this.labelControl2.Size = new System.Drawing.Size(79, 32);
             this.labelControl2.TabIndex = 30;
-            this.labelControl2.Text = "تاریخ عضویت";
+            this.labelControl2.Text = "تاریخ ایجاد";
             // 
             // labelControl5
             // 
@@ -1544,7 +1591,7 @@
             this.labelControl22.Location = new System.Drawing.Point(749, 53);
             this.labelControl22.Name = "labelControl22";
             this.labelControl22.Size = new System.Drawing.Size(67, 25);
-            this.labelControl22.TabIndex = 26;
+            this.labelControl22.TabIndex = 48;
             this.labelControl22.Text = "کد پرسنلی";
             // 
             // txtId
@@ -1570,9 +1617,9 @@
             this.labelControl1.Appearance.Options.UseForeColor = true;
             this.labelControl1.Location = new System.Drawing.Point(1060, 53);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(71, 25);
+            this.labelControl1.Size = new System.Drawing.Size(63, 25);
             this.labelControl1.TabIndex = 26;
-            this.labelControl1.Text = "کد عضویت";
+            this.labelControl1.Text = "کد حساب";
             // 
             // cmbMoaref
             // 
@@ -1582,8 +1629,8 @@
             this.cmbMoaref.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbMoaref.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Code", "کد", 50, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NameVFamil", "نام و نام خانوادگی", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Code", "کد", 50, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NameVFamil", "نام و نام خانوادگی", 200, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.cmbMoaref.Properties.DataSource = this.aazaSandoghsBindingSource;
             this.cmbMoaref.Properties.DisplayMember = "NameVFamil";
             this.cmbMoaref.Properties.ImmediatePopup = true;
@@ -1594,6 +1641,7 @@
             this.cmbMoaref.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbMoaref.Size = new System.Drawing.Size(211, 32);
             this.cmbMoaref.TabIndex = 19;
+            this.cmbMoaref.Enter += new System.EventHandler(this.cmbMoaref_Enter);
             // 
             // cmbJensiat
             // 
@@ -1613,6 +1661,7 @@
             this.cmbJensiat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbJensiat.Size = new System.Drawing.Size(211, 32);
             this.cmbJensiat.TabIndex = 7;
+            this.cmbJensiat.Enter += new System.EventHandler(this.cmbJensiat_Enter);
             // 
             // cmbTaahol
             // 
@@ -1632,6 +1681,7 @@
             this.cmbTaahol.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbTaahol.Size = new System.Drawing.Size(209, 32);
             this.cmbTaahol.TabIndex = 8;
+            this.cmbTaahol.Enter += new System.EventHandler(this.cmbTaahol_Enter);
             // 
             // lblUserName
             // 
@@ -1677,7 +1727,7 @@
             this.Name = "FrmTarifAaza_1";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "تعریف اعضاء صندوق";
+            this.Text = "تعریف اشخاص";
             this.Load += new System.EventHandler(this.FrmTarifAaza_1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmTarifAaza_1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
@@ -1693,13 +1743,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBesAvali.Properties)).EndInit();
             this.xtraScrollableControl2.ResumeLayout(false);
             this.xtraScrollableControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIsActive.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIsOzveSandogh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHazineEftetah.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHaghOzviat.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBedAvali.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTarikhOzviat.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBirthDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkIsActive.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSharhHesab.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMohaleKar.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAdress.Properties)).EndInit();
@@ -1764,7 +1815,6 @@
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl2;
         private DevExpress.XtraEditors.TextEdit txtBirthDate;
         private DevExpress.XtraEditors.LabelControl labelControl6;
-        public DevExpress.XtraEditors.CheckEdit chkIsActive;
         public DevExpress.XtraEditors.TextEdit txtMobile1;
         public DevExpress.XtraEditors.TextEdit txtNameVFamil;
         public DevExpress.XtraEditors.TextEdit txtNameBank;
@@ -1834,5 +1884,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn colJensiat;
         private DevExpress.XtraGrid.Columns.GridColumn colTaahol;
         private DevExpress.XtraGrid.Columns.GridColumn colShShenasname;
+        private DevExpress.XtraGrid.Columns.GridColumn colIsOzveSandogh;
+        public DevExpress.XtraEditors.CheckEdit chkIsOzveSandogh;
+        public DevExpress.XtraEditors.CheckEdit chkIsActive;
+        private DevExpress.XtraGrid.Columns.GridColumn colShomareSanad;
     }
 }

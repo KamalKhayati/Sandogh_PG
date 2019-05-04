@@ -85,6 +85,7 @@
             this.colShomareKart = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colShomareShaba = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colShoghl = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsOzveSandogh = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsActive = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAdressManzel = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAdressMohalKar = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -587,7 +588,7 @@
             this.groupBox1.Size = new System.Drawing.Size(787, 416);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "اعضاء (فعال)";
+            this.groupBox1.Text = "اشخاص (فعال)";
             // 
             // gridControl1
             // 
@@ -637,6 +638,7 @@
             this.colShomareKart,
             this.colShomareShaba,
             this.colShoghl,
+            this.colIsOzveSandogh,
             this.colIsActive,
             this.colAdressManzel,
             this.colAdressMohalKar,
@@ -698,7 +700,7 @@
             this.colCode.AppearanceHeader.Options.UseTextOptions = true;
             this.colCode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colCode.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colCode.Caption = "کد عضویت";
+            this.colCode.Caption = "کد حساب";
             this.colCode.FieldName = "Code";
             this.colCode.MinWidth = 19;
             this.colCode.Name = "colCode";
@@ -729,7 +731,7 @@
             this.colTarikhOzviat.AppearanceHeader.Options.UseTextOptions = true;
             this.colTarikhOzviat.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colTarikhOzviat.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colTarikhOzviat.Caption = "تاریخ عضویت";
+            this.colTarikhOzviat.Caption = "تاریخ ایجاد";
             this.colTarikhOzviat.FieldName = "TarikhOzviat";
             this.colTarikhOzviat.Name = "colTarikhOzviat";
             this.colTarikhOzviat.Visible = true;
@@ -1027,6 +1029,15 @@
             this.colShoghl.VisibleIndex = 22;
             this.colShoghl.Width = 130;
             // 
+            // colIsOzveSandogh
+            // 
+            this.colIsOzveSandogh.Caption = "عضو صندوق";
+            this.colIsOzveSandogh.FieldName = "IsOzveSandogh";
+            this.colIsOzveSandogh.Name = "colIsOzveSandogh";
+            this.colIsOzveSandogh.Visible = true;
+            this.colIsOzveSandogh.VisibleIndex = 23;
+            this.colIsOzveSandogh.Width = 110;
+            // 
             // colIsActive
             // 
             this.colIsActive.AppearanceCell.Options.UseTextOptions = true;
@@ -1040,7 +1051,7 @@
             this.colIsActive.MinWidth = 19;
             this.colIsActive.Name = "colIsActive";
             this.colIsActive.Visible = true;
-            this.colIsActive.VisibleIndex = 23;
+            this.colIsActive.VisibleIndex = 24;
             // 
             // colAdressManzel
             // 
@@ -1051,7 +1062,7 @@
             this.colAdressManzel.FieldName = "AdressManzel";
             this.colAdressManzel.Name = "colAdressManzel";
             this.colAdressManzel.Visible = true;
-            this.colAdressManzel.VisibleIndex = 24;
+            this.colAdressManzel.VisibleIndex = 25;
             this.colAdressManzel.Width = 400;
             // 
             // colAdressMohalKar
@@ -1063,7 +1074,7 @@
             this.colAdressMohalKar.FieldName = "AdressMohalKar";
             this.colAdressMohalKar.Name = "colAdressMohalKar";
             this.colAdressMohalKar.Visible = true;
-            this.colAdressMohalKar.VisibleIndex = 25;
+            this.colAdressMohalKar.VisibleIndex = 26;
             this.colAdressMohalKar.Width = 400;
             // 
             // colSharhHesab
@@ -1076,7 +1087,7 @@
             this.colSharhHesab.MinWidth = 19;
             this.colSharhHesab.Name = "colSharhHesab";
             this.colSharhHesab.Visible = true;
-            this.colSharhHesab.VisibleIndex = 26;
+            this.colSharhHesab.VisibleIndex = 27;
             this.colSharhHesab.Width = 400;
             // 
             // panelControl4
@@ -1291,6 +1302,9 @@
             this.gridView3.OptionsView.ShowAutoFilterRow = true;
             this.gridView3.OptionsView.ShowFooter = true;
             this.gridView3.OptionsView.ShowGroupPanel = false;
+            this.gridView3.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView3_RowCellClick);
+            this.gridView3.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView3_FocusedRowChanged);
+            this.gridView3.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView3_CustomUnboundColumnData);
             // 
             // gridColumn25
             // 
@@ -1851,6 +1865,7 @@
             this.gridView4.OptionsView.ShowAutoFilterRow = true;
             this.gridView4.OptionsView.ShowFooter = true;
             this.gridView4.OptionsView.ShowGroupPanel = false;
+            this.gridView4.CustomSummaryCalculate += new DevExpress.Data.CustomSummaryEventHandler(this.gridView4_CustomSummaryCalculate);
             this.gridView4.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView4_FocusedRowChanged);
             this.gridView4.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView4_CustomUnboundColumnData);
             // 
@@ -2011,7 +2026,7 @@
             this.Mande.FieldName = "Mande";
             this.Mande.Name = "Mande";
             this.Mande.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Max, "Mande", "{0:n}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "Mande", "{0:n}")});
             this.Mande.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
             this.Mande.Visible = true;
             this.Mande.VisibleIndex = 6;
@@ -2307,7 +2322,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colAdressManzel;
         private DevExpress.XtraGrid.Columns.GridColumn colAdressMohalKar;
         private DevExpress.XtraGrid.Columns.GridColumn colSharhHesab;
-        private System.Windows.Forms.BindingSource aazaSandoghsBindingSource;
         private System.Windows.Forms.BindingSource haghOzviatsBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colCodePersoneli;
         private DevExpress.XtraGrid.Columns.GridColumn colJensiat;
@@ -2388,5 +2402,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn AazaId;
         private DevExpress.XtraGrid.Columns.GridColumn colZameninId;
         private DevExpress.XtraGrid.Columns.GridColumn colShomareSanad1;
+        private DevExpress.XtraGrid.Columns.GridColumn colIsOzveSandogh;
+        private System.Windows.Forms.BindingSource aazaSandoghsBindingSource;
     }
 }

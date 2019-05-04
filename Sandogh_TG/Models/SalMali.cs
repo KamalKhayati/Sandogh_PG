@@ -10,6 +10,7 @@ namespace Sandogh_TG
 {
    public class SalMali
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
         [Required]
         public int SaleMali { get; set; }
@@ -24,5 +25,7 @@ namespace Sandogh_TG
         [Required]
         public int TarifSandoghId { get; set; }
         public virtual TarifSandogh TarifSandogh1 { get; set; }
+        public virtual ICollection<AsnadeHesabdariRow> AsnadeHesabdariRows { get; set; }
+        public virtual ICollection<CheckTazmin> CheckTazmins { get; set; }
     }
 }

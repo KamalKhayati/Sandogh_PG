@@ -61,17 +61,22 @@ namespace Sandogh_TG
         }
         public void FillDataGridHaghOzviat()
         {
-            using (var dataContext = new MyContext())
+            using (var db = new MyContext())
             {
                 try
                 {
                     haghOzviatsBindingSource.DataSource = null;
                     _AazaId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id"));
-                    var q1 = dataContext.HaghOzviats.Where(s => s.AazaId == _AazaId).OrderBy(s => s.Tarikh).ToList();
-                    if (q1.Count > 0)
-                        haghOzviatsBindingSource.DataSource = q1;
-                    else
-                        haghOzviatsBindingSource.DataSource = null;
+                    var qq = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 3 && f.Id2 == _AazaId);
+
+                    if (qq!=null)
+                    {
+                        var q1 = db.HaghOzviats.Where(s => s.AazaId == qq.Id).OrderBy(s => s.Tarikh).ThenBy(s=>s.Seryal).ToList();
+                        if (q1.Count > 0)
+                            haghOzviatsBindingSource.DataSource = q1;
+                        else
+                            haghOzviatsBindingSource.DataSource = null;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -90,23 +95,27 @@ namespace Sandogh_TG
                     vamPardakhtisBindingSource.DataSource = null;
                     rizeAghsatVamsBindingSource.DataSource = null;
                     _AazaId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id"));
-                    if (IsActiveList2 == true)
+                    var qq = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 3 && f.Id2 == _AazaId);
+                    if (qq!=null)
                     {
-                        var q1 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.AazaId == _AazaId).OrderBy(s => s.Code).ToList();
-                        if (q1.Count > 0)
-                            vamPardakhtisBindingSource.DataSource = q1;
+                        if (IsActiveList2 == true)
+                        {
+                            var q1 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.AazaId == qq.Id).OrderBy(s => s.Code).ToList();
+                            if (q1.Count > 0)
+                                vamPardakhtisBindingSource.DataSource = q1;
+                            else
+                                vamPardakhtisBindingSource.DataSource = null;
+                        }
                         else
-                            vamPardakhtisBindingSource.DataSource = null;
-                    }
-                    else
-                    {
-                        var q = db.VamPardakhtis.Where(s => s.IsTasviye == true && s.AazaId == _AazaId).OrderBy(s => s.Code);
-                        if (q.Count() > 0)
-                            vamPardakhtisBindingSource.DataSource = q.ToList();
-                        else
-                            vamPardakhtisBindingSource.DataSource = null;
-                    }
-                }
+                        {
+                            var q = db.VamPardakhtis.Where(s => s.IsTasviye == true && s.AazaId == qq.Id).OrderBy(s => s.Code);
+                            if (q.Count() > 0)
+                                vamPardakhtisBindingSource.DataSource = q.ToList();
+                            else
+                                vamPardakhtisBindingSource.DataSource = null;
+                        }
+
+                    }                }
                 catch (Exception ex)
                 {
                     XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
@@ -186,7 +195,7 @@ namespace Sandogh_TG
             {
                 //FillDataGridVamhayePardakhti();
                 gridView1_RowCellClick(null, null);
-                groupBox1.Text = "اعضاء (فعال)";
+                groupBox1.Text = "اشخاص (فعال)";
                 groupBox1.ForeColor = Color.Blue;
                 groupBox4.Text = "وامهای (تسویه نشده)";
                 groupBox4.ForeColor = Color.Blue;
@@ -196,7 +205,7 @@ namespace Sandogh_TG
                 IsActiveList2 = true;
                 //FillDataGridVamhayePardakhti();
                 gridView1_RowCellClick(null, null);
-                groupBox1.Text = "اعضاء (فعال)";
+                groupBox1.Text = "اشخاص (فعال)";
                 groupBox1.ForeColor = Color.Blue;
                 groupBox4.Text = "وامهای (تسویه نشده)";
                 groupBox4.ForeColor = Color.Blue;
@@ -284,7 +293,7 @@ namespace Sandogh_TG
             //gridView3_RowCellClick(null, null);
             gridView1_FocusedRowChanged(null, null);
             gridView3_FocusedRowChanged(null, null);
-            groupBox1.Text = "اعضاء (فعال)";
+            groupBox1.Text = "اشخاص (فعال)";
             groupBox1.ForeColor = Color.Blue;
             groupBox4.Text = "وامهای (تسویه نشده)";
             groupBox4.ForeColor = Color.Blue;
@@ -442,8 +451,6 @@ namespace Sandogh_TG
                     {
                         IndexAkharinDaruaft = rowIndex;
                     }
-
-
                 }
             }
         }
@@ -505,6 +512,7 @@ namespace Sandogh_TG
                                     q.NameHesabId = 0;
                                     q.NameHesab = string.Empty;
                                     q.Sharh = string.Empty;
+                                    q.ShomareSanad = 0;
                                     ///////////////////////////////////////////////////////////////////
                                     var q1 = db.AsnadeHesabdariRows.Where(f => f.ShomareSanad == q.ShomareSanad);
                                     if (q1.Count() > 0)
@@ -695,6 +703,11 @@ namespace Sandogh_TG
                 btnEdit4.Visible = false;
             }
 
+        }
+
+        private void gridView4_CustomSummaryCalculate(object sender, DevExpress.Data.CustomSummaryEventArgs e)
+        {
+            HelpClass1.gridView_CustomSummaryCalculate(sender, e, gridView4, "MablaghAghsat", "MablaghDaryafti", "Mande");
         }
     }
 }

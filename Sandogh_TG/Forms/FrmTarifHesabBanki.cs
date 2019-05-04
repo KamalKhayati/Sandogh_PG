@@ -418,12 +418,14 @@ namespace Sandogh_TG
                         try
                         {
                             int RowId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id").ToString());
-                            var q = db.HesabBankis.FirstOrDefault(p => p.Id == RowId);
-                            //var q8 = db.EpAccessLevelCodingHesabdaris.FirstOrDefault(s => s.HesabColId == RowId);
-                            if (q != null /*&& q8 != null*/)
+                            var qq = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2 && f.Id2 == RowId);
+                            if (qq != null)
                             {
-                                db.HesabBankis.Remove(q);
-                                //db.EpAccessLevelCodingHesabdaris.Remove(q8);
+                                db.AllHesabTafzilis.Remove(qq);
+                                var q = db.HesabBankis.FirstOrDefault(p => p.Id == RowId);
+                                if (q != null)
+                                    db.HesabBankis.Remove(q);
+
                                 /////////////////////////////////////////////////////////////////////////////
                                 db.SaveChanges();
 
@@ -440,9 +442,7 @@ namespace Sandogh_TG
                         }
                         catch (DbUpdateException)
                         {
-                            XtraMessageBox.Show("عملیات حذف با خطا مواجه شد \n حذف این حساب مقدور نیست \n" +
-                                " جهت حذف حساب مورد نظر در ابتدا بایستی زیر شاخه های این حساب یعنی پس انداز ماهیانه اعضاء،\n وامهای دریافتی اعضا،ریز اقساط وام، انتقالی بین حسابها، سند های درآمد و هزینه ، و سایر دریافتها و\n پرداختها مربوط به این حساب در صورت وجود حذف گردد" +
-                                "", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            XtraMessageBox.Show("به دلیل اینکه از حساب فوق جهت صدور سند استفاده شده است لذا قابل حذف نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         catch (Exception ex)
                         {
@@ -523,24 +523,23 @@ namespace Sandogh_TG
                             obj.IsActive = chkIsActive.Checked;
                             obj.SharhHesab = txtSharhHesab.Text;
                             obj.TarifSandoghId = Convert.ToInt32(Fm.IDSandogh.Caption);
-                            obj.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
-
+                            obj.GroupTafziliId = cmbGroupHesab.SelectedIndex == 0 ? 1 : 2;
+                            //obj.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
                             db.HesabBankis.Add(obj);
                             db.SaveChanges();
+
+                            //////////////////////////////////////////
+                            int _Code = Convert.ToInt32(txtCode.Text);
+                            AllHesabTafzili obj1 = new AllHesabTafzili();
+                            obj1.Id2 = db.HesabBankis.FirstOrDefault(f => f.Code == _Code).Id;
+                            obj1.Code = _Code;
+                            obj1.Name = txtNameHesab.Text;
+                            obj1.GroupTafziliId = cmbGroupHesab.SelectedIndex == 0 ? 1 : 2;
+                            obj1.IsActive = chkIsActive.Checked;
+                            obj1.SandoghId = Convert.ToInt32(Fm.IDSandogh.Caption);
+                            db.AllHesabTafzilis.Add(obj1);
+                            db.SaveChanges();
                             /////////////////////////////////////////////////////////////////////////////////////
-                            //int _Code = Convert.ToInt32(txtCodeGroupTafziliSandogh.Text + txtCode.Text);
-                            //var q = db.EpHesabTafziliHesabBankis.FirstOrDefault(s => s.Code == _Code);
-                            //////////////////////////////////////// اضافه کردن حساب کل به کلاس سطح دسترسی کدینگ حسابداری ////////////////////
-                            //EpAccessLevelCodingHesabdari n1 = new EpAccessLevelCodingHesabdari();
-                            //n1.KeyId = _Code;
-                            //n1.ParentId = Convert.ToInt32(txtGroupCode.Text);
-                            //n1.LevelName = txtName.Text;
-                            //n1.HesabGroupId = q.GroupId;
-                            //n1.HesabColId = q.Id;
-                            //n1.IsActive = chkIsActive.Checked;
-                            //db.EpAccessLevelCodingHesabdaris.Add(n1);
-                            ///////////////////////////////////////////////////////////////////////////////////////
-                            //db.SaveChanges();
                             if (chkIsActive.Checked)
                                 btnDisplyActiveList_Click(null, null);
                             else
@@ -592,6 +591,19 @@ namespace Sandogh_TG
                                 q.IsDefault = chkIsDefault.Checked;
                                 q.IsActive = chkIsActive.Checked;
                                 q.SharhHesab = txtSharhHesab.Text;
+                                q.GroupTafziliId = cmbGroupHesab.SelectedIndex == 0 ? 1 : 2;
+
+                                //////////////////////////////////////////
+                                //int _Code = Convert.ToInt32(txtCode.Text);
+                                var qq1 = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2 && f.Id2 == RowId);
+                                if (qq1 != null)
+                                {
+                                    qq1.Code = _Code;
+                                    qq1.Name = txtNameHesab.Text;
+                                    qq1.GroupTafziliId = cmbGroupHesab.SelectedIndex == 0 ? 1 : 2;
+                                    qq1.IsActive = chkIsActive.Checked;
+                                }
+                                /////////////////////////////////////////////////////////////////////////////////////
 
                                 db.SaveChanges();
                                 if (IsActiveBeforeEdit)
@@ -687,9 +699,51 @@ namespace Sandogh_TG
         private void cmbGroupHesab_Enter(object sender, EventArgs e)
         {
             if (En == EnumCED.Create)
-            {
                 cmbGroupHesab.ShowPopup();
+        }
+
+        private void chkIsActive_CheckedChanged(object sender, EventArgs e)
+        {
+            if (En == EnumCED.Edit && chkIsActive.Checked == false)
+            {
+                using (var db = new MyContext())
+                {
+                    try
+                    {
+                        int RowId = Convert.ToInt32(txtId.Text);
+                        var AllTafId = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2 && f.Id2 == RowId).Id;
+                        var q3 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == AllTafId).ToList();
+                        if (q3.Count > 0)
+                        {
+                            decimal SumBed = 0;
+                            decimal SumBes = 0;
+                            decimal MandeHesab = 0;
+                            foreach (var item in q3)
+                            {
+                                if (item.Bed != null)
+                                    SumBed += (decimal)item.Bed;
+                                else
+                                    SumBes += (decimal)item.Bes;
+                            }
+                            MandeHesab = SumBed - SumBes;
+                            if (MandeHesab != 0)
+                            {
+                                XtraMessageBox.Show("حساب مورد نظر دارای مانده حساب است لذا نمیتوان آنرا غیرفعال نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                chkIsActive.Checked = true;
+                                return;
+
+                            }
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
+
         }
     }
 }

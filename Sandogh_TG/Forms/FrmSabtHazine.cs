@@ -25,22 +25,22 @@ namespace Sandogh_TG
 
         public void FillDataGridHazine()
         {
-            using (var db = new MyContext())
-            {
-                try
-                {
-                    var q1 = db.SabtHazines.OrderBy(s => s.Seryal).ToList();
-                    if (q1.Count > 0)
-                        sabtHazinesBindingSource.DataSource = q1;
-                    else
-                        sabtHazinesBindingSource.DataSource = null;
-                }
-                catch (Exception ex)
-                {
-                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            //using (var db = new MyContext())
+            //{
+            //    try
+            //    {
+            //        var q1 = db.SabtHazines.OrderBy(s => s.Seryal).ToList();
+            //        if (q1.Count > 0)
+            //            sabtHazinesBindingSource.DataSource = q1;
+            //        else
+            //            sabtHazinesBindingSource.DataSource = null;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+            //            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //}
 
         }
 
@@ -102,36 +102,36 @@ namespace Sandogh_TG
 
         private void NewSeryal()
         {
-            using (var db = new MyContext())
-            {
-                try
-                {
-                    var q = db.SabtHazines.Select(s => s);
-                    if (q.Any())
-                    {
-                        var MaximumCod = q.Max(p => p.Seryal);
-                        if (MaximumCod.ToString() != "9999999")
-                        {
-                            txtSeryal.Text = (MaximumCod + 1).ToString();
-                        }
-                        else
-                        {
-                            if (En == EnumCED.Create)
-                                XtraMessageBox.Show("اعمال محدودیت ثبت حداکثر 9999999 سریال" + "\n" +
-                                    "توجه : نمیتوان بیشتر از این تعداد سریال ثبت نمود ", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
+            //using (var db = new MyContext())
+            //{
+            //    try
+            //    {
+            //        var q = db.SabtHazines.Select(s => s);
+            //        if (q.Any())
+            //        {
+            //            var MaximumCod = q.Max(p => p.Seryal);
+            //            if (MaximumCod.ToString() != "9999999")
+            //            {
+            //                txtSeryal.Text = (MaximumCod + 1).ToString();
+            //            }
+            //            else
+            //            {
+            //                if (En == EnumCED.Create)
+            //                    XtraMessageBox.Show("اعمال محدودیت ثبت حداکثر 9999999 سریال" + "\n" +
+            //                        "توجه : نمیتوان بیشتر از این تعداد سریال ثبت نمود ", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //            }
 
-                    }
-                    else
-                    {
-                        txtSeryal.Text = "1";
-                    }
-                }
-                catch (Exception ex)
-                {
-                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message, "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            //        }
+            //        else
+            //        {
+            //            txtSeryal.Text = "1";
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message, "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //}
         }
 
         private void DefaultBankVSandogh()
@@ -381,44 +381,44 @@ namespace Sandogh_TG
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (gridView1.SelectedRowsCount > 0)
-            {
-                if (XtraMessageBox.Show("آیا هزینه فوق حذف گردد؟", "پیغام حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-                {
-                    EditRowIndex = gridView1.FocusedRowHandle;
-                    using (var db = new MyContext())
-                    {
-                        try
-                        {
-                            int RowId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id").ToString());
-                            var q = db.SabtHazines.FirstOrDefault(p => p.Id == RowId);
-                            if (q != null)
-                            {
-                                db.SabtHazines.Remove(q);
-                                /////////////////////////////////////////////////////////////////////////////
-                                db.SaveChanges();
+            //if (gridView1.SelectedRowsCount > 0)
+            //{
+            //    if (XtraMessageBox.Show("آیا هزینه فوق حذف گردد؟", "پیغام حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            //    {
+            //        EditRowIndex = gridView1.FocusedRowHandle;
+            //        using (var db = new MyContext())
+            //        {
+            //            try
+            //            {
+            //                int RowId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id").ToString());
+            //                var q = db.SabtHazines.FirstOrDefault(p => p.Id == RowId);
+            //                if (q != null)
+            //                {
+            //                    db.SabtHazines.Remove(q);
+            //                    /////////////////////////////////////////////////////////////////////////////
+            //                    db.SaveChanges();
 
-                                btnDisplayList_Click(null, null);
-                                XtraMessageBox.Show("عملیات حذف با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
-                                if (gridView1.RowCount > 0)
-                                    gridView1.FocusedRowHandle = EditRowIndex - 1;
-                            }
-                            else
-                                XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        //catch (DbUpdateException)
-                        //{
-                        //    XtraMessageBox.Show("عملیات حذف با خطا مواجه شد \n حذف این حساب مقدور نیست \n" +
-                        //        " جهت حذف حساب مورد نظر در ابتدا بایستی زیر شاخه های این حساب یعنی پس انداز ماهیانه اعضاء،\n وامهای دریافتی اعضا،ریز اقساط وام، انتقالی بین حسابها، سند های درآمد و هزینه ، و سایر دریافتها و\n پرداختها مربوط به این حساب در صورت وجود حذف گردد" +
-                        //        "", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        //}
-                        catch (Exception ex)
-                        {
-                            XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message, "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
-            }
+            //                    btnDisplayList_Click(null, null);
+            //                    XtraMessageBox.Show("عملیات حذف با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+            //                    if (gridView1.RowCount > 0)
+            //                        gridView1.FocusedRowHandle = EditRowIndex - 1;
+            //                }
+            //                else
+            //                    XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //            }
+            //            //catch (DbUpdateException)
+            //            //{
+            //            //    XtraMessageBox.Show("عملیات حذف با خطا مواجه شد \n حذف این حساب مقدور نیست \n" +
+            //            //        " جهت حذف حساب مورد نظر در ابتدا بایستی زیر شاخه های این حساب یعنی پس انداز ماهیانه اعضاء،\n وامهای دریافتی اعضا،ریز اقساط وام، انتقالی بین حسابها، سند های درآمد و هزینه ، و سایر دریافتها و\n پرداختها مربوط به این حساب در صورت وجود حذف گردد" +
+            //            //        "", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //            //}
+            //            catch (Exception ex)
+            //            {
+            //                XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message, "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //            }
+            //        }
+            //    }
+            //}
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -446,85 +446,85 @@ namespace Sandogh_TG
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (TextEditValidation())
-            {
-                if (En == EnumCED.Create)
-                {
-                    using (var db = new MyContext())
-                    {
-                        try
-                        {
-                            SabtHazine obj = new SabtHazine();
-                            obj.Seryal = Convert.ToInt32(txtSeryal.Text);
-                            if (!string.IsNullOrEmpty(txtTarikh.Text))
-                                obj.Tarikh = Convert.ToDateTime(txtTarikh.Text);
-                            obj.HazineId = Convert.ToInt32(cmbHesabHazine.EditValue);
-                            obj.HazineName = cmbHesabHazine.Text;
-                            obj.Mablagh = Convert.ToDecimal(txtMablagh.Text);
-                            obj.HesabBankiId = Convert.ToInt32(cmbHesabBanki.EditValue);
-                            obj.HesabBankiName = cmbHesabBanki.Text;
-                            obj.Sharh = txtSharh.Text;
-                            obj.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
-                            obj.SandoghId = Convert.ToInt32(Fm.IDSandogh.Caption);
-                            db.SabtHazines.Add(obj);
-                            db.SaveChanges();
-                            btnDisplayList_Click(null, null);
+            //if (TextEditValidation())
+            //{
+            //    if (En == EnumCED.Create)
+            //    {
+            //        using (var db = new MyContext())
+            //        {
+            //            try
+            //            {
+            //                SabtHazine obj = new SabtHazine();
+            //                obj.Seryal = Convert.ToInt32(txtSeryal.Text);
+            //                if (!string.IsNullOrEmpty(txtTarikh.Text))
+            //                    obj.Tarikh = Convert.ToDateTime(txtTarikh.Text);
+            //                obj.HazineId = Convert.ToInt32(cmbHesabHazine.EditValue);
+            //                obj.HazineName = cmbHesabHazine.Text;
+            //                obj.Mablagh = Convert.ToDecimal(txtMablagh.Text);
+            //                obj.HesabBankiId = Convert.ToInt32(cmbHesabBanki.EditValue);
+            //                obj.HesabBankiName = cmbHesabBanki.Text;
+            //                obj.Sharh = txtSharh.Text;
+            //                obj.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
+            //                //obj.SandoghId = Convert.ToInt32(Fm.IDSandogh.Caption);
+            //                db.SabtHazines.Add(obj);
+            //                db.SaveChanges();
+            //                btnDisplayList_Click(null, null);
 
-                            //XtraMessageBox.Show("عملیات ایجاد با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
-                            gridControl1.Enabled = true;
-                            gridView1.MoveLast();
-                            ActiveButtons();
-                            ClearControls();
-                            InActiveControls();
-                            En = EnumCED.Save;
-                        }
-                        catch (Exception ex)
-                        {
-                            XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.ToString(), "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
-                else if (En == EnumCED.Edit)
-                {
-                    using (var db = new MyContext())
-                    {
-                        try
-                        {
-                            int RowId = Convert.ToInt32(txtId.Text);
-                            var q = db.SabtHazines.FirstOrDefault(p => p.Id == RowId);
-                            if (q != null)
-                            {
-                                if (!string.IsNullOrEmpty(txtTarikh.Text))
-                                    q.Tarikh = Convert.ToDateTime(txtTarikh.Text);
-                                q.HazineId = Convert.ToInt32(cmbHesabHazine.EditValue);
-                                q.HazineName = cmbHesabHazine.Text;
-                                q.Mablagh = Convert.ToDecimal(txtMablagh.Text);
-                                q.HesabBankiId = Convert.ToInt32(cmbHesabBanki.EditValue);
-                                q.HesabBankiName = cmbHesabBanki.Text;
-                                q.Sharh = txtSharh.Text;
+            //                //XtraMessageBox.Show("عملیات ایجاد با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+            //                gridControl1.Enabled = true;
+            //                gridView1.MoveLast();
+            //                ActiveButtons();
+            //                ClearControls();
+            //                InActiveControls();
+            //                En = EnumCED.Save;
+            //            }
+            //            catch (Exception ex)
+            //            {
+            //                XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.ToString(), "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //            }
+            //        }
+            //    }
+            //    else if (En == EnumCED.Edit)
+            //    {
+            //        using (var db = new MyContext())
+            //        {
+            //            try
+            //            {
+            //                int RowId = Convert.ToInt32(txtId.Text);
+            //                var q = db.SabtHazines.FirstOrDefault(p => p.Id == RowId);
+            //                if (q != null)
+            //                {
+            //                    if (!string.IsNullOrEmpty(txtTarikh.Text))
+            //                        q.Tarikh = Convert.ToDateTime(txtTarikh.Text);
+            //                    q.HazineId = Convert.ToInt32(cmbHesabHazine.EditValue);
+            //                    q.HazineName = cmbHesabHazine.Text;
+            //                    q.Mablagh = Convert.ToDecimal(txtMablagh.Text);
+            //                    q.HesabBankiId = Convert.ToInt32(cmbHesabBanki.EditValue);
+            //                    q.HesabBankiName = cmbHesabBanki.Text;
+            //                    q.Sharh = txtSharh.Text;
 
-                                db.SaveChanges();
-                                btnDisplayList_Click(null, null);
+            //                    db.SaveChanges();
+            //                    btnDisplayList_Click(null, null);
 
-                                //XtraMessageBox.Show("عملیات ویرایش با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
-                                if (gridView1.RowCount > 0)
-                                    gridView1.FocusedRowHandle = EditRowIndex;
-                                gridControl1.Enabled = true;
-                                ActiveButtons();
-                                ClearControls();
-                                InActiveControls();
-                                En = EnumCED.Save;
-                            }
-                            else
-                                XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        catch (Exception ex)
-                        {
-                            XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message, "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
-            }
+            //                    //XtraMessageBox.Show("عملیات ویرایش با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+            //                    if (gridView1.RowCount > 0)
+            //                        gridView1.FocusedRowHandle = EditRowIndex;
+            //                    gridControl1.Enabled = true;
+            //                    ActiveButtons();
+            //                    ClearControls();
+            //                    InActiveControls();
+            //                    En = EnumCED.Save;
+            //                }
+            //                else
+            //                    XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //            }
+            //            catch (Exception ex)
+            //            {
+            //                XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message, "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //            }
+            //        }
+            //    }
+            //}
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
