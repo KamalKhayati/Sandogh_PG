@@ -64,6 +64,13 @@
             this.btnSoratHesabTafzili = new DevExpress.XtraBars.BarButtonItem();
             this.btnTarazname = new DevExpress.XtraBars.BarButtonItem();
             this.btnSoratSoodVZiyan = new DevExpress.XtraBars.BarButtonItem();
+            this.barSubItem3 = new DevExpress.XtraBars.BarSubItem();
+            this.btnListKarbaran = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
+            this.txtUserId = new DevExpress.XtraBars.BarStaticItem();
+            this.txtUserName = new DevExpress.XtraBars.BarStaticItem();
+            this.txtDateTimeNow = new DevExpress.XtraBars.BarStaticItem();
             this.DaryaftVPardakht = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgDaryaft = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgPardakhtha = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -78,6 +85,7 @@
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.Emkanat = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgTanzimat = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.Other = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -85,11 +93,7 @@
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barSubItem3 = new DevExpress.XtraBars.BarSubItem();
-            this.btnListKarbaran = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnYadavari = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.SuspendLayout();
@@ -136,10 +140,14 @@
             this.barSubItem3,
             this.btnListKarbaran,
             this.barButtonItem4,
-            this.barButtonItem5});
+            this.barButtonItem5,
+            this.txtUserId,
+            this.txtUserName,
+            this.txtDateTimeNow,
+            this.btnYadavari});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.ribbonControl1.MaxItemId = 56;
+            this.ribbonControl1.MaxItemId = 60;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.DaryaftVPardakht,
@@ -446,6 +454,58 @@
             this.btnSoratSoodVZiyan.Id = 51;
             this.btnSoratSoodVZiyan.Name = "btnSoratSoodVZiyan";
             // 
+            // barSubItem3
+            // 
+            this.barSubItem3.Caption = "کاربران سیستم";
+            this.barSubItem3.Id = 52;
+            this.barSubItem3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barSubItem3.ImageOptions.Image")));
+            this.barSubItem3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnListKarbaran),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem4),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem5)});
+            this.barSubItem3.Name = "barSubItem3";
+            this.barSubItem3.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // btnListKarbaran
+            // 
+            this.btnListKarbaran.Caption = "لیست کاربران";
+            this.btnListKarbaran.Id = 53;
+            this.btnListKarbaran.Name = "btnListKarbaran";
+            this.btnListKarbaran.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnListKarbaran_ItemClick);
+            // 
+            // barButtonItem4
+            // 
+            this.barButtonItem4.Caption = "تعیین سطح دسترسی کاربران";
+            this.barButtonItem4.Id = 54;
+            this.barButtonItem4.Name = "barButtonItem4";
+            this.barButtonItem4.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            // 
+            // barButtonItem5
+            // 
+            this.barButtonItem5.Caption = "تغییر شناسه کاربری و رمز عبور";
+            this.barButtonItem5.Id = 55;
+            this.barButtonItem5.Name = "barButtonItem5";
+            this.barButtonItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            // 
+            // txtUserId
+            // 
+            this.txtUserId.Caption = "UserId";
+            this.txtUserId.Id = 56;
+            this.txtUserId.Name = "txtUserId";
+            this.txtUserId.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            // 
+            // txtUserName
+            // 
+            this.txtUserName.Caption = "UserName";
+            this.txtUserName.Id = 57;
+            this.txtUserName.Name = "txtUserName";
+            // 
+            // txtDateTimeNow
+            // 
+            this.txtDateTimeNow.Caption = "DateTimeNow";
+            this.txtDateTimeNow.Id = 58;
+            this.txtDateTimeNow.Name = "txtDateTimeNow";
+            // 
             // DaryaftVPardakht
             // 
             this.DaryaftVPardakht.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -539,9 +599,9 @@
             // 
             this.Emkanat.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.rpgTanzimat,
+            this.ribbonPageGroup7,
             this.ribbonPageGroup2,
-            this.ribbonPageGroup3,
-            this.ribbonPageGroup7});
+            this.ribbonPageGroup3});
             this.Emkanat.Name = "Emkanat";
             this.Emkanat.Text = "امکانات";
             // 
@@ -550,6 +610,12 @@
             this.rpgTanzimat.ItemLinks.Add(this.btnTanzimat, true);
             this.rpgTanzimat.Name = "rpgTanzimat";
             this.rpgTanzimat.Text = "تنظیمات";
+            // 
+            // ribbonPageGroup7
+            // 
+            this.ribbonPageGroup7.ItemLinks.Add(this.barSubItem3);
+            this.ribbonPageGroup7.Name = "ribbonPageGroup7";
+            this.ribbonPageGroup7.Text = "کاربران";
             // 
             // ribbonPageGroup2
             // 
@@ -560,6 +626,7 @@
             // ribbonPageGroup3
             // 
             this.ribbonPageGroup3.ItemLinks.Add(this.btnChangeBackground, true);
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnYadavari, true);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnCalculate, true);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "سایر امکانات";
@@ -583,6 +650,9 @@
             // 
             this.ribbonStatusBar1.ItemLinks.Add(this.IDSandogh);
             this.ribbonStatusBar1.ItemLinks.Add(this.IDSalMali);
+            this.ribbonStatusBar1.ItemLinks.Add(this.txtUserId);
+            this.ribbonStatusBar1.ItemLinks.Add(this.txtUserName, true);
+            this.ribbonStatusBar1.ItemLinks.Add(this.txtDateTimeNow, true);
             this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 609);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
@@ -601,49 +671,20 @@
             this.pictureEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureEdit1.Location = new System.Drawing.Point(0, 206);
             this.pictureEdit1.Name = "pictureEdit1";
-            this.pictureEdit1.Properties.NullText = "لطفاً از منوی امکانات یک تصویر انتخاب کنید";
+            this.pictureEdit1.Properties.NullText = "میتوانید از منوی امکانات یک تصویر انتخاب کنید";
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             this.pictureEdit1.Size = new System.Drawing.Size(1301, 403);
             this.pictureEdit1.TabIndex = 46;
             // 
-            // ribbonPageGroup7
+            // btnYadavari
             // 
-            this.ribbonPageGroup7.ItemLinks.Add(this.barSubItem3);
-            this.ribbonPageGroup7.Name = "ribbonPageGroup7";
-            this.ribbonPageGroup7.Text = "ribbonPageGroup7";
-            // 
-            // barSubItem3
-            // 
-            this.barSubItem3.Caption = "کاربران سیستم";
-            this.barSubItem3.Id = 52;
-            this.barSubItem3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barSubItem3.ImageOptions.Image")));
-            this.barSubItem3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnListKarbaran),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem4),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem5)});
-            this.barSubItem3.Name = "barSubItem3";
-            this.barSubItem3.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
-            // btnListKarbaran
-            // 
-            this.btnListKarbaran.Caption = "لیست کاربران";
-            this.btnListKarbaran.Id = 53;
-            this.btnListKarbaran.Name = "btnListKarbaran";
-            // 
-            // barButtonItem4
-            // 
-            this.barButtonItem4.Caption = "تعیین سطح دسترسی کاربران";
-            this.barButtonItem4.Id = 54;
-            this.barButtonItem4.Name = "barButtonItem4";
-            this.barButtonItem4.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            // 
-            // barButtonItem5
-            // 
-            this.barButtonItem5.Caption = "تغییر شناسه کاربری و رمز عبور";
-            this.barButtonItem5.Id = 55;
-            this.barButtonItem5.Name = "barButtonItem5";
-            this.barButtonItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.btnYadavari.Caption = "فرم یادآوری روزانه";
+            this.btnYadavari.Id = 59;
+            this.btnYadavari.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
+            this.btnYadavari.Name = "btnYadavari";
+            this.btnYadavari.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.btnYadavari.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnYadavari_ItemClick);
             // 
             // FrmMain
             // 
@@ -660,7 +701,7 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StatusBar = this.ribbonStatusBar1;
-            this.Text = "گروه برنامه نویسی و طراحی نرم افزارهای صندوق قرض الحسنه";
+            this.Text = " نرم افزار صندوق قرض الحسنه";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
@@ -733,6 +774,10 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
+        public DevExpress.XtraBars.BarStaticItem txtUserId;
+        public DevExpress.XtraBars.BarStaticItem txtUserName;
+        public DevExpress.XtraBars.BarStaticItem txtDateTimeNow;
+        private DevExpress.XtraBars.BarButtonItem btnYadavari;
     }
 }
 

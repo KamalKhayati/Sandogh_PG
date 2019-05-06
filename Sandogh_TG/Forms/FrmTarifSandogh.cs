@@ -76,12 +76,12 @@ namespace Sandogh_TG
 
         private void btnBrowsPictuer_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "Image Files|*.bmp;*.jpg;*.jpeg;*.png;*.gif";
+            XtraOpenFileDialog XtraOpenFileDialog1 = new XtraOpenFileDialog();
+            XtraOpenFileDialog1.Filter = "Image Files|*.bmp;*.jpg;*.jpeg;*.png;*.gif";
 
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            if (XtraOpenFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                img = Image.FromFile(openFileDialog1.FileName);
+                img = Image.FromFile(XtraOpenFileDialog1.FileName);
                 this.pictureEdit1.Image = img;
                 //this.pictureEdit1.Tag = openFileDialog1.FileName;
 

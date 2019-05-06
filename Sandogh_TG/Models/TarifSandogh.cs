@@ -36,5 +36,6 @@ namespace Sandogh_TG
         public virtual ICollection<CodeMoin> CodeMoins { get; set; }
         public virtual ICollection<GroupTafzili> GroupTafzilis { get; set; }
         public virtual ICollection<AllHesabTafzili> AllHesabTafzilis { get; set; }
+        //public virtual ICollection<Karbaran> Karbarans { get; set; }
     }
 }

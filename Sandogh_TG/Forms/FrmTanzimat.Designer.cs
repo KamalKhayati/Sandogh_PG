@@ -314,8 +314,7 @@
             this.checkEdit3.EditValue = true;
             this.checkEdit3.Location = new System.Drawing.Point(9, 286);
             this.checkEdit3.Name = "checkEdit3";
-            this.checkEdit3.Properties.Caption = "اعلام و هشدار اقساط سررسید گذشته وامها و پس انداز ماهیانه پرداخت نشده توسط اعضاء " +
-    "در ابتدای شروع برنامه";
+            this.checkEdit3.Properties.Caption = "یادآوری روزانه اقساط سررسید گذشته وامها در ابتدای شروع برنامه";
             this.checkEdit3.Size = new System.Drawing.Size(864, 29);
             this.checkEdit3.TabIndex = 2;
             // 

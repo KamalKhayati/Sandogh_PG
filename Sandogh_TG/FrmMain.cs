@@ -93,9 +93,9 @@ namespace Sandogh_TG
                         ribbonControl1.ApplicationDocumentCaption = q.NameSandogh;
                         int _SId = Convert.ToInt32(IDSandogh.Caption);
                         var q2 = db.TarifSandoghs.FirstOrDefault(s => s.Id == _SId);
-                        if (q2.Pictuer != null)
+                        if (q2.PicBackground != null)
                         {
-                            MemoryStream ms = new MemoryStream(q2.Pictuer);
+                            MemoryStream ms = new MemoryStream(q2.PicBackground);
                             pictureEdit1.Image = Image.FromStream(ms);
                             img = pictureEdit1.Image;
                         }
@@ -110,6 +110,12 @@ namespace Sandogh_TG
                     }
 
 
+                    var q3 = db.Tanzimats.Any(f => f.checkEdit3 == true);
+                    if(q3)
+                    {
+                        FrmYadavari fm = new FrmYadavari();
+                        fm.ShowDialog();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -217,18 +223,18 @@ namespace Sandogh_TG
 
         private void btnChangeBackground_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "Image Files|*.bmp;*.jpg;*.jpeg;*.png;*.gif";
+            XtraOpenFileDialog XtraopenFileDialog1 = new XtraOpenFileDialog();
+            XtraopenFileDialog1.Filter = "Image Files|*.bmp;*.jpg;*.jpeg;*.png;*.gif";
 
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            using (var db = new MyContext())
             {
-                img = Image.FromFile(openFileDialog1.FileName);
-                this.pictureEdit1.Image = img;
-                //this.pictureEdit1.Tag = openFileDialog1.FileName;
-                using (var db = new MyContext())
+                try
                 {
-                    try
+                    if (XtraopenFileDialog1.ShowDialog() == DialogResult.OK)
                     {
+                        img = Image.FromFile(XtraopenFileDialog1.FileName);
+                        this.pictureEdit1.Image = img;
+                        //this.pictureEdit1.Tag = openFileDialog1.FileName;
                         int _SId = Convert.ToInt32(IDSandogh.Caption);
                         var q = db.TarifSandoghs.FirstOrDefault(f => f.Id == _SId);
                         if (q != null)
@@ -236,47 +242,48 @@ namespace Sandogh_TG
                             MemoryStream ms = new MemoryStream();
                             img.Save(ms, pictureEdit1.Image.RawFormat);
                             byte[] myarrey = ms.GetBuffer();
-                            q.Pictuer = myarrey;
+                            q.PicBackground = myarrey;
                             db.SaveChanges();
                         }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            else
-            {
-                if (XtraMessageBox.Show("آیا عکس پس زمینه حذف گردد؟", "پیغام حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-                {
-                    pictureEdit1.Image = null;
-                    using (var db = new MyContext())
-                    {
-                        try
+                        if (XtraMessageBox.Show("آیا عکس پس زمینه حذف گردد؟", "پیغام حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                         {
+                            pictureEdit1.Image = null;
                             int _SId = Convert.ToInt32(IDSandogh.Caption);
                             var q = db.TarifSandoghs.FirstOrDefault(f => f.Id == _SId);
                             if (q != null)
                             {
-                                q.Pictuer = null;
+                                q.PicBackground = null;
                                 db.SaveChanges();
                             }
                         }
-                        catch (Exception ex)
-                        {
-                            XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                                "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
                     }
+
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
-
         private void btnCalling_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             FrmCalling_1 fm = new FrmCalling_1();
+            fm.ShowDialog();
+        }
+
+        private void btnListKarbaran_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmListKarbaran fm = new FrmListKarbaran();
+            fm.ShowDialog();
+        }
+
+        private void btnYadavari_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmYadavari fm = new FrmYadavari();
             fm.ShowDialog();
         }
     }

@@ -90,7 +90,7 @@ namespace Sandogh_TG
             Year++;
         }
 
-        public void Decrement()
+        public void DecrementDay()
         {
             if (Month == 1 && Day == 1)
             {
@@ -105,6 +105,64 @@ namespace Sandogh_TG
             }
             else
                 Day--;
+        }
+        public void DecrementMonth()
+        {
+            if (Month == 1 && Day == 31)
+            {
+                Day = 1;
+            }
+            else if (Month == 1 && Day == 30)
+            {
+                Year--;
+                Month = 12;
+                Day = MonthDays[Month];
+            }
+            else if (Month == 1 && Day < 30)
+            {
+                Year--;
+                Month = 12;
+                Day = Day-1;
+            }
+            else if (Month >= 2 && Month <= 6 && Day == 31)
+            {
+                Day = 1;
+            }
+            else if (Month >= 2 && Month <= 6 && Day == 30)
+            {
+                Month--;
+                Day = MonthDays[Month];
+            }
+            else if (Month >= 2 && Month <= 6 && Day < 30)
+            {
+                Month--;
+                Day = Day+1;
+            }
+            else if (Month >= 7 && Month <= 11 && Day == 30)
+            {
+                Month--;
+                Day = MonthDays[Month];
+            }
+            else if (Month == 7 && Day < 30)
+            {
+                Month--;
+                Day = Day+1;
+            }
+            else if (Month >= 8 && Month <= 11 && Day < 30)
+            {
+                Month--;
+                //Day = MonthDays[Month];
+            }
+            else if (Month == 12 && Day == 30)
+            {
+                Month--;
+                Day = MonthDays[Month];
+            }
+            else if (Month == 12 && Day < 30)
+            {
+                Month--;
+                //Day = Day;
+            }
         }
 
         public override string ToString()
@@ -155,7 +213,7 @@ namespace Sandogh_TG
             Mydate temp = new Mydate(x);
             for (int i = 0; i < n; i++)
             {
-                temp.Decrement();
+                temp.DecrementDay();
             }
             return temp;
         }
@@ -164,7 +222,7 @@ namespace Sandogh_TG
             Mydate temp = new Mydate(x);
             for (int i = 0; i < n; i++)
             {
-                temp.Decrement();
+                temp.DecrementDay();
 
             }
             return temp;
@@ -230,7 +288,7 @@ namespace Sandogh_TG
         public static Mydate operator --(Mydate x)
         {
             var temp = new Mydate(x);
-            temp.Decrement();
+            temp.DecrementDay();
             return temp;
         }
 

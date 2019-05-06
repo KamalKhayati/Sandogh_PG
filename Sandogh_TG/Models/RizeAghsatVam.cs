@@ -12,6 +12,10 @@ namespace Sandogh_TG
     {
         public int Id { get; set; }
         [Required]
+        public int AazaId { get; set; }
+        [Required, MaxLength(150)]
+        public string NameAaza { get; set; }
+        [Required]
         public int VamPardakhtiId { get; set; }
         [Required]
         public int VamPardakhtiCode { get; set; }

@@ -588,10 +588,13 @@ namespace Sandogh_TG
                                     {
                                         RizeAghsatVam ct = new RizeAghsatVam();
                                         ct.ShomareGhest = i;
+                                        ct.AazaId = _HesabAazaId2;
+                                        ct.NameAaza = cmbDaryaftkonande.Text ;
                                         ct.VamPardakhtiId = q2.Id;
                                         ct.VamPardakhtiCode = _Code;
-                                        d1.IncrementMonth();
-                                        ct.TarikhSarresid = Convert.ToDateTime(d1.ToString());
+                                        if (i != 1)
+                                            d2.IncrementMonth();
+                                        ct.TarikhSarresid = Convert.ToDateTime(d2.ToString());
                                         ct.MablaghAghsat = i != _Tedad ? Convert.ToDecimal(txtMablaghAghsat.Text.Replace(",", "")) : _Tafazol;
                                         ct.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
                                         db.RizeAghsatVams.Add(ct);
@@ -603,10 +606,13 @@ namespace Sandogh_TG
                                     {
                                         RizeAghsatVam ct = new RizeAghsatVam();
                                         ct.ShomareGhest = i;
+                                        ct.AazaId = _HesabAazaId2;
+                                        ct.NameAaza = cmbDaryaftkonande.Text;
                                         ct.VamPardakhtiId = q2.Id;
                                         ct.VamPardakhtiCode = _Code;
-                                        d1.IncrementYear();
-                                        ct.TarikhSarresid = Convert.ToDateTime(d1.ToString());
+                                        if (i != 1)
+                                            d2.IncrementYear();
+                                        ct.TarikhSarresid = Convert.ToDateTime(d2.ToString());
                                         ct.MablaghAghsat = i != _Tedad ? Convert.ToDecimal(txtMablaghAghsat.Text.Replace(",", "")) : _Tafazol;
                                         ct.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
                                         db.RizeAghsatVams.Add(ct);
@@ -757,7 +763,7 @@ namespace Sandogh_TG
                                                 db.RizeAghsatVams.RemoveRange(q3);
                                             }
                                             /////////////////////////////////////////////////////////////////
-
+                                            int _HesabAazaId2 = Convert.ToInt32(cmbDaryaftkonande.EditValue);
                                             var q4 = db.VamPardakhtis.FirstOrDefault(s => s.Code == _Code);
                                             Fm._VamPardakhtiId = q4.Id;
                                             if (cmbFaseleAghsat.SelectedIndex == 0)
@@ -766,10 +772,13 @@ namespace Sandogh_TG
                                                 {
                                                     RizeAghsatVam ct = new RizeAghsatVam();
                                                     ct.ShomareGhest = i;
+                                                    ct.AazaId = _HesabAazaId2;
+                                                    ct.NameAaza = cmbDaryaftkonande.Text;
                                                     ct.VamPardakhtiId = q4.Id;
                                                     ct.VamPardakhtiCode = _Code;
-                                                    d1.IncrementMonth();
-                                                    ct.TarikhSarresid = Convert.ToDateTime(d1.ToString());
+                                                    if (i != 1)
+                                                        d2.IncrementMonth();
+                                                    ct.TarikhSarresid = Convert.ToDateTime(d2.ToString());
                                                     ct.MablaghAghsat = i != _Tedad ? Convert.ToDecimal(txtMablaghAghsat.Text.Replace(",", "")) : _Tafazol;
                                                     ct.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
                                                     db.RizeAghsatVams.Add(ct);
@@ -781,10 +790,13 @@ namespace Sandogh_TG
                                                 {
                                                     RizeAghsatVam ct = new RizeAghsatVam();
                                                     ct.ShomareGhest = i;
+                                                    ct.AazaId = _HesabAazaId2;
+                                                    ct.NameAaza = cmbDaryaftkonande.Text;
                                                     ct.VamPardakhtiId = q4.Id;
                                                     ct.VamPardakhtiCode = _Code;
-                                                    d1.IncrementYear();
-                                                    ct.TarikhSarresid = Convert.ToDateTime(d1.ToString());
+                                                    if (i != 1)
+                                                        d2.IncrementYear();
+                                                    ct.TarikhSarresid = Convert.ToDateTime(d2.ToString());
                                                     ct.MablaghAghsat = i != _Tedad ? Convert.ToDecimal(txtMablaghAghsat.Text.Replace(",", "")) : _Tafazol;
                                                     ct.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
                                                     db.RizeAghsatVams.Add(ct);

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using System.Data.Entity;
 
 namespace Sandogh_TG
 {
@@ -34,11 +35,11 @@ namespace Sandogh_TG
             {
                 try
                 {
-                    var q1 = db.AazaSandoghs.Where(s => s.IsActive == true).OrderBy(s => s.Code).ToList();
+                    var q1 = db.AllHesabTafzilis.Where(s =>s.GroupTafziliId==3 && s.IsActive == true).OrderBy(s => s.Code).ToList();
                     if (q1.Count > 0)
-                        aazaSandoghsBindingSource.DataSource = q1;
+                        allHesabTafzilisBindingSource.DataSource = q1;
                     else
-                        aazaSandoghsBindingSource.DataSource = null;
+                        allHesabTafzilisBindingSource.DataSource = null;
                 }
                 catch (Exception ex)
                 {
@@ -189,11 +190,14 @@ namespace Sandogh_TG
                 {
                     try
                     {
+                        int _HesabAazaId2 = Convert.ToInt32(cmbDaryaftKonande.EditValue);
                         int VamId = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("Id"));
                         if (En == EnumCED.Create)
                         {
                             RizeAghsatVam ct = new RizeAghsatVam();
                             ct.ShomareGhest = Convert.ToInt32(txtShomareGhest.Text);
+                            ct.AazaId = _HesabAazaId2;
+                            ct.NameAaza = cmbDaryaftKonande.Text;
                             ct.VamPardakhtiId = VamId;
                             ct.VamPardakhtiCode = VamCode;
                             if (!string.IsNullOrEmpty(txtSarresidGhest.Text))
@@ -217,8 +221,10 @@ namespace Sandogh_TG
                             var q = db.RizeAghsatVams.FirstOrDefault(s => s.Id == RowId);
                             if (q != null)
                             {
-                                q.VamPardakhtiId = VamId;
-                                q.VamPardakhtiCode = VamCode;
+                                //q.AazaId = _HesabAazaId2;
+                                //q.NameAaza = cmbDaryaftKonande.Text;
+                                //q.VamPardakhtiId = VamId;
+                                //q.VamPardakhtiCode = VamCode;
                                 if (!string.IsNullOrEmpty(txtSarresidGhest.Text))
                                     q.TarikhSarresid = Convert.ToDateTime(txtSarresidGhest.Text.Substring(0, 10));
                                 if (!string.IsNullOrEmpty(txtMablaghGest.Text))
@@ -272,7 +278,7 @@ namespace Sandogh_TG
             //btnSaveClose_Clicked = true;
             //En = EnumCED.Create;
             btnSaveClose_Click(null, null);
-            if (En == EnumCED.Save)
+            if (En == EnumCED.Cancel)
             {
                 ActiveForm(this);
                 this.Visible = false;

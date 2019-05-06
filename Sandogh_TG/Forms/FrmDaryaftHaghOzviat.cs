@@ -278,6 +278,7 @@ namespace Sandogh_TG
                             var q1 = db.AsnadeHesabdariRows.Any() ? db.AsnadeHesabdariRows.Max(f => f.ShomareSanad) : 0;
                             HaghOzviat obj = new HaghOzviat();
                             obj.AazaId = Convert.ToInt32(cmbPardakhtKonande.EditValue);
+                            obj.NameAaza = cmbPardakhtKonande.Text;
                             obj.Seryal = Convert.ToInt32(txtSeryal.Text);
                             obj.Tarikh = Convert.ToDateTime(txtTarikh.Text.Substring(0, 10));
                             obj.Mablagh = Convert.ToDecimal(txtMablagh.Text.Replace(",", ""));
@@ -290,7 +291,7 @@ namespace Sandogh_TG
                             obj.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
                             obj.ShomareSanad = q1 + 1;
                             db.HaghOzviats.Add(obj);
-
+                            //db.SaveChanges();
                             ////////////////////////////////////////////////////////////////////////
                             int _HesabTafId1 = Convert.ToInt32(cmbNameHesab.EditValue);
                             var qq1 = db.CodeMoins.FirstOrDefault(f => f.Code == 1001);
@@ -308,6 +309,7 @@ namespace Sandogh_TG
                             obj1.Sharh = txtSharh.Text;
                             obj1.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
                             db.AsnadeHesabdariRows.Add(obj1);
+                            //db.SaveChanges();
 
 
                             int _HesabTafId2 = Convert.ToInt32(cmbPardakhtKonande.EditValue);
@@ -342,8 +344,9 @@ namespace Sandogh_TG
                             var q = db.HaghOzviats.FirstOrDefault(s => s.Id == RowId);
                             if (q != null)
                             {
-                                q.AazaId = Convert.ToInt32(cmbPardakhtKonande.EditValue);
-                                q.Seryal = Convert.ToInt32(txtSeryal.Text);
+                                //q.AazaId = Convert.ToInt32(cmbPardakhtKonande.EditValue);
+                                //q.NameAaza = cmbPardakhtKonande.Text;
+                                //q.Seryal = Convert.ToInt32(txtSeryal.Text);
                                 q.Tarikh = Convert.ToDateTime(txtTarikh.Text.Substring(0, 10));
                                 q.Mablagh = !string.IsNullOrEmpty(txtMablagh.Text) ? Convert.ToDecimal(txtMablagh.Text) : 0;
                                 q.NameHesabId = Convert.ToInt32(cmbNameHesab.EditValue);

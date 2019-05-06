@@ -44,8 +44,8 @@ namespace Sandogh_TG
             public AppContext()
             {
                 Application.Idle += new EventHandler(Application_Idle);
-                new FrmMain().Show();
-                //new FrmLogin().Show();
+                //new FrmMain().Show();
+                new FrmLogin().Show();
             }
 
             private void Application_Idle(object sender, EventArgs e)

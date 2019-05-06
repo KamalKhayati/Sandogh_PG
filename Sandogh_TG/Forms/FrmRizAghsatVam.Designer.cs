@@ -36,7 +36,6 @@
             this.btnSaveClose = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.cmbDaryaftKonande = new DevExpress.XtraEditors.LookUpEdit();
-            this.aazaSandoghsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.xtraScrollableControl2 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.txtShomareGhest = new DevExpress.XtraEditors.TextEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -47,10 +46,10 @@
             this.txtCode = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
+            this.allHesabTafzilisBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbDaryaftKonande.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).BeginInit();
             this.xtraScrollableControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtShomareGhest.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMablaghGest.Properties)).BeginInit();
@@ -58,6 +57,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             this.panelControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl2
@@ -127,10 +127,9 @@
             this.cmbDaryaftKonande.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbDaryaftKonande.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Code", "کد", 50, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Center, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NameVFamil", "نام و نام خانوادگی", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.cmbDaryaftKonande.Properties.DataSource = this.aazaSandoghsBindingSource;
-            this.cmbDaryaftKonande.Properties.DisplayMember = "NameVFamil";
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "نام و نام خانوادگی", 250, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.cmbDaryaftKonande.Properties.DataSource = this.allHesabTafzilisBindingSource;
+            this.cmbDaryaftKonande.Properties.DisplayMember = "Name";
             this.cmbDaryaftKonande.Properties.ImmediatePopup = true;
             this.cmbDaryaftKonande.Properties.MaxLength = 5;
             this.cmbDaryaftKonande.Properties.NullText = "";
@@ -140,10 +139,6 @@
             this.cmbDaryaftKonande.Size = new System.Drawing.Size(287, 32);
             this.cmbDaryaftKonande.TabIndex = 15;
             this.cmbDaryaftKonande.TabStop = false;
-            // 
-            // aazaSandoghsBindingSource
-            // 
-            this.aazaSandoghsBindingSource.DataSource = typeof(Sandogh_TG.AazaSandogh);
             // 
             // xtraScrollableControl2
             // 
@@ -281,6 +276,10 @@
             this.panelControl4.Size = new System.Drawing.Size(404, 251);
             this.panelControl4.TabIndex = 35;
             // 
+            // allHesabTafzilisBindingSource
+            // 
+            this.allHesabTafzilisBindingSource.DataSource = typeof(Sandogh_TG.AllHesabTafzili);
+            // 
             // FrmRizAghsatVam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
@@ -301,7 +300,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cmbDaryaftKonande.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).EndInit();
             this.xtraScrollableControl2.ResumeLayout(false);
             this.xtraScrollableControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtShomareGhest.Properties)).EndInit();
@@ -310,6 +308,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
             this.panelControl4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -320,7 +319,6 @@
         private DevExpress.XtraEditors.SimpleButton btnSaveClose;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         public DevExpress.XtraEditors.LookUpEdit cmbDaryaftKonande;
-        private System.Windows.Forms.BindingSource aazaSandoghsBindingSource;
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl2;
         private DevExpress.XtraEditors.PanelControl panelControl4;
         public DevExpress.XtraEditors.TextEdit txtCode;
@@ -332,5 +330,6 @@
         private DevExpress.XtraEditors.SimpleButton btnSaveNext;
         public DevExpress.XtraEditors.TextEdit txtShomareGhest;
         private DevExpress.XtraEditors.LabelControl labelControl4;
+        private System.Windows.Forms.BindingSource allHesabTafzilisBindingSource;
     }
 }
