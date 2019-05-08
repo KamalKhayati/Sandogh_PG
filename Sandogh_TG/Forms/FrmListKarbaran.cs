@@ -94,12 +94,12 @@ namespace Sandogh_TG
 
         public void btnSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtUserName.Text))
+            if (string.IsNullOrEmpty(txtName.Text))
             {
                 XtraMessageBox.Show("لطفاً نام و نام خانوادگی کاربر را وارد کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            else if (string.IsNullOrEmpty(txtName.Text))
+            else if (string.IsNullOrEmpty(txtShenase.Text))
             {
                 XtraMessageBox.Show("لطفاً شناسه کاریری را وارد کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -118,8 +118,8 @@ namespace Sandogh_TG
                         if (En == EnumCED.Create)
                         {
                             Karbaran obj = new Karbaran();
-                            obj.UserName = txtUserName.Text;
                             obj.Name = txtName.Text;
+                            obj.Shenase = txtShenase.Text;
                             obj.Password = txtPassword.Text;
                             db.Karbarans.Add(obj);
                             db.SaveChanges();
@@ -138,8 +138,8 @@ namespace Sandogh_TG
                             var q = db.Karbarans.FirstOrDefault(s => s.Id == RowId);
                             if (q != null)
                             {
-                                q.UserName = txtUserName.Text;
                                 q.Name = txtName.Text;
+                                q.Shenase = txtShenase.Text;
                                 q.Password = txtPassword.Text;
                                 db.SaveChanges();
                                 //XtraMessageBox.Show("اطلاعات با موفقیت ویرایش شد", "پیغام ثبت ", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -249,8 +249,8 @@ namespace Sandogh_TG
             if (En == EnumCED.Create || En == EnumCED.Edit)
             {
                 //cmbNameSandoogh.ReadOnly = false;
-                txtUserName.ReadOnly = false;
                 txtName.ReadOnly = false;
+                txtShenase.ReadOnly = false;
                 txtPassword.ReadOnly = false;
             }
         }
@@ -260,16 +260,16 @@ namespace Sandogh_TG
             if (En == EnumCED.Create || En == EnumCED.Edit)
             {
                 //cmbNameSandoogh.ReadOnly = true;
-                txtUserName.ReadOnly = true;
                 txtName.ReadOnly = true;
+                txtShenase.ReadOnly = true;
                 txtPassword.ReadOnly = true;
             }
         }
 
         public void ClearControls()
         {
-            txtUserName.Text = string.Empty;
             txtName.Text = string.Empty;
+            txtShenase.Text = string.Empty;
             txtPassword.Text = string.Empty;
         }
 
@@ -280,7 +280,7 @@ namespace Sandogh_TG
             InActiveButtons();
             ClearControls();
             ActiveControls();
-            txtUserName.Focus();
+            txtName.Focus();
 
         }
 
@@ -290,36 +290,41 @@ namespace Sandogh_TG
             {
                 if (XtraMessageBox.Show("آیا کاربر مورد نظر حذف شود؟", "پیغام حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                        EditRowIndex = gridView1.FocusedRowHandle;
-                        using (var db = new MyContext())
+                    EditRowIndex = gridView1.FocusedRowHandle;
+                    using (var db = new MyContext())
+                    {
+                        try
                         {
-                            try
+                            int RowId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id").ToString());
+                            var q = db.Karbarans.FirstOrDefault(p => p.Id == RowId);
+                            if (q != null)
                             {
-                                int RowId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id").ToString());
-                                var q = db.Karbarans.FirstOrDefault(p => p.Id == RowId);
-                                if (q != null)
+                                if (q.Id==1)
                                 {
-                                    db.Karbarans.Remove(q);
-                                    /////////////////////////////////////////////////////////////////////////////
-                                    db.SaveChanges();
-
-                                    btnDisplyList_Click(null, null);
-                                    XtraMessageBox.Show("عملیات حذف با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
-                                    if (gridView1.RowCount > 0)
-                                        gridView1.FocusedRowHandle = EditRowIndex - 1;
+                                    XtraMessageBox.Show("کاربر فوق سیستمی است لذا قابل حذف نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                                    return;
                                 }
-                                else
-                                    XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                db.Karbarans.Remove(q);
+                                /////////////////////////////////////////////////////////////////////////////
+                                db.SaveChanges();
+
+                                btnDisplyList_Click(null, null);
+                                XtraMessageBox.Show("عملیات حذف با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                                if (gridView1.RowCount > 0)
+                                    gridView1.FocusedRowHandle = EditRowIndex - 1;
                             }
-                            //catch (DbUpdateException)
-                            //{
-                            //    XtraMessageBox.Show("به دلیل اینکه از سال مالی فوق جهت صدور سند استفاده شده است لذا قابل حذف نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            //}
-                            catch (Exception ex)
-                            {
-                                XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message, "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
+                            else
+                                XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
+                        //catch (DbUpdateException)
+                        //{
+                        //    XtraMessageBox.Show("به دلیل اینکه از سال مالی فوق جهت صدور سند استفاده شده است لذا قابل حذف نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //}
+                        catch (Exception ex)
+                        {
+                            XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message, "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
 
                 }
             }
@@ -336,10 +341,10 @@ namespace Sandogh_TG
                 InActiveButtons();
                 ActiveControls();
                 txtId.Text = gridView1.GetFocusedRowCellDisplayText("Id");
-                txtUserName.Text = gridView1.GetFocusedRowCellDisplayText("UserName");
                 txtName.Text = gridView1.GetFocusedRowCellDisplayText("Name");
+                txtShenase.Text = gridView1.GetFocusedRowCellDisplayText("Shenase");
                 txtPassword.Text = gridView1.GetFocusedRowCellDisplayText("Password");
-                txtUserName.Focus();
+                txtName.Focus();
             }
         }
 

@@ -45,15 +45,15 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Line = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colUserName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colShenase = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPassword = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lblUserId = new DevExpress.XtraEditors.LabelControl();
             this.xtraScrollableControl2 = new DevExpress.XtraEditors.XtraScrollableControl();
-            this.txtUserName = new DevExpress.XtraEditors.TextEdit();
+            this.txtName = new DevExpress.XtraEditors.TextEdit();
             this.txtId = new DevExpress.XtraEditors.TextEdit();
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
-            this.txtName = new DevExpress.XtraEditors.TextEdit();
+            this.txtShenase = new DevExpress.XtraEditors.TextEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -70,10 +70,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.karbaransBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.xtraScrollableControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtId.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtShenase.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             this.SuspendLayout();
@@ -196,7 +196,7 @@
             this.panelControl4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl4.Location = new System.Drawing.Point(0, 0);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(774, 275);
+            this.panelControl4.Size = new System.Drawing.Size(775, 275);
             this.panelControl4.TabIndex = 33;
             // 
             // gridControl1
@@ -208,7 +208,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(770, 271);
+            this.gridControl1.Size = new System.Drawing.Size(771, 271);
             this.gridControl1.TabIndex = 32;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -222,8 +222,8 @@
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colId,
             this.Line,
-            this.colUserName,
             this.colName,
+            this.colShenase,
             this.colPassword});
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView1.GridControl = this.gridControl1;
@@ -269,34 +269,34 @@
             this.Line.VisibleIndex = 0;
             this.Line.Width = 60;
             // 
-            // colUserName
-            // 
-            this.colUserName.AppearanceCell.Options.UseTextOptions = true;
-            this.colUserName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colUserName.AppearanceHeader.Options.UseTextOptions = true;
-            this.colUserName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colUserName.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colUserName.Caption = "نام و نام خانوادگی کاربر";
-            this.colUserName.FieldName = "UserName";
-            this.colUserName.Name = "colUserName";
-            this.colUserName.Visible = true;
-            this.colUserName.VisibleIndex = 1;
-            this.colUserName.Width = 380;
-            // 
             // colName
             // 
             this.colName.AppearanceCell.Options.UseTextOptions = true;
-            this.colName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colName.AppearanceHeader.Options.UseTextOptions = true;
             this.colName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colName.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colName.Caption = "شناسه کاربری";
+            this.colName.Caption = "نام و نام خانوادگی کاربر";
             this.colName.FieldName = "Name";
             this.colName.Name = "colName";
             this.colName.Visible = true;
-            this.colName.VisibleIndex = 2;
-            this.colName.Width = 150;
+            this.colName.VisibleIndex = 1;
+            this.colName.Width = 380;
+            // 
+            // colShenase
+            // 
+            this.colShenase.AppearanceCell.Options.UseTextOptions = true;
+            this.colShenase.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colShenase.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colShenase.AppearanceHeader.Options.UseTextOptions = true;
+            this.colShenase.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colShenase.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colShenase.Caption = "شناسه کاربری";
+            this.colShenase.FieldName = "Shenase";
+            this.colShenase.Name = "colShenase";
+            this.colShenase.Visible = true;
+            this.colShenase.VisibleIndex = 2;
+            this.colShenase.Width = 150;
             // 
             // colPassword
             // 
@@ -328,28 +328,28 @@
             this.xtraScrollableControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.xtraScrollableControl2.Controls.Add(this.txtUserName);
+            this.xtraScrollableControl2.Controls.Add(this.txtName);
             this.xtraScrollableControl2.Controls.Add(this.txtId);
             this.xtraScrollableControl2.Controls.Add(this.txtPassword);
-            this.xtraScrollableControl2.Controls.Add(this.txtName);
+            this.xtraScrollableControl2.Controls.Add(this.txtShenase);
             this.xtraScrollableControl2.Controls.Add(this.labelControl3);
             this.xtraScrollableControl2.Controls.Add(this.labelControl2);
             this.xtraScrollableControl2.Controls.Add(this.labelControl5);
             this.xtraScrollableControl2.Controls.Add(this.panelControl2);
             this.xtraScrollableControl2.Location = new System.Drawing.Point(0, 280);
             this.xtraScrollableControl2.Name = "xtraScrollableControl2";
-            this.xtraScrollableControl2.Size = new System.Drawing.Size(774, 140);
+            this.xtraScrollableControl2.Size = new System.Drawing.Size(775, 151);
             this.xtraScrollableControl2.TabIndex = 34;
             // 
-            // txtUserName
+            // txtName
             // 
-            this.txtUserName.EnterMoveNextControl = true;
-            this.txtUserName.Location = new System.Drawing.Point(324, 60);
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Properties.MaxLength = 50;
-            this.txtUserName.Properties.ReadOnly = true;
-            this.txtUserName.Size = new System.Drawing.Size(283, 32);
-            this.txtUserName.TabIndex = 0;
+            this.txtName.EnterMoveNextControl = true;
+            this.txtName.Location = new System.Drawing.Point(324, 60);
+            this.txtName.Name = "txtName";
+            this.txtName.Properties.MaxLength = 50;
+            this.txtName.Properties.ReadOnly = true;
+            this.txtName.Size = new System.Drawing.Size(283, 32);
+            this.txtName.TabIndex = 0;
             // 
             // txtId
             // 
@@ -378,15 +378,15 @@
             this.txtPassword.Size = new System.Drawing.Size(208, 32);
             this.txtPassword.TabIndex = 2;
             // 
-            // txtName
+            // txtShenase
             // 
-            this.txtName.EnterMoveNextControl = true;
-            this.txtName.Location = new System.Drawing.Point(7, 60);
-            this.txtName.Name = "txtName";
-            this.txtName.Properties.MaxLength = 50;
-            this.txtName.Properties.ReadOnly = true;
-            this.txtName.Size = new System.Drawing.Size(208, 32);
-            this.txtName.TabIndex = 1;
+            this.txtShenase.EnterMoveNextControl = true;
+            this.txtShenase.Location = new System.Drawing.Point(7, 60);
+            this.txtShenase.Name = "txtShenase";
+            this.txtShenase.Properties.MaxLength = 50;
+            this.txtShenase.Properties.ReadOnly = true;
+            this.txtShenase.Size = new System.Drawing.Size(208, 32);
+            this.txtShenase.TabIndex = 1;
             // 
             // labelControl3
             // 
@@ -431,7 +431,7 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl2.Location = new System.Drawing.Point(0, 0);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(774, 45);
+            this.panelControl2.Size = new System.Drawing.Size(775, 45);
             this.panelControl2.TabIndex = 26;
             // 
             // btnSave
@@ -511,7 +511,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 420);
+            this.ClientSize = new System.Drawing.Size(775, 431);
             this.Controls.Add(this.panelControl4);
             this.Controls.Add(this.xtraScrollableControl2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -532,10 +532,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.xtraScrollableControl2.ResumeLayout(false);
             this.xtraScrollableControl2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtId.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtShenase.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -561,8 +561,8 @@
         public DevExpress.XtraEditors.LabelControl lblUserId;
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl2;
         public DevExpress.XtraEditors.TextEdit txtPassword;
+        public DevExpress.XtraEditors.TextEdit txtShenase;
         public DevExpress.XtraEditors.TextEdit txtName;
-        public DevExpress.XtraEditors.TextEdit txtUserName;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl5;
@@ -575,8 +575,8 @@
         private DevExpress.XtraEditors.SimpleButton btnCreate;
         private System.Windows.Forms.BindingSource karbaransBindingSource;
         public DevExpress.XtraEditors.TextEdit txtId;
-        private DevExpress.XtraGrid.Columns.GridColumn colUserName;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
+        private DevExpress.XtraGrid.Columns.GridColumn colShenase;
         private DevExpress.XtraGrid.Columns.GridColumn colPassword;
     }
 }

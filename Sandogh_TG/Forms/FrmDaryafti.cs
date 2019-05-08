@@ -18,7 +18,7 @@ namespace Sandogh_TG
         public FrmDaryafti(FrmMain fm)
         {
             InitializeComponent();
-            Fm=fm;
+            Fm = fm;
         }
         public bool IsActiveList1 = true;
         public bool IsActiveList2 = true;
@@ -69,9 +69,9 @@ namespace Sandogh_TG
                     _AazaId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id"));
                     var qq = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 3 && f.Id2 == _AazaId);
 
-                    if (qq!=null)
+                    if (qq != null)
                     {
-                        var q1 = db.HaghOzviats.Where(s => s.AazaId == qq.Id).OrderBy(s => s.Tarikh).ThenBy(s=>s.Seryal).ToList();
+                        var q1 = db.HaghOzviats.Where(s => s.AazaId == qq.Id).OrderBy(s => s.Tarikh).ThenBy(s => s.Seryal).ToList();
                         if (q1.Count > 0)
                             haghOzviatsBindingSource.DataSource = q1;
                         else
@@ -96,7 +96,7 @@ namespace Sandogh_TG
                     rizeAghsatVamsBindingSource.DataSource = null;
                     _AazaId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id"));
                     var qq = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 3 && f.Id2 == _AazaId);
-                    if (qq!=null)
+                    if (qq != null)
                     {
                         if (IsActiveList2 == true)
                         {
@@ -115,7 +115,8 @@ namespace Sandogh_TG
                                 vamPardakhtisBindingSource.DataSource = null;
                         }
 
-                    }                }
+                    }
+                }
                 catch (Exception ex)
                 {
                     XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
@@ -495,7 +496,7 @@ namespace Sandogh_TG
             {
                 if (Convert.ToInt32(gridView4.GetFocusedRowCellValue("SeryalDaryaft")) != 0)
                 {
-                    if (XtraMessageBox.Show("آیا دریافت قسط مورد نظر حذف شود؟", "پیغام حذف دریافت اقساط وام", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    if (XtraMessageBox.Show("آیا دریافت قسط مورد نظر حذف شود؟", "پیغام حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
                         EditRowIndex = gridView4.FocusedRowHandle;
                         using (var db = new MyContext())
@@ -506,6 +507,11 @@ namespace Sandogh_TG
                                 var q = db.RizeAghsatVams.FirstOrDefault(p => p.Id == RowId);
                                 if (q != null)
                                 {
+                                    ///////////////////////////////////////////////////////////////////
+                                    var q1 = db.AsnadeHesabdariRows.Where(f => f.ShomareSanad == q.ShomareSanad);
+                                    if (q1.Count() > 0)
+                                        db.AsnadeHesabdariRows.RemoveRange(q1);
+                                    //////////////////////////////////////////////////////////////////
                                     q.SeryalDaryaft = 0;
                                     q.TarikhDaryaft = null;
                                     q.MablaghDaryafti = 0;
@@ -513,11 +519,6 @@ namespace Sandogh_TG
                                     q.NameHesab = string.Empty;
                                     q.Sharh = string.Empty;
                                     q.ShomareSanad = 0;
-                                    ///////////////////////////////////////////////////////////////////
-                                    var q1 = db.AsnadeHesabdariRows.Where(f => f.ShomareSanad == q.ShomareSanad);
-                                    if (q1.Count() > 0)
-                                        db.AsnadeHesabdariRows.RemoveRange(q1);
-                                    //////////////////////////////////////////////////////////////////
                                     db.SaveChanges();
                                     btnDisplyActiveList4_Click(null, null);
                                     //XtraMessageBox.Show("عملیات حذف با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;

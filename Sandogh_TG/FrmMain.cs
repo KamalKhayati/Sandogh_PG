@@ -1,4 +1,6 @@
 ﻿using DevExpress.XtraEditors;
+using nucs.JsonSettings;
+using nucs.JsonSettings.Fluent;
 using Sandogh_TG;
 using Sandogh_TG.Forms;
 using System;
@@ -15,9 +17,29 @@ namespace Sandogh_TG
 {
     public partial class FrmMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        //SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().WithEncryption("asdjklasjdkajsd654654").LoadNow();
+        SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().LoadNow();
+
         public FrmMain()
         {
             InitializeComponent();
+
+            #region کدهای مربوط به ذخیره تم های فرم اصلی برنامه 
+
+            DevExpress.XtraBars.Helpers.SkinHelper.InitSkinGallery(skinRibbonGalleryBarItem1, true, true);
+            skinRibbonGalleryBarItem1.GalleryItemClick += new DevExpress.XtraBars.Ribbon.GalleryItemClickEventHandler(skinRibbonGalleryBarItem1_GalleryItemClick);
+
+            //try
+            //{
+            //    DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(Settings[AppVariable.SkinName].ToString() ?? "The Bezier");
+
+            //}
+            //catch (Exception)
+            //{
+
+            //}
+
+            #endregion کدهای مربوط به ذخیره تم های فرم اصلی برنامه 
         }
 
         public new void ActiveForm(XtraForm form)
@@ -110,13 +132,16 @@ namespace Sandogh_TG
                     }
 
 
-                    var q3 = db.Tanzimats.Any(f => f.checkEdit3 == true);
-                    if(q3)
+                    if (Application.OpenForms["FrmTarifSandogh"] == null)
                     {
-                        FrmYadavari fm = new FrmYadavari();
-                        fm.ShowDialog();
-                    }
-                }
+                        var q3 = db.Tanzimats.Any(f => f.checkEdit3 == true);
+                        if (q3)
+                        {
+                            FrmYadavari fm = new FrmYadavari();
+                            fm.ShowDialog();
+                        }
+
+                    }                }
                 catch (Exception ex)
                 {
                     XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
@@ -289,9 +314,11 @@ namespace Sandogh_TG
 
         private void btnTarazname_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            XtraForm1 fm = new XtraForm1();
-            fm.ShowDialog();
+        }
 
+        private void skinRibbonGalleryBarItem1_GalleryItemClick(object sender, DevExpress.XtraBars.Ribbon.GalleryItemClickEventArgs e)
+        {
+            Settings[AppVariable.SkinName] = DevExpress.LookAndFeel.UserLookAndFeel.Default.ActiveSkinName;
         }
     }
 }

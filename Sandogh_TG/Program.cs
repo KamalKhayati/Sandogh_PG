@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.UserSkins;
 using DevExpress.Skins;
+using System.Threading;
+using DevExpress.XtraEditors;
 
 namespace Sandogh_TG
 {
@@ -15,29 +17,57 @@ namespace Sandogh_TG
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
 
-            using (var db = new MyContext())
+            //از Mutex برای این استفاده میکنیم که بخواهیم فقط یک نسخه از برنامه روی دسکتاپ اجرا شود
+            bool instance = false;
+            Mutex mtx = new Mutex(true, Application.ProductName, out instance);
+
+            if (instance)
             {
-                try
+
+                //فعال کردن زبان فارسی در برنامه 
+                //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fa");
+                //Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture;
+                //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("fa");
+
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                BonusSkins.Register();
+
+                HelpClass1.SwitchToPersianLanguage();
+                Cultures.InitializePersianCulture();
+                HelpClass1.SetRegionAndLanguage();
+
+                // ساخت پوشه مسیر دایرکتوری فایل کانفیگ
+                SkinManager.EnableFormSkins();
+                if (!System.IO.Directory.Exists(AppVariable.fileName))
+                    System.IO.Directory.CreateDirectory(AppVariable.fileName);
+                Application.Run(new AppContext());
+                //Application.Run(new FrmMain());
+
+                using (var db = new MyContext())
                 {
-                    db.Database.Initialize(true);
+                    try
+                    {
+                        db.Database.Initialize(true);
+                    }
+
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.Message);
+                    }
                 }
 
-                catch (Exception ex)
-                {
-
-                    MessageBox.Show(ex.Message);
-                }
+                mtx.ReleaseMutex();
+            }
+            else
+            {
+                XtraMessageBox.Show("برنامه صندوق در حال اجرا است");
             }
 
-            HelpClass1.SwitchToPersianLanguage();
-            Cultures.InitializePersianCulture();
-            HelpClass1.SetRegionAndLanguage();
-
-            BonusSkins.Register();
-            Application.Run(new AppContext());
         }
         public class AppContext : ApplicationContext
         {

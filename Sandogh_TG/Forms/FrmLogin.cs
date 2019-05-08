@@ -8,14 +8,28 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using nucs.JsonSettings;
+using nucs.JsonSettings.Fluent;
 
 namespace Sandogh_TG
 {
     public partial class FrmLogin : DevExpress.XtraEditors.XtraForm
     {
+        //SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().WithEncryption("asdjklasjdkajsd654654").LoadNow();
+        SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().LoadNow();
         public FrmLogin()
         {
             InitializeComponent();
+            // فراخوانی پوسته برنامه از مسیر دایرکتوری %appdata%
+            try
+            {
+                DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(Settings[AppVariable.SkinName].ToString() ?? "DevExpress Style");
+
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void btnEnter_Click(object sender, EventArgs e)
@@ -24,7 +38,7 @@ namespace Sandogh_TG
             {
                 try
                 {
-                    var q = db.Karbarans.FirstOrDefault(f => f.Name == txtName.Text && f.Password == txtPassword.Text);
+                    var q = db.Karbarans.FirstOrDefault(f => f.Shenase == txtShenase.Text && f.Password == txtPassword.Text);
                     if (q != null)
                     {
                         this.Close();
@@ -40,7 +54,7 @@ namespace Sandogh_TG
                         //}
                         FrmMain fm = new FrmMain();
                         fm.txtUserId.Caption = q.Id.ToString();
-                        fm.txtUserName.Caption = q.UserName.ToString();
+                        fm.txtUserName.Caption = q.Name.ToString();
                         fm.txtDateTimeNow.Caption = DateTime.Now.ToString().Substring(0, 10);
                         fm.Show();
 
@@ -78,21 +92,21 @@ namespace Sandogh_TG
             {
                 try
                 {
-                    if (!string.IsNullOrEmpty(txtName.Text))
+                    if (!string.IsNullOrEmpty(txtShenase.Text))
                     {
-                        string _Name = txtName.Text;
-                        var q = db.Karbarans.FirstOrDefault(f => f.Name == _Name);
+                        string _Shenase = txtShenase.Text;
+                        var q = db.Karbarans.FirstOrDefault(f => f.Shenase == _Shenase);
                         if (q != null)
                         {
-                            lblUserName.Visible = true;
-                            lblUserName.Text = q.UserName;
+                            lblName.Visible = true;
+                            lblName.Text = q.Name;
                         }
                         else
                         {
                             XtraMessageBox.Show("شناسه کاربری اشتباه است",
                                             "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            txtName.Text = "";
-                            txtName.Focus();
+                            txtShenase.Text = "";
+                            txtShenase.Focus();
                         }
                     }
                 }

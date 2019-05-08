@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl6 = new DevExpress.XtraEditors.PanelControl();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.haghOzviatsBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -55,10 +53,6 @@
             this.colMablaghAghsat = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl6)).BeginInit();
             this.panelControl6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
@@ -75,33 +69,14 @@
             this.panelControl3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.panelControl2);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl1.Location = new System.Drawing.Point(0, 0);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(830, 652);
-            this.panelControl1.TabIndex = 0;
-            // 
-            // panelControl2
-            // 
-            this.panelControl2.Controls.Add(this.panelControl6);
-            this.panelControl2.Controls.Add(this.panelControl4);
-            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(2, 2);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(826, 648);
-            this.panelControl2.TabIndex = 3;
-            // 
             // panelControl6
             // 
             this.panelControl6.Controls.Add(this.gridControl2);
             this.panelControl6.Controls.Add(this.panelControl5);
             this.panelControl6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl6.Location = new System.Drawing.Point(2, 336);
+            this.panelControl6.Location = new System.Drawing.Point(0, 340);
             this.panelControl6.Name = "panelControl6";
-            this.panelControl6.Size = new System.Drawing.Size(822, 336);
+            this.panelControl6.Size = new System.Drawing.Size(830, 343);
             this.panelControl6.TabIndex = 35;
             // 
             // gridControl2
@@ -113,7 +88,7 @@
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(818, 297);
+            this.gridControl2.Size = new System.Drawing.Size(826, 304);
             this.gridControl2.TabIndex = 33;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -231,7 +206,7 @@
             this.panelControl5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl5.Location = new System.Drawing.Point(2, 2);
             this.panelControl5.Name = "panelControl5";
-            this.panelControl5.Size = new System.Drawing.Size(818, 35);
+            this.panelControl5.Size = new System.Drawing.Size(826, 35);
             this.panelControl5.TabIndex = 2;
             // 
             // labelControl2
@@ -249,9 +224,9 @@
             this.panelControl4.Controls.Add(this.gridControl1);
             this.panelControl4.Controls.Add(this.panelControl3);
             this.panelControl4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl4.Location = new System.Drawing.Point(2, 2);
+            this.panelControl4.Location = new System.Drawing.Point(0, 0);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(822, 334);
+            this.panelControl4.Size = new System.Drawing.Size(830, 340);
             this.panelControl4.TabIndex = 34;
             // 
             // gridControl1
@@ -263,7 +238,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(818, 295);
+            this.gridControl1.Size = new System.Drawing.Size(826, 301);
             this.gridControl1.TabIndex = 33;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -415,7 +390,7 @@
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl3.Location = new System.Drawing.Point(2, 2);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(818, 35);
+            this.panelControl3.Size = new System.Drawing.Size(826, 35);
             this.panelControl3.TabIndex = 2;
             // 
             // labelControl1
@@ -432,8 +407,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(830, 652);
-            this.Controls.Add(this.panelControl1);
+            this.ClientSize = new System.Drawing.Size(830, 682);
+            this.Controls.Add(this.panelControl6);
+            this.Controls.Add(this.panelControl4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmYadavari";
@@ -443,10 +419,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "فرم یادآوری روزانه";
             this.Load += new System.EventHandler(this.FrmYadavari_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl6)).EndInit();
             this.panelControl6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
@@ -468,9 +440,6 @@
         }
 
         #endregion
-
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.PanelControl panelControl2;
         public DevExpress.XtraGrid.GridControl gridControl1;
         private System.Windows.Forms.BindingSource rizeAghsatVamsBindingSource;
         public DevExpress.XtraGrid.Views.Grid.GridView gridView1;

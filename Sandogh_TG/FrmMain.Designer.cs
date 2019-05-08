@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Sandogh_TG.SplashScreen1), true, true);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnTarifSandogh = new DevExpress.XtraBars.BarButtonItem();
@@ -72,6 +73,7 @@
             this.txtUserName = new DevExpress.XtraBars.BarStaticItem();
             this.txtDateTimeNow = new DevExpress.XtraBars.BarStaticItem();
             this.btnYadavari = new DevExpress.XtraBars.BarButtonItem();
+            this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.DaryaftVPardakht = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgDaryaft = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgPardakhtha = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -88,6 +90,7 @@
             this.rpgTanzimat = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.Other = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -97,6 +100,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.SuspendLayout();
+            // 
+            // splashScreenManager1
+            // 
+            splashScreenManager1.ClosingDelay = 500;
             // 
             // ribbonControl1
             // 
@@ -144,10 +151,11 @@
             this.txtUserId,
             this.txtUserName,
             this.txtDateTimeNow,
-            this.btnYadavari});
+            this.btnYadavari,
+            this.skinRibbonGalleryBarItem1});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.ribbonControl1.MaxItemId = 60;
+            this.ribbonControl1.MaxItemId = 61;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.DaryaftVPardakht,
@@ -158,7 +166,7 @@
             this.Other});
             this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl1.ShowCategoryInCaption = false;
-            this.ribbonControl1.Size = new System.Drawing.Size(1301, 206);
+            this.ribbonControl1.Size = new System.Drawing.Size(1309, 206);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // btnTarifSandogh
@@ -516,6 +524,13 @@
             this.btnYadavari.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.btnYadavari.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnYadavari_ItemClick);
             // 
+            // skinRibbonGalleryBarItem1
+            // 
+            this.skinRibbonGalleryBarItem1.Caption = "skinRibbonGalleryBarItem1";
+            this.skinRibbonGalleryBarItem1.Id = 60;
+            this.skinRibbonGalleryBarItem1.Name = "skinRibbonGalleryBarItem1";
+            this.skinRibbonGalleryBarItem1.GalleryItemClick += new DevExpress.XtraBars.Ribbon.GalleryItemClickEventHandler(this.skinRibbonGalleryBarItem1_GalleryItemClick);
+            // 
             // DaryaftVPardakht
             // 
             this.DaryaftVPardakht.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -611,6 +626,7 @@
             this.rpgTanzimat,
             this.ribbonPageGroup7,
             this.ribbonPageGroup2,
+            this.ribbonPageGroup8,
             this.ribbonPageGroup3});
             this.Emkanat.Name = "Emkanat";
             this.Emkanat.Text = "امکانات";
@@ -633,9 +649,15 @@
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "دیتابیس ";
             // 
+            // ribbonPageGroup8
+            // 
+            this.ribbonPageGroup8.ItemLinks.Add(this.skinRibbonGalleryBarItem1);
+            this.ribbonPageGroup8.ItemLinks.Add(this.btnChangeBackground, true);
+            this.ribbonPageGroup8.Name = "ribbonPageGroup8";
+            this.ribbonPageGroup8.Text = "تم و ظاهر برنامه";
+            // 
             // ribbonPageGroup3
             // 
-            this.ribbonPageGroup3.ItemLinks.Add(this.btnChangeBackground, true);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnYadavari, true);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnCalculate, true);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
@@ -664,9 +686,10 @@
             this.ribbonStatusBar1.ItemLinks.Add(this.txtUserName, true);
             this.ribbonStatusBar1.ItemLinks.Add(this.txtDateTimeNow, true);
             this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 609);
+            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(1301, 41);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1309, 41);
             // 
             // barButtonItem1
             // 
@@ -680,18 +703,19 @@
             // 
             this.pictureEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureEdit1.Location = new System.Drawing.Point(0, 206);
+            this.pictureEdit1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureEdit1.Name = "pictureEdit1";
             this.pictureEdit1.Properties.NullText = "میتوانید از منوی امکانات یک تصویر انتخاب کنید";
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit1.Size = new System.Drawing.Size(1301, 403);
+            this.pictureEdit1.Size = new System.Drawing.Size(1309, 403);
             this.pictureEdit1.TabIndex = 46;
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1301, 650);
+            this.ClientSize = new System.Drawing.Size(1309, 650);
             this.Controls.Add(this.pictureEdit1);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);
@@ -779,6 +803,8 @@
         public DevExpress.XtraBars.BarStaticItem txtUserName;
         public DevExpress.XtraBars.BarStaticItem txtDateTimeNow;
         private DevExpress.XtraBars.BarButtonItem btnYadavari;
+        private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
     }
 }
 

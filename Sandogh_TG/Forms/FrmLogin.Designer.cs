@@ -28,33 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblUserName = new DevExpress.XtraEditors.LabelControl();
+            this.lblName = new DevExpress.XtraEditors.LabelControl();
             this.lblSystemDate = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.btnExit = new DevExpress.XtraEditors.SimpleButton();
             this.btnEnter = new DevExpress.XtraEditors.SimpleButton();
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
-            this.txtName = new DevExpress.XtraEditors.TextEdit();
+            this.txtShenase = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtShenase.Properties)).BeginInit();
             this.SuspendLayout();
             // 
-            // lblUserName
+            // lblName
             // 
-            this.lblUserName.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblUserName.Appearance.ForeColor = System.Drawing.Color.Blue;
-            this.lblUserName.Appearance.Options.UseFont = true;
-            this.lblUserName.Appearance.Options.UseForeColor = true;
-            this.lblUserName.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblUserName.Location = new System.Drawing.Point(11, 48);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(281, 30);
-            this.lblUserName.TabIndex = 17;
-            this.lblUserName.Text = "نام کاربر";
-            this.lblUserName.Visible = false;
+            this.lblName.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lblName.Appearance.ForeColor = System.Drawing.Color.Blue;
+            this.lblName.Appearance.Options.UseFont = true;
+            this.lblName.Appearance.Options.UseForeColor = true;
+            this.lblName.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblName.Location = new System.Drawing.Point(11, 48);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(281, 30);
+            this.lblName.TabIndex = 17;
+            this.lblName.Text = "نام کاربر";
+            this.lblName.Visible = false;
             // 
             // lblSystemDate
             // 
@@ -116,15 +116,15 @@
             this.txtPassword.Size = new System.Drawing.Size(281, 32);
             this.txtPassword.TabIndex = 12;
             // 
-            // txtName
+            // txtShenase
             // 
-            this.txtName.EnterMoveNextControl = true;
-            this.txtName.Location = new System.Drawing.Point(11, 93);
-            this.txtName.Name = "txtName";
-            this.txtName.Properties.PasswordChar = '*';
-            this.txtName.Size = new System.Drawing.Size(281, 32);
-            this.txtName.TabIndex = 10;
-            this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
+            this.txtShenase.EnterMoveNextControl = true;
+            this.txtShenase.Location = new System.Drawing.Point(11, 93);
+            this.txtShenase.Name = "txtShenase";
+            this.txtShenase.Properties.PasswordChar = '*';
+            this.txtShenase.Size = new System.Drawing.Size(281, 32);
+            this.txtShenase.TabIndex = 10;
+            this.txtShenase.Leave += new System.EventHandler(this.txtName_Leave);
             // 
             // labelControl2
             // 
@@ -147,14 +147,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(408, 226);
-            this.Controls.Add(this.lblUserName);
+            this.Controls.Add(this.lblName);
             this.Controls.Add(this.lblSystemDate);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.txtName);
+            this.Controls.Add(this.txtShenase);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -169,7 +169,7 @@
             this.Text = "فرم ورود به برنامه ";
             this.Load += new System.EventHandler(this.FrmLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtShenase.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,14 +177,14 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.LabelControl lblUserName;
+        private DevExpress.XtraEditors.LabelControl lblName;
         private DevExpress.XtraEditors.LabelControl lblSystemDate;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.SimpleButton btnExit;
         private DevExpress.XtraEditors.SimpleButton btnEnter;
         private DevExpress.XtraEditors.TextEdit txtPassword;
-        private DevExpress.XtraEditors.TextEdit txtName;
+        private DevExpress.XtraEditors.TextEdit txtShenase;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
     }

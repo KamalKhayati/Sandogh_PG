@@ -206,7 +206,7 @@
             this.chkIsTasviye.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
             this.chkIsTasviye.Properties.Caption = "وام تسویه شده";
             this.chkIsTasviye.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkIsTasviye.Size = new System.Drawing.Size(133, 33);
+            this.chkIsTasviye.Size = new System.Drawing.Size(133, 48);
             this.chkIsTasviye.TabIndex = 27;
             this.chkIsTasviye.TabStop = false;
             this.chkIsTasviye.Visible = false;
@@ -301,7 +301,7 @@
             this.xtraTabPage1.Controls.Add(this.labelControl6);
             this.xtraTabPage1.Controls.Add(this.chkcmbEntekhabZamenin);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(682, 188);
+            this.xtraTabPage1.Size = new System.Drawing.Size(682, 181);
             this.xtraTabPage1.Text = "اعضاء صندوق";
             // 
             // lstZamenin
@@ -338,7 +338,7 @@
             this.chkcmbEntekhabZamenin.Properties.DisplayMember = "Name";
             this.chkcmbEntekhabZamenin.Properties.ValueMember = "Id";
             this.chkcmbEntekhabZamenin.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkcmbEntekhabZamenin.Size = new System.Drawing.Size(518, 32);
+            this.chkcmbEntekhabZamenin.Size = new System.Drawing.Size(518, 48);
             this.chkcmbEntekhabZamenin.TabIndex = 2;
             this.chkcmbEntekhabZamenin.EditValueChanged += new System.EventHandler(this.chkcmbAazaSandoogh_EditValueChanged);
             this.chkcmbEntekhabZamenin.Enter += new System.EventHandler(this.chkcmbEntekhabZamenin_Enter);
@@ -675,7 +675,7 @@
             this.cmbHesabTafzili.Properties.NullText = "";
             this.cmbHesabTafzili.Properties.ValueMember = "Id";
             this.cmbHesabTafzili.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmbHesabTafzili.Size = new System.Drawing.Size(276, 32);
+            this.cmbHesabTafzili.Size = new System.Drawing.Size(276, 48);
             this.cmbHesabTafzili.TabIndex = 1;
             this.cmbHesabTafzili.Enter += new System.EventHandler(this.cmbHesabTafzili_Enter);
             // 
@@ -709,7 +709,7 @@
             this.cmbHesabMoin.Properties.NullText = "";
             this.cmbHesabMoin.Properties.PopupSizeable = false;
             this.cmbHesabMoin.Properties.ValueMember = "Id";
-            this.cmbHesabMoin.Size = new System.Drawing.Size(154, 32);
+            this.cmbHesabMoin.Size = new System.Drawing.Size(154, 48);
             this.cmbHesabMoin.TabIndex = 0;
             this.cmbHesabMoin.EditValueChanged += new System.EventHandler(this.cmbHesabMoin_EditValueChanged);
             this.cmbHesabMoin.Enter += new System.EventHandler(this.cmbHesabMoin_Enter);
@@ -759,7 +759,7 @@
             this.txtTedadAghsat.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtTedadAghsat.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtTedadAghsat.Properties.MaxLength = 9;
-            this.txtTedadAghsat.Size = new System.Drawing.Size(153, 32);
+            this.txtTedadAghsat.Size = new System.Drawing.Size(153, 48);
             this.txtTedadAghsat.TabIndex = 4;
             this.txtTedadAghsat.EditValueChanged += new System.EventHandler(this.txtTedadAghsat_EditValueChanged);
             // 
@@ -798,7 +798,7 @@
             this.txtSarresidAvalinGhest.Properties.Mask.PlaceHolder = '-';
             this.txtSarresidAvalinGhest.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtSarresidAvalinGhest.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtSarresidAvalinGhest.Size = new System.Drawing.Size(153, 32);
+            this.txtSarresidAvalinGhest.Size = new System.Drawing.Size(153, 48);
             this.txtSarresidAvalinGhest.TabIndex = 6;
             // 
             // txtMablaghAghsat
@@ -815,7 +815,7 @@
             this.txtMablaghAghsat.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtMablaghAghsat.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtMablaghAghsat.Properties.MaxLength = 16;
-            this.txtMablaghAghsat.Size = new System.Drawing.Size(153, 32);
+            this.txtMablaghAghsat.Size = new System.Drawing.Size(153, 48);
             this.txtMablaghAghsat.TabIndex = 5;
             // 
             // labelControl12
@@ -872,7 +872,7 @@
             this.cmbFaseleAghsat.Properties.Items.AddRange(new object[] {
             "ماهیانه",
             "سالانه"});
-            this.cmbFaseleAghsat.Size = new System.Drawing.Size(152, 32);
+            this.cmbFaseleAghsat.Size = new System.Drawing.Size(152, 48);
             this.cmbFaseleAghsat.TabIndex = 3;
             this.cmbFaseleAghsat.Enter += new System.EventHandler(this.cmbFaseleAghsat_Enter);
             this.cmbFaseleAghsat.Leave += new System.EventHandler(this.cmbFaseleAghsat_Leave);
@@ -890,7 +890,7 @@
             this.txtCode.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtCode.Properties.MaxLength = 7;
             this.txtCode.Properties.ReadOnly = true;
-            this.txtCode.Size = new System.Drawing.Size(154, 32);
+            this.txtCode.Size = new System.Drawing.Size(154, 48);
             this.txtCode.TabIndex = 0;
             this.txtCode.TabStop = false;
             // 
@@ -906,7 +906,7 @@
             this.txtMablaghKarmozd.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtMablaghKarmozd.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtMablaghKarmozd.Properties.MaxLength = 16;
-            this.txtMablaghKarmozd.Size = new System.Drawing.Size(154, 32);
+            this.txtMablaghKarmozd.Size = new System.Drawing.Size(154, 48);
             this.txtMablaghKarmozd.TabIndex = 2;
             this.txtMablaghKarmozd.EditValueChanged += new System.EventHandler(this.txtMablaghKarmozd_EditValueChanged);
             // 
@@ -934,7 +934,7 @@
             this.txtMablaghAsli.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtMablaghAsli.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtMablaghAsli.Properties.MaxLength = 16;
-            this.txtMablaghAsli.Size = new System.Drawing.Size(154, 32);
+            this.txtMablaghAsli.Size = new System.Drawing.Size(154, 48);
             this.txtMablaghAsli.TabIndex = 1;
             this.txtMablaghAsli.EditValueChanged += new System.EventHandler(this.txtMablaghAsli_EditValueChanged);
             // 
@@ -975,7 +975,7 @@
             this.txtTarikhPardakht.Properties.Mask.PlaceHolder = '-';
             this.txtTarikhPardakht.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtTarikhPardakht.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtTarikhPardakht.Size = new System.Drawing.Size(154, 32);
+            this.txtTarikhPardakht.Size = new System.Drawing.Size(154, 48);
             this.txtTarikhPardakht.TabIndex = 0;
             // 
             // txtId
@@ -990,7 +990,7 @@
             this.txtId.Properties.NullText = "آیدی انبار";
             this.txtId.Properties.ReadOnly = true;
             this.txtId.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtId.Size = new System.Drawing.Size(53, 32);
+            this.txtId.Size = new System.Drawing.Size(53, 48);
             this.txtId.TabIndex = 28;
             this.txtId.TabStop = false;
             this.txtId.Visible = false;
@@ -1028,7 +1028,7 @@
             this.txtShomareDarkhast.Properties.Appearance.Options.UseTextOptions = true;
             this.txtShomareDarkhast.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtShomareDarkhast.Properties.MaxLength = 10;
-            this.txtShomareDarkhast.Size = new System.Drawing.Size(153, 32);
+            this.txtShomareDarkhast.Size = new System.Drawing.Size(153, 48);
             this.txtShomareDarkhast.TabIndex = 1;
             // 
             // labelControl22
@@ -1056,7 +1056,7 @@
             this.txtTarikhDarkhast.Properties.Mask.PlaceHolder = '-';
             this.txtTarikhDarkhast.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtTarikhDarkhast.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtTarikhDarkhast.Size = new System.Drawing.Size(154, 32);
+            this.txtTarikhDarkhast.Size = new System.Drawing.Size(154, 48);
             this.txtTarikhDarkhast.TabIndex = 0;
             // 
             // labelControl11
@@ -1094,7 +1094,7 @@
             this.checkEdit2.Location = new System.Drawing.Point(10, 48);
             this.checkEdit2.Name = "checkEdit2";
             this.checkEdit2.Properties.Caption = "مبلغ اصل وام + مبلغ کارمزد قسط بندی شود";
-            this.checkEdit2.Size = new System.Drawing.Size(308, 29);
+            this.checkEdit2.Size = new System.Drawing.Size(308, 44);
             this.checkEdit2.TabIndex = 4;
             this.checkEdit2.TabStop = false;
             this.checkEdit2.CheckedChanged += new System.EventHandler(this.checkEdit2_CheckedChanged);
@@ -1105,7 +1105,7 @@
             this.checkEdit1.Location = new System.Drawing.Point(387, 48);
             this.checkEdit1.Name = "checkEdit1";
             this.checkEdit1.Properties.Caption = "مبلغ اصل وام قسط بندی شود";
-            this.checkEdit1.Size = new System.Drawing.Size(221, 29);
+            this.checkEdit1.Size = new System.Drawing.Size(221, 44);
             this.checkEdit1.TabIndex = 3;
             this.checkEdit1.TabStop = false;
             this.checkEdit1.CheckedChanged += new System.EventHandler(this.checkEdit1_CheckedChanged);
@@ -1122,7 +1122,7 @@
             this.txtMablaghDirkard.Properties.Mask.EditMask = "n";
             this.txtMablaghDirkard.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtMablaghDirkard.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtMablaghDirkard.Size = new System.Drawing.Size(70, 32);
+            this.txtMablaghDirkard.Size = new System.Drawing.Size(70, 48);
             this.txtMablaghDirkard.TabIndex = 2;
             // 
             // labelControl9
@@ -1149,7 +1149,7 @@
             this.cmbNoeVam.Properties.PopupSizeable = true;
             this.cmbNoeVam.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cmbNoeVam.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmbNoeVam.Size = new System.Drawing.Size(115, 32);
+            this.cmbNoeVam.Size = new System.Drawing.Size(115, 48);
             this.cmbNoeVam.TabIndex = 0;
             this.cmbNoeVam.Enter += new System.EventHandler(this.cmbNoeVam_Enter);
             // 
@@ -1193,7 +1193,7 @@
             this.txtDarsadeKarmozd.Properties.Mask.EditMask = "n2";
             this.txtDarsadeKarmozd.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtDarsadeKarmozd.Properties.MaxLength = 5;
-            this.txtDarsadeKarmozd.Size = new System.Drawing.Size(70, 32);
+            this.txtDarsadeKarmozd.Size = new System.Drawing.Size(70, 48);
             this.txtDarsadeKarmozd.TabIndex = 1;
             this.txtDarsadeKarmozd.EditValueChanged += new System.EventHandler(this.txtDarsadeKarmozd_EditValueChanged);
             // 
@@ -1231,7 +1231,7 @@
             this.textEdit1.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.textEdit1.Properties.Mask.EditMask = "000000";
             this.textEdit1.Properties.MaxLength = 7;
-            this.textEdit1.Size = new System.Drawing.Size(94, 32);
+            this.textEdit1.Size = new System.Drawing.Size(94, 48);
             this.textEdit1.TabIndex = 78;
             this.textEdit1.TabStop = false;
             // 
@@ -1252,7 +1252,7 @@
             this.cmbDaryaftkonande.Properties.NullText = "";
             this.cmbDaryaftkonande.Properties.ValueMember = "Id";
             this.cmbDaryaftkonande.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmbDaryaftkonande.Size = new System.Drawing.Size(238, 32);
+            this.cmbDaryaftkonande.Size = new System.Drawing.Size(238, 48);
             this.cmbDaryaftkonande.TabIndex = 0;
             this.cmbDaryaftkonande.EditValueChanged += new System.EventHandler(this.cmbDaryaftkonande_EditValueChanged);
             this.cmbDaryaftkonande.Enter += new System.EventHandler(this.cmbDaryaftkonande_Enter);
@@ -1288,7 +1288,7 @@
             this.cmbNahveyePardakht.Properties.PopupSizeable = true;
             this.cmbNahveyePardakht.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cmbNahveyePardakht.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmbNahveyePardakht.Size = new System.Drawing.Size(112, 32);
+            this.cmbNahveyePardakht.Size = new System.Drawing.Size(112, 48);
             this.cmbNahveyePardakht.TabIndex = 1;
             this.cmbNahveyePardakht.Enter += new System.EventHandler(this.cmbNahveyePardakht_Enter);
             // 

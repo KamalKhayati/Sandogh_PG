@@ -65,6 +65,7 @@
             this.btnDelete1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnCreate1 = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.btnGharardad = new DevExpress.XtraEditors.SimpleButton();
             this.btnPrint1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnNext1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnPrintPreview1 = new DevExpress.XtraEditors.SimpleButton();
@@ -100,7 +101,6 @@
             this.btnPreview2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnLast2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnDisplyActiveList2 = new DevExpress.XtraEditors.SimpleButton();
-            this.btnGharardad = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -612,7 +612,7 @@
             this.btnEdit1.Location = new System.Drawing.Point(8, 5);
             this.btnEdit1.Name = "btnEdit1";
             this.btnEdit1.Size = new System.Drawing.Size(38, 33);
-            this.btnEdit1.TabIndex = 30;
+            this.btnEdit1.TabIndex = 2;
             this.btnEdit1.Text = "simpleButton1";
             this.btnEdit1.ToolTip = "ویرایش";
             this.btnEdit1.Click += new System.EventHandler(this.btnEdit1_Click);
@@ -623,7 +623,7 @@
             this.btnDelete1.Location = new System.Drawing.Point(52, 5);
             this.btnDelete1.Name = "btnDelete1";
             this.btnDelete1.Size = new System.Drawing.Size(38, 33);
-            this.btnDelete1.TabIndex = 29;
+            this.btnDelete1.TabIndex = 1;
             this.btnDelete1.Text = "simpleButton1";
             this.btnDelete1.ToolTip = "حذف";
             this.btnDelete1.Click += new System.EventHandler(this.btnDelete1_Click);
@@ -634,7 +634,7 @@
             this.btnCreate1.Location = new System.Drawing.Point(96, 5);
             this.btnCreate1.Name = "btnCreate1";
             this.btnCreate1.Size = new System.Drawing.Size(38, 33);
-            this.btnCreate1.TabIndex = 28;
+            this.btnCreate1.TabIndex = 0;
             this.btnCreate1.Text = "simpleButton1";
             this.btnCreate1.ToolTip = "ایجاد";
             this.btnCreate1.Click += new System.EventHandler(this.btnCreate1_Click);
@@ -656,13 +656,24 @@
             this.panelControl3.Size = new System.Drawing.Size(608, 44);
             this.panelControl3.TabIndex = 1;
             // 
+            // btnGharardad
+            // 
+            this.btnGharardad.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnGharardad.ImageOptions.SvgImage")));
+            this.btnGharardad.Location = new System.Drawing.Point(357, 5);
+            this.btnGharardad.Name = "btnGharardad";
+            this.btnGharardad.Size = new System.Drawing.Size(124, 33);
+            this.btnGharardad.TabIndex = 0;
+            this.btnGharardad.Text = "چاپ قرارداد";
+            this.btnGharardad.ToolTip = "ایجاد";
+            this.btnGharardad.Click += new System.EventHandler(this.btnGharardad_Click);
+            // 
             // btnPrint1
             // 
             this.btnPrint1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrint1.ImageOptions.SvgImage")));
             this.btnPrint1.Location = new System.Drawing.Point(5, 5);
             this.btnPrint1.Name = "btnPrint1";
             this.btnPrint1.Size = new System.Drawing.Size(38, 33);
-            this.btnPrint1.TabIndex = 27;
+            this.btnPrint1.TabIndex = 8;
             this.btnPrint1.Text = "simpleButton1";
             this.btnPrint1.ToolTip = "چاپ لیست";
             // 
@@ -673,7 +684,7 @@
             this.btnNext1.Location = new System.Drawing.Point(269, 5);
             this.btnNext1.Name = "btnNext1";
             this.btnNext1.Size = new System.Drawing.Size(38, 33);
-            this.btnNext1.TabIndex = 21;
+            this.btnNext1.TabIndex = 2;
             this.btnNext1.Text = "simpleButton1";
             this.btnNext1.ToolTip = "بعدی";
             this.btnNext1.Click += new System.EventHandler(this.btnNext1_Click);
@@ -684,7 +695,7 @@
             this.btnPrintPreview1.Location = new System.Drawing.Point(49, 5);
             this.btnPrintPreview1.Name = "btnPrintPreview1";
             this.btnPrintPreview1.Size = new System.Drawing.Size(38, 33);
-            this.btnPrintPreview1.TabIndex = 26;
+            this.btnPrintPreview1.TabIndex = 7;
             this.btnPrintPreview1.Text = "simpleButton1";
             this.btnPrintPreview1.ToolTip = "نمایش چاپ";
             this.btnPrintPreview1.Click += new System.EventHandler(this.btnPrintPreview1_Click);
@@ -696,7 +707,7 @@
             this.btnFirst1.Location = new System.Drawing.Point(181, 5);
             this.btnFirst1.Name = "btnFirst1";
             this.btnFirst1.Size = new System.Drawing.Size(38, 33);
-            this.btnFirst1.TabIndex = 23;
+            this.btnFirst1.TabIndex = 4;
             this.btnFirst1.Text = "simpleButton1";
             this.btnFirst1.ToolTip = "اولین رکورد";
             this.btnFirst1.Click += new System.EventHandler(this.btnFirst1_Click);
@@ -708,7 +719,7 @@
             this.btnPreview1.Location = new System.Drawing.Point(225, 5);
             this.btnPreview1.Name = "btnPreview1";
             this.btnPreview1.Size = new System.Drawing.Size(38, 33);
-            this.btnPreview1.TabIndex = 22;
+            this.btnPreview1.TabIndex = 3;
             this.btnPreview1.Text = "simpleButton1";
             this.btnPreview1.ToolTip = "قبلی";
             this.btnPreview1.Click += new System.EventHandler(this.btnPreview1_Click);
@@ -719,7 +730,7 @@
             this.btnLast1.Location = new System.Drawing.Point(313, 5);
             this.btnLast1.Name = "btnLast1";
             this.btnLast1.Size = new System.Drawing.Size(38, 33);
-            this.btnLast1.TabIndex = 20;
+            this.btnLast1.TabIndex = 1;
             this.btnLast1.Text = "simpleButton1";
             this.btnLast1.ToolTip = "آخرین رکورد";
             this.btnLast1.Click += new System.EventHandler(this.btnLast1_Click);
@@ -730,7 +741,7 @@
             this.btnDisplyActiveList1.Location = new System.Drawing.Point(137, 5);
             this.btnDisplyActiveList1.Name = "btnDisplyActiveList1";
             this.btnDisplyActiveList1.Size = new System.Drawing.Size(38, 33);
-            this.btnDisplyActiveList1.TabIndex = 24;
+            this.btnDisplyActiveList1.TabIndex = 5;
             this.btnDisplyActiveList1.Text = "simpleButton1";
             this.btnDisplyActiveList1.ToolTip = " لیست وامهای تسویه نشده";
             this.btnDisplyActiveList1.Click += new System.EventHandler(this.btnDisplyActiveList1_Click);
@@ -741,7 +752,7 @@
             this.btnDisplyNotActiveList1.Location = new System.Drawing.Point(93, 5);
             this.btnDisplyNotActiveList1.Name = "btnDisplyNotActiveList1";
             this.btnDisplyNotActiveList1.Size = new System.Drawing.Size(38, 33);
-            this.btnDisplyNotActiveList1.TabIndex = 25;
+            this.btnDisplyNotActiveList1.TabIndex = 6;
             this.btnDisplyNotActiveList1.Text = "simpleButton1";
             this.btnDisplyNotActiveList1.ToolTip = " لیست وامهای تسویه شده";
             this.btnDisplyNotActiveList1.Click += new System.EventHandler(this.btnDisplyNotActiveList1_Click);
@@ -980,7 +991,7 @@
             this.chkSelectAll.Name = "chkSelectAll";
             this.chkSelectAll.Properties.Caption = "انتخاب همه اقساط";
             this.chkSelectAll.Size = new System.Drawing.Size(149, 29);
-            this.chkSelectAll.TabIndex = 31;
+            this.chkSelectAll.TabIndex = 0;
             this.chkSelectAll.Visible = false;
             this.chkSelectAll.CheckedChanged += new System.EventHandler(this.chkSelectAll_CheckedChanged);
             // 
@@ -990,7 +1001,7 @@
             this.btnEdit2.Location = new System.Drawing.Point(5, 5);
             this.btnEdit2.Name = "btnEdit2";
             this.btnEdit2.Size = new System.Drawing.Size(38, 33);
-            this.btnEdit2.TabIndex = 30;
+            this.btnEdit2.TabIndex = 3;
             this.btnEdit2.Text = "simpleButton1";
             this.btnEdit2.ToolTip = "ویرایش";
             this.btnEdit2.Visible = false;
@@ -1002,7 +1013,7 @@
             this.btnCreate2.Location = new System.Drawing.Point(93, 5);
             this.btnCreate2.Name = "btnCreate2";
             this.btnCreate2.Size = new System.Drawing.Size(38, 33);
-            this.btnCreate2.TabIndex = 28;
+            this.btnCreate2.TabIndex = 1;
             this.btnCreate2.Text = "simpleButton1";
             this.btnCreate2.ToolTip = "ایجاد";
             this.btnCreate2.Visible = false;
@@ -1014,7 +1025,7 @@
             this.btnDelete2.Location = new System.Drawing.Point(49, 5);
             this.btnDelete2.Name = "btnDelete2";
             this.btnDelete2.Size = new System.Drawing.Size(38, 33);
-            this.btnDelete2.TabIndex = 29;
+            this.btnDelete2.TabIndex = 2;
             this.btnDelete2.Text = "simpleButton1";
             this.btnDelete2.ToolTip = "حذف";
             this.btnDelete2.Visible = false;
@@ -1041,7 +1052,7 @@
             this.btnPrint2.Location = new System.Drawing.Point(5, 5);
             this.btnPrint2.Name = "btnPrint2";
             this.btnPrint2.Size = new System.Drawing.Size(38, 33);
-            this.btnPrint2.TabIndex = 27;
+            this.btnPrint2.TabIndex = 6;
             this.btnPrint2.Text = "simpleButton1";
             this.btnPrint2.ToolTip = "چاپ لیست";
             // 
@@ -1052,7 +1063,7 @@
             this.btnNext2.Location = new System.Drawing.Point(225, 6);
             this.btnNext2.Name = "btnNext2";
             this.btnNext2.Size = new System.Drawing.Size(38, 33);
-            this.btnNext2.TabIndex = 21;
+            this.btnNext2.TabIndex = 1;
             this.btnNext2.Text = "simpleButton1";
             this.btnNext2.ToolTip = "بعدی";
             this.btnNext2.Click += new System.EventHandler(this.btnNext2_Click);
@@ -1063,7 +1074,7 @@
             this.btnPrintPreview2.Location = new System.Drawing.Point(49, 5);
             this.btnPrintPreview2.Name = "btnPrintPreview2";
             this.btnPrintPreview2.Size = new System.Drawing.Size(38, 33);
-            this.btnPrintPreview2.TabIndex = 26;
+            this.btnPrintPreview2.TabIndex = 5;
             this.btnPrintPreview2.Text = "simpleButton1";
             this.btnPrintPreview2.ToolTip = "نمایش چاپ";
             this.btnPrintPreview2.Click += new System.EventHandler(this.btnPrintPreview2_Click);
@@ -1075,7 +1086,7 @@
             this.btnFirst2.Location = new System.Drawing.Point(137, 6);
             this.btnFirst2.Name = "btnFirst2";
             this.btnFirst2.Size = new System.Drawing.Size(38, 33);
-            this.btnFirst2.TabIndex = 23;
+            this.btnFirst2.TabIndex = 3;
             this.btnFirst2.Text = "simpleButton1";
             this.btnFirst2.ToolTip = "اولین رکورد";
             this.btnFirst2.Click += new System.EventHandler(this.btnFirst2_Click);
@@ -1087,7 +1098,7 @@
             this.btnPreview2.Location = new System.Drawing.Point(181, 6);
             this.btnPreview2.Name = "btnPreview2";
             this.btnPreview2.Size = new System.Drawing.Size(38, 33);
-            this.btnPreview2.TabIndex = 22;
+            this.btnPreview2.TabIndex = 2;
             this.btnPreview2.Text = "simpleButton1";
             this.btnPreview2.ToolTip = "قبلی";
             this.btnPreview2.Click += new System.EventHandler(this.btnPreview2_Click);
@@ -1098,7 +1109,7 @@
             this.btnLast2.Location = new System.Drawing.Point(269, 6);
             this.btnLast2.Name = "btnLast2";
             this.btnLast2.Size = new System.Drawing.Size(38, 33);
-            this.btnLast2.TabIndex = 20;
+            this.btnLast2.TabIndex = 0;
             this.btnLast2.Text = "simpleButton1";
             this.btnLast2.ToolTip = "آخرین رکورد";
             this.btnLast2.Click += new System.EventHandler(this.btnLast2_Click);
@@ -1109,21 +1120,10 @@
             this.btnDisplyActiveList2.Location = new System.Drawing.Point(93, 5);
             this.btnDisplyActiveList2.Name = "btnDisplyActiveList2";
             this.btnDisplyActiveList2.Size = new System.Drawing.Size(38, 33);
-            this.btnDisplyActiveList2.TabIndex = 24;
+            this.btnDisplyActiveList2.TabIndex = 4;
             this.btnDisplyActiveList2.Text = "simpleButton1";
             this.btnDisplyActiveList2.ToolTip = "نمایش لیست";
             this.btnDisplyActiveList2.Click += new System.EventHandler(this.btnDisplyActiveList2_Click);
-            // 
-            // btnGharardad
-            // 
-            this.btnGharardad.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage")));
-            this.btnGharardad.Location = new System.Drawing.Point(474, 5);
-            this.btnGharardad.Name = "btnGharardad";
-            this.btnGharardad.Size = new System.Drawing.Size(124, 33);
-            this.btnGharardad.TabIndex = 32;
-            this.btnGharardad.Text = "چاپ قرارداد";
-            this.btnGharardad.ToolTip = "ایجاد";
-            this.btnGharardad.Click += new System.EventHandler(this.btnGharardad_Click);
             // 
             // FrmListVamhayePardakhti
             // 

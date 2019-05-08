@@ -146,6 +146,7 @@ namespace Sandogh_TG
         private void FrmListVamhayePardakhti_Load(object sender, EventArgs e)
         {
             FillDataGridVamhayePardakhti();
+            btnCreate1.Focus();
         }
 
         public void btnDisplyActiveList1_Click(object sender, EventArgs e)
