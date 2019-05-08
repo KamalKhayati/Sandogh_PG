@@ -870,7 +870,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbFaseleAghsat.Properties.DropDownRows = 3;
             this.cmbFaseleAghsat.Properties.Items.AddRange(new object[] {
-            "ماهانه",
+            "ماهیانه",
             "سالانه"});
             this.cmbFaseleAghsat.Size = new System.Drawing.Size(152, 32);
             this.cmbFaseleAghsat.TabIndex = 3;

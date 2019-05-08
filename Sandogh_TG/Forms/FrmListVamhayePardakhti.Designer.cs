@@ -100,6 +100,7 @@
             this.btnPreview2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnLast2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnDisplyActiveList2 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnGharardad = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -640,6 +641,7 @@
             // 
             // panelControl3
             // 
+            this.panelControl3.Controls.Add(this.btnGharardad);
             this.panelControl3.Controls.Add(this.btnPrint1);
             this.panelControl3.Controls.Add(this.btnNext1);
             this.panelControl3.Controls.Add(this.btnPrintPreview1);
@@ -1112,6 +1114,17 @@
             this.btnDisplyActiveList2.ToolTip = "نمایش لیست";
             this.btnDisplyActiveList2.Click += new System.EventHandler(this.btnDisplyActiveList2_Click);
             // 
+            // btnGharardad
+            // 
+            this.btnGharardad.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage")));
+            this.btnGharardad.Location = new System.Drawing.Point(474, 5);
+            this.btnGharardad.Name = "btnGharardad";
+            this.btnGharardad.Size = new System.Drawing.Size(124, 33);
+            this.btnGharardad.TabIndex = 32;
+            this.btnGharardad.Text = "چاپ قرارداد";
+            this.btnGharardad.ToolTip = "ایجاد";
+            this.btnGharardad.Click += new System.EventHandler(this.btnGharardad_Click);
+            // 
             // FrmListVamhayePardakhti
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
@@ -1125,6 +1138,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "لیست وامهای پرداختی به اعضاء";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmListVamhayePardakhti_FormClosed);
             this.Load += new System.EventHandler(this.FrmListVamhayePardakhti_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
@@ -1223,5 +1237,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colShomareGhest;
         private DevExpress.XtraGrid.Columns.GridColumn colShomareSanad;
         private DevExpress.XtraGrid.Columns.GridColumn colHesabMoin;
+        private DevExpress.XtraEditors.SimpleButton btnGharardad;
     }
 }

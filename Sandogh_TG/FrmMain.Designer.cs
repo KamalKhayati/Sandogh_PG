@@ -71,6 +71,7 @@
             this.txtUserId = new DevExpress.XtraBars.BarStaticItem();
             this.txtUserName = new DevExpress.XtraBars.BarStaticItem();
             this.txtDateTimeNow = new DevExpress.XtraBars.BarStaticItem();
+            this.btnYadavari = new DevExpress.XtraBars.BarButtonItem();
             this.DaryaftVPardakht = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgDaryaft = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgPardakhtha = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -93,7 +94,6 @@
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.btnYadavari = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.SuspendLayout();
@@ -447,6 +447,7 @@
             this.btnTarazname.Caption = "ترازنامه";
             this.btnTarazname.Id = 50;
             this.btnTarazname.Name = "btnTarazname";
+            this.btnTarazname.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTarazname_ItemClick);
             // 
             // btnSoratSoodVZiyan
             // 
@@ -505,6 +506,15 @@
             this.txtDateTimeNow.Caption = "DateTimeNow";
             this.txtDateTimeNow.Id = 58;
             this.txtDateTimeNow.Name = "txtDateTimeNow";
+            // 
+            // btnYadavari
+            // 
+            this.btnYadavari.Caption = "فرم یادآوری روزانه";
+            this.btnYadavari.Id = 59;
+            this.btnYadavari.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnYadavari.ImageOptions.Image")));
+            this.btnYadavari.Name = "btnYadavari";
+            this.btnYadavari.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.btnYadavari.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnYadavari_ItemClick);
             // 
             // DaryaftVPardakht
             // 
@@ -676,15 +686,6 @@
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             this.pictureEdit1.Size = new System.Drawing.Size(1301, 403);
             this.pictureEdit1.TabIndex = 46;
-            // 
-            // btnYadavari
-            // 
-            this.btnYadavari.Caption = "فرم یادآوری روزانه";
-            this.btnYadavari.Id = 59;
-            this.btnYadavari.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
-            this.btnYadavari.Name = "btnYadavari";
-            this.btnYadavari.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.btnYadavari.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnYadavari_ItemClick);
             // 
             // FrmMain
             // 

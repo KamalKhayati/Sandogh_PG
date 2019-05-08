@@ -286,5 +286,12 @@ namespace Sandogh_TG
             FrmYadavari fm = new FrmYadavari();
             fm.ShowDialog();
         }
+
+        private void btnTarazname_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            XtraForm1 fm = new XtraForm1();
+            fm.ShowDialog();
+
+        }
     }
 }

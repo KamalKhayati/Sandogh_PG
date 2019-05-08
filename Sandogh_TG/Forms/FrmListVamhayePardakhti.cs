@@ -11,6 +11,10 @@ using DevExpress.XtraEditors;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using DevExpress.XtraGrid.Views.Grid;
+using System.IO;
+using Word = Microsoft.Office.Interop.Word;
+using System.Reflection;
+using System.Diagnostics;
 
 namespace Sandogh_TG
 {
@@ -529,6 +533,443 @@ namespace Sandogh_TG
         {
             HelpClass1.gridView_CustomSummaryCalculate(sender, e, gridView2, "MablaghAghsat", "MablaghDaryafti", "Mande");
 
+        }
+
+
+        /// <summary>
+        /// ////////////////////////چاپ قرارداد وام///////////////////////
+        /// </summary>
+        string FilePath = string.Empty;
+        string DatePardakht = string.Empty;
+        string NameSandogh = string.Empty;
+        string ModirSandogh = string.Empty;
+        string AdressSandogh = string.Empty;
+        string ShTell = string.Empty;
+        string NameVFamil = string.Empty;
+        string NamePedar = string.Empty;
+        string CodeMelli = string.Empty;
+        string AdressShakhs = string.Empty;
+        string ShMobile = string.Empty;
+        string MablaghVam = string.Empty;
+        string Date1 = string.Empty;
+        string Date2 = string.Empty;
+        string MablaghKarmozd = string.Empty;
+        string DarsadKarmozd = string.Empty;
+        string FasleAghsat = string.Empty;
+        string TedadeAghsat = string.Empty;
+        string MablaghGhestAval = string.Empty;
+        string MablaghDirkard = string.Empty;
+        string Zamenin = string.Empty;
+        string NoeSanad1 = "....................";
+        string Shcheak1 = "....................";
+        string MablaghTazmin1 = "..............................";
+        string NoeSanad2 = "....................";
+        string Shcheak2 = "....................";
+        string MablaghTazmin2 = "..............................";
+        string NoeSanad3 = "....................";
+        string Shcheak3 = "....................";
+        string MablaghTazmin3 = "..............................";
+        string NoeSanad4 = "....................";
+        string Shcheak4 = "....................";
+        string MablaghTazmin4 = "..............................";
+        string NoeSanad5 = "....................";
+        string Shcheak5 = "....................";
+        string MablaghTazmin5 = "..............................";
+        string NoeSanad6 = "....................";
+        string Shcheak6 = "....................";
+        string MablaghTazmin6 = "..............................";
+        string NoeSanad7 = "....................";
+        string Shcheak7 = "....................";
+        string MablaghTazmin7 = "..............................";
+        string NoeSanad8 = "....................";
+        string Shcheak8 = "....................";
+        string MablaghTazmin8 = "..............................";
+        string NoeSanad9 = "....................";
+        string Shcheak9 = "....................";
+        string MablaghTazmin9 = "..............................";
+        string NoeSanad10 = "....................";
+        string Shcheak10 = "....................";
+        string MablaghTazmin10 = "..............................";
+        string NahveyeDaryaftKarmozd = string.Empty;
+
+        //تابع یه ورودی از جنس رشته داره
+        public string Reverse(string input)
+        {
+            ////رشته را با متد زیر به آرایه ایی از کاراکتر ها تبدیل میکنه
+            //char[] chars = input.ToCharArray();
+            ////آرایه را معکوس میکنه
+            //Array.Reverse(chars);
+            ////آرایه معکوس شده را به رشته تبدیل میکنه
+            //return new String(chars);
+            string s = input.Substring(0, 4);
+            string m = input.Substring(5, 2);
+            string d = input.Substring(8, 2);
+            string smd = d + "/" + m + "/" + s;
+            return smd;
+        }
+        public void GetInfoForWord()
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    int IdSandogh = Convert.ToInt32(Fm.IDSandogh.Caption);
+                    int IdShakhs = Convert.ToInt32(gridView1.GetFocusedRowCellValue("AazaId"));
+                    int IdVam = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id"));
+                    var q1 = db.AllHesabTafzilis.FirstOrDefault(f => f.Id == IdShakhs).Id2;
+                    var q2 = db.AazaSandoghs.FirstOrDefault(f => f.Id == q1);
+                    var q3 = db.RizeAghsatVams.Where(f => f.VamPardakhtiId == IdVam).Max(f => f.TarikhSarresid);
+                    var q4 = db.TarifSandoghs.FirstOrDefault(f => f.Id == IdSandogh);
+                    DatePardakht = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("TarikhPardakht")) ? Reverse(gridView1.GetFocusedRowCellDisplayText("TarikhPardakht")) : "....................";
+                    NameVFamil = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("NameAaza")) ? gridView1.GetFocusedRowCellDisplayText("NameAaza") : "....................";
+                    NamePedar = q2 != null && !string.IsNullOrEmpty(q2.NamePedar) ? q2.NamePedar : "....................";
+                    CodeMelli = q2 != null && !string.IsNullOrEmpty(q2.CodeMelli) ? q2.CodeMelli : "........................................";
+                    AdressShakhs = q2 != null ? !string.IsNullOrEmpty(q2.AdressManzel) ? q2.AdressManzel : !string.IsNullOrEmpty(q2.AdressMohalKar) ? q2.AdressMohalKar : ".........................................................................................." : "..........................................................................................";
+                    ShMobile = q2 != null ? !string.IsNullOrEmpty(q2.Mobile1) ? q2.Mobile1 : !string.IsNullOrEmpty(q2.Mobile2) ? q2.Mobile2 : ".............................." : "..............................";
+                    Date1 = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("SarresidAvalinGhest")) ? Reverse(gridView1.GetFocusedRowCellDisplayText("SarresidAvalinGhest")) : "....................";
+                    Date2 = q3 != null ? Reverse(q3.ToString().Substring(0, 10)) : "....................";
+                    MablaghVam = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("MablaghAsli")) ? gridView1.GetFocusedRowCellDisplayText("MablaghAsli") : "....................";
+                    MablaghKarmozd = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("MablaghKarmozd")) ? gridView1.GetFocusedRowCellDisplayText("MablaghKarmozd") : "....................";
+                    DarsadKarmozd = MablaghVam != "0" && MablaghKarmozd != "0" ? (Convert.ToInt32(MablaghVam.Replace(",", "")) / Convert.ToInt32(MablaghKarmozd.Replace(",", ""))).ToString() : "...........";
+                    FasleAghsat = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("FaseleAghsat")) ? gridView1.GetFocusedRowCellDisplayText("FaseleAghsat") : "....................";
+                    TedadeAghsat = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("TedadAghsat")) ? gridView1.GetFocusedRowCellDisplayText("TedadAghsat") : "..........";
+                    MablaghGhestAval = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("MablaghAghsat")) ? gridView1.GetFocusedRowCellDisplayText("MablaghAghsat") : "....................";
+                    MablaghDirkard = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("MablaghDirkard")) ? gridView1.GetFocusedRowCellDisplayText("MablaghDirkard") : ".............";
+                    Zamenin = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("ZameninName")) ? gridView1.GetFocusedRowCellDisplayText("ZameninName") : ".........................";
+                    var q6 = db.VamPardakhtis.Any(f => f.checkEdit1 == true && f.Id == IdVam);
+                    if(q6)
+                        NahveyeDaryaftKarmozd = "که این مبلغ بصورت یکجا و قبل از پرداخت وام به وام گیرنده از محل اصل وام کسر و فقط اصل مبلغ وام قسط بندی گردیده است";
+                    else
+                        NahveyeDaryaftKarmozd = "که این مبلغ به همراه اصل مبلغ وام قسط بندی و پرداخت خواهد گردید";
+
+
+                    NameSandogh = q4 != null && !string.IsNullOrEmpty(q4.NameSandogh) ? q4.NameSandogh : "...................................";
+                    ModirSandogh = q4 != null && !string.IsNullOrEmpty(q4.NameModir) ? q4.NameModir : "...................................";
+                    AdressSandogh = q4 != null && !string.IsNullOrEmpty(q4.Adress) ? q4.Adress : "..........................................................................................";
+                    ShTell = q4 != null ? !string.IsNullOrEmpty(q4.Tell) ? q4.Tell : !string.IsNullOrEmpty(q4.Mobile) ? q4.Mobile : ".............................." : "..............................";
+
+                    var q5 = db.CheckTazmins.Where(f => f.VamGerandeId == IdShakhs && f.IsInSandogh == true ).ToList();
+                    if (q5.Count >0)
+                        switch (q5.Count)
+                        {
+                            case 1:
+                                {
+                                    for (int i = 1; i < q5.Count+1; i++)
+                                    {
+                                        if (i == 1)
+                                        {
+                                            NoeSanad1 = q5[i - 1].NoeSanad;
+                                            Shcheak1 = q5[i - 1].ShCheck;
+                                            MablaghTazmin1 = q5[i - 1].Mablagh.ToString("n0");
+                                        }
+                                        else if (i == 2)
+                                        {
+                                            NoeSanad2 = q5[i - 1].NoeSanad;
+                                            Shcheak2 = q5[i - 1].ShCheck;
+                                            MablaghTazmin2 = q5[i - 1].Mablagh.ToString("n0");
+                                        }
+                                        else if (i == 3)
+                                        {
+                                            NoeSanad3 = q5[i - 1].NoeSanad;
+                                            Shcheak3 = q5[i - 1].ShCheck;
+                                            MablaghTazmin3 = q5[i - 1].Mablagh.ToString("n0");
+                                        }
+                                        else if (i == 4)
+                                        {
+                                            NoeSanad4 = q5[i - 1].NoeSanad;
+                                            Shcheak4 = q5[i - 1].ShCheck;
+                                            MablaghTazmin4 = q5[i - 1].Mablagh.ToString("n0");
+                                        }
+                                        else if (i == 5)
+                                        {
+                                            NoeSanad5 = q5[i - 1].NoeSanad;
+                                            Shcheak5 = q5[i - 1].ShCheck;
+                                            MablaghTazmin5 = q5[i - 1].Mablagh.ToString("n0");
+                                        }
+                                        else if (i == 6)
+                                        {
+                                            NoeSanad6 = q5[i - 1].NoeSanad;
+                                            Shcheak6 = q5[i - 1].ShCheck;
+                                            MablaghTazmin6 = q5[i - 1].Mablagh.ToString("n0");
+                                        }
+                                        else if (i == 7)
+                                        {
+                                            NoeSanad7 = q5[i - 1].NoeSanad;
+                                            Shcheak7 = q5[i - 1].ShCheck;
+                                            MablaghTazmin7 = q5[i - 1].Mablagh.ToString("n0");
+                                        }
+                                        else if (i == 8)
+                                        {
+                                            NoeSanad8 = q5[i - 1].NoeSanad;
+                                            Shcheak8 = q5[i - 1].ShCheck;
+                                            MablaghTazmin8 = q5[i - 1].Mablagh.ToString("n0");
+                                        }
+                                        else if (i == 9)
+                                        {
+                                            NoeSanad9 = q5[i - 1].NoeSanad;
+                                            Shcheak9 = q5[i - 1].ShCheck;
+                                            MablaghTazmin9 = q5[i - 1].Mablagh.ToString("n0");
+                                        }
+                                        else if (i == 10)
+                                        {
+                                            NoeSanad10 = q5[i - 1].NoeSanad;
+                                            Shcheak10 = q5[i - 1].ShCheck;
+                                            MablaghTazmin10 = q5[i - 1].Mablagh.ToString("n0");
+                                        }
+                                        else
+                                            return;
+                                    }
+                                    break;
+                                }
+                            case 2:
+                                goto case 1;
+                            case 3:
+                                goto case 1;
+                            case 4:
+                                goto case 1;
+                            case 5:
+                                goto case 1;
+                            case 6:
+                                goto case 1;
+                            case 7:
+                                goto case 1;
+                            case 8:
+                                goto case 1;
+                            case 9:
+                                goto case 1;
+                            case 10:
+                                goto case 1;
+
+                            default:
+                                {
+                                    XtraMessageBox.Show("تعداد اسناد تضمینی شخص مورد نظر بیشتر از 10 فقره می باشد\n لذا فقط میتوان مشخصات 10 فقره آنرا در متن قرارداد ذکر نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    goto case 1 ;
+                                }
+
+                        }
+                    else
+                    {
+                        NoeSanad1 = "....................";
+                        Shcheak1 = "....................";
+                        MablaghTazmin1 = "..............................";
+                        NoeSanad2 = "....................";
+                        Shcheak2 = "....................";
+                        MablaghTazmin2 = "..............................";
+                        NoeSanad3 = "....................";
+                        Shcheak3 = "....................";
+                        MablaghTazmin3 = "..............................";
+                        NoeSanad4 = "....................";
+                        Shcheak4 = "....................";
+                        MablaghTazmin4 = "..............................";
+                        NoeSanad5 = "....................";
+                        Shcheak5 = "....................";
+                        MablaghTazmin5 = "..............................";
+                        NoeSanad6 = "....................";
+                        Shcheak6 = "....................";
+                        MablaghTazmin6 = "..............................";
+                        NoeSanad7 = "....................";
+                        Shcheak7 = "....................";
+                        MablaghTazmin7 = "..............................";
+                        NoeSanad8 = "....................";
+                        Shcheak8 = "....................";
+                        MablaghTazmin8 = "..............................";
+                        NoeSanad9 = "....................";
+                        Shcheak9 = "....................";
+                        MablaghTazmin9 = "..............................";
+                        NoeSanad10 = "....................";
+                        Shcheak10 = "....................";
+                        MablaghTazmin10 = "..............................";
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+
+        }
+
+        private void btnGharardad_Click(object sender, EventArgs e)
+        {
+            btnGharardad.Enabled = false;
+            GetInfoForWord();
+            //  create offer letter
+            try
+            {
+                FilePath = Application.StartupPath + @"\Report\GharardadSandogh";
+                //  Just to kill WINWORD.EXE if it is running
+                KillProcess("winword");
+                //  copy letter format to temp.doc
+                File.Copy(FilePath + @"\GharardadeSandogh_Org.doc", FilePath + @"\GharardadeSandogh_Temp.doc", true);
+                //File.Copy(@"D:\Kamal Projects\Sandogh\Sandogh TG N1\Sandogh_TG_N1_V1\Sandogh_TG\bin\Debug\Report\GharardadeSandogh.docx", "c:\\temp.docx", true);
+                //File.Copy("D:\\GharardadeSandogh.docx", "D:\\temp.doc", true);
+                //  create missing object
+                object missing = Missing.Value;
+                //  create Word application object
+                Word.Application wordApp = new Word.Application();
+                //  create Word document object
+                Word.Document aDoc = null;
+                //  create & define filename object with temp.doc
+                object filename = FilePath + @"\GharardadeSandogh_Temp.doc";
+                //  if temp.doc available
+                if (File.Exists((string)filename))
+                {
+                    object readOnly = false;
+                    object isVisible = false;
+                    //  make visible Word application
+                    wordApp.Visible = false;
+                    //  open Word document named temp.doc
+                    aDoc = wordApp.Documents.Open(ref filename, ref missing,
+                                                  ref readOnly, ref missing, ref missing, ref missing,
+                                                  ref missing, ref missing, ref missing, ref missing,
+                                                  ref missing, ref isVisible, ref missing, ref missing,
+                                                  ref missing, ref missing);
+                    aDoc.Activate();
+                    //  Call FindAndReplace()function for each change
+                    this.FindAndReplace(wordApp, "<DatePardakht>", DatePardakht.Trim());
+                    this.FindAndReplace(wordApp, "<NameVFamil>", NameVFamil.Trim());
+                    this.FindAndReplace(wordApp, "<NamePedar>", NamePedar.Trim());
+                    this.FindAndReplace(wordApp, "<CodeMelli>", CodeMelli.Trim());
+                    this.FindAndReplace(wordApp, "<AdressShakhs>", AdressShakhs.Trim());
+                    this.FindAndReplace(wordApp, "<ShMobile>", ShMobile.Trim());
+                    this.FindAndReplace(wordApp, "<Date1>", Date1.Trim());
+                    this.FindAndReplace(wordApp, "<Date2>", Date2.Trim());
+                    this.FindAndReplace(wordApp, "<MablaghVam>", MablaghVam.Trim());
+                    this.FindAndReplace(wordApp, "<MablaghKarmozd>", MablaghKarmozd.Trim());
+                    this.FindAndReplace(wordApp, "<DarsadKarmozd>", DarsadKarmozd.Trim());
+                    this.FindAndReplace(wordApp, "<FasleAghsat>", FasleAghsat.Trim());
+                    this.FindAndReplace(wordApp, "<TedadeAghsat>", TedadeAghsat.Trim());
+                    this.FindAndReplace(wordApp, "<MablaghGhestAval>", MablaghGhestAval.Trim());
+                    this.FindAndReplace(wordApp, "<MablaghDirkard>", MablaghDirkard.Trim());
+                    this.FindAndReplace(wordApp, "<Zamenin>", Zamenin.Trim());
+                    this.FindAndReplace(wordApp, "<NameSandogh>", NameSandogh.Trim());
+                    this.FindAndReplace(wordApp, "<ModirSandogh>", ModirSandogh.Trim());
+                    this.FindAndReplace(wordApp, "<AdressSandogh>", AdressSandogh.Trim());
+                    this.FindAndReplace(wordApp, "<ShTell>", ShTell.Trim());
+                    this.FindAndReplace(wordApp, "<NoeSanad1>", NoeSanad1.Trim());
+                    this.FindAndReplace(wordApp, "<Shcheak1>", Shcheak1.Trim());
+                    this.FindAndReplace(wordApp, "<MablaghTazmin1>", MablaghTazmin1.Trim());
+                    this.FindAndReplace(wordApp, "<NoeSanad2>", NoeSanad2.Trim());
+                    this.FindAndReplace(wordApp, "<Shcheak2>", Shcheak2.Trim());
+                    this.FindAndReplace(wordApp, "<MablaghTazmin2>", MablaghTazmin2.Trim());
+                    this.FindAndReplace(wordApp, "<NoeSanad3>", NoeSanad3.Trim());
+                    this.FindAndReplace(wordApp, "<Shcheak3>", Shcheak3.Trim());
+                    this.FindAndReplace(wordApp, "<MablaghTazmin3>", MablaghTazmin3.Trim());
+                    this.FindAndReplace(wordApp, "<NoeSanad4>", NoeSanad4.Trim());
+                    this.FindAndReplace(wordApp, "<Shcheak4>", Shcheak4.Trim());
+                    this.FindAndReplace(wordApp, "<MablaghTazmin4>", MablaghTazmin4.Trim());
+                    this.FindAndReplace(wordApp, "<NoeSanad5>", NoeSanad5.Trim());
+                    this.FindAndReplace(wordApp, "<Shcheak5>", Shcheak5.Trim());
+                    this.FindAndReplace(wordApp, "<MablaghTazmin5>", MablaghTazmin5.Trim());
+                    this.FindAndReplace(wordApp, "<NoeSanad6>", NoeSanad6.Trim());
+                    this.FindAndReplace(wordApp, "<Shcheak6>", Shcheak6.Trim());
+                    this.FindAndReplace(wordApp, "<MablaghTazmin6>", MablaghTazmin6.Trim());
+                    this.FindAndReplace(wordApp, "<NoeSanad7>", NoeSanad7.Trim());
+                    this.FindAndReplace(wordApp, "<Shcheak7>", Shcheak7.Trim());
+                    this.FindAndReplace(wordApp, "<MablaghTazmin7>", MablaghTazmin7.Trim());
+                    this.FindAndReplace(wordApp, "<NoeSanad8>", NoeSanad8.Trim());
+                    this.FindAndReplace(wordApp, "<Shcheak8>", Shcheak8.Trim());
+                    this.FindAndReplace(wordApp, "<MablaghTazmin8>", MablaghTazmin8.Trim());
+                    this.FindAndReplace(wordApp, "<NoeSanad9>", NoeSanad9.Trim());
+                    this.FindAndReplace(wordApp, "<Shcheak9>", Shcheak9.Trim());
+                    this.FindAndReplace(wordApp, "<MablaghTazmin9>", MablaghTazmin9.Trim());
+                    this.FindAndReplace(wordApp, "<NoeSanad10>", NoeSanad10.Trim());
+                    this.FindAndReplace(wordApp, "<Shcheak10>", Shcheak10.Trim());
+                    this.FindAndReplace(wordApp, "<MablaghTazmin10>", MablaghTazmin10.Trim());
+                    this.FindAndReplace(wordApp, "<NahveyeDaryaftKarmozd>", NahveyeDaryaftKarmozd.Trim());
+                    //  save temp.doc after modified
+                    aDoc.Save();
+                    KillProcess("winword");
+
+                }
+                else
+                    MessageBox.Show("فایل  موقت GharardadeSandogh_Temp یافت نشد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("عملیات با خطا مواجه شد", "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            btnGharardad.Enabled = true;
+            OpenFilWord();
+        }
+
+        private void FindAndReplace(Word.Application wordApp, object findText, object replaceText)
+        {
+            object matchCase = true;
+            object matchWholeWord = true;
+            object matchWildCards = false;
+            object matchSoundsLike = false;
+            object matchAllWordForms = false;
+            object forward = true;
+            object format = false;
+            object matchKashida = false;
+            object matchDiacritics = false;
+            object matchAlefHamza = false;
+            object matchControl = false;
+            object read_only = false;
+            object visible = true;
+            object replace = 2;
+            object wrap = 1;
+            wordApp.Selection.Find.Execute(ref findText, ref matchCase,
+                ref matchWholeWord, ref matchWildCards, ref matchSoundsLike,
+                ref matchAllWordForms, ref forward, ref wrap, ref format,
+                ref replaceText, ref replace, ref matchKashida,
+                        ref matchDiacritics,
+                ref matchAlefHamza, ref matchControl);
+        }
+
+        public static void KillProcess(string name)
+        {
+            Process[] pr = Process.GetProcessesByName(name);
+
+            foreach (Process prs in pr)
+            {
+                if (prs.ProcessName.ToLower() == name)
+                {
+                    prs.Kill();
+                }
+            }
+        }
+
+        private void OpenFilWord()
+        {
+            //Document doc = new Document();
+            //doc.LoadFromFile(FilePath + @"\GharardadeSandogh_Org.doc",FileFormat.Doc);
+            try
+            {
+                Word.Application ap = new Word.Application();
+                ap.Visible = true;
+                object miss = Missing.Value;
+                object path = FilePath + @"\GharardadeSandogh_Temp.doc";
+                object readOnly = false;
+                object isVisible = true;
+                Word.Document doc = new Word.Document();
+                doc = ap.Documents.Open(ref path, ref miss, ref readOnly, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref isVisible, ref miss, ref miss, ref miss, ref miss);
+                doc.Activate();
+                //Word.Application ap = new Word.Application();
+                //Word.Document document = ap.Documents.Open(FilePath + @"\GharardadeSandogh_Temp.doc",);
+
+            }
+            catch //(Exception)
+            {
+                //doc.Application.Quit(ref missing, ref missing, ref missing);
+                //throw;
+            }
+        }
+
+        private void FrmListVamhayePardakhti_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(FilePath))
+            {
+                foreach (var file in Directory.GetFiles(FilePath, "*.tmp", SearchOption.AllDirectories))
+                {
+                    File.Delete(file);
+                }
+            }
         }
     }
 }
