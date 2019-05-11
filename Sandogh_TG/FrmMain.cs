@@ -320,5 +320,6 @@ namespace Sandogh_TG
         {
             Settings[AppVariable.SkinName] = DevExpress.LookAndFeel.UserLookAndFeel.Default.ActiveSkinName;
         }
+
     }
 }

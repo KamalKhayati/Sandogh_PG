@@ -15,6 +15,7 @@
             ContextKey = "Sandogh_TG.MyContext";
             string DataPath = Application.StartupPath + @"\DB";
             AppDomain.CurrentDomain.SetData("DataDirectory", DataPath);
+            
         }
 
         protected override void Seed(Sandogh_TG.MyContext context)

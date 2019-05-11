@@ -195,9 +195,11 @@ namespace Sandogh_TG
         {
             if (e.Error == null)
             {
-                MessageBox.Show(" عملیات بازیابی اطلاعات با موفقیت انجام شد و برنامه مجدداً راه اندازی میشود");
+                //MessageBox.Show(" عملیات بازیابی اطلاعات با موفقیت انجام شد و برنامه مجدداً راه اندازی میشود");
+                MessageBox.Show("عملیات بازیابی اطلاعات با موفقیت انجام شد");
                 Application.OpenForms["FrmBackupRestore"].Enabled = true;
-                Application.Restart();
+                //Application.Exit();
+                //Application.Restart();
             }
             else
             {
