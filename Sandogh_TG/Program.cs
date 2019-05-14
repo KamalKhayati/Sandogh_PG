@@ -21,11 +21,11 @@ namespace Sandogh_TG
             //Application.SetCompatibleTextRenderingDefault(false);
 
             //از Mutex برای این استفاده میکنیم که بخواهیم فقط یک نسخه از برنامه روی دسکتاپ اجرا شود
-            bool instance = false;
-            Mutex mtx = new Mutex(true, Application.ProductName, out instance);
+            //bool instance = false;
+            //Mutex mtx = new Mutex(true, Application.ProductName, out instance);
 
-            if (instance)
-            {
+            //if (instance)
+            //{
 
                 //فعال کردن زبان فارسی در برنامه 
                 //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fa");
@@ -61,12 +61,12 @@ namespace Sandogh_TG
                     }
                 }
 
-                mtx.ReleaseMutex();
-            }
-            else
-            {
-                XtraMessageBox.Show("برنامه صندوق در حال اجرا است");
-            }
+            //    mtx.ReleaseMutex();
+            //}
+            //else
+            //{
+            //    XtraMessageBox.Show("برنامه صندوق در حال اجرا است");
+            //}
 
         }
         public class AppContext : ApplicationContext
@@ -75,7 +75,7 @@ namespace Sandogh_TG
             {
                 Application.Idle += new EventHandler(Application_Idle);
                 //new FrmMain().Show();
-                new FrmLogin().Show();
+                new FrmLogin().ShowDialog();
             }
 
             private void Application_Idle(object sender, EventArgs e)

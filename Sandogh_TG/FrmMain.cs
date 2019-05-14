@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -19,7 +20,6 @@ namespace Sandogh_TG
     {
         //SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().WithEncryption("asdjklasjdkajsd654654").LoadNow();
         SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().LoadNow();
-
         public FrmMain()
         {
             InitializeComponent();
@@ -104,6 +104,17 @@ namespace Sandogh_TG
 
         public void FrmMain_Load(object sender, EventArgs e)
         {
+            // فراخوانی پوسته برنامه از مسیر دایرکتوری %appdata%
+            // try
+            //{
+            //    int i= Convert.ToInt32(IndexNameDataBase.Caption);
+            //    DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(Settings[AppVariable.SkinName[i]].ToString() ?? "DevExpress Style");
+
+            //}
+            //catch (Exception)
+            //{
+
+            //}
             using (var db = new MyContext())
             {
                 try
@@ -141,13 +152,15 @@ namespace Sandogh_TG
                             fm.ShowDialog();
                         }
 
-                    }                }
+                    }
+                }
                 catch (Exception ex)
                 {
                     XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
                         "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
 
         }
 
@@ -318,8 +331,33 @@ namespace Sandogh_TG
 
         private void skinRibbonGalleryBarItem1_GalleryItemClick(object sender, DevExpress.XtraBars.Ribbon.GalleryItemClickEventArgs e)
         {
-            Settings[AppVariable.SkinName] = DevExpress.LookAndFeel.UserLookAndFeel.Default.ActiveSkinName;
+           // int i = Convert.ToInt32(IndexNameDataBase.Caption);
+            Settings[AppVariable.SkinName[0]] = DevExpress.LookAndFeel.UserLookAndFeel.Default.ActiveSkinName;
         }
 
+        private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //using (var context = new MyContext())
+            //{
+            //    string _NameDataBase = NameDataBase.Caption;
+            //    //string command = "ALTER DATABASE Sandogh_TG SET OFFLINE WITH ROLLBACK IMMEDIATE " +
+            //    //                   " RESTORE DATABASE Sandogh_TG FROM DISK='" + txtSelectFile.Text + "' WITH REPLACE " +
+            //    //                    "ALTER DATABASE Sandogh_TG SET ONLINE";
+            //    //string command = "ALTER DATABASE " + cmbNameDataBaseSandogh.Text + " SET OFFLINE WITH ROLLBACK IMMEDIATE " +
+            //    //                 "ALTER DATABASE " + cmbNameDataBaseSandogh.Text + " SET ONLINE";
+            //    //string command = " ALTER DATABASE " + cmbNameDataBaseSandogh.Text + " SET ONLINE";
+            //    string command = "DECLARE	@Spid INT DECLARE @ExecSQL VARCHAR(255) DECLARE KillCursor CURSOR LOCAL STATIC READ_ONLY FORWARD_ONLY " +
+            //                     "FOR SELECT DISTINCT SPID FROM    MASTER..SysProcesses WHERE DBID = DB_ID('" + _NameDataBase + "') OPEN KillCursor " +
+            //                     "--Grab the first SPID FETCH   NEXT FROM    KillCursor INTO    @Spid WHILE	@@FETCH_STATUS = 0 BEGIN " +
+            //                     "SET     @ExecSQL = 'KILL ' + CAST(@Spid AS VARCHAR(50)) EXEC(@ExecSQL) -- Pull the next SPID FETCH NEXT FROM KillCursor INTO @Spid END " +
+            //                     "CLOSE   KillCursor DEALLOCATE  KillCursor " /*+
+            //                     "ALTER DATABASE " + _NameDataBase + " SET ONLINE"*/;
+            //    context.Database.CommandTimeout = 360;
+            //    context.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command);
+            //}
+            SqlConnection.ClearAllPools();
+            Application.Exit();
+            Application.ExitThread();
+        }
     }
 }

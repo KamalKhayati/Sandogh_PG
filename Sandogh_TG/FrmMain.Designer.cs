@@ -74,6 +74,7 @@
             this.txtDateTimeNow = new DevExpress.XtraBars.BarStaticItem();
             this.btnYadavari = new DevExpress.XtraBars.BarButtonItem();
             this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
+            this.NameDataBase = new DevExpress.XtraBars.BarStaticItem();
             this.DaryaftVPardakht = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgDaryaft = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgPardakhtha = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -97,6 +98,8 @@
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
+            this.barStaticItem2 = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.SuspendLayout();
@@ -152,10 +155,13 @@
             this.txtUserName,
             this.txtDateTimeNow,
             this.btnYadavari,
-            this.skinRibbonGalleryBarItem1});
+            this.skinRibbonGalleryBarItem1,
+            this.NameDataBase,
+            this.barStaticItem1,
+            this.barStaticItem2});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.ribbonControl1.MaxItemId = 62;
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6);
+            this.ribbonControl1.MaxItemId = 66;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.DaryaftVPardakht,
@@ -531,6 +537,12 @@
             this.skinRibbonGalleryBarItem1.Name = "skinRibbonGalleryBarItem1";
             this.skinRibbonGalleryBarItem1.GalleryItemClick += new DevExpress.XtraBars.Ribbon.GalleryItemClickEventHandler(this.skinRibbonGalleryBarItem1_GalleryItemClick);
             // 
+            // NameDataBase
+            // 
+            this.NameDataBase.Caption = "NameDataBase";
+            this.NameDataBase.Id = 62;
+            this.NameDataBase.Name = "NameDataBase";
+            // 
             // DaryaftVPardakht
             // 
             this.DaryaftVPardakht.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -683,8 +695,11 @@
             this.ribbonStatusBar1.ItemLinks.Add(this.IDSandogh);
             this.ribbonStatusBar1.ItemLinks.Add(this.IDSalMali);
             this.ribbonStatusBar1.ItemLinks.Add(this.txtUserId);
+            this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem1, true);
             this.ribbonStatusBar1.ItemLinks.Add(this.txtUserName, true);
             this.ribbonStatusBar1.ItemLinks.Add(this.txtDateTimeNow, true);
+            this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem2, true);
+            this.ribbonStatusBar1.ItemLinks.Add(this.NameDataBase, true);
             this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 609);
             this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
@@ -711,6 +726,18 @@
             this.pictureEdit1.Size = new System.Drawing.Size(1308, 403);
             this.pictureEdit1.TabIndex = 46;
             // 
+            // barStaticItem1
+            // 
+            this.barStaticItem1.Caption = "کاربر سیستم :";
+            this.barStaticItem1.Id = 64;
+            this.barStaticItem1.Name = "barStaticItem1";
+            // 
+            // barStaticItem2
+            // 
+            this.barStaticItem2.Caption = "دیتابیس :";
+            this.barStaticItem2.Id = 65;
+            this.barStaticItem2.Name = "barStaticItem2";
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
@@ -719,16 +746,16 @@
             this.Controls.Add(this.pictureEdit1);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);
-            this.Font = new System.Drawing.Font("IRANSans(FaNum) Medium", 12F);
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "FrmMain";
             this.Ribbon = this.ribbonControl1;
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StatusBar = this.ribbonStatusBar1;
-            this.Text = " نرم افزار صندوق قرض الحسنه";
+            this.Text = " نرم افزار صندوق پردازشگران";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
             this.Load += new System.EventHandler(this.FrmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
@@ -806,6 +833,9 @@
         private DevExpress.XtraBars.BarButtonItem btnYadavari;
         private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
+        public DevExpress.XtraBars.BarStaticItem NameDataBase;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem1;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem2;
     }
 }
 

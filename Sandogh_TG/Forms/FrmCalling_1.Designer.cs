@@ -35,63 +35,66 @@
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.SuspendLayout();
             // 
             // labelControl4
             // 
             this.labelControl4.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl4.Appearance.Options.UseForeColor = true;
-            this.labelControl4.Location = new System.Drawing.Point(296, 150);
+            this.labelControl4.Location = new System.Drawing.Point(78, 167);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(91, 25);
+            this.labelControl4.Size = new System.Drawing.Size(82, 25);
             this.labelControl4.TabIndex = 1;
-            this.labelControl4.Text = "عبدالله وارش :";
+            this.labelControl4.Text = "خانم قاسمی ";
             // 
             // labelControl6
             // 
             this.labelControl6.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl6.Appearance.Options.UseForeColor = true;
-            this.labelControl6.Location = new System.Drawing.Point(69, 150);
+            this.labelControl6.Location = new System.Drawing.Point(63, 211);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(215, 25);
+            this.labelControl6.Size = new System.Drawing.Size(106, 25);
             this.labelControl6.TabIndex = 2;
-            this.labelControl6.Text = "0914-825-3173 | 0930-770-3173";
+            this.labelControl6.Text = "0935-959-8830";
             // 
             // labelControl5
             // 
             this.labelControl5.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl5.Appearance.Options.UseForeColor = true;
-            this.labelControl5.Location = new System.Drawing.Point(69, 119);
+            this.labelControl5.Location = new System.Drawing.Point(322, 211);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(221, 25);
+            this.labelControl5.Size = new System.Drawing.Size(103, 25);
             this.labelControl5.TabIndex = 3;
-            this.labelControl5.Text = "0914-825-3244 | 0936-443-9889";
+            this.labelControl5.Text = "0914-825-3245";
             // 
             // labelControl3
             // 
             this.labelControl3.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl3.Appearance.Options.UseForeColor = true;
-            this.labelControl3.Location = new System.Drawing.Point(296, 119);
+            this.labelControl3.Location = new System.Drawing.Point(322, 167);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(93, 25);
+            this.labelControl3.Size = new System.Drawing.Size(98, 25);
             this.labelControl3.TabIndex = 4;
-            this.labelControl3.Text = " کمال خیاطی :";
+            this.labelControl3.Text = " خانم خضرزاده ";
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(29, 199);
+            this.labelControl7.Location = new System.Drawing.Point(29, 264);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(425, 25);
             this.labelControl7.TabIndex = 5;
             this.labelControl7.Text = "آدرس : مهاباد-خیابان ساحلی پشت اداره زندان - نرسیده به پل قانع";
+            this.labelControl7.Visible = false;
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(244, 74);
+            this.labelControl2.Location = new System.Drawing.Point(288, 125);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(201, 25);
+            this.labelControl2.Size = new System.Drawing.Size(158, 25);
             this.labelControl2.TabIndex = 6;
-            this.labelControl2.Text = "برنامه نویسان و مشاوران مالی :";
+            this.labelControl2.Text = " کارشناس بخش فروش :";
             // 
             // labelControl1
             // 
@@ -99,22 +102,44 @@
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Blue;
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Location = new System.Drawing.Point(28, 12);
+            this.labelControl1.Location = new System.Drawing.Point(12, 71);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(426, 33);
+            this.labelControl1.Size = new System.Drawing.Size(464, 33);
             this.labelControl1.TabIndex = 7;
-            this.labelControl1.Text = "گروه برنامه نویسی و طراحی نرم افزارهای صندوق قرض الحسنه";
+            this.labelControl1.Text = "کاری از گروه برنامه نویسی و طراحی نرم افزارهای مالی و حسابداری";
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.Appearance.Font = new System.Drawing.Font("B Titr", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.labelControl8.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl8.Appearance.Options.UseFont = true;
+            this.labelControl8.Appearance.Options.UseForeColor = true;
+            this.labelControl8.Location = new System.Drawing.Point(120, 12);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(246, 42);
+            this.labelControl8.TabIndex = 8;
+            this.labelControl8.Text = "نرم افزار صندوق پردازشگران";
+            // 
+            // labelControl9
+            // 
+            this.labelControl9.Location = new System.Drawing.Point(29, 125);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(175, 25);
+            this.labelControl9.TabIndex = 6;
+            this.labelControl9.Text = " کارشناس بخش پشتیبانی :";
             // 
             // FrmCalling_1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(496, 255);
+            this.ClientSize = new System.Drawing.Size(496, 269);
+            this.Controls.Add(this.labelControl8);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.labelControl7);
+            this.Controls.Add(this.labelControl9);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.None;
@@ -140,5 +165,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
     }
 }

@@ -3,8 +3,13 @@
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.Data.SqlClient;
     using System.Linq;
+    using System.Text;
     using System.Windows.Forms;
+    using System.Xml;
+    using System.Configuration;
+    using System.Data;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Sandogh_TG.MyContext>
     {
@@ -13,9 +18,8 @@
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
             ContextKey = "Sandogh_TG.MyContext";
-            string DataPath = Application.StartupPath + @"\DB";
+            string DataPath = Application.StartupPath + @"\DB\";
             AppDomain.CurrentDomain.SetData("DataDirectory", DataPath);
-            
         }
 
         protected override void Seed(Sandogh_TG.MyContext context)
@@ -30,11 +34,11 @@
             //context.Entry(new HesabBanki() { Id = 2, TarifSandoghId = 1, GroupTafziliId = 2, NameHesab = "صادرات مرکزی جاری 456789000", StartDate = Convert.ToDateTime("2019/03/21"), IsDefault = false, IsActive = true, Code = 3000002, GroupHesabIndex = 1, GroupHesab = "بانک", NameBank = "صادرات", NoeHesab = "جاری", ShomareHesab = "456789000", NameShobe = "مرکزی" }).State = context.HesabBankis.Any(s => s.Code == 3000002) ? EntityState.Unchanged : EntityState.Added;
             //context.Entry(new AazaSandogh() { Id = 1, TarifSandoghId = 1, GroupTafziliId = 3, IsOzveSandogh = true, NameVFamil = "کمال خیاطی", TarikhOzviat = Convert.ToDateTime("2019/03/21"), IsActive = true, Code = 7000001, HaghOzviat = 500000, CodePersoneli = "1" }).State = context.AazaSandoghs.Any(s => s.Code == 7000001) ? EntityState.Unchanged : EntityState.Added;
             //context.Entry(new AazaSandogh() { Id = 2, TarifSandoghId = 1, GroupTafziliId = 3, IsOzveSandogh = true, NameVFamil = "جمال خیاطی", TarikhOzviat = Convert.ToDateTime("2019/03/21"), IsActive = true, Code = 7000002, HaghOzviat = 400000, CodePersoneli = "2" }).State = context.AazaSandoghs.Any(s => s.Code == 7000002) ? EntityState.Unchanged : EntityState.Added;
-            context.Entry(new Tanzimat() { Id = 1, SandoghId = 1, checkEdit1 = true, checkEdit2 = true, checkEdit3 = true ,DarsadeKarmozd=0,MablaghDirkard=0,MaximumAghsatMahane=60,MaximumAghsatSalane=5}).State = context.Tanzimats.Any(s => s.Id == 1) ? EntityState.Unchanged : EntityState.Added;
+            context.Entry(new Tanzimat() { Id = 1, SandoghId = 1, checkEdit1 = true, checkEdit2 = true, checkEdit3 = true, DarsadeKarmozd = 0, MablaghDirkard = 0, MaximumAghsatMahane = 60, MaximumAghsatSalane = 5 }).State = context.Tanzimats.Any(s => s.Id == 1) ? EntityState.Unchanged : EntityState.Added;
             context.Entry(new CodingDaramadVHazine() { Id = 1, SandoghId = 1, GroupTafziliId = 4, IsActive = true, Code = 1000001, GroupIndex = 0, GroupName = "درآمد", HesabName = "درآمد کارمزد وام" }).State = context.CodingDaramadVHazines.Any(s => s.Code == 1000001) ? EntityState.Unchanged : EntityState.Added;
             context.Entry(new CodingDaramadVHazine() { Id = 2, SandoghId = 1, GroupTafziliId = 4, IsActive = true, Code = 1000002, GroupIndex = 0, GroupName = "درآمد", HesabName = "درآمد افتتاح حساب" }).State = context.CodingDaramadVHazines.Any(s => s.Code == 1000002) ? EntityState.Unchanged : EntityState.Added;
             context.Entry(new CodingDaramadVHazine() { Id = 3, SandoghId = 1, GroupTafziliId = 5, IsActive = true, Code = 2000001, GroupIndex = 1, GroupName = "هزینه", HesabName = "هزینه کارمزد بانکی" }).State = context.CodingDaramadVHazines.Any(s => s.Code == 2000001) ? EntityState.Unchanged : EntityState.Added;
-            context.Entry(new Karbaran() { Id = 1, Name = "مدیر صندوق" ,Shenase="1",Password="1"}).State = context.Karbarans.Any(s => s.Id==1) ? EntityState.Unchanged : EntityState.Added;
+            context.Entry(new Karbaran() { Id = 1, Name = "مدیر صندوق", Shenase = "1", Password = "1" }).State = context.Karbarans.Any(s => s.Id == 1) ? EntityState.Unchanged : EntityState.Added;
 
             context.Entry(new AllHesabTafzili() { Id = 1, Id2 = 1, Code = 1000001, Name = "درآمد کارمزد وام", SandoghId = 1, IsActive = true, GroupTafziliId = 4 }).State = context.AllHesabTafzilis.Any(s => s.Code == 1000001) ? EntityState.Unchanged : EntityState.Added;
             //context.Entry(new AllHesabTafzili() { Id = 2, Id2 = 1, Code = 3000001, Name = "ملت مرکزی جاری 123456789", SandoghId = 1, IsActive = true, GroupTafziliId = 2 }).State = context.AllHesabTafzilis.Any(s => s.Code == 3000001) ? EntityState.Unchanged : EntityState.Added;

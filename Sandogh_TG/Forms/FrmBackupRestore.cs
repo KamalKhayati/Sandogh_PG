@@ -30,9 +30,10 @@ namespace Sandogh_TG
             {
                 if (SPath.ShowDialog() == DialogResult.OK)
                 {
+                    string _NameDataBase = Fm.NameDataBase.Caption;
                     if (SPath.SelectedPath.Length == 3)
                     {
-                        txtSelectPath.Text = SPath.SelectedPath + "BackupFile_Sandoogh_Date_" +
+                        txtSelectPath.Text = SPath.SelectedPath + "Backup_" + _NameDataBase + "_Date_" +
                             DateTime.Now.ToString().Replace("/", "").Substring(0, 8) + "_Time_" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(".", " ").Substring(8, 11) + ".BAK";
                         //txtSelectPath.Text = SPath.SelectedPath + "BackupFile_" +
                         //    DateTime.Now.Date.Year + DateTime.Now.Date.Month + DateTime.Now.Date.Day + "_" +
@@ -40,7 +41,7 @@ namespace Sandogh_TG
                     }
                     else
                     {
-                        txtSelectPath.Text = SPath.SelectedPath + "\\BackupFile_Sandoogh_Date_" +
+                        txtSelectPath.Text = SPath.SelectedPath + "\\Backup_" + _NameDataBase + "_Date_" +
                             DateTime.Now.ToString().Replace("/", "").Substring(0, 8) + "_Time_" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(".", " ").Substring(8, 11) + ".BAK";
                         //txtSelectPath.Text = SPath.SelectedPath + "\\BackupFile_" +
                         //    DateTime.Now.Date.Year + DateTime.Now.Date.Month + DateTime.Now.Date.Day + "_" +
@@ -106,19 +107,20 @@ namespace Sandogh_TG
             }
 
         }
-
         private void backgroundWorkerBackup_DoWork(object sender, DoWorkEventArgs e)
         {
+            string _NameDataBase = Fm.NameDataBase.Caption;
+
             using (var context = new MyContext())
             {
-                string command = @"BACKUP DATABASE Sandogh_TG_N1_V1 TO DISK='" + txtSelectPath.Text + "' WITH INIT";
+                string command = @"BACKUP DATABASE " + _NameDataBase + " TO DISK='" + txtSelectPath.Text + "' WITH INIT";
                 context.Database.CommandTimeout = 360;
                 context.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command);
             }
-            //string strSQL = @"BACKUP DATABASE  Sandogh_TG_N1_V1  TO DISK='" + txtSelectPath.Text + "'";
+            //string strSQL = @"BACKUP DATABASE  Sandogh_TG  TO DISK='" + txtSelectPath.Text + "'";
             //SqlConnection con = new SqlConnection();
             //SqlCommand com = new SqlCommand();
-            //con.ConnectionString = @"Data Source=KAMAL-PC\SQL2008;Initial Catalog=Sandogh_TG_N1_V1;
+            //con.ConnectionString = @"Data Source=KAMAL-PC\SQL2008;Initial Catalog=Sandogh_TG;
             //                             Integrated Security=True;Connect Timeout=30;Encrypt=False;
             //                              TrustServerCertificate=False;ApplicationIntent=ReadWrite;
             //                               MultiSubnetFailover=False";
@@ -171,21 +173,30 @@ namespace Sandogh_TG
 
             }
         }
+        string DataPath1 = Application.StartupPath + @"\DB\";
 
         private void backgroundWorkerRestore_DoWork(object sender, DoWorkEventArgs e)
         {
+            string _NameDataBase = Fm.NameDataBase.Caption;
             using (var context = new MyContext())
             {
-                string command = @"BACKUP DATABASE Sandogh_TG_N1_V1 TO DISK='" + txtSelectFile.Text + "_KmOld" + "' WITH INIT";
+                string command = @"BACKUP DATABASE " + _NameDataBase + " TO DISK='" + txtSelectFile.Text + "_KmOld" + "' WITH INIT";
                 context.Database.CommandTimeout = 360;
                 context.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command);
             }
 
             using (var context = new MyContext())
             {
-                string command = "ALTER DATABASE Sandogh_TG_N1_V1 SET OFFLINE WITH ROLLBACK IMMEDIATE " +
-                                   " RESTORE DATABASE Sandogh_TG_N1_V1 FROM DISK='" + txtSelectFile.Text + "'WITH REPLACE " +
-                                    "ALTER DATABASE Sandogh_TG_N1_V1 SET ONLINE";
+                //string command = "ALTER DATABASE Sandogh_TG SET OFFLINE WITH ROLLBACK IMMEDIATE " +
+                //                   " RESTORE DATABASE Sandogh_TG FROM DISK='" + txtSelectFile.Text + "' WITH REPLACE " +
+                //                    "ALTER DATABASE Sandogh_TG SET ONLINE";
+
+
+                string command = "ALTER DATABASE " + _NameDataBase + " SET OFFLINE WITH ROLLBACK IMMEDIATE" +
+                                 " RESTORE DATABASE " + _NameDataBase + " FROM DISK = '" + txtSelectFile.Text + "' WITH REPLACE, RECOVERY," +
+                                 " MOVE 'Sandogh_TG.mdf' TO '" + DataPath1 + _NameDataBase + ".mdf'," +
+                                 " MOVE 'Sandogh_TG_log.ldf' TO '" + DataPath1 + _NameDataBase + "_log.ldf'" +
+                                 " ALTER DATABASE " + _NameDataBase + " SET ONLINE";
                 context.Database.CommandTimeout = 360;
                 context.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command);
             }
@@ -196,9 +207,9 @@ namespace Sandogh_TG
             if (e.Error == null)
             {
                 //MessageBox.Show(" عملیات بازیابی اطلاعات با موفقیت انجام شد و برنامه مجدداً راه اندازی میشود");
-                MessageBox.Show("عملیات بازیابی اطلاعات با موفقیت انجام شد");
+                MessageBox.Show("عملیات بازیابی اطلاعات با موفقیت انجام شد لطفاً برنامه را مجدداً اجرا کنید");
                 Application.OpenForms["FrmBackupRestore"].Enabled = true;
-                //Application.Exit();
+                Application.Exit();
                 //Application.Restart();
             }
             else
@@ -215,13 +226,14 @@ namespace Sandogh_TG
             {
                 try
                 {
+                    string _NameDataBase = Fm.NameDataBase.Caption;
                     int _SId = Convert.ToInt32(Fm.IDSandogh.Caption);
-                    string sText = "\\BackupFile_Sandoogh_Date_" +
+                    string sText = "\\Backup_"+_NameDataBase+"_Date_" +
                             DateTime.Now.ToString().Replace("/", "").Substring(0, 8) + "_Time_" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(".", " ").Substring(8, 11) + ".BAK";
                     var q2 = db.Tanzimats.FirstOrDefault(s => s.Id == _SId);
                     if (!string.IsNullOrEmpty(q2.Path))
                     {
-                        txtSelectPath.Text = q2.Path +sText ;
+                        txtSelectPath.Text = q2.Path + sText;
                         SPath.SelectedPath = q2.Path;
                     }
                     //else

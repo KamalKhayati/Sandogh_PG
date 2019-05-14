@@ -805,7 +805,7 @@ namespace Sandogh_TG
                 KillProcess("winword");
                 //  copy letter format to temp.doc
                 File.Copy(FilePath + @"\GharardadeSandogh_Org.doc", FilePath + @"\GharardadeSandogh_Temp.doc", true);
-                //File.Copy(@"D:\Kamal Projects\Sandogh\Sandogh TG N1\Sandogh_TG_N1_V1\Sandogh_TG\bin\Debug\Report\GharardadeSandogh.docx", "c:\\temp.docx", true);
+                //File.Copy(@"D:\Kamal Projects\Sandogh\Sandogh TG N1\Sandogh_TG\Sandogh_TG\bin\Debug\Report\GharardadeSandogh.docx", "c:\\temp.docx", true);
                 //File.Copy("D:\\GharardadeSandogh.docx", "D:\\temp.doc", true);
                 //  create missing object
                 object missing = Missing.Value;

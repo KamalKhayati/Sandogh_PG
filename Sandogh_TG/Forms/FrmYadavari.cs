@@ -26,9 +26,9 @@ namespace Sandogh_TG
                 try
                 {
                     DateTime _DateTimeNow = DateTime.Now;
-                    var q = db.RizeAghsatVams.Where(f => f.ShomareSanad == 0 && f.TarikhSarresid < _DateTimeNow);
+                    var q = db.RizeAghsatVams.Where(f => f.ShomareSanad == 0 && f.TarikhSarresid < _DateTimeNow).ToList();
                     if (q != null)
-                        rizeAghsatVamsBindingSource.DataSource = q.ToList();
+                        rizeAghsatVamsBindingSource.DataSource = q;
                     else
                         rizeAghsatVamsBindingSource.DataSource = null;
                     //////////////////////////////////////////////////////////////
@@ -39,8 +39,8 @@ namespace Sandogh_TG
                     d1.DecrementMonth();
                     DateTime _DateTimeNow_1 = Convert.ToDateTime(d1.ToString());
                     List<HaghOzviat> List = new List<HaghOzviat>();
-                    var q2 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 3 && s.IsActive == true);
-                    if (q2 != null)
+                    var q2 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 3 && s.IsActive == true).ToList();
+                    if (q2.Count>0)
                     {
                         foreach (var item in q2)
                         {

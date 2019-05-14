@@ -6,11 +6,14 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraSplashScreen;
+using nucs.JsonSettings;
+using nucs.JsonSettings.Fluent;
 
 namespace Sandogh_TG
 {
     public partial class SplashScreen1 : SplashScreen
     {
+
         public SplashScreen1()
         {
             InitializeComponent();
@@ -19,6 +22,7 @@ namespace Sandogh_TG
             //        + "/" + p.GetDayOfMonth(DateTime.Now).ToString("0#");
             this.labelControl1.Text = "Copyright © 1397-" + p.GetYear(DateTime.Now).ToString();
             //this.labelControl1.Text = "Copyright © 1397-" + DateTime.Now.Year.ToString() ;
+
         }
 
         #region Overrides
