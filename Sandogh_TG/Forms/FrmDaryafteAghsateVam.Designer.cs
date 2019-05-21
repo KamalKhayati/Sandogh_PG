@@ -161,9 +161,9 @@
             // 
             // textEdit1
             // 
-            this.textEdit1.EditValue = "وام اعضاء";
+            this.textEdit1.EditValue = "وامهای دریافتنی";
             this.textEdit1.EnterMoveNextControl = true;
-            this.textEdit1.Location = new System.Drawing.Point(11, 12);
+            this.textEdit1.Location = new System.Drawing.Point(11, 11);
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.textEdit1.Properties.Appearance.Options.UseBackColor = true;
@@ -172,7 +172,7 @@
             this.textEdit1.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.textEdit1.Properties.Mask.EditMask = "000000";
             this.textEdit1.Properties.MaxLength = 7;
-            this.textEdit1.Size = new System.Drawing.Size(100, 32);
+            this.textEdit1.Size = new System.Drawing.Size(120, 32);
             this.textEdit1.TabIndex = 77;
             this.textEdit1.TabStop = false;
             // 
@@ -216,7 +216,7 @@
             // cmbPardakhtKonande
             // 
             this.cmbPardakhtKonande.EnterMoveNextControl = true;
-            this.cmbPardakhtKonande.Location = new System.Drawing.Point(118, 12);
+            this.cmbPardakhtKonande.Location = new System.Drawing.Point(137, 12);
             this.cmbPardakhtKonande.Name = "cmbPardakhtKonande";
             this.cmbPardakhtKonande.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -230,7 +230,7 @@
             this.cmbPardakhtKonande.Properties.ReadOnly = true;
             this.cmbPardakhtKonande.Properties.ValueMember = "Id";
             this.cmbPardakhtKonande.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmbPardakhtKonande.Size = new System.Drawing.Size(302, 32);
+            this.cmbPardakhtKonande.Size = new System.Drawing.Size(283, 32);
             this.cmbPardakhtKonande.TabIndex = 62;
             this.cmbPardakhtKonande.TabStop = false;
             // 

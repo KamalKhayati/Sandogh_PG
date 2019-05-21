@@ -101,6 +101,8 @@
             this.btnPreview2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnLast2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnDisplyActiveList2 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDesignReport1 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDesignReport2 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -641,10 +643,11 @@
             // 
             // panelControl3
             // 
+            this.panelControl3.Controls.Add(this.btnDesignReport1);
+            this.panelControl3.Controls.Add(this.btnPrintPreview1);
             this.panelControl3.Controls.Add(this.btnGharardad);
             this.panelControl3.Controls.Add(this.btnPrint1);
             this.panelControl3.Controls.Add(this.btnNext1);
-            this.panelControl3.Controls.Add(this.btnPrintPreview1);
             this.panelControl3.Controls.Add(this.btnFirst1);
             this.panelControl3.Controls.Add(this.btnPreview1);
             this.panelControl3.Controls.Add(this.btnLast1);
@@ -659,7 +662,7 @@
             // btnGharardad
             // 
             this.btnGharardad.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnGharardad.ImageOptions.SvgImage")));
-            this.btnGharardad.Location = new System.Drawing.Point(357, 5);
+            this.btnGharardad.Location = new System.Drawing.Point(415, 6);
             this.btnGharardad.Name = "btnGharardad";
             this.btnGharardad.Size = new System.Drawing.Size(124, 33);
             this.btnGharardad.TabIndex = 0;
@@ -670,18 +673,19 @@
             // btnPrint1
             // 
             this.btnPrint1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrint1.ImageOptions.SvgImage")));
-            this.btnPrint1.Location = new System.Drawing.Point(5, 5);
+            this.btnPrint1.Location = new System.Drawing.Point(184, 6);
             this.btnPrint1.Name = "btnPrint1";
             this.btnPrint1.Size = new System.Drawing.Size(38, 33);
             this.btnPrint1.TabIndex = 8;
             this.btnPrint1.Text = "simpleButton1";
             this.btnPrint1.ToolTip = "چاپ لیست";
+            this.btnPrint1.Visible = false;
             // 
             // btnNext1
             // 
             this.btnNext1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNext1.ImageOptions.Image")));
             this.btnNext1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNext1.ImageOptions.SvgImage")));
-            this.btnNext1.Location = new System.Drawing.Point(269, 5);
+            this.btnNext1.Location = new System.Drawing.Point(327, 6);
             this.btnNext1.Name = "btnNext1";
             this.btnNext1.Size = new System.Drawing.Size(38, 33);
             this.btnNext1.TabIndex = 2;
@@ -692,7 +696,7 @@
             // btnPrintPreview1
             // 
             this.btnPrintPreview1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintPreview1.ImageOptions.Image")));
-            this.btnPrintPreview1.Location = new System.Drawing.Point(49, 5);
+            this.btnPrintPreview1.Location = new System.Drawing.Point(96, 7);
             this.btnPrintPreview1.Name = "btnPrintPreview1";
             this.btnPrintPreview1.Size = new System.Drawing.Size(38, 33);
             this.btnPrintPreview1.TabIndex = 7;
@@ -704,7 +708,7 @@
             // 
             this.btnFirst1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnFirst1.ImageOptions.Image")));
             this.btnFirst1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnFirst1.ImageOptions.SvgImage")));
-            this.btnFirst1.Location = new System.Drawing.Point(181, 5);
+            this.btnFirst1.Location = new System.Drawing.Point(239, 6);
             this.btnFirst1.Name = "btnFirst1";
             this.btnFirst1.Size = new System.Drawing.Size(38, 33);
             this.btnFirst1.TabIndex = 4;
@@ -716,7 +720,7 @@
             // 
             this.btnPreview1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPreview1.ImageOptions.Image")));
             this.btnPreview1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPreview1.ImageOptions.SvgImage")));
-            this.btnPreview1.Location = new System.Drawing.Point(225, 5);
+            this.btnPreview1.Location = new System.Drawing.Point(283, 6);
             this.btnPreview1.Name = "btnPreview1";
             this.btnPreview1.Size = new System.Drawing.Size(38, 33);
             this.btnPreview1.TabIndex = 3;
@@ -727,7 +731,7 @@
             // btnLast1
             // 
             this.btnLast1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLast1.ImageOptions.SvgImage")));
-            this.btnLast1.Location = new System.Drawing.Point(313, 5);
+            this.btnLast1.Location = new System.Drawing.Point(371, 6);
             this.btnLast1.Name = "btnLast1";
             this.btnLast1.Size = new System.Drawing.Size(38, 33);
             this.btnLast1.TabIndex = 1;
@@ -738,7 +742,7 @@
             // btnDisplyActiveList1
             // 
             this.btnDisplyActiveList1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyActiveList1.ImageOptions.SvgImage")));
-            this.btnDisplyActiveList1.Location = new System.Drawing.Point(137, 5);
+            this.btnDisplyActiveList1.Location = new System.Drawing.Point(52, 6);
             this.btnDisplyActiveList1.Name = "btnDisplyActiveList1";
             this.btnDisplyActiveList1.Size = new System.Drawing.Size(38, 33);
             this.btnDisplyActiveList1.TabIndex = 5;
@@ -749,7 +753,7 @@
             // btnDisplyNotActiveList1
             // 
             this.btnDisplyNotActiveList1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyNotActiveList1.ImageOptions.SvgImage")));
-            this.btnDisplyNotActiveList1.Location = new System.Drawing.Point(93, 5);
+            this.btnDisplyNotActiveList1.Location = new System.Drawing.Point(8, 6);
             this.btnDisplyNotActiveList1.Name = "btnDisplyNotActiveList1";
             this.btnDisplyNotActiveList1.Size = new System.Drawing.Size(38, 33);
             this.btnDisplyNotActiveList1.TabIndex = 6;
@@ -1033,6 +1037,7 @@
             // 
             // panelControl4
             // 
+            this.panelControl4.Controls.Add(this.btnDesignReport2);
             this.panelControl4.Controls.Add(this.btnPrint2);
             this.panelControl4.Controls.Add(this.btnNext2);
             this.panelControl4.Controls.Add(this.btnPrintPreview2);
@@ -1049,18 +1054,19 @@
             // btnPrint2
             // 
             this.btnPrint2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrint2.ImageOptions.SvgImage")));
-            this.btnPrint2.Location = new System.Drawing.Point(5, 5);
+            this.btnPrint2.Location = new System.Drawing.Point(137, 6);
             this.btnPrint2.Name = "btnPrint2";
             this.btnPrint2.Size = new System.Drawing.Size(38, 33);
             this.btnPrint2.TabIndex = 6;
             this.btnPrint2.Text = "simpleButton1";
             this.btnPrint2.ToolTip = "چاپ لیست";
+            this.btnPrint2.Visible = false;
             // 
             // btnNext2
             // 
             this.btnNext2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNext2.ImageOptions.Image")));
             this.btnNext2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNext2.ImageOptions.SvgImage")));
-            this.btnNext2.Location = new System.Drawing.Point(225, 6);
+            this.btnNext2.Location = new System.Drawing.Point(296, 6);
             this.btnNext2.Name = "btnNext2";
             this.btnNext2.Size = new System.Drawing.Size(38, 33);
             this.btnNext2.TabIndex = 1;
@@ -1071,7 +1077,7 @@
             // btnPrintPreview2
             // 
             this.btnPrintPreview2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintPreview2.ImageOptions.Image")));
-            this.btnPrintPreview2.Location = new System.Drawing.Point(49, 5);
+            this.btnPrintPreview2.Location = new System.Drawing.Point(49, 6);
             this.btnPrintPreview2.Name = "btnPrintPreview2";
             this.btnPrintPreview2.Size = new System.Drawing.Size(38, 33);
             this.btnPrintPreview2.TabIndex = 5;
@@ -1083,7 +1089,7 @@
             // 
             this.btnFirst2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnFirst2.ImageOptions.Image")));
             this.btnFirst2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnFirst2.ImageOptions.SvgImage")));
-            this.btnFirst2.Location = new System.Drawing.Point(137, 6);
+            this.btnFirst2.Location = new System.Drawing.Point(208, 6);
             this.btnFirst2.Name = "btnFirst2";
             this.btnFirst2.Size = new System.Drawing.Size(38, 33);
             this.btnFirst2.TabIndex = 3;
@@ -1095,7 +1101,7 @@
             // 
             this.btnPreview2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPreview2.ImageOptions.Image")));
             this.btnPreview2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPreview2.ImageOptions.SvgImage")));
-            this.btnPreview2.Location = new System.Drawing.Point(181, 6);
+            this.btnPreview2.Location = new System.Drawing.Point(252, 6);
             this.btnPreview2.Name = "btnPreview2";
             this.btnPreview2.Size = new System.Drawing.Size(38, 33);
             this.btnPreview2.TabIndex = 2;
@@ -1106,7 +1112,7 @@
             // btnLast2
             // 
             this.btnLast2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLast2.ImageOptions.SvgImage")));
-            this.btnLast2.Location = new System.Drawing.Point(269, 6);
+            this.btnLast2.Location = new System.Drawing.Point(340, 6);
             this.btnLast2.Name = "btnLast2";
             this.btnLast2.Size = new System.Drawing.Size(38, 33);
             this.btnLast2.TabIndex = 0;
@@ -1117,13 +1123,37 @@
             // btnDisplyActiveList2
             // 
             this.btnDisplyActiveList2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyActiveList2.ImageOptions.SvgImage")));
-            this.btnDisplyActiveList2.Location = new System.Drawing.Point(93, 5);
+            this.btnDisplyActiveList2.Location = new System.Drawing.Point(5, 6);
             this.btnDisplyActiveList2.Name = "btnDisplyActiveList2";
             this.btnDisplyActiveList2.Size = new System.Drawing.Size(38, 33);
             this.btnDisplyActiveList2.TabIndex = 4;
             this.btnDisplyActiveList2.Text = "simpleButton1";
             this.btnDisplyActiveList2.ToolTip = "نمایش لیست";
             this.btnDisplyActiveList2.Click += new System.EventHandler(this.btnDisplyActiveList2_Click);
+            // 
+            // btnDesignReport1
+            // 
+            this.btnDesignReport1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDesignReport1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDesignReport.ImageOptions.Image")));
+            this.btnDesignReport1.Location = new System.Drawing.Point(140, 6);
+            this.btnDesignReport1.Name = "btnDesignReport1";
+            this.btnDesignReport1.Size = new System.Drawing.Size(38, 33);
+            this.btnDesignReport1.TabIndex = 40;
+            this.btnDesignReport1.Text = "simpleButton1";
+            this.btnDesignReport1.ToolTip = "چاپ لیست";
+            this.btnDesignReport1.Visible = false;
+            // 
+            // btnDesignReport2
+            // 
+            this.btnDesignReport2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDesignReport2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.btnDesignReport2.Location = new System.Drawing.Point(93, 6);
+            this.btnDesignReport2.Name = "btnDesignReport2";
+            this.btnDesignReport2.Size = new System.Drawing.Size(38, 33);
+            this.btnDesignReport2.TabIndex = 41;
+            this.btnDesignReport2.Text = "simpleButton1";
+            this.btnDesignReport2.ToolTip = "چاپ لیست";
+            this.btnDesignReport2.Visible = false;
             // 
             // FrmListVamhayePardakhti
             // 
@@ -1140,6 +1170,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmListVamhayePardakhti_FormClosed);
             this.Load += new System.EventHandler(this.FrmListVamhayePardakhti_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmListVamhayePardakhti_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
@@ -1238,5 +1269,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colShomareSanad;
         private DevExpress.XtraGrid.Columns.GridColumn colHesabMoin;
         private DevExpress.XtraEditors.SimpleButton btnGharardad;
+        private DevExpress.XtraEditors.SimpleButton btnDesignReport1;
+        private DevExpress.XtraEditors.SimpleButton btnDesignReport2;
     }
 }

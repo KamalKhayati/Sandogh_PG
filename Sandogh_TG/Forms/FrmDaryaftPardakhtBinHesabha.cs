@@ -74,7 +74,7 @@ namespace Sandogh_TG
                 {
                     int _HesabMoinId = Convert.ToInt32(cmbHesabMoin1.EditValue);
                     var q = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId);
-                    if (q!=null)
+                    if (q != null)
                     {
                         switch (q.Code)
                         {
@@ -131,6 +131,26 @@ namespace Sandogh_TG
                             case 4001:
                                 {
                                     goto case 2001;
+                                }
+                            case 5001:
+                                {
+                                    if (En == EnumCED.Create)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource.DataSource = null;
+                                    }
+                                    else if (En == EnumCED.Edit)
+                                    {
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6).OrderBy(s => s.Code).ToList();
+                                        if (q2.Count > 0)
+                                            allHesabTafzilisBindingSource.DataSource = q2;
+                                        else
+                                            allHesabTafzilisBindingSource.DataSource = null;
+                                    }
+                                    break;
                                 }
                             case 6001:
                                 {
@@ -213,7 +233,7 @@ namespace Sandogh_TG
                 {
                     int _HesabMoinId = Convert.ToInt32(cmbHesabMoin2.EditValue);
                     var q = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId);
-                    if (q!=null)
+                    if (q != null)
                     {
                         switch (q.Code)
                         {
@@ -270,6 +290,26 @@ namespace Sandogh_TG
                             case 4001:
                                 {
                                     goto case 2001;
+                                }
+                            case 5001:
+                                {
+                                    if (En == EnumCED.Create)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    else if (En == EnumCED.Edit)
+                                    {
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6).OrderBy(s => s.Code).ToList();
+                                        if (q2.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q2;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    break;
                                 }
                             case 6001:
                                 {
@@ -667,7 +707,7 @@ namespace Sandogh_TG
                                 db.SaveChanges();
 
                                 btnDisplayList_Click(null, null);
-                                XtraMessageBox.Show("عملیات حذف با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                                // XtraMessageBox.Show("عملیات حذف با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                                 if (gridView1.RowCount > 0)
                                     gridView1.FocusedRowHandle = EditRowIndex - 1;
                             }
@@ -755,7 +795,7 @@ namespace Sandogh_TG
                             obj1.ShomareSanad = q2 + 1;
                             obj1.Tarikh = Convert.ToDateTime(txtTarikh.Text.Substring(0, 10));
                             obj1.HesabMoinId = Convert.ToInt32(cmbHesabMoin1.EditValue);
-                            obj1.HesabMoinCode = db.CodeMoins.FirstOrDefault(f=>f.Id== _HesabMoinId1).Code;
+                            obj1.HesabMoinCode = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId1).Code;
                             obj1.HesabMoinName = cmbHesabMoin1.Text; ;
                             obj1.HesabTafId = Convert.ToInt32(cmbHesabTafzili1.EditValue);
                             obj1.HesabTafCode = db.AllHesabTafzilis.FirstOrDefault(f => f.Id == _HesabTafziliId1).Code;
@@ -924,19 +964,19 @@ namespace Sandogh_TG
 
         private void cmbHesabMoin1_Enter(object sender, EventArgs e)
         {
-                cmbHesabMoin1.ShowPopup();
+            cmbHesabMoin1.ShowPopup();
         }
         private void cmbHesabMoin2_Enter(object sender, EventArgs e)
         {
-                cmbHesabMoin2.ShowPopup();
+            cmbHesabMoin2.ShowPopup();
         }
         private void cmbHesabTafzili1_Enter(object sender, EventArgs e)
         {
-                cmbHesabTafzili1.ShowPopup();
+            cmbHesabTafzili1.ShowPopup();
         }
         private void cmbHesabTafzili2_Enter(object sender, EventArgs e)
         {
-                cmbHesabTafzili2.ShowPopup();
+            cmbHesabTafzili2.ShowPopup();
         }
 
         private void cmbHesabMoin1_EditValueChanged(object sender, EventArgs e)
@@ -951,7 +991,7 @@ namespace Sandogh_TG
 
         private void cmbNoeSanad_Enter(object sender, EventArgs e)
         {
-            if(En==EnumCED.Create)
+            if (En == EnumCED.Create)
                 cmbNoeSanad.ShowPopup();
         }
 

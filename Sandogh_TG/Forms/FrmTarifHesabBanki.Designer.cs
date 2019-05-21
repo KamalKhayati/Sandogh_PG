@@ -255,7 +255,7 @@
             // btnPrint
             // 
             this.btnPrint.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrint.ImageOptions.SvgImage")));
-            this.btnPrint.Location = new System.Drawing.Point(125, 5);
+            this.btnPrint.Location = new System.Drawing.Point(194, 5);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(38, 33);
             this.btnPrint.TabIndex = 14;
@@ -280,13 +280,14 @@
             // btnPrintPreview
             // 
             this.btnPrintPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintPreview.ImageOptions.Image")));
-            this.btnPrintPreview.Location = new System.Drawing.Point(169, 5);
+            this.btnPrintPreview.Location = new System.Drawing.Point(238, 5);
             this.btnPrintPreview.Name = "btnPrintPreview";
             this.btnPrintPreview.Size = new System.Drawing.Size(38, 33);
             this.btnPrintPreview.TabIndex = 13;
             this.btnPrintPreview.Text = "simpleButton1";
             this.btnPrintPreview.ToolTip = "F11";
             this.btnPrintPreview.ToolTipTitle = "نمایش چاپ";
+            this.btnPrintPreview.Visible = false;
             this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
             // 
             // btnEdit
@@ -305,13 +306,14 @@
             // btnAdvancedSearch
             // 
             this.btnAdvancedSearch.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnAdvancedSearch.ImageOptions.SvgImage")));
-            this.btnAdvancedSearch.Location = new System.Drawing.Point(213, 5);
+            this.btnAdvancedSearch.Location = new System.Drawing.Point(282, 5);
             this.btnAdvancedSearch.Name = "btnAdvancedSearch";
             this.btnAdvancedSearch.Size = new System.Drawing.Size(38, 33);
             this.btnAdvancedSearch.TabIndex = 12;
             this.btnAdvancedSearch.Text = "simpleButton1";
             this.btnAdvancedSearch.ToolTip = "F10";
             this.btnAdvancedSearch.ToolTipTitle = "جستجوی پیشرفته";
+            this.btnAdvancedSearch.Visible = false;
             this.btnAdvancedSearch.Click += new System.EventHandler(this.btnAdvancedSearch_Click);
             // 
             // btnDelete
@@ -378,7 +380,7 @@
             // btnDisplyActiveList
             // 
             this.btnDisplyActiveList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyActiveList.ImageOptions.SvgImage")));
-            this.btnDisplyActiveList.Location = new System.Drawing.Point(301, 5);
+            this.btnDisplyActiveList.Location = new System.Drawing.Point(149, 5);
             this.btnDisplyActiveList.Name = "btnDisplyActiveList";
             this.btnDisplyActiveList.Size = new System.Drawing.Size(38, 33);
             this.btnDisplyActiveList.TabIndex = 10;
@@ -390,7 +392,7 @@
             // btnDisplyNotActiveList
             // 
             this.btnDisplyNotActiveList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyNotActiveList.ImageOptions.SvgImage")));
-            this.btnDisplyNotActiveList.Location = new System.Drawing.Point(257, 5);
+            this.btnDisplyNotActiveList.Location = new System.Drawing.Point(105, 5);
             this.btnDisplyNotActiveList.Name = "btnDisplyNotActiveList";
             this.btnDisplyNotActiveList.Size = new System.Drawing.Size(38, 33);
             this.btnDisplyNotActiveList.TabIndex = 11;

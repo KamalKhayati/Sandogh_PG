@@ -55,6 +55,8 @@
         public virtual DbSet<CheckTazmin> CheckTazmins { get; set; }
         public virtual DbSet<AsnadeHesabdariRow> AsnadeHesabdariRows { get; set; }
         public virtual DbSet<Karbaran> Karbarans { get; set; }
+        public virtual DbSet<CodingAmval> CodingAmvals { get; set; }
+
         //public virtual DbSet<DaryaftNaghdiVBanki> DaryaftNaghdiVBankis { get; set; }
         //public virtual DbSet<PardakhtNaghdiVBanki> PardakhtNaghdiVBankis { get; set; }
         //public virtual DbSet<SabDaramad> SabDaramads { get; set; }

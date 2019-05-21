@@ -97,21 +97,26 @@ namespace Sandogh_TG
                 }
             }
 
-
-            // فراخوانی پوسته برنامه از مسیر دایرکتوری %appdata%
-            try
+            using (var db = new MyContext())
             {
-                //int i = 0;
-                DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(Settings[AppVariable.SkinName[0]].ToString() ?? "DevExpress Style");
+                // فراخوانی پوسته برنامه از مسیر دایرکتوری %appdata%
+                try
+                {
+                    //int i = 0;
+                    DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(Settings[AppVariable.SkinName[0]].ToString() ?? "DevExpress Style");
 
-            }
-            catch (Exception)
-            {
+                    string command = " ALTER DATABASE " + LblNameDatabase.Text + " SET ONLINE";
+                    db.Database.CommandTimeout = 360;
+                    db.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command);
+                }
+                catch (Exception)
+                {
 
+                }
             }
+
 
         }
-
         public void SetAppConfing()
         {
             //D:\Kamal Projects\Sandogh\Sandogh_TG\Sandogh_TG\bin\Debug\DB
@@ -137,7 +142,7 @@ namespace Sandogh_TG
                 //Con.Append(cmbNameDataBaseSandogh.Text);
                 if (cmbAuthentication.SelectedIndex == 0)
                     Con.Append(";Integrated Security=true");
-                else if(cmbAuthentication.SelectedIndex == 1)
+                else if (cmbAuthentication.SelectedIndex == 1)
                 {
                     Con.Append(";User Id=");
                     Con.Append(txtUserName2.Text);
@@ -192,7 +197,7 @@ namespace Sandogh_TG
             if (!string.IsNullOrEmpty(txtShenase.Text))
             {
                 cmbNameDataBaseSandogh.Enabled = false;
-               // SetAppConfing();
+                // SetAppConfing();
                 /////////////////////////////////////////////////////////
                 using (var db = new MyContext())
                 {
@@ -342,22 +347,9 @@ namespace Sandogh_TG
                     }
                     catch (Exception)
                     {
-                        int _Index1 = cmbNameDataBaseSandogh.Properties.Items.Count;
-                        Settings[AppVariable.txtDatabaseName[_Index1]] = txtDatabaseName.Text;
-                        Settings[AppVariable.cmbNameDataBaseSandogh[_Index1]] = _Index1;
-                        Settings[AppVariable.cmbServerType[i]] = cmbServerType.SelectedIndex.ToString();
-                        Settings[AppVariable.cmbServerName[i]] = cmbServerName.Text;
-                        Settings[AppVariable.cmbAuthentication[i]] = cmbAuthentication.SelectedIndex.ToString();
-                        Settings[AppVariable.txtUserName2[i]] = txtUserName2.Text;
-                        Settings[AppVariable.txtPassword2[i]] = txtPassword2.Text;
-                        Settings[AppVariable.txtAttachDbFilePath[i]] = txtAttachDbFilePath.Text;
-                        SetAppConfing();
-                        FillCmbNameDatabase();
-                        return;
-                        //cmbNameDataBaseSandogh.SelectedIndex = _Index1;
-                        //txtNewDatabase.Visible = false;
                     }
                 }
+
                 int _Index = cmbNameDataBaseSandogh.Properties.Items.Count;
                 Settings[AppVariable.txtDatabaseName[_Index]] = txtDatabaseName.Text;
                 Settings[AppVariable.cmbNameDataBaseSandogh[_Index]] = _Index;
@@ -369,9 +361,28 @@ namespace Sandogh_TG
                 Settings[AppVariable.txtAttachDbFilePath[_Index]] = txtAttachDbFilePath.Text;
                 SetAppConfing();
                 FillCmbNameDatabase();
+
+                using (var db = new MyContext())
+                {
+                    try
+                    {
+                        string St1 = Application.StartupPath + @"\DB\";
+                        //string command = " ALTER DATABASE " + txtDatabaseName.Text + " SET ONLINE";
+                        string command = " CREATE DATABASE " + txtDatabaseName.Text +
+                                         " ON" +
+                                         " (NAME =" + txtDatabaseName.Text + ",FILENAME = '" + St1 + txtDatabaseName.Text + ".mdf')" +
+                                             " LOG ON" +
+                                             " (NAME = '" + txtDatabaseName.Text + "_log',FILENAME = '" + St1 + txtDatabaseName.Text + ".ldf')";
+                        db.Database.CommandTimeout = 360;
+                        db.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command);
+
+                    }
+                    catch (Exception)
+                    {
+                        return;
+                    }
+                }
             }
-
-
         }
 
         public void FillCmbNameDatabase()

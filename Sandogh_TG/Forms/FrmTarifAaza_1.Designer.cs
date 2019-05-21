@@ -684,12 +684,14 @@
             this.gridControl1.DataSource = this.aazaSandoghsBindingSource;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gridControl1.EmbeddedNavigator.UseWaitCursor = true;
             this.gridControl1.Location = new System.Drawing.Point(2, 2);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.Size = new System.Drawing.Size(1161, 285);
             this.gridControl1.TabIndex = 32;
+            this.gridControl1.UseWaitCursor = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
@@ -706,6 +708,7 @@
             this.txtShomareShaba.Properties.ReadOnly = true;
             this.txtShomareShaba.Size = new System.Drawing.Size(211, 32);
             this.txtShomareShaba.TabIndex = 12;
+            this.txtShomareShaba.UseWaitCursor = true;
             // 
             // txtShomareHesab
             // 
@@ -716,6 +719,7 @@
             this.txtShomareHesab.Properties.ReadOnly = true;
             this.txtShomareHesab.Size = new System.Drawing.Size(211, 32);
             this.txtShomareHesab.TabIndex = 10;
+            this.txtShomareHesab.UseWaitCursor = true;
             // 
             // txtShoghl
             // 
@@ -726,6 +730,7 @@
             this.txtShoghl.Properties.ReadOnly = true;
             this.txtShoghl.Size = new System.Drawing.Size(209, 32);
             this.txtShoghl.TabIndex = 18;
+            this.txtShoghl.UseWaitCursor = true;
             // 
             // txtCodeMeli
             // 
@@ -736,6 +741,7 @@
             this.txtCodeMeli.Properties.ReadOnly = true;
             this.txtCodeMeli.Size = new System.Drawing.Size(211, 32);
             this.txtCodeMeli.TabIndex = 4;
+            this.txtCodeMeli.UseWaitCursor = true;
             // 
             // txtShomareKart
             // 
@@ -750,6 +756,7 @@
             this.txtShomareKart.Properties.ReadOnly = true;
             this.txtShomareKart.Size = new System.Drawing.Size(209, 32);
             this.txtShomareKart.TabIndex = 11;
+            this.txtShomareKart.UseWaitCursor = true;
             // 
             // labelControl12
             // 
@@ -760,6 +767,7 @@
             this.labelControl12.Size = new System.Drawing.Size(65, 32);
             this.labelControl12.TabIndex = 31;
             this.labelControl12.Text = "شماره شبا";
+            this.labelControl12.UseWaitCursor = true;
             // 
             // labelControl13
             // 
@@ -770,6 +778,7 @@
             this.labelControl13.Size = new System.Drawing.Size(39, 32);
             this.labelControl13.TabIndex = 31;
             this.labelControl13.Text = "شغل";
+            this.labelControl13.UseWaitCursor = true;
             // 
             // labelControl19
             // 
@@ -780,6 +789,7 @@
             this.labelControl19.Size = new System.Drawing.Size(86, 32);
             this.labelControl19.TabIndex = 43;
             this.labelControl19.Text = "مبلغ بستانکار";
+            this.labelControl19.UseWaitCursor = true;
             // 
             // panelControl2
             // 
@@ -803,6 +813,7 @@
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(1165, 44);
             this.panelControl2.TabIndex = 26;
+            this.panelControl2.UseWaitCursor = true;
             // 
             // btnClose
             // 
@@ -814,6 +825,7 @@
             this.btnClose.Text = "بستن ";
             this.btnClose.ToolTip = "Escape";
             this.btnClose.ToolTipTitle = "بستن ";
+            this.btnClose.UseWaitCursor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnSaveNext
@@ -827,18 +839,20 @@
             this.btnSaveNext.Text = "simpleButton1";
             this.btnSaveNext.ToolTip = "F9";
             this.btnSaveNext.ToolTipTitle = "ذخیره و بعدی";
+            this.btnSaveNext.UseWaitCursor = true;
             this.btnSaveNext.Click += new System.EventHandler(this.btnSaveNext_Click);
             // 
             // btnPrint
             // 
             this.btnPrint.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrint.ImageOptions.SvgImage")));
-            this.btnPrint.Location = new System.Drawing.Point(125, 5);
+            this.btnPrint.Location = new System.Drawing.Point(204, 5);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(38, 33);
             this.btnPrint.TabIndex = 14;
             this.btnPrint.Text = "simpleButton1";
             this.btnPrint.ToolTip = "F12";
             this.btnPrint.ToolTipTitle = "چاپ لیست";
+            this.btnPrint.UseWaitCursor = true;
             this.btnPrint.Visible = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
@@ -852,18 +866,21 @@
             this.btnNext.TabIndex = 7;
             this.btnNext.Text = "simpleButton1";
             this.btnNext.ToolTip = "بعدی";
+            this.btnNext.UseWaitCursor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnPrintPreview
             // 
             this.btnPrintPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintPreview.ImageOptions.Image")));
-            this.btnPrintPreview.Location = new System.Drawing.Point(169, 5);
+            this.btnPrintPreview.Location = new System.Drawing.Point(248, 5);
             this.btnPrintPreview.Name = "btnPrintPreview";
             this.btnPrintPreview.Size = new System.Drawing.Size(38, 33);
             this.btnPrintPreview.TabIndex = 13;
             this.btnPrintPreview.Text = "simpleButton1";
             this.btnPrintPreview.ToolTip = "F11";
             this.btnPrintPreview.ToolTipTitle = "نمایش چاپ";
+            this.btnPrintPreview.UseWaitCursor = true;
+            this.btnPrintPreview.Visible = false;
             this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
             // 
             // btnEdit
@@ -877,18 +894,21 @@
             this.btnEdit.Text = "simpleButton1";
             this.btnEdit.ToolTip = "F4";
             this.btnEdit.ToolTipTitle = "ویرایش";
+            this.btnEdit.UseWaitCursor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnAdvancedSearch
             // 
             this.btnAdvancedSearch.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnAdvancedSearch.ImageOptions.SvgImage")));
-            this.btnAdvancedSearch.Location = new System.Drawing.Point(213, 5);
+            this.btnAdvancedSearch.Location = new System.Drawing.Point(292, 5);
             this.btnAdvancedSearch.Name = "btnAdvancedSearch";
             this.btnAdvancedSearch.Size = new System.Drawing.Size(38, 33);
             this.btnAdvancedSearch.TabIndex = 12;
             this.btnAdvancedSearch.Text = "simpleButton1";
             this.btnAdvancedSearch.ToolTip = "F10";
             this.btnAdvancedSearch.ToolTipTitle = "جستجوی پیشرفته";
+            this.btnAdvancedSearch.UseWaitCursor = true;
+            this.btnAdvancedSearch.Visible = false;
             this.btnAdvancedSearch.Click += new System.EventHandler(this.btnAdvancedSearch_Click);
             // 
             // btnDelete
@@ -902,6 +922,7 @@
             this.btnDelete.Text = "simpleButton1";
             this.btnDelete.ToolTip = "F3";
             this.btnDelete.ToolTipTitle = "حذف";
+            this.btnDelete.UseWaitCursor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnFirst
@@ -914,6 +935,7 @@
             this.btnFirst.TabIndex = 9;
             this.btnFirst.Text = "simpleButton1";
             this.btnFirst.ToolTip = "اولین رکورد";
+            this.btnFirst.UseWaitCursor = true;
             this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
             // 
             // btnSave
@@ -927,6 +949,7 @@
             this.btnSave.Text = "simpleButton1";
             this.btnSave.ToolTip = "F5";
             this.btnSave.ToolTipTitle = "ذخیره";
+            this.btnSave.UseWaitCursor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnPreview
@@ -939,6 +962,7 @@
             this.btnPreview.TabIndex = 8;
             this.btnPreview.Text = "simpleButton1";
             this.btnPreview.ToolTip = "قبلی";
+            this.btnPreview.UseWaitCursor = true;
             this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
             // btnLast
@@ -950,30 +974,33 @@
             this.btnLast.TabIndex = 6;
             this.btnLast.Text = "simpleButton1";
             this.btnLast.ToolTip = "آخرین رکورد";
+            this.btnLast.UseWaitCursor = true;
             this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
             // 
             // btnDisplyActiveList
             // 
             this.btnDisplyActiveList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyActiveList.ImageOptions.SvgImage")));
-            this.btnDisplyActiveList.Location = new System.Drawing.Point(301, 5);
+            this.btnDisplyActiveList.Location = new System.Drawing.Point(160, 5);
             this.btnDisplyActiveList.Name = "btnDisplyActiveList";
             this.btnDisplyActiveList.Size = new System.Drawing.Size(38, 33);
             this.btnDisplyActiveList.TabIndex = 10;
             this.btnDisplyActiveList.Text = "simpleButton1";
             this.btnDisplyActiveList.ToolTip = "F7";
             this.btnDisplyActiveList.ToolTipTitle = "لیست فعال";
+            this.btnDisplyActiveList.UseWaitCursor = true;
             this.btnDisplyActiveList.Click += new System.EventHandler(this.btnDisplyActiveList_Click);
             // 
             // btnDisplyNotActiveList
             // 
             this.btnDisplyNotActiveList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyNotActiveList.ImageOptions.SvgImage")));
-            this.btnDisplyNotActiveList.Location = new System.Drawing.Point(257, 5);
+            this.btnDisplyNotActiveList.Location = new System.Drawing.Point(116, 5);
             this.btnDisplyNotActiveList.Name = "btnDisplyNotActiveList";
             this.btnDisplyNotActiveList.Size = new System.Drawing.Size(38, 33);
             this.btnDisplyNotActiveList.TabIndex = 11;
             this.btnDisplyNotActiveList.Text = "simpleButton1";
             this.btnDisplyNotActiveList.ToolTip = "F8";
             this.btnDisplyNotActiveList.ToolTipTitle = "لیست غیرفعال";
+            this.btnDisplyNotActiveList.UseWaitCursor = true;
             this.btnDisplyNotActiveList.Click += new System.EventHandler(this.btnDisplyNotActiveList_Click);
             // 
             // btnCancel
@@ -987,6 +1014,7 @@
             this.btnCancel.Text = "simpleButton1";
             this.btnCancel.ToolTip = "F6";
             this.btnCancel.ToolTipTitle = "انصراف";
+            this.btnCancel.UseWaitCursor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnCreate
@@ -999,6 +1027,7 @@
             this.btnCreate.Text = "simpleButton1";
             this.btnCreate.ToolTip = "F2";
             this.btnCreate.ToolTipTitle = "ایجاد";
+            this.btnCreate.UseWaitCursor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // txtBesAvali
@@ -1013,6 +1042,7 @@
             this.txtBesAvali.Properties.ReadOnly = true;
             this.txtBesAvali.Size = new System.Drawing.Size(210, 32);
             this.txtBesAvali.TabIndex = 21;
+            this.txtBesAvali.UseWaitCursor = true;
             // 
             // xtraScrollableControl2
             // 
@@ -1081,6 +1111,7 @@
             this.xtraScrollableControl2.Name = "xtraScrollableControl2";
             this.xtraScrollableControl2.Size = new System.Drawing.Size(1165, 430);
             this.xtraScrollableControl2.TabIndex = 32;
+            this.xtraScrollableControl2.UseWaitCursor = true;
             // 
             // chkIsActive
             // 
@@ -1092,6 +1123,7 @@
             this.chkIsActive.Properties.Caption = "فعال";
             this.chkIsActive.Size = new System.Drawing.Size(56, 33);
             this.chkIsActive.TabIndex = 26;
+            this.chkIsActive.UseWaitCursor = true;
             this.chkIsActive.CheckedChanged += new System.EventHandler(this.chkIsActive_CheckedChanged);
             // 
             // chkIsOzveSandogh
@@ -1104,6 +1136,7 @@
             this.chkIsOzveSandogh.Properties.Caption = "عضو صندوق";
             this.chkIsOzveSandogh.Size = new System.Drawing.Size(104, 33);
             this.chkIsOzveSandogh.TabIndex = 25;
+            this.chkIsOzveSandogh.UseWaitCursor = true;
             // 
             // txtHazineEftetah
             // 
@@ -1117,6 +1150,7 @@
             this.txtHazineEftetah.Properties.ReadOnly = true;
             this.txtHazineEftetah.Size = new System.Drawing.Size(175, 32);
             this.txtHazineEftetah.TabIndex = 22;
+            this.txtHazineEftetah.UseWaitCursor = true;
             // 
             // labelControl20
             // 
@@ -1127,6 +1161,7 @@
             this.labelControl20.Size = new System.Drawing.Size(128, 32);
             this.labelControl20.TabIndex = 43;
             this.labelControl20.Text = "هزینه افتتاح حساب";
+            this.labelControl20.UseWaitCursor = true;
             // 
             // btnDeletePictuer
             // 
@@ -1140,6 +1175,7 @@
             this.btnDeletePictuer.Text = "حذف";
             this.btnDeletePictuer.ToolTip = "F6";
             this.btnDeletePictuer.ToolTipTitle = "انصراف";
+            this.btnDeletePictuer.UseWaitCursor = true;
             this.btnDeletePictuer.Click += new System.EventHandler(this.btnDeletePictuer_Click);
             // 
             // btnBrowsPictuer
@@ -1154,6 +1190,7 @@
             this.btnBrowsPictuer.Text = "اضافه";
             this.btnBrowsPictuer.ToolTip = "F2";
             this.btnBrowsPictuer.ToolTipTitle = "ایجاد";
+            this.btnBrowsPictuer.UseWaitCursor = true;
             this.btnBrowsPictuer.Click += new System.EventHandler(this.btnBrowsPictuer_Click);
             // 
             // pictureEdit1
@@ -1165,6 +1202,7 @@
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             this.pictureEdit1.Size = new System.Drawing.Size(199, 185);
             this.pictureEdit1.TabIndex = 45;
+            this.pictureEdit1.UseWaitCursor = true;
             // 
             // txtHaghOzviat
             // 
@@ -1178,6 +1216,7 @@
             this.txtHaghOzviat.Properties.ReadOnly = true;
             this.txtHaghOzviat.Size = new System.Drawing.Size(175, 32);
             this.txtHaghOzviat.TabIndex = 20;
+            this.txtHaghOzviat.UseWaitCursor = true;
             // 
             // labelControl18
             // 
@@ -1188,6 +1227,7 @@
             this.labelControl18.Size = new System.Drawing.Size(111, 32);
             this.labelControl18.TabIndex = 43;
             this.labelControl18.Text = "پس انداز ماهیانه";
+            this.labelControl18.UseWaitCursor = true;
             // 
             // txtBedAvali
             // 
@@ -1201,6 +1241,7 @@
             this.txtBedAvali.Size = new System.Drawing.Size(211, 32);
             this.txtBedAvali.TabIndex = 23;
             this.txtBedAvali.TabStop = false;
+            this.txtBedAvali.UseWaitCursor = true;
             this.txtBedAvali.Visible = false;
             // 
             // labelControl25
@@ -1212,6 +1253,7 @@
             this.labelControl25.Size = new System.Drawing.Size(39, 32);
             this.labelControl25.TabIndex = 43;
             this.labelControl25.Text = "تأهل";
+            this.labelControl25.UseWaitCursor = true;
             // 
             // labelControl24
             // 
@@ -1222,6 +1264,7 @@
             this.labelControl24.Size = new System.Drawing.Size(58, 32);
             this.labelControl24.TabIndex = 43;
             this.labelControl24.Text = "جنسیت";
+            this.labelControl24.UseWaitCursor = true;
             // 
             // labelControl26
             // 
@@ -1232,6 +1275,7 @@
             this.labelControl26.Size = new System.Drawing.Size(82, 32);
             this.labelControl26.TabIndex = 43;
             this.labelControl26.Text = "بدهکار اولیه";
+            this.labelControl26.UseWaitCursor = true;
             this.labelControl26.Visible = false;
             // 
             // labelControl21
@@ -1243,6 +1287,7 @@
             this.labelControl21.Size = new System.Drawing.Size(45, 32);
             this.labelControl21.TabIndex = 43;
             this.labelControl21.Text = "معرف";
+            this.labelControl21.UseWaitCursor = true;
             // 
             // txtTarikhOzviat
             // 
@@ -1262,6 +1307,7 @@
             this.txtTarikhOzviat.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtTarikhOzviat.Size = new System.Drawing.Size(211, 32);
             this.txtTarikhOzviat.TabIndex = 1;
+            this.txtTarikhOzviat.UseWaitCursor = true;
             // 
             // txtBirthDate
             // 
@@ -1281,6 +1327,7 @@
             this.txtBirthDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtBirthDate.Size = new System.Drawing.Size(211, 32);
             this.txtBirthDate.TabIndex = 6;
+            this.txtBirthDate.UseWaitCursor = true;
             // 
             // labelControl6
             // 
@@ -1291,6 +1338,7 @@
             this.labelControl6.Size = new System.Drawing.Size(101, 32);
             this.labelControl6.TabIndex = 35;
             this.labelControl6.Text = "وضعیت حساب";
+            this.labelControl6.UseWaitCursor = true;
             // 
             // txtSharhHesab
             // 
@@ -1301,6 +1349,7 @@
             this.txtSharhHesab.Properties.ReadOnly = true;
             this.txtSharhHesab.Size = new System.Drawing.Size(841, 32);
             this.txtSharhHesab.TabIndex = 24;
+            this.txtSharhHesab.UseWaitCursor = true;
             // 
             // txtMohaleKar
             // 
@@ -1311,6 +1360,7 @@
             this.txtMohaleKar.Properties.ReadOnly = true;
             this.txtMohaleKar.Size = new System.Drawing.Size(525, 32);
             this.txtMohaleKar.TabIndex = 16;
+            this.txtMohaleKar.UseWaitCursor = true;
             // 
             // txtAdress
             // 
@@ -1321,6 +1371,7 @@
             this.txtAdress.Properties.ReadOnly = true;
             this.txtAdress.Size = new System.Drawing.Size(525, 32);
             this.txtAdress.TabIndex = 14;
+            this.txtAdress.UseWaitCursor = true;
             // 
             // txtTell
             // 
@@ -1331,6 +1382,7 @@
             this.txtTell.Properties.ReadOnly = true;
             this.txtTell.Size = new System.Drawing.Size(211, 32);
             this.txtTell.TabIndex = 17;
+            this.txtTell.UseWaitCursor = true;
             // 
             // txtMobile2
             // 
@@ -1341,6 +1393,7 @@
             this.txtMobile2.Properties.ReadOnly = true;
             this.txtMobile2.Size = new System.Drawing.Size(211, 32);
             this.txtMobile2.TabIndex = 15;
+            this.txtMobile2.UseWaitCursor = true;
             // 
             // txtMobile1
             // 
@@ -1351,6 +1404,7 @@
             this.txtMobile1.Properties.ReadOnly = true;
             this.txtMobile1.Size = new System.Drawing.Size(211, 32);
             this.txtMobile1.TabIndex = 13;
+            this.txtMobile1.UseWaitCursor = true;
             // 
             // txtNameVFamil
             // 
@@ -1361,6 +1415,7 @@
             this.txtNameVFamil.Properties.ReadOnly = true;
             this.txtNameVFamil.Size = new System.Drawing.Size(209, 32);
             this.txtNameVFamil.TabIndex = 2;
+            this.txtNameVFamil.UseWaitCursor = true;
             // 
             // txtNameBank
             // 
@@ -1371,6 +1426,7 @@
             this.txtNameBank.Properties.ReadOnly = true;
             this.txtNameBank.Size = new System.Drawing.Size(211, 32);
             this.txtNameBank.TabIndex = 9;
+            this.txtNameBank.UseWaitCursor = true;
             // 
             // txtNamePedar
             // 
@@ -1381,6 +1437,7 @@
             this.txtNamePedar.Properties.ReadOnly = true;
             this.txtNamePedar.Size = new System.Drawing.Size(211, 32);
             this.txtNamePedar.TabIndex = 3;
+            this.txtNamePedar.UseWaitCursor = true;
             // 
             // txtShShenasname
             // 
@@ -1391,6 +1448,7 @@
             this.txtShShenasname.Properties.ReadOnly = true;
             this.txtShShenasname.Size = new System.Drawing.Size(209, 32);
             this.txtShShenasname.TabIndex = 5;
+            this.txtShShenasname.UseWaitCursor = true;
             // 
             // labelControl27
             // 
@@ -1401,6 +1459,7 @@
             this.labelControl27.Size = new System.Drawing.Size(96, 32);
             this.labelControl27.TabIndex = 31;
             this.labelControl27.Text = "توضیح حساب";
+            this.labelControl27.UseWaitCursor = true;
             // 
             // labelControl9
             // 
@@ -1413,6 +1472,7 @@
             this.labelControl9.Size = new System.Drawing.Size(58, 32);
             this.labelControl9.TabIndex = 31;
             this.labelControl9.Text = "نام بانک";
+            this.labelControl9.UseWaitCursor = true;
             // 
             // labelControl17
             // 
@@ -1423,6 +1483,7 @@
             this.labelControl17.Size = new System.Drawing.Size(96, 32);
             this.labelControl17.TabIndex = 31;
             this.labelControl17.Text = "آدرس محل کار";
+            this.labelControl17.UseWaitCursor = true;
             // 
             // labelControl14
             // 
@@ -1433,6 +1494,7 @@
             this.labelControl14.Size = new System.Drawing.Size(72, 32);
             this.labelControl14.TabIndex = 31;
             this.labelControl14.Text = "آدرس منزل";
+            this.labelControl14.UseWaitCursor = true;
             // 
             // labelControl7
             // 
@@ -1443,6 +1505,7 @@
             this.labelControl7.Size = new System.Drawing.Size(69, 32);
             this.labelControl7.TabIndex = 31;
             this.labelControl7.Text = "تلفن ثابت";
+            this.labelControl7.UseWaitCursor = true;
             // 
             // labelControl16
             // 
@@ -1453,6 +1516,7 @@
             this.labelControl16.Size = new System.Drawing.Size(55, 32);
             this.labelControl16.TabIndex = 31;
             this.labelControl16.Text = "موبایل 2";
+            this.labelControl16.UseWaitCursor = true;
             // 
             // labelControl11
             // 
@@ -1463,6 +1527,7 @@
             this.labelControl11.Size = new System.Drawing.Size(75, 32);
             this.labelControl11.TabIndex = 31;
             this.labelControl11.Text = "شماره کارت";
+            this.labelControl11.UseWaitCursor = true;
             // 
             // labelControl15
             // 
@@ -1473,6 +1538,7 @@
             this.labelControl15.Size = new System.Drawing.Size(55, 32);
             this.labelControl15.TabIndex = 31;
             this.labelControl15.Text = "موبایل 1";
+            this.labelControl15.UseWaitCursor = true;
             // 
             // labelControl10
             // 
@@ -1485,6 +1551,7 @@
             this.labelControl10.Size = new System.Drawing.Size(86, 32);
             this.labelControl10.TabIndex = 31;
             this.labelControl10.Text = "شماره حساب";
+            this.labelControl10.UseWaitCursor = true;
             // 
             // labelControl3
             // 
@@ -1497,6 +1564,7 @@
             this.labelControl3.Size = new System.Drawing.Size(46, 32);
             this.labelControl3.TabIndex = 31;
             this.labelControl3.Text = "نام پدر";
+            this.labelControl3.UseWaitCursor = true;
             // 
             // labelControl23
             // 
@@ -1509,6 +1577,7 @@
             this.labelControl23.Size = new System.Drawing.Size(103, 32);
             this.labelControl23.TabIndex = 31;
             this.labelControl23.Text = "شماره شناسنامه";
+            this.labelControl23.UseWaitCursor = true;
             // 
             // labelControl8
             // 
@@ -1519,6 +1588,7 @@
             this.labelControl8.Size = new System.Drawing.Size(67, 32);
             this.labelControl8.TabIndex = 31;
             this.labelControl8.Text = "تاریخ تولد";
+            this.labelControl8.UseWaitCursor = true;
             // 
             // labelControl4
             // 
@@ -1531,6 +1601,7 @@
             this.labelControl4.Size = new System.Drawing.Size(51, 32);
             this.labelControl4.TabIndex = 31;
             this.labelControl4.Text = "کد ملی";
+            this.labelControl4.UseWaitCursor = true;
             // 
             // labelControl2
             // 
@@ -1543,6 +1614,7 @@
             this.labelControl2.Size = new System.Drawing.Size(79, 32);
             this.labelControl2.TabIndex = 30;
             this.labelControl2.Text = "تاریخ ایجاد";
+            this.labelControl2.UseWaitCursor = true;
             // 
             // labelControl5
             // 
@@ -1555,6 +1627,7 @@
             this.labelControl5.Size = new System.Drawing.Size(72, 32);
             this.labelControl5.TabIndex = 31;
             this.labelControl5.Text = "نام وفامیل";
+            this.labelControl5.UseWaitCursor = true;
             // 
             // txtCodePersoneli
             // 
@@ -1567,6 +1640,7 @@
             this.txtCodePersoneli.Size = new System.Drawing.Size(211, 32);
             this.txtCodePersoneli.TabIndex = 0;
             this.txtCodePersoneli.TabStop = false;
+            this.txtCodePersoneli.UseWaitCursor = true;
             // 
             // txtCode
             // 
@@ -1583,6 +1657,7 @@
             this.txtCode.Size = new System.Drawing.Size(109, 32);
             this.txtCode.TabIndex = 0;
             this.txtCode.TabStop = false;
+            this.txtCode.UseWaitCursor = true;
             // 
             // labelControl22
             // 
@@ -1593,6 +1668,7 @@
             this.labelControl22.Size = new System.Drawing.Size(67, 25);
             this.labelControl22.TabIndex = 48;
             this.labelControl22.Text = "کد پرسنلی";
+            this.labelControl22.UseWaitCursor = true;
             // 
             // txtId
             // 
@@ -1609,6 +1685,7 @@
             this.txtId.Size = new System.Drawing.Size(53, 32);
             this.txtId.TabIndex = 28;
             this.txtId.TabStop = false;
+            this.txtId.UseWaitCursor = true;
             this.txtId.Visible = false;
             // 
             // labelControl1
@@ -1620,6 +1697,7 @@
             this.labelControl1.Size = new System.Drawing.Size(63, 25);
             this.labelControl1.TabIndex = 26;
             this.labelControl1.Text = "کد حساب";
+            this.labelControl1.UseWaitCursor = true;
             // 
             // cmbMoaref
             // 
@@ -1641,6 +1719,7 @@
             this.cmbMoaref.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbMoaref.Size = new System.Drawing.Size(211, 32);
             this.cmbMoaref.TabIndex = 19;
+            this.cmbMoaref.UseWaitCursor = true;
             this.cmbMoaref.Enter += new System.EventHandler(this.cmbMoaref_Enter);
             // 
             // cmbJensiat
@@ -1661,6 +1740,7 @@
             this.cmbJensiat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbJensiat.Size = new System.Drawing.Size(211, 32);
             this.cmbJensiat.TabIndex = 7;
+            this.cmbJensiat.UseWaitCursor = true;
             this.cmbJensiat.Enter += new System.EventHandler(this.cmbJensiat_Enter);
             // 
             // cmbTaahol
@@ -1681,6 +1761,7 @@
             this.cmbTaahol.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbTaahol.Size = new System.Drawing.Size(209, 32);
             this.cmbTaahol.TabIndex = 8;
+            this.cmbTaahol.UseWaitCursor = true;
             this.cmbTaahol.Enter += new System.EventHandler(this.cmbTaahol_Enter);
             // 
             // lblUserName
@@ -1691,6 +1772,7 @@
             this.lblUserName.Size = new System.Drawing.Size(50, 25);
             this.lblUserName.TabIndex = 31;
             this.lblUserName.Text = "نام کاربر";
+            this.lblUserName.UseWaitCursor = true;
             this.lblUserName.Visible = false;
             // 
             // panelControl4
@@ -1703,6 +1785,7 @@
             this.panelControl4.Name = "panelControl4";
             this.panelControl4.Size = new System.Drawing.Size(1165, 289);
             this.panelControl4.TabIndex = 31;
+            this.panelControl4.UseWaitCursor = true;
             // 
             // lblUserId
             // 
@@ -1712,6 +1795,7 @@
             this.lblUserId.Size = new System.Drawing.Size(69, 25);
             this.lblUserId.TabIndex = 30;
             this.lblUserId.Text = "آیدی  کاربر";
+            this.lblUserId.UseWaitCursor = true;
             this.lblUserId.Visible = false;
             // 
             // FrmTarifAaza_1
@@ -1728,6 +1812,7 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "تعریف اشخاص";
+            this.UseWaitCursor = true;
             this.Load += new System.EventHandler(this.FrmTarifAaza_1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmTarifAaza_1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();

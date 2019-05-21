@@ -231,7 +231,7 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.panelControl1.Size = new System.Drawing.Size(627, 194);
-            this.panelControl1.TabIndex = 22;
+            this.panelControl1.TabIndex = 26;
             // 
             // btnSave
             // 

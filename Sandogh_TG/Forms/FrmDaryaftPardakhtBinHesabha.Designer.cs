@@ -490,7 +490,7 @@
             // btnPrint
             // 
             this.btnPrint.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrint.ImageOptions.SvgImage")));
-            this.btnPrint.Location = new System.Drawing.Point(98, 5);
+            this.btnPrint.Location = new System.Drawing.Point(152, 5);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(38, 33);
             this.btnPrint.TabIndex = 14;
@@ -515,13 +515,14 @@
             // btnPrintPreview
             // 
             this.btnPrintPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintPreview.ImageOptions.Image")));
-            this.btnPrintPreview.Location = new System.Drawing.Point(142, 5);
+            this.btnPrintPreview.Location = new System.Drawing.Point(196, 5);
             this.btnPrintPreview.Name = "btnPrintPreview";
             this.btnPrintPreview.Size = new System.Drawing.Size(38, 33);
             this.btnPrintPreview.TabIndex = 13;
             this.btnPrintPreview.Text = "simpleButton1";
             this.btnPrintPreview.ToolTip = "F11";
             this.btnPrintPreview.ToolTipTitle = "نمایش چاپ";
+            this.btnPrintPreview.Visible = false;
             this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
             // 
             // btnEdit
@@ -540,13 +541,14 @@
             // btnAdvancedSearch
             // 
             this.btnAdvancedSearch.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnAdvancedSearch.ImageOptions.SvgImage")));
-            this.btnAdvancedSearch.Location = new System.Drawing.Point(186, 5);
+            this.btnAdvancedSearch.Location = new System.Drawing.Point(240, 5);
             this.btnAdvancedSearch.Name = "btnAdvancedSearch";
             this.btnAdvancedSearch.Size = new System.Drawing.Size(38, 33);
             this.btnAdvancedSearch.TabIndex = 12;
             this.btnAdvancedSearch.Text = "simpleButton1";
             this.btnAdvancedSearch.ToolTip = "F10";
             this.btnAdvancedSearch.ToolTipTitle = "جستجوی پیشرفته";
+            this.btnAdvancedSearch.Visible = false;
             this.btnAdvancedSearch.Click += new System.EventHandler(this.btnAdvancedSearch_Click);
             // 
             // btnDelete
@@ -600,7 +602,7 @@
             // btnDisplayList
             // 
             this.btnDisplayList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplayList.ImageOptions.SvgImage")));
-            this.btnDisplayList.Location = new System.Drawing.Point(230, 5);
+            this.btnDisplayList.Location = new System.Drawing.Point(109, 5);
             this.btnDisplayList.Name = "btnDisplayList";
             this.btnDisplayList.Size = new System.Drawing.Size(38, 33);
             this.btnDisplayList.TabIndex = 10;
@@ -727,7 +729,8 @@
             "پرداخت",
             "انتقالی",
             "درآمد",
-            "هزینه"});
+            "هزینه",
+            "اموال"});
             this.cmbNoeSanad.Properties.MaxLength = 5;
             this.cmbNoeSanad.Properties.PopupSizeable = true;
             this.cmbNoeSanad.Properties.ReadOnly = true;

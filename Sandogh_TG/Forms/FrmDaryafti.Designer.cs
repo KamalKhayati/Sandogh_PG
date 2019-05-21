@@ -455,12 +455,13 @@
             // btnPrint2
             // 
             this.btnPrint2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrint2.ImageOptions.SvgImage")));
-            this.btnPrint2.Location = new System.Drawing.Point(5, 5);
+            this.btnPrint2.Location = new System.Drawing.Point(49, 5);
             this.btnPrint2.Name = "btnPrint2";
             this.btnPrint2.Size = new System.Drawing.Size(38, 33);
             this.btnPrint2.TabIndex = 27;
             this.btnPrint2.Text = "simpleButton1";
             this.btnPrint2.ToolTip = "چاپ لیست";
+            this.btnPrint2.Visible = false;
             // 
             // btnNext2
             // 
@@ -477,12 +478,13 @@
             // btnPrintPreview2
             // 
             this.btnPrintPreview2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintPreview2.ImageOptions.Image")));
-            this.btnPrintPreview2.Location = new System.Drawing.Point(49, 5);
+            this.btnPrintPreview2.Location = new System.Drawing.Point(93, 5);
             this.btnPrintPreview2.Name = "btnPrintPreview2";
             this.btnPrintPreview2.Size = new System.Drawing.Size(38, 33);
             this.btnPrintPreview2.TabIndex = 26;
             this.btnPrintPreview2.Text = "simpleButton1";
             this.btnPrintPreview2.ToolTip = "نمایش چاپ";
+            this.btnPrintPreview2.Visible = false;
             this.btnPrintPreview2.Click += new System.EventHandler(this.btnPrintPreview2_Click);
             // 
             // btnEdit2
@@ -547,7 +549,7 @@
             // btnDisplyList2
             // 
             this.btnDisplyList2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyList2.ImageOptions.SvgImage")));
-            this.btnDisplyList2.Location = new System.Drawing.Point(93, 5);
+            this.btnDisplyList2.Location = new System.Drawing.Point(5, 5);
             this.btnDisplyList2.Name = "btnDisplyList2";
             this.btnDisplyList2.Size = new System.Drawing.Size(38, 33);
             this.btnDisplyList2.TabIndex = 24;
@@ -1109,12 +1111,13 @@
             // btnPrint1
             // 
             this.btnPrint1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrint1.ImageOptions.SvgImage")));
-            this.btnPrint1.Location = new System.Drawing.Point(5, 5);
+            this.btnPrint1.Location = new System.Drawing.Point(91, 5);
             this.btnPrint1.Name = "btnPrint1";
             this.btnPrint1.Size = new System.Drawing.Size(38, 33);
             this.btnPrint1.TabIndex = 27;
             this.btnPrint1.Text = "simpleButton1";
             this.btnPrint1.ToolTip = "چاپ لیست";
+            this.btnPrint1.Visible = false;
             // 
             // btnNext1
             // 
@@ -1131,12 +1134,13 @@
             // btnPrintPreview1
             // 
             this.btnPrintPreview1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintPreview1.ImageOptions.Image")));
-            this.btnPrintPreview1.Location = new System.Drawing.Point(49, 5);
+            this.btnPrintPreview1.Location = new System.Drawing.Point(135, 5);
             this.btnPrintPreview1.Name = "btnPrintPreview1";
             this.btnPrintPreview1.Size = new System.Drawing.Size(38, 33);
             this.btnPrintPreview1.TabIndex = 26;
             this.btnPrintPreview1.Text = "simpleButton1";
             this.btnPrintPreview1.ToolTip = "نمایش چاپ";
+            this.btnPrintPreview1.Visible = false;
             this.btnPrintPreview1.Click += new System.EventHandler(this.btnPrintPreview1_Click);
             // 
             // btnFirst1
@@ -1178,7 +1182,7 @@
             // 
             this.btnDisplayActiveList1.Appearance.Options.UseBackColor = true;
             this.btnDisplayActiveList1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplayActiveList1.ImageOptions.SvgImage")));
-            this.btnDisplayActiveList1.Location = new System.Drawing.Point(137, 5);
+            this.btnDisplayActiveList1.Location = new System.Drawing.Point(49, 5);
             this.btnDisplayActiveList1.Name = "btnDisplayActiveList1";
             this.btnDisplayActiveList1.Size = new System.Drawing.Size(38, 33);
             this.btnDisplayActiveList1.TabIndex = 24;
@@ -1190,7 +1194,7 @@
             // 
             this.btnDisplayNotActiveList1.Appearance.Options.UseBackColor = true;
             this.btnDisplayNotActiveList1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplayNotActiveList1.ImageOptions.SvgImage")));
-            this.btnDisplayNotActiveList1.Location = new System.Drawing.Point(93, 5);
+            this.btnDisplayNotActiveList1.Location = new System.Drawing.Point(5, 5);
             this.btnDisplayNotActiveList1.Name = "btnDisplayNotActiveList1";
             this.btnDisplayNotActiveList1.Size = new System.Drawing.Size(38, 33);
             this.btnDisplayNotActiveList1.TabIndex = 25;
@@ -1699,12 +1703,13 @@
             // btnPrint3
             // 
             this.btnPrint3.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrint3.ImageOptions.SvgImage")));
-            this.btnPrint3.Location = new System.Drawing.Point(5, 5);
+            this.btnPrint3.Location = new System.Drawing.Point(93, 5);
             this.btnPrint3.Name = "btnPrint3";
             this.btnPrint3.Size = new System.Drawing.Size(38, 33);
             this.btnPrint3.TabIndex = 27;
             this.btnPrint3.Text = "simpleButton1";
             this.btnPrint3.ToolTip = "چاپ لیست";
+            this.btnPrint3.Visible = false;
             // 
             // btnNext3
             // 
@@ -1721,12 +1726,13 @@
             // btnPrintPreview3
             // 
             this.btnPrintPreview3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintPreview3.ImageOptions.Image")));
-            this.btnPrintPreview3.Location = new System.Drawing.Point(49, 5);
+            this.btnPrintPreview3.Location = new System.Drawing.Point(137, 5);
             this.btnPrintPreview3.Name = "btnPrintPreview3";
             this.btnPrintPreview3.Size = new System.Drawing.Size(38, 33);
             this.btnPrintPreview3.TabIndex = 26;
             this.btnPrintPreview3.Text = "simpleButton1";
             this.btnPrintPreview3.ToolTip = "نمایش چاپ";
+            this.btnPrintPreview3.Visible = false;
             this.btnPrintPreview3.Click += new System.EventHandler(this.btnPrintPreview3_Click);
             // 
             // btnFirst3
@@ -1768,7 +1774,7 @@
             // 
             this.btnDisplayActiveList3.Appearance.Options.UseBackColor = true;
             this.btnDisplayActiveList3.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplayActiveList3.ImageOptions.SvgImage")));
-            this.btnDisplayActiveList3.Location = new System.Drawing.Point(137, 5);
+            this.btnDisplayActiveList3.Location = new System.Drawing.Point(49, 5);
             this.btnDisplayActiveList3.Name = "btnDisplayActiveList3";
             this.btnDisplayActiveList3.Size = new System.Drawing.Size(38, 33);
             this.btnDisplayActiveList3.TabIndex = 24;
@@ -1780,7 +1786,7 @@
             // 
             this.btnDisplayNotActiveList3.Appearance.Options.UseBackColor = true;
             this.btnDisplayNotActiveList3.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplayNotActiveList3.ImageOptions.SvgImage")));
-            this.btnDisplayNotActiveList3.Location = new System.Drawing.Point(93, 5);
+            this.btnDisplayNotActiveList3.Location = new System.Drawing.Point(5, 5);
             this.btnDisplayNotActiveList3.Name = "btnDisplayNotActiveList3";
             this.btnDisplayNotActiveList3.Size = new System.Drawing.Size(38, 33);
             this.btnDisplayNotActiveList3.TabIndex = 25;
@@ -2086,11 +2092,12 @@
             // btnPrint4
             // 
             this.btnPrint4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrint4.ImageOptions.SvgImage")));
-            this.btnPrint4.Location = new System.Drawing.Point(5, 5);
+            this.btnPrint4.Location = new System.Drawing.Point(48, 6);
             this.btnPrint4.Name = "btnPrint4";
             this.btnPrint4.Size = new System.Drawing.Size(38, 33);
             this.btnPrint4.TabIndex = 27;
             this.btnPrint4.ToolTip = "چاپ لیست";
+            this.btnPrint4.Visible = false;
             // 
             // btnNext4
             // 
@@ -2107,11 +2114,12 @@
             // btnPrintPreview4
             // 
             this.btnPrintPreview4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintPreview4.ImageOptions.Image")));
-            this.btnPrintPreview4.Location = new System.Drawing.Point(49, 5);
+            this.btnPrintPreview4.Location = new System.Drawing.Point(92, 6);
             this.btnPrintPreview4.Name = "btnPrintPreview4";
             this.btnPrintPreview4.Size = new System.Drawing.Size(38, 33);
             this.btnPrintPreview4.TabIndex = 26;
             this.btnPrintPreview4.ToolTip = "نمایش چاپ";
+            this.btnPrintPreview4.Visible = false;
             this.btnPrintPreview4.Click += new System.EventHandler(this.btnPrintPreview4_Click);
             // 
             // btnEdit4
@@ -2176,7 +2184,7 @@
             // btnDisplyActiveList4
             // 
             this.btnDisplyActiveList4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyActiveList4.ImageOptions.SvgImage")));
-            this.btnDisplyActiveList4.Location = new System.Drawing.Point(93, 6);
+            this.btnDisplyActiveList4.Location = new System.Drawing.Point(5, 6);
             this.btnDisplyActiveList4.Name = "btnDisplyActiveList4";
             this.btnDisplyActiveList4.Size = new System.Drawing.Size(38, 33);
             this.btnDisplyActiveList4.TabIndex = 24;

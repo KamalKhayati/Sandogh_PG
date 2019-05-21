@@ -11,6 +11,8 @@ using DevExpress.XtraEditors;
 using System.Data.Entity;
 using DevExpress.XtraGrid;
 using DevExpress.Data;
+using DevExpress.XtraReports.UI;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace Sandogh_TG
 {
@@ -135,8 +137,9 @@ namespace Sandogh_TG
 
         private void btnDisplyList_Click(object sender, EventArgs e)
         {
+            _HesabMoin = string.Empty;
             Result1 = new List<long>();
-           HelpClass1.Result2 = new List<long>();
+            HelpClass1.Result2 = new List<long>();
             FillDataGridView1();
             FillDataGridView2();
         }
@@ -185,7 +188,7 @@ namespace Sandogh_TG
                         }
                         else
                             asnadeHesabdariRowsBindingSource1.DataSource = null;
-
+                        _HesabMoin = gridView1.GetFocusedRowCellDisplayText("HesabMoinName");
 
                     }
                     catch (Exception ex)
@@ -196,6 +199,55 @@ namespace Sandogh_TG
                 }
 
             }
+        }
+
+        string FilePath = Application.StartupPath + @"\Report\Ghozareshat\";
+        string FileName = "rptSoratHesabTafzili.repx";
+        string _HesabMoin = string.Empty;
+
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+            if (System.IO.File.Exists(FilePath + FileName))
+            {
+                if (gridView2.RowCount > 0)
+                {
+                    XtraReport XtraReport1 = new XtraReport();
+                    XtraReport1.LoadLayoutFromXml(FilePath + FileName);
+
+                    XtraReport1.DataSource =HelpClass1.ConvettDatagridviewToDataSet(gridView2);
+
+                    XtraReport1.Parameters["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : gridView2.GetRowCellDisplayText(0, "Tarikh").Substring(0, 10);
+                    XtraReport1.Parameters["Ta_Tarikh"].Value = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
+                    XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
+                    XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
+                    XtraReport1.Parameters["HesabTafzil"].Value = cmbHesabTafzili.Text;
+                    //List<decimal> ListMande1 = new List<decimal>();
+                    //for (int i = 0; i < gridView1.RowCount; i++)
+                    //{
+                    //    ListMande1.Add(Convert.ToDecimal(gridView2.GetRowCellValue(i, "Mande1")));
+                    //}
+                    //XtraReport1.Parameters["Mande1"].Value = ListMande1;
+                    FrmPrinPreview FPP = new FrmPrinPreview();
+                    FPP.documentViewer1.DocumentSource = XtraReport1;
+                    FPP.ShowDialog();
+
+                }
+            }
+            else
+            {
+                HelpClass1.NewReportDesigner(FilePath, FileName);
+            }
+        }
+
+        private void btnDesignReport_Click(object sender, EventArgs e)
+        {
+            HelpClass1.LoadReportDesigner(FilePath, FileName);
+        }
+
+        private void FrmSoratHesabTafzili_KeyDown(object sender, KeyEventArgs e)
+        {
+            HelpClass1.ControlAltShift_KeyDown(sender, e, btnDesignReport);
+
         }
     }
 

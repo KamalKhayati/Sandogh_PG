@@ -490,7 +490,7 @@ namespace Sandogh_TG
                                     btnDisplyActiveList_Click(null, null);
                                 else
                                     btnDisplyNotActiveList_Click(null, null);
-                                XtraMessageBox.Show("عملیات حذف با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                               // XtraMessageBox.Show("عملیات حذف با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                                 if (gridView1.RowCount > 0)
                                     gridView1.FocusedRowHandle = EditRowIndex - 1;
                             }

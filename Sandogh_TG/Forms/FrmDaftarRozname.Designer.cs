@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDaftarRozname));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btnDesignReport = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPrintPreviewRG = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPrintPreview = new DevExpress.XtraEditors.SimpleButton();
             this.ChkTarikh = new DevExpress.XtraEditors.CheckEdit();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
             this.txtTaTarikh = new DevExpress.XtraEditors.TextEdit();
@@ -66,6 +69,9 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.btnDesignReport);
+            this.panelControl1.Controls.Add(this.btnPrintPreviewRG);
+            this.panelControl1.Controls.Add(this.btnPrintPreview);
             this.panelControl1.Controls.Add(this.ChkTarikh);
             this.panelControl1.Controls.Add(this.btnSearch);
             this.panelControl1.Controls.Add(this.txtTaTarikh);
@@ -77,6 +83,43 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1248, 60);
             this.panelControl1.TabIndex = 0;
+            // 
+            // btnDesignReport
+            // 
+            this.btnDesignReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDesignReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDesignReport.ImageOptions.Image")));
+            this.btnDesignReport.Location = new System.Drawing.Point(695, 12);
+            this.btnDesignReport.Name = "btnDesignReport";
+            this.btnDesignReport.Size = new System.Drawing.Size(38, 33);
+            this.btnDesignReport.TabIndex = 37;
+            this.btnDesignReport.Text = "simpleButton1";
+            this.btnDesignReport.ToolTip = "چاپ لیست";
+            this.btnDesignReport.Visible = false;
+            this.btnDesignReport.Click += new System.EventHandler(this.btnDesignReport_Click);
+            // 
+            // btnPrintPreviewRG
+            // 
+            this.btnPrintPreviewRG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrintPreviewRG.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrintPreviewRG.ImageOptions.SvgImage")));
+            this.btnPrintPreviewRG.Location = new System.Drawing.Point(651, 12);
+            this.btnPrintPreviewRG.Name = "btnPrintPreviewRG";
+            this.btnPrintPreviewRG.Size = new System.Drawing.Size(38, 33);
+            this.btnPrintPreviewRG.TabIndex = 36;
+            this.btnPrintPreviewRG.Text = "simpleButton1";
+            this.btnPrintPreviewRG.ToolTip = "چاپ لیست";
+            this.btnPrintPreviewRG.Visible = false;
+            // 
+            // btnPrintPreview
+            // 
+            this.btnPrintPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrintPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintPreview.ImageOptions.Image")));
+            this.btnPrintPreview.Location = new System.Drawing.Point(739, 12);
+            this.btnPrintPreview.Name = "btnPrintPreview";
+            this.btnPrintPreview.Size = new System.Drawing.Size(38, 33);
+            this.btnPrintPreview.TabIndex = 35;
+            this.btnPrintPreview.Text = "simpleButton1";
+            this.btnPrintPreview.ToolTip = "نمایش چاپ";
+            this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
             // 
             // ChkTarikh
             // 
@@ -401,6 +444,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "دفتر روزنامه";
             this.Load += new System.EventHandler(this.FrmDaftarRozname_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmDaftarRozname_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ChkTarikh.Properties)).EndInit();
@@ -439,5 +483,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.SimpleButton btnSearch;
         private DevExpress.XtraEditors.CheckEdit ChkTarikh;
+        private DevExpress.XtraEditors.SimpleButton btnPrintPreviewRG;
+        private DevExpress.XtraEditors.SimpleButton btnPrintPreview;
+        private DevExpress.XtraEditors.SimpleButton btnDesignReport;
     }
 }

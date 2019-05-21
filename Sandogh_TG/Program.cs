@@ -27,39 +27,40 @@ namespace Sandogh_TG
             //if (instance)
             //{
 
-                //فعال کردن زبان فارسی در برنامه 
-                //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fa");
-                //Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture;
-                //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("fa");
+            //فعال کردن زبان فارسی در برنامه 
+            //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fa");
+            //Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture;
+            //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("fa");
 
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                BonusSkins.Register();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            BonusSkins.Register();
 
-                HelpClass1.SwitchToPersianLanguage();
-                Cultures.InitializePersianCulture();
-                HelpClass1.SetRegionAndLanguage();
+            HelpClass1.SwitchToPersianLanguage();
+            Cultures.InitializePersianCulture();
+            HelpClass1.SetRegionAndLanguage();
 
-                // ساخت پوشه مسیر دایرکتوری فایل کانفیگ
-                SkinManager.EnableFormSkins();
-                if (!System.IO.Directory.Exists(AppVariable.fileName))
-                    System.IO.Directory.CreateDirectory(AppVariable.fileName);
-                Application.Run(new AppContext());
-                //Application.Run(new FrmMain());
+            // ساخت پوشه مسیر دایرکتوری فایل کانفیگ
+            SkinManager.EnableFormSkins();
+            //WindowsFormsSettings.AllowDefaultSvgImages = DevExpress.Utils.DefaultBoolean.False;
+            if (!System.IO.Directory.Exists(AppVariable.fileName))
+                System.IO.Directory.CreateDirectory(AppVariable.fileName);
+            Application.Run(new AppContext());
+            //Application.Run(new FrmMain());
 
-                using (var db = new MyContext())
+            using (var db = new MyContext())
+            {
+                try
                 {
-                    try
-                    {
-                        db.Database.Initialize(true);
-                    }
-
-                    catch (Exception ex)
-                    {
-
-                        MessageBox.Show(ex.Message);
-                    }
+                    db.Database.Initialize(true);
                 }
+
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+            }
 
             //    mtx.ReleaseMutex();
             //}

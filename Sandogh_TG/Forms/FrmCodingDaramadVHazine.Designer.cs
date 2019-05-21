@@ -345,6 +345,7 @@
             this.btnPrintPreview.Text = "simpleButton1";
             this.btnPrintPreview.ToolTip = "F11";
             this.btnPrintPreview.ToolTipTitle = "نمایش چاپ";
+            this.btnPrintPreview.Visible = false;
             this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
             // 
             // btnEdit

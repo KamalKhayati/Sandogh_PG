@@ -75,6 +75,8 @@
             this.btnYadavari = new DevExpress.XtraBars.BarButtonItem();
             this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.NameDataBase = new DevExpress.XtraBars.BarStaticItem();
+            this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
+            this.barStaticItem2 = new DevExpress.XtraBars.BarStaticItem();
             this.DaryaftVPardakht = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgDaryaft = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgPardakhtha = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -98,8 +100,6 @@
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
-            this.barStaticItem2 = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.SuspendLayout();
@@ -160,7 +160,7 @@
             this.barStaticItem1,
             this.barStaticItem2});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6);
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.ribbonControl1.MaxItemId = 66;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -172,7 +172,7 @@
             this.Other});
             this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl1.ShowCategoryInCaption = false;
-            this.ribbonControl1.Size = new System.Drawing.Size(1308, 206);
+            this.ribbonControl1.Size = new System.Drawing.Size(1309, 206);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // btnTarifSandogh
@@ -543,6 +543,18 @@
             this.NameDataBase.Id = 62;
             this.NameDataBase.Name = "NameDataBase";
             // 
+            // barStaticItem1
+            // 
+            this.barStaticItem1.Caption = "کاربر سیستم :";
+            this.barStaticItem1.Id = 64;
+            this.barStaticItem1.Name = "barStaticItem1";
+            // 
+            // barStaticItem2
+            // 
+            this.barStaticItem2.Caption = "دیتابیس :";
+            this.barStaticItem2.Id = 65;
+            this.barStaticItem2.Name = "barStaticItem2";
+            // 
             // DaryaftVPardakht
             // 
             this.DaryaftVPardakht.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -681,7 +693,6 @@
             this.ribbonPageGroup6});
             this.Other.Name = "Other";
             this.Other.Text = "سایر";
-            this.Other.Visible = false;
             // 
             // ribbonPageGroup6
             // 
@@ -696,15 +707,15 @@
             this.ribbonStatusBar1.ItemLinks.Add(this.IDSalMali);
             this.ribbonStatusBar1.ItemLinks.Add(this.txtUserId);
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem1, true);
-            this.ribbonStatusBar1.ItemLinks.Add(this.txtUserName, true);
-            this.ribbonStatusBar1.ItemLinks.Add(this.txtDateTimeNow, true);
+            this.ribbonStatusBar1.ItemLinks.Add(this.txtUserName);
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem2, true);
-            this.ribbonStatusBar1.ItemLinks.Add(this.NameDataBase, true);
+            this.ribbonStatusBar1.ItemLinks.Add(this.NameDataBase);
+            this.ribbonStatusBar1.ItemLinks.Add(this.txtDateTimeNow, true);
             this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 609);
-            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(1308, 41);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1309, 41);
             // 
             // barButtonItem1
             // 
@@ -718,36 +729,25 @@
             // 
             this.pictureEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureEdit1.Location = new System.Drawing.Point(0, 206);
-            this.pictureEdit1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.pictureEdit1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureEdit1.Name = "pictureEdit1";
             this.pictureEdit1.Properties.NullText = "میتوانید از منوی امکانات یک تصویر انتخاب کنید";
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit1.Size = new System.Drawing.Size(1308, 403);
+            this.pictureEdit1.Size = new System.Drawing.Size(1309, 403);
             this.pictureEdit1.TabIndex = 46;
-            // 
-            // barStaticItem1
-            // 
-            this.barStaticItem1.Caption = "کاربر سیستم :";
-            this.barStaticItem1.Id = 64;
-            this.barStaticItem1.Name = "barStaticItem1";
-            // 
-            // barStaticItem2
-            // 
-            this.barStaticItem2.Caption = "دیتابیس :";
-            this.barStaticItem2.Id = 65;
-            this.barStaticItem2.Name = "barStaticItem2";
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1308, 650);
+            this.ClientSize = new System.Drawing.Size(1309, 650);
             this.Controls.Add(this.pictureEdit1);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);
+            this.Font = new System.Drawing.Font("IRANSans(FaNum) Medium", 12F);
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(6);
+            this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.Name = "FrmMain";
             this.Ribbon = this.ribbonControl1;
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

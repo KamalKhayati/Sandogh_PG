@@ -311,7 +311,7 @@ namespace Sandogh_TG
                                 db.SaveChanges();
 
                                 btnDisplayCheckOdatShode_Click(null, null);
-                                XtraMessageBox.Show("عملیات ابطال عودت با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                               // XtraMessageBox.Show("عملیات ابطال عودت با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                                 if (gridView1.RowCount > 0)
                                     gridView1.FocusedRowHandle = EditRowIndex - 1;
                             }

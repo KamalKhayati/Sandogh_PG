@@ -1,11 +1,15 @@
 ﻿using DevExpress.Data;
+using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraReports.UI;
 using Microsoft.Win32;
+using Stimulsoft.Report;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +29,6 @@ namespace Sandogh_TG
         {
             InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(System.Globalization.CultureInfo.CreateSpecificCulture("fa-IR"));
         }
-
         public static void SetRegionAndLanguage()
         {
             RegistryKey regkey = Registry.CurrentUser.OpenSubKey(@"Control Panel\International", true);
@@ -113,7 +116,6 @@ namespace Sandogh_TG
             //rkey.Close();
             /////////////////////////////////////////////////////////////
         }
-
         public static void StartCalculater()
         {
             System.Diagnostics.Process.Start("Calc.exe");
@@ -287,15 +289,105 @@ namespace Sandogh_TG
 
         }
 
+        public static void ControlAltShift_KeyDown(object sender, KeyEventArgs e, params Control[] btn)
+        {
+            if (e.Alt && e.Control && e.Shift && e.KeyCode == Keys.F12)
+            {
+                for (int i = 0; i < btn.Length; i++)
+                {
+                    btn[i].Visible = btn[i].Visible == true ? false : true;
+                }
+            }
+        }
+
+        public static void LoadReportDesigner(string FilePath, string FileName)
+        {
+            if (System.IO.File.Exists(FilePath + FileName))
+            {
+                //ساخت فرم طراحی گزارش و ارسال فرم طراحی شده قبلی به فرم طراحی جهت ویرایش
+                FrmReportDesigner frd = new FrmReportDesigner();
+                frd.reportDesigner1.OpenReport(FilePath + FileName);
+                frd.ShowDialog();
+            }
+            else
+            {
+                NewReportDesigner(FilePath, FileName);
+            }
+        }
+
+        public static void NewReportDesigner(string FilePath, string FileName)
+        {
+            XtraMessageBox.Show("چاپ فوق قبلاً طراحی نشده است لذا در صورت طراحی چاپ ، فایل مربوطه را با نام " + FileName + " در مسیر \n" + (FilePath) + " ذخیره فرمایید.", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+            //ساخت فرم طراحی گزارش و ارسال فرم طراحی شده قبلی به فرم طراحی جهت ویرایش
+            XtraReport XtraReport1 = new XtraReport();
+            FrmReportDesigner frd = new FrmReportDesigner();
+            frd.reportDesigner1.OpenReport(XtraReport1);
+            frd.ShowDialog();
+
+            //////////////////////////// باند کردن دیتابیس به فرم طراحی گزارش//////////////////////////////
+            //snapControl1.Document.BeginUpdateDataSource();
+            //this.snapControl1.Document.DataSources.Add(new DataSourceInfo("Cars", e1List));
+            //snapControl1.Document.EndUpdateDataSource();
+        }
+
+        public static DataSet ConvettDatagridviewToDataSet(GridView gridView)
+        {
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+            for (int ColumnCounter = 0; ColumnCounter < gridView.Columns.Count; ColumnCounter++)
+                dt.Columns.Add(gridView.Columns[ColumnCounter].FieldName);
+
+            for (int RowCounter = 0; RowCounter < gridView.RowCount; RowCounter++)
+            {
+                DataRow DataRow1 = dt.NewRow();
+                for (int j = 0; j < gridView.Columns.Count; j++)
+                {
+                    //DataRow1[j] = gridView.Rows[RowCounter].Cells[j].Value.ToString();
+                    DataRow1[j] = gridView.GetRowCellDisplayText(RowCounter, gridView.Columns[j]);
+                }
+                dt.Rows.Add(DataRow1);
+            }
+            ds.Tables.Add(dt);
+            return ds;
+        }
+
     }
 
-    public enum EnumCED
-    {
-        Create,
-        Edit,
-        Delete,
-        Save,
-        Cancel,
-    }
+
+    ///////////////////////// طراحی - پیش نمایش و چاپ گزارشات ////////////////////////////////
+    //ساخت فرم طراحی گزارش و ارسال فرم طراحی شده قبلی به فرم طراحی جهت ویرایش
+    //FrmReportDesigner frd = new FrmReportDesigner();
+    // frd.reportDesigner1.OpenReport(new XtraReport1());
+    // frd.ShowDialog();
+
+    //ارسال فرم طراحی شده جهت پیش نماش و چاپ
+    //ReportPrintTool rt = new ReportPrintTool(new XtraReport1());
+    //rt.ShowRibbonPreviewDialog();
+
+    //// ساخت یک فرم پرینت پرویو و ارسال فرم طراحی شده به فرم پرینت پرویو برای نمایش و چاپ
+    //XtraReport1 x1 = new XtraReport1();
+    //FrmPrintPreview frd = new FrmPrintPreview();
+    //frd.documentViewer1.DocumentSource = x1;
+    //frd.ShowDialog();
+
+    //////////////////////////// چاپ گزارش در محیط استیمول سافت////////////////////////////
+    //StiReport str = new StiReport();
+    //str.Load(Application.StartupPath + @"\Report\Ghozareshat\Daftar_Rozname.mrt");
+    //str.RegBusinessObject("Daftar_Rozname", gridView1.SourceView);
+    //str.Dictionary.Variables["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : gridView1.GetRowCellDisplayText(0, "Tarikh").Substring(0, 10);
+    //str.Dictionary.Variables["Ta_Tarikh"].Value = ChkTarikh.Checked ? txtTaTarikh.Text : gridView1.GetRowCellDisplayText(gridView1.RowCount - 1, "Tarikh").Substring(0, 10);
+    //str.Dictionary.Variables["TarikhVSaat"].ValueObject = DateTime.Now;
+    //str.Compile();
+    //str.ShowWithRibbonGUI();
 
 }
+
+public enum EnumCED
+{
+    Create,
+    Edit,
+    Delete,
+    Save,
+    Cancel,
+}
+

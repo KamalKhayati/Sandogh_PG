@@ -38,6 +38,9 @@
             context.Entry(new CodingDaramadVHazine() { Id = 1, SandoghId = 1, GroupTafziliId = 4, IsActive = true, Code = 1000001, GroupIndex = 0, GroupName = "درآمد", HesabName = "درآمد کارمزد وام" }).State = context.CodingDaramadVHazines.Any(s => s.Code == 1000001) ? EntityState.Unchanged : EntityState.Added;
             context.Entry(new CodingDaramadVHazine() { Id = 2, SandoghId = 1, GroupTafziliId = 4, IsActive = true, Code = 1000002, GroupIndex = 0, GroupName = "درآمد", HesabName = "درآمد افتتاح حساب" }).State = context.CodingDaramadVHazines.Any(s => s.Code == 1000002) ? EntityState.Unchanged : EntityState.Added;
             context.Entry(new CodingDaramadVHazine() { Id = 3, SandoghId = 1, GroupTafziliId = 5, IsActive = true, Code = 2000001, GroupIndex = 1, GroupName = "هزینه", HesabName = "هزینه کارمزد بانکی" }).State = context.CodingDaramadVHazines.Any(s => s.Code == 2000001) ? EntityState.Unchanged : EntityState.Added;
+            context.Entry(new CodingAmval() { Id = 1, SandoghId = 1, GroupTafziliId = 6, IsActive = true, Code = 5000001, HesabName = "اثاثه و منصوبات" }).State = context.CodingAmvals.Any(s => s.Code == 5000001) ? EntityState.Unchanged : EntityState.Added;
+            context.Entry(new CodingAmval() { Id = 2, SandoghId = 1, GroupTafziliId = 6, IsActive = true, Code = 5000002, HesabName = "امتیاز نرم افزار" }).State = context.CodingAmvals.Any(s => s.Code == 5000002) ? EntityState.Unchanged : EntityState.Added;
+
             context.Entry(new Karbaran() { Id = 1, Name = "مدیر صندوق", Shenase = "1", Password = "1" }).State = context.Karbarans.Any(s => s.Id == 1) ? EntityState.Unchanged : EntityState.Added;
 
             context.Entry(new AllHesabTafzili() { Id = 1, Id2 = 1, Code = 1000001, Name = "درآمد کارمزد وام", SandoghId = 1, IsActive = true, GroupTafziliId = 4 }).State = context.AllHesabTafzilis.Any(s => s.Code == 1000001) ? EntityState.Unchanged : EntityState.Added;
@@ -45,24 +48,29 @@
             //context.Entry(new AllHesabTafzili() { Id = 3, Id2 = 2, Code = 3000002, Name = "صادرات مرکزی جاری 456789000", SandoghId = 1, IsActive = true, GroupTafziliId = 2 }).State = context.AllHesabTafzilis.Any(s => s.Code == 3000002) ? EntityState.Unchanged : EntityState.Added;
             //context.Entry(new AllHesabTafzili() { Id = 4, Id2 = 1, Code = 7000001, Name = "کمال خیاطی", SandoghId = 1, IsActive = true, GroupTafziliId = 3 }).State = context.AllHesabTafzilis.Any(s => s.Code == 7000001) ? EntityState.Unchanged : EntityState.Added;
             //context.Entry(new AllHesabTafzili() { Id = 5, Id2 = 2, Code = 7000002, Name = "جمال خیاطی", SandoghId = 1, IsActive = true, GroupTafziliId = 3 }).State = context.AllHesabTafzilis.Any(s => s.Code == 7000002) ? EntityState.Unchanged : EntityState.Added;
-            context.Entry(new AllHesabTafzili() { Id = 6, Id2 = 2, Code = 1000002, Name = "درآمد افتتاح حساب", SandoghId = 1, IsActive = true, GroupTafziliId = 4 }).State = context.AllHesabTafzilis.Any(s => s.Code == 1000002) ? EntityState.Unchanged : EntityState.Added;
-            context.Entry(new AllHesabTafzili() { Id = 7, Id2 = 3, Code = 2000001, Name = "هزینه کارمزد بانکی", SandoghId = 1, IsActive = true, GroupTafziliId = 5 }).State = context.AllHesabTafzilis.Any(s => s.Code == 2000001) ? EntityState.Unchanged : EntityState.Added;
+            context.Entry(new AllHesabTafzili() { Id = 2, Id2 = 2, Code = 1000002, Name = "درآمد افتتاح حساب", SandoghId = 1, IsActive = true, GroupTafziliId = 4 }).State = context.AllHesabTafzilis.Any(s => s.Code == 1000002) ? EntityState.Unchanged : EntityState.Added;
+            context.Entry(new AllHesabTafzili() { Id = 3, Id2 = 3, Code = 2000001, Name = "هزینه کارمزد بانکی", SandoghId = 1, IsActive = true, GroupTafziliId = 5 }).State = context.AllHesabTafzilis.Any(s => s.Code == 2000001) ? EntityState.Unchanged : EntityState.Added;
+            context.Entry(new AllHesabTafzili() { Id = 4, Id2 = 1, Code = 5000001, Name = "اثاثه و منصوبات", SandoghId = 1, IsActive = true, GroupTafziliId = 6 }).State = context.AllHesabTafzilis.Any(s => s.Code == 5000001) ? EntityState.Unchanged : EntityState.Added;
+            context.Entry(new AllHesabTafzili() { Id = 5, Id2 = 2, Code = 5000002, Name = "امتیاز نرم افزار", SandoghId = 1, IsActive = true, GroupTafziliId = 6 }).State = context.AllHesabTafzilis.Any(s => s.Code == 5000002) ? EntityState.Unchanged : EntityState.Added;
 
             context.Entry(new CodeMoin() { Id = 1, Code = 1001, Name = "صندوق و بانک", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 1001) ? EntityState.Unchanged : EntityState.Added;
-            context.Entry(new CodeMoin() { Id = 2, Code = 2001, Name = "وام اعضاء", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 2001) ? EntityState.Unchanged : EntityState.Added;
+            context.Entry(new CodeMoin() { Id = 2, Code = 2001, Name = "وامهای دریافتنی", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 2001) ? EntityState.Unchanged : EntityState.Added;
             context.Entry(new CodeMoin() { Id = 3, Code = 3001, Name = "مساعده", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 3001) ? EntityState.Unchanged : EntityState.Added;
             context.Entry(new CodeMoin() { Id = 4, Code = 4001, Name = "بدهکاران", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 4001) ? EntityState.Unchanged : EntityState.Added;
-            context.Entry(new CodeMoin() { Id = 5, Code = 6001, Name = "وام پرداختنی", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 6001) ? EntityState.Unchanged : EntityState.Added;
+            context.Entry(new CodeMoin() { Id = 5, Code = 6001, Name = "وامهای پرداختنی", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 6001) ? EntityState.Unchanged : EntityState.Added;
             context.Entry(new CodeMoin() { Id = 6, Code = 6002, Name = "اسناد پرداختنی", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 6002) ? EntityState.Unchanged : EntityState.Added;
             context.Entry(new CodeMoin() { Id = 7, Code = 6003, Name = "بستانکاران", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 6003) ? EntityState.Unchanged : EntityState.Added;
             context.Entry(new CodeMoin() { Id = 8, Code = 7001, Name = "سرمایه", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 7001) ? EntityState.Unchanged : EntityState.Added;
             context.Entry(new CodeMoin() { Id = 9, Code = 8001, Name = "درآمد", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 8001) ? EntityState.Unchanged : EntityState.Added;
             context.Entry(new CodeMoin() { Id = 10, Code = 9001, Name = "هزینه", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 9001) ? EntityState.Unchanged : EntityState.Added;
+            context.Entry(new CodeMoin() { Id = 11, Code = 5001, Name = "اموال", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 5001) ? EntityState.Unchanged : EntityState.Added;
+
             context.Entry(new GroupTafzili() { Id = 1, Code = 1, Name = "صندوق", SandoghId = 1 }).State = context.GroupTafzilis.Any(s => s.Code == 1) ? EntityState.Unchanged : EntityState.Added;
             context.Entry(new GroupTafzili() { Id = 2, Code = 2, Name = "بانک", SandoghId = 1 }).State = context.GroupTafzilis.Any(s => s.Code == 2) ? EntityState.Unchanged : EntityState.Added;
             context.Entry(new GroupTafzili() { Id = 3, Code = 3, Name = "اشخاص", SandoghId = 1 }).State = context.GroupTafzilis.Any(s => s.Code == 3) ? EntityState.Unchanged : EntityState.Added;
             context.Entry(new GroupTafzili() { Id = 4, Code = 4, Name = "درآمد", SandoghId = 1 }).State = context.GroupTafzilis.Any(s => s.Code == 4) ? EntityState.Unchanged : EntityState.Added;
             context.Entry(new GroupTafzili() { Id = 5, Code = 5, Name = "هزینه", SandoghId = 1 }).State = context.GroupTafzilis.Any(s => s.Code == 5) ? EntityState.Unchanged : EntityState.Added;
+            context.Entry(new GroupTafzili() { Id = 6, Code = 6, Name = "اموال", SandoghId = 1 }).State = context.GroupTafzilis.Any(s => s.Code == 6) ? EntityState.Unchanged : EntityState.Added;
 
         }
     }
