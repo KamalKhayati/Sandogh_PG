@@ -40,7 +40,7 @@ namespace Sandogh_TG
                     DateTime _DateTimeNow_1 = Convert.ToDateTime(d1.ToString());
                     List<HaghOzviat> List = new List<HaghOzviat>();
                     var q2 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 3 && s.IsActive == true).ToList();
-                    if (q2.Count>0)
+                    if (q2.Count > 0)
                     {
                         foreach (var item in q2)
                         {
@@ -74,7 +74,6 @@ namespace Sandogh_TG
                         "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
         }
 
         private void gridView1_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
@@ -85,6 +84,15 @@ namespace Sandogh_TG
         private void gridView2_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
         {
             HelpClass1.SetNumberRowsColumnUnboundGirdView(sender, e);
+
+        }
+
+        private void FrmYadavari_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
 
         }
     }

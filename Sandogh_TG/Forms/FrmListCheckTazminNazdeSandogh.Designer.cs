@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmListCheckTazminNazdeSandogh));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
@@ -65,17 +66,19 @@
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(881, 41);
+            this.panelControl1.Size = new System.Drawing.Size(1077, 51);
             this.panelControl1.TabIndex = 0;
             // 
             // labelControl1
             // 
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Location = new System.Drawing.Point(107, 10);
+            this.labelControl1.Location = new System.Drawing.Point(131, 12);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(619, 25);
+            this.labelControl1.Size = new System.Drawing.Size(753, 31);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "جهت انتخاب سند تضمینی مورد نظر روی ردیف مربوطه یک بار اینتر و یا دوبار با ماوس کل" +
     "یک کنید";
@@ -84,21 +87,22 @@
             // 
             this.panelControl2.Controls.Add(this.gridControl1);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 41);
+            this.panelControl2.Location = new System.Drawing.Point(0, 51);
+            this.panelControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(881, 410);
+            this.panelControl2.Size = new System.Drawing.Size(1077, 508);
             this.panelControl2.TabIndex = 1;
             // 
             // gridControl1
             // 
             this.gridControl1.DataSource = this.checkTazminsBindingSource;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gridControl1.Location = new System.Drawing.Point(2, 2);
             this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gridControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(877, 406);
+            this.gridControl1.Size = new System.Drawing.Size(1073, 504);
             this.gridControl1.TabIndex = 33;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -129,9 +133,10 @@
             this.colSharhDaryaftCheck,
             this.colTarikhOdatCheck,
             this.colSharhOdatCheck});
+            this.gridView1.DetailHeight = 434;
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.IndicatorWidth = 25;
+            this.gridView1.IndicatorWidth = 31;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.AutoSelectAllInEditor = false;
             this.gridView1.OptionsBehavior.Editable = false;
@@ -153,8 +158,9 @@
             // colId
             // 
             this.colId.FieldName = "Id";
-            this.colId.MinWidth = 19;
+            this.colId.MinWidth = 23;
             this.colId.Name = "colId";
+            this.colId.Width = 92;
             // 
             // Line
             // 
@@ -166,14 +172,14 @@
             this.Line.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.Line.Caption = "ردیف";
             this.Line.FieldName = "Line";
-            this.Line.MinWidth = 19;
+            this.Line.MinWidth = 23;
             this.Line.Name = "Line";
             this.Line.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Line", "{0}")});
             this.Line.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
             this.Line.Visible = true;
             this.Line.VisibleIndex = 0;
-            this.Line.Width = 70;
+            this.Line.Width = 86;
             // 
             // colSeryalDaryaft
             // 
@@ -185,10 +191,11 @@
             this.colSeryalDaryaft.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colSeryalDaryaft.Caption = "سریال";
             this.colSeryalDaryaft.FieldName = "SeryalDaryaft";
+            this.colSeryalDaryaft.MinWidth = 24;
             this.colSeryalDaryaft.Name = "colSeryalDaryaft";
             this.colSeryalDaryaft.Visible = true;
             this.colSeryalDaryaft.VisibleIndex = 1;
-            this.colSeryalDaryaft.Width = 85;
+            this.colSeryalDaryaft.Width = 104;
             // 
             // colTarikhDaryaft
             // 
@@ -200,10 +207,11 @@
             this.colTarikhDaryaft.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colTarikhDaryaft.Caption = "تاریخ";
             this.colTarikhDaryaft.FieldName = "TarikhDaryaft";
+            this.colTarikhDaryaft.MinWidth = 24;
             this.colTarikhDaryaft.Name = "colTarikhDaryaft";
             this.colTarikhDaryaft.Visible = true;
             this.colTarikhDaryaft.VisibleIndex = 2;
-            this.colTarikhDaryaft.Width = 110;
+            this.colTarikhDaryaft.Width = 134;
             // 
             // colVaziyatCheck
             // 
@@ -215,10 +223,11 @@
             this.colVaziyatCheck.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colVaziyatCheck.Caption = "وضعیت سند";
             this.colVaziyatCheck.FieldName = "VaziyatCheck";
+            this.colVaziyatCheck.MinWidth = 24;
             this.colVaziyatCheck.Name = "colVaziyatCheck";
             this.colVaziyatCheck.Visible = true;
             this.colVaziyatCheck.VisibleIndex = 3;
-            this.colVaziyatCheck.Width = 120;
+            this.colVaziyatCheck.Width = 147;
             // 
             // colVamGerandeName
             // 
@@ -229,10 +238,11 @@
             this.colVamGerandeName.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colVamGerandeName.Caption = "نام وام گیرنده";
             this.colVamGerandeName.FieldName = "VamGerandeName";
+            this.colVamGerandeName.MinWidth = 24;
             this.colVamGerandeName.Name = "colVamGerandeName";
             this.colVamGerandeName.Visible = true;
             this.colVamGerandeName.VisibleIndex = 4;
-            this.colVamGerandeName.Width = 250;
+            this.colVamGerandeName.Width = 306;
             // 
             // colNoeSanad
             // 
@@ -244,10 +254,11 @@
             this.colNoeSanad.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colNoeSanad.Caption = "نوع سند";
             this.colNoeSanad.FieldName = "NoeSanad";
+            this.colNoeSanad.MinWidth = 24;
             this.colNoeSanad.Name = "colNoeSanad";
             this.colNoeSanad.Visible = true;
             this.colNoeSanad.VisibleIndex = 5;
-            this.colNoeSanad.Width = 100;
+            this.colNoeSanad.Width = 122;
             // 
             // colShCheck
             // 
@@ -259,10 +270,11 @@
             this.colShCheck.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colShCheck.Caption = "شماره سند";
             this.colShCheck.FieldName = "ShCheck";
+            this.colShCheck.MinWidth = 24;
             this.colShCheck.Name = "colShCheck";
             this.colShCheck.Visible = true;
             this.colShCheck.VisibleIndex = 6;
-            this.colShCheck.Width = 110;
+            this.colShCheck.Width = 134;
             // 
             // colTarikhCheck
             // 
@@ -274,10 +286,11 @@
             this.colTarikhCheck.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colTarikhCheck.Caption = "تاریخ سند";
             this.colTarikhCheck.FieldName = "TarikhCheck";
+            this.colTarikhCheck.MinWidth = 24;
             this.colTarikhCheck.Name = "colTarikhCheck";
             this.colTarikhCheck.Visible = true;
             this.colTarikhCheck.VisibleIndex = 7;
-            this.colTarikhCheck.Width = 110;
+            this.colTarikhCheck.Width = 134;
             // 
             // colMablagh
             // 
@@ -291,12 +304,13 @@
             this.colMablagh.DisplayFormat.FormatString = "n";
             this.colMablagh.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colMablagh.FieldName = "Mablagh";
+            this.colMablagh.MinWidth = 24;
             this.colMablagh.Name = "colMablagh";
             this.colMablagh.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Mablagh", "{0:n}")});
             this.colMablagh.Visible = true;
             this.colMablagh.VisibleIndex = 8;
-            this.colMablagh.Width = 150;
+            this.colMablagh.Width = 183;
             // 
             // colShomareHesab
             // 
@@ -308,10 +322,11 @@
             this.colShomareHesab.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colShomareHesab.Caption = "شماره حساب";
             this.colShomareHesab.FieldName = "ShomareHesab";
+            this.colShomareHesab.MinWidth = 24;
             this.colShomareHesab.Name = "colShomareHesab";
             this.colShomareHesab.Visible = true;
             this.colShomareHesab.VisibleIndex = 9;
-            this.colShomareHesab.Width = 150;
+            this.colShomareHesab.Width = 183;
             // 
             // colNameBank
             // 
@@ -323,10 +338,11 @@
             this.colNameBank.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colNameBank.Caption = "نام بانک وشعبه";
             this.colNameBank.FieldName = "NameBank";
+            this.colNameBank.MinWidth = 24;
             this.colNameBank.Name = "colNameBank";
             this.colNameBank.Visible = true;
             this.colNameBank.VisibleIndex = 10;
-            this.colNameBank.Width = 170;
+            this.colNameBank.Width = 208;
             // 
             // colSahebCheck
             // 
@@ -337,10 +353,11 @@
             this.colSahebCheck.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colSahebCheck.Caption = "صاحب/ضامن سند";
             this.colSahebCheck.FieldName = "SahebCheck";
+            this.colSahebCheck.MinWidth = 24;
             this.colSahebCheck.Name = "colSahebCheck";
             this.colSahebCheck.Visible = true;
             this.colSahebCheck.VisibleIndex = 11;
-            this.colSahebCheck.Width = 170;
+            this.colSahebCheck.Width = 208;
             // 
             // colSharhDaryaftCheck
             // 
@@ -351,10 +368,11 @@
             this.colSharhDaryaftCheck.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colSharhDaryaftCheck.Caption = "شرح دریافت سند";
             this.colSharhDaryaftCheck.FieldName = "SharhDaryaftCheck";
+            this.colSharhDaryaftCheck.MinWidth = 24;
             this.colSharhDaryaftCheck.Name = "colSharhDaryaftCheck";
             this.colSharhDaryaftCheck.Visible = true;
             this.colSharhDaryaftCheck.VisibleIndex = 12;
-            this.colSharhDaryaftCheck.Width = 400;
+            this.colSharhDaryaftCheck.Width = 489;
             // 
             // colTarikhOdatCheck
             // 
@@ -366,7 +384,9 @@
             this.colTarikhOdatCheck.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colTarikhOdatCheck.Caption = "تاریخ عودت";
             this.colTarikhOdatCheck.FieldName = "TarikhOdatCheck";
+            this.colTarikhOdatCheck.MinWidth = 24;
             this.colTarikhOdatCheck.Name = "colTarikhOdatCheck";
+            this.colTarikhOdatCheck.Width = 92;
             // 
             // colSharhOdatCheck
             // 
@@ -378,16 +398,20 @@
             this.colSharhOdatCheck.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colSharhOdatCheck.Caption = "شرح عودت";
             this.colSharhOdatCheck.FieldName = "SharhOdatCheck";
+            this.colSharhOdatCheck.MinWidth = 24;
             this.colSharhOdatCheck.Name = "colSharhOdatCheck";
+            this.colSharhOdatCheck.Width = 92;
             // 
             // FrmListCheckTazminNazdeSandogh
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(881, 451);
+            this.ClientSize = new System.Drawing.Size(1077, 559);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmListCheckTazminNazdeSandogh";

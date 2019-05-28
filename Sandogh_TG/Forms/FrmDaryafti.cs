@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Data.Entity;
+using DevExpress.XtraReports.UI;
+using Stimulsoft.Report;
+using Stimulsoft.Editor;
+using Stimulsoft.Controls;
 
 namespace Sandogh_TG
 {
@@ -321,12 +325,6 @@ namespace Sandogh_TG
             HelpClass1.PrintPreview(gridControl1, gridView1);
         }
 
-        private void btnPrintPreview2_Click(object sender, EventArgs e)
-        {
-            HelpClass1.PrintPreview(gridControl2, gridView2);
-
-        }
-
         private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             FillDataGridHaghOzviat();
@@ -636,18 +634,6 @@ namespace Sandogh_TG
 
         }
 
-        private void btnPrintPreview3_Click(object sender, EventArgs e)
-        {
-            HelpClass1.PrintPreview(gridControl3, gridView3);
-
-        }
-
-        private void btnPrintPreview4_Click(object sender, EventArgs e)
-        {
-            HelpClass1.PrintPreview(gridControl4, gridView4);
-
-        }
-
         public void btnDisplyActiveList3_Click(object sender, EventArgs e)
         {
             IsActiveList2 = true;
@@ -709,6 +695,152 @@ namespace Sandogh_TG
         private void gridView4_CustomSummaryCalculate(object sender, DevExpress.Data.CustomSummaryEventArgs e)
         {
             HelpClass1.gridView_CustomSummaryCalculate(sender, e, gridView4, "MablaghAghsat", "MablaghDaryafti", "Mande");
+        }
+
+        string FilePath1 = Application.StartupPath + @"\Report\Ghozareshat\";
+        string FileName2 = "rptRizDaryafti.repx";
+        string FileName4 = "rptRizVamha.repx";
+
+        private void btnPrintPreview4_Click(object sender, EventArgs e)
+        {
+            if (System.IO.File.Exists(FilePath1 + FileName4))
+            {
+                if (gridView4.RowCount > 0)
+                {
+                    XtraReport XtraReport1 = new XtraReport();
+                    XtraReport1.LoadLayoutFromXml(FilePath1 + FileName4);
+
+                    XtraReport1.DataSource = HelpClass1.ConvettDatagridviewToDataSet(gridView4);
+
+                    XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
+                    XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
+                    XtraReport1.Parameters["NameAaza"].Value = gridView3.GetFocusedRowCellDisplayText("NameAaza");
+                    XtraReport1.Parameters["ShomareSanad"].Value = gridView3.GetFocusedRowCellDisplayText("ShomareSanad");
+                    XtraReport1.Parameters["NahveyePardakht"].Value = gridView3.GetFocusedRowCellDisplayText("NahveyePardakht");
+                    XtraReport1.Parameters["NoeVam"].Value = gridView3.GetFocusedRowCellDisplayText("NoeVam");
+                    XtraReport1.Parameters["DarsadeKarmozd"].Value = gridView3.GetFocusedRowCellDisplayText("DarsadeKarmozd");
+                    XtraReport1.Parameters["MablaghDirkard"].Value = gridView3.GetFocusedRowCellDisplayText("MablaghDirkard");
+                    XtraReport1.Parameters["TarikhDarkhast"].Value = gridView3.GetFocusedRowCellDisplayText("TarikhDarkhast");
+                    XtraReport1.Parameters["ShomareDarkhast"].Value = gridView3.GetFocusedRowCellDisplayText("ShomareDarkhast");
+                    XtraReport1.Parameters["Code"].Value = gridView3.GetFocusedRowCellDisplayText("Code");
+                    XtraReport1.Parameters["TarikhPardakht"].Value = gridView3.GetFocusedRowCellDisplayText("TarikhPardakht");
+                    XtraReport1.Parameters["MablaghAsli"].Value = gridView3.GetFocusedRowCellDisplayText("MablaghAsli");
+                    XtraReport1.Parameters["MablaghKarmozd"].Value = gridView3.GetFocusedRowCellDisplayText("MablaghKarmozd");
+                    XtraReport1.Parameters["FaseleAghsat"].Value = gridView3.GetFocusedRowCellDisplayText("FaseleAghsat");
+                    XtraReport1.Parameters["TedadAghsat"].Value = gridView3.GetFocusedRowCellDisplayText("TedadAghsat");
+                    XtraReport1.Parameters["MablaghAghsat"].Value = gridView3.GetFocusedRowCellDisplayText("MablaghAghsat");
+                    XtraReport1.Parameters["SarresidAvalinGhest"].Value = gridView3.GetFocusedRowCellDisplayText("SarresidAvalinGhest");
+                    XtraReport1.Parameters["ZameninName"].Value = gridView3.GetFocusedRowCellDisplayText("ZameninName");
+                    XtraReport1.Parameters["HaveCheckTazmin"].Value = gridView3.GetFocusedRowCellDisplayText("HaveCheckTazmin");
+
+
+                    //XtraReport1.DataSource = gridView2.DataSource;
+                    //XtraReport1.Parameters["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : gridView2.GetRowCellDisplayText(0, "Tarikh").Substring(0, 10);
+                    //XtraReport1.Parameters["Ta_Tarikh"].Value = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
+                    //XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
+
+                    //List<decimal> ListMande1 = new List<decimal>();
+                    //for (int i = 0; i < gridView1.RowCount; i++)
+                    //{
+                    //    ListMande1.Add(Convert.ToDecimal(gridView2.GetRowCellValue(i, "Mande1")));
+                    //}
+                    //XtraReport1.Parameters["Mande1"].Value = ListMande1;
+                    FrmPrinPreview FPP = new FrmPrinPreview();
+                    FPP.documentViewer1.DocumentSource = XtraReport1;
+                    FPP.ShowDialog();
+
+                }
+            }
+            else
+            {
+                HelpClass1.NewReportDesigner(FilePath1, FileName4);
+            }
+        }
+
+        private void btnDesignReport4_Click(object sender, EventArgs e)
+        {
+            HelpClass1.LoadReportDesigner(FilePath1, FileName4);
+        }
+
+        private void btnPrintPreview3_Click(object sender, EventArgs e)
+        {
+            //HelpClass1.PrintPreview(gridControl3, gridView3);
+            btnPrintPreview4_Click(null, null);
+        }
+
+        private void btnDesignReport3_Click(object sender, EventArgs e)
+        {
+            btnDesignReport4_Click(null, null);
+        }
+
+        private void btnPrintPreview2_Click(object sender, EventArgs e)
+        {
+            if (System.IO.File.Exists(FilePath1 + FileName2))
+            {
+                if (gridView2.RowCount > 0)
+                {
+                    XtraReport XtraReport1 = new XtraReport();
+                    XtraReport1.LoadLayoutFromXml(FilePath1 + FileName2);
+
+                    XtraReport1.DataSource = gridView2.DataSource;
+
+                    XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
+                    XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
+                    //XtraReport1.Parameters["NameAaza"].Value = gridView3.GetFocusedRowCellDisplayText("NameAaza");
+                    //XtraReport1.Parameters["ShomareSanad"].Value = gridView3.GetFocusedRowCellDisplayText("ShomareSanad");
+                    //XtraReport1.Parameters["NahveyePardakht"].Value = gridView3.GetFocusedRowCellDisplayText("NahveyePardakht");
+                    //XtraReport1.Parameters["NoeVam"].Value = gridView3.GetFocusedRowCellDisplayText("NoeVam");
+                    //XtraReport1.Parameters["DarsadeKarmozd"].Value = gridView3.GetFocusedRowCellDisplayText("DarsadeKarmozd");
+                    //XtraReport1.Parameters["MablaghDirkard"].Value = gridView3.GetFocusedRowCellDisplayText("MablaghDirkard");
+                    //XtraReport1.Parameters["TarikhDarkhast"].Value = gridView3.GetFocusedRowCellDisplayText("TarikhDarkhast");
+                    //XtraReport1.Parameters["ShomareDarkhast"].Value = gridView3.GetFocusedRowCellDisplayText("ShomareDarkhast");
+                    //XtraReport1.Parameters["Code"].Value = gridView3.GetFocusedRowCellDisplayText("Code");
+                    //XtraReport1.Parameters["TarikhPardakht"].Value = gridView3.GetFocusedRowCellDisplayText("TarikhPardakht");
+                    //XtraReport1.Parameters["MablaghAsli"].Value = gridView3.GetFocusedRowCellDisplayText("MablaghAsli");
+                    //XtraReport1.Parameters["MablaghKarmozd"].Value = gridView3.GetFocusedRowCellDisplayText("MablaghKarmozd");
+                    //XtraReport1.Parameters["FaseleAghsat"].Value = gridView3.GetFocusedRowCellDisplayText("FaseleAghsat");
+                    //XtraReport1.Parameters["TedadAghsat"].Value = gridView3.GetFocusedRowCellDisplayText("TedadAghsat");
+                    //XtraReport1.Parameters["MablaghAghsat"].Value = gridView3.GetFocusedRowCellDisplayText("MablaghAghsat");
+                    //XtraReport1.Parameters["SarresidAvalinGhest"].Value = gridView3.GetFocusedRowCellDisplayText("SarresidAvalinGhest");
+                    //XtraReport1.Parameters["ZameninName"].Value = gridView3.GetFocusedRowCellDisplayText("ZameninName");
+                    //XtraReport1.Parameters["HaveCheckTazmin"].Value = gridView3.GetFocusedRowCellDisplayText("HaveCheckTazmin");
+
+
+                    //XtraReport1.DataSource = gridView2.DataSource;
+                    //XtraReport1.Parameters["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : gridView2.GetRowCellDisplayText(0, "Tarikh").Substring(0, 10);
+                    //XtraReport1.Parameters["Ta_Tarikh"].Value = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
+                    //XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
+
+                    //List<decimal> ListMande1 = new List<decimal>();
+                    //for (int i = 0; i < gridView1.RowCount; i++)
+                    //{
+                    //    ListMande1.Add(Convert.ToDecimal(gridView2.GetRowCellValue(i, "Mande1")));
+                    //}
+                    //XtraReport1.Parameters["Mande1"].Value = ListMande1;
+
+                    FrmPrinPreview FPP = new FrmPrinPreview();
+                    FPP.documentViewer1.DocumentSource = XtraReport1;
+                    FPP.ShowDialog();
+
+                }
+            }
+            else
+            {
+                HelpClass1.NewReportDesigner(FilePath1, FileName2);
+            }
+        }
+
+        private void btnDesignReport2_Click(object sender, EventArgs e)
+        {
+            HelpClass1.LoadReportDesigner(FilePath1, FileName2);
+        }
+
+
+        private void FrmDaryafti_KeyDown(object sender, KeyEventArgs e)
+        {
+            HelpClass1.ControlAltShift_KeyDown(sender, e, btnDesignReport3);
+            HelpClass1.ControlAltShift_KeyDown(sender, e, btnDesignReport4);
+            HelpClass1.ControlAltShift_KeyDown(sender, e, btnDesignReport2);
         }
     }
 }

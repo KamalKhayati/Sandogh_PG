@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Data.Entity;
-using Stimulsoft.Report;
 using DevExpress.XtraReports.UI;
 using DevExpress.XtraReports.ReportGeneration;
 
@@ -65,7 +64,8 @@ namespace Sandogh_TG
         private void ChkTarikh_CheckedChanged(object sender, EventArgs e)
         {
             txtAzTarikh.Enabled = txtTaTarikh.Enabled = ChkTarikh.Checked ? true : false;
-            FillDataGridDaftarRozname();
+            if (ChkTarikh.Checked == false)
+                FillDataGridDaftarRozname();
             txtAzTarikh.Focus();
         }
 
@@ -115,6 +115,7 @@ namespace Sandogh_TG
                     XtraReport1.Parameters["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : gridView1.GetRowCellDisplayText(0, "Tarikh").Substring(0, 10);
                     XtraReport1.Parameters["Ta_Tarikh"].Value = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
                     XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
+                    XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
                     FrmPrinPreview FPP = new FrmPrinPreview();
                     FPP.documentViewer1.DocumentSource = XtraReport1;
                     FPP.ShowDialog();

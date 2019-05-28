@@ -65,10 +65,10 @@
             this.btnDelete1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnCreate1 = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.btnGharardad = new DevExpress.XtraEditors.SimpleButton();
-            this.btnPrint1 = new DevExpress.XtraEditors.SimpleButton();
-            this.btnNext1 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDesignReport1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnPrintPreview1 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnGharardad = new DevExpress.XtraEditors.SimpleButton();
+            this.btnNext1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnFirst1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnPreview1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnLast1 = new DevExpress.XtraEditors.SimpleButton();
@@ -88,21 +88,20 @@
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.MablaghDaryafti = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Mande = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSharh = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
             this.chkSelectAll = new DevExpress.XtraEditors.CheckEdit();
             this.btnEdit2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnCreate2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnDelete2 = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
-            this.btnPrint2 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDesignReport2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnNext2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnPrintPreview2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnFirst2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnPreview2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnLast2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnDisplyActiveList2 = new DevExpress.XtraEditors.SimpleButton();
-            this.btnDesignReport1 = new DevExpress.XtraEditors.SimpleButton();
-            this.btnDesignReport2 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -134,9 +133,10 @@
             this.panelControl2.Controls.Add(this.groupBox4);
             this.panelControl2.Controls.Add(this.panelControl6);
             this.panelControl2.Controls.Add(this.panelControl3);
-            this.panelControl2.Location = new System.Drawing.Point(396, 0);
+            this.panelControl2.Location = new System.Drawing.Point(484, 0);
+            this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(612, 790);
+            this.panelControl2.Size = new System.Drawing.Size(748, 980);
             this.panelControl2.TabIndex = 4;
             // 
             // groupBox4
@@ -144,9 +144,11 @@
             this.groupBox4.Controls.Add(this.gridControl1);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.ForeColor = System.Drawing.Color.Blue;
-            this.groupBox4.Location = new System.Drawing.Point(2, 46);
+            this.groupBox4.Location = new System.Drawing.Point(2, 57);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(608, 698);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox4.Size = new System.Drawing.Size(744, 866);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "لیست وامهای پرداختی (تسویه نشده)";
@@ -155,12 +157,12 @@
             // 
             this.gridControl1.DataSource = this.vamPardakhtisBindingSource;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gridControl1.Location = new System.Drawing.Point(3, 29);
+            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gridControl1.Location = new System.Drawing.Point(4, 36);
             this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gridControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(602, 666);
+            this.gridControl1.Size = new System.Drawing.Size(736, 826);
             this.gridControl1.TabIndex = 33;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -200,9 +202,10 @@
             this.gridColumn45,
             this.AazaId,
             this.colZameninId});
+            this.gridView1.DetailHeight = 434;
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.IndicatorWidth = 25;
+            this.gridView1.IndicatorWidth = 31;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.AutoSelectAllInEditor = false;
             this.gridView1.OptionsBehavior.Editable = false;
@@ -232,8 +235,9 @@
             this.gridColumn25.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn25.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn25.FieldName = "Id";
-            this.gridColumn25.MinWidth = 19;
+            this.gridColumn25.MinWidth = 23;
             this.gridColumn25.Name = "gridColumn25";
+            this.gridColumn25.Width = 92;
             // 
             // gridColumn26
             // 
@@ -245,14 +249,14 @@
             this.gridColumn26.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn26.Caption = "ردیف";
             this.gridColumn26.FieldName = "Line";
-            this.gridColumn26.MinWidth = 19;
+            this.gridColumn26.MinWidth = 23;
             this.gridColumn26.Name = "gridColumn26";
             this.gridColumn26.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Line", "{0}")});
             this.gridColumn26.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
             this.gridColumn26.Visible = true;
             this.gridColumn26.VisibleIndex = 0;
-            this.gridColumn26.Width = 60;
+            this.gridColumn26.Width = 73;
             // 
             // colShomareSanad
             // 
@@ -264,10 +268,11 @@
             this.colShomareSanad.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colShomareSanad.Caption = "شماره سند";
             this.colShomareSanad.FieldName = "ShomareSanad";
+            this.colShomareSanad.MinWidth = 24;
             this.colShomareSanad.Name = "colShomareSanad";
             this.colShomareSanad.Visible = true;
             this.colShomareSanad.VisibleIndex = 1;
-            this.colShomareSanad.Width = 80;
+            this.colShomareSanad.Width = 98;
             // 
             // gridColumn27
             // 
@@ -279,11 +284,11 @@
             this.gridColumn27.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn27.Caption = "کد وام";
             this.gridColumn27.FieldName = "Code";
-            this.gridColumn27.MinWidth = 19;
+            this.gridColumn27.MinWidth = 23;
             this.gridColumn27.Name = "gridColumn27";
             this.gridColumn27.Visible = true;
             this.gridColumn27.VisibleIndex = 2;
-            this.gridColumn27.Width = 80;
+            this.gridColumn27.Width = 98;
             // 
             // gridColumn28
             // 
@@ -294,10 +299,11 @@
             this.gridColumn28.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn28.Caption = "گیرنده وام";
             this.gridColumn28.FieldName = "NameAaza";
+            this.gridColumn28.MinWidth = 24;
             this.gridColumn28.Name = "gridColumn28";
             this.gridColumn28.Visible = true;
             this.gridColumn28.VisibleIndex = 3;
-            this.gridColumn28.Width = 250;
+            this.gridColumn28.Width = 306;
             // 
             // gridColumn29
             // 
@@ -311,10 +317,11 @@
             this.gridColumn29.DisplayFormat.FormatString = "d";
             this.gridColumn29.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.gridColumn29.FieldName = "TarikhPardakht";
+            this.gridColumn29.MinWidth = 24;
             this.gridColumn29.Name = "gridColumn29";
             this.gridColumn29.Visible = true;
             this.gridColumn29.VisibleIndex = 4;
-            this.gridColumn29.Width = 130;
+            this.gridColumn29.Width = 159;
             // 
             // gridColumn30
             // 
@@ -328,12 +335,13 @@
             this.gridColumn30.DisplayFormat.FormatString = "n";
             this.gridColumn30.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn30.FieldName = "MablaghAsli";
+            this.gridColumn30.MinWidth = 24;
             this.gridColumn30.Name = "gridColumn30";
             this.gridColumn30.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MablaghAsli", "{0:n}")});
             this.gridColumn30.Visible = true;
             this.gridColumn30.VisibleIndex = 5;
-            this.gridColumn30.Width = 140;
+            this.gridColumn30.Width = 171;
             // 
             // gridColumn31
             // 
@@ -347,12 +355,13 @@
             this.gridColumn31.DisplayFormat.FormatString = "n";
             this.gridColumn31.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn31.FieldName = "MablaghKarmozd";
+            this.gridColumn31.MinWidth = 24;
             this.gridColumn31.Name = "gridColumn31";
             this.gridColumn31.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MablaghKarmozd", "{0:n}")});
             this.gridColumn31.Visible = true;
             this.gridColumn31.VisibleIndex = 6;
-            this.gridColumn31.Width = 130;
+            this.gridColumn31.Width = 159;
             // 
             // gridColumn32
             // 
@@ -364,10 +373,11 @@
             this.gridColumn32.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn32.Caption = "تعداد اقساط";
             this.gridColumn32.FieldName = "TedadAghsat";
+            this.gridColumn32.MinWidth = 24;
             this.gridColumn32.Name = "gridColumn32";
             this.gridColumn32.Visible = true;
             this.gridColumn32.VisibleIndex = 7;
-            this.gridColumn32.Width = 100;
+            this.gridColumn32.Width = 122;
             // 
             // gridColumn33
             // 
@@ -381,12 +391,13 @@
             this.gridColumn33.DisplayFormat.FormatString = "n";
             this.gridColumn33.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn33.FieldName = "MablaghAghsat";
+            this.gridColumn33.MinWidth = 24;
             this.gridColumn33.Name = "gridColumn33";
             this.gridColumn33.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MablaghAghsat", "{0:n}")});
             this.gridColumn33.Visible = true;
             this.gridColumn33.VisibleIndex = 8;
-            this.gridColumn33.Width = 130;
+            this.gridColumn33.Width = 159;
             // 
             // gridColumn34
             // 
@@ -400,10 +411,11 @@
             this.gridColumn34.DisplayFormat.FormatString = "d";
             this.gridColumn34.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.gridColumn34.FieldName = "SarresidAvalinGhest";
+            this.gridColumn34.MinWidth = 24;
             this.gridColumn34.Name = "gridColumn34";
             this.gridColumn34.Visible = true;
             this.gridColumn34.VisibleIndex = 9;
-            this.gridColumn34.Width = 150;
+            this.gridColumn34.Width = 183;
             // 
             // gridColumn35
             // 
@@ -414,10 +426,11 @@
             this.gridColumn35.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn35.Caption = "ضامنین وام";
             this.gridColumn35.FieldName = "ZameninName";
+            this.gridColumn35.MinWidth = 24;
             this.gridColumn35.Name = "gridColumn35";
             this.gridColumn35.Visible = true;
             this.gridColumn35.VisibleIndex = 10;
-            this.gridColumn35.Width = 350;
+            this.gridColumn35.Width = 428;
             // 
             // gridColumn36
             // 
@@ -429,10 +442,11 @@
             this.gridColumn36.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn36.Caption = "چک/سفته تضمین";
             this.gridColumn36.FieldName = "HaveCheckTazmin";
+            this.gridColumn36.MinWidth = 24;
             this.gridColumn36.Name = "gridColumn36";
             this.gridColumn36.Visible = true;
             this.gridColumn36.VisibleIndex = 11;
-            this.gridColumn36.Width = 130;
+            this.gridColumn36.Width = 159;
             // 
             // gridColumn38
             // 
@@ -444,10 +458,11 @@
             this.gridColumn38.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn38.Caption = "نحوه پرداخت وام";
             this.gridColumn38.FieldName = "NahveyePardakht";
+            this.gridColumn38.MinWidth = 24;
             this.gridColumn38.Name = "gridColumn38";
             this.gridColumn38.Visible = true;
             this.gridColumn38.VisibleIndex = 12;
-            this.gridColumn38.Width = 130;
+            this.gridColumn38.Width = 159;
             // 
             // gridColumn39
             // 
@@ -459,10 +474,11 @@
             this.gridColumn39.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn39.Caption = "نوع وام";
             this.gridColumn39.FieldName = "NoeVam";
+            this.gridColumn39.MinWidth = 24;
             this.gridColumn39.Name = "gridColumn39";
             this.gridColumn39.Visible = true;
             this.gridColumn39.VisibleIndex = 13;
-            this.gridColumn39.Width = 100;
+            this.gridColumn39.Width = 122;
             // 
             // colFaseleAghsat
             // 
@@ -474,10 +490,11 @@
             this.colFaseleAghsat.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colFaseleAghsat.Caption = "فاصله اقساط";
             this.colFaseleAghsat.FieldName = "FaseleAghsat";
+            this.colFaseleAghsat.MinWidth = 24;
             this.colFaseleAghsat.Name = "colFaseleAghsat";
             this.colFaseleAghsat.Visible = true;
             this.colFaseleAghsat.VisibleIndex = 14;
-            this.colFaseleAghsat.Width = 100;
+            this.colFaseleAghsat.Width = 122;
             // 
             // gridColumn40
             // 
@@ -489,10 +506,11 @@
             this.gridColumn40.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn40.Caption = "درصد کارمزد";
             this.gridColumn40.FieldName = "DarsadeKarmozd";
+            this.gridColumn40.MinWidth = 24;
             this.gridColumn40.Name = "gridColumn40";
             this.gridColumn40.Visible = true;
             this.gridColumn40.VisibleIndex = 15;
-            this.gridColumn40.Width = 100;
+            this.gridColumn40.Width = 122;
             // 
             // gridColumn41
             // 
@@ -506,10 +524,11 @@
             this.gridColumn41.DisplayFormat.FormatString = "n";
             this.gridColumn41.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn41.FieldName = "MablaghDirkard";
+            this.gridColumn41.MinWidth = 24;
             this.gridColumn41.Name = "gridColumn41";
             this.gridColumn41.Visible = true;
             this.gridColumn41.VisibleIndex = 16;
-            this.gridColumn41.Width = 100;
+            this.gridColumn41.Width = 122;
             // 
             // gridColumn42
             // 
@@ -523,10 +542,11 @@
             this.gridColumn42.DisplayFormat.FormatString = "d";
             this.gridColumn42.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.gridColumn42.FieldName = "TarikhDarkhast";
+            this.gridColumn42.MinWidth = 24;
             this.gridColumn42.Name = "gridColumn42";
             this.gridColumn42.Visible = true;
             this.gridColumn42.VisibleIndex = 17;
-            this.gridColumn42.Width = 150;
+            this.gridColumn42.Width = 183;
             // 
             // gridColumn43
             // 
@@ -538,10 +558,11 @@
             this.gridColumn43.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn43.Caption = "شماره درخواست";
             this.gridColumn43.FieldName = "ShomareDarkhast";
+            this.gridColumn43.MinWidth = 24;
             this.gridColumn43.Name = "gridColumn43";
             this.gridColumn43.Visible = true;
             this.gridColumn43.VisibleIndex = 18;
-            this.gridColumn43.Width = 140;
+            this.gridColumn43.Width = 171;
             // 
             // colHesabMoin
             // 
@@ -552,10 +573,11 @@
             this.colHesabMoin.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colHesabMoin.Caption = "حساب معین";
             this.colHesabMoin.FieldName = "HesabMoinName";
+            this.colHesabMoin.MinWidth = 24;
             this.colHesabMoin.Name = "colHesabMoin";
             this.colHesabMoin.Visible = true;
             this.colHesabMoin.VisibleIndex = 19;
-            this.colHesabMoin.Width = 140;
+            this.colHesabMoin.Width = 171;
             // 
             // colHesabTafzili
             // 
@@ -566,10 +588,11 @@
             this.colHesabTafzili.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colHesabTafzili.Caption = "حساب تفضیلی";
             this.colHesabTafzili.FieldName = "HesabTafziliName";
+            this.colHesabTafzili.MinWidth = 24;
             this.colHesabTafzili.Name = "colHesabTafzili";
             this.colHesabTafzili.Visible = true;
             this.colHesabTafzili.VisibleIndex = 20;
-            this.colHesabTafzili.Width = 350;
+            this.colHesabTafzili.Width = 428;
             // 
             // gridColumn45
             // 
@@ -581,21 +604,25 @@
             this.gridColumn45.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn45.Caption = "تسویه شده";
             this.gridColumn45.FieldName = "IsTasviye";
-            this.gridColumn45.MinWidth = 19;
+            this.gridColumn45.MinWidth = 23;
             this.gridColumn45.Name = "gridColumn45";
             this.gridColumn45.Visible = true;
             this.gridColumn45.VisibleIndex = 21;
-            this.gridColumn45.Width = 100;
+            this.gridColumn45.Width = 122;
             // 
             // AazaId
             // 
             this.AazaId.FieldName = "AazaId";
+            this.AazaId.MinWidth = 24;
             this.AazaId.Name = "AazaId";
+            this.AazaId.Width = 92;
             // 
             // colZameninId
             // 
             this.colZameninId.FieldName = "ZameninId";
+            this.colZameninId.MinWidth = 24;
             this.colZameninId.Name = "colZameninId";
+            this.colZameninId.Width = 92;
             // 
             // panelControl6
             // 
@@ -604,40 +631,41 @@
             this.panelControl6.Controls.Add(this.btnCreate1);
             this.panelControl6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl6.Location = new System.Drawing.Point(2, 2);
+            this.panelControl6.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl6.Name = "panelControl6";
-            this.panelControl6.Size = new System.Drawing.Size(608, 44);
+            this.panelControl6.Size = new System.Drawing.Size(744, 55);
             this.panelControl6.TabIndex = 4;
             // 
             // btnEdit1
             // 
             this.btnEdit1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnEdit1.ImageOptions.SvgImage")));
-            this.btnEdit1.Location = new System.Drawing.Point(8, 5);
+            this.btnEdit1.Location = new System.Drawing.Point(10, 6);
+            this.btnEdit1.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit1.Name = "btnEdit1";
-            this.btnEdit1.Size = new System.Drawing.Size(38, 33);
+            this.btnEdit1.Size = new System.Drawing.Size(46, 41);
             this.btnEdit1.TabIndex = 2;
-            this.btnEdit1.Text = "simpleButton1";
             this.btnEdit1.ToolTip = "ویرایش";
             this.btnEdit1.Click += new System.EventHandler(this.btnEdit1_Click);
             // 
             // btnDelete1
             // 
             this.btnDelete1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDelete1.ImageOptions.SvgImage")));
-            this.btnDelete1.Location = new System.Drawing.Point(52, 5);
+            this.btnDelete1.Location = new System.Drawing.Point(64, 6);
+            this.btnDelete1.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete1.Name = "btnDelete1";
-            this.btnDelete1.Size = new System.Drawing.Size(38, 33);
+            this.btnDelete1.Size = new System.Drawing.Size(46, 41);
             this.btnDelete1.TabIndex = 1;
-            this.btnDelete1.Text = "simpleButton1";
             this.btnDelete1.ToolTip = "حذف";
             this.btnDelete1.Click += new System.EventHandler(this.btnDelete1_Click);
             // 
             // btnCreate1
             // 
             this.btnCreate1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCreate1.ImageOptions.SvgImage")));
-            this.btnCreate1.Location = new System.Drawing.Point(96, 5);
+            this.btnCreate1.Location = new System.Drawing.Point(117, 6);
+            this.btnCreate1.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreate1.Name = "btnCreate1";
-            this.btnCreate1.Size = new System.Drawing.Size(38, 33);
+            this.btnCreate1.Size = new System.Drawing.Size(46, 41);
             this.btnCreate1.TabIndex = 0;
-            this.btnCreate1.Text = "simpleButton1";
             this.btnCreate1.ToolTip = "ایجاد";
             this.btnCreate1.Click += new System.EventHandler(this.btnCreate1_Click);
             // 
@@ -646,7 +674,6 @@
             this.panelControl3.Controls.Add(this.btnDesignReport1);
             this.panelControl3.Controls.Add(this.btnPrintPreview1);
             this.panelControl3.Controls.Add(this.btnGharardad);
-            this.panelControl3.Controls.Add(this.btnPrint1);
             this.panelControl3.Controls.Add(this.btnNext1);
             this.panelControl3.Controls.Add(this.btnFirst1);
             this.panelControl3.Controls.Add(this.btnPreview1);
@@ -654,65 +681,68 @@
             this.panelControl3.Controls.Add(this.btnDisplyActiveList1);
             this.panelControl3.Controls.Add(this.btnDisplyNotActiveList1);
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl3.Location = new System.Drawing.Point(2, 744);
+            this.panelControl3.Location = new System.Drawing.Point(2, 923);
+            this.panelControl3.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(608, 44);
+            this.panelControl3.Size = new System.Drawing.Size(744, 55);
             this.panelControl3.TabIndex = 1;
+            // 
+            // btnDesignReport1
+            // 
+            this.btnDesignReport1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDesignReport1.ImageOptions.SvgImage")));
+            this.btnDesignReport1.Location = new System.Drawing.Point(172, 7);
+            this.btnDesignReport1.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDesignReport1.Name = "btnDesignReport1";
+            this.btnDesignReport1.Size = new System.Drawing.Size(46, 41);
+            this.btnDesignReport1.TabIndex = 40;
+            this.btnDesignReport1.ToolTip = "چاپ لیست";
+            this.btnDesignReport1.Visible = false;
+            this.btnDesignReport1.Click += new System.EventHandler(this.btnDesignReport1_Click);
+            // 
+            // btnPrintPreview1
+            // 
+            this.btnPrintPreview1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrintPreview1.ImageOptions.SvgImage")));
+            this.btnPrintPreview1.Location = new System.Drawing.Point(117, 7);
+            this.btnPrintPreview1.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPrintPreview1.Name = "btnPrintPreview1";
+            this.btnPrintPreview1.Size = new System.Drawing.Size(46, 41);
+            this.btnPrintPreview1.TabIndex = 7;
+            this.btnPrintPreview1.ToolTip = "نمایش چاپ";
+            this.btnPrintPreview1.Click += new System.EventHandler(this.btnPrintPreview1_Click);
             // 
             // btnGharardad
             // 
             this.btnGharardad.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnGharardad.ImageOptions.SvgImage")));
-            this.btnGharardad.Location = new System.Drawing.Point(415, 6);
+            this.btnGharardad.Location = new System.Drawing.Point(507, 7);
+            this.btnGharardad.Margin = new System.Windows.Forms.Padding(4);
             this.btnGharardad.Name = "btnGharardad";
-            this.btnGharardad.Size = new System.Drawing.Size(124, 33);
+            this.btnGharardad.Size = new System.Drawing.Size(152, 41);
             this.btnGharardad.TabIndex = 0;
             this.btnGharardad.Text = "چاپ قرارداد";
             this.btnGharardad.ToolTip = "ایجاد";
             this.btnGharardad.Click += new System.EventHandler(this.btnGharardad_Click);
             // 
-            // btnPrint1
-            // 
-            this.btnPrint1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrint1.ImageOptions.SvgImage")));
-            this.btnPrint1.Location = new System.Drawing.Point(184, 6);
-            this.btnPrint1.Name = "btnPrint1";
-            this.btnPrint1.Size = new System.Drawing.Size(38, 33);
-            this.btnPrint1.TabIndex = 8;
-            this.btnPrint1.Text = "simpleButton1";
-            this.btnPrint1.ToolTip = "چاپ لیست";
-            this.btnPrint1.Visible = false;
-            // 
             // btnNext1
             // 
             this.btnNext1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNext1.ImageOptions.Image")));
             this.btnNext1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNext1.ImageOptions.SvgImage")));
-            this.btnNext1.Location = new System.Drawing.Point(327, 6);
+            this.btnNext1.Location = new System.Drawing.Point(400, 7);
+            this.btnNext1.Margin = new System.Windows.Forms.Padding(4);
             this.btnNext1.Name = "btnNext1";
-            this.btnNext1.Size = new System.Drawing.Size(38, 33);
+            this.btnNext1.Size = new System.Drawing.Size(46, 41);
             this.btnNext1.TabIndex = 2;
-            this.btnNext1.Text = "simpleButton1";
             this.btnNext1.ToolTip = "بعدی";
             this.btnNext1.Click += new System.EventHandler(this.btnNext1_Click);
-            // 
-            // btnPrintPreview1
-            // 
-            this.btnPrintPreview1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintPreview1.ImageOptions.Image")));
-            this.btnPrintPreview1.Location = new System.Drawing.Point(96, 7);
-            this.btnPrintPreview1.Name = "btnPrintPreview1";
-            this.btnPrintPreview1.Size = new System.Drawing.Size(38, 33);
-            this.btnPrintPreview1.TabIndex = 7;
-            this.btnPrintPreview1.Text = "simpleButton1";
-            this.btnPrintPreview1.ToolTip = "نمایش چاپ";
-            this.btnPrintPreview1.Click += new System.EventHandler(this.btnPrintPreview1_Click);
             // 
             // btnFirst1
             // 
             this.btnFirst1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnFirst1.ImageOptions.Image")));
             this.btnFirst1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnFirst1.ImageOptions.SvgImage")));
-            this.btnFirst1.Location = new System.Drawing.Point(239, 6);
+            this.btnFirst1.Location = new System.Drawing.Point(292, 7);
+            this.btnFirst1.Margin = new System.Windows.Forms.Padding(4);
             this.btnFirst1.Name = "btnFirst1";
-            this.btnFirst1.Size = new System.Drawing.Size(38, 33);
+            this.btnFirst1.Size = new System.Drawing.Size(46, 41);
             this.btnFirst1.TabIndex = 4;
-            this.btnFirst1.Text = "simpleButton1";
             this.btnFirst1.ToolTip = "اولین رکورد";
             this.btnFirst1.Click += new System.EventHandler(this.btnFirst1_Click);
             // 
@@ -720,44 +750,44 @@
             // 
             this.btnPreview1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPreview1.ImageOptions.Image")));
             this.btnPreview1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPreview1.ImageOptions.SvgImage")));
-            this.btnPreview1.Location = new System.Drawing.Point(283, 6);
+            this.btnPreview1.Location = new System.Drawing.Point(346, 7);
+            this.btnPreview1.Margin = new System.Windows.Forms.Padding(4);
             this.btnPreview1.Name = "btnPreview1";
-            this.btnPreview1.Size = new System.Drawing.Size(38, 33);
+            this.btnPreview1.Size = new System.Drawing.Size(46, 41);
             this.btnPreview1.TabIndex = 3;
-            this.btnPreview1.Text = "simpleButton1";
             this.btnPreview1.ToolTip = "قبلی";
             this.btnPreview1.Click += new System.EventHandler(this.btnPreview1_Click);
             // 
             // btnLast1
             // 
             this.btnLast1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLast1.ImageOptions.SvgImage")));
-            this.btnLast1.Location = new System.Drawing.Point(371, 6);
+            this.btnLast1.Location = new System.Drawing.Point(453, 7);
+            this.btnLast1.Margin = new System.Windows.Forms.Padding(4);
             this.btnLast1.Name = "btnLast1";
-            this.btnLast1.Size = new System.Drawing.Size(38, 33);
+            this.btnLast1.Size = new System.Drawing.Size(46, 41);
             this.btnLast1.TabIndex = 1;
-            this.btnLast1.Text = "simpleButton1";
             this.btnLast1.ToolTip = "آخرین رکورد";
             this.btnLast1.Click += new System.EventHandler(this.btnLast1_Click);
             // 
             // btnDisplyActiveList1
             // 
             this.btnDisplyActiveList1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyActiveList1.ImageOptions.SvgImage")));
-            this.btnDisplyActiveList1.Location = new System.Drawing.Point(52, 6);
+            this.btnDisplyActiveList1.Location = new System.Drawing.Point(64, 7);
+            this.btnDisplyActiveList1.Margin = new System.Windows.Forms.Padding(4);
             this.btnDisplyActiveList1.Name = "btnDisplyActiveList1";
-            this.btnDisplyActiveList1.Size = new System.Drawing.Size(38, 33);
+            this.btnDisplyActiveList1.Size = new System.Drawing.Size(46, 41);
             this.btnDisplyActiveList1.TabIndex = 5;
-            this.btnDisplyActiveList1.Text = "simpleButton1";
             this.btnDisplyActiveList1.ToolTip = " لیست وامهای تسویه نشده";
             this.btnDisplyActiveList1.Click += new System.EventHandler(this.btnDisplyActiveList1_Click);
             // 
             // btnDisplyNotActiveList1
             // 
             this.btnDisplyNotActiveList1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyNotActiveList1.ImageOptions.SvgImage")));
-            this.btnDisplyNotActiveList1.Location = new System.Drawing.Point(8, 6);
+            this.btnDisplyNotActiveList1.Location = new System.Drawing.Point(10, 7);
+            this.btnDisplyNotActiveList1.Margin = new System.Windows.Forms.Padding(4);
             this.btnDisplyNotActiveList1.Name = "btnDisplyNotActiveList1";
-            this.btnDisplyNotActiveList1.Size = new System.Drawing.Size(38, 33);
+            this.btnDisplyNotActiveList1.Size = new System.Drawing.Size(46, 41);
             this.btnDisplyNotActiveList1.TabIndex = 6;
-            this.btnDisplyNotActiveList1.Text = "simpleButton1";
             this.btnDisplyNotActiveList1.ToolTip = " لیست وامهای تسویه شده";
             this.btnDisplyNotActiveList1.Click += new System.EventHandler(this.btnDisplyNotActiveList1_Click);
             // 
@@ -768,17 +798,20 @@
             this.panelControl1.Controls.Add(this.panelControl4);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(395, 790);
+            this.panelControl1.Size = new System.Drawing.Size(483, 980);
             this.panelControl1.TabIndex = 5;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.gridControl2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(2, 46);
+            this.groupBox1.Location = new System.Drawing.Point(2, 57);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(391, 698);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(479, 866);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ریز اقساط وام";
@@ -787,12 +820,12 @@
             // 
             this.gridControl2.DataSource = this.rizeAghsatVamsBindingSource;
             this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl2.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gridControl2.Location = new System.Drawing.Point(3, 29);
+            this.gridControl2.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gridControl2.Location = new System.Drawing.Point(4, 36);
             this.gridControl2.MainView = this.gridView2;
-            this.gridControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gridControl2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(385, 666);
+            this.gridControl2.Size = new System.Drawing.Size(471, 826);
             this.gridControl2.TabIndex = 33;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -815,10 +848,12 @@
             this.colMablaghAghsat,
             this.gridColumn13,
             this.MablaghDaryafti,
-            this.Mande});
+            this.Mande,
+            this.colSharh});
+            this.gridView2.DetailHeight = 434;
             this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView2.GridControl = this.gridControl2;
-            this.gridView2.IndicatorWidth = 25;
+            this.gridView2.IndicatorWidth = 31;
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsBehavior.AutoSelectAllInEditor = false;
             this.gridView2.OptionsBehavior.Editable = false;
@@ -845,13 +880,16 @@
             this.gridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn1.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn1.FieldName = "Id";
-            this.gridColumn1.MinWidth = 19;
+            this.gridColumn1.MinWidth = 23;
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Width = 92;
             // 
             // colVamPardakhtiId
             // 
             this.colVamPardakhtiId.FieldName = "VamPardakhtiId";
+            this.colVamPardakhtiId.MinWidth = 24;
             this.colVamPardakhtiId.Name = "colVamPardakhtiId";
+            this.colVamPardakhtiId.Width = 92;
             // 
             // ColLine
             // 
@@ -863,11 +901,12 @@
             this.ColLine.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.ColLine.Caption = "ردیف";
             this.ColLine.FieldName = "Line";
-            this.ColLine.MinWidth = 19;
+            this.ColLine.MinWidth = 23;
             this.ColLine.Name = "ColLine";
             this.ColLine.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Line", "{0}")});
             this.ColLine.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+            this.ColLine.Width = 92;
             // 
             // colShomareGhest
             // 
@@ -879,11 +918,13 @@
             this.colShomareGhest.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colShomareGhest.Caption = "قسط";
             this.colShomareGhest.FieldName = "ShomareGhest";
+            this.colShomareGhest.MinWidth = 24;
             this.colShomareGhest.Name = "colShomareGhest";
             this.colShomareGhest.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "ShomareGhest", "{0}")});
             this.colShomareGhest.Visible = true;
             this.colShomareGhest.VisibleIndex = 0;
+            this.colShomareGhest.Width = 92;
             // 
             // gridColumn4
             // 
@@ -897,10 +938,11 @@
             this.gridColumn4.DisplayFormat.FormatString = "d";
             this.gridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.gridColumn4.FieldName = "TarikhSarresid";
+            this.gridColumn4.MinWidth = 24;
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 1;
-            this.gridColumn4.Width = 140;
+            this.gridColumn4.Width = 171;
             // 
             // colMablaghAghsat
             // 
@@ -914,12 +956,13 @@
             this.colMablaghAghsat.DisplayFormat.FormatString = "n";
             this.colMablaghAghsat.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colMablaghAghsat.FieldName = "MablaghAghsat";
+            this.colMablaghAghsat.MinWidth = 24;
             this.colMablaghAghsat.Name = "colMablaghAghsat";
             this.colMablaghAghsat.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MablaghAghsat", "{0:n}")});
             this.colMablaghAghsat.Visible = true;
             this.colMablaghAghsat.VisibleIndex = 2;
-            this.colMablaghAghsat.Width = 140;
+            this.colMablaghAghsat.Width = 171;
             // 
             // gridColumn13
             // 
@@ -933,10 +976,11 @@
             this.gridColumn13.DisplayFormat.FormatString = "d";
             this.gridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.gridColumn13.FieldName = "TarikhDaryaft";
+            this.gridColumn13.MinWidth = 24;
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.Visible = true;
             this.gridColumn13.VisibleIndex = 3;
-            this.gridColumn13.Width = 140;
+            this.gridColumn13.Width = 171;
             // 
             // MablaghDaryafti
             // 
@@ -950,12 +994,13 @@
             this.MablaghDaryafti.DisplayFormat.FormatString = "n";
             this.MablaghDaryafti.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.MablaghDaryafti.FieldName = "MablaghDaryafti";
+            this.MablaghDaryafti.MinWidth = 24;
             this.MablaghDaryafti.Name = "MablaghDaryafti";
             this.MablaghDaryafti.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MablaghDaryafti", "{0:n}")});
             this.MablaghDaryafti.Visible = true;
             this.MablaghDaryafti.VisibleIndex = 4;
-            this.MablaghDaryafti.Width = 140;
+            this.MablaghDaryafti.Width = 171;
             // 
             // Mande
             // 
@@ -969,13 +1014,24 @@
             this.Mande.DisplayFormat.FormatString = "n";
             this.Mande.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.Mande.FieldName = "Mande";
+            this.Mande.MinWidth = 24;
             this.Mande.Name = "Mande";
             this.Mande.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "Mande", "{0:n}")});
             this.Mande.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
             this.Mande.Visible = true;
             this.Mande.VisibleIndex = 5;
-            this.Mande.Width = 160;
+            this.Mande.Width = 196;
+            // 
+            // colSharh
+            // 
+            this.colSharh.Caption = "شرح سند";
+            this.colSharh.FieldName = "Sharh";
+            this.colSharh.MinWidth = 25;
+            this.colSharh.Name = "colSharh";
+            this.colSharh.Visible = true;
+            this.colSharh.VisibleIndex = 6;
+            this.colSharh.Width = 400;
             // 
             // panelControl5
             // 
@@ -985,16 +1041,18 @@
             this.panelControl5.Controls.Add(this.btnDelete2);
             this.panelControl5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl5.Location = new System.Drawing.Point(2, 2);
+            this.panelControl5.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl5.Name = "panelControl5";
-            this.panelControl5.Size = new System.Drawing.Size(391, 44);
+            this.panelControl5.Size = new System.Drawing.Size(479, 55);
             this.panelControl5.TabIndex = 4;
             // 
             // chkSelectAll
             // 
-            this.chkSelectAll.Location = new System.Drawing.Point(137, 10);
+            this.chkSelectAll.Location = new System.Drawing.Point(167, 12);
+            this.chkSelectAll.Margin = new System.Windows.Forms.Padding(4);
             this.chkSelectAll.Name = "chkSelectAll";
             this.chkSelectAll.Properties.Caption = "انتخاب همه اقساط";
-            this.chkSelectAll.Size = new System.Drawing.Size(149, 29);
+            this.chkSelectAll.Size = new System.Drawing.Size(182, 35);
             this.chkSelectAll.TabIndex = 0;
             this.chkSelectAll.Visible = false;
             this.chkSelectAll.CheckedChanged += new System.EventHandler(this.chkSelectAll_CheckedChanged);
@@ -1002,11 +1060,11 @@
             // btnEdit2
             // 
             this.btnEdit2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnEdit2.ImageOptions.SvgImage")));
-            this.btnEdit2.Location = new System.Drawing.Point(5, 5);
+            this.btnEdit2.Location = new System.Drawing.Point(6, 6);
+            this.btnEdit2.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit2.Name = "btnEdit2";
-            this.btnEdit2.Size = new System.Drawing.Size(38, 33);
+            this.btnEdit2.Size = new System.Drawing.Size(46, 41);
             this.btnEdit2.TabIndex = 3;
-            this.btnEdit2.Text = "simpleButton1";
             this.btnEdit2.ToolTip = "ویرایش";
             this.btnEdit2.Visible = false;
             this.btnEdit2.Click += new System.EventHandler(this.btnEdit2_Click);
@@ -1014,11 +1072,11 @@
             // btnCreate2
             // 
             this.btnCreate2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCreate2.ImageOptions.SvgImage")));
-            this.btnCreate2.Location = new System.Drawing.Point(93, 5);
+            this.btnCreate2.Location = new System.Drawing.Point(114, 6);
+            this.btnCreate2.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreate2.Name = "btnCreate2";
-            this.btnCreate2.Size = new System.Drawing.Size(38, 33);
+            this.btnCreate2.Size = new System.Drawing.Size(46, 41);
             this.btnCreate2.TabIndex = 1;
-            this.btnCreate2.Text = "simpleButton1";
             this.btnCreate2.ToolTip = "ایجاد";
             this.btnCreate2.Visible = false;
             this.btnCreate2.Click += new System.EventHandler(this.btnCreate2_Click);
@@ -1026,11 +1084,11 @@
             // btnDelete2
             // 
             this.btnDelete2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDelete2.ImageOptions.SvgImage")));
-            this.btnDelete2.Location = new System.Drawing.Point(49, 5);
+            this.btnDelete2.Location = new System.Drawing.Point(60, 6);
+            this.btnDelete2.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete2.Name = "btnDelete2";
-            this.btnDelete2.Size = new System.Drawing.Size(38, 33);
+            this.btnDelete2.Size = new System.Drawing.Size(46, 41);
             this.btnDelete2.TabIndex = 2;
-            this.btnDelete2.Text = "simpleButton1";
             this.btnDelete2.ToolTip = "حذف";
             this.btnDelete2.Visible = false;
             this.btnDelete2.Click += new System.EventHandler(this.btnDelete2_Click);
@@ -1038,7 +1096,6 @@
             // panelControl4
             // 
             this.panelControl4.Controls.Add(this.btnDesignReport2);
-            this.panelControl4.Controls.Add(this.btnPrint2);
             this.panelControl4.Controls.Add(this.btnNext2);
             this.panelControl4.Controls.Add(this.btnPrintPreview2);
             this.panelControl4.Controls.Add(this.btnFirst2);
@@ -1046,42 +1103,44 @@
             this.panelControl4.Controls.Add(this.btnLast2);
             this.panelControl4.Controls.Add(this.btnDisplyActiveList2);
             this.panelControl4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl4.Location = new System.Drawing.Point(2, 744);
+            this.panelControl4.Location = new System.Drawing.Point(2, 923);
+            this.panelControl4.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(391, 44);
+            this.panelControl4.Size = new System.Drawing.Size(479, 55);
             this.panelControl4.TabIndex = 1;
             // 
-            // btnPrint2
+            // btnDesignReport2
             // 
-            this.btnPrint2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrint2.ImageOptions.SvgImage")));
-            this.btnPrint2.Location = new System.Drawing.Point(137, 6);
-            this.btnPrint2.Name = "btnPrint2";
-            this.btnPrint2.Size = new System.Drawing.Size(38, 33);
-            this.btnPrint2.TabIndex = 6;
-            this.btnPrint2.Text = "simpleButton1";
-            this.btnPrint2.ToolTip = "چاپ لیست";
-            this.btnPrint2.Visible = false;
+            this.btnDesignReport2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDesignReport2.ImageOptions.SvgImage")));
+            this.btnDesignReport2.Location = new System.Drawing.Point(115, 7);
+            this.btnDesignReport2.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDesignReport2.Name = "btnDesignReport2";
+            this.btnDesignReport2.Size = new System.Drawing.Size(46, 41);
+            this.btnDesignReport2.TabIndex = 41;
+            this.btnDesignReport2.ToolTip = "چاپ لیست";
+            this.btnDesignReport2.Visible = false;
+            this.btnDesignReport2.Click += new System.EventHandler(this.btnDesignReport2_Click);
             // 
             // btnNext2
             // 
             this.btnNext2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNext2.ImageOptions.Image")));
             this.btnNext2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNext2.ImageOptions.SvgImage")));
-            this.btnNext2.Location = new System.Drawing.Point(296, 6);
+            this.btnNext2.Location = new System.Drawing.Point(362, 7);
+            this.btnNext2.Margin = new System.Windows.Forms.Padding(4);
             this.btnNext2.Name = "btnNext2";
-            this.btnNext2.Size = new System.Drawing.Size(38, 33);
+            this.btnNext2.Size = new System.Drawing.Size(46, 41);
             this.btnNext2.TabIndex = 1;
-            this.btnNext2.Text = "simpleButton1";
             this.btnNext2.ToolTip = "بعدی";
             this.btnNext2.Click += new System.EventHandler(this.btnNext2_Click);
             // 
             // btnPrintPreview2
             // 
-            this.btnPrintPreview2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintPreview2.ImageOptions.Image")));
-            this.btnPrintPreview2.Location = new System.Drawing.Point(49, 6);
+            this.btnPrintPreview2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrintPreview2.ImageOptions.SvgImage")));
+            this.btnPrintPreview2.Location = new System.Drawing.Point(60, 7);
+            this.btnPrintPreview2.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrintPreview2.Name = "btnPrintPreview2";
-            this.btnPrintPreview2.Size = new System.Drawing.Size(38, 33);
+            this.btnPrintPreview2.Size = new System.Drawing.Size(46, 41);
             this.btnPrintPreview2.TabIndex = 5;
-            this.btnPrintPreview2.Text = "simpleButton1";
             this.btnPrintPreview2.ToolTip = "نمایش چاپ";
             this.btnPrintPreview2.Click += new System.EventHandler(this.btnPrintPreview2_Click);
             // 
@@ -1089,11 +1148,11 @@
             // 
             this.btnFirst2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnFirst2.ImageOptions.Image")));
             this.btnFirst2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnFirst2.ImageOptions.SvgImage")));
-            this.btnFirst2.Location = new System.Drawing.Point(208, 6);
+            this.btnFirst2.Location = new System.Drawing.Point(254, 7);
+            this.btnFirst2.Margin = new System.Windows.Forms.Padding(4);
             this.btnFirst2.Name = "btnFirst2";
-            this.btnFirst2.Size = new System.Drawing.Size(38, 33);
+            this.btnFirst2.Size = new System.Drawing.Size(46, 41);
             this.btnFirst2.TabIndex = 3;
-            this.btnFirst2.Text = "simpleButton1";
             this.btnFirst2.ToolTip = "اولین رکورد";
             this.btnFirst2.Click += new System.EventHandler(this.btnFirst2_Click);
             // 
@@ -1101,68 +1160,46 @@
             // 
             this.btnPreview2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPreview2.ImageOptions.Image")));
             this.btnPreview2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPreview2.ImageOptions.SvgImage")));
-            this.btnPreview2.Location = new System.Drawing.Point(252, 6);
+            this.btnPreview2.Location = new System.Drawing.Point(308, 7);
+            this.btnPreview2.Margin = new System.Windows.Forms.Padding(4);
             this.btnPreview2.Name = "btnPreview2";
-            this.btnPreview2.Size = new System.Drawing.Size(38, 33);
+            this.btnPreview2.Size = new System.Drawing.Size(46, 41);
             this.btnPreview2.TabIndex = 2;
-            this.btnPreview2.Text = "simpleButton1";
             this.btnPreview2.ToolTip = "قبلی";
             this.btnPreview2.Click += new System.EventHandler(this.btnPreview2_Click);
             // 
             // btnLast2
             // 
             this.btnLast2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLast2.ImageOptions.SvgImage")));
-            this.btnLast2.Location = new System.Drawing.Point(340, 6);
+            this.btnLast2.Location = new System.Drawing.Point(416, 7);
+            this.btnLast2.Margin = new System.Windows.Forms.Padding(4);
             this.btnLast2.Name = "btnLast2";
-            this.btnLast2.Size = new System.Drawing.Size(38, 33);
+            this.btnLast2.Size = new System.Drawing.Size(46, 41);
             this.btnLast2.TabIndex = 0;
-            this.btnLast2.Text = "simpleButton1";
             this.btnLast2.ToolTip = "آخرین رکورد";
             this.btnLast2.Click += new System.EventHandler(this.btnLast2_Click);
             // 
             // btnDisplyActiveList2
             // 
             this.btnDisplyActiveList2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyActiveList2.ImageOptions.SvgImage")));
-            this.btnDisplyActiveList2.Location = new System.Drawing.Point(5, 6);
+            this.btnDisplyActiveList2.Location = new System.Drawing.Point(6, 7);
+            this.btnDisplyActiveList2.Margin = new System.Windows.Forms.Padding(4);
             this.btnDisplyActiveList2.Name = "btnDisplyActiveList2";
-            this.btnDisplyActiveList2.Size = new System.Drawing.Size(38, 33);
+            this.btnDisplyActiveList2.Size = new System.Drawing.Size(46, 41);
             this.btnDisplyActiveList2.TabIndex = 4;
-            this.btnDisplyActiveList2.Text = "simpleButton1";
             this.btnDisplyActiveList2.ToolTip = "نمایش لیست";
             this.btnDisplyActiveList2.Click += new System.EventHandler(this.btnDisplyActiveList2_Click);
             // 
-            // btnDesignReport1
-            // 
-            this.btnDesignReport1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDesignReport1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDesignReport.ImageOptions.Image")));
-            this.btnDesignReport1.Location = new System.Drawing.Point(140, 6);
-            this.btnDesignReport1.Name = "btnDesignReport1";
-            this.btnDesignReport1.Size = new System.Drawing.Size(38, 33);
-            this.btnDesignReport1.TabIndex = 40;
-            this.btnDesignReport1.Text = "simpleButton1";
-            this.btnDesignReport1.ToolTip = "چاپ لیست";
-            this.btnDesignReport1.Visible = false;
-            // 
-            // btnDesignReport2
-            // 
-            this.btnDesignReport2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDesignReport2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.btnDesignReport2.Location = new System.Drawing.Point(93, 6);
-            this.btnDesignReport2.Name = "btnDesignReport2";
-            this.btnDesignReport2.Size = new System.Drawing.Size(38, 33);
-            this.btnDesignReport2.TabIndex = 41;
-            this.btnDesignReport2.Text = "simpleButton1";
-            this.btnDesignReport2.ToolTip = "چاپ لیست";
-            this.btnDesignReport2.Visible = false;
-            // 
             // FrmListVamhayePardakhti
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 790);
+            this.ClientSize = new System.Drawing.Size(1232, 980);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.panelControl2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmListVamhayePardakhti";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1223,7 +1260,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colHesabTafzili;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn45;
         private DevExpress.XtraEditors.PanelControl panelControl3;
-        private DevExpress.XtraEditors.SimpleButton btnPrint1;
         private DevExpress.XtraEditors.SimpleButton btnNext1;
         private DevExpress.XtraEditors.SimpleButton btnPrintPreview1;
         private DevExpress.XtraEditors.SimpleButton btnFirst1;
@@ -1241,7 +1277,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
         private DevExpress.XtraGrid.Columns.GridColumn Mande;
         private DevExpress.XtraEditors.PanelControl panelControl4;
-        private DevExpress.XtraEditors.SimpleButton btnPrint2;
         private DevExpress.XtraEditors.SimpleButton btnNext2;
         private DevExpress.XtraEditors.SimpleButton btnPrintPreview2;
         private DevExpress.XtraEditors.SimpleButton btnFirst2;
@@ -1271,5 +1306,6 @@
         private DevExpress.XtraEditors.SimpleButton btnGharardad;
         private DevExpress.XtraEditors.SimpleButton btnDesignReport1;
         private DevExpress.XtraEditors.SimpleButton btnDesignReport2;
+        private DevExpress.XtraGrid.Columns.GridColumn colSharh;
     }
 }

@@ -89,9 +89,10 @@
             this.lblName.Appearance.Options.UseFont = true;
             this.lblName.Appearance.Options.UseForeColor = true;
             this.lblName.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblName.Location = new System.Drawing.Point(6, 38);
+            this.lblName.Location = new System.Drawing.Point(7, 47);
+            this.lblName.Margin = new System.Windows.Forms.Padding(4);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(251, 34);
+            this.lblName.Size = new System.Drawing.Size(307, 42);
             this.lblName.TabIndex = 17;
             this.lblName.Text = "نام کاربر";
             this.lblName.Visible = false;
@@ -103,9 +104,10 @@
             this.lblSystemDate.Appearance.Options.UseFont = true;
             this.lblSystemDate.Appearance.Options.UseForeColor = true;
             this.lblSystemDate.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblSystemDate.Location = new System.Drawing.Point(6, 3);
+            this.lblSystemDate.Location = new System.Drawing.Point(7, 4);
+            this.lblSystemDate.Margin = new System.Windows.Forms.Padding(4);
             this.lblSystemDate.Name = "lblSystemDate";
-            this.lblSystemDate.Size = new System.Drawing.Size(251, 33);
+            this.lblSystemDate.Size = new System.Drawing.Size(307, 41);
             this.lblSystemDate.TabIndex = 18;
             this.lblSystemDate.Text = "1397/01/01";
             // 
@@ -113,9 +115,10 @@
             // 
             this.labelControl3.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl3.Appearance.Options.UseForeColor = true;
-            this.labelControl3.Location = new System.Drawing.Point(264, 8);
+            this.labelControl3.Location = new System.Drawing.Point(323, 10);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(95, 25);
+            this.labelControl3.Size = new System.Drawing.Size(114, 31);
             this.labelControl3.TabIndex = 19;
             this.labelControl3.Text = "تاریخ سیستم :";
             // 
@@ -123,26 +126,29 @@
             // 
             this.labelControl4.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl4.Appearance.Options.UseForeColor = true;
-            this.labelControl4.Location = new System.Drawing.Point(264, 43);
+            this.labelControl4.Location = new System.Drawing.Point(323, 53);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(60, 25);
+            this.labelControl4.Size = new System.Drawing.Size(73, 31);
             this.labelControl4.TabIndex = 16;
             this.labelControl4.Text = "نام کاربر :";
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(6, 164);
+            this.btnExit.Location = new System.Drawing.Point(7, 203);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(4);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(166, 41);
+            this.btnExit.Size = new System.Drawing.Size(203, 51);
             this.btnExit.TabIndex = 3;
             this.btnExit.Text = "خروج";
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnEnter
             // 
-            this.btnEnter.Location = new System.Drawing.Point(198, 164);
+            this.btnEnter.Location = new System.Drawing.Point(242, 203);
+            this.btnEnter.Margin = new System.Windows.Forms.Padding(4);
             this.btnEnter.Name = "btnEnter";
-            this.btnEnter.Size = new System.Drawing.Size(166, 41);
+            this.btnEnter.Size = new System.Drawing.Size(203, 51);
             this.btnEnter.TabIndex = 2;
             this.btnEnter.Text = "ورود";
             this.btnEnter.Click += new System.EventHandler(this.btnEnter_Click);
@@ -150,46 +156,51 @@
             // txtPassword
             // 
             this.txtPassword.EnterMoveNextControl = true;
-            this.txtPassword.Location = new System.Drawing.Point(6, 123);
+            this.txtPassword.Location = new System.Drawing.Point(7, 153);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Properties.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(251, 32);
+            this.txtPassword.Size = new System.Drawing.Size(307, 38);
             this.txtPassword.TabIndex = 1;
             // 
             // txtShenase
             // 
             this.txtShenase.EnterMoveNextControl = true;
-            this.txtShenase.Location = new System.Drawing.Point(6, 83);
+            this.txtShenase.Location = new System.Drawing.Point(7, 103);
+            this.txtShenase.Margin = new System.Windows.Forms.Padding(4);
             this.txtShenase.Name = "txtShenase";
             this.txtShenase.Properties.PasswordChar = '*';
-            this.txtShenase.Size = new System.Drawing.Size(251, 32);
+            this.txtShenase.Size = new System.Drawing.Size(307, 38);
             this.txtShenase.TabIndex = 0;
             this.txtShenase.Leave += new System.EventHandler(this.txtName_Leave);
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(264, 126);
+            this.labelControl2.Location = new System.Drawing.Point(323, 156);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(49, 25);
+            this.labelControl2.Size = new System.Drawing.Size(60, 31);
             this.labelControl2.TabIndex = 13;
             this.labelControl2.Text = "رمز عبور";
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(260, 86);
+            this.labelControl1.Location = new System.Drawing.Point(318, 107);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(91, 25);
+            this.labelControl1.Size = new System.Drawing.Size(109, 31);
             this.labelControl1.TabIndex = 11;
             this.labelControl1.Text = "شناسه کاربری ";
             // 
             // cmbNameDataBaseSandogh
             // 
-            this.cmbNameDataBaseSandogh.Location = new System.Drawing.Point(29, 172);
+            this.cmbNameDataBaseSandogh.Location = new System.Drawing.Point(35, 213);
+            this.cmbNameDataBaseSandogh.Margin = new System.Windows.Forms.Padding(4);
             this.cmbNameDataBaseSandogh.Name = "cmbNameDataBaseSandogh";
             this.cmbNameDataBaseSandogh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbNameDataBaseSandogh.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.cmbNameDataBaseSandogh.Size = new System.Drawing.Size(205, 32);
+            this.cmbNameDataBaseSandogh.Size = new System.Drawing.Size(251, 38);
             this.cmbNameDataBaseSandogh.TabIndex = 20;
             this.cmbNameDataBaseSandogh.TabStop = false;
             this.cmbNameDataBaseSandogh.Visible = false;
@@ -197,10 +208,11 @@
             // 
             // chkConnectToServer
             // 
-            this.chkConnectToServer.Location = new System.Drawing.Point(8, 173);
+            this.chkConnectToServer.Location = new System.Drawing.Point(10, 215);
+            this.chkConnectToServer.Margin = new System.Windows.Forms.Padding(4);
             this.chkConnectToServer.Name = "chkConnectToServer";
             this.chkConnectToServer.Properties.Caption = "checkEdit1";
-            this.chkConnectToServer.Size = new System.Drawing.Size(18, 29);
+            this.chkConnectToServer.Size = new System.Drawing.Size(22, 35);
             this.chkConnectToServer.TabIndex = 21;
             this.chkConnectToServer.TabStop = false;
             this.chkConnectToServer.Visible = false;
@@ -227,17 +239,19 @@
             this.panelControl1.Controls.Add(this.txtAttachDbFilePath);
             this.panelControl1.Controls.Add(this.txtPassword2);
             this.panelControl1.Controls.Add(this.txtUserName2);
-            this.panelControl1.Location = new System.Drawing.Point(0, 222);
+            this.panelControl1.Location = new System.Drawing.Point(0, 275);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.panelControl1.Size = new System.Drawing.Size(627, 194);
+            this.panelControl1.Size = new System.Drawing.Size(766, 241);
             this.panelControl1.TabIndex = 26;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(525, 153);
+            this.btnSave.Location = new System.Drawing.Point(642, 190);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(89, 33);
+            this.btnSave.Size = new System.Drawing.Size(109, 41);
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "ذخیره";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -246,36 +260,41 @@
             // 
             this.labelControl6.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl6.Appearance.Options.UseForeColor = true;
-            this.labelControl6.Location = new System.Drawing.Point(11, 5);
+            this.labelControl6.Location = new System.Drawing.Point(13, 6);
+            this.labelControl6.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(166, 25);
+            this.labelControl6.Size = new System.Drawing.Size(206, 31);
             this.labelControl6.TabIndex = 14;
             this.labelControl6.Text = "Connect To Database :";
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(23, 43);
+            this.labelControl7.Location = new System.Drawing.Point(28, 53);
+            this.labelControl7.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(94, 25);
+            this.labelControl7.Size = new System.Drawing.Size(115, 31);
             this.labelControl7.TabIndex = 14;
             this.labelControl7.Text = "Server type :";
             // 
             // cmbServerName
             // 
-            this.cmbServerName.Location = new System.Drawing.Point(127, 78);
+            this.cmbServerName.Location = new System.Drawing.Point(155, 97);
+            this.cmbServerName.Margin = new System.Windows.Forms.Padding(4);
             this.cmbServerName.Name = "cmbServerName";
             this.cmbServerName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbServerName.Properties.Items.AddRange(new object[] {
             ".\\Sql2008",
             "(localdb)\\MSSQLLocalDB",
-            ".\\SQLEXPRESS"});
-            this.cmbServerName.Size = new System.Drawing.Size(176, 32);
+            ".\\SQLEXPRESS",
+            "."});
+            this.cmbServerName.Size = new System.Drawing.Size(215, 38);
             this.cmbServerName.TabIndex = 1;
             // 
             // cmbAuthentication
             // 
-            this.cmbAuthentication.Location = new System.Drawing.Point(424, 40);
+            this.cmbAuthentication.Location = new System.Drawing.Point(518, 50);
+            this.cmbAuthentication.Margin = new System.Windows.Forms.Padding(4);
             this.cmbAuthentication.Name = "cmbAuthentication";
             this.cmbAuthentication.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -283,116 +302,128 @@
             "Windows Authentication",
             "SQL Server Authentication"});
             this.cmbAuthentication.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cmbAuthentication.Size = new System.Drawing.Size(190, 32);
+            this.cmbAuthentication.Size = new System.Drawing.Size(232, 38);
             this.cmbAuthentication.TabIndex = 4;
             this.cmbAuthentication.SelectedIndexChanged += new System.EventHandler(this.cmbAuthentication_SelectedIndexChanged);
             // 
             // cmbServerType
             // 
-            this.cmbServerType.Location = new System.Drawing.Point(126, 40);
+            this.cmbServerType.Location = new System.Drawing.Point(154, 50);
+            this.cmbServerType.Margin = new System.Windows.Forms.Padding(4);
             this.cmbServerType.Name = "cmbServerType";
             this.cmbServerType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbServerType.Properties.Items.AddRange(new object[] {
             "Database Engian"});
             this.cmbServerType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cmbServerType.Size = new System.Drawing.Size(176, 32);
+            this.cmbServerType.Size = new System.Drawing.Size(215, 38);
             this.cmbServerType.TabIndex = 0;
             // 
             // LabelAttachDbFilePath
             // 
-            this.LabelAttachDbFilePath.Location = new System.Drawing.Point(11, 157);
+            this.LabelAttachDbFilePath.Location = new System.Drawing.Point(13, 195);
+            this.LabelAttachDbFilePath.Margin = new System.Windows.Forms.Padding(4);
             this.LabelAttachDbFilePath.Name = "LabelAttachDbFilePath";
-            this.LabelAttachDbFilePath.Size = new System.Drawing.Size(109, 25);
+            this.LabelAttachDbFilePath.Size = new System.Drawing.Size(137, 31);
             this.LabelAttachDbFilePath.TabIndex = 14;
             this.LabelAttachDbFilePath.Text = "AttachDbPath :";
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(337, 119);
+            this.labelControl10.Location = new System.Drawing.Point(412, 148);
+            this.labelControl10.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(81, 25);
+            this.labelControl10.Size = new System.Drawing.Size(100, 31);
             this.labelControl10.TabIndex = 14;
             this.labelControl10.Text = "Password :";
             // 
             // LblNameDatabase
             // 
             this.LblNameDatabase.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.LblNameDatabase.Location = new System.Drawing.Point(183, 5);
+            this.LblNameDatabase.Location = new System.Drawing.Point(224, 6);
+            this.LblNameDatabase.Margin = new System.Windows.Forms.Padding(4);
             this.LblNameDatabase.Name = "LblNameDatabase";
-            this.LblNameDatabase.Size = new System.Drawing.Size(235, 25);
+            this.LblNameDatabase.Size = new System.Drawing.Size(287, 31);
             this.LblNameDatabase.TabIndex = 14;
             this.LblNameDatabase.Text = "...";
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(329, 81);
+            this.labelControl9.Location = new System.Drawing.Point(402, 100);
+            this.labelControl9.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(89, 25);
+            this.labelControl9.Size = new System.Drawing.Size(109, 31);
             this.labelControl9.TabIndex = 14;
             this.labelControl9.Text = "User name :";
             // 
             // labelAuthentication
             // 
-            this.labelAuthentication.Location = new System.Drawing.Point(311, 43);
+            this.labelAuthentication.Location = new System.Drawing.Point(380, 53);
+            this.labelAuthentication.Margin = new System.Windows.Forms.Padding(4);
             this.labelAuthentication.Name = "labelAuthentication";
-            this.labelAuthentication.Size = new System.Drawing.Size(110, 25);
+            this.labelAuthentication.Size = new System.Drawing.Size(137, 31);
             this.labelAuthentication.TabIndex = 14;
             this.labelAuthentication.Text = "Authentication ";
             // 
             // txtDatabaseName
             // 
             this.txtDatabaseName.EnterMoveNextControl = true;
-            this.txtDatabaseName.Location = new System.Drawing.Point(126, 116);
+            this.txtDatabaseName.Location = new System.Drawing.Point(154, 144);
+            this.txtDatabaseName.Margin = new System.Windows.Forms.Padding(4);
             this.txtDatabaseName.Name = "txtDatabaseName";
             this.txtDatabaseName.Properties.MaxLength = 23;
-            this.txtDatabaseName.Size = new System.Drawing.Size(177, 32);
+            this.txtDatabaseName.Size = new System.Drawing.Size(216, 38);
             this.txtDatabaseName.TabIndex = 2;
             this.txtDatabaseName.EditValueChanged += new System.EventHandler(this.txtDatabaseName_EditValueChanged);
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(7, 119);
+            this.labelControl8.Location = new System.Drawing.Point(9, 148);
+            this.labelControl8.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(116, 25);
+            this.labelControl8.Size = new System.Drawing.Size(144, 31);
             this.labelControl8.TabIndex = 14;
             this.labelControl8.Text = "DatabaseName:";
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(13, 81);
+            this.labelControl5.Location = new System.Drawing.Point(16, 100);
+            this.labelControl5.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(104, 25);
+            this.labelControl5.Size = new System.Drawing.Size(126, 31);
             this.labelControl5.TabIndex = 14;
             this.labelControl5.Text = "Server name :";
             // 
             // txtAttachDbFilePath
             // 
             this.txtAttachDbFilePath.EnterMoveNextControl = true;
-            this.txtAttachDbFilePath.Location = new System.Drawing.Point(127, 154);
+            this.txtAttachDbFilePath.Location = new System.Drawing.Point(155, 191);
+            this.txtAttachDbFilePath.Margin = new System.Windows.Forms.Padding(4);
             this.txtAttachDbFilePath.Name = "txtAttachDbFilePath";
             this.txtAttachDbFilePath.Properties.MaxLength = 23;
-            this.txtAttachDbFilePath.Size = new System.Drawing.Size(392, 32);
+            this.txtAttachDbFilePath.Size = new System.Drawing.Size(479, 38);
             this.txtAttachDbFilePath.TabIndex = 3;
             // 
             // txtPassword2
             // 
             this.txtPassword2.Enabled = false;
             this.txtPassword2.EnterMoveNextControl = true;
-            this.txtPassword2.Location = new System.Drawing.Point(424, 116);
+            this.txtPassword2.Location = new System.Drawing.Point(518, 144);
+            this.txtPassword2.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword2.Name = "txtPassword2";
             this.txtPassword2.Properties.MaxLength = 23;
-            this.txtPassword2.Size = new System.Drawing.Size(190, 32);
+            this.txtPassword2.Size = new System.Drawing.Size(232, 38);
             this.txtPassword2.TabIndex = 6;
             // 
             // txtUserName2
             // 
             this.txtUserName2.Enabled = false;
             this.txtUserName2.EnterMoveNextControl = true;
-            this.txtUserName2.Location = new System.Drawing.Point(424, 78);
+            this.txtUserName2.Location = new System.Drawing.Point(518, 97);
+            this.txtUserName2.Margin = new System.Windows.Forms.Padding(4);
             this.txtUserName2.Name = "txtUserName2";
             this.txtUserName2.Properties.MaxLength = 23;
-            this.txtUserName2.Size = new System.Drawing.Size(190, 32);
+            this.txtUserName2.Size = new System.Drawing.Size(232, 38);
             this.txtUserName2.TabIndex = 5;
             // 
             // panelControl2
@@ -407,9 +438,10 @@
             this.panelControl2.Controls.Add(this.labelControl4);
             this.panelControl2.Controls.Add(this.btnEnter);
             this.panelControl2.Controls.Add(this.btnExit);
-            this.panelControl2.Location = new System.Drawing.Point(251, 3);
+            this.panelControl2.Location = new System.Drawing.Point(307, 4);
+            this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(371, 213);
+            this.panelControl2.Size = new System.Drawing.Size(453, 264);
             this.panelControl2.TabIndex = 24;
             // 
             // panelControl3
@@ -417,9 +449,10 @@
             this.panelControl3.Controls.Add(this.chkConnectToServer);
             this.panelControl3.Controls.Add(this.cmbNameDataBaseSandogh);
             this.panelControl3.Controls.Add(this.pictureEdit1);
-            this.panelControl3.Location = new System.Drawing.Point(5, 3);
+            this.panelControl3.Location = new System.Drawing.Point(6, 4);
+            this.panelControl3.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(242, 212);
+            this.panelControl3.Size = new System.Drawing.Size(296, 263);
             this.panelControl3.TabIndex = 25;
             // 
             // pictureEdit1
@@ -427,28 +460,29 @@
             this.pictureEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureEdit1.EditValue = ((object)(resources.GetObject("pictureEdit1.EditValue")));
             this.pictureEdit1.Location = new System.Drawing.Point(2, 2);
+            this.pictureEdit1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureEdit1.Name = "pictureEdit1";
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit1.Size = new System.Drawing.Size(238, 208);
+            this.pictureEdit1.Size = new System.Drawing.Size(292, 259);
             this.pictureEdit1.TabIndex = 0;
             // 
             // FrmLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(627, 219);
+            this.ClientSize = new System.Drawing.Size(766, 273);
             this.Controls.Add(this.panelControl3);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmLogin";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "فرم ورود به برنامه ";
             this.Load += new System.EventHandler(this.FrmLogin_Load);

@@ -18,9 +18,10 @@ namespace Sandogh_TG
             InitializeComponent();
         }
 
+       public int RepotPageWidth = 180;
         private void FrmPrinPreview_Load(object sender, EventArgs e)
         {
-            bbiZoom.EditValue = 189;
+            bbiZoom.EditValue = RepotPageWidth;
         }
     }
 }

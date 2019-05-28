@@ -100,8 +100,10 @@
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.pictureEdit3 = new DevExpress.XtraEditors.PictureEdit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit3.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // splashScreenManager1
@@ -160,7 +162,7 @@
             this.barStaticItem1,
             this.barStaticItem2});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.ribbonControl1.MaxItemId = 66;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -172,7 +174,7 @@
             this.Other});
             this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl1.ShowCategoryInCaption = false;
-            this.ribbonControl1.Size = new System.Drawing.Size(1309, 206);
+            this.ribbonControl1.Size = new System.Drawing.Size(1601, 251);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // btnTarifSandogh
@@ -468,6 +470,7 @@
             this.btnSoratSoodVZiyan.Caption = "صورت سود و زیان";
             this.btnSoratSoodVZiyan.Id = 51;
             this.btnSoratSoodVZiyan.Name = "btnSoratSoodVZiyan";
+            this.btnSoratSoodVZiyan.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSoratSoodVZiyan_ItemClick);
             // 
             // barSubItem3
             // 
@@ -711,11 +714,11 @@
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem2, true);
             this.ribbonStatusBar1.ItemLinks.Add(this.NameDataBase);
             this.ribbonStatusBar1.ItemLinks.Add(this.txtDateTimeNow, true);
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 609);
-            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 758);
+            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(6);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(1309, 41);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1601, 48);
             // 
             // barButtonItem1
             // 
@@ -727,46 +730,58 @@
             // 
             // pictureEdit1
             // 
-            this.pictureEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureEdit1.Location = new System.Drawing.Point(0, 206);
-            this.pictureEdit1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureEdit1.EditValue = global::Sandogh_TG.Properties.Resources.Pasground_07;
+            this.pictureEdit1.Location = new System.Drawing.Point(22, 112);
+            this.pictureEdit1.MenuManager = this.ribbonControl1;
             this.pictureEdit1.Name = "pictureEdit1";
-            this.pictureEdit1.Properties.NullText = "میتوانید از منوی امکانات یک تصویر انتخاب کنید";
+            this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pictureEdit1.Properties.NullText = "نرم افزار صندوق پردازشگران";
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit1.Size = new System.Drawing.Size(1309, 403);
-            this.pictureEdit1.TabIndex = 46;
+            this.pictureEdit1.Size = new System.Drawing.Size(305, 133);
+            this.pictureEdit1.TabIndex = 9;
+            // 
+            // pictureEdit3
+            // 
+            this.pictureEdit3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureEdit3.EditValue = global::Sandogh_TG.Properties.Resources.Background_07;
+            this.pictureEdit3.Location = new System.Drawing.Point(0, 251);
+            this.pictureEdit3.MenuManager = this.ribbonControl1;
+            this.pictureEdit3.Name = "pictureEdit3";
+            this.pictureEdit3.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEdit3.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            this.pictureEdit3.Size = new System.Drawing.Size(1601, 555);
+            this.pictureEdit3.TabIndex = 15;
             // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1309, 650);
+            this.ClientSize = new System.Drawing.Size(1601, 806);
             this.Controls.Add(this.pictureEdit1);
             this.Controls.Add(this.ribbonStatusBar1);
+            this.Controls.Add(this.pictureEdit3);
             this.Controls.Add(this.ribbonControl1);
-            this.Font = new System.Drawing.Font("IRANSans(FaNum) Medium", 12F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.Name = "FrmMain";
             this.Ribbon = this.ribbonControl1;
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StatusBar = this.ribbonStatusBar1;
-            this.Text = " نرم افزار صندوق پردازشگران";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
             this.Load += new System.EventHandler(this.FrmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit3.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
         private DevExpress.XtraBars.Ribbon.RibbonPage infoBase;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgInfoBase;
         private DevExpress.XtraBars.Ribbon.RibbonPage DaryaftVPardakht;
@@ -821,7 +836,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
-        private DevExpress.XtraEditors.PictureEdit pictureEdit1;
         private DevExpress.XtraBars.BarSubItem barSubItem3;
         private DevExpress.XtraBars.BarButtonItem btnListKarbaran;
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
@@ -836,6 +850,9 @@
         public DevExpress.XtraBars.BarStaticItem NameDataBase;
         private DevExpress.XtraBars.BarStaticItem barStaticItem1;
         private DevExpress.XtraBars.BarStaticItem barStaticItem2;
+        public DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
+        private DevExpress.XtraEditors.PictureEdit pictureEdit1;
+        private DevExpress.XtraEditors.PictureEdit pictureEdit3;
     }
 }
 

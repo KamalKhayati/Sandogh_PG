@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Data.Entity;
+using DevExpress.XtraReports.UI;
 
 namespace Sandogh_TG
 {
@@ -70,7 +71,7 @@ namespace Sandogh_TG
             {
                 try
                 {
-                    var q1 = db.AllHesabTafzilis.Where(f=>f.GroupTafziliId==3).ToList();
+                    var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3).ToList();
                     if (q1.Count > 0)
                         allHesabTafzilisBindingSource.DataSource = q1;
                     else
@@ -148,14 +149,12 @@ namespace Sandogh_TG
             {
                 btnPrintPreview_Click(sender, null);
             }
-            else if (e.KeyCode == Keys.F12 && btnPrint.Enabled == true)
-            {
-                btnPrint_Click(sender, null);
-            }
             else if (e.KeyCode == Keys.Escape)
             {
                 btnClose_Click(sender, null);
             }
+
+            HelpClass1.ControlAltShift_KeyDown(sender, e, btnDesignReport);
 
         }
 
@@ -179,11 +178,6 @@ namespace Sandogh_TG
         private void btnFirst_Click(object sender, EventArgs e)
         {
             gridView1.MoveFirst();
-        }
-
-        private void btnPrintPreview_Click(object sender, EventArgs e)
-        {
-            HelpClass1.PrintPreview(gridControl1, gridView1);
         }
 
         public void btnDisplayCheckOdatShode_Click(object sender, EventArgs e)
@@ -284,7 +278,7 @@ namespace Sandogh_TG
             FrmListCheckTazminNazdeSandogh fm = new FrmListCheckTazminNazdeSandogh(this);
             fm.ShowDialog();
             txtTarikhOdat.Focus();
-            txtSharhOdat.Text="بابت عودت "+cmbNoeSanad.Text+" تضمین به شماره "+txtShCheck.Text;
+            txtSharhOdat.Text = "بابت عودت " + cmbNoeSanad.Text + " تضمین به شماره " + txtShCheck.Text;
 
         }
 
@@ -311,7 +305,7 @@ namespace Sandogh_TG
                                 db.SaveChanges();
 
                                 btnDisplayCheckOdatShode_Click(null, null);
-                               // XtraMessageBox.Show("عملیات ابطال عودت با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                                // XtraMessageBox.Show("عملیات ابطال عودت با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                                 if (gridView1.RowCount > 0)
                                     gridView1.FocusedRowHandle = EditRowIndex - 1;
                             }
@@ -453,11 +447,6 @@ namespace Sandogh_TG
             InActiveControls();
         }
 
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void gridView1_DoubleClick(object sender, EventArgs e)
         {
             btnEdit_Click(null, null);
@@ -482,5 +471,87 @@ namespace Sandogh_TG
         {
             //btnCreate.Enabled = gridView1.RowCount > 0 && gridView1.GetFocusedRowCellValue("TarikhOdatCheck") == null ? true : false;
         }
+
+        string FilePath1 = Application.StartupPath + @"\Report\Ghozareshat\";
+        string FileName1 = "rptDaryaftTazmin.repx";
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+            if (System.IO.File.Exists(FilePath1 + FileName1))
+            {
+                if (gridView1.RowCount > 0)
+                {
+                    using (var db = new MyContext())
+                    {
+                        try
+                        {
+                            var _TarikhDaryaft = Convert.ToDateTime(gridView1.GetFocusedRowCellValue("TarikhOdatCheck").ToString().Substring(0, 10));
+                            int _VamGerandeId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("VamGerandeId"));
+                            var q = db.CheckTazmins.Where(f => f.VamGerandeId == _VamGerandeId && f.TarikhOdatCheck == _TarikhDaryaft && f.IsInSandogh == false).ToList();
+                            if (q.Count > 0)
+                            {
+                                XtraReport XtraReport1 = new XtraReport();
+                                XtraReport1.LoadLayoutFromXml(FilePath1 + FileName1);
+                                XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
+                                XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
+                                XtraReport1.DataSource = q;
+                                FrmPrinPreview FPP = new FrmPrinPreview();
+                                FPP.documentViewer1.DocumentSource = XtraReport1;
+                                FPP.ShowDialog();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                                "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
+                    //XtraReport1.DataSource = HelpClass1.ConvettDatagridviewToDataSet(gridView1);
+
+                    //XtraReport1.Parameters["ShomareSanad"].Value = gridView3.GetFocusedRowCellDisplayText("ShomareSanad");
+                    //XtraReport1.Parameters["NahveyePardakht"].Value = gridView3.GetFocusedRowCellDisplayText("NahveyePardakht");
+                    //XtraReport1.Parameters["NoeVam"].Value = gridView3.GetFocusedRowCellDisplayText("NoeVam");
+                    //XtraReport1.Parameters["DarsadeKarmozd"].Value = gridView3.GetFocusedRowCellDisplayText("DarsadeKarmozd");
+                    //XtraReport1.Parameters["MablaghDirkard"].Value = gridView3.GetFocusedRowCellDisplayText("MablaghDirkard");
+                    //XtraReport1.Parameters["TarikhDarkhast"].Value = gridView3.GetFocusedRowCellDisplayText("TarikhDarkhast");
+                    //XtraReport1.Parameters["ShomareDarkhast"].Value = gridView3.GetFocusedRowCellDisplayText("ShomareDarkhast");
+                    //XtraReport1.Parameters["Code"].Value = gridView3.GetFocusedRowCellDisplayText("Code");
+                    //XtraReport1.Parameters["TarikhPardakht"].Value = gridView3.GetFocusedRowCellDisplayText("TarikhPardakht");
+                    //XtraReport1.Parameters["MablaghAsli"].Value = gridView3.GetFocusedRowCellDisplayText("MablaghAsli");
+                    //XtraReport1.Parameters["MablaghKarmozd"].Value = gridView3.GetFocusedRowCellDisplayText("MablaghKarmozd");
+                    //XtraReport1.Parameters["FaseleAghsat"].Value = gridView3.GetFocusedRowCellDisplayText("FaseleAghsat");
+                    //XtraReport1.Parameters["TedadAghsat"].Value = gridView3.GetFocusedRowCellDisplayText("TedadAghsat");
+                    //XtraReport1.Parameters["MablaghAghsat"].Value = gridView3.GetFocusedRowCellDisplayText("MablaghAghsat");
+                    //XtraReport1.Parameters["SarresidAvalinGhest"].Value = gridView3.GetFocusedRowCellDisplayText("SarresidAvalinGhest");
+                    //XtraReport1.Parameters["ZameninName"].Value = gridView3.GetFocusedRowCellDisplayText("ZameninName");
+                    //XtraReport1.Parameters["HaveCheckTazmin"].Value = gridView3.GetFocusedRowCellDisplayText("HaveCheckTazmin");
+
+
+                    //XtraReport1.DataSource = gridView2.DataSource;
+                    //XtraReport1.Parameters["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : gridView2.GetRowCellDisplayText(0, "Tarikh").Substring(0, 10);
+                    //XtraReport1.Parameters["Ta_Tarikh"].Value = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
+                    //XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
+
+                    //List<decimal> ListMande1 = new List<decimal>();
+                    //for (int i = 0; i < gridView1.RowCount; i++)
+                    //{
+                    //    ListMande1.Add(Convert.ToDecimal(gridView2.GetRowCellValue(i, "Mande1")));
+                    //}
+                    //XtraReport1.Parameters["Mande1"].Value = ListMande1;
+
+                }
+            }
+            else
+            {
+                HelpClass1.NewReportDesigner(FilePath1, FileName1);
+            }
+        }
+
+        private void btnDesignReport_Click(object sender, EventArgs e)
+        {
+            HelpClass1.LoadReportDesigner(FilePath1, FileName1);
+        }
+
+
     }
 }

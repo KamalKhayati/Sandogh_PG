@@ -5,8 +5,11 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.UI;
+using DevExpress.XtraPrinting;
 using Microsoft.Win32;
 using Stimulsoft.Report;
+using Stimulsoft.Editor;
+using Stimulsoft.Controls;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,6 +17,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Stimulsoft.Report.Design;
+using System.Security.Cryptography;
+using System.IO;
 
 namespace Sandogh_TG
 {
@@ -307,7 +313,8 @@ namespace Sandogh_TG
                 //ساخت فرم طراحی گزارش و ارسال فرم طراحی شده قبلی به فرم طراحی جهت ویرایش
                 FrmReportDesigner frd = new FrmReportDesigner();
                 frd.reportDesigner1.OpenReport(FilePath + FileName);
-                frd.ShowDialog();
+                frd.Show();
+
             }
             else
             {
@@ -317,17 +324,20 @@ namespace Sandogh_TG
 
         public static void NewReportDesigner(string FilePath, string FileName)
         {
-            XtraMessageBox.Show("چاپ فوق قبلاً طراحی نشده است لذا در صورت طراحی چاپ ، فایل مربوطه را با نام " + FileName + " در مسیر \n" + (FilePath) + " ذخیره فرمایید.", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+            XtraMessageBox.Show("چاپ فوق قبلاً طراحی نشده است لذا در صورت طراحی چاپ ، فایل مربوطه را با نام " + FileName + " در مسیر \n" + FilePath + " ذخیره فرمایید.", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
             //ساخت فرم طراحی گزارش و ارسال فرم طراحی شده قبلی به فرم طراحی جهت ویرایش
             XtraReport XtraReport1 = new XtraReport();
+            XtraReport1.DisplayName = FileName;
+            XtraReport1.PaperName = FileName;
+            XtraReport1.PaperKind = System.Drawing.Printing.PaperKind.Letter;
+            XtraReport1.Name = FileName;
+            //XtraReport1.PrinterName = FileName;
+            XtraReport1.Margins= new System.Drawing.Printing.Margins(25, 25, 25, 25);
             FrmReportDesigner frd = new FrmReportDesigner();
             frd.reportDesigner1.OpenReport(XtraReport1);
-            frd.ShowDialog();
+            frd.Show();
 
-            //////////////////////////// باند کردن دیتابیس به فرم طراحی گزارش//////////////////////////////
-            //snapControl1.Document.BeginUpdateDataSource();
-            //this.snapControl1.Document.DataSources.Add(new DataSourceInfo("Cars", e1List));
-            //snapControl1.Document.EndUpdateDataSource();
+
         }
 
         public static DataSet ConvettDatagridviewToDataSet(GridView gridView)
@@ -350,6 +360,153 @@ namespace Sandogh_TG
             ds.Tables.Add(dt);
             return ds;
         }
+
+        /////Encryption یا رمزنگاری
+        public static byte[] AES_Encrypt(byte[] bytesToBeEncrypted, byte[] passwordBytes)
+        {
+            byte[] encryptedBytes = null;
+
+            byte[] saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                using (RijndaelManaged AES = new RijndaelManaged())
+                {
+                    AES.KeySize = 256;
+                    AES.BlockSize = 128;
+
+                    var key = new Rfc2898DeriveBytes(passwordBytes, saltBytes, 1000);
+                    AES.Key = key.GetBytes(AES.KeySize / 8);
+                    AES.IV = key.GetBytes(AES.BlockSize / 8);
+
+                    AES.Mode = CipherMode.CBC;
+
+                    using (var cs = new CryptoStream(ms, AES.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(bytesToBeEncrypted, 0, bytesToBeEncrypted.Length);
+                        cs.Close();
+                    }
+                    encryptedBytes = ms.ToArray();
+                }
+            }
+
+            return encryptedBytes;
+        }
+
+        /////Decryption یا رمزگشایی
+        public static byte[] AES_Decrypt(byte[] bytesToBeDecrypted, byte[] passwordBytes)
+        {
+            byte[] decryptedBytes = null;
+
+
+            byte[] saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                using (RijndaelManaged AES = new RijndaelManaged())
+                {
+                    AES.KeySize = 256;
+                    AES.BlockSize = 128;
+
+                    var key = new Rfc2898DeriveBytes(passwordBytes, saltBytes, 1000);
+                    AES.Key = key.GetBytes(AES.KeySize / 8);
+                    AES.IV = key.GetBytes(AES.BlockSize / 8);
+
+                    AES.Mode = CipherMode.CBC;
+
+                    using (var cs = new CryptoStream(ms, AES.CreateDecryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(bytesToBeDecrypted, 0, bytesToBeDecrypted.Length);
+                        cs.Close();
+                    }
+                    decryptedBytes = ms.ToArray();
+                }
+            }
+
+            return decryptedBytes;
+        }
+
+        /////خب حالا باید دو تا void درست کنیم تا Encrypt و Decrypt را ساده تر برامون انجام دهند.
+        ///ابتدا void مربوط به Encrypt
+        public static string EncryptText(string input, string password="km113012")
+        {
+            byte[] bytesToBeEncrypted = Encoding.UTF8.GetBytes(input);
+            byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+
+            passwordBytes = SHA256.Create().ComputeHash(passwordBytes);
+
+            byte[] bytesEncrypted = AES_Encrypt(bytesToBeEncrypted, passwordBytes);
+
+            string result = Convert.ToBase64String(bytesEncrypted);
+
+            return result;
+        }
+
+        ///////سپس void دوم یا Decrypt همانند زیر می شود.
+        ///نحوه استفاده از آن هم بسیار ساده است متد ها هرکدام دو مقدار ورودی دارد که اولی استرینگ است که می خواهید کد شود و دومی کلید شما است.
+        public static string DecryptText(string input, string password = "km113012")
+        {
+            byte[] bytesToBeDecrypted = Convert.FromBase64String(input);
+            byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+            passwordBytes = SHA256.Create().ComputeHash(passwordBytes);
+
+            byte[] bytesDecrypted = AES_Decrypt(bytesToBeDecrypted, passwordBytes);
+
+            string result = Encoding.UTF8.GetString(bytesDecrypted);
+
+            return result;
+        }
+
+
+
+        //public static void LoadReportDesigner1(string FilePath, string FileName)
+        //{
+        //    if (System.IO.File.Exists(FilePath + FileName))
+        //    {
+        //        StiReport str = new StiReport();
+        //        str.Load(FilePath + FileName);
+        //        StiDesigner stiDesigner = new StiDesigner();
+        //        stiDesigner.Report = str;
+        //        stiDesigner.ShowDialogDesigner();
+
+
+        //        ////ساخت فرم طراحی گزارش و ارسال فرم طراحی شده قبلی به فرم طراحی جهت ویرایش
+        //        //FrmReportDesigner frd = new FrmReportDesigner();
+        //        //frd.reportDesigner1.OpenReport(FilePath + FileName);
+        //        //frd.Show();
+
+        //        //StiReport str = new StiReport();
+        //        //str.Load(FilePath + FileName);
+        //        //str.RegBusinessObject("rptRizDaryafti", gridView2.SourceView);
+        //        //str.Dictionary.Variables["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : gridView1.GetRowCellDisplayText(0, "Tarikh").Substring(0, 10);
+        //        //str.Dictionary.Variables["Ta_Tarikh"].Value = ChkTarikh.Checked ? txtTaTarikh.Text : gridView1.GetRowCellDisplayText(gridView1.RowCount - 1, "Tarikh").Substring(0, 10);
+        //        //str.Dictionary.Variables["TarikhVSaat"].ValueObject = DateTime.Now;
+        //        //str.Compile();
+        //        //str.ShowWithRibbonGUI();
+
+        //    }
+        //    else
+        //    {
+        //        NewReportDesigner1(FilePath, FileName);
+        //    }
+        //}
+
+        //public static void NewReportDesigner1(string FilePath, string FileName)
+        //{
+        //    ////ساخت فرم طراحی گزارش و ارسال فرم طراحی شده قبلی به فرم طراحی جهت ویرایش
+        //    //XtraReport XtraReport1 = new XtraReport();
+        //    //XtraReport1.DisplayName = FileName;
+        //    //FrmReportDesigner frd = new FrmReportDesigner();
+        //    //frd.reportDesigner1.OpenReport(XtraReport1);
+        //    //frd.Show();
+
+        //    XtraMessageBox.Show("چاپ فوق قبلاً طراحی نشده است لذا در صورت طراحی چاپ ، فایل مربوطه را با نام " + FileName + " در مسیر \n" + FilePath + " ذخیره فرمایید.", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+        //    StiReport str = new StiReport();
+        //    StiDesigner stiDesigner = new StiDesigner();
+        //    stiDesigner.Report = str;
+        //    stiDesigner.ShowDialogDesigner();
+        //}
+
 
     }
 

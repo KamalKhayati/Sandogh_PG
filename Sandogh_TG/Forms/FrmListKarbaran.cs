@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Data.Entity;
+using System.Security.Cryptography;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace Sandogh_TG
 {
@@ -117,10 +119,18 @@ namespace Sandogh_TG
                     {
                         if (En == EnumCED.Create)
                         {
+                            //SHA256CryptoServiceProvider Sha2 = new SHA256CryptoServiceProvider();
+                            //Byte[] B1;
+                            //Byte[] B2;
+
+                            //B1 = UTF8Encoding.UTF8.GetBytes(txtPassword.Text.Trim());
+                            //B2 = Sha2.ComputeHash(B1);
+                            //string P1 = BitConverter.ToString(B2);
+
                             Karbaran obj = new Karbaran();
                             obj.Name = txtName.Text;
-                            obj.Shenase = txtShenase.Text;
-                            obj.Password = txtPassword.Text;
+                            obj.Shenase = HelpClass1.EncryptText(txtShenase.Text);
+                            obj.Password = HelpClass1.EncryptText(txtPassword.Text);
                             db.Karbarans.Add(obj);
                             db.SaveChanges();
                             //XtraMessageBox.Show("اطلاعات با موفقیت ثبت شد", "پیغام ثبت ", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -139,8 +149,8 @@ namespace Sandogh_TG
                             if (q != null)
                             {
                                 q.Name = txtName.Text;
-                                q.Shenase = txtShenase.Text;
-                                q.Password = txtPassword.Text;
+                                q.Shenase = HelpClass1.EncryptText(txtShenase.Text);
+                                q.Password = HelpClass1.EncryptText(txtPassword.Text);
                                 db.SaveChanges();
                                 //XtraMessageBox.Show("اطلاعات با موفقیت ویرایش شد", "پیغام ثبت ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 btnDisplyList_Click(null, null);
@@ -152,6 +162,8 @@ namespace Sandogh_TG
                                 InActiveControls();
                                 En = EnumCED.Save;
                             }
+                            btnDelete.Enabled = btnEdit.Enabled = false;
+
                         }
 
                     }
@@ -213,6 +225,7 @@ namespace Sandogh_TG
         private void gridView1_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
         {
             HelpClass1.SetNumberRowsColumnUnboundGirdView(sender, e);
+
         }
 
         public void InActiveButtons()
@@ -299,7 +312,7 @@ namespace Sandogh_TG
                             var q = db.Karbarans.FirstOrDefault(p => p.Id == RowId);
                             if (q != null)
                             {
-                                if (q.Id==1)
+                                if (q.Id == 1)
                                 {
                                     XtraMessageBox.Show("کاربر فوق سیستمی است لذا قابل حذف نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                                     return;
@@ -312,6 +325,9 @@ namespace Sandogh_TG
                                 //XtraMessageBox.Show("عملیات حذف با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                                 if (gridView1.RowCount > 0)
                                     gridView1.FocusedRowHandle = EditRowIndex - 1;
+
+                                btnDelete.Enabled = btnEdit.Enabled = false;
+
                             }
                             else
                                 XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -368,7 +384,7 @@ namespace Sandogh_TG
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            btnDelete.Enabled = btnEdit.Enabled = gridView1.RowCount > 0 ? true : false;
+            // btnDelete.Enabled = btnEdit.Enabled = gridView1.RowCount > 0 ? true : false;
         }
 
         private void btnSaveNext_Click(object sender, EventArgs e)
@@ -378,5 +394,34 @@ namespace Sandogh_TG
                 btnCreate_Click(null, null);
         }
 
+        private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
+        {
+
+            if (gridView1.RowCount > 0)
+            {
+                btnDelete.Enabled = btnEdit.Enabled =  true ;
+                using (var db = new MyContext())
+                {
+                    try
+                    {
+                        FillDataGridListKarbaran();
+                        int RowId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id"));
+                        int RowIndex = gridView1.FocusedRowHandle;
+                        var q = db.Karbarans.FirstOrDefault(f => f.Id == RowId);
+                        if (q != null)
+                        {
+                            gridView1.SetRowCellValue(RowIndex, "Password", HelpClass1.DecryptText(q.Password.ToString()));
+                            gridView1.SetRowCellValue(RowIndex, "Shenase", HelpClass1.DecryptText(q.Shenase.ToString()));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+            }
+        }
     }
 }

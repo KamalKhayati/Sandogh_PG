@@ -18,10 +18,11 @@ namespace Sandogh_TG
 {
     public partial class FrmSoratHesabTafzili : DevExpress.XtraEditors.XtraForm
     {
-
-        public FrmSoratHesabTafzili()
+        FrmMain Fm;
+        public FrmSoratHesabTafzili(FrmMain fm)
         {
             InitializeComponent();
+            Fm = fm;
         }
         public void FillDataGridView1()
         {
@@ -221,6 +222,7 @@ namespace Sandogh_TG
                     XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
                     XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
                     XtraReport1.Parameters["HesabTafzil"].Value = cmbHesabTafzili.Text;
+                    XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
                     //List<decimal> ListMande1 = new List<decimal>();
                     //for (int i = 0; i < gridView1.RowCount; i++)
                     //{

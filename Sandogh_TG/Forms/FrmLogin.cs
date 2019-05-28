@@ -34,7 +34,9 @@ namespace Sandogh_TG
                 {
                     try
                     {
-                        var q = db.Karbarans.FirstOrDefault(f => f.Shenase == txtShenase.Text && f.Password == txtPassword.Text);
+                        string _Password = HelpClass1.EncryptText(txtPassword.Text);
+                        string _Shenase = HelpClass1.EncryptText(txtShenase.Text);
+                        var q = db.Karbarans.FirstOrDefault(f => f.Shenase == _Shenase && f.Password == _Password);
                         if (q != null)
                         {
                             this.Close();
@@ -204,7 +206,7 @@ namespace Sandogh_TG
                     LblNameDatabase.Text = db.Database.Connection.Database;
                     try
                     {
-                        string _Shenase = txtShenase.Text;
+                        string _Shenase =HelpClass1.EncryptText(txtShenase.Text);
                         var q = db.Karbarans.FirstOrDefault(f => f.Shenase == _Shenase);
                         if (q != null)
                         {
@@ -230,7 +232,7 @@ namespace Sandogh_TG
 
         private void chkConnectToServer_CheckedChanged(object sender, EventArgs e)
         {
-            this.Height = chkConnectToServer.Checked ? 456 : 259;
+            this.Height = chkConnectToServer.Checked ? 562 : 319;
             cmbServerType.SelectedIndex = 0;
             cmbServerName.SelectedIndex = 0;
             cmbAuthentication.SelectedIndex = 0;

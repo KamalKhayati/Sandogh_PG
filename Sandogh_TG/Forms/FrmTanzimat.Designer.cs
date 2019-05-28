@@ -73,8 +73,9 @@
             this.xtraScrollableControl1.Controls.Add(this.panelControl2);
             this.xtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 0);
+            this.xtraScrollableControl1.Margin = new System.Windows.Forms.Padding(4);
             this.xtraScrollableControl1.Name = "xtraScrollableControl1";
-            this.xtraScrollableControl1.Size = new System.Drawing.Size(886, 326);
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(1080, 404);
             this.xtraScrollableControl1.TabIndex = 1;
             // 
             // panelControl2
@@ -84,8 +85,9 @@
             this.panelControl2.Controls.Add(this.checkEdit2);
             this.panelControl2.Controls.Add(this.checkEdit1);
             this.panelControl2.Location = new System.Drawing.Point(0, 0);
+            this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(884, 324);
+            this.panelControl2.Size = new System.Drawing.Size(1080, 402);
             this.panelControl2.TabIndex = 2;
             // 
             // panelControl4
@@ -108,17 +110,19 @@
             this.panelControl4.Controls.Add(this.labelControl1);
             this.panelControl4.Controls.Add(this.labelControl15);
             this.panelControl4.Controls.Add(this.labelControl6);
-            this.panelControl4.Location = new System.Drawing.Point(9, 5);
+            this.panelControl4.Location = new System.Drawing.Point(11, 6);
+            this.panelControl4.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(864, 205);
+            this.panelControl4.Size = new System.Drawing.Size(1056, 254);
             this.panelControl4.TabIndex = 37;
             // 
             // btnClose
             // 
             this.btnClose.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnClose.ImageOptions.SvgImage")));
-            this.btnClose.Location = new System.Drawing.Point(5, 7);
+            this.btnClose.Location = new System.Drawing.Point(6, 9);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(100, 39);
+            this.btnClose.Size = new System.Drawing.Size(122, 48);
             this.btnClose.TabIndex = 6;
             this.btnClose.Text = "بستن ";
             this.btnClose.ToolTip = "Escape";
@@ -128,9 +132,10 @@
             // btnSaveClose
             // 
             this.btnSaveClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveClose.ImageOptions.Image")));
-            this.btnSaveClose.Location = new System.Drawing.Point(111, 7);
+            this.btnSaveClose.Location = new System.Drawing.Point(136, 9);
+            this.btnSaveClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnSaveClose.Name = "btnSaveClose";
-            this.btnSaveClose.Size = new System.Drawing.Size(142, 39);
+            this.btnSaveClose.Size = new System.Drawing.Size(174, 48);
             this.btnSaveClose.TabIndex = 5;
             this.btnSaveClose.Text = "ذخیره و بستن";
             this.btnSaveClose.ToolTip = "F5";
@@ -139,9 +144,10 @@
             // 
             // btnSelectPath
             // 
-            this.btnSelectPath.Location = new System.Drawing.Point(5, 165);
+            this.btnSelectPath.Location = new System.Drawing.Point(6, 205);
+            this.btnSelectPath.Margin = new System.Windows.Forms.Padding(4);
             this.btnSelectPath.Name = "btnSelectPath";
-            this.btnSelectPath.Size = new System.Drawing.Size(68, 33);
+            this.btnSelectPath.Size = new System.Drawing.Size(83, 41);
             this.btnSelectPath.TabIndex = 42;
             this.btnSelectPath.TabStop = false;
             this.btnSelectPath.Text = "...";
@@ -152,20 +158,22 @@
             // txtPath
             // 
             this.txtPath.EnterMoveNextControl = true;
-            this.txtPath.Location = new System.Drawing.Point(79, 166);
+            this.txtPath.Location = new System.Drawing.Point(97, 206);
+            this.txtPath.Margin = new System.Windows.Forms.Padding(4);
             this.txtPath.Name = "txtPath";
             this.txtPath.Properties.MaxLength = 400;
             this.txtPath.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtPath.Size = new System.Drawing.Size(598, 32);
+            this.txtPath.Size = new System.Drawing.Size(731, 38);
             this.txtPath.TabIndex = 4;
             // 
             // labelControl7
             // 
             this.labelControl7.AutoEllipsis = true;
             this.labelControl7.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl7.Location = new System.Drawing.Point(681, 165);
+            this.labelControl7.Location = new System.Drawing.Point(832, 205);
+            this.labelControl7.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(172, 32);
+            this.labelControl7.Size = new System.Drawing.Size(210, 40);
             this.labelControl7.TabIndex = 44;
             this.labelControl7.Text = " مسیر فایل پشتیبان برنامه";
             // 
@@ -173,7 +181,8 @@
             // 
             this.txtDarsadeKarmozd.EditValue = "";
             this.txtDarsadeKarmozd.EnterMoveNextControl = true;
-            this.txtDarsadeKarmozd.Location = new System.Drawing.Point(607, 14);
+            this.txtDarsadeKarmozd.Location = new System.Drawing.Point(742, 17);
+            this.txtDarsadeKarmozd.Margin = new System.Windows.Forms.Padding(4);
             this.txtDarsadeKarmozd.Name = "txtDarsadeKarmozd";
             this.txtDarsadeKarmozd.Properties.Appearance.Options.UseTextOptions = true;
             this.txtDarsadeKarmozd.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -181,30 +190,33 @@
             this.txtDarsadeKarmozd.Properties.Mask.EditMask = "n2";
             this.txtDarsadeKarmozd.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtDarsadeKarmozd.Properties.MaxLength = 5;
-            this.txtDarsadeKarmozd.Size = new System.Drawing.Size(70, 32);
+            this.txtDarsadeKarmozd.Size = new System.Drawing.Size(86, 38);
             this.txtDarsadeKarmozd.TabIndex = 0;
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(688, 17);
+            this.labelControl9.Location = new System.Drawing.Point(841, 21);
+            this.labelControl9.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(104, 25);
+            this.labelControl9.Size = new System.Drawing.Size(128, 31);
             this.labelControl9.TabIndex = 34;
             this.labelControl9.Text = "درصد کارمزد وام";
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(585, 17);
+            this.labelControl3.Location = new System.Drawing.Point(715, 21);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(12, 25);
+            this.labelControl3.Size = new System.Drawing.Size(15, 31);
             this.labelControl3.TabIndex = 35;
             this.labelControl3.Text = "%";
             // 
             // labelControl13
             // 
-            this.labelControl13.Location = new System.Drawing.Point(688, 54);
+            this.labelControl13.Location = new System.Drawing.Point(841, 67);
+            this.labelControl13.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(118, 25);
+            this.labelControl13.Size = new System.Drawing.Size(145, 31);
             this.labelControl13.TabIndex = 33;
             this.labelControl13.Text = "مبلغ دیرکرد اقساط";
             // 
@@ -212,7 +224,8 @@
             // 
             this.txtMaximumAghsatSalane.EditValue = "5";
             this.txtMaximumAghsatSalane.EnterMoveNextControl = true;
-            this.txtMaximumAghsatSalane.Location = new System.Drawing.Point(607, 128);
+            this.txtMaximumAghsatSalane.Location = new System.Drawing.Point(742, 159);
+            this.txtMaximumAghsatSalane.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaximumAghsatSalane.Name = "txtMaximumAghsatSalane";
             this.txtMaximumAghsatSalane.Properties.Appearance.Options.UseTextOptions = true;
             this.txtMaximumAghsatSalane.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -220,16 +233,17 @@
             this.txtMaximumAghsatSalane.Properties.Mask.EditMask = "n";
             this.txtMaximumAghsatSalane.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtMaximumAghsatSalane.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtMaximumAghsatSalane.Size = new System.Drawing.Size(70, 32);
+            this.txtMaximumAghsatSalane.Size = new System.Drawing.Size(86, 38);
             this.txtMaximumAghsatSalane.TabIndex = 3;
             // 
             // labelControl14
             // 
             this.labelControl14.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl14.Appearance.Options.UseFont = true;
-            this.labelControl14.Location = new System.Drawing.Point(580, 58);
+            this.labelControl14.Location = new System.Drawing.Point(709, 72);
+            this.labelControl14.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(22, 21);
+            this.labelControl14.Size = new System.Drawing.Size(28, 27);
             this.labelControl14.TabIndex = 32;
             this.labelControl14.Text = "ریال";
             // 
@@ -237,7 +251,8 @@
             // 
             this.txtMaximumAghsatMahane.EditValue = "60";
             this.txtMaximumAghsatMahane.EnterMoveNextControl = true;
-            this.txtMaximumAghsatMahane.Location = new System.Drawing.Point(607, 90);
+            this.txtMaximumAghsatMahane.Location = new System.Drawing.Point(742, 112);
+            this.txtMaximumAghsatMahane.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaximumAghsatMahane.Name = "txtMaximumAghsatMahane";
             this.txtMaximumAghsatMahane.Properties.Appearance.Options.UseTextOptions = true;
             this.txtMaximumAghsatMahane.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -245,16 +260,17 @@
             this.txtMaximumAghsatMahane.Properties.Mask.EditMask = "n";
             this.txtMaximumAghsatMahane.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtMaximumAghsatMahane.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtMaximumAghsatMahane.Size = new System.Drawing.Size(70, 32);
+            this.txtMaximumAghsatMahane.Size = new System.Drawing.Size(86, 38);
             this.txtMaximumAghsatMahane.TabIndex = 2;
             // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(584, 96);
+            this.labelControl2.Location = new System.Drawing.Point(714, 119);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(17, 21);
+            this.labelControl2.Size = new System.Drawing.Size(21, 27);
             this.labelControl2.TabIndex = 32;
             this.labelControl2.Text = "ماه";
             // 
@@ -262,7 +278,8 @@
             // 
             this.txtMablaghDirkard.EditValue = "";
             this.txtMablaghDirkard.EnterMoveNextControl = true;
-            this.txtMablaghDirkard.Location = new System.Drawing.Point(607, 52);
+            this.txtMablaghDirkard.Location = new System.Drawing.Point(742, 64);
+            this.txtMablaghDirkard.Margin = new System.Windows.Forms.Padding(4);
             this.txtMablaghDirkard.Name = "txtMablaghDirkard";
             this.txtMablaghDirkard.Properties.Appearance.Options.UseTextOptions = true;
             this.txtMablaghDirkard.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -270,24 +287,26 @@
             this.txtMablaghDirkard.Properties.Mask.EditMask = "n";
             this.txtMablaghDirkard.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtMablaghDirkard.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtMablaghDirkard.Size = new System.Drawing.Size(70, 32);
+            this.txtMablaghDirkard.Size = new System.Drawing.Size(86, 38);
             this.txtMablaghDirkard.TabIndex = 1;
             // 
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(580, 134);
+            this.labelControl4.Location = new System.Drawing.Point(709, 166);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(21, 21);
+            this.labelControl4.Size = new System.Drawing.Size(28, 27);
             this.labelControl4.TabIndex = 32;
             this.labelControl4.Text = "سال";
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(683, 93);
+            this.labelControl1.Location = new System.Drawing.Point(835, 115);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(174, 25);
+            this.labelControl1.Size = new System.Drawing.Size(212, 31);
             this.labelControl1.TabIndex = 33;
             this.labelControl1.Text = "حداکثر تعداد اقساط ماهانه";
             // 
@@ -295,55 +314,62 @@
             // 
             this.labelControl15.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl15.Appearance.Options.UseFont = true;
-            this.labelControl15.Location = new System.Drawing.Point(379, 59);
+            this.labelControl15.Location = new System.Drawing.Point(463, 73);
+            this.labelControl15.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(188, 19);
+            this.labelControl15.Size = new System.Drawing.Size(233, 24);
             this.labelControl15.TabIndex = 31;
             this.labelControl15.Text = "(جریمه هر روز تأخیر در پرداخت اقساط)";
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(683, 131);
+            this.labelControl6.Location = new System.Drawing.Point(835, 162);
+            this.labelControl6.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(172, 25);
+            this.labelControl6.Size = new System.Drawing.Size(209, 31);
             this.labelControl6.TabIndex = 33;
             this.labelControl6.Text = "حداکثر تعداد اقساط سالانه";
             // 
             // checkEdit3
             // 
             this.checkEdit3.EditValue = true;
-            this.checkEdit3.Location = new System.Drawing.Point(9, 286);
+            this.checkEdit3.Location = new System.Drawing.Point(11, 355);
+            this.checkEdit3.Margin = new System.Windows.Forms.Padding(4);
             this.checkEdit3.Name = "checkEdit3";
             this.checkEdit3.Properties.Caption = "یادآوری روزانه اقساط سررسید گذشته وامها و پس انداز ماهیانه دریافت نشده در ابتدای " +
     "شروع برنامه";
-            this.checkEdit3.Size = new System.Drawing.Size(864, 29);
+            this.checkEdit3.Size = new System.Drawing.Size(1056, 35);
             this.checkEdit3.TabIndex = 2;
             // 
             // checkEdit2
             // 
             this.checkEdit2.EditValue = true;
-            this.checkEdit2.Location = new System.Drawing.Point(9, 251);
+            this.checkEdit2.Location = new System.Drawing.Point(11, 311);
+            this.checkEdit2.Margin = new System.Windows.Forms.Padding(4);
             this.checkEdit2.Name = "checkEdit2";
             this.checkEdit2.Properties.Caption = "در صورت تسویه نشدن وام قبلی ، از پرداخت وام جدید به آن عضو خودداری شود";
-            this.checkEdit2.Size = new System.Drawing.Size(864, 29);
+            this.checkEdit2.Size = new System.Drawing.Size(1056, 35);
             this.checkEdit2.TabIndex = 1;
             // 
             // checkEdit1
             // 
             this.checkEdit1.EditValue = true;
-            this.checkEdit1.Location = new System.Drawing.Point(9, 216);
+            this.checkEdit1.Location = new System.Drawing.Point(11, 268);
+            this.checkEdit1.Margin = new System.Windows.Forms.Padding(4);
             this.checkEdit1.Name = "checkEdit1";
             this.checkEdit1.Properties.Caption = "درپرداخت وام به اعضاء تعیین ضامن و یا گرفتن چک و سفته تضمینی الزامی است ";
-            this.checkEdit1.Size = new System.Drawing.Size(864, 29);
+            this.checkEdit1.Size = new System.Drawing.Size(1056, 35);
             this.checkEdit1.TabIndex = 0;
             // 
             // FrmTanzimat
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(886, 326);
+            this.ClientSize = new System.Drawing.Size(1080, 404);
             this.Controls.Add(this.xtraScrollableControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmTanzimat";

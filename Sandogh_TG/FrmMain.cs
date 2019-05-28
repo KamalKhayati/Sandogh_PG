@@ -129,11 +129,11 @@ namespace Sandogh_TG
                         if (q2.PicBackground != null)
                         {
                             MemoryStream ms = new MemoryStream(q2.PicBackground);
-                            pictureEdit1.Image = Image.FromStream(ms);
-                            img = pictureEdit1.Image;
+                            pictureEdit3.Image = Image.FromStream(ms);
+                            img = pictureEdit3.Image;
                         }
-                        else
-                            pictureEdit1.Image = null;
+                        //else
+                        //    pictureEdit3.Image = null;
                     }
 
                     var q1 = db.SalMalis.FirstOrDefault(s => s.IsDefault == true);
@@ -150,9 +150,11 @@ namespace Sandogh_TG
                         {
                             FrmYadavari fm = new FrmYadavari();
                             fm.ShowDialog();
+                            //Application.OpenForms["FrmYadavari"].Activate();
                         }
 
                     }
+
                 }
                 catch (Exception ex)
                 {
@@ -242,7 +244,7 @@ namespace Sandogh_TG
 
         private void btnSoratHesabTafzili_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            FrmSoratHesabTafzili fm = new FrmSoratHesabTafzili();
+            FrmSoratHesabTafzili fm = new FrmSoratHesabTafzili(this);
             ActiveForm(fm);
 
         }
@@ -271,14 +273,14 @@ namespace Sandogh_TG
                     if (XtraopenFileDialog1.ShowDialog() == DialogResult.OK)
                     {
                         img = Image.FromFile(XtraopenFileDialog1.FileName);
-                        this.pictureEdit1.Image = img;
-                        //this.pictureEdit1.Tag = openFileDialog1.FileName;
+                        this.pictureEdit3.Image = img;
+                        //this.pictureEdit3.Tag = openFileDialog1.FileName;
                         int _SId = Convert.ToInt32(IDSandogh.Caption);
                         var q = db.TarifSandoghs.FirstOrDefault(f => f.Id == _SId);
                         if (q != null)
                         {
                             MemoryStream ms = new MemoryStream();
-                            img.Save(ms, pictureEdit1.Image.RawFormat);
+                            img.Save(ms, pictureEdit3.Image.RawFormat);
                             byte[] myarrey = ms.GetBuffer();
                             q.PicBackground = myarrey;
                             db.SaveChanges();
@@ -288,7 +290,7 @@ namespace Sandogh_TG
                     {
                         if (XtraMessageBox.Show("آیا عکس پس زمینه حذف گردد؟", "پیغام حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                         {
-                            pictureEdit1.Image = null;
+                            pictureEdit3.Image = null;
                             int _SId = Convert.ToInt32(IDSandogh.Caption);
                             var q = db.TarifSandoghs.FirstOrDefault(f => f.Id == _SId);
                             if (q != null)
@@ -327,6 +329,8 @@ namespace Sandogh_TG
 
         private void btnTarazname_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            FrmTarazname frm = new FrmTarazname(this);
+            ActiveForm(frm);
         }
 
         private void skinRibbonGalleryBarItem1_GalleryItemClick(object sender, DevExpress.XtraBars.Ribbon.GalleryItemClickEventArgs e)
@@ -358,6 +362,17 @@ namespace Sandogh_TG
             SqlConnection.ClearAllPools();
             Application.Exit();
             Application.ExitThread();
+        }
+
+        private void btnSoratSoodVZiyan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmSodVZian frm = new FrmSodVZian(this);
+            ActiveForm(frm);
+        }
+
+        private void pictureEdit3_EditValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
