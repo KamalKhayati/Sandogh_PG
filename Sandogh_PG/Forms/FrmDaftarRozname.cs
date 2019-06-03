@@ -29,24 +29,13 @@ namespace Sandogh_PG
             {
                 try
                 {
-                    if (ChkTarikh.Checked == false)
-                    {
-                        var q = db.AsnadeHesabdariRows.OrderBy(f => f.Tarikh).ThenBy(f => f.ShomareSanad).ToList();
-                        if (q.Count > 0)
-                            asnadeHesabdariRowsBindingSource.DataSource = q;
-                        else
-                            asnadeHesabdariRowsBindingSource.DataSource = null;
-                    }
+                    DateTime _Az = Convert.ToDateTime(txtAzTarikh.Text);
+                    DateTime _Ta = Convert.ToDateTime(txtTaTarikh.Text);
+                    var q = db.AsnadeHesabdariRows.Where(f => f.Tarikh >= _Az && f.Tarikh <= _Ta).OrderBy(f => f.Tarikh).ThenBy(f => f.ShomareSanad).ToList();
+                    if (q.Count > 0)
+                        asnadeHesabdariRowsBindingSource.DataSource = q;
                     else
-                    {
-                        DateTime _Az = Convert.ToDateTime(txtAzTarikh.Text);
-                        DateTime _Ta = Convert.ToDateTime(txtTaTarikh.Text);
-                        var q = db.AsnadeHesabdariRows.Where(f => f.Tarikh >= _Az && f.Tarikh <= _Ta).OrderBy(f => f.Tarikh).ThenBy(f => f.ShomareSanad).ToList();
-                        if (q.Count > 0)
-                            asnadeHesabdariRowsBindingSource.DataSource = q;
-                        else
-                            asnadeHesabdariRowsBindingSource.DataSource = null;
-                    }
+                        asnadeHesabdariRowsBindingSource.DataSource = null;
                 }
                 catch //(Exception ex)
                 {
@@ -64,16 +53,16 @@ namespace Sandogh_PG
         private void ChkTarikh_CheckedChanged(object sender, EventArgs e)
         {
             txtAzTarikh.Enabled = txtTaTarikh.Enabled = ChkTarikh.Checked ? true : false;
-            if (ChkTarikh.Checked == false)
-                FillDataGridDaftarRozname();
-            txtAzTarikh.Focus();
+            //if (ChkTarikh.Checked == false)
+            //    FillDataGridDaftarRozname();
         }
 
         private void FrmDaftarRozname_Load(object sender, EventArgs e)
         {
-            txtAzTarikh.Text = txtTaTarikh.Text = DateTime.Now.ToString().Substring(0, 10);
+            txtAzTarikh.Text = new MyContext().AsnadeHesabdariRows.Any()? new MyContext().AsnadeHesabdariRows.Min(f => f.Tarikh).ToString().Substring(0, 10): "1398/01/01";
+            txtTaTarikh.Text = DateTime.Now.ToString().Substring(0, 10);
             FillDataGridDaftarRozname();
-
+            txtAzTarikh.Focus();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

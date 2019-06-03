@@ -19,7 +19,7 @@ namespace Sandogh_PG
     public partial class FrmMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         //SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().WithEncryption("asdjklasjdkajsd654654").LoadNow();
-        SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().LoadNow();
+        SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().WithEncryption("km113012").LoadNow();
         public FrmMain()
         {
             InitializeComponent();
@@ -413,14 +413,15 @@ namespace Sandogh_PG
                         try
                         {
                             db.Database.Initialize(true);
-                            XtraMessageBox.Show("کلیه اطلاعات ثبت شده با موفقیت حذف گردید و نرم افزار مجدداً راه اندازی خواهد شد", "پیغام", MessageBoxButtons.OK);
+                           // XtraMessageBox.Show("کلیه اطلاعات ثبت شده با موفقیت حذف گردید و نرم افزار مجدداً راه اندازی خواهد شد", "پیغام", MessageBoxButtons.OK);
+                            XtraMessageBox.Show("کلیه اطلاعات ثبت شده با موفقیت حذف گردید لطفا برنامه را مجدداً اجرا کنید", "پیغام", MessageBoxButtons.OK);
                             Application.Restart();
                         }
 
-                        catch (Exception ex)
+                        catch (Exception )
                         {
-
-                            MessageBox.Show(ex.Message);
+                            Application.Exit();
+                            //MessageBox.Show(ex.Message);
                         }
                     }
 
@@ -430,6 +431,14 @@ namespace Sandogh_PG
 
         private void FrmMain_KeyPress(object sender, KeyPressEventArgs e)
         {
+        }
+
+        private void btnMandeAshkhas_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmMandeAshkhas frm = new FrmMandeAshkhas();
+            frm._SandoghName = ribbonControl1.ApplicationDocumentCaption; 
+            frm.ShowDialog();
+
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Sandogh_PG
 {
     public partial class FrmTarazname : DevExpress.XtraEditors.XtraForm
     {
-        FrmMain Fm;
+        public FrmMain Fm;
         public FrmTarazname(FrmMain fm)
         {
             InitializeComponent();
@@ -28,70 +28,37 @@ namespace Sandogh_PG
             {
                 try
                 {
-                    if (ChkTarikh.Checked == false)
+                    DateTime _Ta = Convert.ToDateTime(txtTaTarikh.Text);
+                    List<AsnadeHesabdariRow> List1 = new List<AsnadeHesabdariRow>();
+                    var q1 = db.AsnadeHesabdariRows.Where(f => f.Tarikh <= _Ta).ToList();
+                    if (q1.Count > 0)
                     {
-                        List<AsnadeHesabdariRow> List1 = new List<AsnadeHesabdariRow>();
-                        var q1 = db.AsnadeHesabdariRows.ToList();
-                        if (q1.Count > 0)
+                        foreach (var item in q1)
                         {
-                            foreach (var item in q1)
+                            AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
+                            if (!List1.Any(f => f.HesabMoinId == item.HesabMoinId))
                             {
-                                AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
-                                if (!List1.Any(f => f.HesabMoinId == item.HesabMoinId))
-                                {
-                                    obj1.Id = item.Id;
-                                    obj1.HesabMoinId = item.HesabMoinId;
-                                    obj1.HesabMoinCode = item.HesabMoinCode;
-                                    obj1.HesabMoinName = item.HesabMoinName;
-                                    //obj1.HesabTafId = item.HesabTafId;
-                                    //obj1.HesabTafCode = item.HesabTafCode;
-                                    //obj1.HesabTafName = item.HesabTafName;
-                                    obj1.Bed = db.AsnadeHesabdariRows.Where(f => f.HesabMoinId == item.HesabMoinId).Sum(f => f.Bed);
-                                    obj1.Bes = db.AsnadeHesabdariRows.Where(f => f.HesabMoinId == item.HesabMoinId).Sum(f => f.Bes);
-                                    List1.Add(obj1);
-                                }
+                                obj1.Id = item.Id;
+                                obj1.HesabMoinId = item.HesabMoinId;
+                                obj1.HesabMoinCode = item.HesabMoinCode;
+                                obj1.HesabMoinName = item.HesabMoinName;
+                                //obj1.HesabTafId = item.HesabTafId;
+                                //obj1.HesabTafCode = item.HesabTafCode;
+                                //obj1.HesabTafName = item.HesabTafName;
+                                obj1.Bed = q1.Where(f => f.HesabMoinId == item.HesabMoinId).Sum(f => f.Bed);
+                                obj1.Bes = q1.Where(f => f.HesabMoinId == item.HesabMoinId).Sum(f => f.Bes);
+                                List1.Add(obj1);
                             }
-                            asnadeHesabdariRowsBindingSource.DataSource = List1.OrderBy(f => f.HesabMoinCode);
                         }
-                        else
-                            asnadeHesabdariRowsBindingSource.DataSource = null;
-
+                        asnadeHesabdariRowsBindingSource.DataSource = List1.OrderBy(f => f.HesabMoinCode);
                     }
                     else
-                    {
-                        DateTime _Ta = Convert.ToDateTime(txtTaTarikh.Text);
-                        List<AsnadeHesabdariRow> List1 = new List<AsnadeHesabdariRow>();
-                        var q1 = db.AsnadeHesabdariRows.Where(f => f.Tarikh <= _Ta).ToList();
-                        if (q1.Count > 0)
-                        {
-                            foreach (var item in q1)
-                            {
-                                AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
-                                if (!List1.Any(f => f.HesabMoinId == item.HesabMoinId))
-                                {
-                                    obj1.Id = item.Id;
-                                    obj1.HesabMoinId = item.HesabMoinId;
-                                    obj1.HesabMoinCode = item.HesabMoinCode;
-                                    obj1.HesabMoinName = item.HesabMoinName;
-                                    //obj1.HesabTafId = item.HesabTafId;
-                                    //obj1.HesabTafCode = item.HesabTafCode;
-                                    //obj1.HesabTafName = item.HesabTafName;
-                                    obj1.Bed = db.AsnadeHesabdariRows.Where(f => f.HesabMoinId == item.HesabMoinId).Sum(f => f.Bed);
-                                    obj1.Bes = db.AsnadeHesabdariRows.Where(f => f.HesabMoinId == item.HesabMoinId).Sum(f => f.Bes);
-                                    List1.Add(obj1);
-                                }
-                            }
-                            asnadeHesabdariRowsBindingSource.DataSource = List1.OrderBy(f => f.HesabMoinCode);
-                        }
-                        else
-                            asnadeHesabdariRowsBindingSource.DataSource = null;
-                    }
-
+                        asnadeHesabdariRowsBindingSource.DataSource = null;
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
-                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                    //    "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -101,6 +68,7 @@ namespace Sandogh_PG
         {
             txtTaTarikh.Text = DateTime.Now.ToString().Substring(0, 10);
             FillDataGridView1();
+            txtTaTarikh.Focus();
         }
 
         string FilePath = Application.StartupPath + @"\Report\Ghozareshat\";
@@ -117,7 +85,7 @@ namespace Sandogh_PG
 
                     XtraReport1.DataSource = HelpClass1.ConvettDatagridviewToDataSet(gridView1);
 
-                   // XtraReport1.Parameters["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : gridView2.GetRowCellDisplayText(0, "Tarikh").Substring(0, 10);
+                    // XtraReport1.Parameters["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : gridView2.GetRowCellDisplayText(0, "Tarikh").Substring(0, 10);
                     XtraReport1.Parameters["Ta_Tarikh"].Value = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
                     XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
                     //XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
@@ -156,6 +124,27 @@ namespace Sandogh_PG
             txtTaTarikh.Enabled = ChkTarikh.Checked ? true : false;
             FillDataGridView1();
             txtTaTarikh.Focus();
+
+        }
+
+        private void btnRizMoin_Click(object sender, EventArgs e)
+        {
+            if (gridView1.RowCount > 0)
+            {
+                FrmRizMoin frm = new FrmRizMoin();
+                string RowMoinName = gridView1.GetFocusedRowCellDisplayText("HesabMoinName");
+                frm.Text = "ریز حساب معین : " + RowMoinName;
+                frm.RowMoinId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId"));
+                frm._Az_Tarikh = new MyContext().AsnadeHesabdariRows.Min(f => f.Tarikh).ToString().Substring(0, 10);
+                frm._Ta_Tarikh = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
+                frm._SandoghName = Fm.ribbonControl1.ApplicationDocumentCaption; ;
+                frm.ShowDialog();
+            }
+        }
+
+        private void txtTaTarikh_EditValueChanged(object sender, EventArgs e)
+        {
+            FillDataGridView1();
 
         }
     }

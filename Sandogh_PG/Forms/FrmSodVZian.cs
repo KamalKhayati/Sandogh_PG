@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 
-namespace Sandogh_PG.Forms
+namespace Sandogh_PG
 {
     public partial class FrmSodVZian : DevExpress.XtraEditors.XtraForm
     {
@@ -27,38 +27,6 @@ namespace Sandogh_PG.Forms
             {
                 try
                 {
-                    if (ChkTarikh.Checked == false)
-                    {
-                        List<AsnadeHesabdariRow> List1 = new List<AsnadeHesabdariRow>();
-                        var q1 = db.AsnadeHesabdariRows.Where(f => f.HesabMoinCode >= 8001 && f.HesabMoinCode <= 9999).ToList();
-                        if (q1.Count > 0)
-                        {
-                            foreach (var item in q1)
-                            {
-                                AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
-                                if (!List1.Any(f => f.HesabMoinId == item.HesabMoinId))
-                                {
-                                    obj1.Id = item.Id;
-                                    obj1.HesabMoinId = item.HesabMoinId;
-                                    obj1.HesabMoinCode = item.HesabMoinCode;
-                                    obj1.HesabMoinName = item.HesabMoinName;
-                                    //obj1.HesabTafId = item.HesabTafId;
-                                    //obj1.HesabTafCode = item.HesabTafCode;
-                                    //obj1.HesabTafName = item.HesabTafName;
-                                    obj1.Bed = db.AsnadeHesabdariRows.Where(f => f.HesabMoinId == item.HesabMoinId).Sum(f => f.Bed);
-                                    obj1.Bes = db.AsnadeHesabdariRows.Where(f => f.HesabMoinId == item.HesabMoinId).Sum(f => f.Bes);
-                                    List1.Add(obj1);
-                                }
-                            }
-                            SodVZian =Convert.ToDecimal(List1.Sum(f => f.Bes) - List1.Sum(f => f.Bed));
-                            asnadeHesabdariRowsBindingSource.DataSource = List1.OrderBy(f => f.HesabMoinCode);
-                        }
-                        else
-                            asnadeHesabdariRowsBindingSource.DataSource = null;
-
-                    }
-                    else
-                    {
                         DateTime _Az = Convert.ToDateTime(txtAzTarikh.Text);
                         DateTime _Ta = Convert.ToDateTime(txtTaTarikh.Text);
                         List<AsnadeHesabdariRow> List1 = new List<AsnadeHesabdariRow>();
@@ -77,8 +45,8 @@ namespace Sandogh_PG.Forms
                                     //obj1.HesabTafId = item.HesabTafId;
                                     //obj1.HesabTafCode = item.HesabTafCode;
                                     //obj1.HesabTafName = item.HesabTafName;
-                                    obj1.Bed = db.AsnadeHesabdariRows.Where(f => f.HesabMoinId == item.HesabMoinId).Sum(f => f.Bed);
-                                    obj1.Bes = db.AsnadeHesabdariRows.Where(f => f.HesabMoinId == item.HesabMoinId).Sum(f => f.Bes);
+                                    obj1.Bed = q1.Where(f => f.HesabMoinId == item.HesabMoinId).Sum(f => f.Bed);
+                                    obj1.Bes = q1.Where(f => f.HesabMoinId == item.HesabMoinId).Sum(f => f.Bes);
                                     List1.Add(obj1);
                                 }
                             }
@@ -87,13 +55,11 @@ namespace Sandogh_PG.Forms
                         }
                         else
                             asnadeHesabdariRowsBindingSource.DataSource = null;
-                    }
-
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
-                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                    //    "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -101,8 +67,10 @@ namespace Sandogh_PG.Forms
 
         private void FrmSodVZian_Load(object sender, EventArgs e)
         {
-            txtAzTarikh.Text = txtTaTarikh.Text = DateTime.Now.ToString().Substring(0, 10);
+            txtAzTarikh.Text = new MyContext().AsnadeHesabdariRows.Any() ? new MyContext().AsnadeHesabdariRows.Min(f => f.Tarikh).ToString().Substring(0, 10):"1398/01/01";
+            txtTaTarikh.Text = DateTime.Now.ToString().Substring(0, 10);
             FillDataGridView1();
+            txtAzTarikh.Focus();
         }
 
         string FilePath = Application.StartupPath + @"\Report\Ghozareshat\";
@@ -120,7 +88,7 @@ namespace Sandogh_PG.Forms
                     XtraReport1.DataSource = HelpClass1.ConvettDatagridviewToDataSet(gridView1);
 
                     // XtraReport1.Parameters["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : gridView2.GetRowCellDisplayText(0, "Tarikh").Substring(0, 10);
-                    XtraReport1.Parameters["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : "0000/00/00";
+                    XtraReport1.Parameters["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : new MyContext().AsnadeHesabdariRows.Min(f => f.Tarikh).ToString().Substring(0, 10); 
                     XtraReport1.Parameters["Ta_Tarikh"].Value = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
                     XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
                     XtraReport1.Parameters["SodVZian"].Value = SodVZian;
@@ -164,5 +132,32 @@ namespace Sandogh_PG.Forms
 
         }
 
+        private void btnRizMoin_Click(object sender, EventArgs e)
+        {
+            if (gridView1.RowCount > 0)
+            {
+                FrmRizMoin frm = new FrmRizMoin();
+                string RowMoinName = gridView1.GetFocusedRowCellDisplayText("HesabMoinName");
+                frm.Text = "ریز حساب معین : " + RowMoinName;
+                frm.RowMoinId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId"));
+                frm._Az_Tarikh = ChkTarikh.Checked? txtAzTarikh.Text: new MyContext().AsnadeHesabdariRows.Min(f => f.Tarikh).ToString().Substring(0, 10); 
+                frm._Ta_Tarikh = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
+                frm._SandoghName = Fm.ribbonControl1.ApplicationDocumentCaption; ;
+                frm.ShowDialog();
+            }
+
+        }
+
+        private void txtAzTarikh_EditValueChanged(object sender, EventArgs e)
+        {
+            FillDataGridView1();
+
+        }
+
+        private void txtTaTarikh_EditValueChanged(object sender, EventArgs e)
+        {
+            FillDataGridView1();
+
+        }
     }
 }

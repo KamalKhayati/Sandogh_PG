@@ -188,9 +188,8 @@ namespace Sandogh_PG
                             var qq1 = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2 && f.Id2 == q2.Id);
                             if (qq1 != null)
                                 cmbNameHesab.EditValue = qq1.Id;
-
                         }
-
+                       // cmbMonth.ShowPopup();
                     }
                     catch (Exception ex)
                     {

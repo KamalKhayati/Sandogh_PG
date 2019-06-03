@@ -143,6 +143,9 @@ namespace Sandogh_PG
                                 q1.TarikhEjad = Convert.ToDateTime(txtTarikhEjad.Text.Substring(0, 10));
 
                             }
+                            else
+                                q1.TarikhEjad =Convert.ToDateTime(DateTime.Now.ToString().Substring(0, 10));
+
                             if (pictureEdit1.Image != null)
                             {
                                 MemoryStream ms = new MemoryStream();
@@ -164,6 +167,8 @@ namespace Sandogh_PG
                             obj.IsDefault = chkIsDefault.Checked;
                             if (!string.IsNullOrEmpty(txtTarikhEjad.Text))
                                 obj.TarikhEjad = Convert.ToDateTime(txtTarikhEjad.Text.Substring(0, 10));
+                            else
+                                q1.TarikhEjad = Convert.ToDateTime(DateTime.Now.ToString().Substring(0, 10));
                             if (pictureEdit1.Image != null)
                             {
                                 MemoryStream ms = new MemoryStream();

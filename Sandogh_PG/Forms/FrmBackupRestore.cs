@@ -99,10 +99,19 @@ namespace Sandogh_PG
             }
             else
             {
-                Application.OpenForms["FrmBackupRestore"].Enabled = false;
-                if (!backgroundWorkerBackup.IsBusy)
+                if (!System.IO.Directory.Exists(new MyContext().Tanzimats.FirstOrDefault().Path))
                 {
-                    backgroundWorkerBackup.RunWorkerAsync();
+                    MessageBox.Show("این مسیر در سیستم وجود ندارد لطفاً یک مسیر درست انتخاب نمایید");
+                    txtSelectPath.Text = string.Empty;
+                    btnBrowserBackup_Click(null, null);
+                }
+                else
+                {
+                    Application.OpenForms["FrmBackupRestore"].Enabled = false;
+                    if (!backgroundWorkerBackup.IsBusy)
+                    {
+                        backgroundWorkerBackup.RunWorkerAsync();
+                    }
                 }
             }
 
@@ -214,10 +223,10 @@ namespace Sandogh_PG
 
                 string command3 = "ALTER DATABASE " + _NameDataBase + " SET OFFLINE WITH ROLLBACK IMMEDIATE" +
                                  " RESTORE DATABASE " + _NameDataBase + " FROM DISK = '" + txtSelectFile.Text + "' WITH REPLACE, RECOVERY," +
-                                 " MOVE '"+ LogicalNameData + "' TO '" + DataPath1 + _NameDataBase + ".mdf'," +
+                                 " MOVE '" + LogicalNameData + "' TO '" + DataPath1 + _NameDataBase + ".mdf'," +
                                  " MOVE '" + LogicalNameLog + "' TO '" + DataPath1 + _NameDataBase + "_log.ldf'" +
-                                 " ALTER DATABASE " + _NameDataBase + " MODIFY FILE(NAME = '" + LogicalNameData + "', NEWNAME = '" + _NameDataBase + ".mdf')"+
-                                 " ALTER DATABASE " + _NameDataBase + " MODIFY FILE(NAME = '" + LogicalNameLog + "', NEWNAME = '" + _NameDataBase + "_log.ldf')"+
+                                 " ALTER DATABASE " + _NameDataBase + " MODIFY FILE(NAME = '" + LogicalNameData + "', NEWNAME = '" + _NameDataBase + ".mdf')" +
+                                 " ALTER DATABASE " + _NameDataBase + " MODIFY FILE(NAME = '" + LogicalNameLog + "', NEWNAME = '" + _NameDataBase + "_log.ldf')" +
                                  " ALTER DATABASE " + _NameDataBase + " SET ONLINE";
 
                 context.Database.CommandTimeout = 360;
@@ -236,11 +245,19 @@ namespace Sandogh_PG
         {
             if (e.Error == null)
             {
-                MessageBox.Show(" عملیات بازیابی اطلاعات با موفقیت انجام شد و برنامه مجدداً راه اندازی میشود");
-                //MessageBox.Show("عملیات بازیابی اطلاعات با موفقیت انجام شد لطفاً برنامه را مجدداً اجرا کنید");
-                Application.OpenForms["FrmBackupRestore"].Enabled = true;
-                //Application.Exit();
-                Application.Restart();
+                try
+                {
+                    //MessageBox.Show(" عملیات بازیابی اطلاعات با موفقیت انجام شد و برنامه مجدداً راه اندازی میشود");
+                    MessageBox.Show("عملیات بازیابی اطلاعات با موفقیت انجام شد لطفاً برنامه را مجدداً اجرا کنید");
+                    Application.OpenForms["FrmBackupRestore"].Enabled = true;
+                    //Application.Exit();
+                    Application.Restart();
+
+                }
+                catch (Exception)
+                {
+                    Application.Exit();
+                }
             }
             else
             {

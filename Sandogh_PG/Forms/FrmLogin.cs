@@ -18,7 +18,7 @@ namespace Sandogh_PG
     public partial class FrmLogin : DevExpress.XtraEditors.XtraForm
     {
         //SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().WithEncryption("asdjklasjdkajsd654654").LoadNow();
-        SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().LoadNow();
+        SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().WithEncryption("km113012").LoadNow();
 
         public FrmLogin()
         {
@@ -84,51 +84,45 @@ namespace Sandogh_PG
         {
             lblSystemDate.Text = DateTime.Now.ToString().Substring(0, 10);
             FillCmbNameDatabase();
-            //cmbNameDataBaseSandogh.SelectedIndex = 0;
-            using (var db = new MyContext())
+            lblVersion.Text = "Version " + Application.ProductVersion;
+            if (System.IO.Directory.Exists(AppVariable.fileName))
+                if (Settings.Data.Count > 0)
+                {
+                    //        LblNameDatabase.Text = db.Database.Connection.Database;
+                    cmbNameDataBaseSandogh.SelectedIndex = Convert.ToInt32(Settings[AppVariable.DefaltIndexCmbNameSandogh]);
+                }
+                else
+                    return;
+            else
+                return;
+
+            if (cmbNameDataBaseSandogh.Properties.Items.Count > 1)
             {
-                try
-                {
-                    LblNameDatabase.Text = db.Database.Connection.Database;
-                }
-                catch (Exception ex)
-                {
-                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                cmbNameDataBaseSandogh.Visible = true;
             }
 
-            using (var db = new MyContext())
+
+            try
             {
                 // فراخوانی پوسته برنامه از مسیر دایرکتوری %appdata%
-                try
-                {
-                    //int i = 0;
-                    DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(Settings[AppVariable.SkinName[0]].ToString() ?? "DevExpress Style");
+                if (System.IO.Directory.Exists(AppVariable.fileName) && Settings.Data.Count > 0)
+                    if (Settings[AppVariable.SkinName[0]] != null)
+                        DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(Settings[AppVariable.SkinName[0]].ToString() ?? "DevExpress Style");
 
-                    string command = " ALTER DATABASE " + LblNameDatabase.Text + " SET ONLINE";
-                    db.Database.CommandTimeout = 360;
-                    db.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command);
-                }
-                catch (Exception)
-                {
+                ////////////////////////// گرفتن نام کاربری ویندوز ///////////////////////////
+                // string UserNameWindows = System.Security.Principal.WindowsIdentity.GetCurrent().Name ;
+                //string command2 = "ALTER LOGIN " + UserNameWindows + " DISABLE";
+                //db.Database.CommandTimeout = 360;
+                //db.Database.ExecuteSqlCommand(command2);
+                //db.Database.SqlQuery<string>("ALTER LOGIN" + UserNameWindows + "ENABLE");
 
-                }
             }
-            cmbNameDataBaseSandogh.SelectedIndex = Convert.ToInt32(Settings[AppVariable.DefaltIndexCmbNameSandogh]);
-            if (cmbNameDataBaseSandogh.Properties.Items.Count==1)
+            catch (Exception)
             {
-                cmbNameDataBaseSandogh.Visible = false;
             }
-
-            //if (cmbNameDataBaseSandogh.Properties.Items.Count == 1)
-            //{
-            //    cmbNameDataBaseSandogh.SelectedIndex = 0;
-            //}
-
-
 
         }
+
         public void SetAppConfing()
         {
             //D:\Kamal Projects\Sandogh\Sandogh_PG\Sandogh_PG\bin\Debug\DB
@@ -249,7 +243,7 @@ namespace Sandogh_PG
                     }
                     catch (Exception ex)
                     {
-                        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.ToString(),
+                        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
                             "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
@@ -258,7 +252,7 @@ namespace Sandogh_PG
 
         private void chkConnectToServer_CheckedChanged(object sender, EventArgs e)
         {
-            this.Height = chkConnectToServer.Checked ? 562 : 319;
+            this.Height = chkConnectToServer.Checked ? 562 : 318;
             //cmbServerType.SelectedIndex = 0;
             //cmbServerName.SelectedIndex = 0;
             //cmbAuthentication.SelectedIndex = 0;
@@ -274,9 +268,10 @@ namespace Sandogh_PG
             int _IndexcmbNameDatabase = cmbNameDataBaseSandogh.SelectedIndex;
             try
             {
-                string a = Settings[AppVariable.cmbNameDataBaseSandogh[_IndexcmbNameDatabase]].ToString();
-                if (a == _IndexcmbNameDatabase.ToString())
+                int a = Convert.ToInt32(Settings[AppVariable.cmbNameDataBaseSandogh[_IndexcmbNameDatabase]]);
+                if (a == _IndexcmbNameDatabase)
                 {
+                    LblNameDatabase.Text = Settings[AppVariable.txtDatabaseName[_IndexcmbNameDatabase]].ToString();
                     cmbServerType.SelectedIndex = Convert.ToInt32(Settings[AppVariable.cmbServerType[_IndexcmbNameDatabase]].ToString());
                     cmbServerName.Text = Settings[AppVariable.cmbServerName[_IndexcmbNameDatabase]].ToString();
                     cmbAuthentication.SelectedIndex = Convert.ToInt32(Settings[AppVariable.cmbAuthentication[_IndexcmbNameDatabase]].ToString());
@@ -285,33 +280,19 @@ namespace Sandogh_PG
                     txtAttachDbFilePath.Text = Settings[AppVariable.txtAttachDbFilePath[_IndexcmbNameDatabase]].ToString();
                     txtDatabaseName.Text = Settings[AppVariable.txtDatabaseName[_IndexcmbNameDatabase]].ToString();
                 }
-                //else
-                //{
-                //    cmbServerType.SelectedIndex = 0;
-                //    cmbServerName.SelectedIndex = 0;
-                //    cmbAuthentication.SelectedIndex = 0;
-                //    txtAttachDbFilePath.Text = Application.StartupPath + @"\DB\" + cmbNameDataBaseSandogh.Text + ".mdf";
-                //    txtDatabaseName.Text = cmbNameDataBaseSandogh.Text;
-                //}
             }
             catch (Exception e)
             {
-
-                //cmbServerType.SelectedIndex = 0;
-                //cmbServerName.SelectedIndex = 0;
-                //cmbAuthentication.SelectedIndex = 0;
-                //txtAttachDbFilePath.Text = Application.StartupPath + @"\DB\" + cmbNameDataBaseSandogh.Text + ".mdf";
-                //txtDatabaseName.Text = cmbNameDataBaseSandogh.Text;
-
             }
         }
+
         private void cmbNameDataBaseSandogh_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbNameDataBaseSandogh.Properties.Items.Count == 1)
+            using (var db = new MyContext())
             {
-                if (cmbNameDataBaseSandogh.SelectedIndex != -1)
+                try
                 {
-                    if (LblNameDatabase.Text != cmbNameDataBaseSandogh.Text)
+                    if (db.Database.Connection.Database != cmbNameDataBaseSandogh.Text)
                     {
                         FillInfoControls();
                         SetAppConfing();
@@ -321,94 +302,52 @@ namespace Sandogh_PG
                     else
                     {
                         FillInfoControls();
+                        if (!string.IsNullOrEmpty(LblNameDatabase.Text))
+                        {
+                            string s1 = Application.StartupPath + @"\DB\" + cmbNameDataBaseSandogh.Text + ".mdf";
+                            if (System.IO.File.Exists(s1))
+                            {
+                                string command1 = " ALTER DATABASE " + LblNameDatabase.Text + " SET ONLINE";
+                                db.Database.CommandTimeout = 360;
+                                db.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command1);
+
+                            }
+                        }
                     }
                 }
-            }
-            else
-            {
-                if (cmbNameDataBaseSandogh.SelectedIndex != -1)
+                catch (Exception)
                 {
-                    if (LblNameDatabase.Text != cmbNameDataBaseSandogh.Text)
-                    {
-                        FillInfoControls();
-                        SetAppConfing();
-                        Settings[AppVariable.DefaltIndexCmbNameSandogh] = cmbNameDataBaseSandogh.SelectedIndex.ToString();
-                        Application.Restart();
-                    }
-                    else
-                    {
-                        FillInfoControls();
-                    }
-
+                    //XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                    // "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Application.Exit();
                 }
             }
-
-            //txtAttachDbFilePath.Text = Application.StartupPath + @"\DB\" + cmbNameDataBaseSandogh.Text + ".mdf";
-            //txtDatabaseName.Text = cmbNameDataBaseSandogh.Text;
-            //using (var db = new MyContext())
-            //{
-            //    try
-            //    {
-            //        if (!db.Database.Exists())
-            //            db.Database.Initialize(true);
-            //        //string command = "ALTER DATABASE Sandogh_PG SET OFFLINE WITH ROLLBACK IMMEDIATE " +
-            //        //                   " RESTORE DATABASE Sandogh_PG FROM DISK='" + txtSelectFile.Text + "' WITH REPLACE " +
-            //        //                    "ALTER DATABASE Sandogh_PG SET ONLINE";
-            //        //string command = "ALTER DATABASE " + cmbNameDataBaseSandogh.Text + " SET OFFLINE WITH ROLLBACK IMMEDIATE " +
-            //        //                 "ALTER DATABASE " + cmbNameDataBaseSandogh.Text + " SET ONLINE";
-            //        string command = " ALTER DATABASE " + LblNameDatabase.Text + " SET ONLINE";
-            //        //string command = "DECLARE	@Spid INT DECLARE @ExecSQL VARCHAR(255) DECLARE KillCursor CURSOR LOCAL STATIC READ_ONLY FORWARD_ONLY "+
-            //        //                 "FOR SELECT DISTINCT SPID FROM    MASTER..SysProcesses WHERE DBID = DB_ID('" + cmbNameDataBaseSandogh.Text + "') OPEN KillCursor " +
-            //        //                 "--Grab the first SPID FETCH   NEXT FROM    KillCursor INTO    @Spid WHILE	@@FETCH_STATUS = 0 BEGIN "+
-            //        //                 "SET     @ExecSQL = 'KILL ' + CAST(@Spid AS VARCHAR(50)) EXEC(@ExecSQL) -- Pull the next SPID FETCH NEXT FROM KillCursor INTO @Spid END "+
-            //        //                 "CLOSE   KillCursor DEALLOCATE  KillCursor "+ 
-            //        //                 "ALTER DATABASE " + cmbNameDataBaseSandogh.Text + " SET ONLINE";
-            //        db.Database.CommandTimeout = 360;
-            //        db.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command);
-
-            //    }
-            //    catch (Exception)
-            //    {
-
-            //        return;
-            //    }
-            //}
-
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //for (int i = 0; i < cmbNameDataBaseSandogh.Properties.Items.Count; i++)
-            //{
-            //    if (i == cmbNameDataBaseSandogh.SelectedIndex)
-            //    {
-            //        Settings[AppVariable.cmbNameDataBaseSandogh[i]] = cmbNameDataBaseSandogh.SelectedIndex.ToString();
-            //        Settings[AppVariable.cmbServerType[i]] = cmbServerType.SelectedIndex.ToString();
-            //        Settings[AppVariable.cmbServerName[i]] = cmbServerName.Text;
-            //        Settings[AppVariable.cmbAuthentication[i]] = cmbAuthentication.SelectedIndex.ToString();
-            //        Settings[AppVariable.txtUserName2[i]] = txtUserName2.Text;
-            //        Settings[AppVariable.txtPassword2[i]] = txtPassword2.Text;
-            //        Settings[AppVariable.txtAttachDbFilePath[i]] = txtAttachDbFilePath.Text;
-            //        Settings[AppVariable.txtDatabaseName[i]] = txtDatabaseName.Text;
-            //    }
-            //}
             if (!string.IsNullOrEmpty(txtDatabaseName.Text))
             {
-                for (int i = 0; i < cmbNameDataBaseSandogh.Properties.Items.Count; i++)
-                {
-                    try
+                if (System.IO.Directory.Exists(AppVariable.fileName))
+                    if (Settings.Data.Count > 0)
                     {
-                        string a = Settings[AppVariable.txtDatabaseName[i]].ToString();
-                        if (a == txtDatabaseName.Text)
+                        for (int i = 0; i < cmbNameDataBaseSandogh.Properties.Items.Count; i++)
                         {
-                            XtraMessageBox.Show("دیتابیس با این نام قبلاً تعریف شده است", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
-                            return;
+                            try
+                            {
+                                string a = Settings[AppVariable.txtDatabaseName[i]].ToString();
+                                if (a == txtDatabaseName.Text)
+                                {
+                                    XtraMessageBox.Show("دیتابیس با این نام قبلاً تعریف شده است", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                                    return;
+                                }
+                            }
+                            catch (Exception)
+                            {
+                            }
                         }
+
                     }
-                    catch (Exception)
-                    {
-                    }
-                }
 
                 int _Index = cmbNameDataBaseSandogh.Properties.Items.Count;
                 Settings[AppVariable.txtDatabaseName[_Index]] = txtDatabaseName.Text;
@@ -419,30 +358,8 @@ namespace Sandogh_PG
                 Settings[AppVariable.txtUserName2[_Index]] = txtUserName2.Text;
                 Settings[AppVariable.txtPassword2[_Index]] = txtPassword2.Text;
                 Settings[AppVariable.txtAttachDbFilePath[_Index]] = txtAttachDbFilePath.Text;
-                SetAppConfing();
+                // SetAppConfing();
                 FillCmbNameDatabase();
-
-
-                //using (var db = new MyContext())
-                //{
-                //    try
-                //    {
-                //        string St1 = Application.StartupPath + @"\DB\";
-                //        //string command = " ALTER DATABASE " + txtDatabaseName.Text + " SET ONLINE";
-                //        string command = " CREATE DATABASE " + txtDatabaseName.Text +
-                //                         " ON" +
-                //                         " (NAME =" + txtDatabaseName.Text + ",FILENAME = '" + St1 + txtDatabaseName.Text + ".mdf')" +
-                //                             " LOG ON" +
-                //                             " (NAME = '" + txtDatabaseName.Text + "_log',FILENAME = '" + St1 + txtDatabaseName.Text + ".ldf')";
-                //        db.Database.CommandTimeout = 360;
-                //        db.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command);
-
-                //    }
-                //    catch (Exception)
-                //    {
-                //        return;
-                //    }
-                //}
             }
         }
 
@@ -451,14 +368,17 @@ namespace Sandogh_PG
             try
             {
                 cmbNameDataBaseSandogh.Properties.Items.Clear();
-                int i = 0;
-                // int a = Convert.ToInt32(Settings[AppVariable.cmbNameDataBaseSandogh[i]]);
-                while (Convert.ToInt32(Settings[AppVariable.cmbNameDataBaseSandogh[i]]) == i)
+                if (System.IO.Directory.Exists(AppVariable.fileName) && Settings.Data.Count > 0)
                 {
-                    cmbNameDataBaseSandogh.Properties.Items.Add(Settings[AppVariable.txtDatabaseName[i]].ToString());
-                    i++;
-                }
+                    int i = 0;
+                    // int a = Convert.ToInt32(Settings[AppVariable.cmbNameDataBaseSandogh[i]]);
+                    while (Convert.ToInt32(Settings[AppVariable.cmbNameDataBaseSandogh[i]]) == i)
+                    {
+                        cmbNameDataBaseSandogh.Properties.Items.Add(Settings[AppVariable.txtDatabaseName[i]].ToString());
+                        i++;
+                    }
 
+                }
             }
             catch
             {
@@ -470,12 +390,13 @@ namespace Sandogh_PG
         {
             if (e.Alt && e.Control && e.Shift && e.KeyCode == Keys.F12)
             {
-                chkConnectToServer.Visible = chkConnectToServer.Visible == true ? false : true;
-                cmbNameDataBaseSandogh.Visible = true;
+                FrmPassword frm = new FrmPassword(this);
+                frm.txtPassword.Focus();
+                frm.ShowDialog();
             }
 
         }
-        
+
         private void txtDatabaseName_EditValueChanged(object sender, EventArgs e)
         {
             txtAttachDbFilePath.Text = Application.StartupPath + @"\DB\" + txtDatabaseName.Text + ".mdf";

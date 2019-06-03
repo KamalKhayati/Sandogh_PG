@@ -53,6 +53,7 @@
             this.btnChangeBackground = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem2 = new DevExpress.XtraBars.BarSubItem();
             this.btnSoratHesabTafzili = new DevExpress.XtraBars.BarButtonItem();
+            this.btnMandeAshkhas = new DevExpress.XtraBars.BarButtonItem();
             this.btnTarazname = new DevExpress.XtraBars.BarButtonItem();
             this.btnSoratSoodVZiyan = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem3 = new DevExpress.XtraBars.BarSubItem();
@@ -142,10 +143,11 @@
             this.barStaticItem1,
             this.barStaticItem2,
             this.MojodiSandogh,
-            this.btnAllDataDelete});
+            this.btnAllDataDelete,
+            this.btnMandeAshkhas});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
-            this.ribbonControl1.MaxItemId = 68;
+            this.ribbonControl1.MaxItemId = 69;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.DaryaftVPardakht,
@@ -340,6 +342,7 @@
             this.barSubItem2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barSubItem2.ImageOptions.SvgImage")));
             this.barSubItem2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btnSoratHesabTafzili),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnMandeAshkhas),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnTarazname, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnSoratSoodVZiyan)});
             this.barSubItem2.Name = "barSubItem2";
@@ -350,6 +353,13 @@
             this.btnSoratHesabTafzili.Id = 47;
             this.btnSoratHesabTafzili.Name = "btnSoratHesabTafzili";
             this.btnSoratHesabTafzili.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSoratHesabTafzili_ItemClick);
+            // 
+            // btnMandeAshkhas
+            // 
+            this.btnMandeAshkhas.Caption = "مانده اشخاص";
+            this.btnMandeAshkhas.Id = 68;
+            this.btnMandeAshkhas.Name = "btnMandeAshkhas";
+            this.btnMandeAshkhas.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMandeAshkhas_ItemClick);
             // 
             // btnTarazname
             // 
@@ -738,6 +748,7 @@
         private DevExpress.XtraEditors.PictureEdit pictureEdit3;
         private DevExpress.XtraBars.BarStaticItem MojodiSandogh;
         private DevExpress.XtraBars.BarButtonItem btnAllDataDelete;
+        private DevExpress.XtraBars.BarButtonItem btnMandeAshkhas;
     }
 }
 

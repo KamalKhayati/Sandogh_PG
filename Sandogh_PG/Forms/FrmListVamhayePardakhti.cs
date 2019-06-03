@@ -551,36 +551,36 @@ namespace Sandogh_PG
         string MablaghGhestAval = string.Empty;
         string MablaghDirkard = string.Empty;
         string Zamenin = string.Empty;
-        string NoeSanad1 = "....................";
-        string Shcheak1 = "....................";
-        string MablaghTazmin1 = "..............................";
-        string NoeSanad2 = "....................";
-        string Shcheak2 = "....................";
-        string MablaghTazmin2 = "..............................";
-        string NoeSanad3 = "....................";
-        string Shcheak3 = "....................";
-        string MablaghTazmin3 = "..............................";
-        string NoeSanad4 = "....................";
-        string Shcheak4 = "....................";
-        string MablaghTazmin4 = "..............................";
-        string NoeSanad5 = "....................";
-        string Shcheak5 = "....................";
-        string MablaghTazmin5 = "..............................";
-        string NoeSanad6 = "....................";
-        string Shcheak6 = "....................";
-        string MablaghTazmin6 = "..............................";
-        string NoeSanad7 = "....................";
-        string Shcheak7 = "....................";
-        string MablaghTazmin7 = "..............................";
-        string NoeSanad8 = "....................";
-        string Shcheak8 = "....................";
-        string MablaghTazmin8 = "..............................";
-        string NoeSanad9 = "....................";
-        string Shcheak9 = "....................";
-        string MablaghTazmin9 = "..............................";
-        string NoeSanad10 = "....................";
-        string Shcheak10 = "....................";
-        string MablaghTazmin10 = "..............................";
+        string NoeSanad1 = "..........";
+        string Shcheak1 = ".................";
+        string MablaghTazmin1 = ".................";
+        string NoeSanad2 = "..........";
+        string Shcheak2 = ".................";
+        string MablaghTazmin2 = ".................";
+        string NoeSanad3 = "..........";
+        string Shcheak3 = ".................";
+        string MablaghTazmin3 = ".................";
+        string NoeSanad4 = "..........";
+        string Shcheak4 = ".................";
+        string MablaghTazmin4 = ".................";
+        string NoeSanad5 = "..........";
+        string Shcheak5 = ".................";
+        string MablaghTazmin5 = ".................";
+        string NoeSanad6 = "..........";
+        string Shcheak6 = ".................";
+        string MablaghTazmin6 = ".................";
+        string NoeSanad7 = "..........";
+        string Shcheak7 = ".................";
+        string MablaghTazmin7 = ".................";
+        string NoeSanad8 = "..........";
+        string Shcheak8 = ".................";
+        string MablaghTazmin8 = ".................";
+        string NoeSanad9 = "..........";
+        string Shcheak9 = ".................";
+        string MablaghTazmin9 = ".................";
+        string NoeSanad10 = "..........";
+        string Shcheak10 = ".................";
+        string MablaghTazmin10 = ".................";
         string NahveyeDaryaftKarmozd = string.Empty;
 
         //تابع یه ورودی از جنس رشته داره
@@ -613,10 +613,10 @@ namespace Sandogh_PG
                     var q4 = db.TarifSandoghs.FirstOrDefault(f => f.Id == IdSandogh);
                     DatePardakht = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("TarikhPardakht")) ? Reverse(gridView1.GetFocusedRowCellDisplayText("TarikhPardakht")) : "....................";
                     NameVFamil = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("NameAaza")) ? gridView1.GetFocusedRowCellDisplayText("NameAaza") : "....................";
-                    NamePedar = q2 != null && !string.IsNullOrEmpty(q2.NamePedar) ? q2.NamePedar : "....................";
-                    CodeMelli = q2 != null && !string.IsNullOrEmpty(q2.CodeMelli) ? q2.CodeMelli : "........................................";
-                    AdressShakhs = q2 != null ? !string.IsNullOrEmpty(q2.AdressManzel) ? q2.AdressManzel : !string.IsNullOrEmpty(q2.AdressMohalKar) ? q2.AdressMohalKar : ".........................................................................................." : "..........................................................................................";
-                    ShMobile = q2 != null ? !string.IsNullOrEmpty(q2.Mobile1) ? q2.Mobile1 : !string.IsNullOrEmpty(q2.Mobile2) ? q2.Mobile2 : ".............................." : "..............................";
+                    NamePedar = q2 != null && !string.IsNullOrEmpty(q2.NamePedar) ? q2.NamePedar : "...............";
+                    CodeMelli = q2 != null && !string.IsNullOrEmpty(q2.CodeMelli) ? q2.CodeMelli : ".........................";
+                    AdressShakhs = q2 != null ? !string.IsNullOrEmpty(q2.AdressManzel) ? q2.AdressManzel : !string.IsNullOrEmpty(q2.AdressMohalKar) ? q2.AdressMohalKar : "......................................................" : "......................................................";
+                    ShMobile = q2 != null ? !string.IsNullOrEmpty(q2.Mobile1) ? q2.Mobile1 : !string.IsNullOrEmpty(q2.Mobile2) ? q2.Mobile2 : "........................." : ".........................";
                     Date1 = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("SarresidAvalinGhest")) ? Reverse(gridView1.GetFocusedRowCellDisplayText("SarresidAvalinGhest")) : "....................";
                     Date2 = q3 != null ? Reverse(q3.ToString().Substring(0, 10)) : "....................";
                     MablaghVam = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("MablaghAsli")) ? gridView1.GetFocusedRowCellDisplayText("MablaghAsli") : "....................";
@@ -634,10 +634,10 @@ namespace Sandogh_PG
                         NahveyeDaryaftKarmozd = "که این مبلغ به همراه اصل مبلغ وام قسط بندی و پرداخت خواهد گردید";
 
 
-                    NameSandogh = q4 != null && !string.IsNullOrEmpty(q4.NameSandogh) ? q4.NameSandogh : "...................................";
-                    ModirSandogh = q4 != null && !string.IsNullOrEmpty(q4.NameModir) ? q4.NameModir : "...................................";
-                    AdressSandogh = q4 != null && !string.IsNullOrEmpty(q4.Adress) ? q4.Adress : "..........................................................................................";
-                    ShTell = q4 != null ? !string.IsNullOrEmpty(q4.Tell) ? q4.Tell : !string.IsNullOrEmpty(q4.Mobile) ? q4.Mobile : ".............................." : "..............................";
+                    NameSandogh = q4 != null && !string.IsNullOrEmpty(q4.NameSandogh) ? q4.NameSandogh : "..............................";
+                    ModirSandogh = q4 != null && !string.IsNullOrEmpty(q4.NameModir) ? q4.NameModir : "..............................";
+                    AdressSandogh = q4 != null && !string.IsNullOrEmpty(q4.Adress) ? q4.Adress : "..................................................";
+                    ShTell = q4 != null ? !string.IsNullOrEmpty(q4.Tell) ? q4.Tell : !string.IsNullOrEmpty(q4.Mobile) ? q4.Mobile : "........................" : "........................";
 
                     var q5 = db.CheckTazmins.Where(f => f.VamGerandeId == IdShakhs && f.IsInSandogh == true).ToList();
                     if (q5.Count > 0)
@@ -740,36 +740,36 @@ namespace Sandogh_PG
                         }
                     else
                     {
-                        NoeSanad1 = "....................";
-                        Shcheak1 = "....................";
-                        MablaghTazmin1 = "..............................";
-                        NoeSanad2 = "....................";
-                        Shcheak2 = "....................";
-                        MablaghTazmin2 = "..............................";
-                        NoeSanad3 = "....................";
-                        Shcheak3 = "....................";
-                        MablaghTazmin3 = "..............................";
-                        NoeSanad4 = "....................";
-                        Shcheak4 = "....................";
-                        MablaghTazmin4 = "..............................";
-                        NoeSanad5 = "....................";
-                        Shcheak5 = "....................";
-                        MablaghTazmin5 = "..............................";
-                        NoeSanad6 = "....................";
-                        Shcheak6 = "....................";
-                        MablaghTazmin6 = "..............................";
-                        NoeSanad7 = "....................";
-                        Shcheak7 = "....................";
-                        MablaghTazmin7 = "..............................";
-                        NoeSanad8 = "....................";
-                        Shcheak8 = "....................";
-                        MablaghTazmin8 = "..............................";
-                        NoeSanad9 = "....................";
-                        Shcheak9 = "....................";
-                        MablaghTazmin9 = "..............................";
-                        NoeSanad10 = "....................";
-                        Shcheak10 = "....................";
-                        MablaghTazmin10 = "..............................";
+                        NoeSanad1 = "..........";
+                        Shcheak1 = ".................";
+                        MablaghTazmin1 = ".................";
+                        NoeSanad2 = "..........";
+                        Shcheak2 = ".................";
+                        MablaghTazmin2 = ".................";
+                        NoeSanad3 = "..........";
+                        Shcheak3 = ".................";
+                        MablaghTazmin3 = ".................";
+                        NoeSanad4 = "..........";
+                        Shcheak4 = ".................";
+                        MablaghTazmin4 = ".................";
+                        NoeSanad5 = "..........";
+                        Shcheak5 = ".................";
+                        MablaghTazmin5 = ".................";
+                        NoeSanad6 = "..........";
+                        Shcheak6 = ".................";
+                        MablaghTazmin6 = ".................";
+                        NoeSanad7 = "..........";
+                        Shcheak7 = ".................";
+                        MablaghTazmin7 = ".................";
+                        NoeSanad8 = "..........";
+                        Shcheak8 = ".................";
+                        MablaghTazmin8 = ".................";
+                        NoeSanad9 = "..........";
+                        Shcheak9 = ".................";
+                        MablaghTazmin9 = ".................";
+                        NoeSanad10 = "..........";
+                        Shcheak10 = ".................";
+                        MablaghTazmin10 = ".................";
 
                     }
                 }
@@ -790,13 +790,13 @@ namespace Sandogh_PG
             //  create offer letter
             try
             {
-                FilePath = Application.StartupPath + @"\Report\GharardadSandogh";
+                FilePath = Application.StartupPath + @"\Report\Gharardad";
                 //  Just to kill WINWORD.EXE if it is running
                 KillProcess("winword");
                 //  copy letter format to temp.doc
-                File.Copy(FilePath + @"\GharardadeSandogh_Org.doc", FilePath + @"\GharardadeSandogh_Temp.doc", true);
-                //File.Copy(@"D:\Kamal Projects\Sandogh\Sandogh TG N1\Sandogh_PG\Sandogh_PG\bin\Debug\Report\GharardadeSandogh.docx", "c:\\temp.docx", true);
-                //File.Copy("D:\\GharardadeSandogh.docx", "D:\\temp.doc", true);
+                File.Copy(FilePath + @"\Gharardade_Org.doc", FilePath + @"\Gharardade_Temp.doc", true);
+                //File.Copy(@"D:\Kamal Projects\Sandogh\Sandogh TG N1\Sandogh_PG\Sandogh_PG\bin\Debug\Report\Gharardade.docx", "c:\\temp.docx", true);
+                //File.Copy("D:\\Gharardade.docx", "D:\\temp.doc", true);
                 //  create missing object
                 object missing = Missing.Value;
                 //  create Word application object
@@ -804,7 +804,7 @@ namespace Sandogh_PG
                 //  create Word document object
                 Word.Document aDoc = null;
                 //  create & define filename object with temp.doc
-                object filename = FilePath + @"\GharardadeSandogh_Temp.doc";
+                object filename = FilePath + @"\Gharardade_Temp.doc";
                 //  if temp.doc available
                 if (File.Exists((string)filename))
                 {
@@ -877,12 +877,12 @@ namespace Sandogh_PG
 
                 }
                 else
-                    MessageBox.Show("فایل  موقت GharardadeSandogh_Temp یافت نشد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    XtraMessageBox.Show("فایل  موقت Gharardade_Temp یافت نشد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             catch (Exception)
             {
-                MessageBox.Show("عملیات با خطا مواجه شد", "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //XtraMessageBox.Show("عملیات با خطا مواجه شد", "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             btnGharardad.Enabled = true;
             OpenFilWord();
@@ -929,20 +929,20 @@ namespace Sandogh_PG
         private void OpenFilWord()
         {
             //Document doc = new Document();
-            //doc.LoadFromFile(FilePath + @"\GharardadeSandogh_Org.doc",FileFormat.Doc);
+            //doc.LoadFromFile(FilePath + @"\Gharardade_Org.doc",FileFormat.Doc);
             try
             {
                 Word.Application ap = new Word.Application();
                 ap.Visible = true;
                 object miss = Missing.Value;
-                object path = FilePath + @"\GharardadeSandogh_Temp.doc";
+                object path = FilePath + @"\Gharardade_Temp.doc";
                 object readOnly = false;
                 object isVisible = true;
                 Word.Document doc = new Word.Document();
                 doc = ap.Documents.Open(ref path, ref miss, ref readOnly, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref isVisible, ref miss, ref miss, ref miss, ref miss);
                 doc.Activate();
                 //Word.Application ap = new Word.Application();
-                //Word.Document document = ap.Documents.Open(FilePath + @"\GharardadeSandogh_Temp.doc",);
+                //Word.Document document = ap.Documents.Open(FilePath + @"\Gharardade_Temp.doc",);
 
             }
             catch //(Exception)

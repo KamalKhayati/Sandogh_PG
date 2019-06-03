@@ -27,7 +27,7 @@
             //Database.SetInitializer<MyContext>(new CreateDatabaseIfNotExists<MyContext>());
             //    if (SetIni == SetInitialize.DropCreateDatabaseAlways)
             //حذف دیتابیس قبلی بهمراه داده های داخلش و ایجاد دیتابیس جدید بدون داده در صورت تغییرویاعدم تغییر(در هرصورت) کلاس مدل
-       ////     Database.SetInitializer<MyContext>(new DropCreateDatabaseAlways<MyContext>());
+            ////     Database.SetInitializer<MyContext>(new DropCreateDatabaseAlways<MyContext>());
             // حذف دیتابیس قبلی بهمراه داده های داخلش و ایجاد دیتابیس جدید بدون داده در صورت تغییر کلاس مدل
             //Database.SetInitializer<MyContext>(new DropCreateDatabaseIfModelChanges<MyContext>());
             // غیرفعال کردن پیکربندی دیتابیس برای اینکه داده های فعلی موجود در دیتا بیس حذف نشود
@@ -36,8 +36,11 @@
             //Database.SetInitializer<MyContext>(new MyContextInitializer());
             #endregion
             //Migration SetInitializer
-            Database.SetInitializer<MyContext>(new MigrateDatabaseToLatestVersion<MyContext, Configuration>(true));
-            SqlConnection.ClearAllPools();
+            if (Database.Connection.ConnectionString != "")
+            {
+                Database.SetInitializer<MyContext>(new MigrateDatabaseToLatestVersion<MyContext, Configuration>(true));
+                SqlConnection.ClearAllPools();
+            }
         }
         public MyContext(SetInitialize SetIni)
             : base("name=MyContext")

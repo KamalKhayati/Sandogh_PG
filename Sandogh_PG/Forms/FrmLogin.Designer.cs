@@ -62,6 +62,7 @@
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.lblVersion = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtShenase.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNameDataBaseSandogh.Properties)).BeginInit();
@@ -203,6 +204,7 @@
             this.cmbNameDataBaseSandogh.Size = new System.Drawing.Size(251, 38);
             this.cmbNameDataBaseSandogh.TabIndex = 20;
             this.cmbNameDataBaseSandogh.TabStop = false;
+            this.cmbNameDataBaseSandogh.Visible = false;
             this.cmbNameDataBaseSandogh.SelectedIndexChanged += new System.EventHandler(this.cmbNameDataBaseSandogh_SelectedIndexChanged);
             // 
             // chkConnectToServer
@@ -277,6 +279,7 @@
             // 
             // cmbServerName
             // 
+            this.cmbServerName.EnterMoveNextControl = true;
             this.cmbServerName.Location = new System.Drawing.Point(155, 97);
             this.cmbServerName.Margin = new System.Windows.Forms.Padding(4);
             this.cmbServerName.Name = "cmbServerName";
@@ -292,6 +295,7 @@
             // 
             // cmbAuthentication
             // 
+            this.cmbAuthentication.EnterMoveNextControl = true;
             this.cmbAuthentication.Location = new System.Drawing.Point(518, 50);
             this.cmbAuthentication.Margin = new System.Windows.Forms.Padding(4);
             this.cmbAuthentication.Name = "cmbAuthentication";
@@ -307,6 +311,7 @@
             // 
             // cmbServerType
             // 
+            this.cmbServerType.EnterMoveNextControl = true;
             this.cmbServerType.Location = new System.Drawing.Point(154, 50);
             this.cmbServerType.Margin = new System.Windows.Forms.Padding(4);
             this.cmbServerType.Name = "cmbServerType";
@@ -344,7 +349,6 @@
             this.LblNameDatabase.Name = "LblNameDatabase";
             this.LblNameDatabase.Size = new System.Drawing.Size(287, 31);
             this.LblNameDatabase.TabIndex = 14;
-            this.LblNameDatabase.Text = "...";
             // 
             // labelControl9
             // 
@@ -427,6 +431,7 @@
             // 
             // panelControl2
             // 
+            this.panelControl2.Controls.Add(this.lblVersion);
             this.panelControl2.Controls.Add(this.labelControl3);
             this.panelControl2.Controls.Add(this.lblName);
             this.panelControl2.Controls.Add(this.labelControl1);
@@ -466,11 +471,26 @@
             this.pictureEdit1.Size = new System.Drawing.Size(292, 259);
             this.pictureEdit1.TabIndex = 0;
             // 
+            // lblVersion
+            // 
+            this.lblVersion.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersion.Appearance.Options.UseFont = true;
+            this.lblVersion.Appearance.Options.UseTextOptions = true;
+            this.lblVersion.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblVersion.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lblVersion.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblVersion.Location = new System.Drawing.Point(7, 80);
+            this.lblVersion.Margin = new System.Windows.Forms.Padding(4);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(178, 20);
+            this.lblVersion.TabIndex = 20;
+            this.lblVersion.Text = "Version ";
+            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(766, 273);
+            this.ClientSize = new System.Drawing.Size(766, 272);
             this.Controls.Add(this.panelControl3);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
@@ -522,8 +542,6 @@
         private DevExpress.XtraEditors.TextEdit txtShenase;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.ComboBoxEdit cmbNameDataBaseSandogh;
-        private DevExpress.XtraEditors.CheckEdit chkConnectToServer;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         public DevExpress.XtraEditors.TextEdit txtPassword2;
@@ -545,5 +563,8 @@
         private DevExpress.XtraEditors.PanelControl panelControl3;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
         private DevExpress.XtraEditors.LabelControl LblNameDatabase;
+        public DevExpress.XtraEditors.ComboBoxEdit cmbNameDataBaseSandogh;
+        public DevExpress.XtraEditors.CheckEdit chkConnectToServer;
+        private DevExpress.XtraEditors.LabelControl lblVersion;
     }
 }

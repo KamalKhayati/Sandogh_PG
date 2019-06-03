@@ -29,6 +29,10 @@ namespace Sandogh_PG
         public string HesabTafName { get; set; }
         public decimal? Bed { get; set; }
         public decimal? Bes { get; set; }
+        public decimal? Mandebed { get; set; }
+        public decimal? Mandebes { get; set; }
+        public decimal? Mande01 { get; set; }
+        public decimal? Mande02 { get; set; }
         [MaxLength(150)]
         public string Sharh { get; set; }
         [Required]
