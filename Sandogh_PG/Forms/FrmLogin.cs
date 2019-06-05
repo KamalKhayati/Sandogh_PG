@@ -84,7 +84,8 @@ namespace Sandogh_PG
         {
             lblSystemDate.Text = DateTime.Now.ToString().Substring(0, 10);
             FillCmbNameDatabase();
-            lblVersion.Text = "Version " + Application.ProductVersion;
+            lblVersion.Text = "Version : " + Application.ProductVersion;
+            lblDataBace.Text = "DataBase  : " + new MyContext().Database.Connection.Database.ToString();
             if (System.IO.Directory.Exists(AppVariable.fileName))
                 if (Settings.Data.Count > 0)
                 {
@@ -123,7 +124,7 @@ namespace Sandogh_PG
 
         }
 
-        public void SetAppConfing()
+        public string SetAppConfing()
         {
             //D:\Kamal Projects\Sandogh\Sandogh_PG\Sandogh_PG\bin\Debug\DB
             //D:\Kamal Projects\Sandogh\Sandogh_PG\Sandogh_PG\bin\Debug\DB\Sandogh_PG.mdf
@@ -159,7 +160,8 @@ namespace Sandogh_PG
                 Con.Append(";MultipleActiveResultSets=true");
                 Con.Append(";App=EntityFramework");
                 string strCon = Con.ToString();
-                updateConfigFile(strCon);
+                return strCon;
+                // updateConfigFile(strCon);
                 ////Create new sql connection
                 //SqlConnection Db = new SqlConnection();
                 ////to refresh connection string each time else it will use previous connection string
@@ -175,6 +177,7 @@ namespace Sandogh_PG
             catch (Exception E)
             {
                 MessageBox.Show(ConfigurationManager.ConnectionStrings["MyContext"].ToString() + ".This is invalid connection", "Incorrect server/Database");
+                return "";
             }
 
         }
@@ -252,7 +255,7 @@ namespace Sandogh_PG
 
         private void chkConnectToServer_CheckedChanged(object sender, EventArgs e)
         {
-            this.Height = chkConnectToServer.Checked ? 562 : 318;
+            this.Height = chkConnectToServer.Checked ? 497 : 297;
             //cmbServerType.SelectedIndex = 0;
             //cmbServerName.SelectedIndex = 0;
             //cmbAuthentication.SelectedIndex = 0;
@@ -292,16 +295,19 @@ namespace Sandogh_PG
             {
                 try
                 {
-                    if (db.Database.Connection.Database != cmbNameDataBaseSandogh.Text)
+                    string d1 = db.Database.Connection.ConnectionString;
+                    FillInfoControls();
+                    //if (db.Database.Connection.Database != cmbNameDataBaseSandogh.Text || db.Database.Connection.DataSource!=Settings[AppVariable.cmbServerName[cmbNameDataBaseSandogh.SelectedIndex]].ToString())
+                    if (SetAppConfing() != d1)
                     {
-                        FillInfoControls();
-                        SetAppConfing();
+                        updateConfigFile(SetAppConfing());
                         Settings[AppVariable.DefaltIndexCmbNameSandogh] = cmbNameDataBaseSandogh.SelectedIndex.ToString();
-                        Application.Restart();
+                       // Application.Restart();
+                        Application.Exit();
                     }
                     else
                     {
-                        FillInfoControls();
+                        //FillInfoControls();
                         if (!string.IsNullOrEmpty(LblNameDatabase.Text))
                         {
                             string s1 = Application.StartupPath + @"\DB\" + cmbNameDataBaseSandogh.Text + ".mdf";
@@ -315,11 +321,11 @@ namespace Sandogh_PG
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    //XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                    // "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Application.Exit();
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                     "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Application.Exit();
                 }
             }
         }
@@ -400,6 +406,16 @@ namespace Sandogh_PG
         private void txtDatabaseName_EditValueChanged(object sender, EventArgs e)
         {
             txtAttachDbFilePath.Text = Application.StartupPath + @"\DB\" + txtDatabaseName.Text + ".mdf";
+        }
+
+        private void lblVersion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblSystemDate_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

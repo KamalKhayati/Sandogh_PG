@@ -60,9 +60,10 @@
             this.txtPassword2 = new DevExpress.XtraEditors.TextEdit();
             this.txtUserName2 = new DevExpress.XtraEditors.TextEdit();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.lblDataBace = new DevExpress.XtraEditors.LabelControl();
+            this.lblVersion = new DevExpress.XtraEditors.LabelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.lblVersion = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtShenase.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNameDataBaseSandogh.Properties)).BeginInit();
@@ -85,49 +86,46 @@
             // 
             // lblName
             // 
-            this.lblName.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblName.Appearance.ForeColor = System.Drawing.Color.Blue;
-            this.lblName.Appearance.Options.UseFont = true;
             this.lblName.Appearance.Options.UseForeColor = true;
             this.lblName.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblName.Location = new System.Drawing.Point(7, 47);
+            this.lblName.Location = new System.Drawing.Point(81, 51);
             this.lblName.Margin = new System.Windows.Forms.Padding(4);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(307, 42);
+            this.lblName.Size = new System.Drawing.Size(158, 31);
             this.lblName.TabIndex = 17;
             this.lblName.Text = "نام کاربر";
             this.lblName.Visible = false;
             // 
             // lblSystemDate
             // 
-            this.lblSystemDate.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblSystemDate.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblSystemDate.Appearance.Options.UseFont = true;
             this.lblSystemDate.Appearance.Options.UseForeColor = true;
             this.lblSystemDate.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblSystemDate.Location = new System.Drawing.Point(7, 4);
+            this.lblSystemDate.Location = new System.Drawing.Point(103, 16);
             this.lblSystemDate.Margin = new System.Windows.Forms.Padding(4);
             this.lblSystemDate.Name = "lblSystemDate";
-            this.lblSystemDate.Size = new System.Drawing.Size(307, 41);
+            this.lblSystemDate.Size = new System.Drawing.Size(136, 31);
             this.lblSystemDate.TabIndex = 18;
             this.lblSystemDate.Text = "1397/01/01";
+            this.lblSystemDate.Click += new System.EventHandler(this.lblSystemDate_Click);
             // 
             // labelControl3
             // 
             this.labelControl3.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl3.Appearance.Options.UseForeColor = true;
-            this.labelControl3.Location = new System.Drawing.Point(323, 10);
+            this.labelControl3.Location = new System.Drawing.Point(252, 16);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(114, 31);
+            this.labelControl3.Size = new System.Drawing.Size(53, 31);
             this.labelControl3.TabIndex = 19;
-            this.labelControl3.Text = "تاریخ سیستم :";
+            this.labelControl3.Text = "تاریخ :";
             // 
             // labelControl4
             // 
             this.labelControl4.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl4.Appearance.Options.UseForeColor = true;
-            this.labelControl4.Location = new System.Drawing.Point(323, 53);
+            this.labelControl4.Location = new System.Drawing.Point(252, 51);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(73, 31);
@@ -136,20 +134,20 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(7, 203);
+            this.btnExit.Location = new System.Drawing.Point(6, 186);
             this.btnExit.Margin = new System.Windows.Forms.Padding(4);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(203, 51);
+            this.btnExit.Size = new System.Drawing.Size(149, 51);
             this.btnExit.TabIndex = 3;
             this.btnExit.Text = "خروج";
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnEnter
             // 
-            this.btnEnter.Location = new System.Drawing.Point(242, 203);
+            this.btnEnter.Location = new System.Drawing.Point(207, 186);
             this.btnEnter.Margin = new System.Windows.Forms.Padding(4);
             this.btnEnter.Name = "btnEnter";
-            this.btnEnter.Size = new System.Drawing.Size(203, 51);
+            this.btnEnter.Size = new System.Drawing.Size(149, 51);
             this.btnEnter.TabIndex = 2;
             this.btnEnter.Text = "ورود";
             this.btnEnter.Click += new System.EventHandler(this.btnEnter_Click);
@@ -157,27 +155,27 @@
             // txtPassword
             // 
             this.txtPassword.EnterMoveNextControl = true;
-            this.txtPassword.Location = new System.Drawing.Point(7, 153);
+            this.txtPassword.Location = new System.Drawing.Point(7, 141);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Properties.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(307, 38);
+            this.txtPassword.Size = new System.Drawing.Size(232, 38);
             this.txtPassword.TabIndex = 1;
             // 
             // txtShenase
             // 
             this.txtShenase.EnterMoveNextControl = true;
-            this.txtShenase.Location = new System.Drawing.Point(7, 103);
+            this.txtShenase.Location = new System.Drawing.Point(7, 94);
             this.txtShenase.Margin = new System.Windows.Forms.Padding(4);
             this.txtShenase.Name = "txtShenase";
             this.txtShenase.Properties.PasswordChar = '*';
-            this.txtShenase.Size = new System.Drawing.Size(307, 38);
+            this.txtShenase.Size = new System.Drawing.Size(232, 38);
             this.txtShenase.TabIndex = 0;
             this.txtShenase.Leave += new System.EventHandler(this.txtName_Leave);
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(323, 156);
+            this.labelControl2.Location = new System.Drawing.Point(252, 143);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(60, 31);
@@ -186,7 +184,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(318, 107);
+            this.labelControl1.Location = new System.Drawing.Point(247, 97);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(109, 31);
@@ -195,13 +193,15 @@
             // 
             // cmbNameDataBaseSandogh
             // 
-            this.cmbNameDataBaseSandogh.Location = new System.Drawing.Point(39, 214);
+            this.cmbNameDataBaseSandogh.Location = new System.Drawing.Point(35, 149);
             this.cmbNameDataBaseSandogh.Margin = new System.Windows.Forms.Padding(4);
             this.cmbNameDataBaseSandogh.Name = "cmbNameDataBaseSandogh";
+            this.cmbNameDataBaseSandogh.Properties.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbNameDataBaseSandogh.Properties.Appearance.Options.UseFont = true;
             this.cmbNameDataBaseSandogh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbNameDataBaseSandogh.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.cmbNameDataBaseSandogh.Size = new System.Drawing.Size(251, 38);
+            this.cmbNameDataBaseSandogh.Size = new System.Drawing.Size(172, 34);
             this.cmbNameDataBaseSandogh.TabIndex = 20;
             this.cmbNameDataBaseSandogh.TabStop = false;
             this.cmbNameDataBaseSandogh.Visible = false;
@@ -209,7 +209,7 @@
             // 
             // chkConnectToServer
             // 
-            this.chkConnectToServer.Location = new System.Drawing.Point(10, 215);
+            this.chkConnectToServer.Location = new System.Drawing.Point(6, 147);
             this.chkConnectToServer.Margin = new System.Windows.Forms.Padding(4);
             this.chkConnectToServer.Name = "chkConnectToServer";
             this.chkConnectToServer.Properties.Caption = "checkEdit1";
@@ -221,8 +221,6 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelControl1.Controls.Add(this.btnSave);
             this.panelControl1.Controls.Add(this.labelControl6);
             this.panelControl1.Controls.Add(this.labelControl7);
@@ -240,49 +238,57 @@
             this.panelControl1.Controls.Add(this.txtAttachDbFilePath);
             this.panelControl1.Controls.Add(this.txtPassword2);
             this.panelControl1.Controls.Add(this.txtUserName2);
-            this.panelControl1.Location = new System.Drawing.Point(0, 275);
+            this.panelControl1.Location = new System.Drawing.Point(6, 254);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.panelControl1.Size = new System.Drawing.Size(766, 241);
+            this.panelControl1.Size = new System.Drawing.Size(581, 192);
             this.panelControl1.TabIndex = 26;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(642, 190);
+            this.btnSave.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Appearance.Options.UseFont = true;
+            this.btnSave.Location = new System.Drawing.Point(466, 155);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(109, 41);
+            this.btnSave.Size = new System.Drawing.Size(109, 29);
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "ذخیره";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // labelControl6
             // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl6.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl6.Appearance.Options.UseFont = true;
             this.labelControl6.Appearance.Options.UseForeColor = true;
             this.labelControl6.Location = new System.Drawing.Point(13, 6);
             this.labelControl6.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(206, 31);
+            this.labelControl6.Size = new System.Drawing.Size(156, 24);
             this.labelControl6.TabIndex = 14;
             this.labelControl6.Text = "Connect To Database :";
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(28, 53);
+            this.labelControl7.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl7.Appearance.Options.UseFont = true;
+            this.labelControl7.Location = new System.Drawing.Point(9, 38);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(115, 31);
+            this.labelControl7.Size = new System.Drawing.Size(84, 24);
             this.labelControl7.TabIndex = 14;
             this.labelControl7.Text = "Server type :";
             // 
             // cmbServerName
             // 
             this.cmbServerName.EnterMoveNextControl = true;
-            this.cmbServerName.Location = new System.Drawing.Point(155, 97);
+            this.cmbServerName.Location = new System.Drawing.Point(99, 78);
             this.cmbServerName.Margin = new System.Windows.Forms.Padding(4);
             this.cmbServerName.Name = "cmbServerName";
+            this.cmbServerName.Properties.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbServerName.Properties.Appearance.Options.UseFont = true;
             this.cmbServerName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbServerName.Properties.Items.AddRange(new object[] {
@@ -290,61 +296,71 @@
             ".\\Sql2008",
             "(localdb)\\MSSQLLocalDB",
             ".\\SQLEXPRESS"});
-            this.cmbServerName.Size = new System.Drawing.Size(215, 38);
+            this.cmbServerName.Size = new System.Drawing.Size(172, 30);
             this.cmbServerName.TabIndex = 1;
             // 
             // cmbAuthentication
             // 
             this.cmbAuthentication.EnterMoveNextControl = true;
-            this.cmbAuthentication.Location = new System.Drawing.Point(518, 50);
+            this.cmbAuthentication.Location = new System.Drawing.Point(389, 41);
             this.cmbAuthentication.Margin = new System.Windows.Forms.Padding(4);
             this.cmbAuthentication.Name = "cmbAuthentication";
+            this.cmbAuthentication.Properties.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbAuthentication.Properties.Appearance.Options.UseFont = true;
             this.cmbAuthentication.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbAuthentication.Properties.Items.AddRange(new object[] {
             "Windows Authentication",
             "SQL Server Authentication"});
             this.cmbAuthentication.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cmbAuthentication.Size = new System.Drawing.Size(232, 38);
+            this.cmbAuthentication.Size = new System.Drawing.Size(185, 30);
             this.cmbAuthentication.TabIndex = 4;
             this.cmbAuthentication.SelectedIndexChanged += new System.EventHandler(this.cmbAuthentication_SelectedIndexChanged);
             // 
             // cmbServerType
             // 
             this.cmbServerType.EnterMoveNextControl = true;
-            this.cmbServerType.Location = new System.Drawing.Point(154, 50);
+            this.cmbServerType.Location = new System.Drawing.Point(99, 38);
             this.cmbServerType.Margin = new System.Windows.Forms.Padding(4);
             this.cmbServerType.Name = "cmbServerType";
+            this.cmbServerType.Properties.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbServerType.Properties.Appearance.Options.UseFont = true;
             this.cmbServerType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbServerType.Properties.Items.AddRange(new object[] {
             "Database Engian"});
             this.cmbServerType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cmbServerType.Size = new System.Drawing.Size(215, 38);
+            this.cmbServerType.Size = new System.Drawing.Size(172, 30);
             this.cmbServerType.TabIndex = 0;
             // 
             // LabelAttachDbFilePath
             // 
-            this.LabelAttachDbFilePath.Location = new System.Drawing.Point(13, 195);
+            this.LabelAttachDbFilePath.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelAttachDbFilePath.Appearance.Options.UseFont = true;
+            this.LabelAttachDbFilePath.Location = new System.Drawing.Point(20, 157);
             this.LabelAttachDbFilePath.Margin = new System.Windows.Forms.Padding(4);
             this.LabelAttachDbFilePath.Name = "LabelAttachDbFilePath";
-            this.LabelAttachDbFilePath.Size = new System.Drawing.Size(137, 31);
+            this.LabelAttachDbFilePath.Size = new System.Drawing.Size(71, 24);
             this.LabelAttachDbFilePath.TabIndex = 14;
-            this.LabelAttachDbFilePath.Text = "AttachDbPath :";
+            this.LabelAttachDbFilePath.Text = "AttachDb :";
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(412, 148);
+            this.labelControl10.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl10.Appearance.Options.UseFont = true;
+            this.labelControl10.Location = new System.Drawing.Point(306, 122);
             this.labelControl10.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(100, 31);
+            this.labelControl10.Size = new System.Drawing.Size(75, 24);
             this.labelControl10.TabIndex = 14;
             this.labelControl10.Text = "Password :";
             // 
             // LblNameDatabase
             // 
+            this.LblNameDatabase.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblNameDatabase.Appearance.Options.UseFont = true;
             this.LblNameDatabase.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.LblNameDatabase.Location = new System.Drawing.Point(224, 6);
+            this.LblNameDatabase.Location = new System.Drawing.Point(177, 2);
             this.LblNameDatabase.Margin = new System.Windows.Forms.Padding(4);
             this.LblNameDatabase.Name = "LblNameDatabase";
             this.LblNameDatabase.Size = new System.Drawing.Size(287, 31);
@@ -352,145 +368,177 @@
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(402, 100);
+            this.labelControl9.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl9.Appearance.Options.UseFont = true;
+            this.labelControl9.Location = new System.Drawing.Point(299, 81);
             this.labelControl9.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(109, 31);
+            this.labelControl9.Size = new System.Drawing.Size(82, 24);
             this.labelControl9.TabIndex = 14;
             this.labelControl9.Text = "User name :";
             // 
             // labelAuthentication
             // 
-            this.labelAuthentication.Location = new System.Drawing.Point(380, 53);
+            this.labelAuthentication.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAuthentication.Appearance.Options.UseFont = true;
+            this.labelAuthentication.Location = new System.Drawing.Point(278, 41);
             this.labelAuthentication.Margin = new System.Windows.Forms.Padding(4);
             this.labelAuthentication.Name = "labelAuthentication";
-            this.labelAuthentication.Size = new System.Drawing.Size(137, 31);
+            this.labelAuthentication.Size = new System.Drawing.Size(107, 24);
             this.labelAuthentication.TabIndex = 14;
-            this.labelAuthentication.Text = "Authentication ";
+            this.labelAuthentication.Text = "Authentication :";
             // 
             // txtDatabaseName
             // 
             this.txtDatabaseName.EnterMoveNextControl = true;
-            this.txtDatabaseName.Location = new System.Drawing.Point(154, 144);
+            this.txtDatabaseName.Location = new System.Drawing.Point(99, 119);
             this.txtDatabaseName.Margin = new System.Windows.Forms.Padding(4);
             this.txtDatabaseName.Name = "txtDatabaseName";
+            this.txtDatabaseName.Properties.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDatabaseName.Properties.Appearance.Options.UseFont = true;
             this.txtDatabaseName.Properties.MaxLength = 23;
-            this.txtDatabaseName.Size = new System.Drawing.Size(216, 38);
+            this.txtDatabaseName.Size = new System.Drawing.Size(173, 30);
             this.txtDatabaseName.TabIndex = 2;
             this.txtDatabaseName.EditValueChanged += new System.EventHandler(this.txtDatabaseName_EditValueChanged);
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(9, 148);
+            this.labelControl8.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl8.Appearance.Options.UseFont = true;
+            this.labelControl8.Location = new System.Drawing.Point(23, 122);
             this.labelControl8.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(144, 31);
+            this.labelControl8.Size = new System.Drawing.Size(68, 24);
             this.labelControl8.TabIndex = 14;
-            this.labelControl8.Text = "DatabaseName:";
+            this.labelControl8.Text = "DBName :";
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(16, 100);
+            this.labelControl5.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl5.Appearance.Options.UseFont = true;
+            this.labelControl5.Location = new System.Drawing.Point(6, 81);
             this.labelControl5.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(126, 31);
+            this.labelControl5.Size = new System.Drawing.Size(91, 24);
             this.labelControl5.TabIndex = 14;
-            this.labelControl5.Text = "Server name :";
+            this.labelControl5.Text = "ServerName :";
             // 
             // txtAttachDbFilePath
             // 
             this.txtAttachDbFilePath.EnterMoveNextControl = true;
-            this.txtAttachDbFilePath.Location = new System.Drawing.Point(155, 191);
+            this.txtAttachDbFilePath.Location = new System.Drawing.Point(99, 154);
             this.txtAttachDbFilePath.Margin = new System.Windows.Forms.Padding(4);
             this.txtAttachDbFilePath.Name = "txtAttachDbFilePath";
+            this.txtAttachDbFilePath.Properties.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAttachDbFilePath.Properties.Appearance.Options.UseFont = true;
             this.txtAttachDbFilePath.Properties.MaxLength = 23;
-            this.txtAttachDbFilePath.Size = new System.Drawing.Size(479, 38);
+            this.txtAttachDbFilePath.Size = new System.Drawing.Size(359, 30);
             this.txtAttachDbFilePath.TabIndex = 3;
             // 
             // txtPassword2
             // 
             this.txtPassword2.Enabled = false;
             this.txtPassword2.EnterMoveNextControl = true;
-            this.txtPassword2.Location = new System.Drawing.Point(518, 144);
+            this.txtPassword2.Location = new System.Drawing.Point(389, 119);
             this.txtPassword2.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword2.Name = "txtPassword2";
+            this.txtPassword2.Properties.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword2.Properties.Appearance.Options.UseFont = true;
             this.txtPassword2.Properties.MaxLength = 23;
-            this.txtPassword2.Size = new System.Drawing.Size(232, 38);
+            this.txtPassword2.Size = new System.Drawing.Size(186, 30);
             this.txtPassword2.TabIndex = 6;
             // 
             // txtUserName2
             // 
             this.txtUserName2.Enabled = false;
             this.txtUserName2.EnterMoveNextControl = true;
-            this.txtUserName2.Location = new System.Drawing.Point(518, 97);
+            this.txtUserName2.Location = new System.Drawing.Point(389, 78);
             this.txtUserName2.Margin = new System.Windows.Forms.Padding(4);
             this.txtUserName2.Name = "txtUserName2";
+            this.txtUserName2.Properties.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUserName2.Properties.Appearance.Options.UseFont = true;
             this.txtUserName2.Properties.MaxLength = 23;
-            this.txtUserName2.Size = new System.Drawing.Size(232, 38);
+            this.txtUserName2.Size = new System.Drawing.Size(185, 30);
             this.txtUserName2.TabIndex = 5;
             // 
             // panelControl2
             // 
-            this.panelControl2.Controls.Add(this.lblVersion);
             this.panelControl2.Controls.Add(this.labelControl3);
             this.panelControl2.Controls.Add(this.lblName);
             this.panelControl2.Controls.Add(this.labelControl1);
             this.panelControl2.Controls.Add(this.labelControl2);
             this.panelControl2.Controls.Add(this.txtShenase);
-            this.panelControl2.Controls.Add(this.lblSystemDate);
-            this.panelControl2.Controls.Add(this.txtPassword);
             this.panelControl2.Controls.Add(this.labelControl4);
+            this.panelControl2.Controls.Add(this.txtPassword);
             this.panelControl2.Controls.Add(this.btnEnter);
             this.panelControl2.Controls.Add(this.btnExit);
-            this.panelControl2.Location = new System.Drawing.Point(307, 4);
+            this.panelControl2.Controls.Add(this.lblSystemDate);
+            this.panelControl2.Location = new System.Drawing.Point(224, 4);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(453, 264);
+            this.panelControl2.Size = new System.Drawing.Size(363, 242);
             this.panelControl2.TabIndex = 24;
+            // 
+            // lblDataBace
+            // 
+            this.lblDataBace.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataBace.Appearance.Options.UseFont = true;
+            this.lblDataBace.Appearance.Options.UseTextOptions = true;
+            this.lblDataBace.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblDataBace.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lblDataBace.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblDataBace.Location = new System.Drawing.Point(10, 217);
+            this.lblDataBace.Margin = new System.Windows.Forms.Padding(4);
+            this.lblDataBace.Name = "lblDataBace";
+            this.lblDataBace.Size = new System.Drawing.Size(197, 20);
+            this.lblDataBace.TabIndex = 21;
+            this.lblDataBace.Text = "DataBase ";
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersion.Appearance.Options.UseFont = true;
+            this.lblVersion.Appearance.Options.UseTextOptions = true;
+            this.lblVersion.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblVersion.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lblVersion.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblVersion.Location = new System.Drawing.Point(10, 195);
+            this.lblVersion.Margin = new System.Windows.Forms.Padding(4);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(197, 19);
+            this.lblVersion.TabIndex = 20;
+            this.lblVersion.Text = "Version ";
+            this.lblVersion.Click += new System.EventHandler(this.lblVersion_Click);
             // 
             // panelControl3
             // 
+            this.panelControl3.Controls.Add(this.lblDataBace);
             this.panelControl3.Controls.Add(this.chkConnectToServer);
+            this.panelControl3.Controls.Add(this.lblVersion);
             this.panelControl3.Controls.Add(this.cmbNameDataBaseSandogh);
             this.panelControl3.Controls.Add(this.pictureEdit1);
             this.panelControl3.Location = new System.Drawing.Point(6, 4);
             this.panelControl3.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(296, 263);
+            this.panelControl3.Size = new System.Drawing.Size(213, 242);
             this.panelControl3.TabIndex = 25;
             // 
             // pictureEdit1
             // 
-            this.pictureEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureEdit1.EditValue = ((object)(resources.GetObject("pictureEdit1.EditValue")));
             this.pictureEdit1.Location = new System.Drawing.Point(2, 2);
             this.pictureEdit1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureEdit1.Name = "pictureEdit1";
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit1.Size = new System.Drawing.Size(292, 259);
+            this.pictureEdit1.Size = new System.Drawing.Size(211, 187);
             this.pictureEdit1.TabIndex = 0;
-            // 
-            // lblVersion
-            // 
-            this.lblVersion.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersion.Appearance.Options.UseFont = true;
-            this.lblVersion.Appearance.Options.UseTextOptions = true;
-            this.lblVersion.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.lblVersion.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.lblVersion.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblVersion.Location = new System.Drawing.Point(7, 80);
-            this.lblVersion.Margin = new System.Windows.Forms.Padding(4);
-            this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(178, 20);
-            this.lblVersion.TabIndex = 20;
-            this.lblVersion.Text = "Version ";
             // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(766, 272);
+            this.ClientSize = new System.Drawing.Size(592, 251);
             this.Controls.Add(this.panelControl3);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
@@ -566,5 +614,6 @@
         public DevExpress.XtraEditors.ComboBoxEdit cmbNameDataBaseSandogh;
         public DevExpress.XtraEditors.CheckEdit chkConnectToServer;
         private DevExpress.XtraEditors.LabelControl lblVersion;
+        private DevExpress.XtraEditors.LabelControl lblDataBace;
     }
 }

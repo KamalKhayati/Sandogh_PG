@@ -45,6 +45,9 @@ namespace Sandogh_PG
             //WindowsFormsSettings.AllowDefaultSvgImages = DevExpress.Utils.DefaultBoolean.False;
             if (!System.IO.Directory.Exists(AppVariable.fileName))
                 System.IO.Directory.CreateDirectory(AppVariable.fileName);
+            // ساخت پوشه دیتابیس
+            if (!System.IO.Directory.Exists(Application.StartupPath + @"\DB"))
+                System.IO.Directory.CreateDirectory(Application.StartupPath + @"\DB");
             Application.Run(new AppContext());
             //Application.Run(new FrmMain());
 

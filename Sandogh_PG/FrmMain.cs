@@ -415,13 +415,13 @@ namespace Sandogh_PG
                             db.Database.Initialize(true);
                            // XtraMessageBox.Show("کلیه اطلاعات ثبت شده با موفقیت حذف گردید و نرم افزار مجدداً راه اندازی خواهد شد", "پیغام", MessageBoxButtons.OK);
                             XtraMessageBox.Show("کلیه اطلاعات ثبت شده با موفقیت حذف گردید لطفا برنامه را مجدداً اجرا کنید", "پیغام", MessageBoxButtons.OK);
-                            Application.Restart();
-                        }
-
-                        catch (Exception )
-                        {
+                            //Application.Restart();
                             Application.Exit();
-                            //MessageBox.Show(ex.Message);
+                        }
+                        catch (Exception ex)
+                        {
+                            //Application.Exit();
+                            XtraMessageBox.Show(ex.Message);
                         }
                     }
 

@@ -449,7 +449,7 @@ namespace Sandogh_PG
         {
             if (Application.OpenForms[form.Name] == null)
             {
-                form.Show(this);
+                form.ShowDialog(this);
             }
             else
             {

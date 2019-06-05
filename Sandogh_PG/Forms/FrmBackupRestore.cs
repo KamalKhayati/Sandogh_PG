@@ -99,9 +99,10 @@ namespace Sandogh_PG
             }
             else
             {
-                if (!System.IO.Directory.Exists(new MyContext().Tanzimats.FirstOrDefault().Path))
+               // if (!System.IO.Directory.Exists(new MyContext().Tanzimats.FirstOrDefault().Path))
+                if (!System.IO.Directory.Exists(SPath.SelectedPath))
                 {
-                    MessageBox.Show("این مسیر در سیستم وجود ندارد لطفاً یک مسیر درست انتخاب نمایید");
+                    MessageBox.Show("این مسیر در سیستم وجود ندارد لطفاً یک مسیر صحیح انتخاب نمایید");
                     txtSelectPath.Text = string.Empty;
                     btnBrowserBackup_Click(null, null);
                 }
@@ -247,23 +248,39 @@ namespace Sandogh_PG
             {
                 try
                 {
-                    //MessageBox.Show(" عملیات بازیابی اطلاعات با موفقیت انجام شد و برنامه مجدداً راه اندازی میشود");
+                   // MessageBox.Show(" عملیات بازیابی اطلاعات با موفقیت انجام شد و برنامه مجدداً راه اندازی میشود");
                     MessageBox.Show("عملیات بازیابی اطلاعات با موفقیت انجام شد لطفاً برنامه را مجدداً اجرا کنید");
                     Application.OpenForms["FrmBackupRestore"].Enabled = true;
-                    //Application.Exit();
-                    Application.Restart();
+                    Application.Exit();
+                   // Application.Restart();
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    Application.Exit();
+                    MessageBox.Show(ex.Message);
+                    // Application.Exit();
                 }
             }
             else
             {
-                MessageBox.Show("عملیات بازیابی با خطا مواجه شد");
-                Application.OpenForms["FrmBackupRestore"].Enabled = true;
-                txtSelectFile.Text = "";
+                //MessageBox.Show("عملیات بازیابی با خطا مواجه شد");
+                //Application.OpenForms["FrmBackupRestore"].Enabled = true;
+                //txtSelectFile.Text = "";
+                /////////////////////////////////////////////////////////////////////////
+                try
+                {
+                   // MessageBox.Show(" عملیات بازیابی اطلاعات با موفقیت انجام شد و برنامه مجدداً راه اندازی میشود");
+                    MessageBox.Show("عملیات بازیابی اطلاعات با موفقیت انجام شد لطفاً برنامه را مجدداً اجرا کنید");
+                    Application.OpenForms["FrmBackupRestore"].Enabled = true;
+                    Application.Exit();
+                   // Application.Restart();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    // Application.Exit();
+                }
+
             }
         }
 

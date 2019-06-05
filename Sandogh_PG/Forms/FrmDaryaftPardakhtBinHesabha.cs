@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Data.Entity;
+using DevExpress.XtraReports.UI;
 
 namespace Sandogh_PG
 {
@@ -534,10 +535,10 @@ namespace Sandogh_PG
             {
                 btnPrintPreview_Click(sender, null);
             }
-            else if (e.KeyCode == Keys.F12 && btnPrint.Enabled == true)
-            {
-                btnPrint_Click(sender, null);
-            }
+            //else if (e.KeyCode == Keys.F12 && btnPrint.Enabled == true)
+            //{
+            //    btnPrint_Click(sender, null);
+            //}
             else if (e.KeyCode == Keys.Escape)
             {
                 btnClose_Click(sender, null);
@@ -567,7 +568,7 @@ namespace Sandogh_PG
             gridView1.MoveFirst();
         }
 
-        private void btnPrintPreview_Click(object sender, EventArgs e)
+        private void btnPrintPreview1_Click(object sender, EventArgs e)
         {
             HelpClass1.PrintPreview(gridControl1, gridView1);
         }
@@ -1001,6 +1002,133 @@ namespace Sandogh_PG
 
         }
 
+        string FilePath1 = Application.StartupPath + @"\Report\Ghozareshat\";
+        string FileName1 = "rptDP_BinHesabha.repx";
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+            if (System.IO.File.Exists(FilePath1 + FileName1))
+            {
+                if (gridView1.RowCount > 0)
+                {
+                    using (var db = new MyContext())
+                    {
+                        try
+                        {
+                            //string _TarikhDaryaft = gridView1.GetFocusedRowCellDisplayText("TarikhDaryaft").ToString().Substring(0, 10);
+                            int _RowId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id"));
+                            int _NoeSanadIndex = Convert.ToInt32(gridView1.GetFocusedRowCellValue("NoeSanadIndex"));
+                            var q = db.DaryaftPardakhtBinHesabhas.FirstOrDefault(f => f.Id == _RowId);
+                            if (q != null)
+                            {
+                                XtraReport XtraReport1 = new XtraReport();
+                                XtraReport1.LoadLayoutFromXml(FilePath1 + FileName1);
+                                XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
+                                XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
+                                string SharhSanad = string.Empty;
+                                if (_NoeSanadIndex == 0 || _NoeSanadIndex == 1)
+                                {
+                                    String[] Text1 = new string[3];
+                                    Text1[0] = "بدینوسیله طی سند شماره " + q.ShomareSanad.ToString() + " در مورخه " + q.Tarikh.ToString().Substring(0, 10);
+                                    Text1[1] = " مبلغ " + q.Mablagh.ToString("N0") + " ریال";
+                                    Text1[2] = q.NoeSanadIndex == 0 ? " از خانم / آقای " + q.HesabTafziliName2 + " دریافت گردید." : " به خانم / آقای " + q.HesabTafziliName1 + " پرداخت گردید.";
+                                    SharhSanad = Text1[0] + Text1[1] + Text1[2];
+                                }
+                                else if (_NoeSanadIndex == 2)
+                                {
+                                    String[] Text1 = new string[3];
+                                    Text1[0] = "بدینوسیله طی سند شماره " + q.ShomareSanad.ToString() + " در مورخه " + q.Tarikh.ToString().Substring(0, 10);
+                                    Text1[1] = " مبلغ " + q.Mablagh.ToString("N0") + " ریال";
+                                    Text1[2] = " از حساب " + q.HesabTafziliName2 + " به حساب" + q.HesabTafziliName1 + " انتقال پیدا کرد.";
+                                    SharhSanad = Text1[0] + Text1[1] + Text1[2];
+                                }
+                                else if (_NoeSanadIndex == 3)
+                                {
+                                    String[] Text1 = new string[3];
+                                    Text1[0] = "بدینوسیله طی سند شماره " + q.ShomareSanad.ToString() + " در مورخه " + q.Tarikh.ToString().Substring(0, 10);
+                                    Text1[1] = " مبلغ " + q.Mablagh.ToString("N0") + " ریال";
+                                    Text1[2] = "  بابت ثبت " + q.HesabTafziliName2 + " سند حسابداری صادر گردید.";
+                                    SharhSanad = Text1[0] + Text1[1] + Text1[2];
+                                }
+                                else if (_NoeSanadIndex == 4)
+                                {
+                                    String[] Text1 = new string[3];
+                                    Text1[0] = "بدینوسیله طی سند شماره " + q.ShomareSanad.ToString() + " در مورخه " + q.Tarikh.ToString().Substring(0, 10);
+                                    Text1[1] = " مبلغ " + q.Mablagh.ToString("N0") + " ریال";
+                                    Text1[2] = " بابت ثبت " + q.HesabTafziliName1 + " سند حسابداری صادر گردید.";
+                                    SharhSanad = Text1[0] + Text1[1] + Text1[2];
+                                }
+                                else if (_NoeSanadIndex == 5)
+                                {
+                                    String[] Text1 = new string[3];
+                                    Text1[0] = "بدینوسیله طی سند شماره " + q.ShomareSanad.ToString() + " در مورخه " + q.Tarikh.ToString().Substring(0, 10);
+                                    Text1[1] = " مبلغ " + q.Mablagh.ToString("N0") + " ریال";
+                                    Text1[2] = " بابت ثبت " + q.HesabTafziliName1 + " سند حسابداری صادر گردید.";
+                                    SharhSanad = Text1[0] + Text1[1] + Text1[2];
+                                }
+                                XtraReport1.Parameters["SharhSanad"].Value = SharhSanad;
+
+                                List<DaryaftPardakhtBinHesabha> List1 = new List<DaryaftPardakhtBinHesabha>();
+                                List1.Add(q);
+                                XtraReport1.DataSource = List1;
+                                FrmPrinPreview FPP = new FrmPrinPreview();
+                                FPP.documentViewer1.DocumentSource = XtraReport1;
+                                FPP.ShowDialog();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                                "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
+                    //XtraReport1.DataSource = HelpClass1.ConvettDatagridviewToDataSet(gridView1);
+
+                    //XtraReport1.Parameters["ShomareSanad"].Value = gridView3.GetFocusedRowCellDisplayText("ShomareSanad");
+                    //XtraReport1.Parameters["NahveyePardakht"].Value = gridView3.GetFocusedRowCellDisplayText("NahveyePardakht");
+                    //XtraReport1.Parameters["NoeVam"].Value = gridView3.GetFocusedRowCellDisplayText("NoeVam");
+                    //XtraReport1.Parameters["DarsadeKarmozd"].Value = gridView3.GetFocusedRowCellDisplayText("DarsadeKarmozd");
+                    //XtraReport1.Parameters["MablaghDirkard"].Value = gridView3.GetFocusedRowCellDisplayText("MablaghDirkard");
+                    //XtraReport1.Parameters["TarikhDarkhast"].Value = gridView3.GetFocusedRowCellDisplayText("TarikhDarkhast");
+                    //XtraReport1.Parameters["ShomareDarkhast"].Value = gridView3.GetFocusedRowCellDisplayText("ShomareDarkhast");
+                    //XtraReport1.Parameters["Code"].Value = gridView3.GetFocusedRowCellDisplayText("Code");
+                    //XtraReport1.Parameters["TarikhPardakht"].Value = gridView3.GetFocusedRowCellDisplayText("TarikhPardakht");
+                    //XtraReport1.Parameters["MablaghAsli"].Value = gridView3.GetFocusedRowCellDisplayText("MablaghAsli");
+                    //XtraReport1.Parameters["MablaghKarmozd"].Value = gridView3.GetFocusedRowCellDisplayText("MablaghKarmozd");
+                    //XtraReport1.Parameters["FaseleAghsat"].Value = gridView3.GetFocusedRowCellDisplayText("FaseleAghsat");
+                    //XtraReport1.Parameters["TedadAghsat"].Value = gridView3.GetFocusedRowCellDisplayText("TedadAghsat");
+                    //XtraReport1.Parameters["MablaghAghsat"].Value = gridView3.GetFocusedRowCellDisplayText("MablaghAghsat");
+                    //XtraReport1.Parameters["SarresidAvalinGhest"].Value = gridView3.GetFocusedRowCellDisplayText("SarresidAvalinGhest");
+                    //XtraReport1.Parameters["ZameninName"].Value = gridView3.GetFocusedRowCellDisplayText("ZameninName");
+                    //XtraReport1.Parameters["HaveCheckTazmin"].Value = gridView3.GetFocusedRowCellDisplayText("HaveCheckTazmin");
+
+
+                    //XtraReport1.DataSource = gridView2.DataSource;
+                    //XtraReport1.Parameters["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : gridView2.GetRowCellDisplayText(0, "Tarikh").Substring(0, 10);
+                    //XtraReport1.Parameters["Ta_Tarikh"].Value = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
+                    //XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
+
+                    //List<decimal> ListMande1 = new List<decimal>();
+                    //for (int i = 0; i < gridView1.RowCount; i++)
+                    //{
+                    //    ListMande1.Add(Convert.ToDecimal(gridView2.GetRowCellValue(i, "Mande1")));
+                    //}
+                    //XtraReport1.Parameters["Mande1"].Value = ListMande1;
+
+                }
+            }
+            else
+            {
+                HelpClass1.NewReportDesigner(FilePath1, FileName1);
+            }
+        }
+
+        private void btnDesignReport_Click(object sender, EventArgs e)
+        {
+            HelpClass1.LoadReportDesigner(FilePath1, FileName1);
+        }
+
+
         //string _PardakhtKonandeName = string.Empty;
         //string _GroupHesab = string.Empty;
         //string Text1 = "دریافت";
@@ -1051,4 +1179,5 @@ namespace Sandogh_PG
         //}
 
     }
+
 }

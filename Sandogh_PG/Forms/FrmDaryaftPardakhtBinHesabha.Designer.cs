@@ -56,7 +56,6 @@
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.btnSaveNext = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
-            this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.btnNext = new DevExpress.XtraEditors.SimpleButton();
             this.btnPrintPreview = new DevExpress.XtraEditors.SimpleButton();
             this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
@@ -87,6 +86,7 @@
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.btnDesignReport = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtMablagh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTarikh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSharh.Properties)).BeginInit();
@@ -461,9 +461,9 @@
             // 
             this.panelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelControl2.Controls.Add(this.btnDesignReport);
             this.panelControl2.Controls.Add(this.btnSaveNext);
             this.panelControl2.Controls.Add(this.btnClose);
-            this.panelControl2.Controls.Add(this.btnPrint);
             this.panelControl2.Controls.Add(this.btnNext);
             this.panelControl2.Controls.Add(this.btnPrintPreview);
             this.panelControl2.Controls.Add(this.btnEdit);
@@ -508,19 +508,6 @@
             this.btnClose.ToolTipTitle = "بستن ";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // btnPrint
-            // 
-            this.btnPrint.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrint.ImageOptions.SvgImage")));
-            this.btnPrint.Location = new System.Drawing.Point(186, 6);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(46, 41);
-            this.btnPrint.TabIndex = 14;
-            this.btnPrint.ToolTip = "F12";
-            this.btnPrint.ToolTipTitle = "چاپ لیست";
-            this.btnPrint.Visible = false;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
             // btnNext
             // 
             this.btnNext.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.ImageOptions.Image")));
@@ -535,7 +522,7 @@
             // 
             // btnPrintPreview
             // 
-            this.btnPrintPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintPreview.ImageOptions.Image")));
+            this.btnPrintPreview.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrintPreview.ImageOptions.SvgImage")));
             this.btnPrintPreview.Location = new System.Drawing.Point(240, 6);
             this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrintPreview.Name = "btnPrintPreview";
@@ -543,7 +530,6 @@
             this.btnPrintPreview.TabIndex = 13;
             this.btnPrintPreview.ToolTip = "F11";
             this.btnPrintPreview.ToolTipTitle = "نمایش چاپ";
-            this.btnPrintPreview.Visible = false;
             this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
             // 
             // btnEdit
@@ -623,7 +609,7 @@
             // btnDisplayList
             // 
             this.btnDisplayList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplayList.ImageOptions.SvgImage")));
-            this.btnDisplayList.Location = new System.Drawing.Point(133, 6);
+            this.btnDisplayList.Location = new System.Drawing.Point(347, 6);
             this.btnDisplayList.Margin = new System.Windows.Forms.Padding(4);
             this.btnDisplayList.Name = "btnDisplayList";
             this.btnDisplayList.Size = new System.Drawing.Size(46, 41);
@@ -807,7 +793,7 @@
             // 
             // labelControl9
             // 
-            this.labelControl9.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl9.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.labelControl9.Appearance.Options.UseForeColor = true;
             this.labelControl9.Location = new System.Drawing.Point(930, 105);
             this.labelControl9.Margin = new System.Windows.Forms.Padding(4);
@@ -818,7 +804,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.labelControl4.Appearance.Options.UseForeColor = true;
             this.labelControl4.Location = new System.Drawing.Point(928, 60);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(4);
@@ -949,6 +935,17 @@
             this.labelControl1.TabIndex = 56;
             this.labelControl1.Text = "سریال";
             // 
+            // btnDesignReport
+            // 
+            this.btnDesignReport.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDesignReport.ImageOptions.SvgImage")));
+            this.btnDesignReport.Location = new System.Drawing.Point(186, 6);
+            this.btnDesignReport.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDesignReport.Name = "btnDesignReport";
+            this.btnDesignReport.Size = new System.Drawing.Size(46, 41);
+            this.btnDesignReport.TabIndex = 45;
+            this.btnDesignReport.ToolTip = "چاپ لیست";
+            this.btnDesignReport.Click += new System.EventHandler(this.btnDesignReport_Click);
+            // 
             // FrmDaryaftPardakhtBinHesabha
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
@@ -1015,7 +1012,6 @@
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.SimpleButton btnSaveNext;
         public DevExpress.XtraEditors.SimpleButton btnClose;
-        private DevExpress.XtraEditors.SimpleButton btnPrint;
         private DevExpress.XtraEditors.SimpleButton btnNext;
         private DevExpress.XtraEditors.SimpleButton btnPrintPreview;
         private DevExpress.XtraEditors.SimpleButton btnEdit;
@@ -1054,5 +1050,6 @@
         private System.Windows.Forms.BindingSource allHesabTafzilisBindingSource;
         private System.Windows.Forms.BindingSource allHesabTafzilisBindingSource1;
         private DevExpress.XtraEditors.LookUpEdit cmbHesabTafzili2;
+        private DevExpress.XtraEditors.SimpleButton btnDesignReport;
     }
 }
