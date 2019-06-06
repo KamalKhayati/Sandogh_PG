@@ -567,7 +567,6 @@
             this.btnAdvancedSearch.TabIndex = 12;
             this.btnAdvancedSearch.ToolTip = "F10";
             this.btnAdvancedSearch.ToolTipTitle = "جستجوی پیشرفته";
-            this.btnAdvancedSearch.Visible = false;
             this.btnAdvancedSearch.Click += new System.EventHandler(this.btnAdvancedSearch_Click);
             // 
             // btnDelete
