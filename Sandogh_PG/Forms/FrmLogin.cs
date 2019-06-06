@@ -49,14 +49,23 @@ namespace Sandogh_PG
                             //}
                             //return;
                             //}
-                            FrmMain fm = new FrmMain();
-                            fm.txtUserId.Caption = q.Id.ToString();
-                            fm.txtUserName.Caption = q.Name.ToString();
-                            fm.txtDateTimeNow.Caption = DateTime.Now.ToString().Substring(0, 10);
-                            fm.NameDataBase.Caption = db.Database.Connection.Database;
-                            //fm.IndexNameDataBase.Caption = cmbNameDataBaseSandogh.SelectedIndex.ToString();
-                            fm.Show();
-
+                            if (db.TarifSandoghs.FirstOrDefault().AppActived == true)
+                            {
+                                FrmMain fm = new FrmMain();
+                                fm.txtUserId.Caption = q.Id.ToString();
+                                fm.txtUserName.Caption = q.Name.ToString();
+                                fm.txtDateTimeNow.Caption = DateTime.Now.ToString().Substring(0, 10);
+                                fm.NameDataBase.Caption = db.Database.Connection.Database;
+                                //fm.IndexNameDataBase.Caption = cmbNameDataBaseSandogh.SelectedIndex.ToString();
+                                fm.Show();
+                            }
+                            else
+                            {
+                                FrmAppRegister frm = new FrmAppRegister();
+                                frm._Password = HelpClass1.EncryptText(txtPassword.Text);
+                                frm._Shenase = HelpClass1.EncryptText(txtShenase.Text);
+                                frm.Show();
+                            }
                         }
                         else
                         {
@@ -84,8 +93,8 @@ namespace Sandogh_PG
         {
             lblSystemDate.Text = DateTime.Now.ToString().Substring(0, 10);
             FillCmbNameDatabase();
-            lblVersion.Text = "Version : " + Application.ProductVersion;
-            lblDataBace.Text = "DataBase  : " + new MyContext().Database.Connection.Database.ToString();
+            lblVersion.Text = "نسخه برنامه : " + Application.ProductVersion;
+            lblDataBace.Text = "بانک اطلاعاتی: " + new MyContext().Database.Connection.Database.ToString();
             if (System.IO.Directory.Exists(AppVariable.fileName))
                 if (Settings.Data.Count > 0)
                 {
@@ -302,7 +311,7 @@ namespace Sandogh_PG
                     {
                         updateConfigFile(SetAppConfing());
                         Settings[AppVariable.DefaltIndexCmbNameSandogh] = cmbNameDataBaseSandogh.SelectedIndex.ToString();
-                       // Application.Restart();
+                        // Application.Restart();
                         Application.Exit();
                     }
                     else
@@ -406,16 +415,6 @@ namespace Sandogh_PG
         private void txtDatabaseName_EditValueChanged(object sender, EventArgs e)
         {
             txtAttachDbFilePath.Text = Application.StartupPath + @"\DB\" + txtDatabaseName.Text + ".mdf";
-        }
-
-        private void lblVersion_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblSystemDate_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

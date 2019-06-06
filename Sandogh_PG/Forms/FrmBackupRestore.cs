@@ -221,15 +221,25 @@ namespace Sandogh_PG
                 context.Database.CommandTimeout = 360;
                 string LogicalNameLog = context.Database.SqlQuery<string>(command2).FirstOrDefault();
 
-
-                string command3 = "ALTER DATABASE " + _NameDataBase + " SET OFFLINE WITH ROLLBACK IMMEDIATE" +
-                                 " RESTORE DATABASE " + _NameDataBase + " FROM DISK = '" + txtSelectFile.Text + "' WITH REPLACE, RECOVERY," +
-                                 " MOVE '" + LogicalNameData + "' TO '" + DataPath1 + _NameDataBase + ".mdf'," +
-                                 " MOVE '" + LogicalNameLog + "' TO '" + DataPath1 + _NameDataBase + "_log.ldf'" +
-                                 " ALTER DATABASE " + _NameDataBase + " MODIFY FILE(NAME = '" + LogicalNameData + "', NEWNAME = '" + _NameDataBase + ".mdf')" +
-                                 " ALTER DATABASE " + _NameDataBase + " MODIFY FILE(NAME = '" + LogicalNameLog + "', NEWNAME = '" + _NameDataBase + "_log.ldf')" +
-                                 " ALTER DATABASE " + _NameDataBase + " SET ONLINE";
-
+                string command3 = string.Empty;
+                if (LogicalNameData != _NameDataBase + ".mdf")
+                {
+                    command3 = "ALTER DATABASE " + _NameDataBase + " SET OFFLINE WITH ROLLBACK IMMEDIATE" +
+                            " RESTORE DATABASE " + _NameDataBase + " FROM DISK = '" + txtSelectFile.Text + "' WITH REPLACE, RECOVERY," +
+                            " MOVE '" + LogicalNameData + "' TO '" + DataPath1 + _NameDataBase + ".mdf'," +
+                            " MOVE '" + LogicalNameLog + "' TO '" + DataPath1 + _NameDataBase + "_log.ldf'" +
+                            " ALTER DATABASE " + _NameDataBase + " MODIFY FILE(NAME = '" + LogicalNameData + "', NEWNAME = '" + _NameDataBase + ".mdf')" +
+                            " ALTER DATABASE " + _NameDataBase + " MODIFY FILE(NAME = '" + LogicalNameLog + "', NEWNAME = '" + _NameDataBase + "_log.ldf')" +
+                            " ALTER DATABASE " + _NameDataBase + " SET ONLINE";
+                }
+                else
+                {
+                    command3 = "ALTER DATABASE " + _NameDataBase + " SET OFFLINE WITH ROLLBACK IMMEDIATE" +
+                            " RESTORE DATABASE " + _NameDataBase + " FROM DISK = '" + txtSelectFile.Text + "' WITH REPLACE, RECOVERY," +
+                            " MOVE '" + LogicalNameData + "' TO '" + DataPath1 + _NameDataBase + ".mdf'," +
+                            " MOVE '" + LogicalNameLog + "' TO '" + DataPath1 + _NameDataBase + "_log.ldf'" +
+                            " ALTER DATABASE " + _NameDataBase + " SET ONLINE";
+                }
                 context.Database.CommandTimeout = 360;
                 context.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command3);
 

@@ -54,6 +54,7 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.daryaftPardakhtBinHesabhasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.btnDesignReport = new DevExpress.XtraEditors.SimpleButton();
             this.btnSaveNext = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnNext = new DevExpress.XtraEditors.SimpleButton();
@@ -86,7 +87,6 @@
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.btnDesignReport = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtMablagh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTarikh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSharh.Properties)).BeginInit();
@@ -481,6 +481,18 @@
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(1146, 55);
             this.panelControl2.TabIndex = 39;
+            // 
+            // btnDesignReport
+            // 
+            this.btnDesignReport.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDesignReport.ImageOptions.SvgImage")));
+            this.btnDesignReport.Location = new System.Drawing.Point(186, 6);
+            this.btnDesignReport.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDesignReport.Name = "btnDesignReport";
+            this.btnDesignReport.Size = new System.Drawing.Size(46, 41);
+            this.btnDesignReport.TabIndex = 45;
+            this.btnDesignReport.ToolTip = "چاپ لیست";
+            this.btnDesignReport.Visible = false;
+            this.btnDesignReport.Click += new System.EventHandler(this.btnDesignReport_Click);
             // 
             // btnSaveNext
             // 
@@ -934,17 +946,6 @@
             this.labelControl1.Size = new System.Drawing.Size(47, 31);
             this.labelControl1.TabIndex = 56;
             this.labelControl1.Text = "سریال";
-            // 
-            // btnDesignReport
-            // 
-            this.btnDesignReport.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDesignReport.ImageOptions.SvgImage")));
-            this.btnDesignReport.Location = new System.Drawing.Point(186, 6);
-            this.btnDesignReport.Margin = new System.Windows.Forms.Padding(4);
-            this.btnDesignReport.Name = "btnDesignReport";
-            this.btnDesignReport.Size = new System.Drawing.Size(46, 41);
-            this.btnDesignReport.TabIndex = 45;
-            this.btnDesignReport.ToolTip = "چاپ لیست";
-            this.btnDesignReport.Click += new System.EventHandler(this.btnDesignReport_Click);
             // 
             // FrmDaryaftPardakhtBinHesabha
             // 

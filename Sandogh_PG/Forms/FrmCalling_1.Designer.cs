@@ -33,7 +33,6 @@
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
@@ -85,16 +84,6 @@
             this.labelControl3.TabIndex = 4;
             this.labelControl3.Text = " خانم خضرزاده ";
             this.labelControl3.Visible = false;
-            // 
-            // labelControl7
-            // 
-            this.labelControl7.Location = new System.Drawing.Point(35, 246);
-            this.labelControl7.Margin = new System.Windows.Forms.Padding(4);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(522, 31);
-            this.labelControl7.TabIndex = 5;
-            this.labelControl7.Text = "آدرس : مهاباد-خیابان ساحلی پشت اداره زندان - نرسیده به پل قانع";
-            this.labelControl7.Visible = false;
             // 
             // labelControl2
             // 
@@ -150,7 +139,6 @@
             this.Controls.Add(this.labelControl8);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl3);
-            this.Controls.Add(this.labelControl7);
             this.Controls.Add(this.labelControl9);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
@@ -174,7 +162,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl8;

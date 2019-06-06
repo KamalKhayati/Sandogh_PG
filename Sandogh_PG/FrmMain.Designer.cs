@@ -70,6 +70,10 @@
             this.barStaticItem2 = new DevExpress.XtraBars.BarStaticItem();
             this.MojodiSandogh = new DevExpress.XtraBars.BarStaticItem();
             this.btnAllDataDelete = new DevExpress.XtraBars.BarButtonItem();
+            this.barStaticItem3 = new DevExpress.XtraBars.BarStaticItem();
+            this.EtmamGaranti = new DevExpress.XtraBars.BarStaticItem();
+            this.barStaticItem5 = new DevExpress.XtraBars.BarStaticItem();
+            this.btnTamdidGaranti = new DevExpress.XtraBars.BarButtonItem();
             this.DaryaftVPardakht = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgDaryaft = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgPardakhtha = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -144,10 +148,14 @@
             this.barStaticItem2,
             this.MojodiSandogh,
             this.btnAllDataDelete,
-            this.btnMandeAshkhas});
+            this.btnMandeAshkhas,
+            this.barStaticItem3,
+            this.EtmamGaranti,
+            this.barStaticItem5,
+            this.btnTamdidGaranti});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
-            this.ribbonControl1.MaxItemId = 69;
+            this.ribbonControl1.MaxItemId = 73;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.DaryaftVPardakht,
@@ -457,7 +465,7 @@
             // 
             // barStaticItem2
             // 
-            this.barStaticItem2.Caption = "دیتابیس :";
+            this.barStaticItem2.Caption = "بانک اطلاعاتی :";
             this.barStaticItem2.Id = 65;
             this.barStaticItem2.Name = "barStaticItem2";
             // 
@@ -477,6 +485,34 @@
             this.btnAllDataDelete.Name = "btnAllDataDelete";
             this.btnAllDataDelete.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.btnAllDataDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
+            // 
+            // barStaticItem3
+            // 
+            this.barStaticItem3.Caption = "اتمام گارانتی :";
+            this.barStaticItem3.Id = 69;
+            this.barStaticItem3.Name = "barStaticItem3";
+            // 
+            // EtmamGaranti
+            // 
+            this.EtmamGaranti.Caption = "0000/00/00";
+            this.EtmamGaranti.Id = 70;
+            this.EtmamGaranti.Name = "EtmamGaranti";
+            this.EtmamGaranti.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.EtmamGaranti_ItemClick);
+            // 
+            // barStaticItem5
+            // 
+            this.barStaticItem5.Caption = "تاریخ روز :";
+            this.barStaticItem5.Id = 71;
+            this.barStaticItem5.Name = "barStaticItem5";
+            // 
+            // btnTamdidGaranti
+            // 
+            this.btnTamdidGaranti.Caption = "تمدید گارانتی";
+            this.btnTamdidGaranti.Id = 72;
+            this.btnTamdidGaranti.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnTamdidGaranti.ImageOptions.SvgImage")));
+            this.btnTamdidGaranti.Name = "btnTamdidGaranti";
+            this.btnTamdidGaranti.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.btnTamdidGaranti.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTamdidGaranti_ItemClick);
             // 
             // DaryaftVPardakht
             // 
@@ -590,6 +626,7 @@
             // 
             this.ribbonPageGroup3.ItemLinks.Add(this.btnYadavari, true);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnCalculate, true);
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnTamdidGaranti, true);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "سایر امکانات";
             // 
@@ -616,7 +653,9 @@
             this.ribbonStatusBar1.ItemLinks.Add(this.txtUserName);
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem2, true);
             this.ribbonStatusBar1.ItemLinks.Add(this.NameDataBase);
-            this.ribbonStatusBar1.ItemLinks.Add(this.txtDateTimeNow, true);
+            this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem5, true);
+            this.ribbonStatusBar1.ItemLinks.Add(this.txtDateTimeNow);
+            this.ribbonStatusBar1.ItemLinks.Add(this.EtmamGaranti, true);
             this.ribbonStatusBar1.ItemLinks.Add(this.MojodiSandogh, true);
             this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 758);
             this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(6);
@@ -749,6 +788,10 @@
         private DevExpress.XtraBars.BarStaticItem MojodiSandogh;
         private DevExpress.XtraBars.BarButtonItem btnAllDataDelete;
         private DevExpress.XtraBars.BarButtonItem btnMandeAshkhas;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem3;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem5;
+        public DevExpress.XtraBars.BarStaticItem EtmamGaranti;
+        public DevExpress.XtraBars.BarButtonItem btnTamdidGaranti;
     }
 }
 

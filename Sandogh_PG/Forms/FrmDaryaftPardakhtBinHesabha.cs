@@ -543,6 +543,7 @@ namespace Sandogh_PG
             {
                 btnClose_Click(sender, null);
             }
+            HelpClass1.ControlAltShift_KeyDown(sender, e, btnDesignReport);
 
         }
 

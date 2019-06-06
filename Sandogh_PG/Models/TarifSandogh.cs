@@ -23,11 +23,17 @@ namespace Sandogh_PG
         [MaxLength(23)]
         public string Mobile { get; set; }
         [Column(TypeName = "Date")]
-        public DateTime? TarikhEjad { get; set; }
+        public DateTime TarikhEjad { get; set; }
+        [Column(TypeName = "Date")]
+        public DateTime TarikhRegister { get; set; }
+        [Column(TypeName = "Date")]
+        public DateTime TarikhEtmamGaranti { get; set; }
         public byte[]  Pictuer { get; set; }
         public byte[]  PicBackground { get; set; }
         [Required]
         public bool IsDefault { get; set; }
+        [Required]
+        public bool AppActived { get; set; }
         public virtual Tanzimat Tanzimat1 { get; set; }
         public virtual ICollection<SalMali> SalMalis { get; set; }
         //public virtual ICollection<AazaSandogh> AazaSandoghs { get; set; }

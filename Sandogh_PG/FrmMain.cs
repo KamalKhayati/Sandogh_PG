@@ -143,6 +143,22 @@ namespace Sandogh_PG
                     }
 
 
+                    EtmamGaranti.Caption =  db.TarifSandoghs.FirstOrDefault().TarikhEtmamGaranti != null ? "اتمام گارانتی : " + db.TarifSandoghs.FirstOrDefault().TarikhEtmamGaranti.ToString().Substring(0, 10) : "0000/00/00";
+                    int yyyy1 = Convert.ToInt32(DateTime.Now.ToString().Substring(0, 4));
+                    int MM1 = Convert.ToInt32(DateTime.Now.ToString().Substring(5, 2));
+                    int dd1 = Convert.ToInt32(DateTime.Now.ToString().Substring(8, 2));
+                    Mydate d1 = new Mydate(yyyy1, MM1, dd1);
+                    int yyyy2 = Convert.ToInt32(db.TarifSandoghs.FirstOrDefault().TarikhEtmamGaranti.ToString().Substring(0, 4));
+                    int MM2 = Convert.ToInt32(db.TarifSandoghs.FirstOrDefault().TarikhEtmamGaranti.ToString().Substring(5, 2));
+                    int dd2 = Convert.ToInt32(db.TarifSandoghs.FirstOrDefault().TarikhEtmamGaranti.ToString().Substring(8, 2));
+                    Mydate d2 = new Mydate(yyyy2, MM2, dd2);
+                    if (d2 < d1)
+                    {
+                        EtmamGaranti.ItemAppearance.Normal.ForeColor = Color.Red;
+                        btnTamdidGaranti.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                    }
+
+
                     if (Application.OpenForms["FrmTarifSandogh"] == null)
                     {
                         var q3 = db.Tanzimats.Any(f => f.checkEdit3 == true);
@@ -154,7 +170,6 @@ namespace Sandogh_PG
                         }
 
                     }
-
                 }
                 catch (Exception ex)
                 {
@@ -413,7 +428,7 @@ namespace Sandogh_PG
                         try
                         {
                             db.Database.Initialize(true);
-                           // XtraMessageBox.Show("کلیه اطلاعات ثبت شده با موفقیت حذف گردید و نرم افزار مجدداً راه اندازی خواهد شد", "پیغام", MessageBoxButtons.OK);
+                            // XtraMessageBox.Show("کلیه اطلاعات ثبت شده با موفقیت حذف گردید و نرم افزار مجدداً راه اندازی خواهد شد", "پیغام", MessageBoxButtons.OK);
                             XtraMessageBox.Show("کلیه اطلاعات ثبت شده با موفقیت حذف گردید لطفا برنامه را مجدداً اجرا کنید", "پیغام", MessageBoxButtons.OK);
                             //Application.Restart();
                             Application.Exit();
@@ -436,9 +451,24 @@ namespace Sandogh_PG
         private void btnMandeAshkhas_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             FrmMandeAshkhas frm = new FrmMandeAshkhas();
-            frm._SandoghName = ribbonControl1.ApplicationDocumentCaption; 
+            frm._SandoghName = ribbonControl1.ApplicationDocumentCaption;
             frm.ShowDialog();
 
+        }
+
+        private void btnTamdidGaranti_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmAppRegister frm = new FrmAppRegister(this);
+            frm.Text = "تمدید گارانتی";
+            frm.ShowDialog();
+        }
+
+        private void EtmamGaranti_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (btnTamdidGaranti.Visibility == DevExpress.XtraBars.BarItemVisibility.Always)
+            {
+                btnTamdidGaranti_ItemClick(null, null);
+            }
         }
     }
 }
