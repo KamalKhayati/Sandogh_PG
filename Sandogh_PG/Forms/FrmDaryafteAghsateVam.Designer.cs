@@ -90,7 +90,7 @@
             this.panelControl2.Location = new System.Drawing.Point(0, 379);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(649, 62);
+            this.panelControl2.Size = new System.Drawing.Size(654, 62);
             this.panelControl2.TabIndex = 36;
             // 
             // btnSaveNext
@@ -161,7 +161,7 @@
             this.panelControl4.Location = new System.Drawing.Point(0, 0);
             this.panelControl4.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(649, 377);
+            this.panelControl4.Size = new System.Drawing.Size(654, 377);
             this.panelControl4.TabIndex = 35;
             // 
             // textEdit1
@@ -534,7 +534,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(649, 441);
+            this.ClientSize = new System.Drawing.Size(654, 441);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

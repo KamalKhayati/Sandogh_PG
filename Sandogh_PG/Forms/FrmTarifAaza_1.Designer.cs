@@ -723,7 +723,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1424, 348);
+            this.gridControl1.Size = new System.Drawing.Size(1441, 348);
             this.gridControl1.TabIndex = 32;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -855,14 +855,14 @@
             this.panelControl2.Location = new System.Drawing.Point(2, 2);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1424, 55);
+            this.panelControl2.Size = new System.Drawing.Size(1441, 55);
             this.panelControl2.TabIndex = 26;
             // 
             // btnClose
             // 
             this.btnClose.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnClose.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnClose.ImageOptions.SvgImage")));
-            this.btnClose.Location = new System.Drawing.Point(6, 6);
+            this.btnClose.Location = new System.Drawing.Point(21, 6);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(106, 41);
@@ -890,7 +890,7 @@
             // 
             this.btnPrint.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnPrint.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrint.ImageOptions.SvgImage")));
-            this.btnPrint.Location = new System.Drawing.Point(249, 6);
+            this.btnPrint.Location = new System.Drawing.Point(264, 6);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(46, 41);
@@ -917,7 +917,7 @@
             // 
             this.btnPrintPreview.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnPrintPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintPreview.ImageOptions.Image")));
-            this.btnPrintPreview.Location = new System.Drawing.Point(303, 6);
+            this.btnPrintPreview.Location = new System.Drawing.Point(318, 6);
             this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrintPreview.Name = "btnPrintPreview";
             this.btnPrintPreview.Size = new System.Drawing.Size(46, 41);
@@ -945,7 +945,7 @@
             // 
             this.btnAdvancedSearch.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnAdvancedSearch.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnAdvancedSearch.ImageOptions.SvgImage")));
-            this.btnAdvancedSearch.Location = new System.Drawing.Point(357, 6);
+            this.btnAdvancedSearch.Location = new System.Drawing.Point(372, 6);
             this.btnAdvancedSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdvancedSearch.Name = "btnAdvancedSearch";
             this.btnAdvancedSearch.Size = new System.Drawing.Size(46, 41);
@@ -1025,7 +1025,7 @@
             // 
             this.btnDisplyActiveList.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnDisplyActiveList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyActiveList.ImageOptions.SvgImage")));
-            this.btnDisplyActiveList.Location = new System.Drawing.Point(196, 6);
+            this.btnDisplyActiveList.Location = new System.Drawing.Point(211, 6);
             this.btnDisplyActiveList.Margin = new System.Windows.Forms.Padding(4);
             this.btnDisplyActiveList.Name = "btnDisplyActiveList";
             this.btnDisplyActiveList.Size = new System.Drawing.Size(46, 41);
@@ -1038,7 +1038,7 @@
             // 
             this.btnDisplyNotActiveList.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnDisplyNotActiveList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyNotActiveList.ImageOptions.SvgImage")));
-            this.btnDisplyNotActiveList.Location = new System.Drawing.Point(142, 6);
+            this.btnDisplyNotActiveList.Location = new System.Drawing.Point(157, 6);
             this.btnDisplyNotActiveList.Margin = new System.Windows.Forms.Padding(4);
             this.btnDisplyNotActiveList.Name = "btnDisplyNotActiveList";
             this.btnDisplyNotActiveList.Size = new System.Drawing.Size(46, 41);
@@ -1771,7 +1771,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1428, 352);
+            this.panelControl1.Size = new System.Drawing.Size(1445, 352);
             this.panelControl1.TabIndex = 33;
             // 
             // panelControl5
@@ -1782,7 +1782,7 @@
             this.panelControl5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl5.Location = new System.Drawing.Point(0, 352);
             this.panelControl5.Name = "panelControl5";
-            this.panelControl5.Size = new System.Drawing.Size(1428, 359);
+            this.panelControl5.Size = new System.Drawing.Size(1445, 359);
             this.panelControl5.TabIndex = 34;
             // 
             // xtraTabControl1
@@ -1791,7 +1791,7 @@
             this.xtraTabControl1.Location = new System.Drawing.Point(2, 57);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(1424, 300);
+            this.xtraTabControl1.Size = new System.Drawing.Size(1441, 300);
             this.xtraTabControl1.TabIndex = 27;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
@@ -1835,7 +1835,7 @@
             this.xtraTabPage1.Controls.Add(this.cmbJensiat);
             this.xtraTabPage1.Controls.Add(this.txtTarikhOzviat);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1417, 251);
+            this.xtraTabPage1.Size = new System.Drawing.Size(1434, 251);
             this.xtraTabPage1.Text = "مشخصات فردی";
             // 
             // xtraTabPage2
@@ -1884,7 +1884,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1428, 712);
+            this.ClientSize = new System.Drawing.Size(1445, 712);
             this.Controls.Add(this.panelControl5);
             this.Controls.Add(this.panelControl1);
             this.Cursor = System.Windows.Forms.Cursors.Default;

@@ -142,6 +142,6 @@
         private DevExpress.XtraEditors.TextEdit txtCode;
         private DevExpress.XtraEditors.TextEdit txtSeryal;
         private DevExpress.XtraEditors.SimpleButton btnSabt;
-        private DevExpress.XtraEditors.SimpleButton btnExit;
+        public DevExpress.XtraEditors.SimpleButton btnExit;
     }
 }

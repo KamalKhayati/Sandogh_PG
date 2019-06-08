@@ -448,7 +448,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1142, 389);
+            this.gridControl1.Size = new System.Drawing.Size(1151, 389);
             this.gridControl1.TabIndex = 32;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -479,7 +479,7 @@
             this.panelControl2.Location = new System.Drawing.Point(0, 401);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1146, 55);
+            this.panelControl2.Size = new System.Drawing.Size(1155, 55);
             this.panelControl2.TabIndex = 39;
             // 
             // btnDesignReport
@@ -510,7 +510,7 @@
             // btnClose
             // 
             this.btnClose.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnClose.ImageOptions.SvgImage")));
-            this.btnClose.Location = new System.Drawing.Point(6, 6);
+            this.btnClose.Location = new System.Drawing.Point(22, 6);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(106, 41);
@@ -661,7 +661,7 @@
             this.panelControl4.Location = new System.Drawing.Point(0, 0);
             this.panelControl4.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(1146, 393);
+            this.panelControl4.Size = new System.Drawing.Size(1155, 393);
             this.panelControl4.TabIndex = 40;
             // 
             // labelControl2
@@ -705,7 +705,7 @@
             this.panelControl3.Location = new System.Drawing.Point(0, 463);
             this.panelControl3.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(1146, 201);
+            this.panelControl3.Size = new System.Drawing.Size(1155, 201);
             this.panelControl3.TabIndex = 41;
             // 
             // cmbHesabTafzili2
@@ -950,7 +950,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1146, 663);
+            this.ClientSize = new System.Drawing.Size(1155, 663);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl4);
             this.Controls.Add(this.panelControl3);

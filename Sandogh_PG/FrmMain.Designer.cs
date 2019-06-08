@@ -96,6 +96,7 @@
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.pictureEdit3 = new DevExpress.XtraEditors.PictureEdit();
+            this.btnDarkhastVam = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit3.Properties)).BeginInit();
@@ -152,10 +153,12 @@
             this.barStaticItem3,
             this.EtmamGaranti,
             this.barStaticItem5,
-            this.btnTamdidGaranti});
+            this.btnTamdidGaranti,
+            this.ribbonControl1.SearchEditItem,
+            this.btnDarkhastVam});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
-            this.ribbonControl1.MaxItemId = 73;
+            this.ribbonControl1.MaxItemId = 74;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.DaryaftVPardakht,
@@ -532,9 +535,10 @@
             // 
             // rpgPardakhtha
             // 
+            this.rpgPardakhtha.ItemLinks.Add(this.btnDarkhastVam);
             this.rpgPardakhtha.ItemLinks.Add(this.btnEetayVam, true);
             this.rpgPardakhtha.Name = "rpgPardakhtha";
-            this.rpgPardakhtha.Text = "اعطای وام";
+            this.rpgPardakhtha.Text = "درخواست و اعطای وام";
             // 
             // rpgEnteghali
             // 
@@ -696,6 +700,14 @@
             this.pictureEdit3.Size = new System.Drawing.Size(1601, 555);
             this.pictureEdit3.TabIndex = 15;
             // 
+            // btnDarkhastVam
+            // 
+            this.btnDarkhastVam.Caption = "فرم درخواست وام";
+            this.btnDarkhastVam.Id = 73;
+            this.btnDarkhastVam.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem3.ImageOptions.SvgImage")));
+            this.btnDarkhastVam.Name = "btnDarkhastVam";
+            this.btnDarkhastVam.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDarkhastVam_ItemClick);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
@@ -792,6 +804,7 @@
         private DevExpress.XtraBars.BarStaticItem barStaticItem5;
         public DevExpress.XtraBars.BarStaticItem EtmamGaranti;
         public DevExpress.XtraBars.BarButtonItem btnTamdidGaranti;
+        private DevExpress.XtraBars.BarButtonItem btnDarkhastVam;
     }
 }
 

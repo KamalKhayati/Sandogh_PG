@@ -95,6 +95,19 @@ namespace Sandogh_PG
             FillCmbNameDatabase();
             lblVersion.Text = "نسخه برنامه : " + Application.ProductVersion;
             lblDataBace.Text = "بانک اطلاعاتی: " + new MyContext().Database.Connection.Database.ToString();
+
+            if (cmbNameDataBaseSandogh.Properties.Items.Count > 1)
+            {
+                cmbNameDataBaseSandogh.Visible = true;
+            }
+            //else if (cmbNameDataBaseSandogh.Properties.Items.Count == 0)
+            //{
+            //    cmbNameDataBaseSandogh.Visible = true;
+            //    chkConnectToServer.Visible = true;
+            //    this.Height = 495;
+            //    XtraMessageBox.Show("لطفاً یک بانک اطلاعاتی تعریف و یا انتخاب کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //}
+
             if (System.IO.Directory.Exists(AppVariable.fileName))
                 if (Settings.Data.Count > 0)
                 {
@@ -106,10 +119,7 @@ namespace Sandogh_PG
             else
                 return;
 
-            if (cmbNameDataBaseSandogh.Properties.Items.Count > 1)
-            {
-                cmbNameDataBaseSandogh.Visible = true;
-            }
+
 
 
             try
@@ -260,6 +270,7 @@ namespace Sandogh_PG
                     }
                 }
             }
+
         }
 
         private void chkConnectToServer_CheckedChanged(object sender, EventArgs e)
@@ -319,13 +330,13 @@ namespace Sandogh_PG
                         //FillInfoControls();
                         if (!string.IsNullOrEmpty(LblNameDatabase.Text))
                         {
+                            txtShenase.Enabled = txtPassword.Enabled = btnEnter.Enabled = true;
                             string s1 = Application.StartupPath + @"\DB\" + cmbNameDataBaseSandogh.Text + ".mdf";
                             if (System.IO.File.Exists(s1))
                             {
                                 string command1 = " ALTER DATABASE " + LblNameDatabase.Text + " SET ONLINE";
                                 db.Database.CommandTimeout = 360;
                                 db.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command1);
-
                             }
                         }
                     }
@@ -343,6 +354,12 @@ namespace Sandogh_PG
         {
             if (!string.IsNullOrEmpty(txtDatabaseName.Text))
             {
+                //string d1 = new MyContext().Database.Connection.ConnectionString;
+                //if (new MyContext ().Database.SqlQuery("")
+                //{
+                //    XtraMessageBox.Show("دیتابیسی با این نام قبلاً در پایگاه اطلاعاتی اس کیو ال تعریف شده است", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                //    return;
+                //}
                 if (System.IO.Directory.Exists(AppVariable.fileName))
                     if (Settings.Data.Count > 0)
                     {

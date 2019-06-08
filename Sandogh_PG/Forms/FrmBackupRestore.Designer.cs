@@ -52,7 +52,7 @@
             // btnStartBackup
             // 
             this.btnStartBackup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnStartBackup.Location = new System.Drawing.Point(32, 82);
+            this.btnStartBackup.Location = new System.Drawing.Point(23, 82);
             this.btnStartBackup.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnStartBackup.Name = "btnStartBackup";
             this.btnStartBackup.Size = new System.Drawing.Size(165, 43);
@@ -63,7 +63,7 @@
             // 
             // txtSelectPath
             // 
-            this.txtSelectPath.Location = new System.Drawing.Point(132, 37);
+            this.txtSelectPath.Location = new System.Drawing.Point(123, 37);
             this.txtSelectPath.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.txtSelectPath.Name = "txtSelectPath";
             this.txtSelectPath.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -74,7 +74,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(603, 41);
+            this.label1.Location = new System.Drawing.Point(591, 41);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(140, 31);
@@ -94,7 +94,7 @@
             this.gbxBackup.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.gbxBackup.Name = "gbxBackup";
             this.gbxBackup.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.gbxBackup.Size = new System.Drawing.Size(828, 162);
+            this.gbxBackup.Size = new System.Drawing.Size(814, 162);
             this.gbxBackup.TabIndex = 8;
             this.gbxBackup.TabStop = false;
             this.gbxBackup.Text = "پشتیبان گیری از اطلاعات";
@@ -102,7 +102,7 @@
             // btnBrowserBackup
             // 
             this.btnBrowserBackup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBrowserBackup.Location = new System.Drawing.Point(32, 37);
+            this.btnBrowserBackup.Location = new System.Drawing.Point(23, 37);
             this.btnBrowserBackup.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnBrowserBackup.Name = "btnBrowserBackup";
             this.btnBrowserBackup.Size = new System.Drawing.Size(90, 33);
@@ -123,7 +123,7 @@
             this.gbxRestore.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.gbxRestore.Name = "gbxRestore";
             this.gbxRestore.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.gbxRestore.Size = new System.Drawing.Size(828, 174);
+            this.gbxRestore.Size = new System.Drawing.Size(814, 174);
             this.gbxRestore.TabIndex = 9;
             this.gbxRestore.TabStop = false;
             this.gbxRestore.Text = "بازیابی اطلاعات";
@@ -131,7 +131,7 @@
             // btnRestore
             // 
             this.btnRestore.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRestore.Location = new System.Drawing.Point(32, 119);
+            this.btnRestore.Location = new System.Drawing.Point(23, 121);
             this.btnRestore.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnRestore.Name = "btnRestore";
             this.btnRestore.Size = new System.Drawing.Size(165, 43);
@@ -143,7 +143,7 @@
             // btnBrowserRestore
             // 
             this.btnBrowserRestore.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBrowserRestore.Location = new System.Drawing.Point(32, 73);
+            this.btnBrowserRestore.Location = new System.Drawing.Point(23, 75);
             this.btnBrowserRestore.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnBrowserRestore.Name = "btnBrowserRestore";
             this.btnBrowserRestore.Size = new System.Drawing.Size(90, 33);
@@ -154,7 +154,7 @@
             // 
             // txtSelectFile
             // 
-            this.txtSelectFile.Location = new System.Drawing.Point(132, 74);
+            this.txtSelectFile.Location = new System.Drawing.Point(123, 76);
             this.txtSelectFile.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.txtSelectFile.Name = "txtSelectFile";
             this.txtSelectFile.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -165,7 +165,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(603, 77);
+            this.label2.Location = new System.Drawing.Point(591, 77);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(209, 31);
@@ -189,7 +189,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(828, 85);
+            this.groupBox1.Size = new System.Drawing.Size(814, 85);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "انتخاب حالت";
@@ -224,7 +224,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(828, 440);
+            this.ClientSize = new System.Drawing.Size(814, 440);
             this.Controls.Add(this.gbxBackup);
             this.Controls.Add(this.gbxRestore);
             this.Controls.Add(this.groupBox1);

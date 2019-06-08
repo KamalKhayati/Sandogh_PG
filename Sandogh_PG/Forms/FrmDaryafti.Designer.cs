@@ -216,7 +216,7 @@
             this.panelControl9.Location = new System.Drawing.Point(2, 2);
             this.panelControl9.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl9.Name = "panelControl9";
-            this.panelControl9.Size = new System.Drawing.Size(986, 517);
+            this.panelControl9.Size = new System.Drawing.Size(969, 517);
             this.panelControl9.TabIndex = 3;
             // 
             // groupBox2
@@ -228,7 +228,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(982, 513);
+            this.groupBox2.Size = new System.Drawing.Size(965, 513);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "پس انداز ماهیانه ";
@@ -242,7 +242,7 @@
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(974, 418);
+            this.gridControl2.Size = new System.Drawing.Size(957, 418);
             this.gridControl2.TabIndex = 33;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -463,13 +463,13 @@
             this.panelControl1.Location = new System.Drawing.Point(4, 454);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(974, 55);
+            this.panelControl1.Size = new System.Drawing.Size(957, 55);
             this.panelControl1.TabIndex = 0;
             // 
             // btnDesignReport2
             // 
             this.btnDesignReport2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDesignReport2.ImageOptions.SvgImage")));
-            this.btnDesignReport2.Location = new System.Drawing.Point(114, 6);
+            this.btnDesignReport2.Location = new System.Drawing.Point(129, 6);
             this.btnDesignReport2.Margin = new System.Windows.Forms.Padding(4);
             this.btnDesignReport2.Name = "btnDesignReport2";
             this.btnDesignReport2.Size = new System.Drawing.Size(46, 41);
@@ -493,7 +493,7 @@
             // btnPrintPreview2
             // 
             this.btnPrintPreview2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrintPreview2.ImageOptions.SvgImage")));
-            this.btnPrintPreview2.Location = new System.Drawing.Point(60, 6);
+            this.btnPrintPreview2.Location = new System.Drawing.Point(75, 6);
             this.btnPrintPreview2.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrintPreview2.Name = "btnPrintPreview2";
             this.btnPrintPreview2.Size = new System.Drawing.Size(46, 41);
@@ -504,7 +504,7 @@
             // btnEdit2
             // 
             this.btnEdit2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnEdit2.ImageOptions.SvgImage")));
-            this.btnEdit2.Location = new System.Drawing.Point(812, 6);
+            this.btnEdit2.Location = new System.Drawing.Point(783, 6);
             this.btnEdit2.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit2.Name = "btnEdit2";
             this.btnEdit2.Size = new System.Drawing.Size(46, 41);
@@ -516,7 +516,7 @@
             // btnDelete2
             // 
             this.btnDelete2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDelete2.ImageOptions.SvgImage")));
-            this.btnDelete2.Location = new System.Drawing.Point(865, 6);
+            this.btnDelete2.Location = new System.Drawing.Point(836, 6);
             this.btnDelete2.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete2.Name = "btnDelete2";
             this.btnDelete2.Size = new System.Drawing.Size(46, 41);
@@ -563,7 +563,7 @@
             // btnDisplyList2
             // 
             this.btnDisplyList2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyList2.ImageOptions.SvgImage")));
-            this.btnDisplyList2.Location = new System.Drawing.Point(6, 6);
+            this.btnDisplyList2.Location = new System.Drawing.Point(21, 6);
             this.btnDisplyList2.Margin = new System.Windows.Forms.Padding(4);
             this.btnDisplyList2.Name = "btnDisplyList2";
             this.btnDisplyList2.Size = new System.Drawing.Size(46, 41);
@@ -574,7 +574,7 @@
             // btnCreate2
             // 
             this.btnCreate2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCreate2.ImageOptions.SvgImage")));
-            this.btnCreate2.Location = new System.Drawing.Point(919, 6);
+            this.btnCreate2.Location = new System.Drawing.Point(890, 6);
             this.btnCreate2.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreate2.Name = "btnCreate2";
             this.btnCreate2.Size = new System.Drawing.Size(46, 41);
@@ -588,10 +588,10 @@
             this.panelControl8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelControl8.Controls.Add(this.groupBox1);
-            this.panelControl8.Location = new System.Drawing.Point(991, 0);
+            this.panelControl8.Location = new System.Drawing.Point(973, 2);
             this.panelControl8.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl8.Name = "panelControl8";
-            this.panelControl8.Size = new System.Drawing.Size(941, 521);
+            this.panelControl8.Size = new System.Drawing.Size(957, 521);
             this.panelControl8.TabIndex = 2;
             // 
             // groupBox1
@@ -604,7 +604,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(937, 517);
+            this.groupBox1.Size = new System.Drawing.Size(953, 517);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "اشخاص (فعال)";
@@ -618,7 +618,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(929, 422);
+            this.gridControl1.Size = new System.Drawing.Size(945, 422);
             this.gridControl1.TabIndex = 33;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -1150,13 +1150,13 @@
             this.panelControl4.Location = new System.Drawing.Point(4, 458);
             this.panelControl4.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(929, 55);
+            this.panelControl4.Size = new System.Drawing.Size(945, 55);
             this.panelControl4.TabIndex = 1;
             // 
             // btnPrint1
             // 
             this.btnPrint1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrint1.ImageOptions.SvgImage")));
-            this.btnPrint1.Location = new System.Drawing.Point(111, 6);
+            this.btnPrint1.Location = new System.Drawing.Point(129, 6);
             this.btnPrint1.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrint1.Name = "btnPrint1";
             this.btnPrint1.Size = new System.Drawing.Size(46, 41);
@@ -1179,7 +1179,7 @@
             // btnPrintPreview1
             // 
             this.btnPrintPreview1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintPreview1.ImageOptions.Image")));
-            this.btnPrintPreview1.Location = new System.Drawing.Point(165, 6);
+            this.btnPrintPreview1.Location = new System.Drawing.Point(183, 6);
             this.btnPrintPreview1.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrintPreview1.Name = "btnPrintPreview1";
             this.btnPrintPreview1.Size = new System.Drawing.Size(46, 41);
@@ -1227,7 +1227,7 @@
             // 
             this.btnDisplayActiveList1.Appearance.Options.UseBackColor = true;
             this.btnDisplayActiveList1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplayActiveList1.ImageOptions.SvgImage")));
-            this.btnDisplayActiveList1.Location = new System.Drawing.Point(60, 6);
+            this.btnDisplayActiveList1.Location = new System.Drawing.Point(78, 6);
             this.btnDisplayActiveList1.Margin = new System.Windows.Forms.Padding(4);
             this.btnDisplayActiveList1.Name = "btnDisplayActiveList1";
             this.btnDisplayActiveList1.Size = new System.Drawing.Size(46, 41);
@@ -1239,7 +1239,7 @@
             // 
             this.btnDisplayNotActiveList1.Appearance.Options.UseBackColor = true;
             this.btnDisplayNotActiveList1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplayNotActiveList1.ImageOptions.SvgImage")));
-            this.btnDisplayNotActiveList1.Location = new System.Drawing.Point(6, 6);
+            this.btnDisplayNotActiveList1.Location = new System.Drawing.Point(24, 6);
             this.btnDisplayNotActiveList1.Margin = new System.Windows.Forms.Padding(4);
             this.btnDisplayNotActiveList1.Name = "btnDisplayNotActiveList1";
             this.btnDisplayNotActiveList1.Size = new System.Drawing.Size(46, 41);
@@ -1268,10 +1268,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelControl5.Controls.Add(this.groupBox4);
-            this.panelControl5.Location = new System.Drawing.Point(991, 2);
+            this.panelControl5.Location = new System.Drawing.Point(973, 0);
             this.panelControl5.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl5.Name = "panelControl5";
-            this.panelControl5.Size = new System.Drawing.Size(977, 398);
+            this.panelControl5.Size = new System.Drawing.Size(959, 401);
             this.panelControl5.TabIndex = 7;
             // 
             // groupBox4
@@ -1284,7 +1284,7 @@
             this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox4.Size = new System.Drawing.Size(973, 394);
+            this.groupBox4.Size = new System.Drawing.Size(955, 397);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "وامهای (تسویه نشده)";
@@ -1298,7 +1298,7 @@
             this.gridControl3.MainView = this.gridView3;
             this.gridControl3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gridControl3.Name = "gridControl3";
-            this.gridControl3.Size = new System.Drawing.Size(965, 299);
+            this.gridControl3.Size = new System.Drawing.Size(947, 302);
             this.gridControl3.TabIndex = 35;
             this.gridControl3.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView3});
@@ -1769,16 +1769,16 @@
             this.panelControl7.Controls.Add(this.btnDisplayActiveList3);
             this.panelControl7.Controls.Add(this.btnDisplayNotActiveList3);
             this.panelControl7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl7.Location = new System.Drawing.Point(4, 335);
+            this.panelControl7.Location = new System.Drawing.Point(4, 338);
             this.panelControl7.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl7.Name = "panelControl7";
-            this.panelControl7.Size = new System.Drawing.Size(965, 55);
+            this.panelControl7.Size = new System.Drawing.Size(947, 55);
             this.panelControl7.TabIndex = 1;
             // 
             // btnDesignReport3
             // 
             this.btnDesignReport3.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDesignReport3.ImageOptions.SvgImage")));
-            this.btnDesignReport3.Location = new System.Drawing.Point(165, 6);
+            this.btnDesignReport3.Location = new System.Drawing.Point(183, 6);
             this.btnDesignReport3.Margin = new System.Windows.Forms.Padding(4);
             this.btnDesignReport3.Name = "btnDesignReport3";
             this.btnDesignReport3.Size = new System.Drawing.Size(46, 41);
@@ -1802,7 +1802,7 @@
             // btnPrintPreview3
             // 
             this.btnPrintPreview3.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrintPreview3.ImageOptions.SvgImage")));
-            this.btnPrintPreview3.Location = new System.Drawing.Point(111, 6);
+            this.btnPrintPreview3.Location = new System.Drawing.Point(129, 6);
             this.btnPrintPreview3.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrintPreview3.Name = "btnPrintPreview3";
             this.btnPrintPreview3.Size = new System.Drawing.Size(46, 41);
@@ -1849,7 +1849,7 @@
             // 
             this.btnDisplayActiveList3.Appearance.Options.UseBackColor = true;
             this.btnDisplayActiveList3.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplayActiveList3.ImageOptions.SvgImage")));
-            this.btnDisplayActiveList3.Location = new System.Drawing.Point(60, 6);
+            this.btnDisplayActiveList3.Location = new System.Drawing.Point(78, 6);
             this.btnDisplayActiveList3.Margin = new System.Windows.Forms.Padding(4);
             this.btnDisplayActiveList3.Name = "btnDisplayActiveList3";
             this.btnDisplayActiveList3.Size = new System.Drawing.Size(46, 41);
@@ -1861,7 +1861,7 @@
             // 
             this.btnDisplayNotActiveList3.Appearance.Options.UseBackColor = true;
             this.btnDisplayNotActiveList3.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplayNotActiveList3.ImageOptions.SvgImage")));
-            this.btnDisplayNotActiveList3.Location = new System.Drawing.Point(6, 6);
+            this.btnDisplayNotActiveList3.Location = new System.Drawing.Point(24, 6);
             this.btnDisplayNotActiveList3.Margin = new System.Windows.Forms.Padding(4);
             this.btnDisplayNotActiveList3.Name = "btnDisplayNotActiveList3";
             this.btnDisplayNotActiveList3.Size = new System.Drawing.Size(46, 41);
@@ -1876,19 +1876,19 @@
             this.panelControl3.Location = new System.Drawing.Point(2, 2);
             this.panelControl3.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(984, 397);
+            this.panelControl3.Size = new System.Drawing.Size(969, 397);
             this.panelControl3.TabIndex = 6;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.gridControl4);
             this.groupBox3.Controls.Add(this.panelControl6);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(2, 2);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(979, 393);
+            this.groupBox3.Size = new System.Drawing.Size(965, 393);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "ریز اقساط وام";
@@ -1902,7 +1902,7 @@
             this.gridControl4.MainView = this.gridView4;
             this.gridControl4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gridControl4.Name = "gridControl4";
-            this.gridControl4.Size = new System.Drawing.Size(971, 298);
+            this.gridControl4.Size = new System.Drawing.Size(957, 298);
             this.gridControl4.TabIndex = 35;
             this.gridControl4.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView4});
@@ -2186,13 +2186,13 @@
             this.panelControl6.Location = new System.Drawing.Point(4, 334);
             this.panelControl6.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl6.Name = "panelControl6";
-            this.panelControl6.Size = new System.Drawing.Size(971, 55);
+            this.panelControl6.Size = new System.Drawing.Size(957, 55);
             this.panelControl6.TabIndex = 1;
             // 
             // btnDesignReport4
             // 
             this.btnDesignReport4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDesignReport4.ImageOptions.SvgImage")));
-            this.btnDesignReport4.Location = new System.Drawing.Point(114, 7);
+            this.btnDesignReport4.Location = new System.Drawing.Point(129, 7);
             this.btnDesignReport4.Margin = new System.Windows.Forms.Padding(4);
             this.btnDesignReport4.Name = "btnDesignReport4";
             this.btnDesignReport4.Size = new System.Drawing.Size(46, 41);
@@ -2217,7 +2217,7 @@
             // btnPrintPreview4
             // 
             this.btnPrintPreview4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrintPreview4.ImageOptions.SvgImage")));
-            this.btnPrintPreview4.Location = new System.Drawing.Point(60, 6);
+            this.btnPrintPreview4.Location = new System.Drawing.Point(75, 6);
             this.btnPrintPreview4.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrintPreview4.Name = "btnPrintPreview4";
             this.btnPrintPreview4.Size = new System.Drawing.Size(46, 41);
@@ -2228,7 +2228,7 @@
             // btnEdit4
             // 
             this.btnEdit4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnEdit4.ImageOptions.SvgImage")));
-            this.btnEdit4.Location = new System.Drawing.Point(809, 6);
+            this.btnEdit4.Location = new System.Drawing.Point(782, 7);
             this.btnEdit4.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit4.Name = "btnEdit4";
             this.btnEdit4.Size = new System.Drawing.Size(46, 41);
@@ -2241,7 +2241,7 @@
             // btnDelete4
             // 
             this.btnDelete4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDelete4.ImageOptions.SvgImage")));
-            this.btnDelete4.Location = new System.Drawing.Point(863, 6);
+            this.btnDelete4.Location = new System.Drawing.Point(836, 7);
             this.btnDelete4.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete4.Name = "btnDelete4";
             this.btnDelete4.Size = new System.Drawing.Size(46, 41);
@@ -2292,7 +2292,7 @@
             // btnDisplyActiveList4
             // 
             this.btnDisplyActiveList4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyActiveList4.ImageOptions.SvgImage")));
-            this.btnDisplyActiveList4.Location = new System.Drawing.Point(6, 7);
+            this.btnDisplyActiveList4.Location = new System.Drawing.Point(21, 7);
             this.btnDisplyActiveList4.Margin = new System.Windows.Forms.Padding(4);
             this.btnDisplyActiveList4.Name = "btnDisplyActiveList4";
             this.btnDisplyActiveList4.Size = new System.Drawing.Size(46, 41);
@@ -2304,7 +2304,7 @@
             // btnCreate4
             // 
             this.btnCreate4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCreate4.ImageOptions.SvgImage")));
-            this.btnCreate4.Location = new System.Drawing.Point(917, 6);
+            this.btnCreate4.Location = new System.Drawing.Point(890, 7);
             this.btnCreate4.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreate4.Name = "btnCreate4";
             this.btnCreate4.Size = new System.Drawing.Size(46, 41);

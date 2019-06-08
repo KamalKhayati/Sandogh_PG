@@ -82,7 +82,7 @@
             this.panelControl4.Location = new System.Drawing.Point(0, 0);
             this.panelControl4.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(587, 398);
+            this.panelControl4.Size = new System.Drawing.Size(591, 398);
             this.panelControl4.TabIndex = 33;
             // 
             // cmbPardakhtKonande
@@ -249,7 +249,7 @@
             this.panelControl2.Location = new System.Drawing.Point(0, 334);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(587, 60);
+            this.panelControl2.Size = new System.Drawing.Size(591, 60);
             this.panelControl2.TabIndex = 35;
             // 
             // btnSaveNext
@@ -346,7 +346,7 @@
             this.xtraScrollableControl2.Location = new System.Drawing.Point(0, 4);
             this.xtraScrollableControl2.Margin = new System.Windows.Forms.Padding(4);
             this.xtraScrollableControl2.Name = "xtraScrollableControl2";
-            this.xtraScrollableControl2.Size = new System.Drawing.Size(587, 394);
+            this.xtraScrollableControl2.Size = new System.Drawing.Size(591, 394);
             this.xtraScrollableControl2.TabIndex = 34;
             this.xtraScrollableControl2.TabStop = false;
             // 
@@ -489,7 +489,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(587, 398);
+            this.ClientSize = new System.Drawing.Size(591, 398);
             this.Controls.Add(this.xtraScrollableControl2);
             this.Controls.Add(this.panelControl4);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

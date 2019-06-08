@@ -11,8 +11,11 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Management;
 using System.Text;
+using Word = Microsoft.Office.Interop.Word;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace Sandogh_PG
 {
@@ -124,6 +127,18 @@ namespace Sandogh_PG
                     {
                         IDSandogh.Caption = q.Id.ToString();
                         ribbonControl1.ApplicationDocumentCaption = q.NameSandogh;
+                        string MadarBoardCode = string.Empty;
+                        ManagementObjectSearcher sercher2 = new ManagementObjectSearcher("select * from Win32_BaseBoard");
+                        foreach (ManagementObject wmi_Board in sercher2.Get())
+                        {
+                            if (wmi_Board["SerialNumber"] != null)
+                                MadarBoardCode = wmi_Board["SerialNumber"].ToString().Trim();
+                        }
+                        if (q.MadarBoardCode != MadarBoardCode.Substring(0, 10))
+                        {
+                            q.MadarBoardCode = MadarBoardCode.Substring(0, 10);
+                            db.SaveChanges();
+                        }
                         int _SId = Convert.ToInt32(IDSandogh.Caption);
                         var q2 = db.TarifSandoghs.FirstOrDefault(s => s.Id == _SId);
                         if (q2.PicBackground != null)
@@ -460,6 +475,7 @@ namespace Sandogh_PG
         {
             FrmAppRegister frm = new FrmAppRegister(this);
             frm.Text = "تمدید گارانتی";
+            frm.btnExit.Text = "بستن";
             frm.ShowDialog();
         }
 
@@ -469,6 +485,37 @@ namespace Sandogh_PG
             {
                 btnTamdidGaranti_ItemClick(null, null);
             }
+        }
+
+        private void OpenFilWord()
+        {
+            //Document doc = new Document();
+            //doc.LoadFromFile(FilePath + @"\Gharardade_Org.doc",FileFormat.Doc);
+            try
+            {
+                Word.Application ap = new Word.Application();
+                ap.Visible = true;
+                object miss = Missing.Value;
+                object path = Application.StartupPath + @"\Report\DarkhastVam\DarkhastVam.doc";
+                object readOnly = false;
+                object isVisible = true;
+                Word.Document doc = new Word.Document();
+                doc = ap.Documents.Open(ref path, ref miss, ref readOnly, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref isVisible, ref miss, ref miss, ref miss, ref miss);
+                doc.Activate();
+                //Word.Application ap = new Word.Application();
+                //Word.Document document = ap.Documents.Open(FilePath + @"\Gharardade_Temp.doc",);
+
+            }
+            catch //(Exception)
+            {
+                //doc.Application.Quit(ref missing, ref missing, ref missing);
+                //throw;
+            }
+        }
+
+        private void btnDarkhastVam_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenFilWord();
         }
     }
 }

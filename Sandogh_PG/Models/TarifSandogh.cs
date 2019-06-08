@@ -24,6 +24,8 @@ namespace Sandogh_PG
         public string Mobile { get; set; }
         [Column(TypeName = "Date")]
         public DateTime TarikhEjad { get; set; }
+        [MaxLength(10)]
+        public string MadarBoardCode { get; set; }
         [Column(TypeName = "Date")]
         public DateTime TarikhRegister { get; set; }
         [Column(TypeName = "Date")]

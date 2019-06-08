@@ -210,7 +210,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1065, 389);
+            this.gridControl1.Size = new System.Drawing.Size(1112, 389);
             this.gridControl1.TabIndex = 32;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -223,7 +223,7 @@
             // 
             this.btnSave.Enabled = false;
             this.btnSave.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSave.ImageOptions.SvgImage")));
-            this.btnSave.Location = new System.Drawing.Point(852, 6);
+            this.btnSave.Location = new System.Drawing.Point(888, 6);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(46, 41);
@@ -239,14 +239,14 @@
             this.panelControl4.Location = new System.Drawing.Point(0, 0);
             this.panelControl4.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(1069, 393);
+            this.panelControl4.Size = new System.Drawing.Size(1116, 393);
             this.panelControl4.TabIndex = 40;
             // 
             // btnCancel
             // 
             this.btnCancel.Enabled = false;
             this.btnCancel.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCancel.ImageOptions.SvgImage")));
-            this.btnCancel.Location = new System.Drawing.Point(744, 6);
+            this.btnCancel.Location = new System.Drawing.Point(780, 6);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(46, 41);
@@ -278,13 +278,13 @@
             this.panelControl2.Location = new System.Drawing.Point(0, 401);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1069, 55);
+            this.panelControl2.Size = new System.Drawing.Size(1116, 55);
             this.panelControl2.TabIndex = 39;
             // 
             // btnDisplyNotActiveList
             // 
             this.btnDisplyNotActiveList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyNotActiveList.ImageOptions.SvgImage")));
-            this.btnDisplyNotActiveList.Location = new System.Drawing.Point(281, 6);
+            this.btnDisplyNotActiveList.Location = new System.Drawing.Point(287, 6);
             this.btnDisplyNotActiveList.Margin = new System.Windows.Forms.Padding(4);
             this.btnDisplyNotActiveList.Name = "btnDisplyNotActiveList";
             this.btnDisplyNotActiveList.Size = new System.Drawing.Size(46, 41);
@@ -297,7 +297,7 @@
             // 
             this.btnSaveNext.Enabled = false;
             this.btnSaveNext.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSaveNext.ImageOptions.SvgImage")));
-            this.btnSaveNext.Location = new System.Drawing.Point(798, 6);
+            this.btnSaveNext.Location = new System.Drawing.Point(834, 6);
             this.btnSaveNext.Margin = new System.Windows.Forms.Padding(4);
             this.btnSaveNext.Name = "btnSaveNext";
             this.btnSaveNext.Size = new System.Drawing.Size(46, 41);
@@ -309,7 +309,7 @@
             // btnClose
             // 
             this.btnClose.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnClose.ImageOptions.SvgImage")));
-            this.btnClose.Location = new System.Drawing.Point(6, 6);
+            this.btnClose.Location = new System.Drawing.Point(12, 6);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(106, 41);
@@ -322,7 +322,7 @@
             // btnPrint
             // 
             this.btnPrint.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrint.ImageOptions.SvgImage")));
-            this.btnPrint.Location = new System.Drawing.Point(120, 6);
+            this.btnPrint.Location = new System.Drawing.Point(126, 6);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(46, 41);
@@ -347,7 +347,7 @@
             // btnPrintPreview
             // 
             this.btnPrintPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintPreview.ImageOptions.Image")));
-            this.btnPrintPreview.Location = new System.Drawing.Point(174, 6);
+            this.btnPrintPreview.Location = new System.Drawing.Point(180, 6);
             this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrintPreview.Name = "btnPrintPreview";
             this.btnPrintPreview.Size = new System.Drawing.Size(46, 41);
@@ -361,7 +361,7 @@
             // 
             this.btnEdit.Enabled = false;
             this.btnEdit.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnEdit.ImageOptions.SvgImage")));
-            this.btnEdit.Location = new System.Drawing.Point(906, 6);
+            this.btnEdit.Location = new System.Drawing.Point(942, 6);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(46, 41);
@@ -373,7 +373,7 @@
             // btnAdvancedSearch
             // 
             this.btnAdvancedSearch.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnAdvancedSearch.ImageOptions.SvgImage")));
-            this.btnAdvancedSearch.Location = new System.Drawing.Point(227, 6);
+            this.btnAdvancedSearch.Location = new System.Drawing.Point(233, 6);
             this.btnAdvancedSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdvancedSearch.Name = "btnAdvancedSearch";
             this.btnAdvancedSearch.Size = new System.Drawing.Size(46, 41);
@@ -386,7 +386,7 @@
             // 
             this.btnDelete.Enabled = false;
             this.btnDelete.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDelete.ImageOptions.SvgImage")));
-            this.btnDelete.Location = new System.Drawing.Point(959, 6);
+            this.btnDelete.Location = new System.Drawing.Point(995, 6);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(46, 41);
@@ -433,7 +433,7 @@
             // btnDisplayActiveList
             // 
             this.btnDisplayActiveList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplayActiveList.ImageOptions.SvgImage")));
-            this.btnDisplayActiveList.Location = new System.Drawing.Point(335, 6);
+            this.btnDisplayActiveList.Location = new System.Drawing.Point(341, 6);
             this.btnDisplayActiveList.Margin = new System.Windows.Forms.Padding(4);
             this.btnDisplayActiveList.Name = "btnDisplayActiveList";
             this.btnDisplayActiveList.Size = new System.Drawing.Size(46, 41);
@@ -445,7 +445,7 @@
             // btnCreate
             // 
             this.btnCreate.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCreate.ImageOptions.SvgImage")));
-            this.btnCreate.Location = new System.Drawing.Point(1013, 6);
+            this.btnCreate.Location = new System.Drawing.Point(1049, 6);
             this.btnCreate.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(46, 41);
@@ -457,12 +457,12 @@
             // txtNameHesab
             // 
             this.txtNameHesab.EnterMoveNextControl = true;
-            this.txtNameHesab.Location = new System.Drawing.Point(219, 7);
+            this.txtNameHesab.Location = new System.Drawing.Point(233, 7);
             this.txtNameHesab.Margin = new System.Windows.Forms.Padding(4);
             this.txtNameHesab.Name = "txtNameHesab";
             this.txtNameHesab.Properties.MaxLength = 100;
             this.txtNameHesab.Properties.ReadOnly = true;
-            this.txtNameHesab.Size = new System.Drawing.Size(395, 38);
+            this.txtNameHesab.Size = new System.Drawing.Size(381, 38);
             this.txtNameHesab.TabIndex = 1;
             // 
             // labelControl13
@@ -494,14 +494,14 @@
             this.panelControl3.Location = new System.Drawing.Point(0, 463);
             this.panelControl3.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(1069, 56);
+            this.panelControl3.Size = new System.Drawing.Size(1116, 56);
             this.panelControl3.TabIndex = 41;
             // 
             // labelControl2
             // 
             this.labelControl2.AutoEllipsis = true;
             this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl2.Location = new System.Drawing.Point(77, 6);
+            this.labelControl2.Location = new System.Drawing.Point(85, 6);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(123, 40);
@@ -512,7 +512,7 @@
             // 
             this.chkIsActive.EditValue = true;
             this.chkIsActive.EnterMoveNextControl = true;
-            this.chkIsActive.Location = new System.Drawing.Point(6, 6);
+            this.chkIsActive.Location = new System.Drawing.Point(14, 6);
             this.chkIsActive.Margin = new System.Windows.Forms.Padding(4);
             this.chkIsActive.Name = "chkIsActive";
             this.chkIsActive.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
@@ -608,7 +608,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1069, 520);
+            this.ClientSize = new System.Drawing.Size(1116, 524);
             this.Controls.Add(this.panelControl4);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl3);

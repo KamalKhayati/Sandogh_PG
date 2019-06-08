@@ -9,11 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Management;
 using DevExpress.XtraEditors;
+using nucs.JsonSettings;
+using nucs.JsonSettings.Fluent;
 
 namespace Sandogh_PG
 {
     public partial class FrmAppRegister : DevExpress.XtraEditors.XtraForm
     {
+
         FrmMain Fm;
         public FrmAppRegister(FrmMain fm)
         {
@@ -55,55 +58,65 @@ namespace Sandogh_PG
         }
 
 
-        //private string GetHardwarSerial()
-        //{
-        //    string cpuSerial = string.Empty;
-        //    string hardSerial = string.Empty;
-        //    string mainBoardSerial = string.Empty;
-        //    //----------------------
+        private string GetHardwarSerial()
+        {
+           // string cpuSerial = string.Empty;
+           // string hardSerial = string.Empty;
+            string MadarBoardCode = string.Empty;
+            //----------------------
 
-        //    ManagementClass mgmt = new ManagementClass("Win32_Processor");
-        //    ManagementObjectCollection objcol = mgmt.GetInstances();
-        //    foreach (ManagementObject obj in objcol)
-        //    {
-        //        if (obj.Properties["ProcessorId"] != null)
-        //            cpuSerial = obj.Properties["ProcessorId"].Value.ToString().Trim();
-        //    }
+            //ManagementClass mgmt = new ManagementClass("Win32_Processor");
+            //ManagementObjectCollection objcol = mgmt.GetInstances();
+            //foreach (ManagementObject obj in objcol)
+            //{
+            //    if (obj.Properties["ProcessorId"] != null)
+            //        cpuSerial = obj.Properties["ProcessorId"].Value.ToString().Trim();
+            //}
 
-        //    //---------------------
+            ////---------------------
 
-        //    ManagementObjectSearcher sercher = new ManagementObjectSearcher("select * from Win32_PhysicalMedia");
-        //    foreach (ManagementObject wmi_Hd in sercher.Get())
-        //    {
-        //        if (wmi_Hd["SerialNumber"] != null)
-        //            hardSerial = wmi_Hd["SerialNumber"].ToString().Trim();
-        //    }
+            //ManagementObjectSearcher sercher = new ManagementObjectSearcher("select * from Win32_PhysicalMedia");
+            //foreach (ManagementObject wmi_Hd in sercher.Get())
+            //{
+            //    if (wmi_Hd["SerialNumber"] != null)
+            //        hardSerial = wmi_Hd["SerialNumber"].ToString().Trim();
+            //}
 
-        //    //---------------------
+            //---------------------
 
-        //    ManagementObjectSearcher sercher2 = new ManagementObjectSearcher("select * from Win32_BaseBoard");
-        //    foreach (ManagementObject wmi_Board in sercher2.Get())
-        //    {
-        //        if (wmi_Board["SerialNumber"] != null)
-        //            mainBoardSerial = wmi_Board["SerialNumber"].ToString().Trim();
-        //    }
+            ManagementObjectSearcher sercher2 = new ManagementObjectSearcher("select * from Win32_BaseBoard");
+            foreach (ManagementObject wmi_Board in sercher2.Get())
+            {
+                if (wmi_Board["SerialNumber"] != null)
+                    MadarBoardCode = wmi_Board["SerialNumber"].ToString().Trim();
+            }
 
-        //    //-----------
+            //-----------
 
-        //    return cpuSerial + hardSerial + mainBoardSerial;
-        //}
+            //return cpuSerial + hardSerial + mainBoardSerial;
+            return  MadarBoardCode;
+        }
 
         //string HardSerial = "";
         string _RandomCode = "";
         private void frmAppRegister_Load(object sender, EventArgs e)
         {
-            //HardSerial = ReveresString(GetHardwarSerial());
-            _RandomCode = RandomCode();
-            //if (string.IsNullOrEmpty(HardSerial))
-            //{
-            //    HardSerial = "laksjdhfglaksjdhfg";
-            //}
-            txtCode.Text = _RandomCode;
+            if (Application.OpenForms["FrmMain"] == null)
+            {
+                _RandomCode = GetHardwarSerial().Substring(0,10);
+                txtCode.Text = _RandomCode;
+            }
+            else
+            {
+                //HardSerial = ReveresString(GetHardwarSerial());
+                //if (string.IsNullOrEmpty(HardSerial))
+                //{
+                //    HardSerial = "laksjdhfglaksjdhfg";
+                //}
+                _RandomCode = RandomCode();
+                txtCode.Text = _RandomCode;
+
+            }
         }
 
         private string ReveresString(string RandomCode)
@@ -156,6 +169,8 @@ namespace Sandogh_PG
 
                             if (Application.OpenForms["FrmMain"] == null)
                             {
+                                q.MadarBoardCode = txtCode.Text;
+                                db.SaveChanges();
                                 var q1 = db.Karbarans.FirstOrDefault(f => f.Shenase == _Shenase && f.Password == _Password);
                                 if (q1 != null)
                                 {
@@ -197,7 +212,7 @@ namespace Sandogh_PG
         {
             if (Application.OpenForms["FrmMain"] == null)
             {
-            Application.Exit();
+                Application.Exit();
             }
             else
             {

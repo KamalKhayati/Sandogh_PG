@@ -182,7 +182,7 @@
             this.xtraScrollableControl2.Location = new System.Drawing.Point(0, 0);
             this.xtraScrollableControl2.Margin = new System.Windows.Forms.Padding(4);
             this.xtraScrollableControl2.Name = "xtraScrollableControl2";
-            this.xtraScrollableControl2.Size = new System.Drawing.Size(853, 881);
+            this.xtraScrollableControl2.Size = new System.Drawing.Size(871, 840);
             this.xtraScrollableControl2.TabIndex = 37;
             this.xtraScrollableControl2.TabStop = false;
             // 
@@ -192,10 +192,10 @@
             this.panelControl2.Controls.Add(this.btnClose);
             this.panelControl2.Controls.Add(this.btnSaveClose);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl2.Location = new System.Drawing.Point(0, 812);
+            this.panelControl2.Location = new System.Drawing.Point(0, 771);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(853, 67);
+            this.panelControl2.Size = new System.Drawing.Size(871, 67);
             this.panelControl2.TabIndex = 47;
             // 
             // chkIsTasviye
@@ -247,7 +247,7 @@
             this.panelControl4.Location = new System.Drawing.Point(0, 487);
             this.panelControl4.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(853, 325);
+            this.panelControl4.Size = new System.Drawing.Size(871, 284);
             this.panelControl4.TabIndex = 46;
             // 
             // groupControl1
@@ -259,14 +259,14 @@
             this.groupControl1.Location = new System.Drawing.Point(2, 2);
             this.groupControl1.Margin = new System.Windows.Forms.Padding(4);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(849, 325);
+            this.groupControl1.Size = new System.Drawing.Size(867, 283);
             this.groupControl1.TabIndex = 1;
             this.groupControl1.Text = "نوع تضمین";
             // 
             // btnDelete
             // 
             this.btnDelete.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDelete.ImageOptions.SvgImage")));
-            this.btnDelete.Location = new System.Drawing.Point(64, 38);
+            this.btnDelete.Location = new System.Drawing.Point(70, 40);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(46, 42);
@@ -279,7 +279,7 @@
             // btnCreate
             // 
             this.btnCreate.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCreate.ImageOptions.SvgImage")));
-            this.btnCreate.Location = new System.Drawing.Point(7, 38);
+            this.btnCreate.Location = new System.Drawing.Point(13, 40);
             this.btnCreate.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(49, 42);
@@ -297,7 +297,7 @@
             this.xtraTabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(845, 283);
+            this.xtraTabControl1.Size = new System.Drawing.Size(863, 241);
             this.xtraTabControl1.TabIndex = 0;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
@@ -312,7 +312,7 @@
             this.xtraTabPage1.Controls.Add(this.chkcmbEntekhabZamenin);
             this.xtraTabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(838, 234);
+            this.xtraTabPage1.Size = new System.Drawing.Size(856, 192);
             this.xtraTabPage1.Text = "اعضاء صندوق";
             // 
             // lstZamenin
@@ -320,7 +320,7 @@
             this.lstZamenin.Location = new System.Drawing.Point(5, 63);
             this.lstZamenin.Margin = new System.Windows.Forms.Padding(4);
             this.lstZamenin.Name = "lstZamenin";
-            this.lstZamenin.Size = new System.Drawing.Size(821, 166);
+            this.lstZamenin.Size = new System.Drawing.Size(821, 125);
             this.lstZamenin.TabIndex = 34;
             this.lstZamenin.TabStop = false;
             // 
@@ -366,7 +366,7 @@
             this.xtraTabPage2.Controls.Add(this.gridControl1);
             this.xtraTabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(838, 234);
+            this.xtraTabPage2.Size = new System.Drawing.Size(856, 192);
             this.xtraTabPage2.Text = "چک / سفته";
             // 
             // gridControl1
@@ -378,7 +378,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(838, 234);
+            this.gridControl1.Size = new System.Drawing.Size(856, 192);
             this.gridControl1.TabIndex = 33;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -675,7 +675,7 @@
             this.panelControl7.Location = new System.Drawing.Point(0, 432);
             this.panelControl7.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl7.Name = "panelControl7";
-            this.panelControl7.Size = new System.Drawing.Size(853, 55);
+            this.panelControl7.Size = new System.Drawing.Size(871, 55);
             this.panelControl7.TabIndex = 45;
             // 
             // labelControl14
@@ -779,7 +779,7 @@
             this.panelControl6.Location = new System.Drawing.Point(0, 234);
             this.panelControl6.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl6.Name = "panelControl6";
-            this.panelControl6.Size = new System.Drawing.Size(853, 198);
+            this.panelControl6.Size = new System.Drawing.Size(871, 198);
             this.panelControl6.TabIndex = 44;
             // 
             // txtTedadAghsat
@@ -1076,7 +1076,7 @@
             this.panelControl5.Location = new System.Drawing.Point(0, 179);
             this.panelControl5.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl5.Name = "panelControl5";
-            this.panelControl5.Size = new System.Drawing.Size(853, 55);
+            this.panelControl5.Size = new System.Drawing.Size(871, 55);
             this.panelControl5.TabIndex = 43;
             // 
             // txtShomareDarkhast
@@ -1151,7 +1151,7 @@
             this.panelControl3.Location = new System.Drawing.Point(0, 67);
             this.panelControl3.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(853, 112);
+            this.panelControl3.Size = new System.Drawing.Size(871, 112);
             this.panelControl3.TabIndex = 42;
             // 
             // checkEdit2
@@ -1291,7 +1291,7 @@
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(853, 67);
+            this.panelControl1.Size = new System.Drawing.Size(871, 67);
             this.panelControl1.TabIndex = 41;
             // 
             // textEdit1
@@ -1389,7 +1389,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(853, 881);
+            this.ClientSize = new System.Drawing.Size(871, 840);
             this.Controls.Add(this.xtraScrollableControl2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

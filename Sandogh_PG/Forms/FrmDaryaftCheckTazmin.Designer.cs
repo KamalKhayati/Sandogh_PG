@@ -427,7 +427,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1161, 389);
+            this.gridControl1.Size = new System.Drawing.Size(1165, 389);
             this.gridControl1.TabIndex = 32;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -459,7 +459,7 @@
             this.panelControl2.Location = new System.Drawing.Point(0, 399);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1165, 55);
+            this.panelControl2.Size = new System.Drawing.Size(1169, 55);
             this.panelControl2.TabIndex = 26;
             // 
             // btnDesignReport
@@ -666,7 +666,7 @@
             this.panelControl4.Location = new System.Drawing.Point(0, 0);
             this.panelControl4.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(1165, 393);
+            this.panelControl4.Size = new System.Drawing.Size(1169, 393);
             this.panelControl4.TabIndex = 31;
             // 
             // panelControl1
@@ -1099,7 +1099,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1165, 718);
+            this.ClientSize = new System.Drawing.Size(1169, 718);
             this.Controls.Add(this.panelControl3);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
