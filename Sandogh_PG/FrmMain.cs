@@ -517,5 +517,12 @@ namespace Sandogh_PG
         {
             OpenFilWord();
         }
+
+        private void btnMabaleghGhabelDaryaft_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmMabaleghGhabelDaryaft frm = new FrmMabaleghGhabelDaryaft();
+            frm._SandoghName = ribbonControl1.ApplicationDocumentCaption;
+            frm.ShowDialog();
+        }
     }
 }
