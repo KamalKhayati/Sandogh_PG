@@ -158,7 +158,7 @@ namespace Sandogh_PG
                     }
 
 
-                    EtmamGaranti.Caption =  db.TarifSandoghs.FirstOrDefault().TarikhEtmamGaranti != null ? "اتمام گارانتی : " + db.TarifSandoghs.FirstOrDefault().TarikhEtmamGaranti.ToString().Substring(0, 10) : "0000/00/00";
+                    EtmamGaranti.Caption = db.TarifSandoghs.FirstOrDefault().TarikhEtmamGaranti != null ? "اتمام گارانتی : " + db.TarifSandoghs.FirstOrDefault().TarikhEtmamGaranti.ToString().Substring(0, 10) : "0000/00/00";
                     int yyyy1 = Convert.ToInt32(DateTime.Now.ToString().Substring(0, 4));
                     int MM1 = Convert.ToInt32(DateTime.Now.ToString().Substring(5, 2));
                     int dd1 = Convert.ToInt32(DateTime.Now.ToString().Substring(8, 2));
@@ -185,6 +185,27 @@ namespace Sandogh_PG
                         }
 
                     }
+                    ///////////////////////////////////////بعد از یکبار اجرا حذف شود ///////////////////////////////////////////
+                    var q4 = db.AazaSandoghs.Where(f => f.AllTafId == 0).ToList();
+                    if (q4.Count > 0)
+                    {
+                        foreach (var item in q4)
+                        {
+                            item.AllTafId = db.AllHesabTafzilis.FirstOrDefault(f => f.Code == item.Code).Id;
+                        }
+                        db.SaveChanges();
+                    }
+
+                    var q5 = db.HesabBankis.Where(f => f.AllTafId == 0).ToList();
+                    if (q5.Count > 0)
+                    {
+                        foreach (var item in q5)
+                        {
+                            item.AllTafId = db.AllHesabTafzilis.FirstOrDefault(f => f.Code == item.Code).Id;
+                        }
+                        db.SaveChanges();
+                    }
+                    ///////////////////////////////////////بعد از یکبار اجرا حذف شود ///////////////////////////////////////////
                 }
                 catch (Exception ex)
                 {
@@ -375,20 +396,16 @@ namespace Sandogh_PG
             //    context.Database.CommandTimeout = 360;
             //    context.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command);
             //}
-            SqlConnection.ClearAllPools();
-            Application.Exit();
-            Application.ExitThread();
+
+            //SqlConnection.ClearAllPools();
+            //Application.Exit();
+            //Application.ExitThread();
         }
 
         private void btnSoratSoodVZiyan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             FrmSodVZian frm = new FrmSodVZian(this);
             ActiveForm(frm);
-        }
-
-        private void pictureEdit3_EditValueChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void FrmMain_KeyDown(object sender, KeyEventArgs e)
@@ -433,6 +450,7 @@ namespace Sandogh_PG
             ActiveForm(frm);
         }
 
+        bool IsDataDelete = false;
         private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (XtraMessageBox.Show("آیا همه اطلاعات ثبت شده حذف گردد ؟", "پیغام حذف کلیه اطلاعات", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
@@ -445,6 +463,7 @@ namespace Sandogh_PG
                             db.Database.Initialize(true);
                             // XtraMessageBox.Show("کلیه اطلاعات ثبت شده با موفقیت حذف گردید و نرم افزار مجدداً راه اندازی خواهد شد", "پیغام", MessageBoxButtons.OK);
                             XtraMessageBox.Show("کلیه اطلاعات ثبت شده با موفقیت حذف گردید لطفا برنامه را مجدداً اجرا کنید", "پیغام", MessageBoxButtons.OK);
+                            IsDataDelete = true;
                             //Application.Restart();
                             Application.Exit();
                         }
@@ -523,6 +542,12 @@ namespace Sandogh_PG
             FrmMabaleghGhabelDaryaft frm = new FrmMabaleghGhabelDaryaft();
             frm._SandoghName = ribbonControl1.ApplicationDocumentCaption;
             frm.ShowDialog();
+        }
+
+        private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Application.OpenForms["FrmBackupRestore"] == null && IsDataDelete==false)
+                HelpClass1.FrmMain_FormClosing(sender, e);
         }
     }
 }

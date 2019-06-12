@@ -667,6 +667,14 @@ namespace Sandogh_PG
                             obj1.SandoghId = Convert.ToInt32(Fm.IDSandogh.Caption);
                             db.AllHesabTafzilis.Add(obj1);
                             db.SaveChanges();
+                            ////////////////////////////////////////////////////////////////////////////////////
+                            var qr1 = db.AllHesabTafzilis.FirstOrDefault(f => f.Code == _Code);
+                            if (qr1 != null)
+                            {
+                                var qr2 = db.AazaSandoghs.FirstOrDefault(f => f.Code == _Code);
+                                qr2.AllTafId = qr1.Id;
+                                db.SaveChanges();
+                            }
                             /////////////////////////////////////////////////////////////////////////////////////
                             //int _ShomareSanad = Convert.ToInt32(gridView1.GetFocusedRowCellValue("ShomareSanad"));
                             //if (_ShomareSanad != 0)

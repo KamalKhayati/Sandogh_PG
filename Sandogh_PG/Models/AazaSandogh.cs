@@ -74,6 +74,7 @@ namespace Sandogh_PG
         public int GroupTafziliId { get; set; }
         [Required]
         public int ShomareSanad { get; set; }
+        public int AllTafId { get; set; }
         //public virtual ICollection<AsnadeHesabdariRow> AsnadeHesabdariRows { get; set; }
         //public virtual GroupTafzili GroupTafzili1 { get; set; }
         //public virtual ICollection<DaryaftNaghdiVBanki> DaryaftNaghdiVBankis { get; set; }

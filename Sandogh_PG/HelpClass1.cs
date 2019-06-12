@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.IO;
+using System.Data.SqlClient;
 
 namespace Sandogh_PG
 {
@@ -471,6 +472,22 @@ namespace Sandogh_PG
             return result;
         }
 
+        ////////////////////////////جلوگیری از خارج شدن برنامه //////////////////////////////////////
+        public static void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (XtraMessageBox.Show("آیا میخواهید از برنامه خارج شود ؟", "پیغام ", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
+            {
+                e.Cancel = true;
+                return;
+                // Application.OpenForms["FrmMain"].Activate();
+            }
+            else
+            {
+                SqlConnection.ClearAllPools();
+                Application.ExitThread();
+                Application.Exit();
+            }
+        }
 
 
         //public static void LoadReportDesigner1(string FilePath, string FileName)
