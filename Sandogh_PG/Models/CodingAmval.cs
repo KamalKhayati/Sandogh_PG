@@ -26,6 +26,7 @@ namespace Sandogh_PG
         //public virtual TarifSandogh TarifSandogh1 { get; set; }
         [Required]
         public int GroupTafziliId { get; set; }
+        public int AllTafId { get; set; }
         //public virtual ICollection<AsnadeHesabdariRow> AsnadeHesabdariRows { get; set; }
         //public virtual GroupTafzili GroupTafzili1 { get; set; }
     }

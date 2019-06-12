@@ -185,8 +185,9 @@ namespace Sandogh_PG
                         }
 
                     }
-                    ///////////////////////////////////////بعد از یکبار اجرا حذف شود ///////////////////////////////////////////
-                    var q4 = db.AazaSandoghs.Where(f => f.AllTafId == 0).ToList();
+
+                    ////////////////////////////////////////////////////////////////////////////////
+                    var q4 = db.CodingDaramadVHazines.Where(f => f.AllTafId == 0).ToList();
                     if (q4.Count > 0)
                     {
                         foreach (var item in q4)
@@ -196,10 +197,32 @@ namespace Sandogh_PG
                         db.SaveChanges();
                     }
 
-                    var q5 = db.HesabBankis.Where(f => f.AllTafId == 0).ToList();
+                    var q5 = db.CodingAmvals.Where(f => f.AllTafId == 0).ToList();
                     if (q5.Count > 0)
                     {
                         foreach (var item in q5)
+                        {
+                            item.AllTafId = db.AllHesabTafzilis.FirstOrDefault(f => f.Code == item.Code).Id;
+                        }
+                        db.SaveChanges();
+                    }
+                    ////////////////////////////////////////////////////////////////////////////////
+                    
+                    ///////////////////////////////////////بعد از یکبار اجرا حذف شود ///////////////////////////////////////////
+                    var q6 = db.AazaSandoghs.Where(f => f.AllTafId == 0).ToList();
+                    if (q6.Count > 0)
+                    {
+                        foreach (var item in q6)
+                        {
+                            item.AllTafId = db.AllHesabTafzilis.FirstOrDefault(f => f.Code == item.Code).Id;
+                        }
+                        db.SaveChanges();
+                    }
+
+                    var q7 = db.HesabBankis.Where(f => f.AllTafId == 0).ToList();
+                    if (q7.Count > 0)
+                    {
+                        foreach (var item in q7)
                         {
                             item.AllTafId = db.AllHesabTafzilis.FirstOrDefault(f => f.Code == item.Code).Id;
                         }

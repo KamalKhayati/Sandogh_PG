@@ -427,6 +427,14 @@ namespace Sandogh_PG
                             obj1.SandoghId = Convert.ToInt32(Fm.IDSandogh.Caption);
                             db.AllHesabTafzilis.Add(obj1);
                             db.SaveChanges();
+                            ////////////////////////////////////////////////////////////////////////////////////
+                            var qr1 = db.AllHesabTafzilis.FirstOrDefault(f => f.Code == _Code);
+                            if (qr1 != null)
+                            {
+                                var qr2 = db.CodingDaramadVHazines.FirstOrDefault(f => f.Code == _Code);
+                                qr2.AllTafId = qr1.Id;
+                                db.SaveChanges();
+                            }
                             /////////////////////////////////////////////////////////////////////////////////////
                             if (IsActiveList)
                                 btnDisplayActiveList_Click(null, null);
