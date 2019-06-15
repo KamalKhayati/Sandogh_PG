@@ -1851,7 +1851,7 @@
             this.xtraTabPage2.Controls.Add(this.txtTell);
             this.xtraTabPage2.Controls.Add(this.txtMobile2);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1417, 251);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1434, 251);
             this.xtraTabPage2.Text = "آدرس / تماس";
             // 
             // xtraTabPage3
@@ -1865,7 +1865,7 @@
             this.xtraTabPage3.Controls.Add(this.txtNameBank);
             this.xtraTabPage3.Controls.Add(this.labelControl11);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(1417, 251);
+            this.xtraTabPage3.Size = new System.Drawing.Size(1434, 251);
             this.xtraTabPage3.Text = "حساب بانکی";
             // 
             // xtraTabPage4
@@ -1877,7 +1877,7 @@
             this.xtraTabPage4.Controls.Add(this.labelControl18);
             this.xtraTabPage4.Controls.Add(this.labelControl19);
             this.xtraTabPage4.Name = "xtraTabPage4";
-            this.xtraTabPage4.Size = new System.Drawing.Size(1417, 251);
+            this.xtraTabPage4.Size = new System.Drawing.Size(1434, 251);
             this.xtraTabPage4.Text = "سایر";
             // 
             // FrmTarifAaza_1

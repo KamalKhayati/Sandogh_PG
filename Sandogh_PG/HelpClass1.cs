@@ -261,9 +261,9 @@ namespace Sandogh_PG
             if (gridView1.RowCount == 0)
                 return;
 
-            long SumBed = Convert.ToInt32(gridView1.Columns[Bed].SummaryItem.SummaryValue);
-            long SumBes = Convert.ToInt32(gridView1.Columns[Bes].SummaryItem.SummaryValue);
-            long _Mande = SumBed - SumBes;
+            decimal SumBed = Convert.ToDecimal(gridView1.Columns[Bed].SummaryItem.SummaryValue);
+            decimal SumBes = Convert.ToDecimal(gridView1.Columns[Bes].SummaryItem.SummaryValue);
+            decimal _Mande = SumBed - SumBes;
 
             var item = e.Item as GridColumnSummaryItem;
 
@@ -274,7 +274,7 @@ namespace Sandogh_PG
                 e.TotalValue = _Mande;
         }
 
-        public static List<long> Result2;
+        public static List<decimal> Result2;
         public static int IndexAkharinDaruaft = -1;
         public static void gridView_CustomUnboundColumnData(object sender, CustomColumnDataEventArgs e, GridView gridView1, string Bed = "Bed", string Bes = "Bes", string Mande = "Mande")
         {
@@ -283,8 +283,8 @@ namespace Sandogh_PG
 
             SetNumberRowsColumnUnboundGirdView(sender, e);
             int rowIndex = e.ListSourceRowIndex;
-            long bed = Convert.ToInt64(gridView1.GetListSourceRowCellValue(rowIndex, Bed));
-            long bes = Convert.ToInt64(gridView1.GetListSourceRowCellValue(rowIndex, Bes));
+            decimal bed = Convert.ToDecimal(gridView1.GetListSourceRowCellValue(rowIndex, Bed));
+            decimal bes = Convert.ToDecimal(gridView1.GetListSourceRowCellValue(rowIndex, Bes));
             if (e.Column.FieldName != Mande) return;
             if (e.IsGetData)
             {
@@ -292,7 +292,7 @@ namespace Sandogh_PG
                 {
                     Result2.Add(bed - bes);
                     e.Value = Result2[rowIndex];
-                    if (Convert.ToInt32(e.Value) == 0)
+                    if (Convert.ToDecimal(e.Value) == 0)
                     {
                         IndexAkharinDaruaft = rowIndex;
                     }
@@ -301,7 +301,7 @@ namespace Sandogh_PG
                 {
                     Result2.Add(Result2[rowIndex - 1] + bed - bes);
                     e.Value = Result2[rowIndex];
-                    if (Convert.ToInt32(e.Value) == 0)
+                    if (Convert.ToDecimal(e.Value) == 0)
                     {
                         IndexAkharinDaruaft = rowIndex;
                     }

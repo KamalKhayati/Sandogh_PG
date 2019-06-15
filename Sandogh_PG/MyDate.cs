@@ -71,19 +71,36 @@ namespace Sandogh_PG
         }
         public void IncrementMonth()
         {
-            if (Month == 12)
+            if (Month == 6)
+            {
+                if (Day == 31)
+                {
+                    Month++;
+                    Day--;
+                }
+                else
+                    Month++;
+            }
+            else if (Month == 7 || Month == 8 || Month == 9 || Month == 10)
+                Month++;
+            else if (Month == 11)
+            {
+                if (Day == 30)
+                {
+                    Month++;
+                    Day--;
+                }
+                else
+                    Month++;
+            }
+            else if (Month == 12)
             {
                 Year++;
                 Month = 1;
                 //Day = 1;
             }
             else
-            {
                 Month++;
-                //Day = 1;
-            }
-            //else
-            //    Day++;
         }
         public void IncrementYear()
         {
@@ -122,7 +139,7 @@ namespace Sandogh_PG
             {
                 Year--;
                 Month = 12;
-                Day = Day-1;
+                Day = Day - 1;
             }
             else if (Month >= 2 && Month <= 6 && Day == 31)
             {
@@ -136,7 +153,7 @@ namespace Sandogh_PG
             else if (Month >= 2 && Month <= 6 && Day < 30)
             {
                 Month--;
-                Day = Day+1;
+                Day = Day + 1;
             }
             else if (Month >= 7 && Month <= 11 && Day == 30)
             {
@@ -146,7 +163,7 @@ namespace Sandogh_PG
             else if (Month == 7 && Day < 30)
             {
                 Month--;
-                Day = Day+1;
+                Day = Day + 1;
             }
             else if (Month >= 8 && Month <= 11 && Day < 30)
             {

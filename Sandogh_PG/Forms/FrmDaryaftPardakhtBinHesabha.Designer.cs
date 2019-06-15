@@ -727,6 +727,7 @@
             this.cmbHesabTafzili2.Size = new System.Drawing.Size(445, 38);
             this.cmbHesabTafzili2.TabIndex = 6;
             this.cmbHesabTafzili2.Enter += new System.EventHandler(this.cmbHesabTafzili2_Enter);
+            this.cmbHesabTafzili2.Leave += new System.EventHandler(this.cmbHesabTafzili2_Leave);
             // 
             // labelControl10
             // 

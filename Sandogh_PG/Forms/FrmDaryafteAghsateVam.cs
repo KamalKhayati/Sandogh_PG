@@ -35,7 +35,7 @@ namespace Sandogh_PG
             {
                 try
                 {
-                    var q1 = dataContext.AllHesabTafzilis.Where(s=>s.GroupTafziliId==3).OrderBy(s => s.Code).ToList();
+                    var q1 = dataContext.AllHesabTafzilis.Where(s => s.GroupTafziliId == 3).OrderBy(s => s.Code).ToList();
                     if (q1.Count > 0)
                         allHesabTafzilisBindingSource.DataSource = q1;
                     else
@@ -49,28 +49,48 @@ namespace Sandogh_PG
             }
 
         }
-        public void FillcmbNameHesab()
+        //public void FillcmbNameHesab()
+        //{
+        //    using (var db = new MyContext())
+        //    {
+        //        try
+        //        {
+        //            if (En == EnumCED.Create)
+        //            {
+        //                var q1 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 1 || s.GroupTafziliId == 2 || s.GroupTafziliId == 3 && s.IsActive == true).OrderBy(s => s.Code).ToList();
+        //                if (q1.Count > 0)
+        //                    allHesabTafzilisBindingSource1.DataSource = q1;
+        //                else
+        //                    allHesabTafzilisBindingSource1.DataSource = null;
+        //            }
+        //            else
+        //            {
+        //                var q1 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 1 || s.GroupTafziliId == 2).OrderBy(s => s.Code).ToList();
+        //                if (q1.Count > 0)
+        //                    allHesabTafzilisBindingSource1.DataSource = q1;
+        //                else
+        //                    allHesabTafzilisBindingSource1.DataSource = null;
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+        //                "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        }
+        //    }
+
+        //}
+        public void FillcmbHesabMoin()
         {
             using (var db = new MyContext())
             {
                 try
                 {
-                    if (En == EnumCED.Create)
-                    {
-                        var q1 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 1 || s.GroupTafziliId == 2 && s.IsActive == true).OrderBy(s => s.Code).ToList();
-                        if (q1.Count > 0)
-                            allHesabTafzilisBindingSource1.DataSource = q1;
-                        else
-                            allHesabTafzilisBindingSource1.DataSource = null;
-                    }
+                    var q1 = db.CodeMoins.Select(s => s).ToList();
+                    if (q1.Count > 0)
+                        codeMoinsBindingSource.DataSource = q1;
                     else
-                    {
-                        var q1 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 1 || s.GroupTafziliId == 2).OrderBy(s => s.Code).ToList();
-                        if (q1.Count > 0)
-                            allHesabTafzilisBindingSource1.DataSource = q1;
-                        else
-                            allHesabTafzilisBindingSource1.DataSource = null;
-                    }
+                        codeMoinsBindingSource.DataSource = null;
                 }
                 catch (Exception ex)
                 {
@@ -117,26 +137,31 @@ namespace Sandogh_PG
         private void FrmDaryafteAghsateVam_Load(object sender, EventArgs e)
         {
             FillcmbPardakhtKonande();
-            FillcmbNameHesab();
+            FillcmbHesabMoin();
+            //FillcmbNameHesab();
             cmbPardakhtKonande.EditValue = Convert.ToInt32(Fm.gridView3.GetFocusedRowCellValue("AazaId"));
             txtCodeVam.Text = Fm.gridView3.GetFocusedRowCellDisplayText("Code");
 
-            if (En == EnumCED.Create)
+            using (var db = new MyContext())
             {
-                NewSeryal();
-                txtTarikhDaryaft.Text = DateTime.Now.ToString().Substring(0, 10);
-                //txtMablaghDaryaft.Text = Fm.gridView4.GetFocusedRowCellDisplayText("MablaghAghsat");
-
-                using (var db = new MyContext())
+                try
                 {
-                    try
+                    if (En == EnumCED.Create)
                     {
-                        var q2 = db.HesabBankis.FirstOrDefault(s =>s.IsActive==true&& s.IsDefault == true);
+                        NewSeryal();
+                        txtTarikhDaryaft.Text = DateTime.Now.ToString().Substring(0, 10);
+                        //txtMablaghDaryaft.Text = Fm.gridView4.GetFocusedRowCellDisplayText("MablaghAghsat");
+
+                        var q2 = db.HesabBankis.FirstOrDefault(s => s.IsActive == true && s.IsDefault == true);
                         if (q2 != null)
                         {
                             var qq1 = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2 && f.Id2 == q2.Id);
                             if (qq1 != null)
+                            {
+                                cmbMoin.EditValue = 1;
                                 cmbNameHesab.EditValue = qq1.Id;
+
+                            }
                         }
 
                         int _CodeVam = Convert.ToInt32(Fm.gridView3.GetFocusedRowCellDisplayText("Code"));
@@ -149,37 +174,39 @@ namespace Sandogh_PG
                             txtMablaghGhest.Text = q1.MablaghAghsat.ToString();
                             txtMablaghDaryaft.Text = q1.MablaghAghsat.ToString();
                         }
+
+
+                        _NameAaza = cmbPardakhtKonande.Text;
+                        _ShomareGhest = txtShomareGhest.Text;
+                        _ShomareVam = txtCodeVam.Text;
+                        txtSharh.Text = _Text1 + _NameAaza + _Babat + _ShomareGhest + _Text2 + _ShomareVam;
                     }
-                    catch (Exception ex)
+                    else if (En == EnumCED.Edit)
                     {
-                        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        int _shSanad = Convert.ToInt32(Fm.gridView4.GetFocusedRowCellDisplayText("ShomareSanad"));
+                        txtSeryal.Text = Fm.gridView4.GetFocusedRowCellDisplayText("SeryalDaryaft");
+                        txtId.Text = Fm.gridView4.GetFocusedRowCellDisplayText("Id");
+                        txtShomareGhest.Text = _shSanad.ToString();
+                        txtSarresidGhest.Text = Fm.gridView4.GetFocusedRowCellDisplayText("TarikhSarresid").Substring(0, 10);
+                        txtMablaghGhest.Text = Fm.gridView4.GetFocusedRowCellDisplayText("MablaghAghsat");
+                        txtTarikhDaryaft.Text = Fm.gridView4.GetFocusedRowCellDisplayText("TarikhDaryaft").Substring(0, 10);
+                        txtMablaghDaryaft.Text = Fm.gridView4.GetFocusedRowCellDisplayText("MablaghDaryafti");
+                        int _MoinId= Convert.ToInt32(db.AsnadeHesabdariRows.FirstOrDefault(f => f.ShomareSanad == _shSanad).HesabMoinId);
+                        cmbMoin.EditValue = _MoinId;
+                        cmbNameHesab.EditValue = Convert.ToInt32(Fm.gridView4.GetFocusedRowCellValue("NameHesabId"));
+                        txtSharh.Text = Fm.gridView4.GetFocusedRowCellDisplayText("Sharh");
+                        btnSaveNext.Visible = false;
+
                     }
+                    txtTarikhDaryaft.Focus();
                 }
-
-
-                _NameAaza = cmbPardakhtKonande.Text;
-                _ShomareGhest = txtShomareGhest.Text;
-                _ShomareVam = txtCodeVam.Text;
-                txtSharh.Text = _Text1 + _NameAaza + _Babat + _ShomareGhest + _Text2 + _ShomareVam;
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else if (En == EnumCED.Edit)
-            {
-                txtSeryal.Text = Fm.gridView4.GetFocusedRowCellDisplayText("SeryalDaryaft");
-                txtId.Text = Fm.gridView4.GetFocusedRowCellDisplayText("Id");
-                txtShomareGhest.Text = Fm.gridView4.GetFocusedRowCellDisplayText("ShomareGhest");
-                txtSarresidGhest.Text = Fm.gridView4.GetFocusedRowCellDisplayText("TarikhSarresid").Substring(0, 10);
-                txtMablaghGhest.Text = Fm.gridView4.GetFocusedRowCellDisplayText("MablaghAghsat");
-                txtTarikhDaryaft.Text = Fm.gridView4.GetFocusedRowCellDisplayText("TarikhDaryaft").Substring(0, 10);
-                txtMablaghDaryaft.Text = Fm.gridView4.GetFocusedRowCellDisplayText("MablaghDaryafti");
-                cmbNameHesab.EditValue = Convert.ToInt32(Fm.gridView4.GetFocusedRowCellValue("NameHesabId"));
-                txtSharh.Text = Fm.gridView4.GetFocusedRowCellDisplayText("Sharh");
-                btnSaveNext.Visible = false;
-
-            }
-            txtTarikhDaryaft.Focus();
         }
-
         private void FrmDaryafteAghsateVam_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F5)
@@ -219,7 +246,7 @@ namespace Sandogh_PG
                 XtraMessageBox.Show("لطفاً تاریخ دریافت را وارد کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            else if (txtMablaghDaryaft.Text=="0")
+            else if (txtMablaghDaryaft.Text == "0")
             {
                 XtraMessageBox.Show("لطفاً مبلغ دریافت را وارد کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -260,15 +287,17 @@ namespace Sandogh_PG
                                 q.ShomareSanad = q2 + 1;
                                 //db.SaveChanges();
                                 //////////////////////////////////////////////////////////////////////////////////////////
+                                int _HesabMoinId1 = Convert.ToInt32(cmbMoin.EditValue);
+                                var qq1 = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId1);
                                 int _HesabTafId1 = Convert.ToInt32(cmbNameHesab.EditValue);
-                                var qq1 = db.CodeMoins.FirstOrDefault(f => f.Code == 1001);
+                                //var qq1 = db.CodeMoins.FirstOrDefault(f => f.Code == 1001);
                                 var qq2 = db.AllHesabTafzilis.FirstOrDefault(f => f.Id == _HesabTafId1);
                                 AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
                                 obj1.ShomareSanad = q2 + 1;
                                 obj1.Tarikh = Convert.ToDateTime(txtTarikhDaryaft.Text.Substring(0, 10));
-                                obj1.HesabMoinId = qq1.Id;
-                                obj1.HesabMoinCode = 1001;
-                                obj1.HesabMoinName = qq1.Name;
+                                obj1.HesabMoinId = _HesabMoinId1;
+                                obj1.HesabMoinCode = qq1.Code;
+                                obj1.HesabMoinName = cmbMoin.Text;
                                 obj1.HesabTafId = _HesabTafId1;
                                 obj1.HesabTafCode = qq2.Code;
                                 obj1.HesabTafName = cmbNameHesab.Text;
@@ -340,15 +369,17 @@ namespace Sandogh_PG
                                     db.AsnadeHesabdariRows.RemoveRange(q2);
 
                                 //////////////////////////////////////////////////////////////////////////////////////////
+                                int _HesabMoinId1 = Convert.ToInt32(cmbMoin.EditValue);
+                                var qq1 = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId1);
                                 int _HesabTafId1 = Convert.ToInt32(cmbNameHesab.EditValue);
-                                var qq1 = db.CodeMoins.FirstOrDefault(f => f.Code == 1001);
+                                //var qq1 = db.CodeMoins.FirstOrDefault(f => f.Code == 1001);
                                 var qq2 = db.AllHesabTafzilis.FirstOrDefault(f => f.Id == _HesabTafId1);
                                 AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
                                 obj1.ShomareSanad = q.ShomareSanad;
                                 obj1.Tarikh = Convert.ToDateTime(txtTarikhDaryaft.Text.Substring(0, 10));
-                                obj1.HesabMoinId = qq1.Id;
-                                obj1.HesabMoinCode = 1001;
-                                obj1.HesabMoinName = qq1.Name;
+                                obj1.HesabMoinId = _HesabMoinId1;
+                                obj1.HesabMoinCode = qq1.Code;
+                                obj1.HesabMoinName = cmbMoin.Text;
                                 obj1.HesabTafId = _HesabTafId1;
                                 obj1.HesabTafCode = qq2.Code;
                                 obj1.HesabTafName = cmbNameHesab.Text;
@@ -438,7 +469,7 @@ namespace Sandogh_PG
         {
             if (Application.OpenForms[form.Name] == null)
             {
-                form.ShowDialog (this);
+                form.ShowDialog(this);
             }
             else
             {
@@ -468,6 +499,176 @@ namespace Sandogh_PG
         {
             HelpClass1.AddZerooToTextBox(sender, e);
 
+        }
+
+        public void FillcmbNameHesab()
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    int _HesabMoinId = Convert.ToInt32(cmbMoin.EditValue);
+                    var q = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId);
+                    if (q != null)
+                    {
+                        switch (q.Code)
+                        {
+                            case 1001:
+                                {
+                                    //allHesabTafzilisBindingSource.DisplayMember = "NameHesab";
+                                    //allHesabTafzilisBindingSource.ValueMember = "Id";
+                                    //allHesabTafzilisBindingSource.Columns[1].FieldName = "NameHesab";
+                                    if (En == EnumCED.Create)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    else if (En == EnumCED.Edit)
+                                    {
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2).OrderBy(s => s.Code).ToList();
+                                        if (q2.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q2;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    break;
+                                }
+                            case 2001:
+                                {
+                                    //allHesabTafzilisBindingSource.DisplayMember = "NameVFamil";
+                                    //allHesabTafzilisBindingSource.ValueMember = "Id";
+                                    //allHesabTafzilisBindingSource.Columns[1].FieldName = "NameVFamil";
+                                    if (En == EnumCED.Create)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    else if (En == EnumCED.Edit)
+                                    {
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3).OrderBy(s => s.Code).ToList();
+                                        if (q2.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q2;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    break;
+                                }
+                            case 3001:
+                                {
+                                    goto case 2001;
+                                }
+                            case 4001:
+                                {
+                                    goto case 2001;
+                                }
+                            case 5001:
+                                {
+                                    if (En == EnumCED.Create)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    else if (En == EnumCED.Edit)
+                                    {
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6).OrderBy(s => s.Code).ToList();
+                                        if (q2.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q2;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    break;
+                                }
+                            case 6001:
+                                {
+                                    goto case 2001;
+                                }
+                            case 6002:
+                                {
+                                    goto case 2001;
+                                }
+                            case 6003:
+                                {
+                                    goto case 2001;
+                                }
+                            case 7001:
+                                {
+                                    goto case 2001;
+                                }
+                            case 8001:
+                                {
+                                    //allHesabTafzilisBindingSource.DisplayMember = "HesabName";
+                                    //allHesabTafzilisBindingSource.ValueMember = "Id";
+                                    //allHesabTafzilisBindingSource.Columns[1].FieldName = "HesabName";
+                                    if (En == EnumCED.Create)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    else if (En == EnumCED.Edit)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    break;
+                                }
+                            case 9001:
+                                {
+                                    //allHesabTafzilisBindingSource.DisplayMember = "HesabName";
+                                    //allHesabTafzilisBindingSource.ValueMember = "Id";
+                                    //allHesabTafzilisBindingSource.Columns[1].FieldName = "HesabName";
+                                    if (En == EnumCED.Create)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    else if (En == EnumCED.Edit)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    break;
+                                }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
+
+        private void cmbMoin_EditValueChanged(object sender, EventArgs e)
+        {
+            FillcmbNameHesab();
+        }
+
+        private void cmbMoin_Enter(object sender, EventArgs e)
+        {
+            cmbMoin.ShowPopup();
         }
     }
 }

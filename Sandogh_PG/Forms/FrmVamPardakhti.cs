@@ -63,7 +63,7 @@ namespace Sandogh_PG
             {
                 try
                 {
-                    var q1 = db.CodeMoins.Where(s => s.Code == 1001 || s.Code == 6001).OrderBy(s => s.Code).ToList();
+                    var q1 = db.CodeMoins.OrderBy(s => s.Code).ToList();
                     if (q1.Count > 0)
                         codeMoinsBindingSource.DataSource = q1;
 
@@ -87,55 +87,149 @@ namespace Sandogh_PG
                     int _HesabMoinId = Convert.ToInt32(cmbHesabMoin.EditValue);
                     var q = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId);
 
-                    if (q.Code == 1001)
+                    if (q != null)
                     {
-                        if (Fm.ListTasviyeNashode)
+                        switch (q.Code)
                         {
-                            var q1 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 1 || s.GroupTafziliId == 2 && s.IsActive == true).OrderBy(s => s.Code).ToList();
-                            if (q1.Count > 0)
-                            {
-                                allHesabTafzilisBindingSource1.DataSource = q1;
-                            }
-                            else
-                                allHesabTafzilisBindingSource1.DataSource = null;
-                        }
-                        else
-                        {
-                            var q1 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 1 || s.GroupTafziliId == 2).OrderBy(s => s.Code).ToList();
-                            if (q1.Count > 0)
-                                allHesabTafzilisBindingSource1.DataSource = q1;
-                            else
-                                allHesabTafzilisBindingSource1.DataSource = null;
+                            case 1001:
+                                {
+                                    //allHesabTafzilisBindingSource.DisplayMember = "NameHesab";
+                                    //allHesabTafzilisBindingSource.ValueMember = "Id";
+                                    //allHesabTafzilisBindingSource.Columns[1].FieldName = "NameHesab";
+                                    if (Fm.ListTasviyeNashode)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    else
+                                    {
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2).OrderBy(s => s.Code).ToList();
+                                        if (q2.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q2;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    break;
+                                }
+                            case 2001:
+                                {
+                                    //allHesabTafzilisBindingSource.DisplayMember = "NameVFamil";
+                                    //allHesabTafzilisBindingSource.ValueMember = "Id";
+                                    //allHesabTafzilisBindingSource.Columns[1].FieldName = "NameVFamil";
+                                    if (Fm.ListTasviyeNashode)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    else 
+                                    {
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3).OrderBy(s => s.Code).ToList();
+                                        if (q2.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q2;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    break;
+                                }
+                            case 3001:
+                                {
+                                    goto case 2001;
+                                }
+                            case 4001:
+                                {
+                                    goto case 2001;
+                                }
+                            case 5001:
+                                {
+                                    if (Fm.ListTasviyeNashode)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    else
+                                    {
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6).OrderBy(s => s.Code).ToList();
+                                        if (q2.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q2;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    break;
+                                }
+                            case 6001:
+                                {
+                                    goto case 2001;
+                                }
+                            case 6002:
+                                {
+                                    goto case 2001;
+                                }
+                            case 6003:
+                                {
+                                    goto case 2001;
+                                }
+                            case 7001:
+                                {
+                                    goto case 2001;
+                                }
+                            case 8001:
+                                {
+                                    //allHesabTafzilisBindingSource.DisplayMember = "HesabName";
+                                    //allHesabTafzilisBindingSource.ValueMember = "Id";
+                                    //allHesabTafzilisBindingSource.Columns[1].FieldName = "HesabName";
+                                    if (Fm.ListTasviyeNashode)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    else if (En == EnumCED.Edit)
+                                    {
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4).OrderBy(s => s.Code).ToList();
+                                        if (q2.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q2;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    break;
+                                }
+                            case 9001:
+                                {
+                                    //allHesabTafzilisBindingSource.DisplayMember = "HesabName";
+                                    //allHesabTafzilisBindingSource.ValueMember = "Id";
+                                    //allHesabTafzilisBindingSource.Columns[1].FieldName = "HesabName";
+                                    if (Fm.ListTasviyeNashode)
+                                    {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    else if (En == EnumCED.Edit)
+                                    {
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5).OrderBy(s => s.Code).ToList();
+                                        if (q2.Count > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = q2;
+                                        else
+                                            allHesabTafzilisBindingSource1.DataSource = null;
+                                    }
+                                    break;
+                                }
                         }
                     }
-                    if (q.Code == 6001)
-                    {
-                        try
-                        {
-                            int _Id = Convert.ToInt32(cmbDaryaftkonande.EditValue);
-                            if (Fm.ListTasviyeNashode)
-                            {
-                                var q1 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 3 && s.IsActive == true && s.Id == _Id).ToList();
-                                if (q1.Count > 0)
-                                    allHesabTafzilisBindingSource1.DataSource = q1;
-                                else
-                                    allHesabTafzilisBindingSource1.DataSource = null;
-                            }
-                            else
-                            {
-                                var q1 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 3 && s.Id == _Id).OrderBy(s => s.Code).ToList();
-                                if (q1.Count > 0)
-                                    allHesabTafzilisBindingSource1.DataSource = q1;
-                                else
-                                    allHesabTafzilisBindingSource1.DataSource = null;
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                                "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+
                 }
                 catch (Exception ex)
                 {
@@ -244,7 +338,6 @@ namespace Sandogh_PG
                 txtTarikhPardakht.Text = DateTime.Now.ToString().Substring(0, 10);
                 cmbFaseleAghsat.SelectedIndex = 0;
                 chkIsTasviye.Visible = false;
-                cmbHesabMoin.EditValue = 1;
                 using (var db = new MyContext())
                 {
                     try
@@ -254,7 +347,10 @@ namespace Sandogh_PG
                         {
                             var q3 = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2 && f.Id2 == q2.Id);
                             if (q3 != null)
+                            {
+                                cmbHesabMoin.EditValue = 1;
                                 cmbHesabTafzili.EditValue = q3.Id;
+                            }
                         }
                         var q1 = db.Tanzimats.FirstOrDefault(s => s.Id == _IDSandogh);
                         if (q1 != null)
@@ -553,9 +649,10 @@ namespace Sandogh_PG
                                 "بابت اختصاص وام شماره " + txtCode.Text + " به " + cmbDaryaftkonande.Text;
                             obj1.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
                             db.AsnadeHesabdariRows.Add(obj1);
-                            if (_q3.Code == 6001)
-                                XtraMessageBox.Show("مبلغ وام به حساب وام پرداختنی منظور شد تا بعداً به وام گیرنده پرداخت شود", "پیغام ثبت ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //if (_q3.Code == 6001)
+                            //    XtraMessageBox.Show("مبلغ وام به حساب وام پرداختنی منظور شد تا بعداً به وام گیرنده پرداخت شود", "پیغام ثبت ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             db.SaveChanges();
+
 
                             if (Convert.ToInt32(txtMablaghKarmozd.Text.Replace(",", "")) != 0)
                             {
@@ -577,6 +674,8 @@ namespace Sandogh_PG
                             }
                             db.SaveChanges();
 
+                            Fm.btnDisplyActiveList1_Click(null, null);
+
                             /////////////////////////////////////////////////////////////////////////////////////////////////////////
                             if (XtraMessageBox.Show("آیا قسط بندی وام انجام شود؟", "پیغام ثبت ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                             {
@@ -589,7 +688,7 @@ namespace Sandogh_PG
                                         RizeAghsatVam ct = new RizeAghsatVam();
                                         ct.ShomareGhest = i;
                                         ct.AazaId = _HesabAazaId2;
-                                        ct.NameAaza = cmbDaryaftkonande.Text ;
+                                        ct.NameAaza = cmbDaryaftkonande.Text;
                                         ct.VamPardakhtiId = q2.Id;
                                         ct.VamPardakhtiCode = _Code;
                                         if (i != 1)
@@ -623,7 +722,6 @@ namespace Sandogh_PG
                             /////////////////////////////////////////////////////////////////////////////////////////////////////////
                             En = EnumCED.Save;
                             //if (Fm.ListTasviyeNashode)
-                            Fm.btnDisplyActiveList1_Click(null, null);
                             //else
                             //    Fm.btnDisplyNotActiveList1_Click(null, null);
                             Fm.FillDataGridRizeAghsatVam();
@@ -727,8 +825,8 @@ namespace Sandogh_PG
                                             "بابت اختصاص وام شماره " + txtCode.Text + " به " + cmbDaryaftkonande.Text;
                                         obj1.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
                                         db.AsnadeHesabdariRows.Add(obj1);
-                                        if (_q3.Code == 6001)
-                                            XtraMessageBox.Show("مبلغ وام به حساب وام پرداختنی منظور شد تا بعداً به وام گیرنده پرداخت شود", "پیغام ثبت ", MessageBoxButtons.OK);
+                                        //if (_q3.Code == 6001)
+                                        //    XtraMessageBox.Show("مبلغ وام به حساب وام پرداختنی منظور شد تا بعداً به وام گیرنده پرداخت شود", "پیغام ثبت ", MessageBoxButtons.OK);
 
                                         if (Convert.ToInt32(txtMablaghKarmozd.Text.Replace(",", "")) != 0)
                                         {
@@ -751,6 +849,12 @@ namespace Sandogh_PG
 
                                     }
                                     db.SaveChanges();
+
+                                    if (Fm.ListTasviyeNashode)
+                                        Fm.btnDisplyActiveList1_Click(null, null);
+                                    else
+                                        Fm.btnDisplyNotActiveList1_Click(null, null);
+
                                     /////////////////////////////////////////////////////////////////////////////////////////////////////////
                                     if (IsEditRizAghsat == true)
                                     {
@@ -819,10 +923,6 @@ namespace Sandogh_PG
 
                                 En = EnumCED.Save;
                                 Fm._VamPardakhtiId = RowId;
-                                if (Fm.ListTasviyeNashode)
-                                    Fm.btnDisplyActiveList1_Click(null, null);
-                                else
-                                    Fm.btnDisplyNotActiveList1_Click(null, null);
                                 Fm.FillDataGridRizeAghsatVam();
                                 if (Fm.gridView1.RowCount > 0)
                                     Fm.gridView1.FocusedRowHandle = EditRowIndex;

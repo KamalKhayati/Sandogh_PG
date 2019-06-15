@@ -1129,6 +1129,45 @@ namespace Sandogh_PG
             HelpClass1.LoadReportDesigner(FilePath1, FileName1);
         }
 
+        private void cmbHesabTafzili2_Leave(object sender, EventArgs e)
+        {
+            string _taf1 = cmbHesabTafzili1.Text;
+            string _taf2 = cmbHesabTafzili2.Text;
+            switch (cmbNoeSanad.Text)
+            {
+                case "دریافت":
+                    {
+                        txtSharh.Text = "دریافت  " + _taf1 + " از " + _taf2;
+                        break;
+                    }
+                case "پرداخت":
+                    {
+                        txtSharh.Text = "پرداخت  " + _taf2 + " به " + _taf1;
+                        break;
+                    }
+                case "انتقالی":
+                    {
+                        txtSharh.Text = "انتقال حساب از  " + _taf2 + " به " + _taf1;
+                        break;
+                    }
+                case "درآمد":
+                    {
+                        txtSharh.Text = "بابت ثبت  " + _taf2;
+                        break;
+                    }
+                case "هزینه":
+                    {
+                        txtSharh.Text = "بابت ثبت  " + _taf1;
+                        break;
+                    }
+                case "اموال":
+                    {
+                        txtSharh.Text = "بابت ثبت  " + _taf1;
+                        break;
+                    }
+            }
+        }
+
 
         //string _PardakhtKonandeName = string.Empty;
         //string _GroupHesab = string.Empty;

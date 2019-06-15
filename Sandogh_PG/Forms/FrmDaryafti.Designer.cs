@@ -2128,7 +2128,7 @@
             this.Mande.Name = "Mande";
             this.Mande.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "Mande", "{0:n}")});
-            this.Mande.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+            this.Mande.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.Mande.Visible = true;
             this.Mande.VisibleIndex = 6;
             this.Mande.Width = 171;

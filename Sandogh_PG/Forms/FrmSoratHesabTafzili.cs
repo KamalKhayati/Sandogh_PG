@@ -121,7 +121,7 @@ namespace Sandogh_PG
         {
             btnDisplyList_Click(null, null);
         }
-        List<long> Result1;
+        List<decimal> Result1;
         private void gridView1_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
         {
             int rowIndex = e.ListSourceRowIndex;
@@ -139,8 +139,8 @@ namespace Sandogh_PG
         private void btnDisplyList_Click(object sender, EventArgs e)
         {
             _HesabMoin = string.Empty;
-            Result1 = new List<long>();
-            HelpClass1.Result2 = new List<long>();
+            Result1 = new List<decimal>();
+            HelpClass1.Result2 = new List<decimal>();
             FillDataGridView1();
             FillDataGridView2();
         }
@@ -184,7 +184,7 @@ namespace Sandogh_PG
                         var q = db.AsnadeHesabdariRows.Where(f => f.HesabMoinId == MoinId && f.HesabTafId == TafziliId).OrderBy(f => f.Tarikh).ThenBy(f => f.ShomareSanad).ToList();
                         if (q.Count > 0)
                         {
-                            HelpClass1.Result2 = new List<long>();
+                            HelpClass1.Result2 = new List<decimal>();
                             asnadeHesabdariRowsBindingSource1.DataSource = q;
                         }
                         else
