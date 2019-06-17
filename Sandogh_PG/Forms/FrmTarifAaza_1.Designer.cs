@@ -302,7 +302,7 @@
             this.colCodePersoneli.Name = "colCodePersoneli";
             this.colCodePersoneli.Visible = true;
             this.colCodePersoneli.VisibleIndex = 2;
-            this.colCodePersoneli.Width = 98;
+            this.colCodePersoneli.Width = 130;
             // 
             // colTarikhOzviat
             // 

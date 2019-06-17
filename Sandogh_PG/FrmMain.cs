@@ -180,187 +180,327 @@ namespace Sandogh_PG
                         if (q3)
                         {
                             FrmYadavari fm = new FrmYadavari();
-                            fm.ShowDialog();
-                            //Application.OpenForms["FrmYadavari"].Activate();
-                        }
+                            {
+                                DateTime _DateTimeNow = DateTime.Now;
+                                var q7 = db.RizeAghsatVams.Where(f => f.ShomareSanad == 0 && f.TarikhSarresid < _DateTimeNow).ToList();
+                                if (q7 .Count>0)
+                                    fm.rizeAghsatVamsBindingSource.DataSource = q7.OrderBy(f => f.TarikhSarresid);
+                                else
+                                    fm.rizeAghsatVamsBindingSource.DataSource = null;
+                                //////////////////////////////////////////////////////////////
+                                //int yyyy1 = Convert.ToInt32(DateTime.Now.ToString().Substring(0, 4));
+                                //int MM1 = Convert.ToInt32(DateTime.Now.ToString().Substring(5, 2));
+                                //int dd1 = Convert.ToInt32(DateTime.Now.ToString().Substring(8, 2));
+                                //Mydate d1 = new Mydate(yyyy1, MM1, dd1);
+                                d1.DecrementMonth();
+                                DateTime _DateTimeNow_1 = Convert.ToDateTime(d1.ToString());
+                                List<HaghOzviat> List = new List<HaghOzviat>();
+                                var q2 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 3 && s.IsActive == true).ToList();
+                                if (q2.Count > 0)
+                                {
+                                    foreach (var item in q2)
+                                    {
+                                        var q8 = db.HaghOzviats.Where(f => f.AazaId == item.Id).ToList();
+                                        //var q1 = db.HaghOzviats.Where(f => f.Tarikh < _DateTimeNow_1);
+                                        if (q8.Count > 0)
+                                        {
+                                            var q9 = q8.Max(f => f.Tarikh);
+                                            if (q9 <= _DateTimeNow_1)
+                                            {
+                                                HaghOzviat obj = new HaghOzviat();
+                                                obj.Id = item.Id;
+                                                obj.NameAaza = item.Name;
+                                                obj.Tarikh = q9;
+                                                //obj.Tarikh =Convert.ToDateTime(q3.ToString().Substring(0,10));
+                                                List.Add(obj);
+                                            }
+                                        }
 
+                                    }
+                                }
+
+                                if (List.Count>0)
+                                    fm.haghOzviatsBindingSource.DataSource = List.OrderBy(f => f.Tarikh);
+                                else
+                                    fm.haghOzviatsBindingSource.DataSource = null;
+                            }
+
+                            if (fm.rizeAghsatVamsBindingSource.DataSource != null || fm.haghOzviatsBindingSource.DataSource != null)
+                                fm.ShowDialog();
+                        }
+                        //Application.OpenForms["FrmYadavari"].Activate();
                     }
+
 
                     ////////////////////////////////////////////////////////////////////////////////
-                    var q4 = db.CodingDaramadVHazines.Where(f => f.AllTafId == 0).ToList();
-                    if (q4.Count > 0)
-                    {
-                        foreach (var item in q4)
-                        {
-                            item.AllTafId = db.AllHesabTafzilis.FirstOrDefault(f => f.Code == item.Code).Id;
-                        }
-                        db.SaveChanges();
-                    }
-
-                    var q5 = db.CodingAmvals.Where(f => f.AllTafId == 0).ToList();
-                    if (q5.Count > 0)
-                    {
-                        foreach (var item in q5)
-                        {
-                            item.AllTafId = db.AllHesabTafzilis.FirstOrDefault(f => f.Code == item.Code).Id;
-                        }
-                        db.SaveChanges();
-                    }
-                    ////////////////////////////////////////////////////////////////////////////////
-                    
-                    ///////////////////////////////////////بعد از یکبار اجرا حذف شود ///////////////////////////////////////////
-                    var q6 = db.AazaSandoghs.Where(f => f.AllTafId == 0).ToList();
-                    if (q6.Count > 0)
-                    {
-                        foreach (var item in q6)
-                        {
-                            item.AllTafId = db.AllHesabTafzilis.FirstOrDefault(f => f.Code == item.Code).Id;
-                        }
-                        db.SaveChanges();
-                    }
-
-                    var q7 = db.HesabBankis.Where(f => f.AllTafId == 0).ToList();
-                    if (q7.Count > 0)
-                    {
-                        foreach (var item in q7)
-                        {
-                            item.AllTafId = db.AllHesabTafzilis.FirstOrDefault(f => f.Code == item.Code).Id;
-                        }
-                        db.SaveChanges();
-                    }
-                    ///////////////////////////////////////بعد از یکبار اجرا حذف شود ///////////////////////////////////////////
-                }
-                catch (Exception ex)
+                var q4 = db.CodingDaramadVHazines.Where(f => f.AllTafId == 0).ToList();
+                if (q4.Count > 0)
                 {
-                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    foreach (var item in q4)
+                    {
+                        item.AllTafId = db.AllHesabTafzilis.FirstOrDefault(f => f.Code == item.Code).Id;
+                    }
+                    db.SaveChanges();
                 }
+
+                var q5 = db.CodingAmvals.Where(f => f.AllTafId == 0).ToList();
+                if (q5.Count > 0)
+                {
+                    foreach (var item in q5)
+                    {
+                        item.AllTafId = db.AllHesabTafzilis.FirstOrDefault(f => f.Code == item.Code).Id;
+                    }
+                    db.SaveChanges();
+                }
+                ////////////////////////////////////////////////////////////////////////////////
+
+                /////////////////////////////////////////بعد از یکبار اجرا حذف شود ///////////////////////////////////////////
+                //var q6 = db.AazaSandoghs.Where(f => f.AllTafId == 0).ToList();
+                //if (q6.Count > 0)
+                //{
+                //    foreach (var item in q6)
+                //    {
+                //        item.AllTafId = db.AllHesabTafzilis.FirstOrDefault(f => f.Code == item.Code).Id;
+                //    }
+                //    db.SaveChanges();
+                //}
+
+                //var q7 = db.HesabBankis.Where(f => f.AllTafId == 0).ToList();
+                //if (q7.Count > 0)
+                //{
+                //    foreach (var item in q7)
+                //    {
+                //        item.AllTafId = db.AllHesabTafzilis.FirstOrDefault(f => f.Code == item.Code).Id;
+                //    }
+                //    db.SaveChanges();
+                //}
+                /////////////////////////////////////////بعد از یکبار اجرا حذف شود ///////////////////////////////////////////
             }
-
-
-        }
-
-        private void btnDayaftCheckTazmin_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FrmDaryaftCheckTazmin fm = new FrmDaryaftCheckTazmin(this);
-            ActiveForm(fm);
-        }
-
-        private void btnOdateCheckTazmin_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FrmOdatCheckTazmin fm = new FrmOdatCheckTazmin(this);
-            ActiveForm(fm);
-        }
-
-        private void btnDaryaftNaghdiVBanki_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-        }
-
-        private void btnPardakhtNaghdiVBanki_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-        }
-
-        private void btnCodingDaramadVHazine_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FrmCodingDaramadVHazine fm = new FrmCodingDaramadVHazine(this);
-            ActiveForm(fm);
-        }
-
-        private void btnSabtDaramad_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-        }
-
-        private void btnSabtHazine_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-        }
-
-        private void btnEnteghalatHesabBanki_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-        }
-
-        private void btnEnteghalatHesabAaza_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-        }
-
-        private void btnEnteghalatHesabDaramadVHazine_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-        }
-
-        private void btnDaftarRozname_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FrmDaftarRozname fm = new FrmDaftarRozname(this);
-            ActiveForm(fm);
-        }
-
-        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FrmDaryaftPardakhtBinHesabha fm = new FrmDaryaftPardakhtBinHesabha(this);
-            ActiveForm(fm);
-
-        }
-
-        private void btnSoratHesabTafzili_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FrmSoratHesabTafzili fm = new FrmSoratHesabTafzili(this);
-            ActiveForm(fm);
-
-        }
-
-        private void btnCalculate_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            HelpClass1.StartCalculater();
-        }
-
-        private void btnBackupRestore_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FrmBackupRestore fm = new FrmBackupRestore(this);
-            fm.ShowDialog();
-        }
-        Image img;
-
-        private void btnChangeBackground_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            XtraOpenFileDialog XtraopenFileDialog1 = new XtraOpenFileDialog();
-            XtraopenFileDialog1.Filter = "Image Files|*.bmp;*.jpg;*.jpeg;*.png;*.gif";
-
-            using (var db = new MyContext())
+                catch (Exception ex)
             {
-                try
+                XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                    "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+    }
+
+    private void btnDayaftCheckTazmin_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        FrmDaryaftCheckTazmin fm = new FrmDaryaftCheckTazmin(this);
+        ActiveForm(fm);
+    }
+
+    private void btnOdateCheckTazmin_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        FrmOdatCheckTazmin fm = new FrmOdatCheckTazmin(this);
+        ActiveForm(fm);
+    }
+
+    private void btnDaryaftNaghdiVBanki_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+    }
+
+    private void btnPardakhtNaghdiVBanki_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+    }
+
+    private void btnCodingDaramadVHazine_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        FrmCodingDaramadVHazine fm = new FrmCodingDaramadVHazine(this);
+        ActiveForm(fm);
+    }
+
+    private void btnSabtDaramad_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+    }
+
+    private void btnSabtHazine_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+
+    }
+
+    private void btnEnteghalatHesabBanki_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+    }
+
+    private void btnEnteghalatHesabAaza_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+
+    }
+
+    private void btnEnteghalatHesabDaramadVHazine_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+
+    }
+
+    private void btnDaftarRozname_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        FrmDaftarRozname fm = new FrmDaftarRozname(this);
+        ActiveForm(fm);
+    }
+
+    private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        FrmDaryaftPardakhtBinHesabha fm = new FrmDaryaftPardakhtBinHesabha(this);
+        ActiveForm(fm);
+
+    }
+
+    private void btnSoratHesabTafzili_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        FrmSoratHesabTafzili fm = new FrmSoratHesabTafzili(this);
+        ActiveForm(fm);
+
+    }
+
+    private void btnCalculate_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        HelpClass1.StartCalculater();
+    }
+
+    private void btnBackupRestore_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        FrmBackupRestore fm = new FrmBackupRestore(this);
+        fm.ShowDialog();
+    }
+    Image img;
+
+    private void btnChangeBackground_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        XtraOpenFileDialog XtraopenFileDialog1 = new XtraOpenFileDialog();
+        XtraopenFileDialog1.Filter = "Image Files|*.bmp;*.jpg;*.jpeg;*.png;*.gif";
+
+        using (var db = new MyContext())
+        {
+            try
+            {
+                if (XtraopenFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    if (XtraopenFileDialog1.ShowDialog() == DialogResult.OK)
+                    img = Image.FromFile(XtraopenFileDialog1.FileName);
+                    this.pictureEdit3.Image = img;
+                    //this.pictureEdit3.Tag = openFileDialog1.FileName;
+                    int _SId = Convert.ToInt32(IDSandogh.Caption);
+                    var q = db.TarifSandoghs.FirstOrDefault(f => f.Id == _SId);
+                    if (q != null)
                     {
-                        img = Image.FromFile(XtraopenFileDialog1.FileName);
-                        this.pictureEdit3.Image = img;
-                        //this.pictureEdit3.Tag = openFileDialog1.FileName;
+                        MemoryStream ms = new MemoryStream();
+                        img.Save(ms, pictureEdit3.Image.RawFormat);
+                        byte[] myarrey = ms.GetBuffer();
+                        q.PicBackground = myarrey;
+                        db.SaveChanges();
+                    }
+                }
+                else
+                {
+                    if (XtraMessageBox.Show("آیا عکس پس زمینه حذف گردد؟", "پیغام حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        pictureEdit3.Image = null;
                         int _SId = Convert.ToInt32(IDSandogh.Caption);
                         var q = db.TarifSandoghs.FirstOrDefault(f => f.Id == _SId);
                         if (q != null)
                         {
-                            MemoryStream ms = new MemoryStream();
-                            img.Save(ms, pictureEdit3.Image.RawFormat);
-                            byte[] myarrey = ms.GetBuffer();
-                            q.PicBackground = myarrey;
+                            q.PicBackground = null;
                             db.SaveChanges();
                         }
                     }
-                    else
+                }
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                    "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+    }
+    private void btnCalling_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        FrmCalling_1 fm = new FrmCalling_1();
+        fm.ShowDialog();
+    }
+
+    private void btnListKarbaran_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        FrmListKarbaran fm = new FrmListKarbaran();
+        fm.ShowDialog();
+    }
+
+    private void btnYadavari_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        FrmYadavari fm = new FrmYadavari();
+        fm.ShowDialog();
+    }
+
+    private void btnTarazname_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        FrmTarazname frm = new FrmTarazname(this);
+        ActiveForm(frm);
+    }
+
+    private void skinRibbonGalleryBarItem1_GalleryItemClick(object sender, DevExpress.XtraBars.Ribbon.GalleryItemClickEventArgs e)
+    {
+        // int i = Convert.ToInt32(IndexNameDataBase.Caption);
+        Settings[AppVariable.SkinName[0]] = DevExpress.LookAndFeel.UserLookAndFeel.Default.ActiveSkinName;
+    }
+
+    private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
+    {
+        //using (var context = new MyContext())
+        //{
+        //    string _NameDataBase = NameDataBase.Caption;
+        //    //string command = "ALTER DATABASE Sandogh_PG SET OFFLINE WITH ROLLBACK IMMEDIATE " +
+        //    //                   " RESTORE DATABASE Sandogh_PG FROM DISK='" + txtSelectFile.Text + "' WITH REPLACE " +
+        //    //                    "ALTER DATABASE Sandogh_PG SET ONLINE";
+        //    //string command = "ALTER DATABASE " + cmbNameDataBaseSandogh.Text + " SET OFFLINE WITH ROLLBACK IMMEDIATE " +
+        //    //                 "ALTER DATABASE " + cmbNameDataBaseSandogh.Text + " SET ONLINE";
+        //    //string command = " ALTER DATABASE " + cmbNameDataBaseSandogh.Text + " SET ONLINE";
+        //    string command = "DECLARE	@Spid INT DECLARE @ExecSQL VARCHAR(255) DECLARE KillCursor CURSOR LOCAL STATIC READ_ONLY FORWARD_ONLY " +
+        //                     "FOR SELECT DISTINCT SPID FROM    MASTER..SysProcesses WHERE DBID = DB_ID('" + _NameDataBase + "') OPEN KillCursor " +
+        //                     "--Grab the first SPID FETCH   NEXT FROM    KillCursor INTO    @Spid WHILE	@@FETCH_STATUS = 0 BEGIN " +
+        //                     "SET     @ExecSQL = 'KILL ' + CAST(@Spid AS VARCHAR(50)) EXEC(@ExecSQL) -- Pull the next SPID FETCH NEXT FROM KillCursor INTO @Spid END " +
+        //                     "CLOSE   KillCursor DEALLOCATE  KillCursor " /*+
+        //                     "ALTER DATABASE " + _NameDataBase + " SET ONLINE"*/;
+        //    context.Database.CommandTimeout = 360;
+        //    context.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command);
+        //}
+
+        //SqlConnection.ClearAllPools();
+        //Application.Exit();
+        //Application.ExitThread();
+    }
+
+    private void btnSoratSoodVZiyan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        FrmSodVZian frm = new FrmSodVZian(this);
+        ActiveForm(frm);
+    }
+
+    private void FrmMain_KeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.KeyCode == Keys.F6)
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    var q = db.HesabBankis.FirstOrDefault(f => f.IsDefault);
+                    if (q != null)
                     {
-                        if (XtraMessageBox.Show("آیا عکس پس زمینه حذف گردد؟", "پیغام حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                        MojodiSandogh.Visibility = MojodiSandogh.Visibility == DevExpress.XtraBars.BarItemVisibility.Never ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+                        var q1 = db.AllHesabTafzilis.FirstOrDefault(f => f.Code == q.Code);
+                        if (q1 != null)
                         {
-                            pictureEdit3.Image = null;
-                            int _SId = Convert.ToInt32(IDSandogh.Caption);
-                            var q = db.TarifSandoghs.FirstOrDefault(f => f.Id == _SId);
-                            if (q != null)
+                            _IdHesab = q1.Id;
+                            var q3 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == q1.Id).ToList();
+                            if (q3.Count > 0)
                             {
-                                q.PicBackground = null;
-                                db.SaveChanges();
+                                decimal Mande = Convert.ToDecimal(q3.Sum(f => f.Bed) - q3.Sum(f => f.Bes));
+                                MojodiSandogh.Caption = "موجودی صندوق/بانک : " + Mande.ToString("###,###,###,###,###") + " ریال";
                             }
                         }
                     }
-
                 }
                 catch (Exception ex)
                 {
@@ -368,209 +508,115 @@ namespace Sandogh_PG
                         "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-        private void btnCalling_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FrmCalling_1 fm = new FrmCalling_1();
-            fm.ShowDialog();
-        }
 
-        private void btnListKarbaran_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FrmListKarbaran fm = new FrmListKarbaran();
-            fm.ShowDialog();
         }
+    }
+    int _IdHesab = 0;
+    private void MojodiSandogh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        FrmSoratHesabTafzili frm = new FrmSoratHesabTafzili(this);
+        frm.cmbHesabTafzili.EditValue = _IdHesab;
+        ActiveForm(frm);
+    }
 
-        private void btnYadavari_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    bool IsDataDelete = false;
+    private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        if (XtraMessageBox.Show("آیا همه اطلاعات ثبت شده حذف گردد ؟", "پیغام حذف کلیه اطلاعات", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
         {
-            FrmYadavari fm = new FrmYadavari();
-            fm.ShowDialog();
-        }
-
-        private void btnTarazname_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FrmTarazname frm = new FrmTarazname(this);
-            ActiveForm(frm);
-        }
-
-        private void skinRibbonGalleryBarItem1_GalleryItemClick(object sender, DevExpress.XtraBars.Ribbon.GalleryItemClickEventArgs e)
-        {
-            // int i = Convert.ToInt32(IndexNameDataBase.Caption);
-            Settings[AppVariable.SkinName[0]] = DevExpress.LookAndFeel.UserLookAndFeel.Default.ActiveSkinName;
-        }
-
-        private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            //using (var context = new MyContext())
-            //{
-            //    string _NameDataBase = NameDataBase.Caption;
-            //    //string command = "ALTER DATABASE Sandogh_PG SET OFFLINE WITH ROLLBACK IMMEDIATE " +
-            //    //                   " RESTORE DATABASE Sandogh_PG FROM DISK='" + txtSelectFile.Text + "' WITH REPLACE " +
-            //    //                    "ALTER DATABASE Sandogh_PG SET ONLINE";
-            //    //string command = "ALTER DATABASE " + cmbNameDataBaseSandogh.Text + " SET OFFLINE WITH ROLLBACK IMMEDIATE " +
-            //    //                 "ALTER DATABASE " + cmbNameDataBaseSandogh.Text + " SET ONLINE";
-            //    //string command = " ALTER DATABASE " + cmbNameDataBaseSandogh.Text + " SET ONLINE";
-            //    string command = "DECLARE	@Spid INT DECLARE @ExecSQL VARCHAR(255) DECLARE KillCursor CURSOR LOCAL STATIC READ_ONLY FORWARD_ONLY " +
-            //                     "FOR SELECT DISTINCT SPID FROM    MASTER..SysProcesses WHERE DBID = DB_ID('" + _NameDataBase + "') OPEN KillCursor " +
-            //                     "--Grab the first SPID FETCH   NEXT FROM    KillCursor INTO    @Spid WHILE	@@FETCH_STATUS = 0 BEGIN " +
-            //                     "SET     @ExecSQL = 'KILL ' + CAST(@Spid AS VARCHAR(50)) EXEC(@ExecSQL) -- Pull the next SPID FETCH NEXT FROM KillCursor INTO @Spid END " +
-            //                     "CLOSE   KillCursor DEALLOCATE  KillCursor " /*+
-            //                     "ALTER DATABASE " + _NameDataBase + " SET ONLINE"*/;
-            //    context.Database.CommandTimeout = 360;
-            //    context.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command);
-            //}
-
-            //SqlConnection.ClearAllPools();
-            //Application.Exit();
-            //Application.ExitThread();
-        }
-
-        private void btnSoratSoodVZiyan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FrmSodVZian frm = new FrmSodVZian(this);
-            ActiveForm(frm);
-        }
-
-        private void FrmMain_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.F6)
-            {
-                using (var db = new MyContext())
+            if (XtraMessageBox.Show("آیا برای انجام اینکار مطمئن هستید ؟", "پیغام حذف کلیه اطلاعات", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                using (var db = new MyContext(SetInitialize.DropCreateDatabaseAlways))
                 {
                     try
                     {
-                        var q = db.HesabBankis.FirstOrDefault(f => f.IsDefault);
-                        if (q != null)
-                        {
-                            MojodiSandogh.Visibility = MojodiSandogh.Visibility == DevExpress.XtraBars.BarItemVisibility.Never ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
-                            var q1 = db.AllHesabTafzilis.FirstOrDefault(f => f.Code == q.Code);
-                            if (q1 != null)
-                            {
-                                _IdHesab = q1.Id;
-                                var q3 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == q1.Id).ToList();
-                                if (q3.Count > 0)
-                                {
-                                    decimal Mande = Convert.ToDecimal(q3.Sum(f => f.Bed) - q3.Sum(f => f.Bes));
-                                    MojodiSandogh.Caption = "موجودی صندوق/بانک : " + Mande.ToString("###,###,###,###,###") + " ریال";
-                                }
-                            }
-                        }
+                        db.Database.Initialize(true);
+                        // XtraMessageBox.Show("کلیه اطلاعات ثبت شده با موفقیت حذف گردید و نرم افزار مجدداً راه اندازی خواهد شد", "پیغام", MessageBoxButtons.OK);
+                        XtraMessageBox.Show("کلیه اطلاعات ثبت شده با موفقیت حذف گردید لطفا برنامه را مجدداً اجرا کنید", "پیغام", MessageBoxButtons.OK);
+                        IsDataDelete = true;
+                        //Application.Restart();
+                        Application.Exit();
                     }
                     catch (Exception ex)
                     {
-                        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //Application.Exit();
+                        XtraMessageBox.Show(ex.Message);
                     }
                 }
 
-            }
-        }
-        int _IdHesab = 0;
-        private void MojodiSandogh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FrmSoratHesabTafzili frm = new FrmSoratHesabTafzili(this);
-            frm.cmbHesabTafzili.EditValue = _IdHesab;
-            ActiveForm(frm);
         }
 
-        bool IsDataDelete = false;
-        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    }
+
+    private void FrmMain_KeyPress(object sender, KeyPressEventArgs e)
+    {
+    }
+
+    private void btnMandeAshkhas_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        FrmMandeAshkhas frm = new FrmMandeAshkhas();
+        frm._SandoghName = ribbonControl1.ApplicationDocumentCaption;
+        frm.ShowDialog();
+
+    }
+
+    private void btnTamdidGaranti_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        FrmAppRegister frm = new FrmAppRegister(this);
+        frm.Text = "تمدید گارانتی";
+        frm.btnExit.Text = "بستن";
+        frm.ShowDialog();
+    }
+
+    private void EtmamGaranti_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        if (btnTamdidGaranti.Visibility == DevExpress.XtraBars.BarItemVisibility.Always)
         {
-            if (XtraMessageBox.Show("آیا همه اطلاعات ثبت شده حذف گردد ؟", "پیغام حذف کلیه اطلاعات", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-            {
-                if (XtraMessageBox.Show("آیا برای انجام اینکار مطمئن هستید ؟", "پیغام حذف کلیه اطلاعات", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                    using (var db = new MyContext(SetInitialize.DropCreateDatabaseAlways))
-                    {
-                        try
-                        {
-                            db.Database.Initialize(true);
-                            // XtraMessageBox.Show("کلیه اطلاعات ثبت شده با موفقیت حذف گردید و نرم افزار مجدداً راه اندازی خواهد شد", "پیغام", MessageBoxButtons.OK);
-                            XtraMessageBox.Show("کلیه اطلاعات ثبت شده با موفقیت حذف گردید لطفا برنامه را مجدداً اجرا کنید", "پیغام", MessageBoxButtons.OK);
-                            IsDataDelete = true;
-                            //Application.Restart();
-                            Application.Exit();
-                        }
-                        catch (Exception ex)
-                        {
-                            //Application.Exit();
-                            XtraMessageBox.Show(ex.Message);
-                        }
-                    }
-
-            }
-
-        }
-
-        private void FrmMain_KeyPress(object sender, KeyPressEventArgs e)
-        {
-        }
-
-        private void btnMandeAshkhas_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FrmMandeAshkhas frm = new FrmMandeAshkhas();
-            frm._SandoghName = ribbonControl1.ApplicationDocumentCaption;
-            frm.ShowDialog();
-
-        }
-
-        private void btnTamdidGaranti_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FrmAppRegister frm = new FrmAppRegister(this);
-            frm.Text = "تمدید گارانتی";
-            frm.btnExit.Text = "بستن";
-            frm.ShowDialog();
-        }
-
-        private void EtmamGaranti_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (btnTamdidGaranti.Visibility == DevExpress.XtraBars.BarItemVisibility.Always)
-            {
-                btnTamdidGaranti_ItemClick(null, null);
-            }
-        }
-
-        private void OpenFilWord()
-        {
-            //Document doc = new Document();
-            //doc.LoadFromFile(FilePath + @"\Gharardade_Org.doc",FileFormat.Doc);
-            try
-            {
-                Word.Application ap = new Word.Application();
-                ap.Visible = true;
-                object miss = Missing.Value;
-                object path = Application.StartupPath + @"\Report\DarkhastVam\DarkhastVam.doc";
-                object readOnly = false;
-                object isVisible = true;
-                Word.Document doc = new Word.Document();
-                doc = ap.Documents.Open(ref path, ref miss, ref readOnly, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref isVisible, ref miss, ref miss, ref miss, ref miss);
-                doc.Activate();
-                //Word.Application ap = new Word.Application();
-                //Word.Document document = ap.Documents.Open(FilePath + @"\Gharardade_Temp.doc",);
-
-            }
-            catch //(Exception)
-            {
-                //doc.Application.Quit(ref missing, ref missing, ref missing);
-                //throw;
-            }
-        }
-
-        private void btnDarkhastVam_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            OpenFilWord();
-        }
-
-        private void btnMabaleghGhabelDaryaft_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            FrmMabaleghGhabelDaryaft frm = new FrmMabaleghGhabelDaryaft();
-            frm._SandoghName = ribbonControl1.ApplicationDocumentCaption;
-            frm.ShowDialog();
-        }
-
-        private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (Application.OpenForms["FrmBackupRestore"] == null && IsDataDelete==false)
-                HelpClass1.FrmMain_FormClosing(sender, e);
+            btnTamdidGaranti_ItemClick(null, null);
         }
     }
+
+    private void OpenFilWord()
+    {
+        //Document doc = new Document();
+        //doc.LoadFromFile(FilePath + @"\Gharardade_Org.doc",FileFormat.Doc);
+        try
+        {
+            Word.Application ap = new Word.Application();
+            ap.Visible = true;
+            object miss = Missing.Value;
+            object path = Application.StartupPath + @"\Report\DarkhastVam\DarkhastVam.doc";
+            object readOnly = false;
+            object isVisible = true;
+            Word.Document doc = new Word.Document();
+            doc = ap.Documents.Open(ref path, ref miss, ref readOnly, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref isVisible, ref miss, ref miss, ref miss, ref miss);
+            doc.Activate();
+            //Word.Application ap = new Word.Application();
+            //Word.Document document = ap.Documents.Open(FilePath + @"\Gharardade_Temp.doc",);
+
+        }
+        catch //(Exception)
+        {
+            //doc.Application.Quit(ref missing, ref missing, ref missing);
+            //throw;
+        }
+    }
+
+    private void btnDarkhastVam_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        OpenFilWord();
+    }
+
+    private void btnMabaleghGhabelDaryaft_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        FrmMabaleghGhabelDaryaft frm = new FrmMabaleghGhabelDaryaft();
+        frm._SandoghName = ribbonControl1.ApplicationDocumentCaption;
+        frm.ShowDialog();
+    }
+
+    private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        if (Application.OpenForms["FrmBackupRestore"] == null && IsDataDelete == false)
+            HelpClass1.FrmMain_FormClosing(sender, e);
+    }
+}
 }

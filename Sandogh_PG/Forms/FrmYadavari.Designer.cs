@@ -463,7 +463,6 @@
 
         #endregion
         public DevExpress.XtraGrid.GridControl gridControl1;
-        private System.Windows.Forms.BindingSource rizeAghsatVamsBindingSource;
         public DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn colId;
         private DevExpress.XtraGrid.Columns.GridColumn Line;
@@ -482,9 +481,10 @@
         private DevExpress.XtraEditors.PanelControl panelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.PanelControl panelControl4;
-        private System.Windows.Forms.BindingSource haghOzviatsBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colTarikh;
         private DevExpress.XtraGrid.Columns.GridColumn colMablagh;
         private DevExpress.XtraGrid.Columns.GridColumn colNameAaza1;
+        public System.Windows.Forms.BindingSource rizeAghsatVamsBindingSource;
+        public System.Windows.Forms.BindingSource haghOzviatsBindingSource;
     }
 }
