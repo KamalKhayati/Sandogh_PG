@@ -80,9 +80,9 @@ namespace Sandogh_PG
                 //txtShomareGhest.Text = (_ShomareGhest + 1).ToString();
                 //txtSarresidGhest.Text = string.Empty;
                 //txtMablaghGest.Text = string.Empty;
-                if (!string.IsNullOrEmpty(txtSarresidGhest.Text))
-                {
-                }
+                //if (!string.IsNullOrEmpty(txtSarresidGhest.Text))
+                //{
+                //}
                 using (var db = new MyContext())
                 {
                     try
@@ -105,9 +105,22 @@ namespace Sandogh_PG
                             }
                             else
                             {
-                                XtraMessageBox.Show(" تعداد اقساط وام " + q2.TedadAghsat.ToString() + " قسط است لذا بیشتر از این تعداد نمیتوان اقساط جدید تعریف نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                this.Close();
-                                return;
+                                if (XtraMessageBox.Show(" تعداد اقساط وام حداکثر " + q2.TedadAghsat.ToString() + " قسط تعریف شده است آیا میخواهید آنرا افزایش دهید؟", "پیغام", MessageBoxButtons.YesNo, MessageBoxIcon.Information)==DialogResult.Yes)
+                                {
+                                    txtShomareGhest.Text = (_Max + 1).ToString();
+                                    int yyyy2 = Convert.ToInt32(q1.Max(s => s.TarikhSarresid).ToString().Substring(0, 4));
+                                    int MM2 = Convert.ToInt32(q1.Max(s => s.TarikhSarresid).ToString().Substring(5, 2));
+                                    int dd2 = Convert.ToInt32(q1.Max(s => s.TarikhSarresid).ToString().Substring(8, 2));
+                                    Mydate d2 = new Mydate(yyyy2, MM2, dd2);
+                                    d2.IncrementMonth();
+                                    txtSarresidGhest.Text = d2.ToString();
+                                    txtMablaghGest.Text = q1.Max(s => s.MablaghAghsat).ToString();
+                                }
+                                else
+                                {
+                                    this.Close();
+                                    return;
+                                }
                             }
 
                         }
