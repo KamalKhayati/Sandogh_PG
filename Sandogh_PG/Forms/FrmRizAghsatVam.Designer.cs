@@ -137,8 +137,9 @@
             this.cmbDaryaftKonande.Properties.DataSource = this.allHesabTafzilisBindingSource;
             this.cmbDaryaftKonande.Properties.DisplayMember = "Name";
             this.cmbDaryaftKonande.Properties.ImmediatePopup = true;
-            this.cmbDaryaftKonande.Properties.MaxLength = 5;
+            this.cmbDaryaftKonande.Properties.MaxLength = 150;
             this.cmbDaryaftKonande.Properties.NullText = "";
+            this.cmbDaryaftKonande.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbDaryaftKonande.Properties.ReadOnly = true;
             this.cmbDaryaftKonande.Properties.ValueMember = "Id";
             this.cmbDaryaftKonande.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

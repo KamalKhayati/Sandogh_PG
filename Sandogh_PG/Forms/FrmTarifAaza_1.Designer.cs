@@ -144,6 +144,9 @@
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
+            this.txtNobatbandiVam = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
+            this.colNobatbandiVam = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).BeginInit();
@@ -188,6 +191,7 @@
             this.xtraTabPage2.SuspendLayout();
             this.xtraTabPage3.SuspendLayout();
             this.xtraTabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNobatbandiVam.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // colCode
@@ -261,6 +265,7 @@
             this.colShomareShaba,
             this.colShoghl,
             this.colIsOzveSandogh,
+            this.colNobatbandiVam,
             this.colIsActive,
             this.colAdressManzel,
             this.colAdressMohalKar,
@@ -669,7 +674,7 @@
             this.colAdressManzel.MinWidth = 24;
             this.colAdressManzel.Name = "colAdressManzel";
             this.colAdressManzel.Visible = true;
-            this.colAdressManzel.VisibleIndex = 25;
+            this.colAdressManzel.VisibleIndex = 26;
             this.colAdressManzel.Width = 489;
             // 
             // colAdressMohalKar
@@ -682,7 +687,7 @@
             this.colAdressMohalKar.MinWidth = 24;
             this.colAdressMohalKar.Name = "colAdressMohalKar";
             this.colAdressMohalKar.Visible = true;
-            this.colAdressMohalKar.VisibleIndex = 26;
+            this.colAdressMohalKar.VisibleIndex = 27;
             this.colAdressMohalKar.Width = 489;
             // 
             // colSharhHesab
@@ -695,7 +700,7 @@
             this.colSharhHesab.MinWidth = 23;
             this.colSharhHesab.Name = "colSharhHesab";
             this.colSharhHesab.Visible = true;
-            this.colSharhHesab.VisibleIndex = 27;
+            this.colSharhHesab.VisibleIndex = 28;
             this.colSharhHesab.Width = 489;
             // 
             // colShomareSanad
@@ -711,7 +716,7 @@
             this.colShomareSanad.MinWidth = 24;
             this.colShomareSanad.Name = "colShomareSanad";
             this.colShomareSanad.Visible = true;
-            this.colShomareSanad.VisibleIndex = 28;
+            this.colShomareSanad.VisibleIndex = 29;
             this.colShomareSanad.Width = 122;
             // 
             // gridControl1
@@ -811,24 +816,22 @@
             // labelControl13
             // 
             this.labelControl13.AutoEllipsis = true;
-            this.labelControl13.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl13.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl13.Location = new System.Drawing.Point(899, 154);
+            this.labelControl13.Location = new System.Drawing.Point(895, 159);
             this.labelControl13.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(48, 40);
+            this.labelControl13.Size = new System.Drawing.Size(37, 31);
             this.labelControl13.TabIndex = 31;
             this.labelControl13.Text = "شغل";
             // 
             // labelControl19
             // 
             this.labelControl19.AutoEllipsis = true;
-            this.labelControl19.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl19.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl19.Location = new System.Drawing.Point(925, 16);
+            this.labelControl19.Location = new System.Drawing.Point(925, 20);
             this.labelControl19.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl19.Name = "labelControl19";
-            this.labelControl19.Size = new System.Drawing.Size(105, 40);
+            this.labelControl19.Size = new System.Drawing.Size(101, 31);
             this.labelControl19.TabIndex = 43;
             this.labelControl19.Text = "مبلغ بستانکار";
             // 
@@ -1136,12 +1139,11 @@
             // labelControl20
             // 
             this.labelControl20.AutoEllipsis = true;
-            this.labelControl20.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl20.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl20.Location = new System.Drawing.Point(491, 17);
+            this.labelControl20.Location = new System.Drawing.Point(491, 21);
             this.labelControl20.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl20.Name = "labelControl20";
-            this.labelControl20.Size = new System.Drawing.Size(156, 40);
+            this.labelControl20.Size = new System.Drawing.Size(154, 31);
             this.labelControl20.TabIndex = 43;
             this.labelControl20.Text = "هزینه افتتاح حساب";
             // 
@@ -1208,48 +1210,44 @@
             // labelControl18
             // 
             this.labelControl18.AutoEllipsis = true;
-            this.labelControl18.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl18.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl18.Location = new System.Drawing.Point(1271, 14);
+            this.labelControl18.Location = new System.Drawing.Point(1271, 18);
             this.labelControl18.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl18.Name = "labelControl18";
-            this.labelControl18.Size = new System.Drawing.Size(136, 40);
+            this.labelControl18.Size = new System.Drawing.Size(132, 31);
             this.labelControl18.TabIndex = 43;
             this.labelControl18.Text = "پس انداز ماهیانه";
             // 
             // labelControl25
             // 
             this.labelControl25.AutoEllipsis = true;
-            this.labelControl25.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl25.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl25.Location = new System.Drawing.Point(1282, 153);
+            this.labelControl25.Location = new System.Drawing.Point(1282, 158);
             this.labelControl25.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl25.Name = "labelControl25";
-            this.labelControl25.Size = new System.Drawing.Size(48, 40);
+            this.labelControl25.Size = new System.Drawing.Size(39, 31);
             this.labelControl25.TabIndex = 43;
             this.labelControl25.Text = "تأهل";
             // 
             // labelControl24
             // 
             this.labelControl24.AutoEllipsis = true;
-            this.labelControl24.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl24.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl24.Location = new System.Drawing.Point(513, 107);
+            this.labelControl24.Location = new System.Drawing.Point(518, 111);
             this.labelControl24.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl24.Name = "labelControl24";
-            this.labelControl24.Size = new System.Drawing.Size(71, 40);
+            this.labelControl24.Size = new System.Drawing.Size(63, 31);
             this.labelControl24.TabIndex = 43;
             this.labelControl24.Text = "جنسیت";
             // 
             // labelControl21
             // 
             this.labelControl21.AutoEllipsis = true;
-            this.labelControl21.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl21.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl21.Location = new System.Drawing.Point(515, 155);
+            this.labelControl21.Location = new System.Drawing.Point(520, 159);
             this.labelControl21.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl21.Name = "labelControl21";
-            this.labelControl21.Size = new System.Drawing.Size(55, 40);
+            this.labelControl21.Size = new System.Drawing.Size(44, 31);
             this.labelControl21.TabIndex = 43;
             this.labelControl21.Text = "معرف";
             // 
@@ -1298,12 +1296,11 @@
             // labelControl6
             // 
             this.labelControl6.AutoEllipsis = true;
-            this.labelControl6.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl6.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl6.Location = new System.Drawing.Point(326, 199);
+            this.labelControl6.Location = new System.Drawing.Point(326, 205);
             this.labelControl6.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(123, 40);
+            this.labelControl6.Size = new System.Drawing.Size(122, 31);
             this.labelControl6.TabIndex = 35;
             this.labelControl6.Text = "وضعیت حساب";
             // 
@@ -1430,12 +1427,11 @@
             // labelControl27
             // 
             this.labelControl27.AutoEllipsis = true;
-            this.labelControl27.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl27.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl27.Location = new System.Drawing.Point(1286, 200);
+            this.labelControl27.Location = new System.Drawing.Point(1286, 205);
             this.labelControl27.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl27.Name = "labelControl27";
-            this.labelControl27.Size = new System.Drawing.Size(117, 40);
+            this.labelControl27.Size = new System.Drawing.Size(114, 31);
             this.labelControl27.TabIndex = 31;
             this.labelControl27.Text = "توضیح حساب";
             // 
@@ -1444,84 +1440,77 @@
             this.labelControl9.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
             this.labelControl9.Appearance.Options.UseForeColor = true;
             this.labelControl9.AutoEllipsis = true;
-            this.labelControl9.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl9.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl9.Location = new System.Drawing.Point(1344, 15);
+            this.labelControl9.Location = new System.Drawing.Point(1344, 20);
             this.labelControl9.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(71, 40);
+            this.labelControl9.Size = new System.Drawing.Size(65, 31);
             this.labelControl9.TabIndex = 31;
             this.labelControl9.Text = "نام بانک";
             // 
             // labelControl17
             // 
             this.labelControl17.AutoEllipsis = true;
-            this.labelControl17.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl17.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl17.Location = new System.Drawing.Point(1290, 61);
+            this.labelControl17.Location = new System.Drawing.Point(1290, 66);
             this.labelControl17.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(117, 40);
+            this.labelControl17.Size = new System.Drawing.Size(115, 31);
             this.labelControl17.TabIndex = 31;
             this.labelControl17.Text = "آدرس محل کار";
             // 
             // labelControl14
             // 
             this.labelControl14.AutoEllipsis = true;
-            this.labelControl14.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl14.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl14.Location = new System.Drawing.Point(1290, 14);
+            this.labelControl14.Location = new System.Drawing.Point(1290, 19);
             this.labelControl14.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(105, 40);
+            this.labelControl14.Size = new System.Drawing.Size(89, 31);
             this.labelControl14.TabIndex = 31;
             this.labelControl14.Text = "آدرس منزل";
             // 
             // labelControl7
             // 
             this.labelControl7.AutoEllipsis = true;
-            this.labelControl7.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl7.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl7.Location = new System.Drawing.Point(543, 61);
+            this.labelControl7.Location = new System.Drawing.Point(543, 66);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(84, 40);
+            this.labelControl7.Size = new System.Drawing.Size(81, 31);
             this.labelControl7.TabIndex = 31;
             this.labelControl7.Text = "تلفن ثابت";
             // 
             // labelControl16
             // 
             this.labelControl16.AutoEllipsis = true;
-            this.labelControl16.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl16.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl16.Location = new System.Drawing.Point(244, 13);
+            this.labelControl16.Location = new System.Drawing.Point(244, 18);
             this.labelControl16.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl16.Name = "labelControl16";
-            this.labelControl16.Size = new System.Drawing.Size(67, 40);
+            this.labelControl16.Size = new System.Drawing.Size(66, 31);
             this.labelControl16.TabIndex = 31;
             this.labelControl16.Text = "موبایل 2";
             // 
             // labelControl11
             // 
             this.labelControl11.AutoEllipsis = true;
-            this.labelControl11.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl11.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl11.Location = new System.Drawing.Point(631, 16);
+            this.labelControl11.Location = new System.Drawing.Point(631, 21);
             this.labelControl11.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(92, 40);
+            this.labelControl11.Size = new System.Drawing.Size(88, 31);
             this.labelControl11.TabIndex = 31;
             this.labelControl11.Text = "شماره کارت";
             // 
             // labelControl15
             // 
             this.labelControl15.AutoEllipsis = true;
-            this.labelControl15.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl15.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl15.Location = new System.Drawing.Point(561, 15);
+            this.labelControl15.Location = new System.Drawing.Point(561, 20);
             this.labelControl15.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(67, 40);
+            this.labelControl15.Size = new System.Drawing.Size(62, 31);
             this.labelControl15.TabIndex = 31;
             this.labelControl15.Text = "موبایل 1";
             // 
@@ -1530,12 +1519,11 @@
             this.labelControl10.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
             this.labelControl10.Appearance.Options.UseForeColor = true;
             this.labelControl10.AutoEllipsis = true;
-            this.labelControl10.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl10.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl10.Location = new System.Drawing.Point(988, 16);
+            this.labelControl10.Location = new System.Drawing.Point(988, 21);
             this.labelControl10.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(105, 40);
+            this.labelControl10.Size = new System.Drawing.Size(103, 31);
             this.labelControl10.TabIndex = 31;
             this.labelControl10.Text = "شماره حساب";
             // 
@@ -1544,12 +1532,11 @@
             this.labelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
             this.labelControl3.Appearance.Options.UseForeColor = true;
             this.labelControl3.AutoEllipsis = true;
-            this.labelControl3.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl3.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl3.Location = new System.Drawing.Point(907, 61);
+            this.labelControl3.Location = new System.Drawing.Point(903, 66);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(56, 40);
+            this.labelControl3.Size = new System.Drawing.Size(52, 31);
             this.labelControl3.TabIndex = 31;
             this.labelControl3.Text = "نام پدر";
             // 
@@ -1558,24 +1545,22 @@
             this.labelControl23.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
             this.labelControl23.Appearance.Options.UseForeColor = true;
             this.labelControl23.AutoEllipsis = true;
-            this.labelControl23.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl23.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl23.Location = new System.Drawing.Point(1282, 108);
+            this.labelControl23.Location = new System.Drawing.Point(1282, 113);
             this.labelControl23.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl23.Name = "labelControl23";
-            this.labelControl23.Size = new System.Drawing.Size(126, 40);
+            this.labelControl23.Size = new System.Drawing.Size(119, 31);
             this.labelControl23.TabIndex = 31;
             this.labelControl23.Text = "شماره شناسنامه";
             // 
             // labelControl8
             // 
             this.labelControl8.AutoEllipsis = true;
-            this.labelControl8.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl8.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl8.Location = new System.Drawing.Point(905, 108);
+            this.labelControl8.Location = new System.Drawing.Point(901, 113);
             this.labelControl8.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(82, 40);
+            this.labelControl8.Size = new System.Drawing.Size(79, 31);
             this.labelControl8.TabIndex = 31;
             this.labelControl8.Text = "تاریخ تولد";
             // 
@@ -1584,12 +1569,11 @@
             this.labelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
             this.labelControl4.Appearance.Options.UseForeColor = true;
             this.labelControl4.AutoEllipsis = true;
-            this.labelControl4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl4.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl4.Location = new System.Drawing.Point(512, 61);
+            this.labelControl4.Location = new System.Drawing.Point(517, 65);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(62, 40);
+            this.labelControl4.Size = new System.Drawing.Size(57, 31);
             this.labelControl4.TabIndex = 31;
             this.labelControl4.Text = "کد ملی";
             // 
@@ -1598,12 +1582,11 @@
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl2.Appearance.Options.UseForeColor = true;
             this.labelControl2.AutoEllipsis = true;
-            this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl2.Location = new System.Drawing.Point(511, 14);
+            this.labelControl2.Location = new System.Drawing.Point(516, 18);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(97, 40);
+            this.labelControl2.Size = new System.Drawing.Size(88, 31);
             this.labelControl2.TabIndex = 30;
             this.labelControl2.Text = "تاریخ ایجاد";
             // 
@@ -1612,12 +1595,11 @@
             this.labelControl5.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl5.Appearance.Options.UseForeColor = true;
             this.labelControl5.AutoEllipsis = true;
-            this.labelControl5.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl5.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl5.Location = new System.Drawing.Point(1286, 60);
+            this.labelControl5.Location = new System.Drawing.Point(1286, 65);
             this.labelControl5.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(88, 40);
+            this.labelControl5.Size = new System.Drawing.Size(80, 31);
             this.labelControl5.TabIndex = 31;
             this.labelControl5.Text = "نام وفامیل";
             // 
@@ -1658,7 +1640,7 @@
             this.labelControl22.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
             this.labelControl22.Appearance.Options.UseForeColor = true;
             this.labelControl22.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl22.Location = new System.Drawing.Point(905, 19);
+            this.labelControl22.Location = new System.Drawing.Point(901, 24);
             this.labelControl22.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl22.Name = "labelControl22";
             this.labelControl22.Size = new System.Drawing.Size(81, 31);
@@ -1689,7 +1671,7 @@
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl1.Appearance.Options.UseForeColor = true;
             this.labelControl1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl1.Location = new System.Drawing.Point(1286, 19);
+            this.labelControl1.Location = new System.Drawing.Point(1286, 24);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(79, 31);
@@ -1711,8 +1693,9 @@
             this.cmbMoaref.Properties.DataSource = this.aazaSandoghsBindingSource;
             this.cmbMoaref.Properties.DisplayMember = "NameVFamil";
             this.cmbMoaref.Properties.ImmediatePopup = true;
-            this.cmbMoaref.Properties.MaxLength = 5;
+            this.cmbMoaref.Properties.MaxLength = 150;
             this.cmbMoaref.Properties.NullText = "";
+            this.cmbMoaref.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbMoaref.Properties.ReadOnly = true;
             this.cmbMoaref.Properties.ValueMember = "Id";
             this.cmbMoaref.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -1870,15 +1853,64 @@
             // 
             // xtraTabPage4
             // 
+            this.xtraTabPage4.Controls.Add(this.txtNobatbandiVam);
             this.xtraTabPage4.Controls.Add(this.txtHazineEftetah);
             this.xtraTabPage4.Controls.Add(this.txtHaghOzviat);
             this.xtraTabPage4.Controls.Add(this.txtBesAvali);
+            this.xtraTabPage4.Controls.Add(this.labelControl26);
             this.xtraTabPage4.Controls.Add(this.labelControl20);
             this.xtraTabPage4.Controls.Add(this.labelControl18);
             this.xtraTabPage4.Controls.Add(this.labelControl19);
             this.xtraTabPage4.Name = "xtraTabPage4";
             this.xtraTabPage4.Size = new System.Drawing.Size(1434, 251);
             this.xtraTabPage4.Text = "سایر";
+            // 
+            // txtNobatbandiVam
+            // 
+            this.txtNobatbandiVam.Cursor = System.Windows.Forms.Cursors.Default;
+            this.txtNobatbandiVam.EditValue = "";
+            this.txtNobatbandiVam.EnterMoveNextControl = true;
+            this.txtNobatbandiVam.Location = new System.Drawing.Point(662, 73);
+            this.txtNobatbandiVam.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNobatbandiVam.Name = "txtNobatbandiVam";
+            this.txtNobatbandiVam.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtNobatbandiVam.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.txtNobatbandiVam.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.txtNobatbandiVam.Properties.Mask.EditMask = "n";
+            this.txtNobatbandiVam.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtNobatbandiVam.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtNobatbandiVam.Properties.NullText = "به ریال";
+            this.txtNobatbandiVam.Properties.ReadOnly = true;
+            this.txtNobatbandiVam.Size = new System.Drawing.Size(102, 38);
+            this.txtNobatbandiVam.TabIndex = 2;
+            this.txtNobatbandiVam.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHaghOzviat_KeyPress);
+            // 
+            // labelControl26
+            // 
+            this.labelControl26.AutoEllipsis = true;
+            this.labelControl26.Cursor = System.Windows.Forms.Cursors.Default;
+            this.labelControl26.Location = new System.Drawing.Point(772, 76);
+            this.labelControl26.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl26.Name = "labelControl26";
+            this.labelControl26.Size = new System.Drawing.Size(631, 31);
+            this.labelControl26.TabIndex = 43;
+            this.labelControl26.Text = "نتیجه قرعه کشی ، الویت بندی یا نوبت بندی اعطای وام = شماره نوبت اعطای وام";
+            // 
+            // colNobatbandiVam
+            // 
+            this.colNobatbandiVam.AppearanceCell.Options.UseTextOptions = true;
+            this.colNobatbandiVam.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colNobatbandiVam.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colNobatbandiVam.AppearanceHeader.Options.UseTextOptions = true;
+            this.colNobatbandiVam.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colNobatbandiVam.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colNobatbandiVam.Caption = "شماره نوبت اعطای وام ";
+            this.colNobatbandiVam.FieldName = "NobatbandiVam";
+            this.colNobatbandiVam.MinWidth = 25;
+            this.colNobatbandiVam.Name = "colNobatbandiVam";
+            this.colNobatbandiVam.Visible = true;
+            this.colNobatbandiVam.VisibleIndex = 25;
+            this.colNobatbandiVam.Width = 220;
             // 
             // FrmTarifAaza_1
             // 
@@ -1942,8 +1974,12 @@
             this.xtraTabPage1.ResumeLayout(false);
             this.xtraTabPage1.PerformLayout();
             this.xtraTabPage2.ResumeLayout(false);
+            this.xtraTabPage2.PerformLayout();
             this.xtraTabPage3.ResumeLayout(false);
+            this.xtraTabPage3.PerformLayout();
             this.xtraTabPage4.ResumeLayout(false);
+            this.xtraTabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNobatbandiVam.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2063,5 +2099,8 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage4;
+        public DevExpress.XtraEditors.TextEdit txtNobatbandiVam;
+        private DevExpress.XtraEditors.LabelControl labelControl26;
+        private DevExpress.XtraGrid.Columns.GridColumn colNobatbandiVam;
     }
 }

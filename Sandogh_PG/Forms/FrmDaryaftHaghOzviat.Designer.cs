@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDaryaftHaghOzviat));
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.cmbPardakhtKonande = new DevExpress.XtraEditors.LookUpEdit();
+            this.allHesabTafzilisBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtId = new DevExpress.XtraEditors.TextEdit();
             this.txtSeryal = new DevExpress.XtraEditors.TextEdit();
@@ -49,17 +50,17 @@
             this.txtMablagh = new DevExpress.XtraEditors.TextEdit();
             this.xtraScrollableControl2 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.cmbMoin = new DevExpress.XtraEditors.LookUpEdit();
+            this.codeMoinsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtSal = new DevExpress.XtraEditors.TextEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.cmbNameHesab = new DevExpress.XtraEditors.LookUpEdit();
-            this.cmbMonth = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.codeMoinsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.allHesabTafzilisBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.allHesabTafzilisBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbMonth = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPardakhtKonande.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtId.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeryal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSharh.Properties)).BeginInit();
@@ -69,13 +70,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMablagh.Properties)).BeginInit();
             this.xtraScrollableControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMoin.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.codeMoinsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNameHesab.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbMonth.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.codeMoinsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbMonth.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl4
@@ -101,14 +101,19 @@
             this.cmbPardakhtKonande.Properties.DataSource = this.allHesabTafzilisBindingSource;
             this.cmbPardakhtKonande.Properties.DisplayMember = "Name";
             this.cmbPardakhtKonande.Properties.ImmediatePopup = true;
-            this.cmbPardakhtKonande.Properties.MaxLength = 5;
+            this.cmbPardakhtKonande.Properties.MaxLength = 150;
             this.cmbPardakhtKonande.Properties.NullText = "";
+            this.cmbPardakhtKonande.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbPardakhtKonande.Properties.ReadOnly = true;
             this.cmbPardakhtKonande.Properties.ValueMember = "Id";
             this.cmbPardakhtKonande.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbPardakhtKonande.Size = new System.Drawing.Size(398, 38);
             this.cmbPardakhtKonande.TabIndex = 15;
             this.cmbPardakhtKonande.TabStop = false;
+            // 
+            // allHesabTafzilisBindingSource
+            // 
+            this.allHesabTafzilisBindingSource.DataSource = typeof(Sandogh_PG.AllHesabTafzili);
             // 
             // labelControl1
             // 
@@ -361,14 +366,19 @@
             this.cmbMoin.Properties.DataSource = this.codeMoinsBindingSource;
             this.cmbMoin.Properties.DisplayMember = "Name";
             this.cmbMoin.Properties.ImmediatePopup = true;
-            this.cmbMoin.Properties.MaxLength = 5;
+            this.cmbMoin.Properties.MaxLength = 150;
             this.cmbMoin.Properties.NullText = "";
+            this.cmbMoin.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbMoin.Properties.ValueMember = "Id";
             this.cmbMoin.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbMoin.Size = new System.Drawing.Size(188, 38);
             this.cmbMoin.TabIndex = 2;
             this.cmbMoin.EditValueChanged += new System.EventHandler(this.cmbMoin_EditValueChanged);
             this.cmbMoin.Enter += new System.EventHandler(this.cmbMoin_Enter);
+            // 
+            // codeMoinsBindingSource
+            // 
+            this.codeMoinsBindingSource.DataSource = typeof(Sandogh_PG.CodeMoin);
             // 
             // txtSal
             // 
@@ -444,13 +454,18 @@
             this.cmbNameHesab.Properties.DataSource = this.allHesabTafzilisBindingSource1;
             this.cmbNameHesab.Properties.DisplayMember = "Name";
             this.cmbNameHesab.Properties.ImmediatePopup = true;
-            this.cmbNameHesab.Properties.MaxLength = 5;
+            this.cmbNameHesab.Properties.MaxLength = 150;
             this.cmbNameHesab.Properties.NullText = "";
+            this.cmbNameHesab.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbNameHesab.Properties.ValueMember = "Id";
             this.cmbNameHesab.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbNameHesab.Size = new System.Drawing.Size(385, 38);
             this.cmbNameHesab.TabIndex = 3;
             this.cmbNameHesab.Enter += new System.EventHandler(this.cmbNameHesab_Enter);
+            // 
+            // allHesabTafzilisBindingSource1
+            // 
+            this.allHesabTafzilisBindingSource1.DataSource = typeof(Sandogh_PG.AllHesabTafzili);
             // 
             // cmbMonth
             // 
@@ -483,18 +498,6 @@
             this.cmbMonth.SelectedIndexChanged += new System.EventHandler(this.cmbMonth_SelectedIndexChanged);
             this.cmbMonth.Enter += new System.EventHandler(this.cmbMonth_Enter);
             // 
-            // codeMoinsBindingSource
-            // 
-            this.codeMoinsBindingSource.DataSource = typeof(Sandogh_PG.CodeMoin);
-            // 
-            // allHesabTafzilisBindingSource1
-            // 
-            this.allHesabTafzilisBindingSource1.DataSource = typeof(Sandogh_PG.AllHesabTafzili);
-            // 
-            // allHesabTafzilisBindingSource
-            // 
-            this.allHesabTafzilisBindingSource.DataSource = typeof(Sandogh_PG.AllHesabTafzili);
-            // 
             // FrmDaryaftHaghOzviat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
@@ -516,6 +519,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmDaryaftHaghOzviat_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPardakhtKonande.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtId.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeryal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSharh.Properties)).EndInit();
@@ -526,13 +530,12 @@
             this.xtraScrollableControl2.ResumeLayout(false);
             this.xtraScrollableControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMoin.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.codeMoinsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNameHesab.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbMonth.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.codeMoinsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbMonth.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

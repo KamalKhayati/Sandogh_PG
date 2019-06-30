@@ -171,6 +171,7 @@
             this.btnDisplyActiveList4 = new DevExpress.XtraEditors.SimpleButton();
             this.btnCreate4 = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl10 = new DevExpress.XtraEditors.PanelControl();
+            this.colNobatbandiVam = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl9)).BeginInit();
             this.panelControl9.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -658,6 +659,7 @@
             this.colShomareShaba,
             this.colShoghl,
             this.colIsOzveSandogh,
+            this.colNobatbandiVam,
             this.colIsActive,
             this.colAdressManzel,
             this.colAdressMohalKar,
@@ -1094,7 +1096,7 @@
             this.colIsActive.MinWidth = 23;
             this.colIsActive.Name = "colIsActive";
             this.colIsActive.Visible = true;
-            this.colIsActive.VisibleIndex = 24;
+            this.colIsActive.VisibleIndex = 25;
             this.colIsActive.Width = 92;
             // 
             // colAdressManzel
@@ -1107,7 +1109,7 @@
             this.colAdressManzel.MinWidth = 24;
             this.colAdressManzel.Name = "colAdressManzel";
             this.colAdressManzel.Visible = true;
-            this.colAdressManzel.VisibleIndex = 25;
+            this.colAdressManzel.VisibleIndex = 26;
             this.colAdressManzel.Width = 489;
             // 
             // colAdressMohalKar
@@ -1120,7 +1122,7 @@
             this.colAdressMohalKar.MinWidth = 24;
             this.colAdressMohalKar.Name = "colAdressMohalKar";
             this.colAdressMohalKar.Visible = true;
-            this.colAdressMohalKar.VisibleIndex = 26;
+            this.colAdressMohalKar.VisibleIndex = 27;
             this.colAdressMohalKar.Width = 489;
             // 
             // colSharhHesab
@@ -1133,7 +1135,7 @@
             this.colSharhHesab.MinWidth = 23;
             this.colSharhHesab.Name = "colSharhHesab";
             this.colSharhHesab.Visible = true;
-            this.colSharhHesab.VisibleIndex = 27;
+            this.colSharhHesab.VisibleIndex = 28;
             this.colSharhHesab.Width = 489;
             // 
             // panelControl4
@@ -2327,6 +2329,22 @@
             this.panelControl10.Size = new System.Drawing.Size(1932, 521);
             this.panelControl10.TabIndex = 4;
             // 
+            // colNobatbandiVam
+            // 
+            this.colNobatbandiVam.AppearanceCell.Options.UseTextOptions = true;
+            this.colNobatbandiVam.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colNobatbandiVam.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colNobatbandiVam.AppearanceHeader.Options.UseTextOptions = true;
+            this.colNobatbandiVam.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colNobatbandiVam.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colNobatbandiVam.Caption = "شماره نوبت اعطای وام";
+            this.colNobatbandiVam.FieldName = "NobatbandiVam";
+            this.colNobatbandiVam.MinWidth = 25;
+            this.colNobatbandiVam.Name = "colNobatbandiVam";
+            this.colNobatbandiVam.Visible = true;
+            this.colNobatbandiVam.VisibleIndex = 24;
+            this.colNobatbandiVam.Width = 220;
+            // 
             // FrmDaryafti
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
@@ -2526,5 +2544,6 @@
         private DevExpress.XtraEditors.SimpleButton btnDesignReport4;
         private DevExpress.XtraEditors.SimpleButton btnDesignReport3;
         private DevExpress.XtraEditors.SimpleButton btnDesignReport2;
+        private DevExpress.XtraGrid.Columns.GridColumn colNobatbandiVam;
     }
 }

@@ -722,8 +722,9 @@
             this.cmbHesabTafzili.Properties.DataSource = this.allHesabTafzilisBindingSource;
             this.cmbHesabTafzili.Properties.DisplayMember = "Name";
             this.cmbHesabTafzili.Properties.ImmediatePopup = true;
-            this.cmbHesabTafzili.Properties.MaxLength = 5;
+            this.cmbHesabTafzili.Properties.MaxLength = 150;
             this.cmbHesabTafzili.Properties.NullText = "";
+            this.cmbHesabTafzili.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbHesabTafzili.Properties.ValueMember = "Id";
             this.cmbHesabTafzili.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbHesabTafzili.Size = new System.Drawing.Size(409, 38);

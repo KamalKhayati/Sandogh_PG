@@ -589,8 +589,9 @@
             this.cmbNameSandoogh.Properties.DataSource = this.tarifSandoghsBindingSource;
             this.cmbNameSandoogh.Properties.DisplayMember = "NameSandogh";
             this.cmbNameSandoogh.Properties.ImmediatePopup = true;
-            this.cmbNameSandoogh.Properties.MaxLength = 5;
+            this.cmbNameSandoogh.Properties.MaxLength = 150;
             this.cmbNameSandoogh.Properties.NullText = "";
+            this.cmbNameSandoogh.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbNameSandoogh.Properties.ReadOnly = true;
             this.cmbNameSandoogh.Properties.ValueMember = "Id";
             this.cmbNameSandoogh.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

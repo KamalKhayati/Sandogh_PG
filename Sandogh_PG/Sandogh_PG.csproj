@@ -212,6 +212,12 @@
     <Compile Include="Forms\FrmMandeAshkhas.Designer.cs">
       <DependentUpon>FrmMandeAshkhas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmNobatbandiVam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmNobatbandiVam.Designer.cs">
+      <DependentUpon>FrmNobatbandiVam.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmOdatCheckTazmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -431,6 +437,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmMandeAshkhas.resx">
       <DependentUpon>FrmMandeAshkhas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmNobatbandiVam.resx">
+      <DependentUpon>FrmNobatbandiVam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmOdatCheckTazmin.resx">
       <DependentUpon>FrmOdatCheckTazmin.cs</DependentUpon>

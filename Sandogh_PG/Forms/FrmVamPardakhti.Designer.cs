@@ -705,8 +705,9 @@
             this.cmbHesabTafzili.Properties.DataSource = this.allHesabTafzilisBindingSource1;
             this.cmbHesabTafzili.Properties.DisplayMember = "Name";
             this.cmbHesabTafzili.Properties.ImmediatePopup = true;
-            this.cmbHesabTafzili.Properties.MaxLength = 5;
+            this.cmbHesabTafzili.Properties.MaxLength = 150;
             this.cmbHesabTafzili.Properties.NullText = "";
+            this.cmbHesabTafzili.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbHesabTafzili.Properties.ValueMember = "Id";
             this.cmbHesabTafzili.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbHesabTafzili.Size = new System.Drawing.Size(403, 38);
@@ -742,7 +743,9 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "نام حساب معین :", 250, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.cmbHesabMoin.Properties.DataSource = this.codeMoinsBindingSource;
             this.cmbHesabMoin.Properties.DisplayMember = "Name";
+            this.cmbHesabMoin.Properties.MaxLength = 150;
             this.cmbHesabMoin.Properties.NullText = "";
+            this.cmbHesabMoin.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbHesabMoin.Properties.PopupSizeable = false;
             this.cmbHesabMoin.Properties.ValueMember = "Id";
             this.cmbHesabMoin.Size = new System.Drawing.Size(188, 38);
@@ -1326,8 +1329,9 @@
             this.cmbDaryaftkonande.Properties.DataSource = this.allHesabTafzilisBindingSource;
             this.cmbDaryaftkonande.Properties.DisplayMember = "Name";
             this.cmbDaryaftkonande.Properties.ImmediatePopup = true;
-            this.cmbDaryaftkonande.Properties.MaxLength = 5;
+            this.cmbDaryaftkonande.Properties.MaxLength = 150;
             this.cmbDaryaftkonande.Properties.NullText = "";
+            this.cmbDaryaftkonande.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbDaryaftkonande.Properties.ValueMember = "Id";
             this.cmbDaryaftkonande.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbDaryaftkonande.Size = new System.Drawing.Size(291, 38);

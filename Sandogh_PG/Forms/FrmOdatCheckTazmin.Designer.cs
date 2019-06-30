@@ -625,8 +625,9 @@
             this.cmbVamGerande.Properties.DataSource = this.allHesabTafzilisBindingSource;
             this.cmbVamGerande.Properties.DisplayMember = "Name";
             this.cmbVamGerande.Properties.ImmediatePopup = true;
-            this.cmbVamGerande.Properties.MaxLength = 5;
+            this.cmbVamGerande.Properties.MaxLength = 150;
             this.cmbVamGerande.Properties.NullText = "";
+            this.cmbVamGerande.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbVamGerande.Properties.ReadOnly = true;
             this.cmbVamGerande.Properties.ValueMember = "Id";
             this.cmbVamGerande.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

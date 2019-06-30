@@ -179,8 +179,9 @@
             this.cmbMoin.Properties.DataSource = this.codeMoinsBindingSource;
             this.cmbMoin.Properties.DisplayMember = "Name";
             this.cmbMoin.Properties.ImmediatePopup = true;
-            this.cmbMoin.Properties.MaxLength = 5;
+            this.cmbMoin.Properties.MaxLength = 150;
             this.cmbMoin.Properties.NullText = "";
+            this.cmbMoin.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbMoin.Properties.ValueMember = "Id";
             this.cmbMoin.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbMoin.Size = new System.Drawing.Size(188, 38);
@@ -361,8 +362,9 @@
             this.cmbNameHesab.Properties.DataSource = this.allHesabTafzilisBindingSource1;
             this.cmbNameHesab.Properties.DisplayMember = "Name";
             this.cmbNameHesab.Properties.ImmediatePopup = true;
-            this.cmbNameHesab.Properties.MaxLength = 5;
+            this.cmbNameHesab.Properties.MaxLength = 150;
             this.cmbNameHesab.Properties.NullText = "";
+            this.cmbNameHesab.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbNameHesab.Properties.ValueMember = "Id";
             this.cmbNameHesab.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbNameHesab.Size = new System.Drawing.Size(396, 38);

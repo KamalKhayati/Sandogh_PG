@@ -721,7 +721,9 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "نام حساب تفضیل را انتخاب کنید", 250, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.cmbHesabTafzili2.Properties.DataSource = this.allHesabTafzilisBindingSource1;
             this.cmbHesabTafzili2.Properties.DisplayMember = "Name";
+            this.cmbHesabTafzili2.Properties.MaxLength = 150;
             this.cmbHesabTafzili2.Properties.NullText = "";
+            this.cmbHesabTafzili2.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbHesabTafzili2.Properties.ReadOnly = true;
             this.cmbHesabTafzili2.Properties.ValueMember = "Id";
             this.cmbHesabTafzili2.Size = new System.Drawing.Size(445, 38);
@@ -779,8 +781,9 @@
             this.cmbHesabTafzili1.Properties.DataSource = this.allHesabTafzilisBindingSource;
             this.cmbHesabTafzili1.Properties.DisplayMember = "Name";
             this.cmbHesabTafzili1.Properties.ImmediatePopup = true;
-            this.cmbHesabTafzili1.Properties.MaxLength = 5;
+            this.cmbHesabTafzili1.Properties.MaxLength = 150;
             this.cmbHesabTafzili1.Properties.NullText = "";
+            this.cmbHesabTafzili1.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbHesabTafzili1.Properties.ReadOnly = true;
             this.cmbHesabTafzili1.Properties.ValueMember = "Id";
             this.cmbHesabTafzili1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -839,8 +842,9 @@
             this.cmbHesabMoin2.Properties.DataSource = this.codeMoinsBindingSource;
             this.cmbHesabMoin2.Properties.DisplayMember = "Name";
             this.cmbHesabMoin2.Properties.ImmediatePopup = true;
-            this.cmbHesabMoin2.Properties.MaxLength = 5;
+            this.cmbHesabMoin2.Properties.MaxLength = 150;
             this.cmbHesabMoin2.Properties.NullText = "";
+            this.cmbHesabMoin2.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbHesabMoin2.Properties.ReadOnly = true;
             this.cmbHesabMoin2.Properties.ValueMember = "Id";
             this.cmbHesabMoin2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -866,8 +870,9 @@
             this.cmbHesabMoin1.Properties.DataSource = this.codeMoinsBindingSource;
             this.cmbHesabMoin1.Properties.DisplayMember = "Name";
             this.cmbHesabMoin1.Properties.ImmediatePopup = true;
-            this.cmbHesabMoin1.Properties.MaxLength = 5;
+            this.cmbHesabMoin1.Properties.MaxLength = 150;
             this.cmbHesabMoin1.Properties.NullText = "";
+            this.cmbHesabMoin1.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbHesabMoin1.Properties.ReadOnly = true;
             this.cmbHesabMoin1.Properties.ValueMember = "Id";
             this.cmbHesabMoin1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

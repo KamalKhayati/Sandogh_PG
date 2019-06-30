@@ -371,6 +371,7 @@ namespace Sandogh_PG
             //txtBedAvali.Text = string.Empty;
             txtHazineEftetah.Text = string.Empty;
             txtSharhHesab.Text = string.Empty;
+            txtNobatbandiVam.Text = string.Empty;
             pictureEdit1.Image = null;
         }
 
@@ -403,6 +404,7 @@ namespace Sandogh_PG
                 //txtBedAvali.ReadOnly = false;
                 txtHazineEftetah.ReadOnly = false;
                 txtSharhHesab.ReadOnly = false;
+                txtNobatbandiVam.ReadOnly = false;
                 chkIsActive.ReadOnly = false;
                 pictureEdit1.ReadOnly = false;
                 btnBrowsPictuer.Enabled = true;
@@ -439,6 +441,7 @@ namespace Sandogh_PG
                 //txtBedAvali.ReadOnly = true;
                 txtHazineEftetah.ReadOnly = true;
                 txtSharhHesab.ReadOnly = true;
+                txtNobatbandiVam.ReadOnly = true;
                 chkIsActive.ReadOnly = true;
                 pictureEdit1.ReadOnly = true;
                 btnBrowsPictuer.Enabled = false;
@@ -552,6 +555,7 @@ namespace Sandogh_PG
                 txtHaghOzviat.Text = gridView1.GetFocusedRowCellDisplayText("HaghOzviat");
                 txtHazineEftetah.Text = gridView1.GetFocusedRowCellDisplayText("HazineEftetah");
                 txtSharhHesab.Text = gridView1.GetFocusedRowCellDisplayText("SharhHesab");
+                txtNobatbandiVam.Text = gridView1.GetFocusedRowCellDisplayText("NobatbandiVam") ?? "0";
                 chkIsActive.Checked = Convert.ToBoolean(gridView1.GetFocusedRowCellValue("IsActive"));
                 using (var db = new MyContext())
                 {
@@ -579,6 +583,7 @@ namespace Sandogh_PG
                 NameBeforeEdit = txtNameVFamil.Text;
                 IsActiveBeforeEdit = chkIsActive.Checked;
                 ActiveControls();
+                xtraTabControl1.SelectedTabPageIndex = 0;
                 txtCodePersoneli.Focus();
             }
         }
@@ -632,7 +637,6 @@ namespace Sandogh_PG
                             {
                                 obj.Moaref = cmbMoaref.Text;
                                 obj.MoarefId = Convert.ToInt32(cmbMoaref.EditValue);
-
                             }
                             obj.HazineEftetah = !string.IsNullOrEmpty(txtHazineEftetah.Text.Replace(",", "")) ? Convert.ToDecimal(txtHazineEftetah.Text.Replace(",", "")) : 0;
                             obj.BesAvali = !string.IsNullOrEmpty(txtBesAvali.Text.Replace(",", "")) ? Convert.ToDecimal(txtBesAvali.Text.Replace(",", "")) : 0;
@@ -654,6 +658,7 @@ namespace Sandogh_PG
                             obj.IsOzveSandogh = chkIsOzveSandogh.Checked;
                             obj.GroupTafziliId = 3;
                             obj.ShomareSanad = 0;
+                            obj.NobatbandiVam= Convert.ToInt32(txtNobatbandiVam.Text);
                             db.AazaSandoghs.Add(obj);
                             db.SaveChanges();
                             //////////////////////////////////////////
@@ -859,6 +864,7 @@ namespace Sandogh_PG
                                 q.IsOzveSandogh = chkIsOzveSandogh.Checked;
                                 q.IsActive = chkIsActive.Checked;
                                 q.GroupTafziliId = 3;
+                                q.NobatbandiVam = Convert.ToInt32(txtNobatbandiVam.Text);
                                 //////////////////////////////////////////
                                 //int _Code = Convert.ToInt32(txtCode.Text);
                                 var qq01 = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 3 && f.Id2 == RowId);
