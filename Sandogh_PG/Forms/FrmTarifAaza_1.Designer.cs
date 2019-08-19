@@ -56,6 +56,7 @@
             this.colShomareShaba = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colShoghl = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsOzveSandogh = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNobatbandiVam = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsActive = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAdressManzel = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAdressMohalKar = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -146,7 +147,6 @@
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
             this.txtNobatbandiVam = new DevExpress.XtraEditors.TextEdit();
             this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
-            this.colNobatbandiVam = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).BeginInit();
@@ -647,6 +647,22 @@
             this.colIsOzveSandogh.Visible = true;
             this.colIsOzveSandogh.VisibleIndex = 23;
             this.colIsOzveSandogh.Width = 134;
+            // 
+            // colNobatbandiVam
+            // 
+            this.colNobatbandiVam.AppearanceCell.Options.UseTextOptions = true;
+            this.colNobatbandiVam.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colNobatbandiVam.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colNobatbandiVam.AppearanceHeader.Options.UseTextOptions = true;
+            this.colNobatbandiVam.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colNobatbandiVam.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colNobatbandiVam.Caption = "شماره نوبت اعطای وام ";
+            this.colNobatbandiVam.FieldName = "NobatbandiVam";
+            this.colNobatbandiVam.MinWidth = 25;
+            this.colNobatbandiVam.Name = "colNobatbandiVam";
+            this.colNobatbandiVam.Visible = true;
+            this.colNobatbandiVam.VisibleIndex = 25;
+            this.colNobatbandiVam.Width = 220;
             // 
             // colIsActive
             // 
@@ -1882,7 +1898,7 @@
             this.txtNobatbandiVam.Properties.NullText = "به ریال";
             this.txtNobatbandiVam.Properties.ReadOnly = true;
             this.txtNobatbandiVam.Size = new System.Drawing.Size(102, 38);
-            this.txtNobatbandiVam.TabIndex = 2;
+            this.txtNobatbandiVam.TabIndex = 3;
             this.txtNobatbandiVam.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHaghOzviat_KeyPress);
             // 
             // labelControl26
@@ -1895,22 +1911,6 @@
             this.labelControl26.Size = new System.Drawing.Size(631, 31);
             this.labelControl26.TabIndex = 43;
             this.labelControl26.Text = "نتیجه قرعه کشی ، الویت بندی یا نوبت بندی اعطای وام = شماره نوبت اعطای وام";
-            // 
-            // colNobatbandiVam
-            // 
-            this.colNobatbandiVam.AppearanceCell.Options.UseTextOptions = true;
-            this.colNobatbandiVam.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colNobatbandiVam.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colNobatbandiVam.AppearanceHeader.Options.UseTextOptions = true;
-            this.colNobatbandiVam.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colNobatbandiVam.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colNobatbandiVam.Caption = "شماره نوبت اعطای وام ";
-            this.colNobatbandiVam.FieldName = "NobatbandiVam";
-            this.colNobatbandiVam.MinWidth = 25;
-            this.colNobatbandiVam.Name = "colNobatbandiVam";
-            this.colNobatbandiVam.Visible = true;
-            this.colNobatbandiVam.VisibleIndex = 25;
-            this.colNobatbandiVam.Width = 220;
             // 
             // FrmTarifAaza_1
             // 
