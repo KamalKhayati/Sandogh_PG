@@ -189,7 +189,8 @@ namespace Sandogh_PG
                             else
                             {
                                 Fm.EtmamGaranti.Caption = db.TarifSandoghs.FirstOrDefault().TarikhEtmamGaranti != null ? "اتمام گارانتی : " + db.TarifSandoghs.FirstOrDefault().TarikhEtmamGaranti.ToString().Substring(0, 10) : "0000/00/00";
-                                Fm.EtmamGaranti.ItemAppearance.Normal.ForeColor = Color.White;
+
+                                Fm.EtmamGaranti.ItemAppearance.Normal.ForeColor = labelControl1.ForeColor;
                                 Fm.btnTamdidGaranti.Enabled = false;
 
                             }

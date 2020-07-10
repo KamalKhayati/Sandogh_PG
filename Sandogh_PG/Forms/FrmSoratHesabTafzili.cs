@@ -121,7 +121,7 @@ namespace Sandogh_PG
                             AsnadeHesabdariRow obj = new AsnadeHesabdariRow();
                             //obj.ShomareSanad = 0;
                             obj.Tarikh = Convert.ToDateTime(d1);
-                            obj.Sharh = "مانده حساب از قبل";
+                            obj.Sharh = "جمع مانده حساب از قبل";
                             obj.Bed = q1.Sum(s => s.Bed);
                             obj.Bes = q1.Sum(s => s.Bes);
                             q.Add(obj);
@@ -211,14 +211,35 @@ namespace Sandogh_PG
                     {
                         int TafziliId = Convert.ToInt32(cmbHesabTafzili.EditValue);
                         int MoinId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId"));
-                        var q = db.AsnadeHesabdariRows.Where(f => f.HesabMoinId == MoinId && f.HesabTafId == TafziliId).OrderBy(f => f.Tarikh).ThenBy(f => f.ShomareSanad).ToList();
+                        var StartData = Convert.ToDateTime(txtAzTarikh.Text);
+                        var EndData = Convert.ToDateTime(txtTaTarikh.Text);
+                        int yyyy1 = Convert.ToInt32(txtAzTarikh.Text.Substring(0, 4));
+                        int MM1 = Convert.ToInt32(txtAzTarikh.Text.Substring(5, 2));
+                        int dd1 = Convert.ToInt32(txtAzTarikh.Text.Substring(8, 2));
+                        Mydate d1 = new Mydate(yyyy1, MM1, dd1);
+                        d1.DecrementDay();
+                        var q = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == TafziliId && f.HesabMoinId == MoinId && f.Tarikh <= EndData).OrderBy(f => f.Tarikh).ToList();
+                        var q1 = q.Where(s => s.Tarikh < StartData).OrderBy(f => f.Tarikh).ToList();
+
                         if (q.Count > 0)
                         {
+                            if (q1.Count > 0)
+                            {
+                                q.RemoveRange(0, q1.Count);
+                                AsnadeHesabdariRow obj = new AsnadeHesabdariRow();
+                                //obj.ShomareSanad = 0;
+                                obj.Tarikh = Convert.ToDateTime(d1);
+                                obj.Sharh = "جمع مانده حساب از قبل";
+                                obj.Bed = q1.Sum(s => s.Bed);
+                                obj.Bes = q1.Sum(s => s.Bes);
+                                q.Add(obj);
+                            }
                             HelpClass1.Result2 = new List<decimal>();
-                            asnadeHesabdariRowsBindingSource1.DataSource = q;
+                            asnadeHesabdariRowsBindingSource1.DataSource = q.OrderBy(f => f.Tarikh).ThenBy(f => f.ShomareSanad);
                         }
                         else
                             asnadeHesabdariRowsBindingSource1.DataSource = null;
+
                         _HesabMoin = gridView1.GetFocusedRowCellDisplayText("HesabMoinName");
 
                     }
@@ -228,6 +249,30 @@ namespace Sandogh_PG
                             "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+
+                //using (var db = new MyContext())
+                //{
+                //    try
+                //    {
+                //        int TafziliId = Convert.ToInt32(cmbHesabTafzili.EditValue);
+                //        int MoinId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId"));
+                //        var q = db.AsnadeHesabdariRows.Where(f => f.HesabMoinId == MoinId && f.HesabTafId == TafziliId).OrderBy(f => f.Tarikh).ThenBy(f => f.ShomareSanad).ToList();
+                //        if (q.Count > 0)
+                //        {
+                //            HelpClass1.Result2 = new List<decimal>();
+                //            asnadeHesabdariRowsBindingSource1.DataSource = q;
+                //        }
+                //        else
+                //            asnadeHesabdariRowsBindingSource1.DataSource = null;
+                //        _HesabMoin = gridView1.GetFocusedRowCellDisplayText("HesabMoinName");
+
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                //            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    }
+                //}
 
             }
         }
