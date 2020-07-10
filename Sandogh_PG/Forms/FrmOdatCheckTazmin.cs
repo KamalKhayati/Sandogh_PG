@@ -89,6 +89,9 @@ namespace Sandogh_PG
         private void FrmOdatCheckTazmin_Load(object sender, EventArgs e)
         {
             FillDataGridCheckTazmin();
+            HelpClass1.DateTimeMask(txtTarikhDaryaft);
+            HelpClass1.DateTimeMask(txtTarikhCheck);
+            HelpClass1.DateTimeMask(txtTarikhOdat);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

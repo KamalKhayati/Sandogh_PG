@@ -51,9 +51,9 @@ namespace Sandogh_PG
         public string RandomCode()
         {
             StringBuilder builder = new StringBuilder();
-            builder.Append(RandomString(4, true));
-            builder.Append(RandomNumber(1000, 9999));
-            builder.Append(RandomString(2, false));
+            //builder.Append(RandomString(4, true));
+            builder.Append(RandomNumber(1000000000, 2147483647));
+            //builder.Append(RandomString(2, false));
             return builder.ToString();
         }
 
@@ -154,12 +154,15 @@ namespace Sandogh_PG
                         if (q != null)
                         {
                             q.AppActived = true;
+                            q.IsGaranti = true;
+                            q.ShomareNoskheBarname = Application.ProductVersion;
+
                             q.TarikhRegister = Convert.ToDateTime(DateTime.Now.ToString().Substring(0, 10));
                             int yyyy1 = Convert.ToInt32(DateTime.Now.ToString().Substring(0, 4));
                             int MM1 = Convert.ToInt32(DateTime.Now.ToString().Substring(5, 2));
                             int dd1 = Convert.ToInt32(DateTime.Now.ToString().Substring(8, 2));
                             Mydate d1 = new Mydate(yyyy1, MM1, dd1);
-                            for (int i = 0; i < 15; i++)
+                            for (int i = 0; i < 13; i++)
                             {
                                 d1.IncrementMonth();
                             }
@@ -186,8 +189,8 @@ namespace Sandogh_PG
                             else
                             {
                                 Fm.EtmamGaranti.Caption = db.TarifSandoghs.FirstOrDefault().TarikhEtmamGaranti != null ? "اتمام گارانتی : " + db.TarifSandoghs.FirstOrDefault().TarikhEtmamGaranti.ToString().Substring(0, 10) : "0000/00/00";
-                                Fm.EtmamGaranti.ItemAppearance.Normal.ForeColor = Color.Black;
-                                Fm.btnTamdidGaranti.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                                Fm.EtmamGaranti.ItemAppearance.Normal.ForeColor = Color.White;
+                                Fm.btnTamdidGaranti.Enabled = false;
 
                             }
                         }

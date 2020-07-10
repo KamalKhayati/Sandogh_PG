@@ -53,25 +53,21 @@
             // 
             // labelControl6
             // 
-            this.labelControl6.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.labelControl6.Appearance.Options.UseForeColor = true;
             this.labelControl6.Location = new System.Drawing.Point(69, 207);
             this.labelControl6.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(136, 31);
+            this.labelControl6.Size = new System.Drawing.Size(129, 31);
             this.labelControl6.TabIndex = 2;
-            this.labelControl6.Text = "0935-959-8830";
+            this.labelControl6.Text = "0914-825-3244";
             // 
             // labelControl5
             // 
-            this.labelControl5.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.labelControl5.Appearance.Options.UseForeColor = true;
             this.labelControl5.Location = new System.Drawing.Point(386, 207);
             this.labelControl5.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(130, 31);
+            this.labelControl5.Size = new System.Drawing.Size(127, 31);
             this.labelControl5.TabIndex = 3;
-            this.labelControl5.Text = "0914-825-3245";
+            this.labelControl5.Text = "0914-825-3173";
             // 
             // labelControl3
             // 

@@ -100,6 +100,9 @@ namespace Sandogh_PG
         private void FrmTarifAaza_1_Load(object sender, EventArgs e)
         {
             FillDataGridTarifAaza();
+            HelpClass1.DateTimeMask(txtTarikhOzviat);
+            HelpClass1.DateTimeMask(txtBirthDate);
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -409,6 +412,7 @@ namespace Sandogh_PG
                 pictureEdit1.ReadOnly = false;
                 btnBrowsPictuer.Enabled = true;
                 btnDeletePictuer.Enabled = true;
+                btnNobatVam.Enabled = true;
             }
         }
 
@@ -446,6 +450,7 @@ namespace Sandogh_PG
                 pictureEdit1.ReadOnly = true;
                 btnBrowsPictuer.Enabled = false;
                 btnDeletePictuer.Enabled = false;
+                btnNobatVam.Enabled = false;
             }
         }
 
@@ -991,7 +996,7 @@ namespace Sandogh_PG
                                 else
                                     btnDisplyNotActiveList_Click(null, null);
 
-                                //XtraMessageBox.Show("عملیات ویرایش با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                                //XtraMessageBox.Show("عملیات ویرایش با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 if (gridView1.RowCount > 0)
                                     gridView1.FocusedRowHandle = EditRowIndex;
                                 gridControl1.Enabled = true;
@@ -1145,6 +1150,30 @@ namespace Sandogh_PG
         private void txtHaghOzviat_KeyPress(object sender, KeyPressEventArgs e)
         {
             HelpClass1.AddZerooToTextBox(sender, e);
+        }
+
+        private void btnNobatVam_Click(object sender, EventArgs e)
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    var q = db.AazaSandoghs.Max(s => s.NobatbandiVam);
+                    if (q>0)
+                    {
+                        txtNobatbandiVam.Text = (q+1).ToString();
+                    }
+                    else
+                        txtNobatbandiVam.Text = "1";
+                    txtNobatbandiVam.Focus();
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
         }
     }
 }

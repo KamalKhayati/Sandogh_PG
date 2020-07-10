@@ -56,9 +56,9 @@ namespace Sandogh_PG
         public int HesabTafziliId { get; set; }
         [Required, MaxLength(200)]
         public string HesabTafziliName { get; set; }
-        [MaxLength(25)]
+        [MaxLength(100)]
         public string ZameninId { get; set; }
-        [MaxLength(150)]
+        [MaxLength(500)]
         public string ZameninName { get; set; }
         public bool? HaveCheckTazmin { get; set; }
         public bool? IsTasviye { get; set; }
@@ -66,6 +66,8 @@ namespace Sandogh_PG
         public int ShomareSanad { get; set; }
         [Required]
         public int SalMaliId { get; set; }
+        [MaxLength(500)]
+        public string Tozihat { get; set; }
         public virtual AllHesabTafzili AllHesabTafzili1 { get; set; }
         public virtual ICollection<RizeAghsatVam> RizeAghsatVams { get; set; }
     }

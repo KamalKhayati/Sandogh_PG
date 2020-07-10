@@ -27,28 +27,32 @@ namespace Sandogh_PG
         public void FillDataGridView1()
         {
             int TafziliId = Convert.ToInt32(cmbHesabTafzili.EditValue);
+            var StartData = Convert.ToDateTime(txtAzTarikh.Text);
+            var EndData = Convert.ToDateTime(txtTaTarikh.Text);
             using (var db = new MyContext())
             {
                 try
                 {
                     List<AsnadeHesabdariRow> List1 = new List<AsnadeHesabdariRow>();
-                    var q1 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == TafziliId).ToList();
+                    var q1 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == TafziliId && f.Tarikh <= EndData).ToList();
                     if (q1.Count > 0)
                     {
-                        foreach (var item in q1)
+                        var q2 = q1.Select(s => s.HesabMoinId).Distinct().ToList();
+                        foreach (var item in q2)
                         {
+                            var q3 = q1.Where(s => s.HesabMoinId == item).ToList();
                             AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
-                            if (!List1.Any(f => f.HesabMoinId == item.HesabMoinId))
+                            if (!List1.Any(f => f.HesabMoinId == item))
                             {
-                                obj1.Id = item.Id;
-                                obj1.HesabMoinId = item.HesabMoinId;
-                                obj1.HesabMoinCode = item.HesabMoinCode;
-                                obj1.HesabMoinName = item.HesabMoinName;
+                                obj1.Id = q3.FirstOrDefault().Id;
+                                obj1.HesabMoinId = q3.FirstOrDefault().HesabMoinId;
+                                obj1.HesabMoinCode = q3.FirstOrDefault().HesabMoinCode;
+                                obj1.HesabMoinName = q3.FirstOrDefault().HesabMoinName;
                                 //obj1.HesabTafId = item.HesabTafId;
                                 //obj1.HesabTafCode = item.HesabTafCode;
                                 //obj1.HesabTafName = item.HesabTafName;
-                                obj1.Bed = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == TafziliId && f.HesabMoinId == item.HesabMoinId).Sum(f => f.Bed);
-                                obj1.Bes = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == TafziliId && f.HesabMoinId == item.HesabMoinId).Sum(f => f.Bes);
+                                obj1.Bed = q3.Sum(f => f.Bed);
+                                obj1.Bes = q3.Sum(f => f.Bes);
                                 List1.Add(obj1);
                             }
                         }
@@ -99,10 +103,30 @@ namespace Sandogh_PG
                 try
                 {
                     int TafziliId = Convert.ToInt32(cmbHesabTafzili.EditValue);
-                    var q = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == TafziliId).OrderBy(f => f.Tarikh).ThenBy(f => f.ShomareSanad).ToList();
+                    var StartData = Convert.ToDateTime(txtAzTarikh.Text);
+                    var EndData = Convert.ToDateTime(txtTaTarikh.Text);
+                    int yyyy1 = Convert.ToInt32(txtAzTarikh.Text.Substring(0, 4));
+                    int MM1 = Convert.ToInt32(txtAzTarikh.Text.Substring(5, 2));
+                    int dd1 = Convert.ToInt32(txtAzTarikh.Text.Substring(8, 2));
+                    Mydate d1 = new Mydate(yyyy1, MM1, dd1);
+                    d1.DecrementDay();
+                    var q = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == TafziliId && f.Tarikh <= EndData).OrderBy(f => f.Tarikh).ToList();
+                    var q1 = q.Where(s => s.Tarikh < StartData).OrderBy(f => f.Tarikh).ToList();
+
                     if (q.Count > 0)
                     {
-                        asnadeHesabdariRowsBindingSource1.DataSource = q;
+                        if (q1.Count > 0)
+                        {
+                            q.RemoveRange(0, q1.Count);
+                            AsnadeHesabdariRow obj = new AsnadeHesabdariRow();
+                            //obj.ShomareSanad = 0;
+                            obj.Tarikh = Convert.ToDateTime(d1);
+                            obj.Sharh = "مانده حساب از قبل";
+                            obj.Bed = q1.Sum(s => s.Bed);
+                            obj.Bes = q1.Sum(s => s.Bes);
+                            q.Add(obj);
+                        }
+                        asnadeHesabdariRowsBindingSource1.DataSource = q.OrderBy(f => f.Tarikh).ThenBy(f => f.ShomareSanad);
                     }
                     else
                         asnadeHesabdariRowsBindingSource1.DataSource = null;
@@ -157,8 +181,14 @@ namespace Sandogh_PG
 
         private void FrmSoratHesabTafzili_Load(object sender, EventArgs e)
         {
+            txtAzTarikh.Text = new MyContext().AsnadeHesabdariRows.Any() ? new MyContext().AsnadeHesabdariRows.Min(f => f.Tarikh).ToString().Substring(0, 10) : "1398/01/01";
+            txtTaTarikh.Text = DateTime.Now.ToString().Substring(0, 10);
+            HelpClass1.DateTimeMask(txtAzTarikh);
+            HelpClass1.DateTimeMask(txtTaTarikh);
+
             FillcmbHesabTafzili();
             cmbHesabTafzili.Focus();
+
             //M1 = new GridColumnSummaryItem();
             //M1.SummaryType = SummaryItemType.Custom;
             //M1.FieldName = "Mande1";
@@ -215,10 +245,10 @@ namespace Sandogh_PG
                     XtraReport XtraReport1 = new XtraReport();
                     XtraReport1.LoadLayoutFromXml(FilePath + FileName);
 
-                    XtraReport1.DataSource =HelpClass1.ConvettDatagridviewToDataSet(gridView2);
+                    XtraReport1.DataSource = HelpClass1.ConvettDatagridviewToDataSet(gridView2);
 
-                    XtraReport1.Parameters["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : gridView2.GetRowCellDisplayText(0, "Tarikh").Substring(0, 10);
-                    XtraReport1.Parameters["Ta_Tarikh"].Value = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
+                    XtraReport1.Parameters["Az_Tarikh"].Value =  txtAzTarikh.Text ;
+                    XtraReport1.Parameters["Ta_Tarikh"].Value =  txtTaTarikh.Text ;
                     XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
                     XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
                     XtraReport1.Parameters["HesabTafzil"].Value = cmbHesabTafzili.Text;
@@ -249,6 +279,11 @@ namespace Sandogh_PG
         private void FrmSoratHesabTafzili_KeyDown(object sender, KeyEventArgs e)
         {
             HelpClass1.ControlAltShift_KeyDown(sender, e, btnDesignReport);
+
+        }
+
+        private void ChkTarikh_CheckedChanged(object sender, EventArgs e)
+        {
 
         }
     }

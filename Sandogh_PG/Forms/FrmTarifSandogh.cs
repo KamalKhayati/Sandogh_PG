@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Sandogh_PG;
 using System.IO;
+using System.Management;
 
 namespace Sandogh_PG
 {
@@ -25,6 +26,8 @@ namespace Sandogh_PG
         private void FrmTarifSandogh_Load(object sender, EventArgs e)
         {
             txtTarikhEjad.Text = DateTime.Now.ToString().Substring(0, 10);
+            HelpClass1.DateTimeMask(txtTarikhEjad);
+
             using (var db = new MyContext())
             {
                 try
@@ -155,32 +158,47 @@ namespace Sandogh_PG
                             }
                             else
                                 q1.Pictuer = null;
-                        }
-                        else
-                        {
-                            TarifSandogh obj = new TarifSandogh();
-                            obj.NameSandogh = txtNameSandogh.Text;
-                            obj.NameModir = txtNameModir.Text;
-                            obj.Adress = txtAdress.Text;
-                            obj.Tell = txtTell.Text;
-                            obj.Mobile = txtMobile.Text;
-                            obj.IsDefault = chkIsDefault.Checked;
-                            if (!string.IsNullOrEmpty(txtTarikhEjad.Text))
-                                obj.TarikhEjad = Convert.ToDateTime(txtTarikhEjad.Text.Substring(0, 10));
-                            else
-                                q1.TarikhEjad = Convert.ToDateTime(DateTime.Now.ToString().Substring(0, 10));
-                            if (pictureEdit1.Image != null)
+                            /////////////////////////////////////////////////////////////////////
+                            string MadarBoardCode = string.Empty;
+                            ManagementObjectSearcher sercher2 = new ManagementObjectSearcher("select * from Win32_BaseBoard");
+                            foreach (ManagementObject wmi_Board in sercher2.Get())
                             {
-                                MemoryStream ms = new MemoryStream();
-                                img.Save(ms, pictureEdit1.Image.RawFormat);
-                                byte[] myarrey = ms.GetBuffer();
-                                obj.Pictuer = myarrey;
+                                if (wmi_Board["SerialNumber"] != null)
+                                    MadarBoardCode = wmi_Board["SerialNumber"].ToString().Trim();
                             }
-                            else
-                                obj.Pictuer = null;
-                            obj.PicBackground = null;
-                            db.TarifSandoghs.Add(obj);
+                            if (q1.MadarBoardCode != MadarBoardCode.Substring(0, 10))
+                            {
+                                q1.MadarBoardCode = MadarBoardCode.Substring(0, 10);
+                                db.SaveChanges();
+                            }
+
                         }
+                        //else
+                        //{
+                        //    TarifSandogh obj = new TarifSandogh();
+                        //    obj.NameSandogh = txtNameSandogh.Text;
+                        //    obj.NameModir = txtNameModir.Text;
+                        //    obj.Adress = txtAdress.Text;
+                        //    obj.Tell = txtTell.Text;
+                        //    obj.Mobile = txtMobile.Text;
+                        //    obj.IsDefault = chkIsDefault.Checked;
+                        //    if (!string.IsNullOrEmpty(txtTarikhEjad.Text))
+                        //        obj.TarikhEjad = Convert.ToDateTime(txtTarikhEjad.Text.Substring(0, 10));
+                        //    else
+                        //        q1.TarikhEjad = Convert.ToDateTime(DateTime.Now.ToString().Substring(0, 10));
+                        //    if (pictureEdit1.Image != null)
+                        //    {
+                        //        MemoryStream ms = new MemoryStream();
+                        //        img.Save(ms, pictureEdit1.Image.RawFormat);
+                        //        byte[] myarrey = ms.GetBuffer();
+                        //        obj.Pictuer = myarrey;
+                        //    }
+                        //    else
+                        //        obj.Pictuer = null;
+                        //    obj.PicBackground = null;
+                        //    db.TarifSandoghs.Add(obj);
+                        //}
+
 
                         db.SaveChanges();
                         XtraMessageBox.Show("اطلاعات با موفقیت ثبت گردید", "پیغام ثبت ", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -114,8 +114,6 @@
             this.txtTaTarikh.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtTaTarikh.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtTaTarikh.Properties.Mask.BeepOnError = true;
-            this.txtTaTarikh.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
-    "1-9]|[123]0))|((1[2])/([012][1-9])))";
             this.txtTaTarikh.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtTaTarikh.Properties.Mask.PlaceHolder = '-';
             this.txtTaTarikh.Properties.Mask.UseMaskAsDisplayFormat = true;

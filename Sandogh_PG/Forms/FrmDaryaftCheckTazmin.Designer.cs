@@ -692,8 +692,7 @@
             this.txtTarikhOdat.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtTarikhOdat.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtTarikhOdat.Properties.Mask.BeepOnError = true;
-            this.txtTarikhOdat.Properties.Mask.EditMask = "yyyy/MM/dd";
-            this.txtTarikhOdat.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
+            this.txtTarikhOdat.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtTarikhOdat.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtTarikhOdat.Properties.ReadOnly = true;
             this.txtTarikhOdat.Size = new System.Drawing.Size(208, 38);
@@ -802,8 +801,6 @@
             this.txtTarikhCheck.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtTarikhCheck.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtTarikhCheck.Properties.Mask.BeepOnError = true;
-            this.txtTarikhCheck.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
-    "1-9]|[123]0))|((1[2])/([012][1-9])))";
             this.txtTarikhCheck.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtTarikhCheck.Properties.Mask.PlaceHolder = '-';
             this.txtTarikhCheck.Properties.Mask.UseMaskAsDisplayFormat = true;
@@ -822,8 +819,6 @@
             this.txtTarikhDaryaft.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtTarikhDaryaft.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtTarikhDaryaft.Properties.Mask.BeepOnError = true;
-            this.txtTarikhDaryaft.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
-    "1-9]|[123]0))|((1[2])/([012][1-9])))";
             this.txtTarikhDaryaft.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtTarikhDaryaft.Properties.Mask.PlaceHolder = '-';
             this.txtTarikhDaryaft.Properties.Mask.UseMaskAsDisplayFormat = true;
@@ -893,8 +888,6 @@
             // 
             // labelControl9
             // 
-            this.labelControl9.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
-            this.labelControl9.Appearance.Options.UseForeColor = true;
             this.labelControl9.AutoEllipsis = true;
             this.labelControl9.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl9.Location = new System.Drawing.Point(643, 99);
@@ -917,8 +910,6 @@
             // 
             // labelControl10
             // 
-            this.labelControl10.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
-            this.labelControl10.Appearance.Options.UseForeColor = true;
             this.labelControl10.AutoEllipsis = true;
             this.labelControl10.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl10.Location = new System.Drawing.Point(1051, 99);

@@ -36,6 +36,10 @@ namespace Sandogh_PG
         public bool IsDefault { get; set; }
         [Required]
         public bool AppActived { get; set; }
+        [Required]
+        public bool IsGaranti { get; set; }
+        [Required, MaxLength(20)]
+        public string ShomareNoskheBarname { get; set; }
         public virtual Tanzimat Tanzimat1 { get; set; }
         public virtual ICollection<SalMali> SalMalis { get; set; }
         //public virtual ICollection<AazaSandogh> AazaSandoghs { get; set; }

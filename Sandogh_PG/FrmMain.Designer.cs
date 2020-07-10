@@ -76,6 +76,8 @@
             this.barStaticItem5 = new DevExpress.XtraBars.BarStaticItem();
             this.btnTamdidGaranti = new DevExpress.XtraBars.BarButtonItem();
             this.btnDarkhastVam = new DevExpress.XtraBars.BarButtonItem();
+            this.barStaticItem4 = new DevExpress.XtraBars.BarStaticItem();
+            this.ShNoskheBarname = new DevExpress.XtraBars.BarStaticItem();
             this.DaryaftVPardakht = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgDaryaft = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgPardakhtha = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -157,10 +159,12 @@
             this.barStaticItem5,
             this.btnTamdidGaranti,
             this.btnDarkhastVam,
-            this.btnMabaleghGhabelDaryaft});
+            this.btnMabaleghGhabelDaryaft,
+            this.barStaticItem4,
+            this.ShNoskheBarname});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
-            this.ribbonControl1.MaxItemId = 75;
+            this.ribbonControl1.MaxItemId = 77;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.DaryaftVPardakht,
@@ -478,7 +482,7 @@
             // 
             // barStaticItem2
             // 
-            this.barStaticItem2.Caption = "بانک اطلاعاتی :";
+            this.barStaticItem2.Caption = "نام بانک اطلاعاتی :";
             this.barStaticItem2.Id = 65;
             this.barStaticItem2.Name = "barStaticItem2";
             // 
@@ -524,7 +528,6 @@
             this.btnTamdidGaranti.Id = 72;
             this.btnTamdidGaranti.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnTamdidGaranti.ImageOptions.SvgImage")));
             this.btnTamdidGaranti.Name = "btnTamdidGaranti";
-            this.btnTamdidGaranti.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btnTamdidGaranti.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTamdidGaranti_ItemClick);
             // 
             // btnDarkhastVam
@@ -534,6 +537,18 @@
             this.btnDarkhastVam.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDarkhastVam.ImageOptions.SvgImage")));
             this.btnDarkhastVam.Name = "btnDarkhastVam";
             this.btnDarkhastVam.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDarkhastVam_ItemClick);
+            // 
+            // barStaticItem4
+            // 
+            this.barStaticItem4.Caption = "ش نسخه برنامه :";
+            this.barStaticItem4.Id = 75;
+            this.barStaticItem4.Name = "barStaticItem4";
+            // 
+            // ShNoskheBarname
+            // 
+            this.ShNoskheBarname.Caption = "ShNoskheBarname";
+            this.ShNoskheBarname.Id = 76;
+            this.ShNoskheBarname.Name = "ShNoskheBarname";
             // 
             // DaryaftVPardakht
             // 
@@ -673,6 +688,8 @@
             this.ribbonStatusBar1.ItemLinks.Add(this.txtUserId);
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem1, true);
             this.ribbonStatusBar1.ItemLinks.Add(this.txtUserName);
+            this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem4, true);
+            this.ribbonStatusBar1.ItemLinks.Add(this.ShNoskheBarname);
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem2, true);
             this.ribbonStatusBar1.ItemLinks.Add(this.NameDataBase);
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem5, true);
@@ -817,6 +834,8 @@
         public DevExpress.XtraBars.BarButtonItem btnTamdidGaranti;
         private DevExpress.XtraBars.BarButtonItem btnDarkhastVam;
         private DevExpress.XtraBars.BarButtonItem btnMabaleghGhabelDaryaft;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem4;
+        public DevExpress.XtraBars.BarStaticItem ShNoskheBarname;
     }
 }
 

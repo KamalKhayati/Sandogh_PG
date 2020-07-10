@@ -329,6 +329,9 @@ namespace Sandogh_PG
         {
             FillcmbDaryaftkonande();
             FillcmbHesabMoin();
+            HelpClass1.DateTimeMask(txtTarikhDarkhast);
+            HelpClass1.DateTimeMask(txtTarikhPardakht);
+            HelpClass1.DateTimeMask(txtSarresidAvalinGhest);
             _IDSandogh = Convert.ToInt32(Fm.Fm.IDSandogh.Caption);
             if (En == EnumCED.Create)
             {
@@ -410,6 +413,7 @@ namespace Sandogh_PG
                     chkcmbEntekhabZamenin.SetEditValue(Fm.gridView1.GetFocusedRowCellDisplayText("ZameninId"));
 
                 }
+                txtTozihat.Text = Fm.gridView1.GetFocusedRowCellDisplayText("Tozihat")!=null? Fm.gridView1.GetFocusedRowCellDisplayText("Tozihat"):null;
                 chkIsTasviye.Visible = true;
                 chkIsTasviye.Checked = Convert.ToBoolean(Fm.gridView1.GetFocusedRowCellValue("IsTasviye"));
             }
@@ -606,10 +610,16 @@ namespace Sandogh_PG
                                 }
                                 obj.ZameninId = CheckedItems;
                             }
+                            else
+                            {
+                                obj.ZameninName = null;
+                                obj.ZameninId = null;
+                            }
                             obj.HaveCheckTazmin = checkTazminsBindingSource.DataSource != null ? true : false;
                             obj.IsTasviye = chkIsTasviye.Checked ? true : false;
                             obj.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
                             obj.ShomareSanad = q1 + 1;
+                            obj.Tozihat = txtTozihat.Text;
                             db.VamPardakhtis.Add(obj);
                             db.SaveChanges();
                             //////////////////////////////////////////////////////////////////////////////////////
@@ -780,8 +790,14 @@ namespace Sandogh_PG
                                         }
                                         q.ZameninId = CheckedItems;
                                     }
+                                    else
+                                    {
+                                        q.ZameninName = null;
+                                        q.ZameninId = null;
+                                    }
                                     q.HaveCheckTazmin = checkTazminsBindingSource.DataSource != null ? true : false;
                                     q.IsTasviye = chkIsTasviye.Checked ? true : false;
+                                    q.Tozihat = txtTozihat.Text;
                                     ////////////////////////////////////////////////////////////////////////////////////////////
                                     if (IsEditRizAghsat)
                                     {
@@ -1199,6 +1215,31 @@ namespace Sandogh_PG
         private void txtMablaghAsli_KeyPress(object sender, KeyPressEventArgs e)
         {
             HelpClass1.AddZerooToTextBox(sender, e);
+
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    var q = db.VamPardakhtis.Max(s => s.ShomareDarkhast);
+                    if (!string.IsNullOrEmpty(q))
+                    {
+                        txtShomareDarkhast.Text = (Convert.ToInt32(q) + 1).ToString();
+                    }
+                    else
+                        txtShomareDarkhast.Text = "1";
+                    txtTarikhPardakht.Focus();
+
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
 
         }
     }

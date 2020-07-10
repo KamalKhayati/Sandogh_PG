@@ -102,6 +102,7 @@
             this.btnPreview2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnLast2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnDisplyActiveList2 = new DevExpress.XtraEditors.SimpleButton();
+            this.colTozihat = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -201,7 +202,8 @@
             this.colHesabTafzili,
             this.gridColumn45,
             this.AazaId,
-            this.colZameninId});
+            this.colZameninId,
+            this.colTozihat});
             this.gridView1.DetailHeight = 434;
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView1.GridControl = this.gridControl1;
@@ -868,6 +870,7 @@
             this.gridView2.OptionsView.ShowAutoFilterRow = true;
             this.gridView2.OptionsView.ShowFooter = true;
             this.gridView2.OptionsView.ShowGroupPanel = false;
+            this.gridView2.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView2_RowCellStyle);
             this.gridView2.CustomSummaryCalculate += new DevExpress.Data.CustomSummaryEventHandler(this.gridView2_CustomSummaryCalculate);
             this.gridView2.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView2_FocusedRowChanged);
             this.gridView2.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView2_CustomUnboundColumnData);
@@ -1190,6 +1193,15 @@
             this.btnDisplyActiveList2.ToolTip = "نمایش لیست";
             this.btnDisplyActiveList2.Click += new System.EventHandler(this.btnDisplyActiveList2_Click);
             // 
+            // colTozihat
+            // 
+            this.colTozihat.FieldName = "Tozihat";
+            this.colTozihat.MinWidth = 25;
+            this.colTozihat.Name = "colTozihat";
+            this.colTozihat.Visible = true;
+            this.colTozihat.VisibleIndex = 22;
+            this.colTozihat.Width = 94;
+            // 
             // FrmListVamhayePardakhti
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
@@ -1307,5 +1319,6 @@
         private DevExpress.XtraEditors.SimpleButton btnDesignReport1;
         private DevExpress.XtraEditors.SimpleButton btnDesignReport2;
         private DevExpress.XtraGrid.Columns.GridColumn colSharh;
+        private DevExpress.XtraGrid.Columns.GridColumn colTozihat;
     }
 }

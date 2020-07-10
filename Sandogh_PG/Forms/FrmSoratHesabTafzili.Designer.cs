@@ -63,7 +63,6 @@
             this.Mande = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.ChkTarikh = new DevExpress.XtraEditors.CheckEdit();
             this.txtAzTarikh = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnDesignReport = new DevExpress.XtraEditors.SimpleButton();
@@ -85,7 +84,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ChkTarikh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAzTarikh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbHesabTafzili.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).BeginInit();
@@ -99,7 +97,7 @@
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(680, 720);
+            this.panelControl1.Size = new System.Drawing.Size(926, 720);
             this.panelControl1.TabIndex = 0;
             // 
             // gridControl2
@@ -111,7 +109,7 @@
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(676, 716);
+            this.gridControl2.Size = new System.Drawing.Size(922, 716);
             this.gridControl2.TabIndex = 35;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -347,7 +345,7 @@
             this.panelControl2.Controls.Add(this.gridControl1);
             this.panelControl2.Controls.Add(this.panelControl3);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelControl2.Location = new System.Drawing.Point(680, 0);
+            this.panelControl2.Location = new System.Drawing.Point(926, 0);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(499, 720);
@@ -358,11 +356,11 @@
             this.gridControl1.DataSource = this.asnadeHesabdariRowsBindingSource;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.gridControl1.Location = new System.Drawing.Point(2, 111);
+            this.gridControl1.Location = new System.Drawing.Point(2, 162);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(495, 607);
+            this.gridControl1.Size = new System.Drawing.Size(495, 556);
             this.gridControl1.TabIndex = 34;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -579,7 +577,6 @@
             // panelControl3
             // 
             this.panelControl3.Controls.Add(this.labelControl1);
-            this.panelControl3.Controls.Add(this.ChkTarikh);
             this.panelControl3.Controls.Add(this.txtAzTarikh);
             this.panelControl3.Controls.Add(this.labelControl2);
             this.panelControl3.Controls.Add(this.btnDesignReport);
@@ -592,7 +589,7 @@
             this.panelControl3.Location = new System.Drawing.Point(2, 2);
             this.panelControl3.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(495, 109);
+            this.panelControl3.Size = new System.Drawing.Size(495, 160);
             this.panelControl3.TabIndex = 0;
             // 
             // labelControl1
@@ -602,47 +599,29 @@
             this.labelControl1.Appearance.Options.UseForeColor = true;
             this.labelControl1.AutoEllipsis = true;
             this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl1.Location = new System.Drawing.Point(167, 58);
+            this.labelControl1.Location = new System.Drawing.Point(164, 59);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(61, 40);
             this.labelControl1.TabIndex = 44;
             this.labelControl1.Text = "تا تاریخ";
-            this.labelControl1.Visible = false;
-            // 
-            // ChkTarikh
-            // 
-            this.ChkTarikh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChkTarikh.Location = new System.Drawing.Point(469, 62);
-            this.ChkTarikh.Margin = new System.Windows.Forms.Padding(4);
-            this.ChkTarikh.Name = "ChkTarikh";
-            this.ChkTarikh.Properties.Caption = "checkEdit1";
-            this.ChkTarikh.Size = new System.Drawing.Size(20, 35);
-            this.ChkTarikh.TabIndex = 40;
-            this.ChkTarikh.TabStop = false;
-            this.ChkTarikh.Visible = false;
             // 
             // txtAzTarikh
             // 
             this.txtAzTarikh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAzTarikh.Enabled = false;
             this.txtAzTarikh.EnterMoveNextControl = true;
-            this.txtAzTarikh.Location = new System.Drawing.Point(233, 60);
+            this.txtAzTarikh.Location = new System.Drawing.Point(236, 61);
             this.txtAzTarikh.Margin = new System.Windows.Forms.Padding(4);
             this.txtAzTarikh.Name = "txtAzTarikh";
             this.txtAzTarikh.Properties.Appearance.Options.UseTextOptions = true;
             this.txtAzTarikh.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtAzTarikh.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtAzTarikh.Properties.Mask.BeepOnError = true;
-            this.txtAzTarikh.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
-    "1-9]|[123]0))|((1[2])/([012][1-9])))";
-            this.txtAzTarikh.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtAzTarikh.Properties.Mask.PlaceHolder = '-';
             this.txtAzTarikh.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtAzTarikh.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtAzTarikh.Size = new System.Drawing.Size(159, 38);
+            this.txtAzTarikh.Size = new System.Drawing.Size(153, 38);
             this.txtAzTarikh.TabIndex = 41;
-            this.txtAzTarikh.Visible = false;
             // 
             // labelControl2
             // 
@@ -657,13 +636,12 @@
             this.labelControl2.Size = new System.Drawing.Size(61, 40);
             this.labelControl2.TabIndex = 42;
             this.labelControl2.Text = "از تاریخ";
-            this.labelControl2.Visible = false;
             // 
             // btnDesignReport
             // 
             this.btnDesignReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDesignReport.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDesignReport.ImageOptions.SvgImage")));
-            this.btnDesignReport.Location = new System.Drawing.Point(115, 60);
+            this.btnDesignReport.Location = new System.Drawing.Point(6, 113);
             this.btnDesignReport.Margin = new System.Windows.Forms.Padding(4);
             this.btnDesignReport.Name = "btnDesignReport";
             this.btnDesignReport.Size = new System.Drawing.Size(46, 41);
@@ -676,7 +654,7 @@
             // 
             this.btnPrintPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrintPreview.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrintPreview.ImageOptions.SvgImage")));
-            this.btnPrintPreview.Location = new System.Drawing.Point(61, 60);
+            this.btnPrintPreview.Location = new System.Drawing.Point(60, 113);
             this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrintPreview.Name = "btnPrintPreview";
             this.btnPrintPreview.Size = new System.Drawing.Size(46, 41);
@@ -687,13 +665,13 @@
             // btnDisplyList
             // 
             this.btnDisplyList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyList.ImageOptions.SvgImage")));
-            this.btnDisplyList.Location = new System.Drawing.Point(6, 60);
+            this.btnDisplyList.Location = new System.Drawing.Point(114, 113);
             this.btnDisplyList.Margin = new System.Windows.Forms.Padding(4);
             this.btnDisplyList.Name = "btnDisplyList";
             this.btnDisplyList.Size = new System.Drawing.Size(46, 41);
             this.btnDisplyList.TabIndex = 1;
             this.btnDisplyList.ToolTip = "F7";
-            this.btnDisplyList.ToolTipTitle = "لیست فعال";
+            this.btnDisplyList.ToolTipTitle = "دوباره سازی";
             this.btnDisplyList.Click += new System.EventHandler(this.btnDisplyList_Click);
             // 
             // labelControl5
@@ -702,7 +680,7 @@
             this.labelControl5.Appearance.Options.UseForeColor = true;
             this.labelControl5.AutoEllipsis = true;
             this.labelControl5.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl5.Location = new System.Drawing.Point(413, 11);
+            this.labelControl5.Location = new System.Drawing.Point(397, 10);
             this.labelControl5.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(77, 40);
@@ -718,16 +696,17 @@
             this.cmbHesabTafzili.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbHesabTafzili.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "نام حساب تفضیلی را انتخاب کنید", 250, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "نام حساب تفضیلی را انتخاب کنید", 500, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.cmbHesabTafzili.Properties.DataSource = this.allHesabTafzilisBindingSource;
             this.cmbHesabTafzili.Properties.DisplayMember = "Name";
             this.cmbHesabTafzili.Properties.ImmediatePopup = true;
             this.cmbHesabTafzili.Properties.MaxLength = 150;
             this.cmbHesabTafzili.Properties.NullText = "";
             this.cmbHesabTafzili.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.cmbHesabTafzili.Properties.PopupWidth = 500;
             this.cmbHesabTafzili.Properties.ValueMember = "Id";
             this.cmbHesabTafzili.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmbHesabTafzili.Size = new System.Drawing.Size(409, 38);
+            this.cmbHesabTafzili.Size = new System.Drawing.Size(383, 38);
             this.cmbHesabTafzili.TabIndex = 0;
             this.cmbHesabTafzili.EditValueChanged += new System.EventHandler(this.cmbHesabTafzili_EditValueChanged);
             this.cmbHesabTafzili.Enter += new System.EventHandler(this.cmbHesabTafzili_Enter);
@@ -739,30 +718,26 @@
             // txtTaTarikh
             // 
             this.txtTaTarikh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTaTarikh.Enabled = false;
             this.txtTaTarikh.EnterMoveNextControl = true;
-            this.txtTaTarikh.Location = new System.Drawing.Point(7, 58);
+            this.txtTaTarikh.Location = new System.Drawing.Point(6, 58);
             this.txtTaTarikh.Margin = new System.Windows.Forms.Padding(4);
             this.txtTaTarikh.Name = "txtTaTarikh";
             this.txtTaTarikh.Properties.Appearance.Options.UseTextOptions = true;
             this.txtTaTarikh.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtTaTarikh.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtTaTarikh.Properties.Mask.BeepOnError = true;
-            this.txtTaTarikh.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
-    "1-9]|[123]0))|((1[2])/([012][1-9])))";
             this.txtTaTarikh.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtTaTarikh.Properties.Mask.PlaceHolder = '-';
             this.txtTaTarikh.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtTaTarikh.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtTaTarikh.Size = new System.Drawing.Size(159, 38);
+            this.txtTaTarikh.Size = new System.Drawing.Size(153, 38);
             this.txtTaTarikh.TabIndex = 43;
-            this.txtTaTarikh.Visible = false;
             // 
             // FrmSoratHesabTafzili
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1179, 720);
+            this.ClientSize = new System.Drawing.Size(1425, 720);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.panelControl2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -787,7 +762,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ChkTarikh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAzTarikh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbHesabTafzili.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).EndInit();
@@ -835,7 +809,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn Mande1;
         private DevExpress.XtraEditors.SimpleButton btnDesignReport;
         private DevExpress.XtraEditors.SimpleButton btnPrintPreview;
-        private DevExpress.XtraEditors.CheckEdit ChkTarikh;
         private DevExpress.XtraEditors.TextEdit txtAzTarikh;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.TextEdit txtTaTarikh;

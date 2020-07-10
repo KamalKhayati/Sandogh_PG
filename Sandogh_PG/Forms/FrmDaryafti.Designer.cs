@@ -86,6 +86,7 @@
             this.colShomareShaba = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colShoghl = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsOzveSandogh = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNobatbandiVam = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsActive = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAdressManzel = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAdressMohalKar = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -171,7 +172,6 @@
             this.btnDisplyActiveList4 = new DevExpress.XtraEditors.SimpleButton();
             this.btnCreate4 = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl10 = new DevExpress.XtraEditors.PanelControl();
-            this.colNobatbandiVam = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl9)).BeginInit();
             this.panelControl9.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -1083,6 +1083,22 @@
             this.colIsOzveSandogh.VisibleIndex = 23;
             this.colIsOzveSandogh.Width = 134;
             // 
+            // colNobatbandiVam
+            // 
+            this.colNobatbandiVam.AppearanceCell.Options.UseTextOptions = true;
+            this.colNobatbandiVam.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colNobatbandiVam.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colNobatbandiVam.AppearanceHeader.Options.UseTextOptions = true;
+            this.colNobatbandiVam.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colNobatbandiVam.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colNobatbandiVam.Caption = "شماره نوبت اعطای وام";
+            this.colNobatbandiVam.FieldName = "NobatbandiVam";
+            this.colNobatbandiVam.MinWidth = 25;
+            this.colNobatbandiVam.Name = "colNobatbandiVam";
+            this.colNobatbandiVam.Visible = true;
+            this.colNobatbandiVam.VisibleIndex = 24;
+            this.colNobatbandiVam.Width = 220;
+            // 
             // colIsActive
             // 
             this.colIsActive.AppearanceCell.Options.UseTextOptions = true;
@@ -1952,6 +1968,7 @@
             this.gridView4.OptionsView.ShowAutoFilterRow = true;
             this.gridView4.OptionsView.ShowFooter = true;
             this.gridView4.OptionsView.ShowGroupPanel = false;
+            this.gridView4.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView4_RowCellStyle);
             this.gridView4.CustomSummaryCalculate += new DevExpress.Data.CustomSummaryEventHandler(this.gridView4_CustomSummaryCalculate);
             this.gridView4.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView4_FocusedRowChanged);
             this.gridView4.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView4_CustomUnboundColumnData);
@@ -2207,7 +2224,7 @@
             // 
             this.btnNext4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNext4.ImageOptions.Image")));
             this.btnNext4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNext4.ImageOptions.SvgImage")));
-            this.btnNext4.Location = new System.Drawing.Point(449, 6);
+            this.btnNext4.Location = new System.Drawing.Point(454, 6);
             this.btnNext4.Margin = new System.Windows.Forms.Padding(4);
             this.btnNext4.Name = "btnNext4";
             this.btnNext4.Size = new System.Drawing.Size(46, 41);
@@ -2257,7 +2274,7 @@
             // 
             this.btnFirst4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnFirst4.ImageOptions.Image")));
             this.btnFirst4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnFirst4.ImageOptions.SvgImage")));
-            this.btnFirst4.Location = new System.Drawing.Point(341, 6);
+            this.btnFirst4.Location = new System.Drawing.Point(346, 6);
             this.btnFirst4.Margin = new System.Windows.Forms.Padding(4);
             this.btnFirst4.Name = "btnFirst4";
             this.btnFirst4.Size = new System.Drawing.Size(46, 41);
@@ -2270,7 +2287,7 @@
             // 
             this.btnPreview4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPreview4.ImageOptions.Image")));
             this.btnPreview4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPreview4.ImageOptions.SvgImage")));
-            this.btnPreview4.Location = new System.Drawing.Point(395, 6);
+            this.btnPreview4.Location = new System.Drawing.Point(400, 6);
             this.btnPreview4.Margin = new System.Windows.Forms.Padding(4);
             this.btnPreview4.Name = "btnPreview4";
             this.btnPreview4.Size = new System.Drawing.Size(46, 41);
@@ -2282,7 +2299,7 @@
             // btnLast4
             // 
             this.btnLast4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLast4.ImageOptions.SvgImage")));
-            this.btnLast4.Location = new System.Drawing.Point(502, 6);
+            this.btnLast4.Location = new System.Drawing.Point(507, 6);
             this.btnLast4.Margin = new System.Windows.Forms.Padding(4);
             this.btnLast4.Name = "btnLast4";
             this.btnLast4.Size = new System.Drawing.Size(46, 41);
@@ -2328,22 +2345,6 @@
             this.panelControl10.Name = "panelControl10";
             this.panelControl10.Size = new System.Drawing.Size(1932, 521);
             this.panelControl10.TabIndex = 4;
-            // 
-            // colNobatbandiVam
-            // 
-            this.colNobatbandiVam.AppearanceCell.Options.UseTextOptions = true;
-            this.colNobatbandiVam.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colNobatbandiVam.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colNobatbandiVam.AppearanceHeader.Options.UseTextOptions = true;
-            this.colNobatbandiVam.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colNobatbandiVam.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colNobatbandiVam.Caption = "شماره نوبت اعطای وام";
-            this.colNobatbandiVam.FieldName = "NobatbandiVam";
-            this.colNobatbandiVam.MinWidth = 25;
-            this.colNobatbandiVam.Name = "colNobatbandiVam";
-            this.colNobatbandiVam.Visible = true;
-            this.colNobatbandiVam.VisibleIndex = 24;
-            this.colNobatbandiVam.Width = 220;
             // 
             // FrmDaryafti
             // 

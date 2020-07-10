@@ -308,8 +308,6 @@
             this.txtTarikhCheck.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtTarikhCheck.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtTarikhCheck.Properties.Mask.BeepOnError = true;
-            this.txtTarikhCheck.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
-    "1-9]|[123]0))|((1[2])/([012][1-9])))";
             this.txtTarikhCheck.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtTarikhCheck.Properties.Mask.PlaceHolder = '-';
             this.txtTarikhCheck.Properties.Mask.UseMaskAsDisplayFormat = true;
@@ -362,8 +360,6 @@
             this.txtTarikhDaryaft.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtTarikhDaryaft.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtTarikhDaryaft.Properties.Mask.BeepOnError = true;
-            this.txtTarikhDaryaft.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
-    "1-9]|[123]0))|((1[2])/([012][1-9])))";
             this.txtTarikhDaryaft.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtTarikhDaryaft.Properties.Mask.PlaceHolder = '-';
             this.txtTarikhDaryaft.Properties.Mask.UseMaskAsDisplayFormat = true;
@@ -1073,8 +1069,6 @@
             this.txtTarikhOdat.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtTarikhOdat.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtTarikhOdat.Properties.Mask.BeepOnError = true;
-            this.txtTarikhOdat.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
-    "1-9]|[123]0))|((1[2])/([012][1-9])))";
             this.txtTarikhOdat.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtTarikhOdat.Properties.Mask.PlaceHolder = '-';
             this.txtTarikhOdat.Properties.Mask.UseMaskAsDisplayFormat = true;

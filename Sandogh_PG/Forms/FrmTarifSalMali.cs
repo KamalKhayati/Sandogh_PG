@@ -67,6 +67,9 @@ namespace Sandogh_PG.Forms
         {
             FillDataGridSalMali();
             FillcmbNameSandoogh();
+            HelpClass1.DateTimeMask(txtStartDate);
+            HelpClass1.DateTimeMask(txtEndDate);
+
         }
 
         private void FrmTarifSalMali_KeyDown(object sender, KeyEventArgs e)

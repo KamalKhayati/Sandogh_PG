@@ -145,6 +145,7 @@
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
+            this.btnNobatVam = new DevExpress.XtraEditors.SimpleButton();
             this.txtNobatbandiVam = new DevExpress.XtraEditors.TextEdit();
             this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -1278,8 +1279,6 @@
             this.txtTarikhOzviat.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtTarikhOzviat.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtTarikhOzviat.Properties.Mask.BeepOnError = true;
-            this.txtTarikhOzviat.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
-    "1-9]|[123]0))|((1[2])/([012][1-9])))";
             this.txtTarikhOzviat.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtTarikhOzviat.Properties.Mask.PlaceHolder = '-';
             this.txtTarikhOzviat.Properties.Mask.UseMaskAsDisplayFormat = true;
@@ -1299,8 +1298,6 @@
             this.txtBirthDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.txtBirthDate.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtBirthDate.Properties.Mask.BeepOnError = true;
-            this.txtBirthDate.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
-    "1-9]|[123]0))|((1[2])/([012][1-9])))";
             this.txtBirthDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtBirthDate.Properties.Mask.PlaceHolder = '-';
             this.txtBirthDate.Properties.Mask.UseMaskAsDisplayFormat = true;
@@ -1453,8 +1450,6 @@
             // 
             // labelControl9
             // 
-            this.labelControl9.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
-            this.labelControl9.Appearance.Options.UseForeColor = true;
             this.labelControl9.AutoEllipsis = true;
             this.labelControl9.Cursor = System.Windows.Forms.Cursors.Default;
             this.labelControl9.Location = new System.Drawing.Point(1344, 20);
@@ -1532,8 +1527,6 @@
             // 
             // labelControl10
             // 
-            this.labelControl10.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
-            this.labelControl10.Appearance.Options.UseForeColor = true;
             this.labelControl10.AutoEllipsis = true;
             this.labelControl10.Cursor = System.Windows.Forms.Cursors.Default;
             this.labelControl10.Location = new System.Drawing.Point(988, 21);
@@ -1545,8 +1538,6 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
-            this.labelControl3.Appearance.Options.UseForeColor = true;
             this.labelControl3.AutoEllipsis = true;
             this.labelControl3.Cursor = System.Windows.Forms.Cursors.Default;
             this.labelControl3.Location = new System.Drawing.Point(903, 66);
@@ -1558,8 +1549,6 @@
             // 
             // labelControl23
             // 
-            this.labelControl23.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
-            this.labelControl23.Appearance.Options.UseForeColor = true;
             this.labelControl23.AutoEllipsis = true;
             this.labelControl23.Cursor = System.Windows.Forms.Cursors.Default;
             this.labelControl23.Location = new System.Drawing.Point(1282, 113);
@@ -1582,8 +1571,6 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
-            this.labelControl4.Appearance.Options.UseForeColor = true;
             this.labelControl4.AutoEllipsis = true;
             this.labelControl4.Cursor = System.Windows.Forms.Cursors.Default;
             this.labelControl4.Location = new System.Drawing.Point(517, 65);
@@ -1653,8 +1640,6 @@
             // 
             // labelControl22
             // 
-            this.labelControl22.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
-            this.labelControl22.Appearance.Options.UseForeColor = true;
             this.labelControl22.Cursor = System.Windows.Forms.Cursors.Default;
             this.labelControl22.Location = new System.Drawing.Point(901, 24);
             this.labelControl22.Margin = new System.Windows.Forms.Padding(4);
@@ -1687,7 +1672,7 @@
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl1.Appearance.Options.UseForeColor = true;
             this.labelControl1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl1.Location = new System.Drawing.Point(1286, 24);
+            this.labelControl1.Location = new System.Drawing.Point(1286, 18);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(79, 31);
@@ -1869,6 +1854,7 @@
             // 
             // xtraTabPage4
             // 
+            this.xtraTabPage4.Controls.Add(this.btnNobatVam);
             this.xtraTabPage4.Controls.Add(this.txtNobatbandiVam);
             this.xtraTabPage4.Controls.Add(this.txtHazineEftetah);
             this.xtraTabPage4.Controls.Add(this.txtHaghOzviat);
@@ -1881,12 +1867,26 @@
             this.xtraTabPage4.Size = new System.Drawing.Size(1434, 251);
             this.xtraTabPage4.Text = "سایر";
             // 
+            // btnNobatVam
+            // 
+            this.btnNobatVam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNobatVam.Enabled = false;
+            this.btnNobatVam.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNobatVam.ImageOptions.SvgImage")));
+            this.btnNobatVam.Location = new System.Drawing.Point(569, 73);
+            this.btnNobatVam.Margin = new System.Windows.Forms.Padding(4);
+            this.btnNobatVam.Name = "btnNobatVam";
+            this.btnNobatVam.Size = new System.Drawing.Size(46, 38);
+            this.btnNobatVam.TabIndex = 44;
+            this.btnNobatVam.TabStop = false;
+            this.btnNobatVam.ToolTipTitle = "شماره بعدی";
+            this.btnNobatVam.Click += new System.EventHandler(this.btnNobatVam_Click);
+            // 
             // txtNobatbandiVam
             // 
             this.txtNobatbandiVam.Cursor = System.Windows.Forms.Cursors.Default;
             this.txtNobatbandiVam.EditValue = "";
             this.txtNobatbandiVam.EnterMoveNextControl = true;
-            this.txtNobatbandiVam.Location = new System.Drawing.Point(662, 73);
+            this.txtNobatbandiVam.Location = new System.Drawing.Point(623, 73);
             this.txtNobatbandiVam.Margin = new System.Windows.Forms.Padding(4);
             this.txtNobatbandiVam.Name = "txtNobatbandiVam";
             this.txtNobatbandiVam.Properties.Appearance.Options.UseTextOptions = true;
@@ -1897,7 +1897,7 @@
             this.txtNobatbandiVam.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtNobatbandiVam.Properties.NullText = "به ریال";
             this.txtNobatbandiVam.Properties.ReadOnly = true;
-            this.txtNobatbandiVam.Size = new System.Drawing.Size(102, 38);
+            this.txtNobatbandiVam.Size = new System.Drawing.Size(141, 38);
             this.txtNobatbandiVam.TabIndex = 3;
             this.txtNobatbandiVam.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHaghOzviat_KeyPress);
             // 
@@ -2102,5 +2102,6 @@
         public DevExpress.XtraEditors.TextEdit txtNobatbandiVam;
         private DevExpress.XtraEditors.LabelControl labelControl26;
         private DevExpress.XtraGrid.Columns.GridColumn colNobatbandiVam;
+        private DevExpress.XtraEditors.SimpleButton btnNobatVam;
     }
 }

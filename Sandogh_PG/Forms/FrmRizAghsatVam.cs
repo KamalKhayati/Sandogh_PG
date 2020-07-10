@@ -69,6 +69,7 @@ namespace Sandogh_PG
         private void FrmRizAghsatVam_Load(object sender, EventArgs e)
         {
             FillcmbDaryaftkonande();
+            HelpClass1.DateTimeMask(txtSarresidGhest);
             DaryaftKonandeId = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("AazaId"));
             VamId = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("Id"));
             VamCode = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("Code"));

@@ -23,8 +23,10 @@ namespace Sandogh_PG
         private void FrmMandeAshkhas_Load(object sender, EventArgs e)
         {
             txtTaTarikh.Text = DateTime.Now.ToString().Substring(0, 10);
+            HelpClass1.DateTimeMask(txtTaTarikh);
             FillDataGridView1();
             FillDataGridView2();
+
             txtTaTarikh.Focus();
         }
 

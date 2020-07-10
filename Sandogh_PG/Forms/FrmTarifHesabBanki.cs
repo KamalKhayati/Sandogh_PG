@@ -129,6 +129,8 @@ namespace Sandogh_PG
         private void FrmTarifHesabBanki_Load(object sender, EventArgs e)
         {
             FillDataGridHesabBanki();
+            HelpClass1.DateTimeMask(txtStartDate);
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)

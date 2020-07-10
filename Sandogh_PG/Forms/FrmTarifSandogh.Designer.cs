@@ -82,7 +82,7 @@
             this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
-            this.panelControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(788, 290);
             this.panelControl1.TabIndex = 23;
@@ -91,7 +91,7 @@
             // 
             this.btnDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageOptions.Image")));
             this.btnDelete.Location = new System.Drawing.Point(268, 171);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(105, 63);
             this.btnDelete.TabIndex = 45;
@@ -105,7 +105,7 @@
             // 
             this.btnBrowsPictuer.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBrowsPictuer.ImageOptions.SvgImage")));
             this.btnBrowsPictuer.Location = new System.Drawing.Point(268, 100);
-            this.btnBrowsPictuer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBrowsPictuer.Margin = new System.Windows.Forms.Padding(4);
             this.btnBrowsPictuer.Name = "btnBrowsPictuer";
             this.btnBrowsPictuer.Size = new System.Drawing.Size(105, 63);
             this.btnBrowsPictuer.TabIndex = 44;
@@ -118,7 +118,7 @@
             // pictureEdit1
             // 
             this.pictureEdit1.Location = new System.Drawing.Point(9, 6);
-            this.pictureEdit1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureEdit1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureEdit1.Name = "pictureEdit1";
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
@@ -129,7 +129,7 @@
             // 
             this.txtMobile.EnterMoveNextControl = true;
             this.txtMobile.Location = new System.Drawing.Point(378, 148);
-            this.txtMobile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMobile.Margin = new System.Windows.Forms.Padding(4);
             this.txtMobile.Name = "txtMobile";
             this.txtMobile.Properties.MaxLength = 23;
             this.txtMobile.Size = new System.Drawing.Size(240, 38);
@@ -140,7 +140,7 @@
             this.labelControl18.AutoEllipsis = true;
             this.labelControl18.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl18.Location = new System.Drawing.Point(625, 146);
-            this.labelControl18.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.labelControl18.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl18.Name = "labelControl18";
             this.labelControl18.Size = new System.Drawing.Size(53, 40);
             this.labelControl18.TabIndex = 41;
@@ -150,14 +150,12 @@
             // 
             this.txtTarikhEjad.EnterMoveNextControl = true;
             this.txtTarikhEjad.Location = new System.Drawing.Point(378, 195);
-            this.txtTarikhEjad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTarikhEjad.Margin = new System.Windows.Forms.Padding(4);
             this.txtTarikhEjad.Name = "txtTarikhEjad";
             this.txtTarikhEjad.Properties.Appearance.Options.UseTextOptions = true;
             this.txtTarikhEjad.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtTarikhEjad.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtTarikhEjad.Properties.Mask.BeepOnError = true;
-            this.txtTarikhEjad.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][" +
-    "1-9]|[123]0))|((1[2])/([012][1-9])))";
             this.txtTarikhEjad.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtTarikhEjad.Properties.Mask.PlaceHolder = '-';
             this.txtTarikhEjad.Properties.Mask.UseMaskAsDisplayFormat = true;
@@ -168,7 +166,7 @@
             // labelControl4
             // 
             this.labelControl4.Location = new System.Drawing.Point(627, 198);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(151, 31);
             this.labelControl4.TabIndex = 22;
@@ -178,7 +176,7 @@
             // 
             this.txtTell.EnterMoveNextControl = true;
             this.txtTell.Location = new System.Drawing.Point(378, 100);
-            this.txtTell.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTell.Margin = new System.Windows.Forms.Padding(4);
             this.txtTell.Name = "txtTell";
             this.txtTell.Properties.MaxLength = 23;
             this.txtTell.Size = new System.Drawing.Size(240, 38);
@@ -189,7 +187,7 @@
             this.labelControl17.AutoEllipsis = true;
             this.labelControl17.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl17.Location = new System.Drawing.Point(625, 99);
-            this.labelControl17.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.labelControl17.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl17.Name = "labelControl17";
             this.labelControl17.Size = new System.Drawing.Size(40, 40);
             this.labelControl17.TabIndex = 41;
@@ -199,7 +197,7 @@
             // 
             this.txtAdress.EnterMoveNextControl = true;
             this.txtAdress.Location = new System.Drawing.Point(9, 242);
-            this.txtAdress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAdress.Margin = new System.Windows.Forms.Padding(4);
             this.txtAdress.Name = "txtAdress";
             this.txtAdress.Properties.MaxLength = 400;
             this.txtAdress.Size = new System.Drawing.Size(609, 38);
@@ -210,7 +208,7 @@
             this.labelControl16.AutoEllipsis = true;
             this.labelControl16.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl16.Location = new System.Drawing.Point(628, 241);
-            this.labelControl16.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.labelControl16.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl16.Name = "labelControl16";
             this.labelControl16.Size = new System.Drawing.Size(49, 40);
             this.labelControl16.TabIndex = 41;
@@ -220,7 +218,7 @@
             // 
             this.txtNameModir.EnterMoveNextControl = true;
             this.txtNameModir.Location = new System.Drawing.Point(268, 53);
-            this.txtNameModir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNameModir.Margin = new System.Windows.Forms.Padding(4);
             this.txtNameModir.Name = "txtNameModir";
             this.txtNameModir.Properties.MaxLength = 150;
             this.txtNameModir.Size = new System.Drawing.Size(350, 38);
@@ -231,7 +229,7 @@
             this.labelControl1.AutoEllipsis = true;
             this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl1.Location = new System.Drawing.Point(625, 52);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(134, 40);
             this.labelControl1.TabIndex = 41;
@@ -241,7 +239,7 @@
             // 
             this.txtNameSandogh.EnterMoveNextControl = true;
             this.txtNameSandogh.Location = new System.Drawing.Point(268, 6);
-            this.txtNameSandogh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNameSandogh.Margin = new System.Windows.Forms.Padding(4);
             this.txtNameSandogh.Name = "txtNameSandogh";
             this.txtNameSandogh.Properties.MaxLength = 150;
             this.txtNameSandogh.Size = new System.Drawing.Size(350, 38);
@@ -254,7 +252,7 @@
             this.labelControl2.AutoEllipsis = true;
             this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl2.Location = new System.Drawing.Point(625, 5);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(88, 40);
             this.labelControl2.TabIndex = 41;
@@ -264,7 +262,7 @@
             // 
             this.btnSaveClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveClose.ImageOptions.Image")));
             this.btnSaveClose.Location = new System.Drawing.Point(185, 6);
-            this.btnSaveClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSaveClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnSaveClose.Name = "btnSaveClose";
             this.btnSaveClose.Size = new System.Drawing.Size(203, 57);
             this.btnSaveClose.TabIndex = 0;
@@ -277,7 +275,7 @@
             // 
             this.btnClose.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnClose.ImageOptions.SvgImage")));
             this.btnClose.Location = new System.Drawing.Point(6, 6);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(169, 57);
             this.btnClose.TabIndex = 1;
@@ -293,7 +291,7 @@
             this.panelControl2.Controls.Add(this.btnClose);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelControl2.Location = new System.Drawing.Point(0, 296);
-            this.panelControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(788, 69);
             this.panelControl2.TabIndex = 24;
@@ -303,7 +301,7 @@
             this.chkIsDefault.EditValue = true;
             this.chkIsDefault.EnterMoveNextControl = true;
             this.chkIsDefault.Location = new System.Drawing.Point(596, 19);
-            this.chkIsDefault.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkIsDefault.Margin = new System.Windows.Forms.Padding(4);
             this.chkIsDefault.Name = "chkIsDefault";
             this.chkIsDefault.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.chkIsDefault.Properties.Caption = "صندوق پیش فرض";
@@ -323,7 +321,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmTarifSandogh";

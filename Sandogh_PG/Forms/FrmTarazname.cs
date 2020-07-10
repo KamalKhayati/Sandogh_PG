@@ -67,7 +67,9 @@ namespace Sandogh_PG
         private void FrmTarazname_Load(object sender, EventArgs e)
         {
             txtTaTarikh.Text = DateTime.Now.ToString().Substring(0, 10);
+            HelpClass1.DateTimeMask(txtTaTarikh);
             FillDataGridView1();
+
             txtTaTarikh.Focus();
         }
 

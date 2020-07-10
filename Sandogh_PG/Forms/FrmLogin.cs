@@ -49,15 +49,50 @@ namespace Sandogh_PG
                             //}
                             //return;
                             //}
-                            if (db.TarifSandoghs.FirstOrDefault().AppActived == true)
+                            var qq = db.TarifSandoghs.FirstOrDefault(s => s.Id == 1);
+                            if (qq.AppActived == true)
                             {
-                                FrmMain fm = new FrmMain();
-                                fm.txtUserId.Caption = q.Id.ToString();
-                                fm.txtUserName.Caption = q.Name.ToString();
-                                fm.txtDateTimeNow.Caption = DateTime.Now.ToString().Substring(0, 10);
-                                fm.NameDataBase.Caption = db.Database.Connection.Database;
-                                //fm.IndexNameDataBase.Caption = cmbNameDataBaseSandogh.SelectedIndex.ToString();
-                                fm.Show();
+                                if (qq.ShomareNoskheBarname == Application.ProductVersion)
+                                {
+                                    FrmMain fm = new FrmMain();
+                                    fm.txtUserId.Caption = q.Id.ToString();
+                                    fm.txtUserName.Caption = q.Name.ToString();
+                                    fm.txtDateTimeNow.Caption = DateTime.Now.ToString().Substring(0, 10);
+                                    fm.NameDataBase.Caption = db.Database.Connection.Database;
+                                    fm.ShNoskheBarname.Caption = qq.ShomareNoskheBarname;
+                                    //fm.IndexNameDataBase.Caption = cmbNameDataBaseSandogh.SelectedIndex.ToString();
+                                    fm.Show();
+                                }
+                                else
+                                {
+                                    if (qq.IsGaranti == true)
+                                    {
+                                        qq.ShomareNoskheBarname = Application.ProductVersion;
+                                        db.SaveChanges();
+                                        FrmMain fm = new FrmMain();
+                                        fm.txtUserId.Caption = q.Id.ToString();
+                                        fm.txtUserName.Caption = q.Name.ToString();
+                                        fm.txtDateTimeNow.Caption = DateTime.Now.ToString().Substring(0, 10);
+                                        fm.NameDataBase.Caption = db.Database.Connection.Database;
+                                        fm.ShNoskheBarname.Caption = qq.ShomareNoskheBarname;
+                                        //fm.IndexNameDataBase.Caption = cmbNameDataBaseSandogh.SelectedIndex.ToString();
+                                        fm.Show();
+                                    }
+                                    else
+                                    {
+                                        var rs = XtraMessageBox.Show("با  توجه به اینکه مدت گارانتی برنامه به اتمام رسیده است \n لذا مجاز به استفاده از ورژن جدید برنامه نمی باشید\n جهت تمدید گارانتی و استفاده از آپدیت جدید برنامه لطفاً با پشتیبانی به شماره \n 09148253244 تماس حاصل فرمایید درغیر اینصورت جهت استفاده از برنامه میتوانید \n ورژن قبلی برنامه را نصب کنید", "پیغام", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                                        if (rs == DialogResult.OK)
+                                        {
+                                            FrmAppRegister frm = new FrmAppRegister();
+                                            frm._Password = HelpClass1.EncryptText(txtPassword.Text);
+                                            frm._Shenase = HelpClass1.EncryptText(txtShenase.Text);
+                                            frm.Text = "تمدید گارانتی برنامه";
+                                            frm.Show();
+                                        }
+                                        else
+                                            this.Close();
+                                    }
+                                }
                             }
                             else
                             {

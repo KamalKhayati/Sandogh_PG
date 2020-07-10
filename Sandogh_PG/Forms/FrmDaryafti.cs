@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Data.Entity;
 using DevExpress.XtraReports.UI;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace Sandogh_PG
 {
@@ -134,7 +135,7 @@ namespace Sandogh_PG
                 {
                     rizeAghsatVamsBindingSource.DataSource = null;
                     _VamId = Convert.ToInt32(gridView3.GetFocusedRowCellValue("Id"));
-                    var q1 = db.RizeAghsatVams.Where(s => s.VamPardakhtiId == _VamId).OrderBy(s => s.TarikhSarresid).ToList();
+                    var q1 = db.RizeAghsatVams.Where(s => s.VamPardakhtiId == _VamId).OrderBy(s => s.Id).OrderBy(s => s.TarikhSarresid).ToList();
                     if (q1.Count > 0)
                         rizeAghsatVamsBindingSource.DataSource = q1;
                     else
@@ -838,6 +839,31 @@ namespace Sandogh_PG
             HelpClass1.ControlAltShift_KeyDown(sender, e, btnDesignReport3);
             HelpClass1.ControlAltShift_KeyDown(sender, e, btnDesignReport4);
             HelpClass1.ControlAltShift_KeyDown(sender, e, btnDesignReport2);
+        }
+
+        private void gridView4_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (view.RowCount > 0)
+            {
+                // bool IsActive = Convert.ToBoolean(view.GetRowCellValue(e.RowHandle, "IsActive"));
+                int ShomareSanad = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "ShomareSanad"));
+                int Mande = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "Mande"));
+
+                if (ShomareSanad == 0 || (ShomareSanad > 0 && Mande == 0))
+                {
+                    return;
+                    //Color foreColor = Color.Black;
+                    //e.Appearance.ForeColor = foreColor;
+                }
+                else if (ShomareSanad > 0 && Mande > 0)
+                {
+                    Color foreColor = Color.Red;
+                    e.Appearance.ForeColor = foreColor;
+                    e.Appearance.BackColor = Color.Yellow;
+                }
+
+            }
         }
     }
 }

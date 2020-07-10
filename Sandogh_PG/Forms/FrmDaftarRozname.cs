@@ -53,6 +53,7 @@ namespace Sandogh_PG
         private void ChkTarikh_CheckedChanged(object sender, EventArgs e)
         {
             txtAzTarikh.Enabled = txtTaTarikh.Enabled = ChkTarikh.Checked ? true : false;
+
             //if (ChkTarikh.Checked == false)
             //    FillDataGridDaftarRozname();
         }
@@ -61,7 +62,10 @@ namespace Sandogh_PG
         {
             txtAzTarikh.Text = new MyContext().AsnadeHesabdariRows.Any()? new MyContext().AsnadeHesabdariRows.Min(f => f.Tarikh).ToString().Substring(0, 10): "1398/01/01";
             txtTaTarikh.Text = DateTime.Now.ToString().Substring(0, 10);
+            HelpClass1.DateTimeMask(txtAzTarikh);
+            HelpClass1.DateTimeMask(txtTaTarikh);
             FillDataGridDaftarRozname();
+
             txtAzTarikh.Focus();
         }
 

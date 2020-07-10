@@ -33,6 +33,8 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.cmbMonth = new DevExpress.XtraEditors.ComboBoxEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.checkEdit2 = new DevExpress.XtraEditors.CheckEdit();
+            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
             this.chkIsOzveSandogh = new DevExpress.XtraEditors.CheckEdit();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.btnDesignReport = new DevExpress.XtraEditors.SimpleButton();
@@ -55,6 +57,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbMonth.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsOzveSandogh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -66,26 +70,26 @@
             // labelControl1
             // 
             this.labelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl1.Location = new System.Drawing.Point(1407, 12);
+            this.labelControl1.Location = new System.Drawing.Point(1392, 55);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(32, 31);
+            this.labelControl1.Size = new System.Drawing.Size(50, 31);
             this.labelControl1.TabIndex = 1;
-            this.labelControl1.Text = "سال";
+            this.labelControl1.Text = "تا سال";
             // 
             // labelControl2
             // 
             this.labelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl2.Location = new System.Drawing.Point(1236, 12);
+            this.labelControl2.Location = new System.Drawing.Point(1203, 54);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(24, 31);
+            this.labelControl2.Size = new System.Drawing.Size(42, 31);
             this.labelControl2.TabIndex = 1;
-            this.labelControl2.Text = "ماه";
+            this.labelControl2.Text = "تا ماه";
             // 
             // cmbMonth
             // 
             this.cmbMonth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbMonth.EnterMoveNextControl = true;
-            this.cmbMonth.Location = new System.Drawing.Point(1100, 9);
+            this.cmbMonth.Location = new System.Drawing.Point(1036, 51);
             this.cmbMonth.Name = "cmbMonth";
             this.cmbMonth.Properties.Appearance.Options.UseTextOptions = true;
             this.cmbMonth.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -106,11 +110,15 @@
             "بهمن",
             "اسفند"});
             this.cmbMonth.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cmbMonth.Size = new System.Drawing.Size(126, 38);
+            this.cmbMonth.Size = new System.Drawing.Size(161, 38);
             this.cmbMonth.TabIndex = 2;
             // 
             // panelControl1
             // 
+            this.panelControl1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
+            this.panelControl1.Appearance.Options.UseBackColor = true;
+            this.panelControl1.Controls.Add(this.checkEdit2);
+            this.panelControl1.Controls.Add(this.checkEdit1);
             this.panelControl1.Controls.Add(this.chkIsOzveSandogh);
             this.panelControl1.Controls.Add(this.btnDelete);
             this.panelControl1.Controls.Add(this.btnDesignReport);
@@ -121,10 +129,33 @@
             this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Controls.Add(this.txtSal);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl1.Location = new System.Drawing.Point(0, 0);
+            this.panelControl1.Location = new System.Drawing.Point(2, 2);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1460, 60);
+            this.panelControl1.Size = new System.Drawing.Size(1456, 94);
             this.panelControl1.TabIndex = 3;
+            // 
+            // checkEdit2
+            // 
+            this.checkEdit2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkEdit2.Location = new System.Drawing.Point(861, 8);
+            this.checkEdit2.Margin = new System.Windows.Forms.Padding(4);
+            this.checkEdit2.Name = "checkEdit2";
+            this.checkEdit2.Properties.Caption = "گزارش از ابتدا تا پایان ماه خاص";
+            this.checkEdit2.Size = new System.Drawing.Size(279, 35);
+            this.checkEdit2.TabIndex = 21;
+            this.checkEdit2.CheckedChanged += new System.EventHandler(this.checkEdit2_CheckedChanged);
+            // 
+            // checkEdit1
+            // 
+            this.checkEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkEdit1.EditValue = true;
+            this.checkEdit1.Location = new System.Drawing.Point(1163, 8);
+            this.checkEdit1.Margin = new System.Windows.Forms.Padding(4);
+            this.checkEdit1.Name = "checkEdit1";
+            this.checkEdit1.Properties.Caption = "گزارش از ابتدا تا پایان ماه خاص";
+            this.checkEdit1.Size = new System.Drawing.Size(279, 35);
+            this.checkEdit1.TabIndex = 20;
+            this.checkEdit1.CheckedChanged += new System.EventHandler(this.checkEdit1_CheckedChanged);
             // 
             // chkIsOzveSandogh
             // 
@@ -132,7 +163,7 @@
             this.chkIsOzveSandogh.Cursor = System.Windows.Forms.Cursors.Default;
             this.chkIsOzveSandogh.EditValue = true;
             this.chkIsOzveSandogh.EnterMoveNextControl = true;
-            this.chkIsOzveSandogh.Location = new System.Drawing.Point(939, 9);
+            this.chkIsOzveSandogh.Location = new System.Drawing.Point(873, 50);
             this.chkIsOzveSandogh.Margin = new System.Windows.Forms.Padding(4);
             this.chkIsOzveSandogh.Name = "chkIsOzveSandogh";
             this.chkIsOzveSandogh.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
@@ -144,7 +175,7 @@
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDelete.ImageOptions.SvgImage")));
-            this.btnDelete.Location = new System.Drawing.Point(715, 6);
+            this.btnDelete.Location = new System.Drawing.Point(649, 47);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(46, 41);
@@ -156,7 +187,7 @@
             // 
             this.btnDesignReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDesignReport.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDesignReport.ImageOptions.SvgImage")));
-            this.btnDesignReport.Location = new System.Drawing.Point(769, 6);
+            this.btnDesignReport.Location = new System.Drawing.Point(703, 47);
             this.btnDesignReport.Margin = new System.Windows.Forms.Padding(4);
             this.btnDesignReport.Name = "btnDesignReport";
             this.btnDesignReport.Size = new System.Drawing.Size(46, 41);
@@ -169,7 +200,7 @@
             // 
             this.btnPrintPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrintPreview.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrintPreview.ImageOptions.SvgImage")));
-            this.btnPrintPreview.Location = new System.Drawing.Point(823, 6);
+            this.btnPrintPreview.Location = new System.Drawing.Point(757, 47);
             this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrintPreview.Name = "btnPrintPreview";
             this.btnPrintPreview.Size = new System.Drawing.Size(46, 41);
@@ -181,7 +212,7 @@
             // 
             this.btnDisplyList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDisplyList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyList.ImageOptions.SvgImage")));
-            this.btnDisplyList.Location = new System.Drawing.Point(877, 6);
+            this.btnDisplyList.Location = new System.Drawing.Point(811, 47);
             this.btnDisplyList.Margin = new System.Windows.Forms.Padding(4);
             this.btnDisplyList.Name = "btnDisplyList";
             this.btnDisplyList.Size = new System.Drawing.Size(46, 41);
@@ -193,32 +224,36 @@
             // 
             this.txtSal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSal.EnterMoveNextControl = true;
-            this.txtSal.Location = new System.Drawing.Point(1286, 9);
+            this.txtSal.Location = new System.Drawing.Point(1271, 51);
             this.txtSal.Name = "txtSal";
             this.txtSal.Properties.Appearance.Options.UseTextOptions = true;
             this.txtSal.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtSal.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.txtSal.Properties.Mask.EditMask = "f";
+            this.txtSal.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtSal.Properties.MaxLength = 4;
             this.txtSal.Size = new System.Drawing.Size(115, 38);
             this.txtSal.TabIndex = 1;
             // 
             // panelControl2
             // 
             this.panelControl2.Controls.Add(this.gridControl1);
+            this.panelControl2.Controls.Add(this.panelControl1);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 60);
+            this.panelControl2.Location = new System.Drawing.Point(0, 0);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1460, 650);
+            this.panelControl2.Size = new System.Drawing.Size(1460, 710);
             this.panelControl2.TabIndex = 4;
             // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.gridControl1.Location = new System.Drawing.Point(2, 2);
+            this.gridControl1.Location = new System.Drawing.Point(2, 96);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1456, 646);
+            this.gridControl1.Size = new System.Drawing.Size(1456, 612);
             this.gridControl1.TabIndex = 34;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -249,9 +284,6 @@
             this.gridView1.OptionsFind.FindMode = DevExpress.XtraEditors.FindMode.Always;
             this.gridView1.OptionsFind.FindNullPrompt = "متنی برای جستجو تایپ کنید ...";
             this.gridView1.OptionsMenu.ShowFooterItem = true;
-            this.gridView1.OptionsNavigation.AutoFocusNewRow = true;
-            this.gridView1.OptionsSelection.MultiSelect = true;
-            this.gridView1.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.gridView1.OptionsView.RowAutoHeight = true;
@@ -304,7 +336,7 @@
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 1;
-            this.gridColumn3.Width = 160;
+            this.gridColumn3.Width = 130;
             // 
             // NameAaza
             // 
@@ -438,7 +470,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1460, 710);
             this.Controls.Add(this.panelControl2);
-            this.Controls.Add(this.panelControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "FrmMabaleghGhabelDaryaft";
@@ -452,6 +483,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsOzveSandogh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
@@ -486,5 +519,7 @@
         public DevExpress.XtraEditors.CheckEdit chkIsOzveSandogh;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraEditors.CheckEdit checkEdit2;
+        private DevExpress.XtraEditors.CheckEdit checkEdit1;
     }
 }

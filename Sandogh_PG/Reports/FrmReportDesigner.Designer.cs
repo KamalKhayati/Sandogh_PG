@@ -986,6 +986,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemZoomTrackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reportDesigner1)).BeginInit();
             this.SuspendLayout();
             // 
             // xrDesignRibbonController1
@@ -1224,8 +1225,10 @@
             this.progressBarEditItem1,
             this.printPreviewBarItem52,
             this.printPreviewStaticItem2,
-            this.zoomTrackBarEditItem1});
+            this.zoomTrackBarEditItem1,
+            this.ribbonControl1.SearchEditItem});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ribbonControl1.MaxItemId = 228;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
@@ -1263,7 +1266,7 @@
             this.repositoryItemProgressBar1,
             this.repositoryItemZoomTrackBar1});
             this.ribbonControl1.ShowItemCaptionsInPageHeader = true;
-            this.ribbonControl1.Size = new System.Drawing.Size(1062, 205);
+            this.ribbonControl1.Size = new System.Drawing.Size(1298, 249);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             this.ribbonControl1.TransparentEditorsMode = DevExpress.Utils.DefaultBoolean.True;
             // 
@@ -1681,11 +1684,11 @@
             this.panelContainer1.Controls.Add(this.panelContainer3);
             this.panelContainer1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Right;
             this.panelContainer1.ID = new System.Guid("d9132e01-16b5-4dc2-ae8b-7fd20eb77df7");
-            this.panelContainer1.Location = new System.Drawing.Point(687, 205);
+            this.panelContainer1.Location = new System.Drawing.Point(840, 249);
+            this.panelContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelContainer1.Name = "panelContainer1";
             this.panelContainer1.OriginalSize = new System.Drawing.Size(375, 200);
-            this.panelContainer1.SavedSizeFactor = 0D;
-            this.panelContainer1.Size = new System.Drawing.Size(375, 362);
+            this.panelContainer1.Size = new System.Drawing.Size(458, 455);
             this.panelContainer1.Text = "panelContainer1";
             // 
             // panelContainer2
@@ -1696,10 +1699,10 @@
             this.panelContainer2.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
             this.panelContainer2.ID = new System.Guid("685834f6-57c9-4935-810f-22fe276daf70");
             this.panelContainer2.Location = new System.Drawing.Point(0, 0);
+            this.panelContainer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelContainer2.Name = "panelContainer2";
-            this.panelContainer2.OriginalSize = new System.Drawing.Size(200, 200);
-            this.panelContainer2.SavedSizeFactor = 0D;
-            this.panelContainer2.Size = new System.Drawing.Size(375, 181);
+            this.panelContainer2.OriginalSize = new System.Drawing.Size(458, 224);
+            this.panelContainer2.Size = new System.Drawing.Size(458, 228);
             this.panelContainer2.Tabbed = true;
             this.panelContainer2.Text = "panelContainer2";
             // 
@@ -1708,18 +1711,19 @@
             this.reportExplorerDockPanel1.Controls.Add(this.reportExplorerDockPanel1_Container);
             this.reportExplorerDockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
             this.reportExplorerDockPanel1.ID = new System.Guid("fb3ec6cc-3b9b-4b9c-91cf-cff78c1edbf1");
-            this.reportExplorerDockPanel1.Location = new System.Drawing.Point(5, 33);
+            this.reportExplorerDockPanel1.Location = new System.Drawing.Point(7, 40);
+            this.reportExplorerDockPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.reportExplorerDockPanel1.Name = "reportExplorerDockPanel1";
-            this.reportExplorerDockPanel1.OriginalSize = new System.Drawing.Size(200, 200);
-            this.reportExplorerDockPanel1.SavedSizeFactor = 0D;
-            this.reportExplorerDockPanel1.Size = new System.Drawing.Size(366, 104);
+            this.reportExplorerDockPanel1.OriginalSize = new System.Drawing.Size(447, 129);
+            this.reportExplorerDockPanel1.Size = new System.Drawing.Size(446, 135);
             this.reportExplorerDockPanel1.Text = "Report Explorer";
             // 
             // reportExplorerDockPanel1_Container
             // 
             this.reportExplorerDockPanel1_Container.Location = new System.Drawing.Point(0, 0);
+            this.reportExplorerDockPanel1_Container.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.reportExplorerDockPanel1_Container.Name = "reportExplorerDockPanel1_Container";
-            this.reportExplorerDockPanel1_Container.Size = new System.Drawing.Size(366, 104);
+            this.reportExplorerDockPanel1_Container.Size = new System.Drawing.Size(446, 135);
             this.reportExplorerDockPanel1_Container.TabIndex = 0;
             // 
             // fieldListDockPanel1
@@ -1727,18 +1731,19 @@
             this.fieldListDockPanel1.Controls.Add(this.fieldListDockPanel1_Container);
             this.fieldListDockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
             this.fieldListDockPanel1.ID = new System.Guid("faf69838-a93f-4114-83e8-d0d09cc5ce95");
-            this.fieldListDockPanel1.Location = new System.Drawing.Point(5, 33);
+            this.fieldListDockPanel1.Location = new System.Drawing.Point(7, 40);
+            this.fieldListDockPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.fieldListDockPanel1.Name = "fieldListDockPanel1";
-            this.fieldListDockPanel1.OriginalSize = new System.Drawing.Size(200, 200);
-            this.fieldListDockPanel1.SavedSizeFactor = 0D;
-            this.fieldListDockPanel1.Size = new System.Drawing.Size(366, 104);
+            this.fieldListDockPanel1.OriginalSize = new System.Drawing.Size(447, 129);
+            this.fieldListDockPanel1.Size = new System.Drawing.Size(446, 135);
             this.fieldListDockPanel1.Text = "Field List";
             // 
             // fieldListDockPanel1_Container
             // 
             this.fieldListDockPanel1_Container.Location = new System.Drawing.Point(0, 0);
+            this.fieldListDockPanel1_Container.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.fieldListDockPanel1_Container.Name = "fieldListDockPanel1_Container";
-            this.fieldListDockPanel1_Container.Size = new System.Drawing.Size(366, 104);
+            this.fieldListDockPanel1_Container.Size = new System.Drawing.Size(446, 135);
             this.fieldListDockPanel1_Container.TabIndex = 0;
             // 
             // panelContainer3
@@ -1748,11 +1753,11 @@
             this.panelContainer3.Controls.Add(this.reportGalleryDockPanel1);
             this.panelContainer3.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
             this.panelContainer3.ID = new System.Guid("2b980ae9-60e8-4f95-a79e-b56e6523c2bc");
-            this.panelContainer3.Location = new System.Drawing.Point(0, 181);
+            this.panelContainer3.Location = new System.Drawing.Point(0, 228);
+            this.panelContainer3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelContainer3.Name = "panelContainer3";
-            this.panelContainer3.OriginalSize = new System.Drawing.Size(200, 200);
-            this.panelContainer3.SavedSizeFactor = 0D;
-            this.panelContainer3.Size = new System.Drawing.Size(375, 181);
+            this.panelContainer3.OriginalSize = new System.Drawing.Size(458, 224);
+            this.panelContainer3.Size = new System.Drawing.Size(458, 227);
             this.panelContainer3.Tabbed = true;
             this.panelContainer3.Text = "panelContainer3";
             // 
@@ -1761,18 +1766,19 @@
             this.propertyGridDockPanel1.Controls.Add(this.propertyGridDockPanel1_Container);
             this.propertyGridDockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
             this.propertyGridDockPanel1.ID = new System.Guid("b38d12c3-cd06-4dec-b93d-63a0088e495a");
-            this.propertyGridDockPanel1.Location = new System.Drawing.Point(5, 33);
+            this.propertyGridDockPanel1.Location = new System.Drawing.Point(7, 40);
+            this.propertyGridDockPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.propertyGridDockPanel1.Name = "propertyGridDockPanel1";
-            this.propertyGridDockPanel1.OriginalSize = new System.Drawing.Size(200, 200);
-            this.propertyGridDockPanel1.SavedSizeFactor = 0D;
-            this.propertyGridDockPanel1.Size = new System.Drawing.Size(366, 105);
-            this.propertyGridDockPanel1.Text = "Property Grid";
+            this.propertyGridDockPanel1.OriginalSize = new System.Drawing.Size(447, 130);
+            this.propertyGridDockPanel1.Size = new System.Drawing.Size(446, 136);
+            this.propertyGridDockPanel1.Text = "Properties";
             // 
             // propertyGridDockPanel1_Container
             // 
             this.propertyGridDockPanel1_Container.Location = new System.Drawing.Point(0, 0);
+            this.propertyGridDockPanel1_Container.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.propertyGridDockPanel1_Container.Name = "propertyGridDockPanel1_Container";
-            this.propertyGridDockPanel1_Container.Size = new System.Drawing.Size(366, 105);
+            this.propertyGridDockPanel1_Container.Size = new System.Drawing.Size(446, 136);
             this.propertyGridDockPanel1_Container.TabIndex = 0;
             // 
             // reportGalleryDockPanel1
@@ -1780,18 +1786,19 @@
             this.reportGalleryDockPanel1.Controls.Add(this.reportGalleryDockPanel1_Container);
             this.reportGalleryDockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
             this.reportGalleryDockPanel1.ID = new System.Guid("7cd5b1e8-63bb-46f7-af65-af61eb851a38");
-            this.reportGalleryDockPanel1.Location = new System.Drawing.Point(5, 33);
+            this.reportGalleryDockPanel1.Location = new System.Drawing.Point(7, 40);
+            this.reportGalleryDockPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.reportGalleryDockPanel1.Name = "reportGalleryDockPanel1";
-            this.reportGalleryDockPanel1.OriginalSize = new System.Drawing.Size(200, 200);
-            this.reportGalleryDockPanel1.SavedSizeFactor = 0D;
-            this.reportGalleryDockPanel1.Size = new System.Drawing.Size(366, 105);
+            this.reportGalleryDockPanel1.OriginalSize = new System.Drawing.Size(447, 130);
+            this.reportGalleryDockPanel1.Size = new System.Drawing.Size(446, 136);
             this.reportGalleryDockPanel1.Text = "Report Gallery";
             // 
             // reportGalleryDockPanel1_Container
             // 
             this.reportGalleryDockPanel1_Container.Location = new System.Drawing.Point(0, 0);
+            this.reportGalleryDockPanel1_Container.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.reportGalleryDockPanel1_Container.Name = "reportGalleryDockPanel1_Container";
-            this.reportGalleryDockPanel1_Container.Size = new System.Drawing.Size(366, 105);
+            this.reportGalleryDockPanel1_Container.Size = new System.Drawing.Size(446, 136);
             this.reportGalleryDockPanel1_Container.TabIndex = 0;
             // 
             // panelContainer4
@@ -1801,11 +1808,11 @@
             this.panelContainer4.Controls.Add(this.errorListDockPanel1);
             this.panelContainer4.Dock = DevExpress.XtraBars.Docking.DockingStyle.Bottom;
             this.panelContainer4.ID = new System.Guid("8d49c4bc-17f8-42db-a4d6-bf50696dce59");
-            this.panelContainer4.Location = new System.Drawing.Point(0, 367);
+            this.panelContainer4.Location = new System.Drawing.Point(0, 456);
+            this.panelContainer4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelContainer4.Name = "panelContainer4";
             this.panelContainer4.OriginalSize = new System.Drawing.Size(200, 200);
-            this.panelContainer4.SavedSizeFactor = 0D;
-            this.panelContainer4.Size = new System.Drawing.Size(687, 200);
+            this.panelContainer4.Size = new System.Drawing.Size(840, 248);
             this.panelContainer4.Tabbed = true;
             this.panelContainer4.Text = "panelContainer4";
             // 
@@ -1814,18 +1821,19 @@
             this.groupAndSortDockPanel1.Controls.Add(this.groupAndSortDockPanel1_Container);
             this.groupAndSortDockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
             this.groupAndSortDockPanel1.ID = new System.Guid("4bab159e-c495-4d67-87dc-f4e895da443e");
-            this.groupAndSortDockPanel1.Location = new System.Drawing.Point(4, 34);
+            this.groupAndSortDockPanel1.Location = new System.Drawing.Point(5, 42);
+            this.groupAndSortDockPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupAndSortDockPanel1.Name = "groupAndSortDockPanel1";
-            this.groupAndSortDockPanel1.OriginalSize = new System.Drawing.Size(200, 200);
-            this.groupAndSortDockPanel1.SavedSizeFactor = 0D;
-            this.groupAndSortDockPanel1.Size = new System.Drawing.Size(679, 123);
+            this.groupAndSortDockPanel1.OriginalSize = new System.Drawing.Size(830, 153);
+            this.groupAndSortDockPanel1.Size = new System.Drawing.Size(830, 155);
             this.groupAndSortDockPanel1.Text = "Group and Sort";
             // 
             // groupAndSortDockPanel1_Container
             // 
             this.groupAndSortDockPanel1_Container.Location = new System.Drawing.Point(0, 0);
+            this.groupAndSortDockPanel1_Container.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupAndSortDockPanel1_Container.Name = "groupAndSortDockPanel1_Container";
-            this.groupAndSortDockPanel1_Container.Size = new System.Drawing.Size(679, 123);
+            this.groupAndSortDockPanel1_Container.Size = new System.Drawing.Size(830, 155);
             this.groupAndSortDockPanel1_Container.TabIndex = 0;
             // 
             // errorListDockPanel1
@@ -1833,18 +1841,19 @@
             this.errorListDockPanel1.Controls.Add(this.errorListDockPanel1_Container);
             this.errorListDockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
             this.errorListDockPanel1.ID = new System.Guid("5a9a01fd-6e95-4e81-a8c4-ac63153d7488");
-            this.errorListDockPanel1.Location = new System.Drawing.Point(4, 34);
+            this.errorListDockPanel1.Location = new System.Drawing.Point(5, 42);
+            this.errorListDockPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.errorListDockPanel1.Name = "errorListDockPanel1";
-            this.errorListDockPanel1.OriginalSize = new System.Drawing.Size(200, 162);
-            this.errorListDockPanel1.SavedSizeFactor = 0D;
-            this.errorListDockPanel1.Size = new System.Drawing.Size(679, 123);
+            this.errorListDockPanel1.OriginalSize = new System.Drawing.Size(830, 153);
+            this.errorListDockPanel1.Size = new System.Drawing.Size(830, 155);
             this.errorListDockPanel1.Text = "Scripts Errors";
             // 
             // errorListDockPanel1_Container
             // 
             this.errorListDockPanel1_Container.Location = new System.Drawing.Point(0, 0);
+            this.errorListDockPanel1_Container.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.errorListDockPanel1_Container.Name = "errorListDockPanel1_Container";
-            this.errorListDockPanel1_Container.Size = new System.Drawing.Size(679, 123);
+            this.errorListDockPanel1_Container.Size = new System.Drawing.Size(830, 155);
             this.errorListDockPanel1_Container.TabIndex = 0;
             // 
             // commandBarItem17
@@ -5157,6 +5166,7 @@
             this.zoomTrackBarEditItem1.ContextSpecifier = this.xrDesignRibbonController1;
             this.zoomTrackBarEditItem1.Edit = this.repositoryItemZoomTrackBar1;
             this.zoomTrackBarEditItem1.EditWidth = 140;
+            this.zoomTrackBarEditItem1.Enabled = false;
             this.zoomTrackBarEditItem1.Id = 225;
             this.zoomTrackBarEditItem1.Name = "zoomTrackBarEditItem1";
             this.zoomTrackBarEditItem1.Range = new int[] {
@@ -5965,10 +5975,11 @@
             this.ribbonStatusBar1.ItemLinks.Add(this.printPreviewBarItem52);
             this.ribbonStatusBar1.ItemLinks.Add(this.printPreviewStaticItem2);
             this.ribbonStatusBar1.ItemLinks.Add(this.zoomTrackBarEditItem1);
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 567);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 704);
+            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(1062, 37);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1298, 45);
             // 
             // reportDesigner1
             // 
@@ -5994,13 +6005,14 @@
             // 
             // FrmReportDesigner
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1062, 604);
-            this.Controls.Add(this.panelContainer4);
+            this.ClientSize = new System.Drawing.Size(1298, 749);
             this.Controls.Add(this.panelContainer1);
+            this.Controls.Add(this.panelContainer4);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmReportDesigner";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "طراحی گزارش";
@@ -6030,6 +6042,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemZoomTrackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reportDesigner1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

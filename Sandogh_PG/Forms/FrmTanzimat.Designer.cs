@@ -53,6 +53,7 @@
             this.checkEdit3 = new DevExpress.XtraEditors.CheckEdit();
             this.checkEdit2 = new DevExpress.XtraEditors.CheckEdit();
             this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
+            this.label3 = new System.Windows.Forms.Label();
             this.xtraScrollableControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
@@ -75,7 +76,7 @@
             this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 0);
             this.xtraScrollableControl1.Margin = new System.Windows.Forms.Padding(4);
             this.xtraScrollableControl1.Name = "xtraScrollableControl1";
-            this.xtraScrollableControl1.Size = new System.Drawing.Size(1080, 404);
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(1080, 444);
             this.xtraScrollableControl1.TabIndex = 1;
             // 
             // panelControl2
@@ -87,11 +88,12 @@
             this.panelControl2.Location = new System.Drawing.Point(0, 0);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1080, 402);
+            this.panelControl2.Size = new System.Drawing.Size(1080, 444);
             this.panelControl2.TabIndex = 2;
             // 
             // panelControl4
             // 
+            this.panelControl4.Controls.Add(this.label3);
             this.panelControl4.Controls.Add(this.btnClose);
             this.panelControl4.Controls.Add(this.btnSaveClose);
             this.panelControl4.Controls.Add(this.btnSelectPath);
@@ -113,7 +115,7 @@
             this.panelControl4.Location = new System.Drawing.Point(11, 6);
             this.panelControl4.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(1056, 254);
+            this.panelControl4.Size = new System.Drawing.Size(1056, 300);
             this.panelControl4.TabIndex = 37;
             // 
             // btnClose
@@ -333,7 +335,7 @@
             // checkEdit3
             // 
             this.checkEdit3.EditValue = true;
-            this.checkEdit3.Location = new System.Drawing.Point(11, 355);
+            this.checkEdit3.Location = new System.Drawing.Point(11, 401);
             this.checkEdit3.Margin = new System.Windows.Forms.Padding(4);
             this.checkEdit3.Name = "checkEdit3";
             this.checkEdit3.Properties.Caption = "یادآوری روزانه اقساط سررسید گذشته وامها و پس انداز ماهیانه دریافت نشده در ابتدای " +
@@ -344,7 +346,7 @@
             // checkEdit2
             // 
             this.checkEdit2.EditValue = true;
-            this.checkEdit2.Location = new System.Drawing.Point(11, 311);
+            this.checkEdit2.Location = new System.Drawing.Point(11, 357);
             this.checkEdit2.Margin = new System.Windows.Forms.Padding(4);
             this.checkEdit2.Name = "checkEdit2";
             this.checkEdit2.Properties.Caption = "در صورت تسویه نشدن وام قبلی ، از پرداخت وام جدید به آن عضو خودداری شود";
@@ -354,18 +356,31 @@
             // checkEdit1
             // 
             this.checkEdit1.EditValue = true;
-            this.checkEdit1.Location = new System.Drawing.Point(11, 268);
+            this.checkEdit1.Location = new System.Drawing.Point(11, 314);
             this.checkEdit1.Margin = new System.Windows.Forms.Padding(4);
             this.checkEdit1.Name = "checkEdit1";
             this.checkEdit1.Properties.Caption = "درپرداخت وام به اعضاء تعیین ضامن و یا گرفتن چک و سفته تضمینی الزامی است ";
             this.checkEdit1.Size = new System.Drawing.Size(1056, 35);
             this.checkEdit1.TabIndex = 0;
             // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label3.Location = new System.Drawing.Point(7, 256);
+            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(867, 29);
+            this.label3.TabIndex = 45;
+            this.label3.Text = "توجه : لطفاً نام پوشه های مسیر فایل پشتیبان بصورت فارسی تایپ نشود در غیر اینصورت " +
+    "احتمال دارد فایل پشتیبان بصورت ناقص ذخیره گردد.";
+            // 
             // FrmTanzimat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1080, 404);
+            this.ClientSize = new System.Drawing.Size(1080, 444);
             this.Controls.Add(this.xtraScrollableControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -422,5 +437,6 @@
         public DevExpress.XtraEditors.SimpleButton btnSelectPath;
         public DevExpress.XtraEditors.TextEdit txtPath;
         private DevExpress.XtraEditors.LabelControl labelControl7;
+        private System.Windows.Forms.Label label3;
     }
 }

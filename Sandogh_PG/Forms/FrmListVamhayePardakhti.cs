@@ -639,6 +639,37 @@ namespace Sandogh_PG
                     AdressSandogh = q4 != null && !string.IsNullOrEmpty(q4.Adress) ? q4.Adress : "..................................................";
                     ShTell = q4 != null ? !string.IsNullOrEmpty(q4.Tell) ? q4.Tell : !string.IsNullOrEmpty(q4.Mobile) ? q4.Mobile : "........................" : "........................";
 
+                    NoeSanad1 = "..........";
+                    Shcheak1 = ".................";
+                    MablaghTazmin1 = ".................";
+                    NoeSanad2 = "..........";
+                    Shcheak2 = ".................";
+                    MablaghTazmin2 = ".................";
+                    NoeSanad3 = "..........";
+                    Shcheak3 = ".................";
+                    MablaghTazmin3 = ".................";
+                    NoeSanad4 = "..........";
+                    Shcheak4 = ".................";
+                    MablaghTazmin4 = ".................";
+                    NoeSanad5 = "..........";
+                    Shcheak5 = ".................";
+                    MablaghTazmin5 = ".................";
+                    NoeSanad6 = "..........";
+                    Shcheak6 = ".................";
+                    MablaghTazmin6 = ".................";
+                    NoeSanad7 = "..........";
+                    Shcheak7 = ".................";
+                    MablaghTazmin7 = ".................";
+                    NoeSanad8 = "..........";
+                    Shcheak8 = ".................";
+                    MablaghTazmin8 = ".................";
+                    NoeSanad9 = "..........";
+                    Shcheak9 = ".................";
+                    MablaghTazmin9 = ".................";
+                    NoeSanad10 = "..........";
+                    Shcheak10 = ".................";
+                    MablaghTazmin10 = ".................";
+
                     var q5 = db.CheckTazmins.Where(f => f.VamGerandeId == IdShakhs && f.IsInSandogh == true).ToList();
                     if (q5.Count > 0)
                         switch (q5.Count)
@@ -738,40 +769,40 @@ namespace Sandogh_PG
                                 }
 
                         }
-                    else
-                    {
-                        NoeSanad1 = "..........";
-                        Shcheak1 = ".................";
-                        MablaghTazmin1 = ".................";
-                        NoeSanad2 = "..........";
-                        Shcheak2 = ".................";
-                        MablaghTazmin2 = ".................";
-                        NoeSanad3 = "..........";
-                        Shcheak3 = ".................";
-                        MablaghTazmin3 = ".................";
-                        NoeSanad4 = "..........";
-                        Shcheak4 = ".................";
-                        MablaghTazmin4 = ".................";
-                        NoeSanad5 = "..........";
-                        Shcheak5 = ".................";
-                        MablaghTazmin5 = ".................";
-                        NoeSanad6 = "..........";
-                        Shcheak6 = ".................";
-                        MablaghTazmin6 = ".................";
-                        NoeSanad7 = "..........";
-                        Shcheak7 = ".................";
-                        MablaghTazmin7 = ".................";
-                        NoeSanad8 = "..........";
-                        Shcheak8 = ".................";
-                        MablaghTazmin8 = ".................";
-                        NoeSanad9 = "..........";
-                        Shcheak9 = ".................";
-                        MablaghTazmin9 = ".................";
-                        NoeSanad10 = "..........";
-                        Shcheak10 = ".................";
-                        MablaghTazmin10 = ".................";
+                    //else
+                    //{
+                    //    NoeSanad1 = "..........";
+                    //    Shcheak1 = ".................";
+                    //    MablaghTazmin1 = ".................";
+                    //    NoeSanad2 = "..........";
+                    //    Shcheak2 = ".................";
+                    //    MablaghTazmin2 = ".................";
+                    //    NoeSanad3 = "..........";
+                    //    Shcheak3 = ".................";
+                    //    MablaghTazmin3 = ".................";
+                    //    NoeSanad4 = "..........";
+                    //    Shcheak4 = ".................";
+                    //    MablaghTazmin4 = ".................";
+                    //    NoeSanad5 = "..........";
+                    //    Shcheak5 = ".................";
+                    //    MablaghTazmin5 = ".................";
+                    //    NoeSanad6 = "..........";
+                    //    Shcheak6 = ".................";
+                    //    MablaghTazmin6 = ".................";
+                    //    NoeSanad7 = "..........";
+                    //    Shcheak7 = ".................";
+                    //    MablaghTazmin7 = ".................";
+                    //    NoeSanad8 = "..........";
+                    //    Shcheak8 = ".................";
+                    //    MablaghTazmin8 = ".................";
+                    //    NoeSanad9 = "..........";
+                    //    Shcheak9 = ".................";
+                    //    MablaghTazmin9 = ".................";
+                    //    NoeSanad10 = "..........";
+                    //    Shcheak10 = ".................";
+                    //    MablaghTazmin10 = ".................";
 
-                    }
+                    //}
                 }
                 catch (Exception ex)
                 {
@@ -1077,5 +1108,30 @@ namespace Sandogh_PG
             HelpClass1.ControlAltShift_KeyDown(sender, e, btnDesignReport2);
         }
 
+        private void gridView2_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (view.RowCount > 0)
+            {
+                // bool IsActive = Convert.ToBoolean(view.GetRowCellValue(e.RowHandle, "IsActive"));
+                int ShomareSanad = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "ShomareSanad"));
+                int Mande = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "Mande"));
+
+                if (ShomareSanad == 0 || (ShomareSanad > 0 && Mande == 0))
+                {
+                    return;
+                    //Color foreColor = Color.Black;
+                    //e.Appearance.ForeColor = foreColor;
+                }
+                else if (ShomareSanad > 0 && Mande > 0)
+                {
+                    Color foreColor = Color.Red;
+                    e.Appearance.ForeColor = foreColor;
+                    e.Appearance.BackColor = Color.Yellow;
+                }
+
+            }
+
+        }
     }
 }

@@ -185,6 +185,8 @@ namespace Sandogh_PG
         {
             FillcmbPardakhtKonande();
             FillcmbHesabMoin();
+            HelpClass1.DateTimeMask(txtTarikh);
+
             using (var db = new MyContext())
             {
                 try

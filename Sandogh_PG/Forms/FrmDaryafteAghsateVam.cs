@@ -134,6 +134,8 @@ namespace Sandogh_PG
             }
         }
 
+        decimal MablaghDaryaftBeforEdit = 0;
+
         private void FrmDaryafteAghsateVam_Load(object sender, EventArgs e)
         {
             FillcmbPardakhtKonande();
@@ -141,6 +143,8 @@ namespace Sandogh_PG
             //FillcmbNameHesab();
             cmbPardakhtKonande.EditValue = Convert.ToInt32(Fm.gridView3.GetFocusedRowCellValue("AazaId"));
             txtCodeVam.Text = Fm.gridView3.GetFocusedRowCellDisplayText("Code");
+            HelpClass1.DateTimeMask(txtTarikhDaryaft);
+            HelpClass1.DateTimeMask(txtSarresidGhest);
 
             using (var db = new MyContext())
             {
@@ -165,7 +169,9 @@ namespace Sandogh_PG
                         }
 
                         int _CodeVam = Convert.ToInt32(Fm.gridView3.GetFocusedRowCellDisplayText("Code"));
-                        var q1 = db.RizeAghsatVams.FirstOrDefault(s => s.VamPardakhtiCode == _CodeVam && s.SeryalDaryaft == 0);
+                        int MinShomareGhest = db.RizeAghsatVams.Where(s => s.VamPardakhtiCode == _CodeVam && s.SeryalDaryaft == 0).Min(s => s.ShomareGhest);
+                        var q1 = db.RizeAghsatVams.FirstOrDefault(s => s.VamPardakhtiCode == _CodeVam && s.SeryalDaryaft == 0 && s.ShomareGhest == MinShomareGhest);
+
                         if (q1 != null)
                         {
                             txtId.Text = q1.Id.ToString();
@@ -186,17 +192,17 @@ namespace Sandogh_PG
                         int _shSanad = Convert.ToInt32(Fm.gridView4.GetFocusedRowCellDisplayText("ShomareSanad"));
                         txtSeryal.Text = Fm.gridView4.GetFocusedRowCellDisplayText("SeryalDaryaft");
                         txtId.Text = Fm.gridView4.GetFocusedRowCellDisplayText("Id");
-                        txtShomareGhest.Text = _shSanad.ToString();
+                        txtShomareGhest.Text = Fm.gridView4.GetFocusedRowCellDisplayText("ShomareGhest");
                         txtSarresidGhest.Text = Fm.gridView4.GetFocusedRowCellDisplayText("TarikhSarresid").Substring(0, 10);
                         txtMablaghGhest.Text = Fm.gridView4.GetFocusedRowCellDisplayText("MablaghAghsat");
                         txtTarikhDaryaft.Text = Fm.gridView4.GetFocusedRowCellDisplayText("TarikhDaryaft").Substring(0, 10);
                         txtMablaghDaryaft.Text = Fm.gridView4.GetFocusedRowCellDisplayText("MablaghDaryafti");
-                        int _MoinId= Convert.ToInt32(db.AsnadeHesabdariRows.FirstOrDefault(f => f.ShomareSanad == _shSanad).HesabMoinId);
+                        int _MoinId = Convert.ToInt32(db.AsnadeHesabdariRows.FirstOrDefault(f => f.ShomareSanad == _shSanad).HesabMoinId);
                         cmbMoin.EditValue = _MoinId;
                         cmbNameHesab.EditValue = Convert.ToInt32(Fm.gridView4.GetFocusedRowCellValue("NameHesabId"));
                         txtSharh.Text = Fm.gridView4.GetFocusedRowCellDisplayText("Sharh");
                         btnSaveNext.Visible = false;
-
+                        MablaghDaryaftBeforEdit = Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", ""));
                     }
                     txtTarikhDaryaft.Focus();
                 }
@@ -264,6 +270,15 @@ namespace Sandogh_PG
                     {
                         int RowId = Convert.ToInt32(txtId.Text);
                         var q = db.RizeAghsatVams.FirstOrDefault(s => s.Id == RowId);
+                        int yyyy2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(0, 4));
+                        int MM2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(5, 2));
+                        int dd2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(8, 2));
+                        Mydate d2 = new Mydate(yyyy2, MM2, dd2);
+                        int yyyy3 = Convert.ToInt32(txtTarikhDaryaft.Text.Substring(0, 4));
+                        int MM3 = Convert.ToInt32(txtTarikhDaryaft.Text.Substring(5, 2));
+                        int dd3 = Convert.ToInt32(txtTarikhDaryaft.Text.Substring(8, 2));
+                        Mydate d3 = new Mydate(yyyy3, MM3, dd3);
+
                         if (En == EnumCED.Create)
                         {
                             var q2 = db.AsnadeHesabdariRows.Any() ? db.AsnadeHesabdariRows.Max(f => f.ShomareSanad) : 0;
@@ -323,13 +338,97 @@ namespace Sandogh_PG
                                 obj2.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
                                 db.AsnadeHesabdariRows.Add(obj2);
                                 ///////////////////////////////////////////////////////////////////////////////
+
+                                if (txtMablaghDaryaft.Text.Trim().Replace(",", "") != txtMablaghGhest.Text.Trim().Replace(",", ""))
+                                {
+                                    int _codevam = Convert.ToInt32(txtCodeVam.Text);
+                                    int _shomareghestBadi = Convert.ToInt32(txtShomareGhest.Text) + 1;
+                                    decimal Result = Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", "")) - Convert.ToDecimal(txtMablaghGhest.Text.Trim().Replace(",", ""));
+                                    if (Result < 0)
+                                    {
+                                        if (txtShomareGhest.Text != db.RizeAghsatVams.Where(s => s.VamPardakhtiCode == _codevam).Max(s => s.ShomareGhest).ToString())
+                                        {
+                                            var rs = XtraMessageBox.Show("آیا مبلغ کسری دریافتی به مبلغ قسط بعدی اضافه گردد؟", "پیغام ثبت", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                                            if (rs == DialogResult.Yes)
+                                            {
+                                                q.MablaghAghsat = Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", ""));
+                                                var w = db.RizeAghsatVams.FirstOrDefault(s => s.VamPardakhtiCode == _codevam && s.ShomareGhest == _shomareghestBadi);
+                                                if (w != null)
+                                                    w.MablaghAghsat = w.MablaghAghsat - Result;
+                                                // XtraMessageBox.Show("مبلغ کسری دریافتی به مبلغ قسط بعدی اضافه گردید", "پیغام  ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            }
+                                            else if (rs == DialogResult.Cancel)
+                                            {
+                                                return;
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            var rs = XtraMessageBox.Show("جهت مبلغ کسری دریافتی قسط جدید به تاریخ دوره بعدایجاد گردید؟", "پیغام ثبت", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                                            if (rs == DialogResult.Yes)
+                                            {
+                                                q.MablaghAghsat = Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", ""));
+                                                int _HesabAazaId2 = Convert.ToInt32(cmbPardakhtKonande.EditValue);
+                                                int VamId = q.VamPardakhtiId;
+                                                int VamCode = q.VamPardakhtiCode;
+                                                RizeAghsatVam ct = new RizeAghsatVam();
+                                                ct.ShomareGhest = _shomareghestBadi;
+                                                ct.AazaId = _HesabAazaId2;
+                                                ct.NameAaza = cmbPardakhtKonande.Text;
+                                                ct.VamPardakhtiId = VamId;
+                                                ct.VamPardakhtiCode = VamCode;
+                                                //if (!string.IsNullOrEmpty(txtSarresidGhest.Text))
+                                                //int yyyy2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(0, 4));
+                                                //int MM2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(5, 2));
+                                                //int dd2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(8, 2));
+                                                //Mydate d2 = new Mydate(yyyy2, MM2, dd2);
+                                                if (q.VamPardakhti1.IndexFaseleAghsat == 0)
+                                                    d2.IncrementMonth();
+                                                else if (q.VamPardakhti1.IndexFaseleAghsat == 1)
+                                                    d2.IncrementYear();
+                                                ct.TarikhSarresid = Convert.ToDateTime(d2.ToString());
+                                                // if (!string.IsNullOrEmpty(txtMablaghGest.Text))
+                                                ct.MablaghAghsat = Result * -1;
+                                                ct.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
+                                                db.RizeAghsatVams.Add(ct);
+                                            }
+                                            else if (rs == DialogResult.Cancel)
+                                            {
+                                                return;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", "")) > Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
+                                        {
+                                            XtraMessageBox.Show("مبلغ دریافتی بیشتر از مانده بدهی وام است لطفاً اصلاح فرمایید", "پیغام تصحیح ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            return;
+                                        }
+                                        else if (Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", "")) == Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
+                                        {
+                                            q.MablaghAghsat = Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", ""));
+                                            var r = db.RizeAghsatVams.Where(s => s.VamPardakhtiCode == _codevam && s.ShomareGhest >= _shomareghestBadi).ToList();
+                                            if (r.Count > 0)
+                                                db.RizeAghsatVams.RemoveRange(r);
+                                        }
+                                        else if (Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", "")) < Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
+                                        {
+                                            //q.MablaghAghsat = Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", ""));
+                                            XtraMessageBox.Show("مبلغ دریافتی فقط در حالتهای ذیل مورد قبول می باشد : \n 1- مبلغ دریافتی با مبلغ قسط برابر باشد \n 2 - مبلغ دریافتی کمتر از مبلغ قسط باشد \n 3- مبلغ دریافتی با مانده قابل دریافت وام برابر باشد \n توجه : چنانچه مبلغ دریافتی بیشتر از مبلغ قسط وام و کمتر از مانده قابل دریافت وام باشد بایستی طی چند قسط ، دریافتی زده شود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            return;
+                                        }
+                                    }
+                                }
+
                                 db.SaveChanges();
                                 //XtraMessageBox.Show("اطلاعات با موفقیت ثبت شد", "پیغام ثبت ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 En = EnumCED.Save;
                                 Fm.btnDisplyActiveList4_Click(null, null);
                                 Fm.gridView4.FocusedRowHandle = Fm.IndexAkharinDaruaft;
                                 this.Close();
-                                if (Convert.ToInt32(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue) == 0)
+                                if (Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue) == 0)
                                 {
                                     if (XtraMessageBox.Show("با دریافت این قسط وام مذکور تسویه شد آیا وام فوق به لیست وامهای تسویه شده انتقال یابد؟", "پیغام ثبت ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                                     {
@@ -404,6 +503,91 @@ namespace Sandogh_PG
                                 obj2.Sharh = txtSharh.Text;
                                 obj2.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
                                 db.AsnadeHesabdariRows.Add(obj2);
+
+                                if (txtMablaghDaryaft.Text.Trim().Replace(",", "") != txtMablaghGhest.Text.Trim().Replace(",", ""))
+                                {
+                                    int _codevam = Convert.ToInt32(txtCodeVam.Text);
+                                    int _shomareghestBadi = Convert.ToInt32(txtShomareGhest.Text) + 1;
+                                    decimal Result = Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", "")) - Convert.ToDecimal(txtMablaghGhest.Text.Trim().Replace(",", ""));
+
+                                    if (Result < 0)
+                                    {
+                                        if (txtShomareGhest.Text != db.RizeAghsatVams.Where(s => s.VamPardakhtiCode == _codevam).Max(s => s.ShomareGhest).ToString())
+                                        {
+                                            var rs = XtraMessageBox.Show("آیا مبلغ کسری دریافتی به مبلغ قسط بعدی اضافه گردد؟", "پیغام ثبت", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                                            if (rs == DialogResult.Yes)
+                                            {
+                                                q.MablaghAghsat = Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", ""));
+                                                var w = db.RizeAghsatVams.FirstOrDefault(s => s.VamPardakhtiCode == _codevam && s.ShomareGhest == _shomareghestBadi);
+                                                if (w != null)
+                                                    w.MablaghAghsat = w.MablaghAghsat - Result;
+                                                // XtraMessageBox.Show("مبلغ کسری دریافتی به مبلغ قسط بعدی اضافه گردید", "پیغام  ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            }
+                                            else if (rs == DialogResult.Cancel)
+                                            {
+                                                return;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            var rs = XtraMessageBox.Show("جهت مبلغ کسری دریافتی قسط جدید به تاریخ دوره بعدایجاد گردید؟", "پیغام ثبت", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                                            if (rs == DialogResult.Yes)
+                                            {
+                                                int _HesabAazaId2 = Convert.ToInt32(cmbPardakhtKonande.EditValue);
+                                                int VamId = q.VamPardakhtiId;
+                                                int VamCode = q.VamPardakhtiCode;
+                                                RizeAghsatVam ct = new RizeAghsatVam();
+                                                ct.ShomareGhest = _shomareghestBadi;
+                                                ct.AazaId = _HesabAazaId2;
+                                                ct.NameAaza = cmbPardakhtKonande.Text;
+                                                ct.VamPardakhtiId = VamId;
+                                                ct.VamPardakhtiCode = VamCode;
+                                                //if (!string.IsNullOrEmpty(txtSarresidGhest.Text))
+                                                //int yyyy2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(0, 4));
+                                                //int MM2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(5, 2));
+                                                //int dd2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(8, 2));
+                                                //Mydate d2 = new Mydate(yyyy2, MM2, dd2);
+                                                if (q.VamPardakhti1.IndexFaseleAghsat == 0)
+                                                    d2.IncrementMonth();
+                                                else if (q.VamPardakhti1.IndexFaseleAghsat == 1)
+                                                    d2.IncrementYear();
+                                                ct.TarikhSarresid = Convert.ToDateTime(d2.ToString());
+                                                // if (!string.IsNullOrEmpty(txtMablaghGest.Text))
+                                                ct.MablaghAghsat = Result * -1;
+                                                ct.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
+                                                db.RizeAghsatVams.Add(ct);
+                                            }
+                                            else if (rs == DialogResult.Cancel)
+                                            {
+                                                return;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        decimal Tafazol = (Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", "")) - MablaghDaryaftBeforEdit);
+                                        if (Tafazol > Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
+                                        {
+                                            XtraMessageBox.Show("مبلغ دریافتی بیشتر از مانده بدهی وام است لطفاً اصلاح فرمایید", "پیغام تصحیح ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            return;
+                                        }
+                                        else if (Tafazol == Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
+                                        {
+                                            q.MablaghAghsat = Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", ""));
+                                            var r = db.RizeAghsatVams.Where(s => s.VamPardakhtiCode == _codevam && s.ShomareSanad == 0).ToList();
+                                            if (r.Count > 0)
+                                                db.RizeAghsatVams.RemoveRange(r);
+                                        }
+                                        else if (Tafazol < Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
+                                        {
+                                            //q.MablaghAghsat = Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", ""));
+                                            XtraMessageBox.Show("مبلغ دریافتی فقط در حالتهای ذیل مورد قبول می باشد : \n 1- مبلغ دریافتی با مبلغ قسط برابر باشد \n 2 - مبلغ دریافتی کمتر از مبلغ قسط باشد \n 3- مبلغ دریافتی با مبلغ تسویه حساب وام برابر باشد \n توجه : چنانچه مبلغ دریافتی بیشتر از مبلغ قسط وام و کمتر از مبلغ تسویه حساب وام باشد بایستی طی اقساط جدید ، دریافتی زده شود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            return;
+                                        }
+                                    }
+                                }
+
+
                                 db.SaveChanges();
                                 //XtraMessageBox.Show("اطلاعات با موفقیت ویرایش شد", "پیغام ثبت ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 En = EnumCED.Save;
@@ -453,6 +637,7 @@ namespace Sandogh_PG
                 }
             }
         }
+
 
         private void btnClose_Click(object sender, EventArgs e)
         {

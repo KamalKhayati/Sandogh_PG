@@ -28,6 +28,22 @@ namespace Sandogh_PG
         //([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[01])/([012][1-9]|[123]0))|((1[2])/([012][1-9])))
         //Show Placeholdes=true
 
+        public static void DateTimeMask(TextEdit TextBox)
+        {
+            /// <summary>
+            /// فرمول قالب بندی تاریخ برای ماه اسفند 29 روزه
+            /// </summary>
+            //([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[0-1])/([012][1-9]|[123]0))|((1[2])/([012][1-9]|[12]0)))
+
+            /// <summary>
+            /// فرمول قالب بندی تاریخ برای ماه اسفند 30 روزه
+            /// </summary>
+            //([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[0-1])/([012][1-9]|[123]0))|((1[2])/([012][1-9]|[123]0)))
+
+            TextBox.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            TextBox.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[0-1])/([012][1-9]|[123]0))|((1[2])/([012][1-9]|[12]0)))";
+            TextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+        }
 
         public static void AddZerooToTextBox(object sender, KeyPressEventArgs e)
         {
@@ -247,8 +263,9 @@ namespace Sandogh_PG
             int rowHandle = view.GetRowHandle(e.ListSourceRowIndex);
             //int visibleIndex = view.GetVisibleIndex(rowHandle);
             //if (e.IsSetData) return;
-            if (e.Column.FieldName == "Line")
+            if (e.Column.FieldName == "Line" && view.Columns["Line"].Visible)
                 e.Value = rowHandle + 1;
+
             //if (e.Column.FieldName == "gridColumnVisibleIndex")
             //    e.Value = visibleIndex;
             //if (e.Column.FieldName == "gridColumnListSourceIndex")
