@@ -182,6 +182,7 @@ namespace Sandogh_PG
                                     fm.txtUserName.Caption = q1.Name.ToString();
                                     fm.txtDateTimeNow.Caption = DateTime.Now.ToString().Substring(0, 10);
                                     fm.NameDataBase.Caption = db.Database.Connection.Database;
+                                    fm.ShNoskheBarname.Caption = q.ShomareNoskheBarname;
                                     //fm.IndexNameDataBase.Caption = cmbNameDataBaseSandogh.SelectedIndex.ToString();
                                     fm.Show();
                                 }

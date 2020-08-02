@@ -52,9 +52,9 @@ namespace Sandogh_PG
                 {
                     var q = db.CheckTazmins.Where(s => s.IsInSandogh == false).OrderBy(s => s.SeryalDaryaft);
                     if (q.Count() > 0)
-                        checkTazminsBindingSource.DataSource = q.ToList();
+                        gridControl1.DataSource = q.ToList();
                     else
-                        checkTazminsBindingSource.DataSource = null;
+                        gridControl1.DataSource = null;
                 }
                 catch (Exception ex)
                 {
@@ -92,6 +92,7 @@ namespace Sandogh_PG
             HelpClass1.DateTimeMask(txtTarikhDaryaft);
             HelpClass1.DateTimeMask(txtTarikhCheck);
             HelpClass1.DateTimeMask(txtTarikhOdat);
+            gridView1.MoveLast();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

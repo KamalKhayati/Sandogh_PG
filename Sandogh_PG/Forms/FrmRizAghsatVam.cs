@@ -15,11 +15,17 @@ namespace Sandogh_PG
     public partial class FrmRizAghsatVam : DevExpress.XtraEditors.XtraForm
     {
         FrmListVamhayePardakhti Fm;
+        //FrmDaryafti Km;
         public FrmRizAghsatVam(FrmListVamhayePardakhti fm)
         {
             InitializeComponent();
             Fm = fm;
         }
+        //public FrmRizAghsatVam(FrmDaryafti km)
+        //{
+        //    InitializeComponent();
+        //    Km = km;
+        //}
 
         public EnumCED En;
         public int EditRowIndex = 0;

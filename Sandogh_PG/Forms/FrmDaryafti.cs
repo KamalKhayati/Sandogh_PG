@@ -326,9 +326,13 @@ namespace Sandogh_PG
         private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             FillDataGridHaghOzviat();
-            //btnDisplyList2_Click(null, null);
-            FillDataGridVamhayePardakhti();
-            gridView3_RowCellClick(null, null);
+
+            if (gridView2.RowCount > 0)
+            {
+                IndexAkharinDaruaftHaghOzviat = gridView2.RowCount - 1;
+                gridView2.FocusedRowHandle = IndexAkharinDaruaftHaghOzviat;
+            }
+
             if (IsActiveList1 == true)
             {
                 if (gridView1.RowCount > 0)
@@ -348,7 +352,23 @@ namespace Sandogh_PG
                 btnEdit4.Visible = false;
             }
 
+            FillDataGridVamhayePardakhti();
+            if (gridView3.RowCount > 0)
+            {
+                gridView3_RowCellClick(null, null);
+                for (int i = 0; i < gridView4.RowCount; i++)
+                {
+                    if (Convert.ToInt32(gridView4.GetRowCellValue(i, "ShomareSanad")) == 0)
+                    {
+                        gridView4.FocusedRowHandle = i;
+                        return;
+                    }
+                }
+            }
+
+
         }
+
         int EditRowIndex = 0;
         private void btnDelete2_Click(object sender, EventArgs e)
         {
@@ -458,6 +478,9 @@ namespace Sandogh_PG
 
         }
 
+        public int IndexAkharinDaruaftGhest = 0;
+        public int IndexAkharinDaruaftHaghOzviat = 0;
+
         public void btnCreate4_Click(object sender, EventArgs e)
         {
             if (gridView4.RowCount > 0)
@@ -466,13 +489,36 @@ namespace Sandogh_PG
                 {
                     try
                     {
-                        int _CodeVam = Convert.ToInt32(gridView3.GetFocusedRowCellDisplayText("Code"));
-                        var q1 = db.RizeAghsatVams.FirstOrDefault(s => s.VamPardakhtiCode == _CodeVam && s.SeryalDaryaft == 0);
-                        if (q1 != null)
+                        if (Convert.ToDecimal(gridView4.Columns["Mande"].SummaryItem.SummaryValue) == 0)
                         {
-                            FrmDaryafteAghsateVam fm = new FrmDaryafteAghsateVam(this);
-                            fm.En = EnumCED.Create;
-                            fm.ShowDialog();
+                            if (XtraMessageBox.Show("مبلغ وام تسویه شده است آیا به لیست وامهای تسویه شده انتقال یابد؟", "پیغام ثبت ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                            {
+                                int _VamPardakhtiId = Convert.ToInt32(gridView3.GetFocusedRowCellValue("Id"));
+                                var q = db.VamPardakhtis.FirstOrDefault(s => s.Id == _VamPardakhtiId);
+                                if (q != null)
+                                {
+                                    q.IsTasviye = true;
+                                    db.SaveChanges();
+                                    btnDisplyActiveList3_Click(null, null);
+                                }
+                            }
+                            else
+                                return;
+                        }
+                        else
+                        {
+                            int _CodeVam = Convert.ToInt32(gridView3.GetFocusedRowCellDisplayText("Code"));
+                            var q2 = db.RizeAghsatVams.FirstOrDefault(s => s.VamPardakhtiCode == _CodeVam && s.SeryalDaryaft == 0);
+
+                            var q1 = db.RizeAghsatVams.FirstOrDefault(s => s.VamPardakhtiCode == _CodeVam && s.SeryalDaryaft == 0);
+                            if (q1 != null)
+                            {
+                                FrmDaryafteAghsateVam fm = new FrmDaryafteAghsateVam(this);
+                                fm.En = EnumCED.Create;
+                                if (q2 != null)
+                                    IndexAkharinDaruaftGhest = q2.ShomareGhest - 1;
+                                fm.ShowDialog();
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -663,6 +709,18 @@ namespace Sandogh_PG
         {
             total = new List<long>();
             FillDataGridRizeAghsatVam();
+            if (gridView3.IsFocusedView)
+            {
+                for (int i = 0; i < gridView4.RowCount; i++)
+                {
+                    if (Convert.ToInt32(gridView4.GetRowCellValue(i, "ShomareSanad")) == 0)
+                    {
+                        gridView4.FocusedRowHandle = i;
+                        return;
+                    }
+                }
+
+            }
             //btnDisplyActiveList4_Click(null, null);
         }
 
@@ -839,31 +897,103 @@ namespace Sandogh_PG
             HelpClass1.ControlAltShift_KeyDown(sender, e, btnDesignReport3);
             HelpClass1.ControlAltShift_KeyDown(sender, e, btnDesignReport4);
             HelpClass1.ControlAltShift_KeyDown(sender, e, btnDesignReport2);
+
+            //if (e.KeyCode == Keys.F7)
+            //{
+            //    btnCreate5.Visible = btnDelete5.Visible = btnEdit5.Visible = (btnCreate5.Visible = btnDelete5.Visible = btnEdit5.Visible == false) ? true : false;
+            //    labelControl2.Visible = labelControl2.Visible == true ? false : true;
+            //}
         }
 
         private void gridView4_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
-            GridView view = sender as GridView;
-            if (view.RowCount > 0)
+            HelpClass1.gridView4_RowCellStyle(sender, e);
+        }
+
+        private void gridView3_RowClick(object sender, RowClickEventArgs e)
+        {
+        }
+
+        private void btnCreate5_Click(object sender, EventArgs e)
+        {
+            if (gridView3.RowCount > 0)
             {
-                // bool IsActive = Convert.ToBoolean(view.GetRowCellValue(e.RowHandle, "IsActive"));
-                int ShomareSanad = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "ShomareSanad"));
-                int Mande = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "Mande"));
-
-                if (ShomareSanad == 0 || (ShomareSanad > 0 && Mande == 0))
-                {
-                    return;
-                    //Color foreColor = Color.Black;
-                    //e.Appearance.ForeColor = foreColor;
-                }
-                else if (ShomareSanad > 0 && Mande > 0)
-                {
-                    Color foreColor = Color.Red;
-                    e.Appearance.ForeColor = foreColor;
-                    e.Appearance.BackColor = Color.Yellow;
-                }
-
+                //FrmRizAghsatVam fm = new FrmRizAghsatVam(this);
+                //fm.En = EnumCED.Create;
+                ////fm.IDSandogh.Text = IDSandogh.Text;
+                //fm.ShowDialog();
             }
+
+        }
+
+        private void btnDelete5_Click(object sender, EventArgs e)
+        {
+            if (XtraMessageBox.Show("آیا قسط مورد نظر حذف شود؟", "پیغام حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                if (Convert.ToInt32(gridView4.GetFocusedRowCellValue("MablaghDaryafti")) > 0)
+                {
+                    XtraMessageBox.Show("قسط مورد نظر قبلاً دریافت شده است لذا قابل حذف نیست ", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                    return;
+                }
+                else
+                {
+                    EditRowIndex = gridView4.FocusedRowHandle;
+                    using (var db = new MyContext())
+                    {
+                        try
+                        {
+                            int RowId = Convert.ToInt32(gridView4.GetFocusedRowCellValue("Id").ToString());
+                            var q = db.RizeAghsatVams.FirstOrDefault(p => p.Id == RowId);
+                            if (q != null)
+                            {
+                                db.RizeAghsatVams.Remove(q);
+                                /////////////////////////////////////////////////////////////////////////////
+                                db.SaveChanges();
+
+                                btnDisplyActiveList4_Click(null, null);
+                                //XtraMessageBox.Show("عملیات حذف با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                                if (gridView4.RowCount > 0)
+                                    gridView4.FocusedRowHandle = EditRowIndex - 1;
+                            }
+                            else
+                                XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        //catch (DbUpdateException)
+                        //{
+                        //    XtraMessageBox.Show("عملیات حذف با خطا مواجه شد \n حذف این وام مقدور نیست \n" +
+                        //        "جهت حذف وام مورد نظر در ابتدا بایستی ریز اقساط وام مذکور حذف گردد"
+                        //        , "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //}
+                        catch (Exception ex)
+                        {
+                            XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message, "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+
+        }
+
+        private void btnEdit5_Click(object sender, EventArgs e)
+        {
+            if (gridView4.RowCount > 0)
+            {
+                int ColumnMablaghDaryafti = Convert.ToInt32(gridView4.GetFocusedRowCellValue("MablaghDaryafti"));
+                if (ColumnMablaghDaryafti > 0)
+                {
+                    XtraMessageBox.Show("مبلغ قسط مورد نظر قبلاً دریافت شده است لذا قابل ویرایش نیست ", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                    return;
+                }
+                else
+                {
+                    //FrmRizAghsatVam fm = new FrmRizAghsatVam(this);
+                    //fm.En = EnumCED.Edit;
+                    //fm.EditRowIndex = gridView4.FocusedRowHandle;
+                    ////fm.IDSandogh.Text = IDSandogh.Text;
+                    //fm.ShowDialog();
+                }
+            }
+
         }
     }
 }

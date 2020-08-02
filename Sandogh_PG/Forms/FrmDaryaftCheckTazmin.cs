@@ -152,6 +152,7 @@ namespace Sandogh_PG
         private void FrmDaryaftCheckTazmin_Load(object sender, EventArgs e)
         {
             FillDataGridCheckTazmin();
+            btnLast_Click(null,null);
             HelpClass1.DateTimeMask(txtTarikhDaryaft);
             HelpClass1.DateTimeMask(txtTarikhCheck);
             HelpClass1.DateTimeMask(txtTarikhOdat);

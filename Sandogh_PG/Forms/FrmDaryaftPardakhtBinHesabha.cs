@@ -33,9 +33,9 @@ namespace Sandogh_PG
                 {
                     var q1 = db.DaryaftPardakhtBinHesabhas.OrderBy(s => s.Seryal).ToList();
                     if (q1.Count > 0)
-                        daryaftPardakhtBinHesabhasBindingSource.DataSource = q1;
+                        gridControl1.DataSource = q1;
                     else
-                        daryaftPardakhtBinHesabhasBindingSource.DataSource = null;
+                        gridControl1.DataSource = null;
                 }
                 catch (Exception ex)
                 {
@@ -443,6 +443,8 @@ namespace Sandogh_PG
         private void FrmDaryaftPardakhtBinHesabha_Load(object sender, EventArgs e)
         {
             FillDataGridDaryaftPardakhtBinHesabha();
+            gridView1.MoveLast();
+            HelpClass1.DateTimeMask(txtTarikh);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

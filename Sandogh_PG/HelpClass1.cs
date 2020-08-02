@@ -17,6 +17,7 @@ using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.IO;
 using System.Data.SqlClient;
+using System.Drawing;
 
 namespace Sandogh_PG
 {
@@ -43,6 +44,34 @@ namespace Sandogh_PG
             TextBox.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             TextBox.Properties.Mask.EditMask = "([1-9][3-9][0-9][0-9])/(((0[1-6])/([012][1-9]|[123]0|31))|((0[7-9]|1[0-1])/([012][1-9]|[123]0))|((1[2])/([012][1-9]|[12]0)))";
             TextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+        }
+
+
+        public static void gridView4_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (view.RowCount > 0)
+            {
+                // bool IsActive = Convert.ToBoolean(view.GetRowCellValue(e.RowHandle, "IsActive"));
+                int ShomareSanad = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "ShomareSanad"));
+                decimal MablaghAghsat = Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, "MablaghAghsat"));
+                decimal MablaghDaryafti = Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, "MablaghDaryafti"));
+                int Mande = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "Mande"));
+
+                if (ShomareSanad == 0 || (ShomareSanad > 0 && MablaghAghsat == MablaghDaryafti) || MablaghAghsat == 0)
+                {
+                    return;
+                    //Color foreColor = Color.Black;
+                    //e.Appearance.ForeColor = foreColor;
+                }
+                else if (ShomareSanad > 0 && MablaghAghsat != MablaghDaryafti)
+                {
+                    Color foreColor = Color.Red;
+                    e.Appearance.ForeColor = foreColor;
+                    e.Appearance.BackColor = Color.Orange;
+                }
+
+            }
         }
 
         public static void AddZerooToTextBox(object sender, KeyPressEventArgs e)

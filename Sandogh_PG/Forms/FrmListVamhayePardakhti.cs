@@ -147,6 +147,7 @@ namespace Sandogh_PG
         private void FrmListVamhayePardakhti_Load(object sender, EventArgs e)
         {
             FillDataGridVamhayePardakhti();
+            gridView1.MoveLast();
             btnCreate1.Focus();
         }
 
@@ -414,7 +415,7 @@ namespace Sandogh_PG
                 int ColumnSum = 0;
                 if (chkSelectAll.Checked)
                 {
-                    if (XtraMessageBox.Show("آیا همه اقساط وام جاری شوند؟", "پیغام حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    if (XtraMessageBox.Show("آیا همه اقساط وام جاری حذف شوند؟", "پیغام حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
                         ColumnSum = Convert.ToInt32(gridView2.Columns["MablaghDaryafti"].SummaryItem.SummaryValue);
                         if (ColumnSum != 0)
@@ -1073,7 +1074,7 @@ namespace Sandogh_PG
                     XtraReport1.Parameters["ZameninName"].Value = gridView1.GetFocusedRowCellDisplayText("ZameninName");
                     XtraReport1.Parameters["HaveCheckTazmin"].Value = gridView1.GetFocusedRowCellDisplayText("HaveCheckTazmin");
 
-                    
+
                     //XtraReport1.DataSource = gridView2.DataSource;
                     //XtraReport1.Parameters["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : gridView2.GetRowCellDisplayText(0, "Tarikh").Substring(0, 10);
                     //XtraReport1.Parameters["Ta_Tarikh"].Value = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
@@ -1110,28 +1111,8 @@ namespace Sandogh_PG
 
         private void gridView2_RowCellStyle(object sender, RowCellStyleEventArgs e)
         {
-            GridView view = sender as GridView;
-            if (view.RowCount > 0)
-            {
-                // bool IsActive = Convert.ToBoolean(view.GetRowCellValue(e.RowHandle, "IsActive"));
-                int ShomareSanad = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "ShomareSanad"));
-                int Mande = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "Mande"));
-
-                if (ShomareSanad == 0 || (ShomareSanad > 0 && Mande == 0))
-                {
-                    return;
-                    //Color foreColor = Color.Black;
-                    //e.Appearance.ForeColor = foreColor;
-                }
-                else if (ShomareSanad > 0 && Mande > 0)
-                {
-                    Color foreColor = Color.Red;
-                    e.Appearance.ForeColor = foreColor;
-                    e.Appearance.BackColor = Color.Yellow;
-                }
-
-            }
-
+            HelpClass1.gridView4_RowCellStyle(sender, e);
         }
+
     }
 }

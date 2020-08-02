@@ -183,7 +183,7 @@ namespace Sandogh_PG
 
                                 if (checkEdit1.Checked)
                                 {
-                                    var q2 = db.RizeAghsatVams.Where(f => f.AazaId == q1.Id && f.TarikhSarresid <= EndMonth && f.MablaghDaryafti == 0).ToList();
+                                    var q2 = db.RizeAghsatVams.Where(f => f.AazaId == q1.Id && f.TarikhSarresid <= EndMonth && f.MablaghDaryafti == 0 ).ToList();
                                     var q3 = db.RizeAghsatVams.Where(f => f.AazaId == q1.Id && f.TarikhSarresid <= EndMonth && f.MablaghDaryafti != 0 && f.MablaghDaryafti < f.MablaghAghsat).ToList();
 
                                     List<RizeAghsatVam> List1 = new List<RizeAghsatVam>();
@@ -202,10 +202,10 @@ namespace Sandogh_PG
                                         string s1 = string.Empty;
 
                                         s0 = q2.Count() > 0 ? " + " + q2.Count + " قسط وام " : "";
-                                        s1 = q3.Count() > 0 ? " + " + q3.Count + " مورد کسری دریافتی اقساط قبل" : "";
+                                        s1 = q3.Count() > 0 ? " + " + q3.Count + " مورد کسری دریافتی اقساط" : "";
                                         _Tozihat += !string.IsNullOrEmpty(_Tozihat) ? s0 + s1 :
                                             s0 != "" ? q2.Count + " قسط وام " + s1 :
-                                            s1 != "" ? q3.Count + " مورد کسری دریافتی اقساط قبل" : "";
+                                            s1 != "" ? q3.Count + " مورد کسری دریافتی اقساط" : "";
 
                                         DataRow1[4] = _MablaghAghsat.ToString("n0");
                                     }
@@ -233,8 +233,8 @@ namespace Sandogh_PG
                                         string s0 = string.Empty;
                                         string s1 = string.Empty;
                                         s0 = q2.Count() > 0 ? " + " + q2.Count + " قسط وام " : "";
-                                        s1 = q3.Count() > 0 ? " + " + q3.Count + " مورد کسری دریافتی اقساط قبل" : "";
-                                        _Tozihat += !string.IsNullOrEmpty(_Tozihat) ? s0 + s1 : s0 != "" ? q2.Count + " قسط وام " + s1 : s1 != "" ? q3.Count + " مورد کسری دریافتی اقساط قبل" : "";
+                                        s1 = q3.Count() > 0 ? " + " + q3.Count + " مورد کسری دریافتی اقساط" : "";
+                                        _Tozihat += !string.IsNullOrEmpty(_Tozihat) ? s0 + s1 : s0 != "" ? q2.Count + " قسط وام " + s1 : s1 != "" ? q3.Count + " مورد کسری دریافتی اقساط" : "";
 
                                         DataRow1[4] = _MablaghAghsat.ToString("n0");
                                     }
