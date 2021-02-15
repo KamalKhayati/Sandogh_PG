@@ -26,7 +26,7 @@ namespace Sandogh_PG
                 try
                 {
                     DateTime _DateTimeNow = DateTime.Now;
-                    var q = db.RizeAghsatVams.Where(f => f.ShomareSanad == 0 && f.TarikhSarresid < _DateTimeNow).ToList();
+                    var q = db.RizeAghsatVams.Where(f => f.ShomareSanad == 0 && f.TarikhSarresid < _DateTimeNow && f.VamPardakhti1.IsTasviye==false ).ToList();
                     if (q != null)
                         rizeAghsatVamsBindingSource.DataSource = q.OrderBy(f=>f.TarikhSarresid);
                     else

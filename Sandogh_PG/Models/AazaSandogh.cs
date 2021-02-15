@@ -32,6 +32,8 @@ namespace Sandogh_PG
         public int? IndexJensiat { get; set; }
         [MaxLength(5)]
         public string Taahol { get; set; }
+        //[MaxLength(5)]
+        public int? TedadeFarzand { get; set; }
         public int? IndexTaahol { get; set; }
         [MaxLength(40)]
         public string NameBank { get; set; }
@@ -60,6 +62,7 @@ namespace Sandogh_PG
         //public decimal? BedAvali { get; set; }
         public decimal? HaghOzviat { get; set; }
         public decimal? HazineEftetah { get; set; }
+        public decimal? DaramadeMahiane { get; set; }
         [Required]
         public bool IsActive { get; set; }
         [Required]

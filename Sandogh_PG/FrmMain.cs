@@ -75,6 +75,7 @@ namespace Sandogh_PG
         {
             FrmTarifAaza_1 fm = new FrmTarifAaza_1(this);
             ActiveForm(fm);
+            //fm.ShowDialog();
 
         }
 

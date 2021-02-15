@@ -166,6 +166,7 @@
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.ribbonControl1.MaxItemId = 77;
             this.ribbonControl1.Name = "ribbonControl1";
+            this.ribbonControl1.OptionsPageCategories.ShowCaptions = false;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.DaryaftVPardakht,
             this.infoBase,
@@ -173,8 +174,7 @@
             this.Emkanat,
             this.Other});
             this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControl1.ShowCategoryInCaption = false;
-            this.ribbonControl1.Size = new System.Drawing.Size(1455, 227);
+            this.ribbonControl1.Size = new System.Drawing.Size(1455, 236);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // btnTarifSandogh
@@ -200,6 +200,7 @@
             this.btnTarifAaza.Caption = "تعریف اشخاص";
             this.btnTarifAaza.Id = 3;
             this.btnTarifAaza.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnTarifAaza.ImageOptions.Image")));
+            this.btnTarifAaza.LargeWidth = 90;
             this.btnTarifAaza.Name = "btnTarifAaza";
             this.btnTarifAaza.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.btnTarifAaza.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTarifAaza_ItemClick);
@@ -218,6 +219,7 @@
             this.btnEetayVam.Caption = "اعطای وام به اعضاء صندوق";
             this.btnEetayVam.Id = 8;
             this.btnEetayVam.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnEetayVam.ImageOptions.SvgImage")));
+            this.btnEetayVam.LargeWidth = 100;
             this.btnEetayVam.Name = "btnEetayVam";
             this.btnEetayVam.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.btnEetayVam.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEetayVam_ItemClick);
@@ -227,6 +229,7 @@
             this.btnTanzimat.Caption = "تنظیمات";
             this.btnTanzimat.Id = 11;
             this.btnTanzimat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnTanzimat.ImageOptions.Image")));
+            this.btnTanzimat.LargeWidth = 80;
             this.btnTanzimat.Name = "btnTanzimat";
             this.btnTanzimat.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.btnTanzimat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTanzimat_ItemClick);
@@ -243,6 +246,7 @@
             this.btnTarifSalMali.Caption = "تعریف سال مالی";
             this.btnTarifSalMali.Id = 13;
             this.btnTarifSalMali.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnTarifSalMali.ImageOptions.Image")));
+            this.btnTarifSalMali.LargeWidth = 80;
             this.btnTarifSalMali.Name = "btnTarifSalMali";
             this.btnTarifSalMali.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.btnTarifSalMali.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
@@ -269,6 +273,7 @@
             this.btnDaftarRozname.Caption = "دفتر روزنامه";
             this.btnDaftarRozname.Id = 30;
             this.btnDaftarRozname.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDaftarRozname.ImageOptions.SvgImage")));
+            this.btnDaftarRozname.LargeWidth = 80;
             this.btnDaftarRozname.Name = "btnDaftarRozname";
             this.btnDaftarRozname.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.btnDaftarRozname.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDaftarRozname_ItemClick);
@@ -278,6 +283,7 @@
             this.barSubItem1.Caption = "عملیات چک و سفته تضمینی";
             this.barSubItem1.Id = 32;
             this.barSubItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barSubItem1.ImageOptions.Image")));
+            this.barSubItem1.LargeWidth = 120;
             this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btnDayaftCheckTazmin),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnOdateCheckTazmin)});
@@ -303,6 +309,7 @@
             this.barButtonItem2.Caption = "دریافت و پرداخت بین حسابها";
             this.barButtonItem2.Id = 39;
             this.barButtonItem2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
+            this.barButtonItem2.LargeWidth = 120;
             this.barButtonItem2.Name = "barButtonItem2";
             this.barButtonItem2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
@@ -357,6 +364,7 @@
             this.barSubItem2.Caption = "گزارشات صندوق";
             this.barSubItem2.Id = 46;
             this.barSubItem2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barSubItem2.ImageOptions.SvgImage")));
+            this.barSubItem2.LargeWidth = 80;
             this.barSubItem2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btnSoratHesabTafzili),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnMandeAshkhas),
@@ -405,6 +413,7 @@
             this.barSubItem3.Caption = "کاربران سیستم";
             this.barSubItem3.Id = 52;
             this.barSubItem3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barSubItem3.ImageOptions.Image")));
+            this.barSubItem3.LargeWidth = 80;
             this.barSubItem3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btnListKarbaran),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem4),
@@ -535,6 +544,7 @@
             this.btnDarkhastVam.Caption = "فرم درخواست وام";
             this.btnDarkhastVam.Id = 73;
             this.btnDarkhastVam.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDarkhastVam.ImageOptions.SvgImage")));
+            this.btnDarkhastVam.LargeWidth = 100;
             this.btnDarkhastVam.Name = "btnDarkhastVam";
             this.btnDarkhastVam.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDarkhastVam_ItemClick);
             // 
@@ -564,7 +574,7 @@
             // 
             this.rpgDaryaft.ItemLinks.Add(this.btnDaryaft1);
             this.rpgDaryaft.Name = "rpgDaryaft";
-            this.rpgDaryaft.Text = " پس اندازواقساط";
+            this.rpgDaryaft.Text = " پس انداز و اقساط";
             // 
             // rpgPardakhtha
             // 
@@ -696,11 +706,11 @@
             this.ribbonStatusBar1.ItemLinks.Add(this.txtDateTimeNow);
             this.ribbonStatusBar1.ItemLinks.Add(this.EtmamGaranti, true);
             this.ribbonStatusBar1.ItemLinks.Add(this.MojodiSandogh, true);
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 658);
-            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 665);
+            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(5);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(1455, 44);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1455, 37);
             // 
             // barButtonItem1
             // 
@@ -727,12 +737,12 @@
             // 
             this.pictureEdit3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureEdit3.EditValue = global::Sandogh_PG.Properties.Resources.Background_07;
-            this.pictureEdit3.Location = new System.Drawing.Point(0, 227);
+            this.pictureEdit3.Location = new System.Drawing.Point(0, 236);
             this.pictureEdit3.MenuManager = this.ribbonControl1;
             this.pictureEdit3.Name = "pictureEdit3";
             this.pictureEdit3.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit3.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit3.Size = new System.Drawing.Size(1455, 475);
+            this.pictureEdit3.Size = new System.Drawing.Size(1455, 466);
             this.pictureEdit3.TabIndex = 15;
             // 
             // FrmMain
@@ -744,8 +754,7 @@
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.pictureEdit3);
             this.Controls.Add(this.ribbonControl1);
-            this.Font = new System.Drawing.Font("IRANSans(FaNum)", 10.2F);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("FrmMain.IconOptions.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.Name = "FrmMain";

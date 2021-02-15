@@ -132,6 +132,7 @@
                 //modelBuilder.Entity<CodingDaramadVHazine>().HasMany(m => m.AsnadeHesabdariRows).WithRequired(m => m.CodingDaramadVHazine1).HasForeignKey(m => m.HesabTafId).WillCascadeOnDelete(false);
                 modelBuilder.Entity<AllHesabTafzili>().HasMany(m => m.AsnadeHesabdariRows).WithRequired(m => m.AllHesabTafzili1).HasForeignKey(m => m.HesabTafId).WillCascadeOnDelete(false);
                 modelBuilder.Entity<AllHesabTafzili>().HasMany(m => m.CheckTazmins).WithRequired(m => m.AllHesabTafzili1).HasForeignKey(m => m.VamGerandeId).WillCascadeOnDelete(false);
+                //modelBuilder.Entity<AllHesabTafzili>().HasMany(m => m.VamPardakhtis).WithRequired(m => m.AllHesabTafzili1).HasForeignKey(m => m.AazaId).WillCascadeOnDelete(false);
 
                 modelBuilder.Entity<SalMali>().HasMany(m => m.AsnadeHesabdariRows).WithRequired(m => m.SalMali1).HasForeignKey(m => m.SalMaliId).WillCascadeOnDelete(false);
                 modelBuilder.Entity<SalMali>().HasMany(m => m.CheckTazmins).WithRequired(m => m.SalMali1).HasForeignKey(m => m.SalMaliId).WillCascadeOnDelete(false);

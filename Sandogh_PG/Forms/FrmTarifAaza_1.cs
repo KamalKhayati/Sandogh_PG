@@ -12,6 +12,8 @@ using System.Data.Entity;
 using System.IO;
 using Sandogh_PG;
 using System.Data.Entity.Infrastructure;
+using Sandogh_PG.Forms;
+using DevExpress.XtraReports.UI;
 
 namespace Sandogh_PG
 {
@@ -49,6 +51,38 @@ namespace Sandogh_PG
                             gridControl1.DataSource = q.ToList();
                         else
                             gridControl1.DataSource = null;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
+
+        public void FillcmbMoaref()
+        {
+            using (var dataContext = new MyContext())
+            {
+                try
+                {
+                    if (IsActiveList == true)
+                    {
+                        var q1 = dataContext.AazaSandoghs.Where(s => s.IsActive == true).OrderBy(s => s.Code).ToList();
+                        if (q1.Count > 0)
+                            aazaSandoghsBindingSource.DataSource = q1;
+                        else
+                            aazaSandoghsBindingSource.DataSource = null;
+                    }
+                    else
+                    {
+                        var q = dataContext.AazaSandoghs.OrderBy(s => s.Code);
+                        if (q.Count() > 0)
+                            aazaSandoghsBindingSource.DataSource = q.ToList();
+                        else
+                            aazaSandoghsBindingSource.DataSource = null;
                     }
                 }
                 catch (Exception ex)
@@ -103,7 +137,6 @@ namespace Sandogh_PG
             gridView1.MoveLast();
             HelpClass1.DateTimeMask(txtTarikhOzviat);
             HelpClass1.DateTimeMask(txtBirthDate);
-
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -239,13 +272,17 @@ namespace Sandogh_PG
             {
                 btnPrintPreview_Click(sender, null);
             }
-            else if (e.KeyCode == Keys.F12 && btnPrint.Enabled == true)
-            {
-                btnPrint_Click(sender, null);
-            }
+            //else if (e.KeyCode == Keys.F12 && btnPrint.Enabled == true)
+            //{
+            //    btnPrint_Click(sender, null);
+            //}
             else if (e.KeyCode == Keys.Escape)
             {
                 btnClose_Click(sender, null);
+            }
+           else if (e.Alt && e.Control && e.Shift && e.KeyCode == Keys.F12)
+            {
+                HelpClass1.ControlAltShift_KeyDown(sender, e, btnDesignReport);
             }
 
 
@@ -273,9 +310,48 @@ namespace Sandogh_PG
             gridView1.MoveFirst();
         }
 
+        string FilePath1 = Application.StartupPath + @"\Report\Ghozareshat\";
+        string FileName1 = "rptListAaza.repx";
+
         private void btnPrintPreview_Click(object sender, EventArgs e)
         {
-            HelpClass1.PrintPreview(gridControl1, gridView1);
+            //HelpClass1.PrintPreview(gridControl1, gridView1);
+            if (System.IO.File.Exists(FilePath1 + FileName1))
+            {
+                if (gridView1.RowCount > 0)
+                {
+                    XtraReport XtraReport1 = new XtraReport();
+                    XtraReport1.LoadLayoutFromXml(FilePath1 + FileName1);
+
+                    // XtraReport1.DataSource = HelpClass1.ConvettDatagridviewToDataSet(gridView1);
+                    XtraReport1.DataSource = gridView1.DataSource;
+
+                    //XtraReport1.Parameters["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : gridView2.GetRowCellDisplayText(0, "Tarikh").Substring(0, 10);
+                    //XtraReport1.Parameters["Ta_Tarikh"].Value = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
+                    XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
+                    //XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
+                    //XtraReport1.Parameters["HesabTafzil"].Value = cmbHesabTafzili.Text;
+                    XtraReport1.Parameters["ReportName"].Value = "مشخصات اعضاء صندوق";
+                    XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
+
+                    //List<decimal> ListMande1 = new List<decimal>();
+                    //for (int i = 0; i < gridView1.RowCount; i++)
+                    //{
+                    //    ListMande1.Add(Convert.ToDecimal(gridView2.GetRowCellValue(i, "Mande1")));
+                    //}
+                    //XtraReport1.Parameters["Mande1"].Value = ListMande1;
+                    FrmPrinPreview FPP = new FrmPrinPreview();
+                    FPP.documentViewer1.DocumentSource = XtraReport1;
+                    FPP.RepotPageWidth = 100;
+                    FPP.ShowDialog();
+
+                }
+            }
+            else
+            {
+                HelpClass1.NewReportDesigner(FilePath1, FileName1);
+            }
+
         }
 
         public void btnDisplyActiveList_Click(object sender, EventArgs e)
@@ -392,6 +468,7 @@ namespace Sandogh_PG
                 txtBirthDate.ReadOnly = false;
                 cmbJensiat.ReadOnly = false;
                 cmbTaahol.ReadOnly = false;
+                txtTedadeFarzand.ReadOnly = false;
                 txtNameBank.ReadOnly = false;
                 txtShomareHesab.ReadOnly = false;
                 txtShomareKart.ReadOnly = false;
@@ -407,6 +484,7 @@ namespace Sandogh_PG
                 txtBesAvali.ReadOnly = false;
                 //txtBedAvali.ReadOnly = false;
                 txtHazineEftetah.ReadOnly = false;
+                txtDaramadeMahiane.ReadOnly = false;
                 txtSharhHesab.ReadOnly = false;
                 txtNobatbandiVam.ReadOnly = false;
                 chkIsActive.ReadOnly = false;
@@ -431,6 +509,7 @@ namespace Sandogh_PG
                 cmbJensiat.ReadOnly = true;
                 cmbTaahol.ReadOnly = true;
                 txtNameBank.ReadOnly = true;
+                txtTedadeFarzand.ReadOnly = true;
                 txtShomareHesab.ReadOnly = true;
                 txtShomareKart.ReadOnly = true;
                 txtShomareShaba.ReadOnly = true;
@@ -445,6 +524,7 @@ namespace Sandogh_PG
                 txtBesAvali.ReadOnly = true;
                 //txtBedAvali.ReadOnly = true;
                 txtHazineEftetah.ReadOnly = true;
+                txtDaramadeMahiane.ReadOnly = true;
                 txtSharhHesab.ReadOnly = true;
                 txtNobatbandiVam.ReadOnly = true;
                 chkIsActive.ReadOnly = true;
@@ -462,12 +542,15 @@ namespace Sandogh_PG
             InActiveButtons();
             ClearControls();
             ActiveControls();
+            FillcmbMoaref();
             cmbMoaref.EditValue = 0;
             NewCode(null, null);
             txtTarikhOzviat.Text = DateTime.Now.ToString().Substring(0, 10);
             cmbJensiat.SelectedIndex = 0;
             cmbTaahol.SelectedIndex = 0;
-            txtCodePersoneli.Focus();
+            HelpClass1.DateTimeMask(txtBirthDate);
+            HelpClass1.DateTimeMask(txtTarikhOzviat);
+            txtNameVFamil.Focus();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -531,20 +614,28 @@ namespace Sandogh_PG
                 EditRowIndex = gridView1.FocusedRowHandle;
                 En = EnumCED.Edit;
                 InActiveButtons();
-
+                HelpClass1.DateTimeMask(txtBirthDate);
+                HelpClass1.DateTimeMask(txtTarikhOzviat);
+                FillcmbMoaref();
                 txtId.Text = gridView1.GetFocusedRowCellValue("Id").ToString();
                 txtCode.Text = gridView1.GetFocusedRowCellValue("Code").ToString();
                 txtCodePersoneli.Text = gridView1.GetFocusedRowCellValue("CodePersoneli").ToString();
-                if (gridView1.GetFocusedRowCellDisplayText("TarikhOzviat").ToString() != string.Empty)
+                if (gridView1.GetFocusedRowCellDisplayText("TarikhOzviat").ToString() != null)
                     txtTarikhOzviat.Text = gridView1.GetFocusedRowCellValue("TarikhOzviat").ToString().Substring(0, 10);
                 txtNameVFamil.Text = gridView1.GetFocusedRowCellDisplayText("NameVFamil");
                 txtNamePedar.Text = gridView1.GetFocusedRowCellDisplayText("NamePedar");
                 txtCodeMeli.Text = gridView1.GetFocusedRowCellDisplayText("CodeMelli");
                 txtShShenasname.Text = gridView1.GetFocusedRowCellDisplayText("ShShenasname");
-                if (gridView1.GetFocusedRowCellDisplayText("BirthDate") != string.Empty)
+                if (gridView1.GetFocusedRowCellValue("BirthDate") != null)
                     txtBirthDate.Text = gridView1.GetFocusedRowCellDisplayText("BirthDate").Substring(0, 10);
+                else
+                    txtBirthDate.Text = string.Empty;
                 cmbJensiat.SelectedIndex = Convert.ToInt32(gridView1.GetFocusedRowCellValue("IndexJensiat"));
                 cmbTaahol.SelectedIndex = Convert.ToInt32(gridView1.GetFocusedRowCellValue("IndexTaahol"));
+                if (gridView1.GetFocusedRowCellValue("TedadeFarzand") != null)
+                    txtTedadeFarzand.Text = gridView1.GetFocusedRowCellDisplayText("TedadeFarzand");
+                else
+                    txtTedadeFarzand.Text = string.Empty;
                 txtNameBank.Text = gridView1.GetFocusedRowCellDisplayText("NameBank");
                 txtShomareHesab.Text = gridView1.GetFocusedRowCellDisplayText("ShomareHesab");
                 txtShomareKart.Text = gridView1.GetFocusedRowCellDisplayText("ShomareKart");
@@ -555,11 +646,15 @@ namespace Sandogh_PG
                 txtMobile2.Text = gridView1.GetFocusedRowCellDisplayText("Mobile2");
                 txtTell.Text = gridView1.GetFocusedRowCellDisplayText("Tell");
                 txtShoghl.Text = gridView1.GetFocusedRowCellDisplayText("Shoghl");
-                cmbMoaref.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("MoarefId"));
+                if (gridView1.GetFocusedRowCellValue("MoarefId") != null)
+                    cmbMoaref.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("MoarefId"));
+                else
+                    cmbMoaref.EditValue = 0;
                 txtBesAvali.Text = gridView1.GetFocusedRowCellDisplayText("BesAvali");
                 //txtBedAvali.Text = gridView1.GetFocusedRowCellDisplayText("BedAvali");
                 txtHaghOzviat.Text = gridView1.GetFocusedRowCellDisplayText("HaghOzviat");
                 txtHazineEftetah.Text = gridView1.GetFocusedRowCellDisplayText("HazineEftetah");
+                txtDaramadeMahiane.Text = gridView1.GetFocusedRowCellDisplayText("DaramadeMahiane");
                 txtSharhHesab.Text = gridView1.GetFocusedRowCellDisplayText("SharhHesab");
                 txtNobatbandiVam.Text = gridView1.GetFocusedRowCellDisplayText("NobatbandiVam") ?? "0";
                 chkIsActive.Checked = Convert.ToBoolean(gridView1.GetFocusedRowCellValue("IsActive"));
@@ -590,7 +685,7 @@ namespace Sandogh_PG
                 IsActiveBeforeEdit = chkIsActive.Checked;
                 ActiveControls();
                 xtraTabControl1.SelectedTabPageIndex = 0;
-                txtCodePersoneli.Focus();
+                txtNameVFamil.Focus();
             }
         }
 
@@ -627,8 +722,9 @@ namespace Sandogh_PG
                             {
                                 obj.Taahol = cmbTaahol.Text;
                                 obj.IndexTaahol = cmbTaahol.SelectedIndex;
-
                             }
+
+                            obj.TedadeFarzand = !string.IsNullOrEmpty(txtTedadeFarzand.Text.Replace(",", "")) ? Convert.ToInt32(txtTedadeFarzand.Text.Replace(",", "")) : 0;
                             obj.NameBank = txtNameBank.Text;
                             obj.ShomareHesab = txtShomareHesab.Text;
                             obj.ShomareKart = txtShomareKart.Text;
@@ -648,6 +744,7 @@ namespace Sandogh_PG
                             obj.BesAvali = !string.IsNullOrEmpty(txtBesAvali.Text.Replace(",", "")) ? Convert.ToDecimal(txtBesAvali.Text.Replace(",", "")) : 0;
                             //obj.BedAvali = !string.IsNullOrEmpty(txtBedAvali.Text) ? Convert.ToDecimal(txtBedAvali.Text) : 0;
                             obj.HaghOzviat = !string.IsNullOrEmpty(txtHaghOzviat.Text.Replace(",", "")) ? Convert.ToDecimal(txtHaghOzviat.Text.Replace(",", "")) : 0;
+                            obj.DaramadeMahiane = !string.IsNullOrEmpty(txtDaramadeMahiane.Text.Replace(",", "")) ? Convert.ToDecimal(txtDaramadeMahiane.Text.Replace(",", "")) : 0;
                             obj.IsActive = chkIsActive.Checked;
                             obj.SharhHesab = txtSharhHesab.Text;
                             obj.TarifSandoghId = Convert.ToInt32(Fm.IDSandogh.Caption);
@@ -664,7 +761,7 @@ namespace Sandogh_PG
                             obj.IsOzveSandogh = chkIsOzveSandogh.Checked;
                             obj.GroupTafziliId = 3;
                             obj.ShomareSanad = 0;
-                            obj.NobatbandiVam= Convert.ToInt32(txtNobatbandiVam.Text);
+                            obj.NobatbandiVam = Convert.ToInt32(txtNobatbandiVam.Text);
                             db.AazaSandoghs.Add(obj);
                             db.SaveChanges();
                             //////////////////////////////////////////
@@ -837,6 +934,7 @@ namespace Sandogh_PG
                                     q.IndexTaahol = cmbTaahol.SelectedIndex;
 
                                 }
+                                q.TedadeFarzand = !string.IsNullOrEmpty(txtTedadeFarzand.Text.Replace(",", "")) ? Convert.ToInt32(txtTedadeFarzand.Text.Replace(",", "")) : 0;
                                 q.NameBank = txtNameBank.Text;
                                 q.ShomareHesab = txtShomareHesab.Text;
                                 q.ShomareKart = txtShomareKart.Text;
@@ -857,6 +955,7 @@ namespace Sandogh_PG
                                 q.BesAvali = !string.IsNullOrEmpty(txtBesAvali.Text.Replace(",", "")) ? Convert.ToDecimal(txtBesAvali.Text.Replace(",", "")) : 0;
                                 //q.BedAvali = !string.IsNullOrEmpty(txtBedAvali.Text) ? Convert.ToDecimal(txtBedAvali.Text) : 0;
                                 q.HaghOzviat = !string.IsNullOrEmpty(txtHaghOzviat.Text.Replace(",", "")) ? Convert.ToDecimal(txtHaghOzviat.Text.Replace(",", "")) : 0;
+                                q.DaramadeMahiane = !string.IsNullOrEmpty(txtDaramadeMahiane.Text.Replace(",", "")) ? Convert.ToDecimal(txtDaramadeMahiane.Text.Replace(",", "")) : 0;
                                 q.SharhHesab = txtSharhHesab.Text;
                                 if (pictureEdit1.Image != null)
                                 {
@@ -1160,9 +1259,9 @@ namespace Sandogh_PG
                 try
                 {
                     var q = db.AazaSandoghs.Max(s => s.NobatbandiVam);
-                    if (q>0)
+                    if (q > 0)
                     {
-                        txtNobatbandiVam.Text = (q+1).ToString();
+                        txtNobatbandiVam.Text = (q + 1).ToString();
                     }
                     else
                         txtNobatbandiVam.Text = "1";
@@ -1175,6 +1274,202 @@ namespace Sandogh_PG
                 }
             }
 
+        }
+
+        private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        {
+            try
+            {
+                if (gridView1.SelectedRowsCount > 0)
+                {
+                    //gridControl1.Enabled = false;
+                    //EditRowIndex = gridView1.FocusedRowHandle;
+                    //En = EnumCED.Edit;
+                    //InActiveButtons();
+                    HelpClass1.DateTimeMask(txtBirthDate);
+                    HelpClass1.DateTimeMask(txtTarikhOzviat);
+                    FillcmbMoaref();
+
+                    txtId.Text = gridView1.GetFocusedRowCellValue("Id").ToString();
+                    txtCode.Text = gridView1.GetFocusedRowCellValue("Code").ToString();
+                    txtCodePersoneli.Text = gridView1.GetFocusedRowCellValue("CodePersoneli").ToString();
+                    if (gridView1.GetFocusedRowCellDisplayText("TarikhOzviat").ToString() != null)
+                        txtTarikhOzviat.Text = gridView1.GetFocusedRowCellValue("TarikhOzviat").ToString().Substring(0, 10);
+                    txtNameVFamil.Text = gridView1.GetFocusedRowCellDisplayText("NameVFamil");
+                    txtNamePedar.Text = gridView1.GetFocusedRowCellDisplayText("NamePedar");
+                    txtCodeMeli.Text = gridView1.GetFocusedRowCellDisplayText("CodeMelli");
+                    txtShShenasname.Text = gridView1.GetFocusedRowCellDisplayText("ShShenasname");
+                    if (gridView1.GetFocusedRowCellValue("BirthDate") != null)
+                        txtBirthDate.Text = gridView1.GetFocusedRowCellDisplayText("BirthDate").Substring(0, 10);
+                    else
+                        txtBirthDate.Text = string.Empty;
+                    cmbJensiat.SelectedIndex = Convert.ToInt32(gridView1.GetFocusedRowCellValue("IndexJensiat"));
+                    cmbTaahol.SelectedIndex = Convert.ToInt32(gridView1.GetFocusedRowCellValue("IndexTaahol"));
+                    if (gridView1.GetFocusedRowCellValue("TedadeFarzand") != null)
+                        txtTedadeFarzand.Text = gridView1.GetFocusedRowCellDisplayText("TedadeFarzand");
+                    else
+                        txtTedadeFarzand.Text = string.Empty;
+
+                    txtNameBank.Text = gridView1.GetFocusedRowCellDisplayText("NameBank");
+                    txtShomareHesab.Text = gridView1.GetFocusedRowCellDisplayText("ShomareHesab");
+                    txtShomareKart.Text = gridView1.GetFocusedRowCellDisplayText("ShomareKart");
+                    txtShomareShaba.Text = gridView1.GetFocusedRowCellDisplayText("ShomareShaba");
+                    txtAdress.Text = gridView1.GetFocusedRowCellDisplayText("AdressManzel");
+                    txtMohaleKar.Text = gridView1.GetFocusedRowCellDisplayText("AdressMohalKar");
+                    txtMobile1.Text = gridView1.GetFocusedRowCellDisplayText("Mobile1");
+                    txtMobile2.Text = gridView1.GetFocusedRowCellDisplayText("Mobile2");
+                    txtTell.Text = gridView1.GetFocusedRowCellDisplayText("Tell");
+                    txtShoghl.Text = gridView1.GetFocusedRowCellDisplayText("Shoghl");
+                    if (gridView1.GetFocusedRowCellValue("MoarefId") != null)
+                        cmbMoaref.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("MoarefId"));
+                    else
+                        cmbMoaref.EditValue = 0;
+                    txtBesAvali.Text = gridView1.GetFocusedRowCellDisplayText("BesAvali");
+                    //txtBedAvali.Text = gridView1.GetFocusedRowCellDisplayText("BedAvali");
+                    txtHaghOzviat.Text = gridView1.GetFocusedRowCellDisplayText("HaghOzviat");
+                    txtHazineEftetah.Text = gridView1.GetFocusedRowCellDisplayText("HazineEftetah");
+                    txtDaramadeMahiane.Text = gridView1.GetFocusedRowCellDisplayText("DaramadeMahiane");
+                    txtSharhHesab.Text = gridView1.GetFocusedRowCellDisplayText("SharhHesab");
+                    txtNobatbandiVam.Text = gridView1.GetFocusedRowCellDisplayText("NobatbandiVam") ?? "0";
+                    chkIsActive.Checked = Convert.ToBoolean(gridView1.GetFocusedRowCellValue("IsActive"));
+                    using (var db = new MyContext())
+                    {
+                        try
+                        {
+                            int RowId = Convert.ToInt32(txtId.Text);
+                            var q1 = db.AazaSandoghs.FirstOrDefault(s => s.Id == RowId);
+                            if (q1.Pictuer != null)
+                            {
+                                MemoryStream ms = new MemoryStream(q1.Pictuer);
+                                pictureEdit1.Image = Image.FromStream(ms);
+                                img = pictureEdit1.Image;
+                            }
+                            else
+                                pictureEdit1.Image = null;
+                        }
+                        catch (Exception ex)
+                        {
+                            XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                                "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
+                    //CodeBeforeEdit = txtCode.Text;
+                    //NameBeforeEdit = txtNameVFamil.Text;
+                    //IsActiveBeforeEdit = chkIsActive.Checked;
+                    //ActiveControls();
+                    //xtraTabControl1.SelectedTabPageIndex = 0;
+                    //txtCodePersoneli.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                    "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void gridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            gridView1_RowCellClick(null, null);
+        }
+
+        private void gridView1_KeyUp(object sender, KeyEventArgs e)
+        {
+            gridView1_RowCellClick(null, null);
+        }
+
+        private Keys m_keyCode;
+        private void txtSharhHesab_Leave(object sender, EventArgs e)
+        {
+            if (m_keyCode==Keys.Enter)
+            {
+                xtraTabControl1.SelectedTabPageIndex = 1;
+                txtAdress.Focus();
+                m_keyCode = Keys.Clear;
+            }
+        }
+
+        private void txtSharhHesab_KeyDown(object sender, KeyEventArgs e)
+        {
+            this.m_keyCode = e.KeyCode;
+
+        }
+
+        private void txtTell_KeyDown(object sender, KeyEventArgs e)
+        {
+            this.m_keyCode = e.KeyCode;
+
+        }
+
+        private void txtShomareShaba_KeyDown(object sender, KeyEventArgs e)
+        {
+            this.m_keyCode = e.KeyCode;
+
+        }
+
+        private void txtNobatbandiVam_KeyDown(object sender, KeyEventArgs e)
+        {
+            this.m_keyCode = e.KeyCode;
+
+        }
+
+        private void txtTell_Leave(object sender, EventArgs e)
+        {
+            if (m_keyCode == Keys.Enter)
+            {
+                xtraTabControl1.SelectedTabPageIndex = 2;
+                txtNameBank.Focus();
+                m_keyCode = Keys.Clear;
+            }
+
+        }
+
+        private void txtShomareShaba_Leave(object sender, EventArgs e)
+        {
+            if (m_keyCode == Keys.Enter)
+            {
+                xtraTabControl1.SelectedTabPageIndex = 3;
+                txtHaghOzviat.Focus();
+                m_keyCode = Keys.Clear;
+            }
+
+        }
+
+        private void txtNobatbandiVam_Leave(object sender, EventArgs e)
+        {
+            if (m_keyCode == Keys.Enter)
+            {
+                //xtraTabControl1.SelectedTabPageIndex = 1;
+                btnSave.Focus();
+                m_keyCode = Keys.Clear;
+            }
+
+        }
+
+        private void btnAmaliatColi_Click(object sender, EventArgs e)
+        {
+            FrmAmaliatColi fm = new FrmAmaliatColi(this);
+            fm.IsActiveList = IsActiveList;
+            fm.ShowDialog(this);
+        }
+
+        private void gridView1_RowCountChanged(object sender, EventArgs e)
+        {
+            if (gridView1.RowCount>0)
+            {
+                btnAmaliatColi.Enabled = true;
+            }
+            else
+            {
+                btnAmaliatColi.Enabled = false;
+
+            }
+        }
+
+        private void btnDesignReport_Click(object sender, EventArgs e)
+        {
+            HelpClass1.LoadReportDesigner(FilePath1, FileName1);
         }
     }
 }

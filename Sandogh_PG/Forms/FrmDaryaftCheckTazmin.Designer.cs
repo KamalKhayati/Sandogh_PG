@@ -97,6 +97,7 @@
             this.cmbNoeSanad = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cmbVamGerande = new DevExpress.XtraEditors.LookUpEdit();
             this.allHesabTafzilisBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkTazminsBindingSource)).BeginInit();
@@ -123,6 +124,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbNoeSanad.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbVamGerande.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
+            this.panelControl5.SuspendLayout();
             this.SuspendLayout();
             // 
             // Line
@@ -421,12 +424,12 @@
             // 
             this.gridControl1.DataSource = this.checkTazminsBindingSource;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
             this.gridControl1.Location = new System.Drawing.Point(2, 2);
             this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridControl1.Margin = new System.Windows.Forms.Padding(4);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1059, 338);
+            this.gridControl1.Size = new System.Drawing.Size(1059, 352);
             this.gridControl1.TabIndex = 32;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -437,8 +440,6 @@
             // 
             // panelControl2
             // 
-            this.panelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelControl2.Controls.Add(this.btnDesignReport);
             this.panelControl2.Controls.Add(this.btnSaveNext);
             this.panelControl2.Controls.Add(this.btnClose);
@@ -455,10 +456,11 @@
             this.panelControl2.Controls.Add(this.btnDisplayCheckOdatShode);
             this.panelControl2.Controls.Add(this.btnCancel);
             this.panelControl2.Controls.Add(this.btnCreate);
-            this.panelControl2.Location = new System.Drawing.Point(0, 348);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl2.Location = new System.Drawing.Point(2, 2);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1063, 48);
+            this.panelControl2.Size = new System.Drawing.Size(1059, 51);
             this.panelControl2.TabIndex = 26;
             // 
             // btnDesignReport
@@ -467,9 +469,10 @@
             this.btnDesignReport.Location = new System.Drawing.Point(139, 5);
             this.btnDesignReport.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDesignReport.Name = "btnDesignReport";
-            this.btnDesignReport.Size = new System.Drawing.Size(42, 36);
+            this.btnDesignReport.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDesignReport.Size = new System.Drawing.Size(47, 40);
             this.btnDesignReport.TabIndex = 44;
-            this.btnDesignReport.ToolTip = "چاپ لیست";
+            this.btnDesignReport.ToolTip = "طراحی فرم چاپ";
             this.btnDesignReport.Visible = false;
             this.btnDesignReport.Click += new System.EventHandler(this.btnDesignReport_Click);
             // 
@@ -480,7 +483,8 @@
             this.btnSaveNext.Location = new System.Drawing.Point(812, 5);
             this.btnSaveNext.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSaveNext.Name = "btnSaveNext";
-            this.btnSaveNext.Size = new System.Drawing.Size(42, 36);
+            this.btnSaveNext.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnSaveNext.Size = new System.Drawing.Size(47, 40);
             this.btnSaveNext.TabIndex = 4;
             this.btnSaveNext.ToolTip = "F9";
             this.btnSaveNext.ToolTipTitle = "ذخیره و بعدی";
@@ -492,7 +496,8 @@
             this.btnClose.Location = new System.Drawing.Point(5, 5);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(96, 36);
+            this.btnClose.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnClose.Size = new System.Drawing.Size(47, 40);
             this.btnClose.TabIndex = 15;
             this.btnClose.Text = "بستن ";
             this.btnClose.ToolTip = "Escape";
@@ -506,7 +511,8 @@
             this.btnNext.Location = new System.Drawing.Point(575, 5);
             this.btnNext.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(42, 36);
+            this.btnNext.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnNext.Size = new System.Drawing.Size(47, 40);
             this.btnNext.TabIndex = 7;
             this.btnNext.ToolTip = "بعدی";
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
@@ -517,7 +523,8 @@
             this.btnPrintPreview.Location = new System.Drawing.Point(188, 5);
             this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPrintPreview.Name = "btnPrintPreview";
-            this.btnPrintPreview.Size = new System.Drawing.Size(42, 36);
+            this.btnPrintPreview.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnPrintPreview.Size = new System.Drawing.Size(47, 40);
             this.btnPrintPreview.TabIndex = 13;
             this.btnPrintPreview.ToolTip = "F11";
             this.btnPrintPreview.ToolTipTitle = "نمایش چاپ";
@@ -530,7 +537,8 @@
             this.btnEdit.Location = new System.Drawing.Point(910, 5);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(42, 36);
+            this.btnEdit.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnEdit.Size = new System.Drawing.Size(47, 40);
             this.btnEdit.TabIndex = 3;
             this.btnEdit.ToolTip = "F4";
             this.btnEdit.ToolTipTitle = "ویرایش";
@@ -542,7 +550,8 @@
             this.btnAdvancedSearch.Location = new System.Drawing.Point(236, 5);
             this.btnAdvancedSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAdvancedSearch.Name = "btnAdvancedSearch";
-            this.btnAdvancedSearch.Size = new System.Drawing.Size(42, 36);
+            this.btnAdvancedSearch.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnAdvancedSearch.Size = new System.Drawing.Size(47, 40);
             this.btnAdvancedSearch.TabIndex = 12;
             this.btnAdvancedSearch.ToolTip = "F10";
             this.btnAdvancedSearch.ToolTipTitle = "جستجوی پیشرفته";
@@ -555,7 +564,8 @@
             this.btnDelete.Location = new System.Drawing.Point(959, 5);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(42, 36);
+            this.btnDelete.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDelete.Size = new System.Drawing.Size(47, 40);
             this.btnDelete.TabIndex = 2;
             this.btnDelete.ToolTip = "F3";
             this.btnDelete.ToolTipTitle = "حذف";
@@ -568,7 +578,8 @@
             this.btnFirst.Location = new System.Drawing.Point(476, 5);
             this.btnFirst.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnFirst.Name = "btnFirst";
-            this.btnFirst.Size = new System.Drawing.Size(42, 36);
+            this.btnFirst.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnFirst.Size = new System.Drawing.Size(47, 40);
             this.btnFirst.TabIndex = 9;
             this.btnFirst.ToolTip = "اولین رکورد";
             this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
@@ -580,7 +591,8 @@
             this.btnSave.Location = new System.Drawing.Point(861, 5);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(42, 36);
+            this.btnSave.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnSave.Size = new System.Drawing.Size(47, 40);
             this.btnSave.TabIndex = 0;
             this.btnSave.ToolTip = "F5";
             this.btnSave.ToolTipTitle = "ذخیره";
@@ -593,7 +605,8 @@
             this.btnPreview.Location = new System.Drawing.Point(525, 5);
             this.btnPreview.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPreview.Name = "btnPreview";
-            this.btnPreview.Size = new System.Drawing.Size(42, 36);
+            this.btnPreview.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnPreview.Size = new System.Drawing.Size(47, 40);
             this.btnPreview.TabIndex = 8;
             this.btnPreview.ToolTip = "قبلی";
             this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
@@ -604,7 +617,8 @@
             this.btnLast.Location = new System.Drawing.Point(624, 5);
             this.btnLast.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnLast.Name = "btnLast";
-            this.btnLast.Size = new System.Drawing.Size(42, 36);
+            this.btnLast.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnLast.Size = new System.Drawing.Size(47, 40);
             this.btnLast.TabIndex = 6;
             this.btnLast.ToolTip = "آخرین رکورد";
             this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
@@ -615,7 +629,8 @@
             this.btnDisplayCheckInSandogh.Location = new System.Drawing.Point(335, 5);
             this.btnDisplayCheckInSandogh.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDisplayCheckInSandogh.Name = "btnDisplayCheckInSandogh";
-            this.btnDisplayCheckInSandogh.Size = new System.Drawing.Size(42, 36);
+            this.btnDisplayCheckInSandogh.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDisplayCheckInSandogh.Size = new System.Drawing.Size(47, 40);
             this.btnDisplayCheckInSandogh.TabIndex = 10;
             this.btnDisplayCheckInSandogh.ToolTip = "F7";
             this.btnDisplayCheckInSandogh.ToolTipTitle = "لیست چکهای تضمینی نزد صندوق";
@@ -627,7 +642,8 @@
             this.btnDisplayCheckOdatShode.Location = new System.Drawing.Point(285, 5);
             this.btnDisplayCheckOdatShode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDisplayCheckOdatShode.Name = "btnDisplayCheckOdatShode";
-            this.btnDisplayCheckOdatShode.Size = new System.Drawing.Size(42, 36);
+            this.btnDisplayCheckOdatShode.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDisplayCheckOdatShode.Size = new System.Drawing.Size(47, 40);
             this.btnDisplayCheckOdatShode.TabIndex = 11;
             this.btnDisplayCheckOdatShode.ToolTip = "F8";
             this.btnDisplayCheckOdatShode.ToolTipTitle = "لیست چکهای تضمینی عودت شده";
@@ -640,7 +656,8 @@
             this.btnCancel.Location = new System.Drawing.Point(764, 5);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(42, 36);
+            this.btnCancel.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnCancel.Size = new System.Drawing.Size(47, 40);
             this.btnCancel.TabIndex = 5;
             this.btnCancel.ToolTip = "F6";
             this.btnCancel.ToolTipTitle = "انصراف";
@@ -652,7 +669,8 @@
             this.btnCreate.Location = new System.Drawing.Point(1008, 5);
             this.btnCreate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(42, 36);
+            this.btnCreate.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnCreate.Size = new System.Drawing.Size(47, 40);
             this.btnCreate.TabIndex = 1;
             this.btnCreate.ToolTip = "F2";
             this.btnCreate.ToolTipTitle = "ایجاد";
@@ -661,11 +679,11 @@
             // panelControl4
             // 
             this.panelControl4.Controls.Add(this.gridControl1);
-            this.panelControl4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl4.Location = new System.Drawing.Point(0, 0);
             this.panelControl4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(1063, 342);
+            this.panelControl4.Size = new System.Drawing.Size(1063, 356);
             this.panelControl4.TabIndex = 31;
             // 
             // panelControl1
@@ -674,7 +692,8 @@
             this.panelControl1.Controls.Add(this.txtSharhOdat);
             this.panelControl1.Controls.Add(this.labelControl15);
             this.panelControl1.Controls.Add(this.labelControl7);
-            this.panelControl1.Location = new System.Drawing.Point(0, 577);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelControl1.Location = new System.Drawing.Point(2, 222);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1059, 45);
@@ -757,16 +776,17 @@
             this.panelControl3.Controls.Add(this.labelControl1);
             this.panelControl3.Controls.Add(this.cmbNoeSanad);
             this.panelControl3.Controls.Add(this.cmbVamGerande);
-            this.panelControl3.Location = new System.Drawing.Point(0, 402);
+            this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl3.Location = new System.Drawing.Point(2, 53);
             this.panelControl3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(1059, 170);
+            this.panelControl3.Size = new System.Drawing.Size(1059, 214);
             this.panelControl3.TabIndex = 34;
             // 
             // txtMamlaghCheck
             // 
             this.txtMamlaghCheck.EnterMoveNextControl = true;
-            this.txtMamlaghCheck.Location = new System.Drawing.Point(5, 45);
+            this.txtMamlaghCheck.Location = new System.Drawing.Point(5, 48);
             this.txtMamlaghCheck.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtMamlaghCheck.Name = "txtMamlaghCheck";
             this.txtMamlaghCheck.Properties.Appearance.Options.UseTextOptions = true;
@@ -783,7 +803,7 @@
             // 
             this.labelControl19.AutoEllipsis = true;
             this.labelControl19.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl19.Location = new System.Drawing.Point(195, 44);
+            this.labelControl19.Location = new System.Drawing.Point(195, 47);
             this.labelControl19.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl19.Name = "labelControl19";
             this.labelControl19.Size = new System.Drawing.Size(91, 35);
@@ -793,7 +813,7 @@
             // txtTarikhCheck
             // 
             this.txtTarikhCheck.EnterMoveNextControl = true;
-            this.txtTarikhCheck.Location = new System.Drawing.Point(292, 46);
+            this.txtTarikhCheck.Location = new System.Drawing.Point(292, 49);
             this.txtTarikhCheck.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtTarikhCheck.Name = "txtTarikhCheck";
             this.txtTarikhCheck.Properties.Appearance.Options.UseTextOptions = true;
@@ -811,7 +831,7 @@
             // txtTarikhDaryaft
             // 
             this.txtTarikhDaryaft.EnterMoveNextControl = true;
-            this.txtTarikhDaryaft.Location = new System.Drawing.Point(562, 5);
+            this.txtTarikhDaryaft.Location = new System.Drawing.Point(562, 8);
             this.txtTarikhDaryaft.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtTarikhDaryaft.Name = "txtTarikhDaryaft";
             this.txtTarikhDaryaft.Properties.Appearance.Options.UseTextOptions = true;
@@ -829,7 +849,7 @@
             // txtShomareHesab
             // 
             this.txtShomareHesab.EnterMoveNextControl = true;
-            this.txtShomareHesab.Location = new System.Drawing.Point(720, 87);
+            this.txtShomareHesab.Location = new System.Drawing.Point(720, 90);
             this.txtShomareHesab.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtShomareHesab.Name = "txtShomareHesab";
             this.txtShomareHesab.Properties.MaxLength = 40;
@@ -840,7 +860,7 @@
             // txtSharhSanad
             // 
             this.txtSharhSanad.EnterMoveNextControl = true;
-            this.txtSharhSanad.Location = new System.Drawing.Point(5, 129);
+            this.txtSharhSanad.Location = new System.Drawing.Point(5, 132);
             this.txtSharhSanad.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSharhSanad.Name = "txtSharhSanad";
             this.txtSharhSanad.Properties.MaxLength = 200;
@@ -851,7 +871,7 @@
             // txtSahebCheck
             // 
             this.txtSahebCheck.EnterMoveNextControl = true;
-            this.txtSahebCheck.Location = new System.Drawing.Point(5, 87);
+            this.txtSahebCheck.Location = new System.Drawing.Point(5, 90);
             this.txtSahebCheck.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSahebCheck.Name = "txtSahebCheck";
             this.txtSahebCheck.Properties.MaxLength = 40;
@@ -862,7 +882,7 @@
             // txtNameBankVShobe
             // 
             this.txtNameBankVShobe.EnterMoveNextControl = true;
-            this.txtNameBankVShobe.Location = new System.Drawing.Point(350, 87);
+            this.txtNameBankVShobe.Location = new System.Drawing.Point(350, 90);
             this.txtNameBankVShobe.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtNameBankVShobe.Name = "txtNameBankVShobe";
             this.txtNameBankVShobe.Properties.MaxLength = 40;
@@ -873,7 +893,7 @@
             // txtShCheck
             // 
             this.txtShCheck.EnterMoveNextControl = true;
-            this.txtShCheck.Location = new System.Drawing.Point(562, 46);
+            this.txtShCheck.Location = new System.Drawing.Point(562, 49);
             this.txtShCheck.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtShCheck.Name = "txtShCheck";
             this.txtShCheck.Properties.Appearance.Options.UseTextOptions = true;
@@ -889,7 +909,7 @@
             // 
             this.labelControl9.AutoEllipsis = true;
             this.labelControl9.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl9.Location = new System.Drawing.Point(585, 86);
+            this.labelControl9.Location = new System.Drawing.Point(585, 89);
             this.labelControl9.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(121, 35);
@@ -900,7 +920,7 @@
             // 
             this.labelControl13.AutoEllipsis = true;
             this.labelControl13.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl13.Location = new System.Drawing.Point(948, 127);
+            this.labelControl13.Location = new System.Drawing.Point(948, 130);
             this.labelControl13.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(75, 35);
@@ -911,7 +931,7 @@
             // 
             this.labelControl10.AutoEllipsis = true;
             this.labelControl10.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl10.Location = new System.Drawing.Point(955, 86);
+            this.labelControl10.Location = new System.Drawing.Point(955, 89);
             this.labelControl10.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(95, 35);
@@ -922,7 +942,7 @@
             // 
             this.labelControl14.AutoEllipsis = true;
             this.labelControl14.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl14.Location = new System.Drawing.Point(455, 45);
+            this.labelControl14.Location = new System.Drawing.Point(455, 48);
             this.labelControl14.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl14.Name = "labelControl14";
             this.labelControl14.Size = new System.Drawing.Size(100, 35);
@@ -933,7 +953,7 @@
             // 
             this.labelControl8.AutoEllipsis = true;
             this.labelControl8.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl8.Location = new System.Drawing.Point(201, 86);
+            this.labelControl8.Location = new System.Drawing.Point(201, 89);
             this.labelControl8.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(110, 35);
@@ -946,7 +966,7 @@
             this.labelControl2.Appearance.Options.UseForeColor = true;
             this.labelControl2.AutoEllipsis = true;
             this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl2.Location = new System.Drawing.Point(719, 4);
+            this.labelControl2.Location = new System.Drawing.Point(719, 7);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(102, 35);
@@ -959,7 +979,7 @@
             this.labelControl4.Appearance.Options.UseForeColor = true;
             this.labelControl4.AutoEllipsis = true;
             this.labelControl4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl4.Location = new System.Drawing.Point(720, 45);
+            this.labelControl4.Location = new System.Drawing.Point(720, 48);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(101, 35);
@@ -970,7 +990,7 @@
             // 
             this.txtSeryalDaryaft.EditValue = "";
             this.txtSeryalDaryaft.EnterMoveNextControl = true;
-            this.txtSeryalDaryaft.Location = new System.Drawing.Point(834, 5);
+            this.txtSeryalDaryaft.Location = new System.Drawing.Point(834, 8);
             this.txtSeryalDaryaft.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSeryalDaryaft.Name = "txtSeryalDaryaft";
             this.txtSeryalDaryaft.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
@@ -989,7 +1009,7 @@
             // txtId
             // 
             this.txtId.EditValue = "آیدی";
-            this.txtId.Location = new System.Drawing.Point(834, 5);
+            this.txtId.Location = new System.Drawing.Point(834, 8);
             this.txtId.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtId.Name = "txtId";
             this.txtId.Properties.Appearance.Options.UseTextOptions = true;
@@ -1008,7 +1028,7 @@
             // 
             this.labelControl6.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl6.Appearance.Options.UseForeColor = true;
-            this.labelControl6.Location = new System.Drawing.Point(948, 50);
+            this.labelControl6.Location = new System.Drawing.Point(948, 53);
             this.labelControl6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(55, 27);
@@ -1019,7 +1039,7 @@
             // 
             this.labelControl3.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl3.Appearance.Options.UseForeColor = true;
-            this.labelControl3.Location = new System.Drawing.Point(476, 9);
+            this.labelControl3.Location = new System.Drawing.Point(476, 12);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(67, 27);
@@ -1030,7 +1050,7 @@
             // 
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Location = new System.Drawing.Point(945, 9);
+            this.labelControl1.Location = new System.Drawing.Point(945, 12);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(95, 27);
@@ -1040,7 +1060,7 @@
             // cmbNoeSanad
             // 
             this.cmbNoeSanad.EnterMoveNextControl = true;
-            this.cmbNoeSanad.Location = new System.Drawing.Point(834, 46);
+            this.cmbNoeSanad.Location = new System.Drawing.Point(834, 49);
             this.cmbNoeSanad.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbNoeSanad.Name = "cmbNoeSanad";
             this.cmbNoeSanad.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1062,7 +1082,7 @@
             // cmbVamGerande
             // 
             this.cmbVamGerande.EnterMoveNextControl = true;
-            this.cmbVamGerande.Location = new System.Drawing.Point(5, 5);
+            this.cmbVamGerande.Location = new System.Drawing.Point(5, 8);
             this.cmbVamGerande.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbVamGerande.Name = "cmbVamGerande";
             this.cmbVamGerande.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1086,17 +1106,26 @@
             // 
             this.allHesabTafzilisBindingSource.DataSource = typeof(Sandogh_PG.AllHesabTafzili);
             // 
+            // panelControl5
+            // 
+            this.panelControl5.Controls.Add(this.panelControl1);
+            this.panelControl5.Controls.Add(this.panelControl3);
+            this.panelControl5.Controls.Add(this.panelControl2);
+            this.panelControl5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelControl5.Location = new System.Drawing.Point(0, 356);
+            this.panelControl5.Name = "panelControl5";
+            this.panelControl5.Size = new System.Drawing.Size(1063, 269);
+            this.panelControl5.TabIndex = 35;
+            // 
             // FrmDaryaftCheckTazmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1063, 625);
-            this.Controls.Add(this.panelControl3);
-            this.Controls.Add(this.panelControl2);
-            this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.panelControl4);
+            this.Controls.Add(this.panelControl5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("FrmDaryaftCheckTazmin.IconOptions.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
@@ -1136,6 +1165,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbNoeSanad.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbVamGerande.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).EndInit();
+            this.panelControl5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1208,5 +1239,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colSharhOdatCheck;
         private System.Windows.Forms.BindingSource allHesabTafzilisBindingSource;
         private DevExpress.XtraEditors.SimpleButton btnDesignReport;
+        private DevExpress.XtraEditors.PanelControl panelControl5;
     }
 }

@@ -77,7 +77,7 @@
             this.MandeBes.DisplayFormat.FormatString = "n";
             this.MandeBes.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.MandeBes.FieldName = "MandeBes";
-            this.MandeBes.MinWidth = 25;
+            this.MandeBes.MinWidth = 23;
             this.MandeBes.Name = "MandeBes";
             this.MandeBes.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MandeBes", "{0:n}")});
@@ -86,7 +86,7 @@
             this.MandeBes.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.MandeBes.Visible = true;
             this.MandeBes.VisibleIndex = 3;
-            this.MandeBes.Width = 200;
+            this.MandeBes.Width = 182;
             // 
             // colBes
             // 
@@ -100,11 +100,11 @@
             this.colBes.DisplayFormat.FormatString = "n";
             this.colBes.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colBes.FieldName = "Bes";
-            this.colBes.MinWidth = 24;
+            this.colBes.MinWidth = 22;
             this.colBes.Name = "colBes";
             this.colBes.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Bes", "{0:n}")});
-            this.colBes.Width = 171;
+            this.colBes.Width = 155;
             // 
             // colBed
             // 
@@ -118,11 +118,11 @@
             this.colBed.DisplayFormat.FormatString = "n";
             this.colBed.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colBed.FieldName = "Bed";
-            this.colBed.MinWidth = 24;
+            this.colBed.MinWidth = 22;
             this.colBed.Name = "colBed";
             this.colBed.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Bed", "{0:n}")});
-            this.colBed.Width = 171;
+            this.colBed.Width = 155;
             // 
             // colHesabTafName
             // 
@@ -133,9 +133,9 @@
             this.colHesabTafName.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colHesabTafName.Caption = "نام حساب";
             this.colHesabTafName.FieldName = "HesabTafName";
-            this.colHesabTafName.MinWidth = 24;
+            this.colHesabTafName.MinWidth = 22;
             this.colHesabTafName.Name = "colHesabTafName";
-            this.colHesabTafName.Width = 367;
+            this.colHesabTafName.Width = 334;
             // 
             // colHesabTafCode
             // 
@@ -147,9 +147,9 @@
             this.colHesabTafCode.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colHesabTafCode.Caption = "کد تفضیلی";
             this.colHesabTafCode.FieldName = "HesabTafCode";
-            this.colHesabTafCode.MinWidth = 24;
+            this.colHesabTafCode.MinWidth = 22;
             this.colHesabTafCode.Name = "colHesabTafCode";
-            this.colHesabTafCode.Width = 122;
+            this.colHesabTafCode.Width = 111;
             // 
             // colMoinName
             // 
@@ -160,11 +160,11 @@
             this.colMoinName.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colMoinName.Caption = "شرح معین";
             this.colMoinName.FieldName = "HesabMoinName";
-            this.colMoinName.MinWidth = 24;
+            this.colMoinName.MinWidth = 22;
             this.colMoinName.Name = "colMoinName";
             this.colMoinName.Visible = true;
             this.colMoinName.VisibleIndex = 1;
-            this.colMoinName.Width = 300;
+            this.colMoinName.Width = 273;
             // 
             // colCodeMoin
             // 
@@ -176,11 +176,11 @@
             this.colCodeMoin.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colCodeMoin.Caption = "کد معین";
             this.colCodeMoin.FieldName = "HesabMoinCode";
-            this.colCodeMoin.MinWidth = 24;
+            this.colCodeMoin.MinWidth = 22;
             this.colCodeMoin.Name = "colCodeMoin";
             this.colCodeMoin.Visible = true;
             this.colCodeMoin.VisibleIndex = 0;
-            this.colCodeMoin.Width = 150;
+            this.colCodeMoin.Width = 136;
             // 
             // colTarikh
             // 
@@ -192,9 +192,9 @@
             this.colTarikh.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colTarikh.Caption = "تاریخ";
             this.colTarikh.FieldName = "Tarikh";
-            this.colTarikh.MinWidth = 24;
+            this.colTarikh.MinWidth = 22;
             this.colTarikh.Name = "colTarikh";
-            this.colTarikh.Width = 134;
+            this.colTarikh.Width = 122;
             // 
             // colShomareSanad
             // 
@@ -206,9 +206,9 @@
             this.colShomareSanad.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colShomareSanad.Caption = "شماره سند";
             this.colShomareSanad.FieldName = "ShomareSanad";
-            this.colShomareSanad.MinWidth = 24;
+            this.colShomareSanad.MinWidth = 22;
             this.colShomareSanad.Name = "colShomareSanad";
-            this.colShomareSanad.Width = 110;
+            this.colShomareSanad.Width = 100;
             // 
             // Line
             // 
@@ -220,19 +220,19 @@
             this.Line.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.Line.Caption = "ردیف";
             this.Line.FieldName = "Line";
-            this.Line.MinWidth = 23;
+            this.Line.MinWidth = 21;
             this.Line.Name = "Line";
             this.Line.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Line", "{0}")});
             this.Line.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
-            this.Line.Width = 86;
+            this.Line.Width = 78;
             // 
             // colId
             // 
             this.colId.FieldName = "Id";
-            this.colId.MinWidth = 23;
+            this.colId.MinWidth = 21;
             this.colId.Name = "colId";
-            this.colId.Width = 92;
+            this.colId.Width = 84;
             // 
             // gridView1
             // 
@@ -252,10 +252,10 @@
             this.colBes,
             this.MandeBed,
             this.MandeBes});
-            this.gridView1.DetailHeight = 434;
+            this.gridView1.DetailHeight = 378;
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.IndicatorWidth = 31;
+            this.gridView1.IndicatorWidth = 28;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.AutoSelectAllInEditor = false;
             this.gridView1.OptionsBehavior.Editable = false;
@@ -283,7 +283,7 @@
             this.MandeBed.DisplayFormat.FormatString = "n";
             this.MandeBed.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.MandeBed.FieldName = "MandeBed";
-            this.MandeBed.MinWidth = 24;
+            this.MandeBed.MinWidth = 22;
             this.MandeBed.Name = "MandeBed";
             this.MandeBed.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MandeBed", "{0:n}")});
@@ -292,18 +292,18 @@
             this.MandeBed.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.MandeBed.Visible = true;
             this.MandeBed.VisibleIndex = 2;
-            this.MandeBed.Width = 200;
+            this.MandeBed.Width = 182;
             // 
             // gridControl1
             // 
             this.gridControl1.DataSource = this.asnadeHesabdariRowsBindingSource;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.gridControl1.Location = new System.Drawing.Point(0, 54);
+            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
+            this.gridControl1.Location = new System.Drawing.Point(0, 47);
             this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gridControl1.Margin = new System.Windows.Forms.Padding(4);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(911, 525);
+            this.gridControl1.Size = new System.Drawing.Size(828, 457);
             this.gridControl1.TabIndex = 37;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -315,11 +315,11 @@
             // ChkTarikh
             // 
             this.ChkTarikh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChkTarikh.Location = new System.Drawing.Point(885, 12);
-            this.ChkTarikh.Margin = new System.Windows.Forms.Padding(4);
+            this.ChkTarikh.Location = new System.Drawing.Point(792, 10);
+            this.ChkTarikh.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ChkTarikh.Name = "ChkTarikh";
-            this.ChkTarikh.Properties.Caption = "checkEdit1";
-            this.ChkTarikh.Size = new System.Drawing.Size(20, 35);
+            this.ChkTarikh.Properties.Caption = "";
+            this.ChkTarikh.Size = new System.Drawing.Size(31, 24);
             this.ChkTarikh.TabIndex = 46;
             this.ChkTarikh.TabStop = false;
             this.ChkTarikh.Visible = false;
@@ -329,12 +329,13 @@
             // 
             this.btnDesignReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDesignReport.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDesignReport.ImageOptions.SvgImage")));
-            this.btnDesignReport.Location = new System.Drawing.Point(243, 5);
-            this.btnDesignReport.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDesignReport.Location = new System.Drawing.Point(207, 4);
+            this.btnDesignReport.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDesignReport.Name = "btnDesignReport";
-            this.btnDesignReport.Size = new System.Drawing.Size(46, 41);
+            this.btnDesignReport.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDesignReport.Size = new System.Drawing.Size(47, 40);
             this.btnDesignReport.TabIndex = 43;
-            this.btnDesignReport.ToolTip = "چاپ لیست";
+            this.btnDesignReport.ToolTip = "طراحی فرم چاپ";
             this.btnDesignReport.Visible = false;
             this.btnDesignReport.Click += new System.EventHandler(this.btnDesignReport_Click);
             // 
@@ -342,10 +343,11 @@
             // 
             this.btnPrintPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrintPreview.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrintPreview.ImageOptions.SvgImage")));
-            this.btnPrintPreview.Location = new System.Drawing.Point(297, 6);
-            this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPrintPreview.Location = new System.Drawing.Point(256, 5);
+            this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPrintPreview.Name = "btnPrintPreview";
-            this.btnPrintPreview.Size = new System.Drawing.Size(46, 41);
+            this.btnPrintPreview.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnPrintPreview.Size = new System.Drawing.Size(47, 40);
             this.btnPrintPreview.TabIndex = 3;
             this.btnPrintPreview.ToolTip = "نمایش چاپ";
             this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
@@ -354,10 +356,11 @@
             // 
             this.btnDisplyList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDisplyList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyList.ImageOptions.SvgImage")));
-            this.btnDisplyList.Location = new System.Drawing.Point(351, 6);
-            this.btnDisplyList.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDisplyList.Location = new System.Drawing.Point(305, 5);
+            this.btnDisplyList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDisplyList.Name = "btnDisplyList";
-            this.btnDisplyList.Size = new System.Drawing.Size(46, 41);
+            this.btnDisplyList.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDisplyList.Size = new System.Drawing.Size(47, 40);
             this.btnDisplyList.TabIndex = 2;
             this.btnDisplyList.ToolTip = "نمایش لیست";
             this.btnDisplyList.Click += new System.EventHandler(this.btnDisplyList_Click);
@@ -375,19 +378,19 @@
             this.panelControl1.Controls.Add(this.btnDisplyList);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
-            this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(911, 54);
+            this.panelControl1.Size = new System.Drawing.Size(828, 47);
             this.panelControl1.TabIndex = 36;
             // 
             // btnRizMoin
             // 
             this.btnRizMoin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRizMoin.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnRizMoin.ImageOptions.SvgImage")));
-            this.btnRizMoin.Location = new System.Drawing.Point(55, 4);
-            this.btnRizMoin.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRizMoin.Location = new System.Drawing.Point(36, 3);
+            this.btnRizMoin.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnRizMoin.Name = "btnRizMoin";
-            this.btnRizMoin.Size = new System.Drawing.Size(180, 43);
+            this.btnRizMoin.Size = new System.Drawing.Size(164, 37);
             this.btnRizMoin.TabIndex = 4;
             this.btnRizMoin.Text = "ریز حساب معین";
             this.btnRizMoin.Click += new System.EventHandler(this.btnRizMoin_Click);
@@ -396,8 +399,8 @@
             // 
             this.txtTaTarikh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTaTarikh.EnterMoveNextControl = true;
-            this.txtTaTarikh.Location = new System.Drawing.Point(410, 8);
-            this.txtTaTarikh.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTaTarikh.Location = new System.Drawing.Point(359, 7);
+            this.txtTaTarikh.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtTaTarikh.Name = "txtTaTarikh";
             this.txtTaTarikh.Properties.Appearance.Options.UseTextOptions = true;
             this.txtTaTarikh.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -407,7 +410,7 @@
             this.txtTaTarikh.Properties.Mask.PlaceHolder = '-';
             this.txtTaTarikh.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtTaTarikh.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtTaTarikh.Size = new System.Drawing.Size(159, 38);
+            this.txtTaTarikh.Size = new System.Drawing.Size(145, 34);
             this.txtTaTarikh.TabIndex = 1;
             this.txtTaTarikh.EditValueChanged += new System.EventHandler(this.txtTaTarikh_EditValueChanged);
             // 
@@ -418,10 +421,10 @@
             this.labelControl1.Appearance.Options.UseForeColor = true;
             this.labelControl1.AutoEllipsis = true;
             this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl1.Location = new System.Drawing.Point(576, 8);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl1.Location = new System.Drawing.Point(510, 7);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(61, 40);
+            this.labelControl1.Size = new System.Drawing.Size(55, 35);
             this.labelControl1.TabIndex = 50;
             this.labelControl1.Text = "تا تاریخ";
             // 
@@ -429,8 +432,8 @@
             // 
             this.txtAzTarikh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAzTarikh.EnterMoveNextControl = true;
-            this.txtAzTarikh.Location = new System.Drawing.Point(651, 7);
-            this.txtAzTarikh.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAzTarikh.Location = new System.Drawing.Point(578, 6);
+            this.txtAzTarikh.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtAzTarikh.Name = "txtAzTarikh";
             this.txtAzTarikh.Properties.Appearance.Options.UseTextOptions = true;
             this.txtAzTarikh.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -440,7 +443,7 @@
             this.txtAzTarikh.Properties.Mask.PlaceHolder = '-';
             this.txtAzTarikh.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtAzTarikh.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtAzTarikh.Size = new System.Drawing.Size(159, 38);
+            this.txtAzTarikh.Size = new System.Drawing.Size(145, 34);
             this.txtAzTarikh.TabIndex = 0;
             this.txtAzTarikh.EditValueChanged += new System.EventHandler(this.txtAzTarikh_EditValueChanged);
             // 
@@ -451,21 +454,21 @@
             this.labelControl2.Appearance.Options.UseForeColor = true;
             this.labelControl2.AutoEllipsis = true;
             this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl2.Location = new System.Drawing.Point(817, 7);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl2.Location = new System.Drawing.Point(729, 6);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(61, 40);
+            this.labelControl2.Size = new System.Drawing.Size(55, 35);
             this.labelControl2.TabIndex = 49;
             this.labelControl2.Text = "از تاریخ";
             // 
             // FrmSodVZian
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(911, 579);
+            this.ClientSize = new System.Drawing.Size(828, 504);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.panelControl1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("FrmSodVZian.IconOptions.Icon")));
             this.KeyPreview = true;
             this.Name = "FrmSodVZian";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

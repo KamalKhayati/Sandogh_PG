@@ -178,7 +178,8 @@
             this.btnDelete.Location = new System.Drawing.Point(589, 41);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(42, 36);
+            this.btnDelete.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDelete.Size = new System.Drawing.Size(47, 40);
             this.btnDelete.TabIndex = 18;
             this.btnDelete.ToolTip = "حذف";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -190,9 +191,10 @@
             this.btnDesignReport.Location = new System.Drawing.Point(638, 41);
             this.btnDesignReport.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDesignReport.Name = "btnDesignReport";
-            this.btnDesignReport.Size = new System.Drawing.Size(42, 36);
+            this.btnDesignReport.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDesignReport.Size = new System.Drawing.Size(47, 40);
             this.btnDesignReport.TabIndex = 5;
-            this.btnDesignReport.ToolTip = "چاپ لیست";
+            this.btnDesignReport.ToolTip = "طراحی فرم چاپ";
             this.btnDesignReport.Visible = false;
             this.btnDesignReport.Click += new System.EventHandler(this.btnDesignReport_Click);
             // 
@@ -203,7 +205,8 @@
             this.btnPrintPreview.Location = new System.Drawing.Point(687, 41);
             this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPrintPreview.Name = "btnPrintPreview";
-            this.btnPrintPreview.Size = new System.Drawing.Size(42, 36);
+            this.btnPrintPreview.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnPrintPreview.Size = new System.Drawing.Size(47, 40);
             this.btnPrintPreview.TabIndex = 4;
             this.btnPrintPreview.ToolTip = "نمایش چاپ";
             this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
@@ -215,7 +218,8 @@
             this.btnDisplyList.Location = new System.Drawing.Point(736, 41);
             this.btnDisplyList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDisplyList.Name = "btnDisplyList";
-            this.btnDisplyList.Size = new System.Drawing.Size(42, 36);
+            this.btnDisplyList.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDisplyList.Size = new System.Drawing.Size(47, 40);
             this.btnDisplyList.TabIndex = 3;
             this.btnDisplyList.ToolTip = "نمایش لیست";
             this.btnDisplyList.Click += new System.EventHandler(this.btnDisplyList_Click);
@@ -248,10 +252,10 @@
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
             this.gridControl1.Location = new System.Drawing.Point(2, 84);
             this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridControl1.Margin = new System.Windows.Forms.Padding(4);
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.Size = new System.Drawing.Size(1323, 532);
             this.gridControl1.TabIndex = 34;
@@ -470,7 +474,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1327, 618);
             this.Controls.Add(this.panelControl2);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("FrmMabaleghGhabelDaryaft.IconOptions.Icon")));
             this.KeyPreview = true;
             this.Name = "FrmMabaleghGhabelDaryaft";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

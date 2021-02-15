@@ -45,6 +45,7 @@
             this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCodePersoneli = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTarikhOzviat = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNobatbandiVam = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNameVFamil = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colJensiat = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTaahol = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -70,7 +71,6 @@
             this.colAdressMohalKar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSharhHesab = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colShomareSanad = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNobatbandiVam = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsOzveSandogh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -87,22 +87,23 @@
             this.chkIsOzveSandogh.Cursor = System.Windows.Forms.Cursors.Default;
             this.chkIsOzveSandogh.EditValue = true;
             this.chkIsOzveSandogh.EnterMoveNextControl = true;
-            this.chkIsOzveSandogh.Location = new System.Drawing.Point(1040, 13);
-            this.chkIsOzveSandogh.Margin = new System.Windows.Forms.Padding(4);
+            this.chkIsOzveSandogh.Location = new System.Drawing.Point(945, 11);
+            this.chkIsOzveSandogh.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.chkIsOzveSandogh.Name = "chkIsOzveSandogh";
             this.chkIsOzveSandogh.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
             this.chkIsOzveSandogh.Properties.Caption = "اعضاء صندوق";
-            this.chkIsOzveSandogh.Size = new System.Drawing.Size(144, 39);
+            this.chkIsOzveSandogh.Size = new System.Drawing.Size(131, 35);
             this.chkIsOzveSandogh.TabIndex = 19;
             // 
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDelete.ImageOptions.SvgImage")));
-            this.btnDelete.Location = new System.Drawing.Point(816, 10);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDelete.Location = new System.Drawing.Point(742, 9);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(46, 41);
+            this.btnDelete.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDelete.Size = new System.Drawing.Size(47, 40);
             this.btnDelete.TabIndex = 18;
             this.btnDelete.ToolTip = "حذف";
             this.btnDelete.Visible = false;
@@ -111,22 +112,24 @@
             // 
             this.btnDesignReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDesignReport.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDesignReport.ImageOptions.SvgImage")));
-            this.btnDesignReport.Location = new System.Drawing.Point(870, 10);
-            this.btnDesignReport.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDesignReport.Location = new System.Drawing.Point(791, 9);
+            this.btnDesignReport.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDesignReport.Name = "btnDesignReport";
-            this.btnDesignReport.Size = new System.Drawing.Size(46, 41);
+            this.btnDesignReport.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDesignReport.Size = new System.Drawing.Size(47, 40);
             this.btnDesignReport.TabIndex = 5;
-            this.btnDesignReport.ToolTip = "چاپ لیست";
+            this.btnDesignReport.ToolTip = "طراحی فرم چاپ";
             this.btnDesignReport.Visible = false;
             // 
             // btnPrintPreview
             // 
             this.btnPrintPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrintPreview.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrintPreview.ImageOptions.SvgImage")));
-            this.btnPrintPreview.Location = new System.Drawing.Point(924, 10);
-            this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPrintPreview.Location = new System.Drawing.Point(840, 9);
+            this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPrintPreview.Name = "btnPrintPreview";
-            this.btnPrintPreview.Size = new System.Drawing.Size(46, 41);
+            this.btnPrintPreview.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnPrintPreview.Size = new System.Drawing.Size(47, 40);
             this.btnPrintPreview.TabIndex = 4;
             this.btnPrintPreview.ToolTip = "نمایش چاپ";
             this.btnPrintPreview.Visible = false;
@@ -135,10 +138,11 @@
             // 
             this.btnDisplyList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDisplyList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyList.ImageOptions.SvgImage")));
-            this.btnDisplyList.Location = new System.Drawing.Point(978, 10);
-            this.btnDisplyList.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDisplyList.Location = new System.Drawing.Point(889, 9);
+            this.btnDisplyList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDisplyList.Name = "btnDisplyList";
-            this.btnDisplyList.Size = new System.Drawing.Size(46, 41);
+            this.btnDisplyList.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDisplyList.Size = new System.Drawing.Size(47, 40);
             this.btnDisplyList.TabIndex = 3;
             this.btnDisplyList.ToolTip = "نمایش لیست";
             // 
@@ -152,28 +156,28 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1197, 60);
+            this.panelControl1.Size = new System.Drawing.Size(1088, 52);
             this.panelControl1.TabIndex = 5;
             // 
             // panelControl2
             // 
             this.panelControl2.Controls.Add(this.gridControl1);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 60);
+            this.panelControl2.Location = new System.Drawing.Point(0, 52);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1197, 588);
+            this.panelControl2.Size = new System.Drawing.Size(1088, 512);
             this.panelControl2.TabIndex = 6;
             // 
             // gridControl1
             // 
             this.gridControl1.DataSource = this.aazaSandoghsBindingSource;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
             this.gridControl1.Location = new System.Drawing.Point(2, 2);
             this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gridControl1.Margin = new System.Windows.Forms.Padding(4);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1193, 584);
+            this.gridControl1.Size = new System.Drawing.Size(1084, 508);
             this.gridControl1.TabIndex = 33;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -216,10 +220,10 @@
             this.colAdressMohalKar,
             this.colSharhHesab,
             this.colShomareSanad});
-            this.gridView1.DetailHeight = 434;
+            this.gridView1.DetailHeight = 378;
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.IndicatorWidth = 31;
+            this.gridView1.IndicatorWidth = 28;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.AutoSelectAllInEditor = false;
             this.gridView1.OptionsBehavior.Editable = false;
@@ -240,9 +244,9 @@
             this.colId.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colId.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colId.FieldName = "Id";
-            this.colId.MinWidth = 23;
+            this.colId.MinWidth = 21;
             this.colId.Name = "colId";
-            this.colId.Width = 92;
+            this.colId.Width = 84;
             // 
             // Line
             // 
@@ -254,12 +258,12 @@
             this.Line.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.Line.Caption = "ردیف";
             this.Line.FieldName = "Line";
-            this.Line.MinWidth = 23;
+            this.Line.MinWidth = 21;
             this.Line.Name = "Line";
             this.Line.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
             this.Line.Visible = true;
             this.Line.VisibleIndex = 0;
-            this.Line.Width = 73;
+            this.Line.Width = 66;
             // 
             // colCode
             // 
@@ -271,9 +275,9 @@
             this.colCode.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colCode.Caption = "کد حساب";
             this.colCode.FieldName = "Code";
-            this.colCode.MinWidth = 23;
+            this.colCode.MinWidth = 21;
             this.colCode.Name = "colCode";
-            this.colCode.Width = 98;
+            this.colCode.Width = 89;
             // 
             // colCodePersoneli
             // 
@@ -285,9 +289,9 @@
             this.colCodePersoneli.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colCodePersoneli.Caption = "کد پرسنلی";
             this.colCodePersoneli.FieldName = "CodePersoneli";
-            this.colCodePersoneli.MinWidth = 24;
+            this.colCodePersoneli.MinWidth = 22;
             this.colCodePersoneli.Name = "colCodePersoneli";
-            this.colCodePersoneli.Width = 130;
+            this.colCodePersoneli.Width = 118;
             // 
             // colTarikhOzviat
             // 
@@ -299,9 +303,25 @@
             this.colTarikhOzviat.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colTarikhOzviat.Caption = "تاریخ ایجاد";
             this.colTarikhOzviat.FieldName = "TarikhOzviat";
-            this.colTarikhOzviat.MinWidth = 24;
+            this.colTarikhOzviat.MinWidth = 22;
             this.colTarikhOzviat.Name = "colTarikhOzviat";
-            this.colTarikhOzviat.Width = 122;
+            this.colTarikhOzviat.Width = 111;
+            // 
+            // colNobatbandiVam
+            // 
+            this.colNobatbandiVam.AppearanceCell.Options.UseTextOptions = true;
+            this.colNobatbandiVam.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colNobatbandiVam.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colNobatbandiVam.AppearanceHeader.Options.UseTextOptions = true;
+            this.colNobatbandiVam.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colNobatbandiVam.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colNobatbandiVam.Caption = "شماره نوبت وام";
+            this.colNobatbandiVam.FieldName = "NobatbandiVam";
+            this.colNobatbandiVam.MinWidth = 23;
+            this.colNobatbandiVam.Name = "colNobatbandiVam";
+            this.colNobatbandiVam.Visible = true;
+            this.colNobatbandiVam.VisibleIndex = 2;
+            this.colNobatbandiVam.Width = 136;
             // 
             // colNameVFamil
             // 
@@ -310,11 +330,11 @@
             this.colNameVFamil.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colNameVFamil.Caption = "نام و نام خانوادگی";
             this.colNameVFamil.FieldName = "NameVFamil";
-            this.colNameVFamil.MinWidth = 24;
+            this.colNameVFamil.MinWidth = 22;
             this.colNameVFamil.Name = "colNameVFamil";
             this.colNameVFamil.Visible = true;
             this.colNameVFamil.VisibleIndex = 1;
-            this.colNameVFamil.Width = 350;
+            this.colNameVFamil.Width = 318;
             // 
             // colJensiat
             // 
@@ -326,9 +346,9 @@
             this.colJensiat.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colJensiat.Caption = "جنسیت";
             this.colJensiat.FieldName = "Jensiat";
-            this.colJensiat.MinWidth = 24;
+            this.colJensiat.MinWidth = 22;
             this.colJensiat.Name = "colJensiat";
-            this.colJensiat.Width = 98;
+            this.colJensiat.Width = 89;
             // 
             // colTaahol
             // 
@@ -340,9 +360,9 @@
             this.colTaahol.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colTaahol.Caption = "تأهل";
             this.colTaahol.FieldName = "Taahol";
-            this.colTaahol.MinWidth = 24;
+            this.colTaahol.MinWidth = 22;
             this.colTaahol.Name = "colTaahol";
-            this.colTaahol.Width = 98;
+            this.colTaahol.Width = 89;
             // 
             // colMobil1
             // 
@@ -354,9 +374,9 @@
             this.colMobil1.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colMobil1.Caption = "موبایل 1";
             this.colMobil1.FieldName = "Mobile1";
-            this.colMobil1.MinWidth = 24;
+            this.colMobil1.MinWidth = 22;
             this.colMobil1.Name = "colMobil1";
-            this.colMobil1.Width = 159;
+            this.colMobil1.Width = 145;
             // 
             // colMobil2
             // 
@@ -368,9 +388,9 @@
             this.colMobil2.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colMobil2.Caption = "موبایل2";
             this.colMobil2.FieldName = "Mobile2";
-            this.colMobil2.MinWidth = 24;
+            this.colMobil2.MinWidth = 22;
             this.colMobil2.Name = "colMobil2";
-            this.colMobil2.Width = 159;
+            this.colMobil2.Width = 145;
             // 
             // colTell
             // 
@@ -382,9 +402,9 @@
             this.colTell.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colTell.Caption = "تلفن";
             this.colTell.FieldName = "Tell";
-            this.colTell.MinWidth = 24;
+            this.colTell.MinWidth = 22;
             this.colTell.Name = "colTell";
-            this.colTell.Width = 159;
+            this.colTell.Width = 145;
             // 
             // colMoaref
             // 
@@ -396,9 +416,9 @@
             this.colMoaref.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colMoaref.Caption = "معرف";
             this.colMoaref.FieldName = "Moaref";
-            this.colMoaref.MinWidth = 24;
+            this.colMoaref.MinWidth = 22;
             this.colMoaref.Name = "colMoaref";
-            this.colMoaref.Width = 269;
+            this.colMoaref.Width = 245;
             // 
             // colHaghOzviat
             // 
@@ -412,9 +432,9 @@
             this.colHaghOzviat.DisplayFormat.FormatString = "n";
             this.colHaghOzviat.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colHaghOzviat.FieldName = "HaghOzviat";
-            this.colHaghOzviat.MinWidth = 24;
+            this.colHaghOzviat.MinWidth = 22;
             this.colHaghOzviat.Name = "colHaghOzviat";
-            this.colHaghOzviat.Width = 159;
+            this.colHaghOzviat.Width = 145;
             // 
             // colSarmayhAvali
             // 
@@ -428,9 +448,9 @@
             this.colSarmayhAvali.DisplayFormat.FormatString = "n";
             this.colSarmayhAvali.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colSarmayhAvali.FieldName = "BesAvali";
-            this.colSarmayhAvali.MinWidth = 24;
+            this.colSarmayhAvali.MinWidth = 22;
             this.colSarmayhAvali.Name = "colSarmayhAvali";
-            this.colSarmayhAvali.Width = 147;
+            this.colSarmayhAvali.Width = 134;
             // 
             // colHazineEftetah
             // 
@@ -444,9 +464,9 @@
             this.colHazineEftetah.DisplayFormat.FormatString = "n";
             this.colHazineEftetah.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colHazineEftetah.FieldName = "HazineEftetah";
-            this.colHazineEftetah.MinWidth = 24;
+            this.colHazineEftetah.MinWidth = 22;
             this.colHazineEftetah.Name = "colHazineEftetah";
-            this.colHazineEftetah.Width = 159;
+            this.colHazineEftetah.Width = 145;
             // 
             // colNamePedar
             // 
@@ -458,9 +478,9 @@
             this.colNamePedar.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colNamePedar.Caption = "نام پدر";
             this.colNamePedar.FieldName = "NamePedar";
-            this.colNamePedar.MinWidth = 24;
+            this.colNamePedar.MinWidth = 22;
             this.colNamePedar.Name = "colNamePedar";
-            this.colNamePedar.Width = 134;
+            this.colNamePedar.Width = 122;
             // 
             // colCodeMelli
             // 
@@ -472,9 +492,9 @@
             this.colCodeMelli.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colCodeMelli.Caption = "کد ملی";
             this.colCodeMelli.FieldName = "CodeMelli";
-            this.colCodeMelli.MinWidth = 24;
+            this.colCodeMelli.MinWidth = 22;
             this.colCodeMelli.Name = "colCodeMelli";
-            this.colCodeMelli.Width = 159;
+            this.colCodeMelli.Width = 145;
             // 
             // colShShenasname
             // 
@@ -486,9 +506,9 @@
             this.colShShenasname.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colShShenasname.Caption = "شماره شناسنامه";
             this.colShShenasname.FieldName = "ShShenasname";
-            this.colShShenasname.MinWidth = 24;
+            this.colShShenasname.MinWidth = 22;
             this.colShShenasname.Name = "colShShenasname";
-            this.colShShenasname.Width = 134;
+            this.colShShenasname.Width = 122;
             // 
             // colBirthDate
             // 
@@ -500,9 +520,9 @@
             this.colBirthDate.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colBirthDate.Caption = "تاریخ تولد";
             this.colBirthDate.FieldName = "BirthDate";
-            this.colBirthDate.MinWidth = 24;
+            this.colBirthDate.MinWidth = 22;
             this.colBirthDate.Name = "colBirthDate";
-            this.colBirthDate.Width = 122;
+            this.colBirthDate.Width = 111;
             // 
             // colNameBank
             // 
@@ -514,9 +534,9 @@
             this.colNameBank.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colNameBank.Caption = "نام بانک";
             this.colNameBank.FieldName = "NameBank";
-            this.colNameBank.MinWidth = 24;
+            this.colNameBank.MinWidth = 22;
             this.colNameBank.Name = "colNameBank";
-            this.colNameBank.Width = 147;
+            this.colNameBank.Width = 134;
             // 
             // colShomareHesab
             // 
@@ -528,9 +548,9 @@
             this.colShomareHesab.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colShomareHesab.Caption = "شماره حساب";
             this.colShomareHesab.FieldName = "ShomareHesab";
-            this.colShomareHesab.MinWidth = 24;
+            this.colShomareHesab.MinWidth = 22;
             this.colShomareHesab.Name = "colShomareHesab";
-            this.colShomareHesab.Width = 183;
+            this.colShomareHesab.Width = 166;
             // 
             // colShomareKart
             // 
@@ -542,9 +562,9 @@
             this.colShomareKart.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colShomareKart.Caption = "شماره کارت";
             this.colShomareKart.FieldName = "ShomareKart";
-            this.colShomareKart.MinWidth = 24;
+            this.colShomareKart.MinWidth = 22;
             this.colShomareKart.Name = "colShomareKart";
-            this.colShomareKart.Width = 220;
+            this.colShomareKart.Width = 200;
             // 
             // colShomareShaba
             // 
@@ -556,9 +576,9 @@
             this.colShomareShaba.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colShomareShaba.Caption = "شماره شبا";
             this.colShomareShaba.FieldName = "ShomareShaba";
-            this.colShomareShaba.MinWidth = 24;
+            this.colShomareShaba.MinWidth = 22;
             this.colShomareShaba.Name = "colShomareShaba";
-            this.colShomareShaba.Width = 244;
+            this.colShomareShaba.Width = 222;
             // 
             // colShoghl
             // 
@@ -570,9 +590,9 @@
             this.colShoghl.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colShoghl.Caption = "شغل";
             this.colShoghl.FieldName = "Shoghl";
-            this.colShoghl.MinWidth = 24;
+            this.colShoghl.MinWidth = 22;
             this.colShoghl.Name = "colShoghl";
-            this.colShoghl.Width = 159;
+            this.colShoghl.Width = 145;
             // 
             // colIsOzveSandogh
             // 
@@ -584,9 +604,9 @@
             this.colIsOzveSandogh.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colIsOzveSandogh.Caption = "عضو صندوق";
             this.colIsOzveSandogh.FieldName = "IsOzveSandogh";
-            this.colIsOzveSandogh.MinWidth = 24;
+            this.colIsOzveSandogh.MinWidth = 22;
             this.colIsOzveSandogh.Name = "colIsOzveSandogh";
-            this.colIsOzveSandogh.Width = 134;
+            this.colIsOzveSandogh.Width = 122;
             // 
             // colIsActive
             // 
@@ -598,9 +618,9 @@
             this.colIsActive.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colIsActive.Caption = "فعال";
             this.colIsActive.FieldName = "IsActive";
-            this.colIsActive.MinWidth = 23;
+            this.colIsActive.MinWidth = 21;
             this.colIsActive.Name = "colIsActive";
-            this.colIsActive.Width = 92;
+            this.colIsActive.Width = 84;
             // 
             // colAdressManzel
             // 
@@ -609,9 +629,9 @@
             this.colAdressManzel.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colAdressManzel.Caption = "آدرس منزل";
             this.colAdressManzel.FieldName = "AdressManzel";
-            this.colAdressManzel.MinWidth = 24;
+            this.colAdressManzel.MinWidth = 22;
             this.colAdressManzel.Name = "colAdressManzel";
-            this.colAdressManzel.Width = 489;
+            this.colAdressManzel.Width = 445;
             // 
             // colAdressMohalKar
             // 
@@ -620,9 +640,9 @@
             this.colAdressMohalKar.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colAdressMohalKar.Caption = "آدرس محل کار";
             this.colAdressMohalKar.FieldName = "AdressMohalKar";
-            this.colAdressMohalKar.MinWidth = 24;
+            this.colAdressMohalKar.MinWidth = 22;
             this.colAdressMohalKar.Name = "colAdressMohalKar";
-            this.colAdressMohalKar.Width = 489;
+            this.colAdressMohalKar.Width = 445;
             // 
             // colSharhHesab
             // 
@@ -631,9 +651,9 @@
             this.colSharhHesab.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colSharhHesab.Caption = "توضیح حساب";
             this.colSharhHesab.FieldName = "SharhHesab";
-            this.colSharhHesab.MinWidth = 23;
+            this.colSharhHesab.MinWidth = 21;
             this.colSharhHesab.Name = "colSharhHesab";
-            this.colSharhHesab.Width = 489;
+            this.colSharhHesab.Width = 445;
             // 
             // colShomareSanad
             // 
@@ -645,33 +665,18 @@
             this.colShomareSanad.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colShomareSanad.Caption = "شماره سند";
             this.colShomareSanad.FieldName = "ShomareSanad";
-            this.colShomareSanad.MinWidth = 24;
+            this.colShomareSanad.MinWidth = 22;
             this.colShomareSanad.Name = "colShomareSanad";
-            this.colShomareSanad.Width = 122;
-            // 
-            // colNobatbandiVam
-            // 
-            this.colNobatbandiVam.AppearanceCell.Options.UseTextOptions = true;
-            this.colNobatbandiVam.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colNobatbandiVam.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colNobatbandiVam.AppearanceHeader.Options.UseTextOptions = true;
-            this.colNobatbandiVam.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colNobatbandiVam.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colNobatbandiVam.Caption = "شماره نوبت وام";
-            this.colNobatbandiVam.FieldName = "NobatbandiVam";
-            this.colNobatbandiVam.MinWidth = 25;
-            this.colNobatbandiVam.Name = "colNobatbandiVam";
-            this.colNobatbandiVam.Visible = true;
-            this.colNobatbandiVam.VisibleIndex = 2;
-            this.colNobatbandiVam.Width = 150;
+            this.colShomareSanad.Width = 111;
             // 
             // FrmNobatbandiVam
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1197, 648);
+            this.ClientSize = new System.Drawing.Size(1088, 564);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("FrmNobatbandiVam.IconOptions.Icon")));
             this.Name = "FrmNobatbandiVam";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

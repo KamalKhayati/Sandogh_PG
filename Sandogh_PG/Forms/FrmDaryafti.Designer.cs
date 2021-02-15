@@ -476,9 +476,10 @@
             this.btnDesignReport2.Location = new System.Drawing.Point(117, 5);
             this.btnDesignReport2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDesignReport2.Name = "btnDesignReport2";
-            this.btnDesignReport2.Size = new System.Drawing.Size(42, 36);
+            this.btnDesignReport2.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDesignReport2.Size = new System.Drawing.Size(47, 40);
             this.btnDesignReport2.TabIndex = 43;
-            this.btnDesignReport2.ToolTip = "چاپ لیست";
+            this.btnDesignReport2.ToolTip = "طراحی فرم چاپ";
             this.btnDesignReport2.Visible = false;
             this.btnDesignReport2.Click += new System.EventHandler(this.btnDesignReport2_Click);
             // 
@@ -489,7 +490,8 @@
             this.btnNext2.Location = new System.Drawing.Point(472, 5);
             this.btnNext2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnNext2.Name = "btnNext2";
-            this.btnNext2.Size = new System.Drawing.Size(42, 36);
+            this.btnNext2.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnNext2.Size = new System.Drawing.Size(47, 40);
             this.btnNext2.TabIndex = 21;
             this.btnNext2.ToolTip = "بعدی";
             this.btnNext2.Click += new System.EventHandler(this.btnNext2_Click);
@@ -500,7 +502,8 @@
             this.btnPrintPreview2.Location = new System.Drawing.Point(68, 5);
             this.btnPrintPreview2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPrintPreview2.Name = "btnPrintPreview2";
-            this.btnPrintPreview2.Size = new System.Drawing.Size(42, 36);
+            this.btnPrintPreview2.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnPrintPreview2.Size = new System.Drawing.Size(47, 40);
             this.btnPrintPreview2.TabIndex = 26;
             this.btnPrintPreview2.ToolTip = "نمایش چاپ";
             this.btnPrintPreview2.Click += new System.EventHandler(this.btnPrintPreview2_Click);
@@ -511,7 +514,8 @@
             this.btnEdit2.Location = new System.Drawing.Point(789, 5);
             this.btnEdit2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnEdit2.Name = "btnEdit2";
-            this.btnEdit2.Size = new System.Drawing.Size(42, 36);
+            this.btnEdit2.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnEdit2.Size = new System.Drawing.Size(47, 40);
             this.btnEdit2.TabIndex = 18;
             this.btnEdit2.ToolTip = "ویرایش";
             this.btnEdit2.Visible = false;
@@ -523,7 +527,8 @@
             this.btnDelete2.Location = new System.Drawing.Point(837, 5);
             this.btnDelete2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDelete2.Name = "btnDelete2";
-            this.btnDelete2.Size = new System.Drawing.Size(42, 36);
+            this.btnDelete2.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDelete2.Size = new System.Drawing.Size(47, 40);
             this.btnDelete2.TabIndex = 17;
             this.btnDelete2.ToolTip = "حذف";
             this.btnDelete2.Visible = false;
@@ -536,7 +541,8 @@
             this.btnFirst2.Location = new System.Drawing.Point(375, 5);
             this.btnFirst2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnFirst2.Name = "btnFirst2";
-            this.btnFirst2.Size = new System.Drawing.Size(42, 36);
+            this.btnFirst2.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnFirst2.Size = new System.Drawing.Size(47, 40);
             this.btnFirst2.TabIndex = 23;
             this.btnFirst2.ToolTip = "اولین رکورد";
             this.btnFirst2.Click += new System.EventHandler(this.btnFirst2_Click);
@@ -548,7 +554,8 @@
             this.btnPreview2.Location = new System.Drawing.Point(424, 5);
             this.btnPreview2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPreview2.Name = "btnPreview2";
-            this.btnPreview2.Size = new System.Drawing.Size(42, 36);
+            this.btnPreview2.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnPreview2.Size = new System.Drawing.Size(47, 40);
             this.btnPreview2.TabIndex = 22;
             this.btnPreview2.ToolTip = "قبلی";
             this.btnPreview2.Click += new System.EventHandler(this.btnPreview2_Click);
@@ -559,7 +566,8 @@
             this.btnLast2.Location = new System.Drawing.Point(521, 5);
             this.btnLast2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnLast2.Name = "btnLast2";
-            this.btnLast2.Size = new System.Drawing.Size(42, 36);
+            this.btnLast2.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnLast2.Size = new System.Drawing.Size(47, 40);
             this.btnLast2.TabIndex = 20;
             this.btnLast2.ToolTip = "آخرین رکورد";
             this.btnLast2.Click += new System.EventHandler(this.btnLast2_Click);
@@ -570,7 +578,8 @@
             this.btnDisplyList2.Location = new System.Drawing.Point(19, 5);
             this.btnDisplyList2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDisplyList2.Name = "btnDisplyList2";
-            this.btnDisplyList2.Size = new System.Drawing.Size(42, 36);
+            this.btnDisplyList2.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDisplyList2.Size = new System.Drawing.Size(47, 40);
             this.btnDisplyList2.TabIndex = 24;
             this.btnDisplyList2.ToolTip = "نمایش لیست";
             this.btnDisplyList2.Click += new System.EventHandler(this.btnDisplyList2_Click);
@@ -581,7 +590,8 @@
             this.btnCreate2.Location = new System.Drawing.Point(886, 5);
             this.btnCreate2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCreate2.Name = "btnCreate2";
-            this.btnCreate2.Size = new System.Drawing.Size(42, 36);
+            this.btnCreate2.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnCreate2.Size = new System.Drawing.Size(47, 40);
             this.btnCreate2.TabIndex = 16;
             this.btnCreate2.ToolTip = "ایجاد";
             this.btnCreate2.Visible = false;
@@ -1178,7 +1188,8 @@
             this.btnPrint1.Location = new System.Drawing.Point(117, 5);
             this.btnPrint1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPrint1.Name = "btnPrint1";
-            this.btnPrint1.Size = new System.Drawing.Size(42, 36);
+            this.btnPrint1.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnPrint1.Size = new System.Drawing.Size(47, 40);
             this.btnPrint1.TabIndex = 27;
             this.btnPrint1.ToolTip = "چاپ لیست";
             this.btnPrint1.Visible = false;
@@ -1190,7 +1201,8 @@
             this.btnNext1.Location = new System.Drawing.Point(504, 5);
             this.btnNext1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnNext1.Name = "btnNext1";
-            this.btnNext1.Size = new System.Drawing.Size(42, 36);
+            this.btnNext1.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnNext1.Size = new System.Drawing.Size(47, 40);
             this.btnNext1.TabIndex = 21;
             this.btnNext1.ToolTip = "بعدی";
             this.btnNext1.Click += new System.EventHandler(this.btnNext1_Click);
@@ -1201,7 +1213,8 @@
             this.btnPrintPreview1.Location = new System.Drawing.Point(166, 5);
             this.btnPrintPreview1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPrintPreview1.Name = "btnPrintPreview1";
-            this.btnPrintPreview1.Size = new System.Drawing.Size(42, 36);
+            this.btnPrintPreview1.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnPrintPreview1.Size = new System.Drawing.Size(47, 40);
             this.btnPrintPreview1.TabIndex = 26;
             this.btnPrintPreview1.ToolTip = "نمایش چاپ";
             this.btnPrintPreview1.Visible = false;
@@ -1214,7 +1227,8 @@
             this.btnFirst1.Location = new System.Drawing.Point(405, 5);
             this.btnFirst1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnFirst1.Name = "btnFirst1";
-            this.btnFirst1.Size = new System.Drawing.Size(42, 36);
+            this.btnFirst1.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnFirst1.Size = new System.Drawing.Size(47, 40);
             this.btnFirst1.TabIndex = 23;
             this.btnFirst1.ToolTip = "اولین رکورد";
             this.btnFirst1.Click += new System.EventHandler(this.btnFirst1_Click);
@@ -1226,7 +1240,8 @@
             this.btnPreview1.Location = new System.Drawing.Point(455, 5);
             this.btnPreview1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPreview1.Name = "btnPreview1";
-            this.btnPreview1.Size = new System.Drawing.Size(42, 36);
+            this.btnPreview1.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnPreview1.Size = new System.Drawing.Size(47, 40);
             this.btnPreview1.TabIndex = 22;
             this.btnPreview1.ToolTip = "قبلی";
             this.btnPreview1.Click += new System.EventHandler(this.btnPreview1_Click);
@@ -1237,7 +1252,8 @@
             this.btnLast1.Location = new System.Drawing.Point(552, 5);
             this.btnLast1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnLast1.Name = "btnLast1";
-            this.btnLast1.Size = new System.Drawing.Size(42, 36);
+            this.btnLast1.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnLast1.Size = new System.Drawing.Size(47, 40);
             this.btnLast1.TabIndex = 20;
             this.btnLast1.ToolTip = "آخرین رکورد";
             this.btnLast1.Click += new System.EventHandler(this.btnLast1_Click);
@@ -1249,7 +1265,8 @@
             this.btnDisplayActiveList1.Location = new System.Drawing.Point(71, 5);
             this.btnDisplayActiveList1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDisplayActiveList1.Name = "btnDisplayActiveList1";
-            this.btnDisplayActiveList1.Size = new System.Drawing.Size(42, 36);
+            this.btnDisplayActiveList1.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDisplayActiveList1.Size = new System.Drawing.Size(47, 40);
             this.btnDisplayActiveList1.TabIndex = 24;
             this.btnDisplayActiveList1.ToolTip = "لیست اعضای فعال";
             this.btnDisplayActiveList1.Click += new System.EventHandler(this.btnDisplayActiveList1_Click);
@@ -1261,7 +1278,8 @@
             this.btnDisplayNotActiveList1.Location = new System.Drawing.Point(22, 5);
             this.btnDisplayNotActiveList1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDisplayNotActiveList1.Name = "btnDisplayNotActiveList1";
-            this.btnDisplayNotActiveList1.Size = new System.Drawing.Size(42, 36);
+            this.btnDisplayNotActiveList1.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDisplayNotActiveList1.Size = new System.Drawing.Size(47, 40);
             this.btnDisplayNotActiveList1.TabIndex = 25;
             this.btnDisplayNotActiveList1.ToolTip = "لیست اعضای غیرفعال";
             this.btnDisplayNotActiveList1.Click += new System.EventHandler(this.btnDisplayNotActiveList1_Click);
@@ -1796,9 +1814,10 @@
             this.btnDesignReport3.Location = new System.Drawing.Point(166, 5);
             this.btnDesignReport3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDesignReport3.Name = "btnDesignReport3";
-            this.btnDesignReport3.Size = new System.Drawing.Size(42, 36);
+            this.btnDesignReport3.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDesignReport3.Size = new System.Drawing.Size(47, 40);
             this.btnDesignReport3.TabIndex = 43;
-            this.btnDesignReport3.ToolTip = "چاپ لیست";
+            this.btnDesignReport3.ToolTip = "طراحی فرم چاپ";
             this.btnDesignReport3.Visible = false;
             this.btnDesignReport3.Click += new System.EventHandler(this.btnDesignReport3_Click);
             // 
@@ -1809,7 +1828,8 @@
             this.btnNext3.Location = new System.Drawing.Point(504, 5);
             this.btnNext3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnNext3.Name = "btnNext3";
-            this.btnNext3.Size = new System.Drawing.Size(42, 36);
+            this.btnNext3.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnNext3.Size = new System.Drawing.Size(47, 40);
             this.btnNext3.TabIndex = 21;
             this.btnNext3.ToolTip = "بعدی";
             this.btnNext3.Click += new System.EventHandler(this.btnNext3_Click);
@@ -1820,7 +1840,8 @@
             this.btnPrintPreview3.Location = new System.Drawing.Point(117, 5);
             this.btnPrintPreview3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPrintPreview3.Name = "btnPrintPreview3";
-            this.btnPrintPreview3.Size = new System.Drawing.Size(42, 36);
+            this.btnPrintPreview3.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnPrintPreview3.Size = new System.Drawing.Size(47, 40);
             this.btnPrintPreview3.TabIndex = 26;
             this.btnPrintPreview3.ToolTip = "نمایش چاپ";
             this.btnPrintPreview3.Click += new System.EventHandler(this.btnPrintPreview3_Click);
@@ -1832,7 +1853,8 @@
             this.btnFirst3.Location = new System.Drawing.Point(405, 5);
             this.btnFirst3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnFirst3.Name = "btnFirst3";
-            this.btnFirst3.Size = new System.Drawing.Size(42, 36);
+            this.btnFirst3.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnFirst3.Size = new System.Drawing.Size(47, 40);
             this.btnFirst3.TabIndex = 23;
             this.btnFirst3.ToolTip = "اولین رکورد";
             this.btnFirst3.Click += new System.EventHandler(this.btnFirst3_Click);
@@ -1844,7 +1866,8 @@
             this.btnPreview3.Location = new System.Drawing.Point(455, 5);
             this.btnPreview3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPreview3.Name = "btnPreview3";
-            this.btnPreview3.Size = new System.Drawing.Size(42, 36);
+            this.btnPreview3.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnPreview3.Size = new System.Drawing.Size(47, 40);
             this.btnPreview3.TabIndex = 22;
             this.btnPreview3.ToolTip = "قبلی";
             this.btnPreview3.Click += new System.EventHandler(this.btnPreview3_Click);
@@ -1855,7 +1878,8 @@
             this.btnLast3.Location = new System.Drawing.Point(552, 5);
             this.btnLast3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnLast3.Name = "btnLast3";
-            this.btnLast3.Size = new System.Drawing.Size(42, 36);
+            this.btnLast3.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnLast3.Size = new System.Drawing.Size(47, 40);
             this.btnLast3.TabIndex = 20;
             this.btnLast3.ToolTip = "آخرین رکورد";
             this.btnLast3.Click += new System.EventHandler(this.btnLast3_Click);
@@ -1867,7 +1891,8 @@
             this.btnDisplayActiveList3.Location = new System.Drawing.Point(71, 5);
             this.btnDisplayActiveList3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDisplayActiveList3.Name = "btnDisplayActiveList3";
-            this.btnDisplayActiveList3.Size = new System.Drawing.Size(42, 36);
+            this.btnDisplayActiveList3.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDisplayActiveList3.Size = new System.Drawing.Size(47, 40);
             this.btnDisplayActiveList3.TabIndex = 24;
             this.btnDisplayActiveList3.ToolTip = "لیست وامهای تسویه نشده";
             this.btnDisplayActiveList3.Click += new System.EventHandler(this.btnDisplyActiveList3_Click);
@@ -1879,7 +1904,8 @@
             this.btnDisplayNotActiveList3.Location = new System.Drawing.Point(22, 5);
             this.btnDisplayNotActiveList3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDisplayNotActiveList3.Name = "btnDisplayNotActiveList3";
-            this.btnDisplayNotActiveList3.Size = new System.Drawing.Size(42, 36);
+            this.btnDisplayNotActiveList3.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDisplayNotActiveList3.Size = new System.Drawing.Size(47, 40);
             this.btnDisplayNotActiveList3.TabIndex = 25;
             this.btnDisplayNotActiveList3.ToolTip = "لیست وامهای تسویه شده";
             this.btnDisplayNotActiveList3.Click += new System.EventHandler(this.btnDisplyNotActiveList3_Click);
@@ -2215,7 +2241,8 @@
             this.btnEdit5.Location = new System.Drawing.Point(168, 5);
             this.btnEdit5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnEdit5.Name = "btnEdit5";
-            this.btnEdit5.Size = new System.Drawing.Size(42, 36);
+            this.btnEdit5.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnEdit5.Size = new System.Drawing.Size(47, 40);
             this.btnEdit5.TabIndex = 72;
             this.btnEdit5.Text = "simpleButton1";
             this.btnEdit5.ToolTip = "ویرایش اقساط";
@@ -2228,7 +2255,8 @@
             this.btnDelete5.Location = new System.Drawing.Point(217, 5);
             this.btnDelete5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDelete5.Name = "btnDelete5";
-            this.btnDelete5.Size = new System.Drawing.Size(42, 36);
+            this.btnDelete5.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDelete5.Size = new System.Drawing.Size(47, 40);
             this.btnDelete5.TabIndex = 71;
             this.btnDelete5.Text = "simpleButton1";
             this.btnDelete5.ToolTip = "حذف اقساط";
@@ -2241,7 +2269,8 @@
             this.btnCreate5.Location = new System.Drawing.Point(266, 5);
             this.btnCreate5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCreate5.Name = "btnCreate5";
-            this.btnCreate5.Size = new System.Drawing.Size(42, 36);
+            this.btnCreate5.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnCreate5.Size = new System.Drawing.Size(47, 40);
             this.btnCreate5.TabIndex = 70;
             this.btnCreate5.Text = "simpleButton1";
             this.btnCreate5.ToolTip = "ایجاد اقساط";
@@ -2271,9 +2300,10 @@
             this.btnDesignReport4.Location = new System.Drawing.Point(117, 6);
             this.btnDesignReport4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDesignReport4.Name = "btnDesignReport4";
-            this.btnDesignReport4.Size = new System.Drawing.Size(42, 36);
+            this.btnDesignReport4.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDesignReport4.Size = new System.Drawing.Size(47, 40);
             this.btnDesignReport4.TabIndex = 42;
-            this.btnDesignReport4.ToolTip = "چاپ لیست";
+            this.btnDesignReport4.ToolTip = "طراحی فرم چاپ";
             this.btnDesignReport4.Visible = false;
             this.btnDesignReport4.Click += new System.EventHandler(this.btnDesignReport4_Click);
             // 
@@ -2284,7 +2314,8 @@
             this.btnNext4.Location = new System.Drawing.Point(473, 7);
             this.btnNext4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnNext4.Name = "btnNext4";
-            this.btnNext4.Size = new System.Drawing.Size(42, 36);
+            this.btnNext4.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnNext4.Size = new System.Drawing.Size(47, 40);
             this.btnNext4.TabIndex = 21;
             this.btnNext4.Text = "simpleButton1";
             this.btnNext4.ToolTip = "بعدی";
@@ -2296,7 +2327,8 @@
             this.btnPrintPreview4.Location = new System.Drawing.Point(68, 5);
             this.btnPrintPreview4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPrintPreview4.Name = "btnPrintPreview4";
-            this.btnPrintPreview4.Size = new System.Drawing.Size(42, 36);
+            this.btnPrintPreview4.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnPrintPreview4.Size = new System.Drawing.Size(47, 40);
             this.btnPrintPreview4.TabIndex = 26;
             this.btnPrintPreview4.ToolTip = "نمایش چاپ";
             this.btnPrintPreview4.Click += new System.EventHandler(this.btnPrintPreview4_Click);
@@ -2307,7 +2339,8 @@
             this.btnEdit4.Location = new System.Drawing.Point(788, 7);
             this.btnEdit4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnEdit4.Name = "btnEdit4";
-            this.btnEdit4.Size = new System.Drawing.Size(42, 36);
+            this.btnEdit4.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnEdit4.Size = new System.Drawing.Size(47, 40);
             this.btnEdit4.TabIndex = 18;
             this.btnEdit4.Text = "simpleButton1";
             this.btnEdit4.ToolTip = "ویرایش";
@@ -2320,7 +2353,8 @@
             this.btnDelete4.Location = new System.Drawing.Point(837, 7);
             this.btnDelete4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDelete4.Name = "btnDelete4";
-            this.btnDelete4.Size = new System.Drawing.Size(42, 36);
+            this.btnDelete4.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDelete4.Size = new System.Drawing.Size(47, 40);
             this.btnDelete4.TabIndex = 17;
             this.btnDelete4.Text = "simpleButton1";
             this.btnDelete4.ToolTip = "حذف";
@@ -2334,7 +2368,8 @@
             this.btnFirst4.Location = new System.Drawing.Point(375, 7);
             this.btnFirst4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnFirst4.Name = "btnFirst4";
-            this.btnFirst4.Size = new System.Drawing.Size(42, 36);
+            this.btnFirst4.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnFirst4.Size = new System.Drawing.Size(47, 40);
             this.btnFirst4.TabIndex = 23;
             this.btnFirst4.Text = "simpleButton1";
             this.btnFirst4.ToolTip = "اولین رکورد";
@@ -2347,7 +2382,8 @@
             this.btnPreview4.Location = new System.Drawing.Point(424, 7);
             this.btnPreview4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPreview4.Name = "btnPreview4";
-            this.btnPreview4.Size = new System.Drawing.Size(42, 36);
+            this.btnPreview4.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnPreview4.Size = new System.Drawing.Size(47, 40);
             this.btnPreview4.TabIndex = 22;
             this.btnPreview4.Text = "simpleButton1";
             this.btnPreview4.ToolTip = "قبلی";
@@ -2359,7 +2395,8 @@
             this.btnLast4.Location = new System.Drawing.Point(521, 7);
             this.btnLast4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnLast4.Name = "btnLast4";
-            this.btnLast4.Size = new System.Drawing.Size(42, 36);
+            this.btnLast4.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnLast4.Size = new System.Drawing.Size(47, 40);
             this.btnLast4.TabIndex = 20;
             this.btnLast4.Text = "simpleButton1";
             this.btnLast4.ToolTip = "آخرین رکورد";
@@ -2371,7 +2408,8 @@
             this.btnDisplyActiveList4.Location = new System.Drawing.Point(19, 6);
             this.btnDisplyActiveList4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDisplyActiveList4.Name = "btnDisplyActiveList4";
-            this.btnDisplyActiveList4.Size = new System.Drawing.Size(42, 36);
+            this.btnDisplyActiveList4.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnDisplyActiveList4.Size = new System.Drawing.Size(47, 40);
             this.btnDisplyActiveList4.TabIndex = 24;
             this.btnDisplyActiveList4.Text = "simpleButton1";
             this.btnDisplyActiveList4.ToolTip = "نمایش لیست";
@@ -2383,7 +2421,8 @@
             this.btnCreate4.Location = new System.Drawing.Point(886, 7);
             this.btnCreate4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCreate4.Name = "btnCreate4";
-            this.btnCreate4.Size = new System.Drawing.Size(42, 36);
+            this.btnCreate4.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnCreate4.Size = new System.Drawing.Size(47, 40);
             this.btnCreate4.TabIndex = 16;
             this.btnCreate4.Text = "simpleButton1";
             this.btnCreate4.ToolTip = "ایجاد";
