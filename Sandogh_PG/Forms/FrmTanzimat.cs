@@ -22,12 +22,129 @@ namespace Sandogh_PG
             Fm = fm;
         }
 
+        public void FillcmbHesabMoin()
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    var q1 = db.CodeMoins.Select(s => s).ToList();
+                    if (q1.Count > 0)
+                        codeMoinsBindingSource.DataSource = q1;
+                    else
+                        codeMoinsBindingSource.DataSource = null;
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
+
+
+        public void FillcmbNameHesab()
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    int _HesabMoinId = Convert.ToInt32(cmbMoin.EditValue);
+                    var q = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId);
+                    if (q != null)
+                    {
+                        switch (q.Code)
+                        {
+                            case 1001:
+                                {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource.DataSource = null;
+                                    break;
+                                }
+                            case 2001:
+                                {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource.DataSource = null;
+                                    break;
+                                }
+                            case 3001:
+                                {
+                                    goto case 2001;
+                                }
+                            case 4001:
+                                {
+                                    goto case 2001;
+                                }
+                            case 5001:
+                                {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource.DataSource = null;
+                                    break;
+                                }
+                            case 6001:
+                                {
+                                    goto case 2001;
+                                }
+                            case 6002:
+                                {
+                                    goto case 2001;
+                                }
+                            case 6003:
+                                {
+                                    goto case 2001;
+                                }
+                            case 7001:
+                                {
+                                    goto case 2001;
+                                }
+                            case 8001:
+                                {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource.DataSource = null;
+                                    break;
+                                }
+                            case 9001:
+                                {
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        if (q1.Count > 0)
+                                            allHesabTafzilisBindingSource.DataSource = q1;
+                                        else
+                                            allHesabTafzilisBindingSource.DataSource = null;
+                                    break;
+                                }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
+
+
         private void FrmTanzimat_Load(object sender, EventArgs e)
         {
             using (var db = new MyContext())
             {
                 try
                 {
+                    FillcmbHesabMoin();
                     int _SandoghId = Convert.ToInt32(Fm.IDSandogh.Caption);
                     var q1 = db.Tanzimats.FirstOrDefault(s => s.Id == _SandoghId);
                     if (q1 != null)
@@ -40,6 +157,8 @@ namespace Sandogh_PG
                         checkEdit1.Checked = q1.checkEdit1;
                         checkEdit2.Checked = q1.checkEdit2;
                         checkEdit3.Checked = q1.checkEdit3;
+                        cmbMoin.EditValue = q1.MoinDefaultId;
+                        cmbNameHesab.EditValue = q1.TafsiliDefaultId;
                     }
                 }
                 catch (Exception ex)
@@ -81,6 +200,8 @@ namespace Sandogh_PG
                         q1.checkEdit1 = checkEdit1.Checked;
                         q1.checkEdit2 = checkEdit2.Checked;
                         q1.checkEdit3 = checkEdit3.Checked;
+                        q1.MoinDefaultId = Convert.ToInt32(cmbMoin.EditValue);
+                        q1.TafsiliDefaultId = Convert.ToInt32(cmbNameHesab.EditValue);
                     }
                     else
                     {
@@ -95,6 +216,8 @@ namespace Sandogh_PG
                         obj.checkEdit2 = checkEdit2.Checked;
                         obj.checkEdit3 = checkEdit3.Checked;
                         obj.Id = _SandoghId;
+                        obj.MoinDefaultId = Convert.ToInt32(cmbMoin.EditValue);
+                        obj.TafsiliDefaultId = Convert.ToInt32(cmbNameHesab.EditValue);
                         //obj.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
                         db.Tanzimats.Add(obj);
                     }
@@ -148,5 +271,9 @@ namespace Sandogh_PG
             }
         }
 
+        private void cmbMoin_EditValueChanged(object sender, EventArgs e)
+        {
+            FillcmbNameHesab();
+        }
     }
 }

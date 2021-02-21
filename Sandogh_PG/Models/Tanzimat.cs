@@ -23,6 +23,10 @@ namespace Sandogh_PG
         public bool checkEdit1 { get; set; }
         public bool checkEdit2 { get; set; }
         public bool checkEdit3 { get; set; }
+        [Required]
+        public int MoinDefaultId { get; set; }
+        [Required]
+        public int TafsiliDefaultId { get; set; }
         public virtual TarifSandogh TarifSandogh1 { get; set; }
     }
 }

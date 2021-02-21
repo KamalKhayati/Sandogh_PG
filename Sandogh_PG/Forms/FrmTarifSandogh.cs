@@ -140,7 +140,7 @@ namespace Sandogh_PG
                             q1.Tell = txtTell.Text;
                             q1.Mobile = txtMobile.Text;
                             q1.IsDefault = chkIsDefault.Checked;
-                            q1.IsDefault = chkIsDefault.Checked;
+                            //q1.IsDefault = chkIsDefault.Checked;
                             if (!string.IsNullOrEmpty(txtTarikhEjad.Text))
                             {
                                 q1.TarikhEjad = Convert.ToDateTime(txtTarikhEjad.Text.Substring(0, 10));
@@ -202,7 +202,8 @@ namespace Sandogh_PG
 
                         db.SaveChanges();
                         XtraMessageBox.Show("اطلاعات با موفقیت ثبت گردید", "پیغام ثبت ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Fm.FrmMain_Load(null, null);
+                        //Fm.FrmMain_Load(null, null);
+                        Fm.pictureEdit1.Image = pictureEdit1.Image;
                         this.Close();
                     }
                     catch (Exception ex)

@@ -16,6 +16,7 @@ using System.Text;
 using Word = Microsoft.Office.Interop.Word;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace Sandogh_PG
 {
@@ -127,15 +128,22 @@ namespace Sandogh_PG
                     if (q != null)
                     {
                         IDSandogh.Caption = q.Id.ToString();
-                        ribbonControl1.ApplicationDocumentCaption = q.NameSandogh;
+                        ribbonControl1.ApplicationDocumentCaption =  q.NameSandogh;
                         int _SId = Convert.ToInt32(IDSandogh.Caption);
                         var q2 = db.TarifSandoghs.FirstOrDefault(s => s.Id == _SId);
                         if (q2.PicBackground != null)
                         {
                             MemoryStream ms = new MemoryStream(q2.PicBackground);
                             pictureEdit3.Image = Image.FromStream(ms);
-                            img = pictureEdit3.Image;
+                            img1 = pictureEdit3.Image;
                         }
+                        if (q2.Pictuer != null)
+                        {
+                            MemoryStream ms = new MemoryStream(q2.Pictuer);
+                            pictureEdit1.Image = Image.FromStream(ms);
+                            //img1 = pictureEdit1.Image;
+                        }
+
                         //else
                         //    pictureEdit3.Image = null;
                     }
@@ -375,7 +383,7 @@ namespace Sandogh_PG
             FrmBackupRestore fm = new FrmBackupRestore(this);
             fm.ShowDialog();
         }
-        Image img;
+        Image img1;
 
         private void btnChangeBackground_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -388,15 +396,15 @@ namespace Sandogh_PG
                 {
                     if (XtraopenFileDialog1.ShowDialog() == DialogResult.OK)
                     {
-                        img = Image.FromFile(XtraopenFileDialog1.FileName);
-                        this.pictureEdit3.Image = img;
+                        img1 = Image.FromFile(XtraopenFileDialog1.FileName);
+                        this.pictureEdit3.Image = img1;
                         //this.pictureEdit3.Tag = openFileDialog1.FileName;
                         int _SId = Convert.ToInt32(IDSandogh.Caption);
                         var q = db.TarifSandoghs.FirstOrDefault(f => f.Id == _SId);
                         if (q != null)
                         {
                             MemoryStream ms = new MemoryStream();
-                            img.Save(ms, pictureEdit3.Image.RawFormat);
+                            img1.Save(ms, pictureEdit3.Image.RawFormat);
                             byte[] myarrey = ms.GetBuffer();
                             q.PicBackground = myarrey;
                             db.SaveChanges();
@@ -479,6 +487,15 @@ namespace Sandogh_PG
             //SqlConnection.ClearAllPools();
             //Application.Exit();
             //Application.ExitThread();
+
+            if (!string.IsNullOrEmpty(FilePath))
+            {
+                foreach (var file in Directory.GetFiles(FilePath, "*.tmp", SearchOption.AllDirectories))
+                {
+                    File.Delete(file);
+                }
+            }
+
         }
 
         private void btnSoratSoodVZiyan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -601,7 +618,8 @@ namespace Sandogh_PG
                 Word.Application ap = new Word.Application();
                 ap.Visible = true;
                 object miss = Missing.Value;
-                object path = Application.StartupPath + @"\Report\DarkhastVam\DarkhastVam.doc";
+                //object path = Application.StartupPath + @"\Report\DarkhastVam\DarkhastVam.doc";
+                object path = FilePath + @"\DarkhastVam_Temp.doc";
                 object readOnly = false;
                 object isVisible = true;
                 Word.Document doc = new Word.Document();
@@ -618,8 +636,127 @@ namespace Sandogh_PG
             }
         }
 
+
+        string NameSandogh = string.Empty;
+
+        public void GetInfoForWord()
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    int IdSandogh = Convert.ToInt32(IDSandogh.Caption);
+                    var q4 = db.TarifSandoghs.FirstOrDefault(f => f.Id == IdSandogh);
+                    NameSandogh = q4 != null && !string.IsNullOrEmpty(q4.NameSandogh) ? q4.NameSandogh : "..............................";
+
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
+
+
+        public static void KillProcess(string name)
+        {
+            Process[] pr = Process.GetProcessesByName(name);
+
+            foreach (Process prs in pr)
+            {
+                if (prs.ProcessName.ToLower() == name)
+                {
+                    prs.Kill();
+                }
+            }
+        }
+
+
+        private void FindAndReplace(Word.Application wordApp, object findText, object replaceText)
+        {
+            object matchCase = true;
+            object matchWholeWord = true;
+            object matchWildCards = false;
+            object matchSoundsLike = false;
+            object matchAllWordForms = false;
+            object forward = true;
+            object format = false;
+            object matchKashida = false;
+            object matchDiacritics = false;
+            object matchAlefHamza = false;
+            object matchControl = false;
+            object read_only = false;
+            object visible = true;
+            object replace = 2;
+            object wrap = 1;
+            wordApp.Selection.Find.Execute(ref findText, ref matchCase,
+                ref matchWholeWord, ref matchWildCards, ref matchSoundsLike,
+                ref matchAllWordForms, ref forward, ref wrap, ref format,
+                ref replaceText, ref replace, ref matchKashida,
+                        ref matchDiacritics,
+                ref matchAlefHamza, ref matchControl);
+        }
+
+        string FilePath = string.Empty;
+        public void SetInFoToWord()
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    FilePath = Application.StartupPath +  @"\Report\DarkhastVam";
+                    //  Just to kill WINWORD.EXE if it is running
+                    KillProcess("winword");
+                    //  copy letter format to temp.doc
+                    File.Copy(FilePath + @"\DarkhastVam_Org.doc", FilePath + @"\DarkhastVam_Temp.doc", true);
+                    //File.Copy(@"D:\Kamal Projects\Sandogh\Sandogh TG N1\Sandogh_PG\Sandogh_PG\bin\Debug\Report\Gharardade.docx", "c:\\temp.docx", true);
+                    //File.Copy("D:\\Gharardade.docx", "D:\\temp.doc", true);
+                    //  create missing object
+                    object missing = Missing.Value;
+                    //  create Word application object
+                    Word.Application wordApp = new Word.Application();
+                    //  create Word document object
+                    Word.Document aDoc = null;
+                    //  create & define filename object with temp.doc
+                    object filename = FilePath + @"\DarkhastVam_Temp.doc";
+                    //  if temp.doc available
+                    if (File.Exists((string)filename))
+                    {
+                        object readOnly = false;
+                        object isVisible = false;
+                        //  make visible Word application
+                        wordApp.Visible = false;
+                        //  open Word document named temp.doc
+                        aDoc = wordApp.Documents.Open(ref filename, ref missing,
+                                                      ref readOnly, ref missing, ref missing, ref missing,
+                                                      ref missing, ref missing, ref missing, ref missing,
+                                                      ref missing, ref isVisible, ref missing, ref missing,
+                                                      ref missing, ref missing);
+                        aDoc.Activate();
+                        //  Call FindAndReplace()function for each change
+                        this.FindAndReplace(wordApp, "<NameSandogh>", NameSandogh.Trim());
+                        aDoc.Save();
+                        KillProcess("winword");
+
+                    }
+                    else
+                        XtraMessageBox.Show("فایل  موقت Gharardade_Temp یافت نشد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch //(Exception ex)
+                {
+                   // XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                     //   "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
+
         private void btnDarkhastVam_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            GetInfoForWord();
+            SetInFoToWord();
             OpenFilWord();
         }
 

@@ -205,19 +205,26 @@ namespace Sandogh_PG
                         if (q != null)
                             txtMablagh.Text = q.HaghOzviat.ToString();
 
-                        var q2 = db.HesabBankis.FirstOrDefault(s => s.IsActive == true && s.IsDefault == true);
-                        if (q2 != null)
-                        {
-                            var qq1 = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2 && f.Id2 == q2.Id);
-                            if (qq1 != null)
-                            {
-                                cmbMoin.EditValue = 1;
-                                cmbNameHesab.EditValue = qq1.Id;
+                        //var q2 = db.HesabBankis.FirstOrDefault(s => s.IsActive == true && s.IsDefault == true);
+                        //if (q2 != null)
+                        //{
+                        //    var qq1 = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2 && f.Id2 == q2.Id);
+                        //    if (qq1 != null)
+                        //    {
+                        //        cmbMoin.EditValue = 1;
+                        //        cmbNameHesab.EditValue = qq1.Id;
 
-                            }
-                        }
+                        //    }
+                        //}
                         // cmbMonth.ShowPopup();
 
+                        int _SandoghId = Convert.ToInt32(Fm.Fm.IDSandogh.Caption);
+                        var q2 = db.Tanzimats.FirstOrDefault(s => s.Id == _SandoghId);
+                        if (q2 != null)
+                        {
+                            cmbMoin.EditValue = q2.MoinDefaultId;
+                            cmbNameHesab.EditValue = q2.TafsiliDefaultId;
+                        }
 
                         _NameAaza = cmbPardakhtKonande.Text;
                         if (cmbMonth.SelectedIndex != -1)

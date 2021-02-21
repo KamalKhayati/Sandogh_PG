@@ -156,17 +156,26 @@ namespace Sandogh_PG
                         txtTarikhDaryaft.Text = DateTime.Now.ToString().Substring(0, 10);
                         //txtMablaghDaryaft.Text = Fm.gridView4.GetFocusedRowCellDisplayText("MablaghAghsat");
 
-                        var q2 = db.HesabBankis.FirstOrDefault(s => s.IsActive == true && s.IsDefault == true);
+                        //var q2 = db.HesabBankis.FirstOrDefault(s => s.IsActive == true && s.IsDefault == true);
+                        //if (q2 != null)
+                        //{
+                        //    var qq1 = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2 && f.Id2 == q2.Id);
+                        //    if (qq1 != null)
+                        //    {
+                        //        cmbMoin.EditValue = 1;
+                        //        cmbNameHesab.EditValue = qq1.Id;
+
+                        //    }
+                        //}
+
+                        int _SandoghId = Convert.ToInt32(Fm.Fm.IDSandogh.Caption);
+                        var q2 = db.Tanzimats.FirstOrDefault(s => s.Id == _SandoghId);
                         if (q2 != null)
                         {
-                            var qq1 = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2 && f.Id2 == q2.Id);
-                            if (qq1 != null)
-                            {
-                                cmbMoin.EditValue = 1;
-                                cmbNameHesab.EditValue = qq1.Id;
-
-                            }
+                            cmbMoin.EditValue = q2.MoinDefaultId;
+                            cmbNameHesab.EditValue = q2.TafsiliDefaultId;
                         }
+
 
                         int _CodeVam = Convert.ToInt32(Fm.gridView3.GetFocusedRowCellDisplayText("Code"));
                         int MinShomareGhest = db.RizeAghsatVams.Where(s => s.VamPardakhtiCode == _CodeVam && s.SeryalDaryaft == 0).Min(s => s.ShomareGhest);

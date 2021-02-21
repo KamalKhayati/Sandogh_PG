@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTanzimat));
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
@@ -54,6 +55,12 @@
             this.checkEdit3 = new DevExpress.XtraEditors.CheckEdit();
             this.checkEdit2 = new DevExpress.XtraEditors.CheckEdit();
             this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
+            this.cmbMoin = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.cmbNameHesab = new DevExpress.XtraEditors.LookUpEdit();
+            this.codeMoinsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.allHesabTafzilisBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.xtraScrollableControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
@@ -67,6 +74,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbMoin.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbNameHesab.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.codeMoinsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraScrollableControl1
@@ -76,19 +87,24 @@
             this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 0);
             this.xtraScrollableControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.xtraScrollableControl1.Name = "xtraScrollableControl1";
-            this.xtraScrollableControl1.Size = new System.Drawing.Size(982, 387);
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(982, 474);
             this.xtraScrollableControl1.TabIndex = 1;
             // 
             // panelControl2
             // 
+            this.panelControl2.Controls.Add(this.cmbNameHesab);
+            this.panelControl2.Controls.Add(this.labelControl8);
+            this.panelControl2.Controls.Add(this.cmbMoin);
+            this.panelControl2.Controls.Add(this.labelControl5);
             this.panelControl2.Controls.Add(this.panelControl4);
             this.panelControl2.Controls.Add(this.checkEdit3);
             this.panelControl2.Controls.Add(this.checkEdit2);
             this.panelControl2.Controls.Add(this.checkEdit1);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 0);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(982, 387);
+            this.panelControl2.Size = new System.Drawing.Size(982, 474);
             this.panelControl2.TabIndex = 2;
             // 
             // panelControl4
@@ -330,7 +346,7 @@
             // 
             this.labelControl15.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl15.Appearance.Options.UseFont = true;
-            this.labelControl15.Location = new System.Drawing.Point(421, 64);
+            this.labelControl15.Location = new System.Drawing.Point(404, 64);
             this.labelControl15.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl15.Name = "labelControl15";
             this.labelControl15.Size = new System.Drawing.Size(233, 24);
@@ -377,11 +393,85 @@
             this.checkEdit1.Size = new System.Drawing.Size(960, 31);
             this.checkEdit1.TabIndex = 0;
             // 
+            // cmbMoin
+            // 
+            this.cmbMoin.EnterMoveNextControl = true;
+            this.cmbMoin.Location = new System.Drawing.Point(13, 386);
+            this.cmbMoin.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cmbMoin.Name = "cmbMoin";
+            this.cmbMoin.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbMoin.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "نام حساب معین :", 250, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.cmbMoin.Properties.DataSource = this.codeMoinsBindingSource;
+            this.cmbMoin.Properties.DisplayMember = "Name";
+            this.cmbMoin.Properties.ImmediatePopup = true;
+            this.cmbMoin.Properties.MaxLength = 150;
+            this.cmbMoin.Properties.NullText = "";
+            this.cmbMoin.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.cmbMoin.Properties.ValueMember = "Id";
+            this.cmbMoin.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cmbMoin.Size = new System.Drawing.Size(493, 34);
+            this.cmbMoin.TabIndex = 38;
+            this.cmbMoin.EditValueChanged += new System.EventHandler(this.cmbMoin_EditValueChanged);
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.AutoEllipsis = true;
+            this.labelControl5.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
+            this.labelControl5.Location = new System.Drawing.Point(514, 389);
+            this.labelControl5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(443, 27);
+            this.labelControl5.TabIndex = 39;
+            this.labelControl5.Text = "حساب معین پیش فرض در فرم دریافت پس انداز و اقساط ماهیانه";
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.AutoEllipsis = true;
+            this.labelControl8.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
+            this.labelControl8.Location = new System.Drawing.Point(514, 429);
+            this.labelControl8.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(451, 27);
+            this.labelControl8.TabIndex = 40;
+            this.labelControl8.Text = "حساب تفصیل پیش فرض در فرم دریافت پس انداز و اقساط ماهیانه";
+            // 
+            // cmbNameHesab
+            // 
+            this.cmbNameHesab.EnterMoveNextControl = true;
+            this.cmbNameHesab.Location = new System.Drawing.Point(13, 426);
+            this.cmbNameHesab.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cmbNameHesab.Name = "cmbNameHesab";
+            this.cmbNameHesab.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbNameHesab.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "آیدی", 50, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Center, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "نام حساب تفضیل :", 250, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.cmbNameHesab.Properties.DataSource = this.allHesabTafzilisBindingSource;
+            this.cmbNameHesab.Properties.DisplayMember = "Name";
+            this.cmbNameHesab.Properties.ImmediatePopup = true;
+            this.cmbNameHesab.Properties.MaxLength = 150;
+            this.cmbNameHesab.Properties.NullText = "";
+            this.cmbNameHesab.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.cmbNameHesab.Properties.ValueMember = "Id";
+            this.cmbNameHesab.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cmbNameHesab.Size = new System.Drawing.Size(493, 34);
+            this.cmbNameHesab.TabIndex = 41;
+            // 
+            // codeMoinsBindingSource
+            // 
+            this.codeMoinsBindingSource.DataSource = typeof(Sandogh_PG.CodeMoin);
+            // 
+            // allHesabTafzilisBindingSource
+            // 
+            this.allHesabTafzilisBindingSource.DataSource = typeof(Sandogh_PG.AllHesabTafzili);
+            // 
             // FrmTanzimat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(982, 387);
+            this.ClientSize = new System.Drawing.Size(982, 474);
             this.Controls.Add(this.xtraScrollableControl1);
             this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("FrmTanzimat.IconOptions.Icon")));
             this.KeyPreview = true;
@@ -397,6 +487,7 @@
             this.xtraScrollableControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
+            this.panelControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
             this.panelControl4.ResumeLayout(false);
             this.panelControl4.PerformLayout();
@@ -408,6 +499,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbMoin.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbNameHesab.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.codeMoinsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -439,5 +534,11 @@
         public DevExpress.XtraEditors.TextEdit txtPath;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private System.Windows.Forms.Label label3;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        public DevExpress.XtraEditors.LookUpEdit cmbMoin;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
+        public DevExpress.XtraEditors.LookUpEdit cmbNameHesab;
+        private System.Windows.Forms.BindingSource codeMoinsBindingSource;
+        private System.Windows.Forms.BindingSource allHesabTafzilisBindingSource;
     }
 }

@@ -31,6 +31,7 @@
             DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Sandogh_PG.SplashScreen1), true, true);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.barStaticItem6 = new DevExpress.XtraBars.BarStaticItem();
             this.btnTarifSandogh = new DevExpress.XtraBars.BarButtonItem();
             this.btnTarifHesabBanki = new DevExpress.XtraBars.BarButtonItem();
             this.btnTarifAaza = new DevExpress.XtraBars.BarButtonItem();
@@ -53,8 +54,6 @@
             this.btnChangeBackground = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem2 = new DevExpress.XtraBars.BarSubItem();
             this.btnSoratHesabTafzili = new DevExpress.XtraBars.BarButtonItem();
-            this.btnMandeAshkhas = new DevExpress.XtraBars.BarButtonItem();
-            this.btnMabaleghGhabelDaryaft = new DevExpress.XtraBars.BarButtonItem();
             this.btnTarazname = new DevExpress.XtraBars.BarButtonItem();
             this.btnSoratSoodVZiyan = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem3 = new DevExpress.XtraBars.BarSubItem();
@@ -71,13 +70,17 @@
             this.barStaticItem2 = new DevExpress.XtraBars.BarStaticItem();
             this.MojodiSandogh = new DevExpress.XtraBars.BarStaticItem();
             this.btnAllDataDelete = new DevExpress.XtraBars.BarButtonItem();
+            this.btnMandeAshkhas = new DevExpress.XtraBars.BarButtonItem();
             this.barStaticItem3 = new DevExpress.XtraBars.BarStaticItem();
             this.EtmamGaranti = new DevExpress.XtraBars.BarStaticItem();
             this.barStaticItem5 = new DevExpress.XtraBars.BarStaticItem();
             this.btnTamdidGaranti = new DevExpress.XtraBars.BarButtonItem();
             this.btnDarkhastVam = new DevExpress.XtraBars.BarButtonItem();
+            this.btnMabaleghGhabelDaryaft = new DevExpress.XtraBars.BarButtonItem();
             this.barStaticItem4 = new DevExpress.XtraBars.BarStaticItem();
             this.ShNoskheBarname = new DevExpress.XtraBars.BarStaticItem();
+            this.barStaticItem7 = new DevExpress.XtraBars.BarStaticItem();
+            this.barStaticItem8 = new DevExpress.XtraBars.BarStaticItem();
             this.DaryaftVPardakht = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgDaryaft = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgPardakhtha = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -96,13 +99,19 @@
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.Other = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
+            this.repositoryItemImageEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
+            this.repositoryItemHypertextLabel1 = new DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.pictureEdit3 = new DevExpress.XtraEditors.PictureEdit();
+            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHypertextLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // splashScreenManager1
@@ -111,8 +120,10 @@
             // 
             // ribbonControl1
             // 
+            this.ribbonControl1.CaptionBarItemLinks.Add(this.barStaticItem6);
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.barStaticItem6,
             this.ribbonControl1.ExpandCollapseItem,
             this.ribbonControl1.SearchEditItem,
             this.btnTarifSandogh,
@@ -161,21 +172,37 @@
             this.btnDarkhastVam,
             this.btnMabaleghGhabelDaryaft,
             this.barStaticItem4,
-            this.ShNoskheBarname});
+            this.ShNoskheBarname,
+            this.barStaticItem7,
+            this.barStaticItem8});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.ribbonControl1.MaxItemId = 77;
+            this.ribbonControl1.MaxItemId = 83;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsPageCategories.ShowCaptions = false;
+            this.ribbonControl1.PageHeaderItemLinks.Add(this.barStaticItem7);
+            this.ribbonControl1.PageHeaderItemLinks.Add(this.barStaticItem8);
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.DaryaftVPardakht,
             this.infoBase,
             this.Reports,
             this.Emkanat,
             this.Other});
+            this.ribbonControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemPictureEdit1,
+            this.repositoryItemImageEdit1,
+            this.repositoryItemHypertextLabel1});
             this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl1.Size = new System.Drawing.Size(1455, 236);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
+            // 
+            // barStaticItem6
+            // 
+            this.barStaticItem6.Caption = "نرم افزار صندوق پردازشگران";
+            this.barStaticItem6.Id = 80;
+            this.barStaticItem6.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barStaticItem6.ImageOptions.SvgImage")));
+            this.barStaticItem6.Name = "barStaticItem6";
+            this.barStaticItem6.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // btnTarifSandogh
             // 
@@ -369,7 +396,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnSoratHesabTafzili),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnMandeAshkhas),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnMabaleghGhabelDaryaft),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnTarazname, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnTarazname),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnSoratSoodVZiyan)});
             this.barSubItem2.Name = "barSubItem2";
             // 
@@ -379,20 +406,6 @@
             this.btnSoratHesabTafzili.Id = 47;
             this.btnSoratHesabTafzili.Name = "btnSoratHesabTafzili";
             this.btnSoratHesabTafzili.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSoratHesabTafzili_ItemClick);
-            // 
-            // btnMandeAshkhas
-            // 
-            this.btnMandeAshkhas.Caption = "مانده اشخاص";
-            this.btnMandeAshkhas.Id = 68;
-            this.btnMandeAshkhas.Name = "btnMandeAshkhas";
-            this.btnMandeAshkhas.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMandeAshkhas_ItemClick);
-            // 
-            // btnMabaleghGhabelDaryaft
-            // 
-            this.btnMabaleghGhabelDaryaft.Caption = "مبالغ قابل دریافت هرماه";
-            this.btnMabaleghGhabelDaryaft.Id = 74;
-            this.btnMabaleghGhabelDaryaft.Name = "btnMabaleghGhabelDaryaft";
-            this.btnMabaleghGhabelDaryaft.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMabaleghGhabelDaryaft_ItemClick);
             // 
             // btnTarazname
             // 
@@ -512,6 +525,13 @@
             this.btnAllDataDelete.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.btnAllDataDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
             // 
+            // btnMandeAshkhas
+            // 
+            this.btnMandeAshkhas.Caption = "مانده اشخاص";
+            this.btnMandeAshkhas.Id = 68;
+            this.btnMandeAshkhas.Name = "btnMandeAshkhas";
+            this.btnMandeAshkhas.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMandeAshkhas_ItemClick);
+            // 
             // barStaticItem3
             // 
             this.barStaticItem3.Caption = "اتمام گارانتی :";
@@ -548,6 +568,13 @@
             this.btnDarkhastVam.Name = "btnDarkhastVam";
             this.btnDarkhastVam.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDarkhastVam_ItemClick);
             // 
+            // btnMabaleghGhabelDaryaft
+            // 
+            this.btnMabaleghGhabelDaryaft.Caption = "مبالغ قابل دریافت هرماه";
+            this.btnMabaleghGhabelDaryaft.Id = 74;
+            this.btnMabaleghGhabelDaryaft.Name = "btnMabaleghGhabelDaryaft";
+            this.btnMabaleghGhabelDaryaft.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMabaleghGhabelDaryaft_ItemClick);
+            // 
             // barStaticItem4
             // 
             this.barStaticItem4.Caption = "ش نسخه برنامه :";
@@ -559,6 +586,22 @@
             this.ShNoskheBarname.Caption = "ShNoskheBarname";
             this.ShNoskheBarname.Id = 76;
             this.ShNoskheBarname.Name = "ShNoskheBarname";
+            // 
+            // barStaticItem7
+            // 
+            this.barStaticItem7.Caption = "09148253244";
+            this.barStaticItem7.Id = 81;
+            this.barStaticItem7.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barStaticItem7.ImageOptions.SvgImage")));
+            this.barStaticItem7.Name = "barStaticItem7";
+            this.barStaticItem7.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
+            // barStaticItem8
+            // 
+            this.barStaticItem8.Caption = "09148253173";
+            this.barStaticItem8.Id = 82;
+            this.barStaticItem8.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barStaticItem8.ImageOptions.SvgImage")));
+            this.barStaticItem8.Name = "barStaticItem8";
+            this.barStaticItem8.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // DaryaftVPardakht
             // 
@@ -691,6 +734,23 @@
             this.ribbonPageGroup6.Name = "ribbonPageGroup6";
             this.ribbonPageGroup6.Text = "سایر موارد";
             // 
+            // repositoryItemPictureEdit1
+            // 
+            this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
+            this.repositoryItemPictureEdit1.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            this.repositoryItemPictureEdit1.ZoomPercent = 500D;
+            // 
+            // repositoryItemImageEdit1
+            // 
+            this.repositoryItemImageEdit1.AutoHeight = false;
+            this.repositoryItemImageEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemImageEdit1.Name = "repositoryItemImageEdit1";
+            // 
+            // repositoryItemHypertextLabel1
+            // 
+            this.repositoryItemHypertextLabel1.Name = "repositoryItemHypertextLabel1";
+            // 
             // ribbonStatusBar1
             // 
             this.ribbonStatusBar1.ItemLinks.Add(this.IDSandogh);
@@ -720,19 +780,6 @@
             this.barButtonItem1.Name = "barButtonItem1";
             this.barButtonItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
-            // pictureEdit1
-            // 
-            this.pictureEdit1.EditValue = global::Sandogh_PG.Properties.Resources.Pasground_07;
-            this.pictureEdit1.Location = new System.Drawing.Point(20, 98);
-            this.pictureEdit1.MenuManager = this.ribbonControl1;
-            this.pictureEdit1.Name = "pictureEdit1";
-            this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pictureEdit1.Properties.NullText = "نرم افزار صندوق پردازشگران";
-            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit1.Size = new System.Drawing.Size(277, 116);
-            this.pictureEdit1.TabIndex = 9;
-            // 
             // pictureEdit3
             // 
             this.pictureEdit3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -740,10 +787,24 @@
             this.pictureEdit3.Location = new System.Drawing.Point(0, 236);
             this.pictureEdit3.MenuManager = this.ribbonControl1;
             this.pictureEdit3.Name = "pictureEdit3";
+            this.pictureEdit3.Properties.ReadOnly = true;
             this.pictureEdit3.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit3.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             this.pictureEdit3.Size = new System.Drawing.Size(1455, 466);
             this.pictureEdit3.TabIndex = 15;
+            // 
+            // pictureEdit1
+            // 
+            this.pictureEdit1.EditValue = global::Sandogh_PG.Properties.Resources.PG_07;
+            this.pictureEdit1.Location = new System.Drawing.Point(6, 90);
+            this.pictureEdit1.MenuManager = this.ribbonControl1;
+            this.pictureEdit1.Name = "pictureEdit1";
+            this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pictureEdit1.Properties.ReadOnly = true;
+            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            this.pictureEdit1.Size = new System.Drawing.Size(137, 120);
+            this.pictureEdit1.TabIndex = 17;
             // 
             // FrmMain
             // 
@@ -768,8 +829,11 @@
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmMain_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHypertextLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -833,8 +897,6 @@
         private DevExpress.XtraBars.BarStaticItem barStaticItem1;
         private DevExpress.XtraBars.BarStaticItem barStaticItem2;
         public DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
-        private DevExpress.XtraEditors.PictureEdit pictureEdit1;
-        private DevExpress.XtraEditors.PictureEdit pictureEdit3;
         private DevExpress.XtraBars.BarStaticItem MojodiSandogh;
         private DevExpress.XtraBars.BarButtonItem btnAllDataDelete;
         private DevExpress.XtraBars.BarButtonItem btnMandeAshkhas;
@@ -846,6 +908,14 @@
         private DevExpress.XtraBars.BarButtonItem btnMabaleghGhabelDaryaft;
         private DevExpress.XtraBars.BarStaticItem barStaticItem4;
         public DevExpress.XtraBars.BarStaticItem ShNoskheBarname;
+        private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemImageEdit repositoryItemImageEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel repositoryItemHypertextLabel1;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem6;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem7;
+        public DevExpress.XtraEditors.PictureEdit pictureEdit3;
+        public DevExpress.XtraEditors.PictureEdit pictureEdit1;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem8;
     }
 }
 
