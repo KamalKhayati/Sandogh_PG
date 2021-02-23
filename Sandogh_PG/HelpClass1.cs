@@ -18,6 +18,7 @@ using System.Security.Cryptography;
 using System.IO;
 using System.Data.SqlClient;
 using System.Drawing;
+using DevExpress.XtraReports.Parameters;
 
 namespace Sandogh_PG
 {
@@ -367,13 +368,25 @@ namespace Sandogh_PG
             }
         }
 
-        public static void LoadReportDesigner(string FilePath, string FileName)
+        public static void LoadReportDesigner(string FilePath, string FileName )
         {
             if (System.IO.File.Exists(FilePath + FileName))
             {
+                //XtraReport XtraReport1 = new XtraReport();
+                //XtraReport1.LoadLayoutFromXml(FilePath + FileName);
+                //Parameter param1 = new Parameter();
+                //param1.Name = "Logo";
+                //param1.Type = typeof(System.Byte);
+                //param1.Value = img;
+
+                //XtraReport1.Parameters.Add(param1);
                 //ساخت فرم طراحی گزارش و ارسال فرم طراحی شده قبلی به فرم طراحی جهت ویرایش
                 FrmReportDesigner frd = new FrmReportDesigner();
                 frd.reportDesigner1.OpenReport(FilePath + FileName);
+               // frd.reportDesigner1.OpenReport(XtraReport1);
+                //XtraReport1.Document.Parameters.Add(param1);
+
+
                 frd.Show();
 
             }

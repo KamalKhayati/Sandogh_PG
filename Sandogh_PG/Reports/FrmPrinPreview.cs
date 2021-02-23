@@ -8,6 +8,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using System.IO;
+using DevExpress.XtraPrinting.Drawing;
+using DevExpress.XtraReports.UI;
+using DevExpress.XtraPrinting;
 
 namespace Sandogh_PG
 {
@@ -19,6 +23,7 @@ namespace Sandogh_PG
         }
 
        public int RepotPageWidth = 180;
+
         private void FrmPrinPreview_Load(object sender, EventArgs e)
         {
             bbiZoom.EditValue = RepotPageWidth;

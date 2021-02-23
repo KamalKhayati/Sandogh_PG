@@ -310,7 +310,7 @@ namespace Sandogh_PG
 
         private void chkConnectToServer_CheckedChanged(object sender, EventArgs e)
         {
-            this.Height = chkConnectToServer.Checked ? 497 : 297;
+            this.Height = chkConnectToServer.Checked ? 485 : 292;
             //cmbServerType.SelectedIndex = 0;
             //cmbServerName.SelectedIndex = 0;
             //cmbAuthentication.SelectedIndex = 0;
@@ -365,7 +365,8 @@ namespace Sandogh_PG
                         //FillInfoControls();
                         if (!string.IsNullOrEmpty(LblNameDatabase.Text))
                         {
-                            txtShenase.Enabled = txtPassword.Enabled = btnEnter.Enabled = true;
+                            txtShenase.ReadOnly = txtPassword.ReadOnly = false;
+                            btnEnter.Enabled = true;
                             string s1 = Application.StartupPath + @"\DB\" + cmbNameDataBaseSandogh.Text + ".mdf";
                             if (System.IO.File.Exists(s1))
                             {
@@ -373,6 +374,8 @@ namespace Sandogh_PG
                                 db.Database.CommandTimeout = 360;
                                 db.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command1);
                             }
+                            txtShenase.Focus();
+
                         }
                     }
                 }
@@ -467,6 +470,12 @@ namespace Sandogh_PG
         private void txtDatabaseName_EditValueChanged(object sender, EventArgs e)
         {
             txtAttachDbFilePath.Text = Application.StartupPath + @"\DB\" + txtDatabaseName.Text + ".mdf";
+        }
+
+        private void FrmLogin_Shown(object sender, EventArgs e)
+        {
+            txtShenase.Focus();
+
         }
     }
 }

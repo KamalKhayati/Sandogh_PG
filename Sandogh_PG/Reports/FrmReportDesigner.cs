@@ -10,7 +10,10 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 using DevExpress.XtraGrid;
-
+using DevExpress.XtraPrinting.Drawing;
+using DevExpress.XtraPrinting;
+using DevExpress.XtraReports.Parameters;
+using DevExpress.XtraReports.Expressions;
 namespace Sandogh_PG
 {
     public partial class FrmReportDesigner : DevExpress.XtraEditors.XtraForm
@@ -19,10 +22,5 @@ namespace Sandogh_PG
         {
             InitializeComponent();
         }
-
-        //private void ReportDesigner_Load(object sender, EventArgs e)
-        //{
-        //    //reportDesigner1.OpenReport(new XtraReport1());
-        //}
     }
 }

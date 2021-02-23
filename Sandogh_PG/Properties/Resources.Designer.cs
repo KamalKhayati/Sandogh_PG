@@ -83,9 +83,19 @@ namespace Sandogh_PG.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap PG_07 {
+        internal static System.Drawing.Bitmap PG_Logo_1 {
             get {
-                object obj = ResourceManager.GetObject("PG_07", resourceCulture);
+                object obj = ResourceManager.GetObject("PG_Logo_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PG_Logo_2 {
+            get {
+                object obj = ResourceManager.GetObject("PG_Logo_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

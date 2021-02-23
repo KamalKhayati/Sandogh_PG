@@ -37,7 +37,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>33</ApplicationRevision>
+    <ApplicationRevision>35</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -581,6 +581,7 @@
     <None Include="bin\Debug\Pic\Background_07.jpg" />
     <None Include="bin\Debug\Pic\Pasground_07.jpg" />
     <None Include="bin\Debug\Pic\PG_07.jpg" />
+    <None Include="bin\Debug\Pic\Logo.jpg" />
     <Content Include="PG_06.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

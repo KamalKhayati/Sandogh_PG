@@ -45,10 +45,11 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtNameSandogh = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.btnSaveClose = new DevExpress.XtraEditors.SimpleButton();
+            this.pictureEdit2 = new DevExpress.XtraEditors.PictureEdit();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.chkIsDefault = new DevExpress.XtraEditors.CheckEdit();
+            this.btnSaveClose = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
@@ -58,6 +59,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtAdress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameModir.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameSandogh.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsDefault.Properties)).BeginInit();
@@ -80,6 +82,7 @@
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Controls.Add(this.txtNameSandogh);
             this.panelControl1.Controls.Add(this.labelControl2);
+            this.panelControl1.Controls.Add(this.pictureEdit2);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -125,7 +128,7 @@
             this.pictureEdit1.Properties.ReadOnly = true;
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit1.Size = new System.Drawing.Size(229, 199);
+            this.pictureEdit1.Size = new System.Drawing.Size(228, 199);
             this.pictureEdit1.TabIndex = 43;
             // 
             // txtMobile
@@ -261,18 +264,13 @@
             this.labelControl2.TabIndex = 41;
             this.labelControl2.Text = "نام صندوق";
             // 
-            // btnSaveClose
+            // pictureEdit2
             // 
-            this.btnSaveClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveClose.ImageOptions.Image")));
-            this.btnSaveClose.Location = new System.Drawing.Point(168, 5);
-            this.btnSaveClose.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnSaveClose.Name = "btnSaveClose";
-            this.btnSaveClose.Size = new System.Drawing.Size(185, 50);
-            this.btnSaveClose.TabIndex = 0;
-            this.btnSaveClose.Text = "ذخیره و بستن";
-            this.btnSaveClose.ToolTip = "F2";
-            this.btnSaveClose.ToolTipTitle = "ذخیره و بستن";
-            this.btnSaveClose.Click += new System.EventHandler(this.btnSaveClose_Click);
+            this.pictureEdit2.EditValue = global::Sandogh_PG.Properties.Resources.PG_Logo_2;
+            this.pictureEdit2.Location = new System.Drawing.Point(106, 108);
+            this.pictureEdit2.Name = "pictureEdit2";
+            this.pictureEdit2.Size = new System.Drawing.Size(100, 96);
+            this.pictureEdit2.TabIndex = 46;
             // 
             // btnClose
             // 
@@ -314,6 +312,19 @@
             this.chkIsDefault.TabIndex = 13;
             this.chkIsDefault.Visible = false;
             // 
+            // btnSaveClose
+            // 
+            this.btnSaveClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveClose.ImageOptions.Image")));
+            this.btnSaveClose.Location = new System.Drawing.Point(168, 5);
+            this.btnSaveClose.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnSaveClose.Name = "btnSaveClose";
+            this.btnSaveClose.Size = new System.Drawing.Size(185, 50);
+            this.btnSaveClose.TabIndex = 0;
+            this.btnSaveClose.Text = "ذخیره و بستن";
+            this.btnSaveClose.ToolTip = "F2";
+            this.btnSaveClose.ToolTipTitle = "ذخیره و بستن";
+            this.btnSaveClose.Click += new System.EventHandler(this.btnSaveClose_Click);
+            // 
             // FrmTarifSandogh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 27F);
@@ -343,6 +354,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtAdress.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameModir.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameSandogh.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chkIsDefault.Properties)).EndInit();
@@ -371,5 +383,6 @@
         private DevExpress.XtraEditors.SimpleButton btnBrowsPictuer;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
         public DevExpress.XtraEditors.CheckEdit chkIsDefault;
+        private DevExpress.XtraEditors.PictureEdit pictureEdit2;
     }
 }

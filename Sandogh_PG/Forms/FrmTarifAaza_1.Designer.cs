@@ -155,6 +155,7 @@
             this.btnNobatVam = new DevExpress.XtraEditors.SimpleButton();
             this.txtNobatbandiVam = new DevExpress.XtraEditors.TextEdit();
             this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
+            this.colLogo = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).BeginInit();
@@ -282,7 +283,8 @@
             this.colAdressManzel,
             this.colAdressMohalKar,
             this.colSharhHesab,
-            this.colShomareSanad});
+            this.colShomareSanad,
+            this.colLogo});
             this.gridView1.DetailHeight = 378;
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView1.GridControl = this.gridControl1;
@@ -2159,6 +2161,17 @@
             this.labelControl26.TabIndex = 43;
             this.labelControl26.Text = "نتیجه قرعه کشی ، الویت بندی یا نوبت بندی اعطای وام = شماره نوبت اعطای وام";
             // 
+            // colLogo
+            // 
+            this.colLogo.Caption = "gridColumn1";
+            this.colLogo.FieldName = "Logo";
+            this.colLogo.MinWidth = 25;
+            this.colLogo.Name = "colLogo";
+            this.colLogo.UnboundType = DevExpress.Data.UnboundColumnType.Object;
+            this.colLogo.Visible = true;
+            this.colLogo.VisibleIndex = 32;
+            this.colLogo.Width = 94;
+            // 
             // FrmTarifAaza_1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 27F);
@@ -2357,5 +2370,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colTedadeFarzand;
         private DevExpress.XtraGrid.Columns.GridColumn colDaramadeMahiane;
         private DevExpress.XtraEditors.SimpleButton btnAmaliatColi;
+        private DevExpress.XtraGrid.Columns.GridColumn colLogo;
     }
 }

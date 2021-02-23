@@ -155,9 +155,14 @@ namespace Sandogh_PG
                                 img.Save(ms, pictureEdit1.Image.RawFormat);
                                 byte[] myarrey = ms.GetBuffer();
                                 q1.Pictuer = myarrey;
+                                pictureEdit1.Image.Save(Application.StartupPath + "\\Pic\\Co_Logo_1.jpg");
                             }
                             else
+                            {
                                 q1.Pictuer = null;
+                                pictureEdit2.Image.Save(Application.StartupPath + "\\Pic\\Co_Logo_1.jpg");
+
+                            }
                             /////////////////////////////////////////////////////////////////////
                             string MadarBoardCode = string.Empty;
                             ManagementObjectSearcher sercher2 = new ManagementObjectSearcher("select * from Win32_BaseBoard");

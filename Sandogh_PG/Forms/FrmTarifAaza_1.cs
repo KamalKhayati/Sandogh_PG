@@ -14,6 +14,10 @@ using Sandogh_PG;
 using System.Data.Entity.Infrastructure;
 using Sandogh_PG.Forms;
 using DevExpress.XtraReports.UI;
+using DevExpress.XtraPrinting.Drawing;
+using DevExpress.XtraPrinting;
+using DevExpress.XtraReports.Parameters;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace Sandogh_PG
 {
@@ -280,7 +284,7 @@ namespace Sandogh_PG
             {
                 btnClose_Click(sender, null);
             }
-           else if (e.Alt && e.Control && e.Shift && e.KeyCode == Keys.F12)
+            else if (e.Alt && e.Control && e.Shift && e.KeyCode == Keys.F12)
             {
                 HelpClass1.ControlAltShift_KeyDown(sender, e, btnDesignReport);
             }
@@ -320,30 +324,113 @@ namespace Sandogh_PG
             {
                 if (gridView1.RowCount > 0)
                 {
+                    //byte[] byte1 = null;
+                    //using (var db = new MyContext())
+                    //{
+                    //    try
+                    //    {
+                    //        var q1 = db.TarifSandoghs.FirstOrDefault(s => s.Id == 1);
+                    //        if (q1 != null)
+                    //        {
+                    //            if (q1.Pictuer != null)
+                    //            {
+                    //                //MemoryStream ms = new MemoryStream(q1.Pictuer);
+                    //                //img = Image.FromStream(ms);
+                    //                byte1 = Convert.ToSByte(q1.Pictuer);
+                    //            }
+                    //            //else
+                    //               // img = null;
+
+                    //        }
+                    //    }
+                    //    catch (Exception ex)
+                    //    {
+                    //        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                    //            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //    }
+                    //}
+
+                    //Image imge1 = null;
+                    //MemoryStream ms = new MemoryStream();
+                    //img = Image.FromFile("PG_07.jpg");
+                    // imge1.Save(ms, Fm.pictureEdit1.Image.RawFormat);
+                    // byte[] myarrey = ms.GetBuffer();
+                    // gridView1.SetRowCellValue(0, colLogo, myarrey);
                     XtraReport XtraReport1 = new XtraReport();
                     XtraReport1.LoadLayoutFromXml(FilePath1 + FileName1);
-
-                    // XtraReport1.DataSource = HelpClass1.ConvettDatagridviewToDataSet(gridView1);
                     XtraReport1.DataSource = gridView1.DataSource;
 
-                    //XtraReport1.Parameters["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : gridView2.GetRowCellDisplayText(0, "Tarikh").Substring(0, 10);
-                    //XtraReport1.Parameters["Ta_Tarikh"].Value = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
+                    //XtraReport XtraReport2 = new XtraReport();
+                    //XtraReport2.LoadLayoutFromXml(FilePath1 + FileName1);
+                    //XtraReport2.DataSource = new MyContext().TarifSandoghs.FirstOrDefault();
+
+                    //XtraReport XtraReport = new XtraReport();
+                    //XtraReport.LoadLayoutFromXml(FilePath1 + FileName1);
+                    //XtraReport = XtraReport1 + XtraReport2;
+
                     XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
-                    //XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
-                    //XtraReport1.Parameters["HesabTafzil"].Value = cmbHesabTafzili.Text;
                     XtraReport1.Parameters["ReportName"].Value = "مشخصات اعضاء صندوق";
                     XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
 
+                    FrmPrinPreview FPP = new FrmPrinPreview();
+                    FPP.documentViewer1.DocumentSource = XtraReport1;
+                    FPP.RepotPageWidth = 100;
+                    FPP.ShowDialog();
+                    //XtraReport1.Report..DataSource = new MyContext().TarifSandoghs.FirstOrDefault();
+                    //FPP.ShowDialog();
+
+                    // XtraReport1.DataSource = HelpClass1.ConvettDatagridviewToDataSet(gridView1);
+
+                    //XtraReport1.Parameters["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : gridView2.GetRowCellDisplayText(0, "Tarikh").Substring(0, 10);
+                    //XtraReport1.Parameters["Ta_Tarikh"].Value = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
+                    //XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
+                    //XtraReport1.Parameters["HesabTafzil"].Value = cmbHesabTafzili.Text;
+                    //XtraReport1.Parameters["Logo"].Value = Fm.pictureEdit1;
+                    ///////////////////////////////////
+                    //XtraReport1.CalculatedFields[0].Assign(new MyContext().TarifSandoghs.FirstOrDefault(), "Pictuer");
+                    //XtraReport1.CalculatedFields[0].;
+                    //using (var db = new MyContext())
+                    //{
+                    //    try
+                    //    {
+                    //        var q1 = db.TarifSandoghs.FirstOrDefault(s => s.Id == 1);
+                    //        if (q1 != null)
+                    //        {
+                    //            if (q1.Pictuer != null)
+                    //            {
+                    //                MemoryStream ms = new MemoryStream(q1.Pictuer);
+                    //                img = Image.FromStream(ms);
+
+                    //            }
+                    //            else
+                    //                img = null;
+
+                    //        }
+                    //    }
+                    //    catch (Exception ex)
+                    //    {
+                    //        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                    //            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //    }
+                    //}
+                    //// HelpClass1.LoadReportDesigner(FilePath1, FileName1 , img);
+
+                    ////XtraReport XtraReport1 = new XtraReport();
+                    ////XtraReport1.LoadLayoutFromXml(FilePath1 + FileName1);
+                    //Parameter param1 = new Parameter();
+                    //param1.Name = "Logo";
+                    //param1.Type = typeof(System.Byte);
+                    //param1.Value = img;
+
+                    //XtraReport1.Parameters.Add(param1);
+
+                    //////////////////////////////////
                     //List<decimal> ListMande1 = new List<decimal>();
                     //for (int i = 0; i < gridView1.RowCount; i++)
                     //{
                     //    ListMande1.Add(Convert.ToDecimal(gridView2.GetRowCellValue(i, "Mande1")));
                     //}
                     //XtraReport1.Parameters["Mande1"].Value = ListMande1;
-                    FrmPrinPreview FPP = new FrmPrinPreview();
-                    FPP.documentViewer1.DocumentSource = XtraReport1;
-                    FPP.RepotPageWidth = 100;
-                    FPP.ShowDialog();
 
                 }
             }
@@ -378,6 +465,15 @@ namespace Sandogh_PG
         private void gridView1_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
         {
             HelpClass1.SetNumberRowsColumnUnboundGirdView(sender, e);
+
+            //GridView view = (GridView)sender;
+            //if (view == null) return;
+            //int rowHandle = view.GetRowHandle(e.ListSourceRowIndex);
+            ////int visibleIndex = view.GetVisibleIndex(rowHandle);
+            ////if (e.IsSetData) return;
+            //if (e.Column.FieldName == "Pictuer")
+            //    e.Value = Fm.pictureEdit1.Image;
+
         }
 
         private void btnAdvancedSearch_Click(object sender, EventArgs e)
@@ -1382,7 +1478,7 @@ namespace Sandogh_PG
         private Keys m_keyCode;
         private void txtSharhHesab_Leave(object sender, EventArgs e)
         {
-            if (m_keyCode==Keys.Enter)
+            if (m_keyCode == Keys.Enter)
             {
                 xtraTabControl1.SelectedTabPageIndex = 1;
                 txtAdress.Focus();
@@ -1456,7 +1552,7 @@ namespace Sandogh_PG
 
         private void gridView1_RowCountChanged(object sender, EventArgs e)
         {
-            if (gridView1.RowCount>0)
+            if (gridView1.RowCount > 0)
             {
                 btnAmaliatColi.Enabled = true;
             }
@@ -1469,7 +1565,51 @@ namespace Sandogh_PG
 
         private void btnDesignReport_Click(object sender, EventArgs e)
         {
+            //using (var db = new MyContext())
+            //{
+            //    try
+            //    {
+            //        var q1 = db.TarifSandoghs.FirstOrDefault(s => s.Id == 1);
+            //        if (q1 != null)
+            //        {
+            //            if (q1.Pictuer != null)
+            //            {
+            //                MemoryStream ms = new MemoryStream(q1.Pictuer);
+            //                img = Image.FromStream(ms);
+
+            //            }
+            //            else
+            //                img = null;
+
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+            //            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //}
+            // HelpClass1.LoadReportDesigner(FilePath1, FileName1 , img);
+
+            //XtraReport XtraReport1 = new XtraReport();
+            //XtraReport1.LoadLayoutFromXml(FilePath1 + FileName1);
+            //Parameter param1 = new Parameter();
+            //param1.Name = "Logo";
+            //param1.Type = typeof(System.Byte);
+            ////param1.Value = img;
+
+            //XtraReport1.Parameters.Add(param1);
+            // frd.reportDesigner1.OpenReport(XtraReport1);
+            //XtraReport1.Document.Parameters.Add(param1);
+
+
+            //ساخت فرم طراحی گزارش و ارسال فرم طراحی شده قبلی به فرم طراحی جهت ویرایش
+            //FrmReportDesigner frd = new FrmReportDesigner();
+            //frd.reportDesigner1.OpenReport(FilePath + FileName);
+            //frd.Show();
             HelpClass1.LoadReportDesigner(FilePath1, FileName1);
+
         }
+
     }
 }
