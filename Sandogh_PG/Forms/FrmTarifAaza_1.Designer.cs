@@ -64,6 +64,7 @@
             this.colAdressMohalKar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSharhHesab = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colShomareSanad = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colLogo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.aazaSandoghsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtShomareShaba = new DevExpress.XtraEditors.TextEdit();
@@ -155,7 +156,6 @@
             this.btnNobatVam = new DevExpress.XtraEditors.SimpleButton();
             this.txtNobatbandiVam = new DevExpress.XtraEditors.TextEdit();
             this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
-            this.colLogo = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aazaSandoghsBindingSource)).BeginInit();
@@ -786,6 +786,17 @@
             this.colShomareSanad.Visible = true;
             this.colShomareSanad.VisibleIndex = 31;
             this.colShomareSanad.Width = 111;
+            // 
+            // colLogo
+            // 
+            this.colLogo.Caption = "gridColumn1";
+            this.colLogo.FieldName = "Logo";
+            this.colLogo.MinWidth = 25;
+            this.colLogo.Name = "colLogo";
+            this.colLogo.UnboundType = DevExpress.Data.UnboundColumnType.Object;
+            this.colLogo.Visible = true;
+            this.colLogo.VisibleIndex = 32;
+            this.colLogo.Width = 94;
             // 
             // gridControl1
             // 
@@ -2160,17 +2171,6 @@
             this.labelControl26.Size = new System.Drawing.Size(538, 27);
             this.labelControl26.TabIndex = 43;
             this.labelControl26.Text = "نتیجه قرعه کشی ، الویت بندی یا نوبت بندی اعطای وام = شماره نوبت اعطای وام";
-            // 
-            // colLogo
-            // 
-            this.colLogo.Caption = "gridColumn1";
-            this.colLogo.FieldName = "Logo";
-            this.colLogo.MinWidth = 25;
-            this.colLogo.Name = "colLogo";
-            this.colLogo.UnboundType = DevExpress.Data.UnboundColumnType.Object;
-            this.colLogo.Visible = true;
-            this.colLogo.VisibleIndex = 32;
-            this.colLogo.Width = 94;
             // 
             // FrmTarifAaza_1
             // 

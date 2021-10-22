@@ -203,6 +203,7 @@
             // 
             // chkIsTasviye
             // 
+            this.chkIsTasviye.Enabled = false;
             this.chkIsTasviye.EnterMoveNextControl = true;
             this.chkIsTasviye.Location = new System.Drawing.Point(684, 14);
             this.chkIsTasviye.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -1362,8 +1363,9 @@
             this.cmbDaryaftkonande.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbDaryaftkonande.Size = new System.Drawing.Size(265, 34);
             this.cmbDaryaftkonande.TabIndex = 0;
-            this.cmbDaryaftkonande.EditValueChanged += new System.EventHandler(this.cmbDaryaftkonande_EditValueChanged);
+            this.cmbDaryaftkonande.EditValueChanged += new System.EventHandler(this.cmbDaryaftkonande_EditValueChanged_1);
             this.cmbDaryaftkonande.Enter += new System.EventHandler(this.cmbDaryaftkonande_Enter);
+            this.cmbDaryaftkonande.Leave += new System.EventHandler(this.cmbDaryaftkonande_Leave);
             // 
             // allHesabTafzilisBindingSource
             // 

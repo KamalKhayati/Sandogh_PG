@@ -528,6 +528,7 @@ namespace Sandogh_PG
             txtNamePedar.Text = string.Empty;
             txtCodeMeli.Text = string.Empty;
             txtShShenasname.Text = string.Empty;
+            txtTedadeFarzand.Text = string.Empty;
             txtBirthDate.Text = string.Empty;
             cmbJensiat.SelectedIndex = -1;
             cmbTaahol.SelectedIndex = -1;
@@ -1610,6 +1611,5 @@ namespace Sandogh_PG
             HelpClass1.LoadReportDesigner(FilePath1, FileName1);
 
         }
-
     }
 }

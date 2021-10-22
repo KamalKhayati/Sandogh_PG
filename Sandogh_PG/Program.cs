@@ -32,14 +32,6 @@ namespace Sandogh_PG
             //Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture;
             //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("fa");
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            BonusSkins.Register();
-
-            HelpClass1.SwitchToPersianLanguage();
-            Cultures.InitializePersianCulture();
-            HelpClass1.SetRegionAndLanguage();
-
             // ساخت پوشه مسیر دایرکتوری فایل کانفیگ
             SkinManager.EnableFormSkins();
             //WindowsFormsSettings.AllowDefaultSvgImages = DevExpress.Utils.DefaultBoolean.False;
@@ -48,7 +40,27 @@ namespace Sandogh_PG
             // ساخت پوشه دیتابیس
             if (!System.IO.Directory.Exists(Application.StartupPath + @"\DB"))
                 System.IO.Directory.CreateDirectory(Application.StartupPath + @"\DB");
-            Application.Run(new AppContext());
+
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            BonusSkins.Register();
+            //new FrmLogin().Show();
+            if (HelpClass1.IsSetGregorianCalendar())
+            {
+                Cultures.InitializePersianCulture();
+                Application.Run(new AppContext());
+            }
+            else
+                Application.Exit();
+
+            //BonusSkins.Register();
+
+            //HelpClass1.SwitchToPersianLanguage();
+            //Cultures.InitializePersianCulture();
+            //HelpClass1.SetRegionAndLanguage();
+
+            //Application.Run(new AppContext());
             //Application.Run(new FrmMain());
 
 

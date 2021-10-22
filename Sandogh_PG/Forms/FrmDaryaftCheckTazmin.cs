@@ -717,7 +717,7 @@ namespace Sandogh_PG
             HelpClass1.LoadReportDesigner(FilePath1, FileName1);
         }
 
-        private void FrmDaryaftCheckTazmin_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtMamlaghCheck_KeyPress(object sender, KeyPressEventArgs e)
         {
             HelpClass1.AddZerooToTextBox(sender, e);
 

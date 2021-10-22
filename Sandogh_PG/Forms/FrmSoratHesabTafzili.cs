@@ -102,6 +102,9 @@ namespace Sandogh_PG
             {
                 try
                 {
+                    asnadeHesabdariRowsBindingSource1.Clear();
+                    asnadeHesabdariRowsBindingSource1.DataSource = null;
+                    //HelpClass1.rowHandel = 0;
                     int TafziliId = Convert.ToInt32(cmbHesabTafzili.EditValue);
                     var StartData = Convert.ToDateTime(txtAzTarikh.Text);
                     var EndData = Convert.ToDateTime(txtTaTarikh.Text);
@@ -127,10 +130,10 @@ namespace Sandogh_PG
                             q.Add(obj);
                         }
                         asnadeHesabdariRowsBindingSource1.DataSource = q.OrderBy(f => f.Tarikh).ThenBy(f => f.ShomareSanad);
+                        HelpClass1.MoveLast(gridView2);
                     }
                     else
                         asnadeHesabdariRowsBindingSource1.DataSource = null;
-
                 }
                 catch (Exception ex)
                 {
@@ -177,6 +180,7 @@ namespace Sandogh_PG
         private void gridView2_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
         {
             HelpClass1.gridView_CustomUnboundColumnData(sender, e, gridView2, "Bed", "Bes", "Mande1");
+
         }
 
         private void FrmSoratHesabTafzili_Load(object sender, EventArgs e)

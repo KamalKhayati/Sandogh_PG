@@ -109,6 +109,9 @@ namespace Sandogh_PG
 
         public void FrmMain_Load(object sender, EventArgs e)
         {
+            HelpClass1.SwitchToPersianLanguage();
+            HelpClass1.SetRegionAndLanguage();
+
             // فراخوانی پوسته برنامه از مسیر دایرکتوری %appdata%
             // try
             //{
@@ -520,10 +523,14 @@ namespace Sandogh_PG
                             if (q1 != null)
                             {
                                 _IdHesab = q1.Id;
+                                //DateTime _Date1 = Convert.ToDateTime("1499/04/21");
+                                //DateTime _Date2 = Convert.ToDateTime("1400/04/22");
                                 var q3 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == q1.Id).ToList();
                                 if (q3.Count > 0)
                                 {
-                                    decimal Mande = Convert.ToDecimal(q3.Sum(f => f.Bed) - q3.Sum(f => f.Bes));
+                                    decimal bed = Convert.ToDecimal(q3.Sum(f => f.Bed));
+                                    decimal bes = Convert.ToDecimal(q3.Sum(f => f.Bes));
+                                    decimal Mande = bed - bes;
                                     MojodiSandogh.Caption = "موجودی صندوق/بانک : " + Mande.ToString("###,###,###,###,###") + " ریال";
                                 }
                             }

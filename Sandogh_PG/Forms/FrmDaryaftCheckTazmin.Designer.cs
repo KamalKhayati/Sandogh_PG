@@ -798,6 +798,7 @@
             this.txtMamlaghCheck.Properties.ReadOnly = true;
             this.txtMamlaghCheck.Size = new System.Drawing.Size(175, 34);
             this.txtMamlaghCheck.TabIndex = 6;
+            this.txtMamlaghCheck.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMamlaghCheck_KeyPress);
             // 
             // labelControl19
             // 
@@ -1137,7 +1138,6 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmDaryaftCheckTazmin_FormClosed);
             this.Load += new System.EventHandler(this.FrmDaryaftCheckTazmin_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmDaryaftCheckTazmin_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FrmDaryaftCheckTazmin_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkTazminsBindingSource)).EndInit();

@@ -837,7 +837,6 @@ namespace Sandogh_PG
                                     }
                                     else
                                     {
-                                        RizeAghsatVam ct = new RizeAghsatVam();
                                         if (Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", "")) > Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
                                         {
                                             XtraMessageBox.Show("مبلغ دریافتی بیشتر از مانده بدهی وام است لطفاً اصلاح فرمایید", "پیغام تصحیح ", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -850,38 +849,39 @@ namespace Sandogh_PG
                                         else if (Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", "")) < Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
                                         {
                                             var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با دریافت این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "  ریال خواهد بود لذا یک قسط جدید به تاریخ دوره بعد و به مبلغ صفر ریال ایجاد میشود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            RizeAghsatVam ct = new RizeAghsatVam();
                                             ct.MablaghAghsat = 0;
+                                            //}
+
+                                            //var rs2 = XtraMessageBox.Show("با توجه به اینکه دریافتی فوق مربوط به قسط آخر می باشد و از طرفی مانده وام \nمذکور هنوز تسویه نشده است آیا مایلید یک قسط جدید به تاریخ دوره بعد ایجاد شود؟", "پیغام", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                                            //if (rs2 == DialogResult.Yes)
+                                            //{
+                                            //q.MablaghAghsat = rs1;
+                                            int _HesabAazaId2 = Convert.ToInt32(cmbPardakhtKonande.EditValue);
+                                            int VamId = q.VamPardakhtiId;
+                                            int VamCode = q.VamPardakhtiCode;
+                                            ct.ShomareGhest = _shomareghestBadi;
+                                            ct.AazaId = _HesabAazaId2;
+                                            ct.NameAaza = cmbPardakhtKonande.Text;
+                                            ct.VamPardakhtiId = VamId;
+                                            ct.VamPardakhtiCode = VamCode;
+                                            //if (!string.IsNullOrEmpty(txtSarresidGhest.Text))
+                                            //int yyyy2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(0, 4));
+                                            //int MM2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(5, 2));
+                                            //int dd2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(8, 2));
+                                            //Mydate d2 = new Mydate(yyyy2, MM2, dd2);
+                                            if (q.VamPardakhti1.IndexFaseleAghsat == 0)
+                                                d2.IncrementMonth();
+                                            else if (q.VamPardakhti1.IndexFaseleAghsat == 1)
+                                                d2.IncrementYear();
+                                            ct.TarikhSarresid = Convert.ToDateTime(d2.ToString());
+                                            // if (!string.IsNullOrEmpty(txtMablaghGest.Text))
+                                            //ct.MablaghAghsat = 0;
+                                            ct.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
+                                            db.RizeAghsatVams.Add(ct);
+                                            // XtraMessageBox.Show("توجه : \n در نظر داشته باشید با اینکار جمع ستون مبلغ اقساط با جمع ستون مبلغ دریافتی برابر نخواهد بود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                                         }
-
-                                        //var rs2 = XtraMessageBox.Show("با توجه به اینکه دریافتی فوق مربوط به قسط آخر می باشد و از طرفی مانده وام \nمذکور هنوز تسویه نشده است آیا مایلید یک قسط جدید به تاریخ دوره بعد ایجاد شود؟", "پیغام", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                                        //if (rs2 == DialogResult.Yes)
-                                        //{
-                                        //q.MablaghAghsat = rs1;
-                                        int _HesabAazaId2 = Convert.ToInt32(cmbPardakhtKonande.EditValue);
-                                        int VamId = q.VamPardakhtiId;
-                                        int VamCode = q.VamPardakhtiCode;
-                                        ct.ShomareGhest = _shomareghestBadi;
-                                        ct.AazaId = _HesabAazaId2;
-                                        ct.NameAaza = cmbPardakhtKonande.Text;
-                                        ct.VamPardakhtiId = VamId;
-                                        ct.VamPardakhtiCode = VamCode;
-                                        //if (!string.IsNullOrEmpty(txtSarresidGhest.Text))
-                                        //int yyyy2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(0, 4));
-                                        //int MM2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(5, 2));
-                                        //int dd2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(8, 2));
-                                        //Mydate d2 = new Mydate(yyyy2, MM2, dd2);
-                                        if (q.VamPardakhti1.IndexFaseleAghsat == 0)
-                                            d2.IncrementMonth();
-                                        else if (q.VamPardakhti1.IndexFaseleAghsat == 1)
-                                            d2.IncrementYear();
-                                        ct.TarikhSarresid = Convert.ToDateTime(d2.ToString());
-                                        // if (!string.IsNullOrEmpty(txtMablaghGest.Text))
-                                        //ct.MablaghAghsat = 0;
-                                        ct.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
-                                        db.RizeAghsatVams.Add(ct);
-                                        // XtraMessageBox.Show("توجه : \n در نظر داشته باشید با اینکار جمع ستون مبلغ اقساط با جمع ستون مبلغ دریافتی برابر نخواهد بود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                        //}
 
 
                                     }
@@ -1309,7 +1309,6 @@ namespace Sandogh_PG
                                     }
                                     else
                                     {
-                                        RizeAghsatVam ct = new RizeAghsatVam();
                                         if (Tafazol > Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
                                         {
                                             XtraMessageBox.Show("مبلغ ویرایش شده بیشتر از مانده بدهی وام است لطفاً اصلاح فرمایید", "پیغام تصحیح ", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1321,6 +1320,7 @@ namespace Sandogh_PG
                                         }
                                         else if (Tafazol < Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
                                         {
+                                            RizeAghsatVam ct = new RizeAghsatVam();
                                             if (Convert.ToDecimal(txtMablaghGhest.Text.Trim().Replace(",", "")) == Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
                                             {
                                                 var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با ویرایش این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "  ریال خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
@@ -1366,37 +1366,37 @@ namespace Sandogh_PG
                                                 var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با ویرایش این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "  ریال خواهد بود لذا یک قسط جدید به تاریخ دوره بعد و به مبلغ صفر ریال ایجاد میشود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                 ct.MablaghAghsat = 0;
                                             }
+                                            //}
+
+                                            //var rs2 = XtraMessageBox.Show("با توجه به اینکه دریافتی فوق مربوط به قسط آخر می باشد و از طرفی مانده وام \nمذکور هنوز تسویه نشده است آیا مایلید یک قسط جدید به تاریخ دوره بعد ایجاد شود؟", "پیغام", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                                            //if (rs2 == DialogResult.Yes)
+                                            //{
+                                            //q.MablaghAghsat = rs1;
+                                            int _HesabAazaId2 = Convert.ToInt32(cmbPardakhtKonande.EditValue);
+                                            int VamId = q.VamPardakhtiId;
+                                            int VamCode = q.VamPardakhtiCode;
+                                            ct.ShomareGhest = _shomareghestBadi;
+                                            ct.AazaId = _HesabAazaId2;
+                                            ct.NameAaza = cmbPardakhtKonande.Text;
+                                            ct.VamPardakhtiId = VamId;
+                                            ct.VamPardakhtiCode = VamCode;
+                                            //if (!string.IsNullOrEmpty(txtSarresidGhest.Text))
+                                            //int yyyy2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(0, 4));
+                                            //int MM2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(5, 2));
+                                            //int dd2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(8, 2));
+                                            //Mydate d2 = new Mydate(yyyy2, MM2, dd2);
+                                            if (q.VamPardakhti1.IndexFaseleAghsat == 0)
+                                                d2.IncrementMonth();
+                                            else if (q.VamPardakhti1.IndexFaseleAghsat == 1)
+                                                d2.IncrementYear();
+                                            ct.TarikhSarresid = Convert.ToDateTime(d2.ToString());
+                                            // if (!string.IsNullOrEmpty(txtMablaghGest.Text))
+                                            //ct.MablaghAghsat = 0;
+                                            ct.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
+                                            db.RizeAghsatVams.Add(ct);
+                                            // XtraMessageBox.Show("توجه : \n در نظر داشته باشید با اینکار جمع ستون مبلغ اقساط با جمع ستون مبلغ دریافتی برابر نخواهد بود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                                         }
-
-                                        //var rs2 = XtraMessageBox.Show("با توجه به اینکه دریافتی فوق مربوط به قسط آخر می باشد و از طرفی مانده وام \nمذکور هنوز تسویه نشده است آیا مایلید یک قسط جدید به تاریخ دوره بعد ایجاد شود؟", "پیغام", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                                        //if (rs2 == DialogResult.Yes)
-                                        //{
-                                        //q.MablaghAghsat = rs1;
-                                        int _HesabAazaId2 = Convert.ToInt32(cmbPardakhtKonande.EditValue);
-                                        int VamId = q.VamPardakhtiId;
-                                        int VamCode = q.VamPardakhtiCode;
-                                        ct.ShomareGhest = _shomareghestBadi;
-                                        ct.AazaId = _HesabAazaId2;
-                                        ct.NameAaza = cmbPardakhtKonande.Text;
-                                        ct.VamPardakhtiId = VamId;
-                                        ct.VamPardakhtiCode = VamCode;
-                                        //if (!string.IsNullOrEmpty(txtSarresidGhest.Text))
-                                        //int yyyy2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(0, 4));
-                                        //int MM2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(5, 2));
-                                        //int dd2 = Convert.ToInt32(txtSarresidGhest.Text.Substring(8, 2));
-                                        //Mydate d2 = new Mydate(yyyy2, MM2, dd2);
-                                        if (q.VamPardakhti1.IndexFaseleAghsat == 0)
-                                            d2.IncrementMonth();
-                                        else if (q.VamPardakhti1.IndexFaseleAghsat == 1)
-                                            d2.IncrementYear();
-                                        ct.TarikhSarresid = Convert.ToDateTime(d2.ToString());
-                                        // if (!string.IsNullOrEmpty(txtMablaghGest.Text))
-                                        //ct.MablaghAghsat = 0;
-                                        ct.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
-                                        db.RizeAghsatVams.Add(ct);
-                                        // XtraMessageBox.Show("توجه : \n در نظر داشته باشید با اینکار جمع ستون مبلغ اقساط با جمع ستون مبلغ دریافتی برابر نخواهد بود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                        //}
                                     }
                                 }
 

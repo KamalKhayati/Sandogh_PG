@@ -14,7 +14,7 @@ namespace Sandogh_PG
         public int Id2 { get; set; }
         [Required]
         public int Code { get; set; }
-        [Required, MaxLength(50)]
+        [Required, MaxLength(200)]
         public string Name { get; set; }
         [Required]
         public int GroupTafziliId { get; set; }

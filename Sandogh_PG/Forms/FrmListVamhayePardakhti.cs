@@ -68,6 +68,8 @@ namespace Sandogh_PG
             {
                 try
                 {
+                    rizeAghsatVamsBindingSource.Clear();
+                    rizeAghsatVamsBindingSource.DataSource = null;
                     _VamPardakhtiId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id"));
                     var q1 = db.RizeAghsatVams.Where(s => s.VamPardakhtiId == _VamPardakhtiId).OrderBy(s => s.TarikhSarresid).ToList();
                     if (q1.Count > 0)
@@ -293,12 +295,15 @@ namespace Sandogh_PG
             HelpClass1.SetNumberRowsColumnUnboundGirdView(sender, e);
 
         }
-        List<long> total = new List<long>();
-        private void gridView2_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
+        List<long> total ; 
+        public void gridView2_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
         {
+            int rowIndex = e.ListSourceRowIndex;
+            if (rowIndex == 0)
+                total= new List<long>();
+
             HelpClass1.SetNumberRowsColumnUnboundGirdView(sender, e);
 
-            int rowIndex = e.ListSourceRowIndex;
             long MablaghAghsat = Convert.ToInt64(gridView2.GetListSourceRowCellValue(rowIndex, "MablaghAghsat"));
             long MablaghDaryafti = Convert.ToInt64(gridView2.GetListSourceRowCellValue(rowIndex, "MablaghDaryafti"));
             if (e.Column.FieldName != "Mande") return;

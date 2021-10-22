@@ -127,7 +127,7 @@ namespace Sandogh_PG
                                         else
                                             allHesabTafzilisBindingSource1.DataSource = null;
                                     }
-                                    else 
+                                    else
                                     {
                                         var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3).OrderBy(s => s.Code).ToList();
                                         if (q2.Count > 0)
@@ -373,6 +373,28 @@ namespace Sandogh_PG
             }
             else if (En == EnumCED.Edit)
             {
+                using (var db = new MyContext())
+                {
+                    try
+                    {
+                        //int _VamId = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("Id"));
+                        var m1 = Convert.ToDecimal(Fm.gridView2.Columns["MablaghDaryafti"].SummaryItem.SummaryValue);
+                        var m2 = Convert.ToDecimal(Fm.gridView1.GetFocusedRowCellValue("MablaghAsli"));
+                        var m3 = Convert.ToDecimal(Fm.gridView1.GetFocusedRowCellValue("MablaghKarmozd"));
+
+                        if (m1 == m2 + m3)
+                        {
+                            chkIsTasviye.Enabled = true;
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
                 //cmbDaryaftkonande.ReadOnly = true;
                 EditRowIndex = Fm.gridView1.FocusedRowHandle;
                 txtId.Text = Fm.gridView1.GetFocusedRowCellDisplayText("Id");
@@ -413,7 +435,7 @@ namespace Sandogh_PG
                     chkcmbEntekhabZamenin.SetEditValue(Fm.gridView1.GetFocusedRowCellDisplayText("ZameninId"));
 
                 }
-                txtTozihat.Text = Fm.gridView1.GetFocusedRowCellDisplayText("Tozihat")!=null? Fm.gridView1.GetFocusedRowCellDisplayText("Tozihat"):null;
+                txtTozihat.Text = Fm.gridView1.GetFocusedRowCellDisplayText("Tozihat") != null ? Fm.gridView1.GetFocusedRowCellDisplayText("Tozihat") : null;
                 chkIsTasviye.Visible = true;
                 chkIsTasviye.Checked = Convert.ToBoolean(Fm.gridView1.GetFocusedRowCellValue("IsTasviye"));
             }
@@ -1085,54 +1107,6 @@ namespace Sandogh_PG
 
         private void cmbDaryaftkonande_EditValueChanged(object sender, EventArgs e)
         {
-            if (En == EnumCED.Create)
-            {
-                using (var db = new MyContext())
-                {
-                    try
-                    {
-                        var q = db.Tanzimats.FirstOrDefault(s => s.Id == _IDSandogh);
-                        if (q != null)
-                        {
-                            if (q.checkEdit2)
-                            {
-                                int _AazaId = Convert.ToInt32(cmbDaryaftkonande.EditValue);
-                                var q1 = db.VamPardakhtis.FirstOrDefault(s => s.IsTasviye == false && s.AazaId == _AazaId);
-                                if (q1 != null)
-                                {
-                                    XtraMessageBox.Show("عضو انتخابی وام تسویه نشده قبلی دارد لذا اعطای وام مجدد به ایشان مقدور نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                    cmbDaryaftkonande.EditValue = 0;
-                                    cmbDaryaftkonande_Enter(null, null);
-                                    return;
-                                }
-                                //if (Fm.gridView1.RowCount > 0)
-                                //{
-                                //    List<int> ListAazaId = new List<int>();
-                                //    for (int i = 0; i < Fm.gridView1.RowCount; i++)
-                                //    {
-                                //        ListAazaId.Add(Convert.ToInt32(Fm.gridView1.GetRowCellValue(i, "AazaId")));
-                                //        if (ListAazaId[i] == _AazaId)
-                                //        {
-                                //            XtraMessageBox.Show("عضو انتخابی وام تسویه نشده قبلی دارد لذا اعطای وام مجدد به ایشان مقدور نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                //            cmbDaryaftkonande.EditValue = 0;
-                                //            return;
-                                //        }
-                                //    }
-                                //}
-
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-
-            }
-            FillchkcmbEntekhabZamenin();
-            FillDataGridCheckTazmin();
         }
 
         private void checkEdit1_CheckedChanged(object sender, EventArgs e)
@@ -1241,6 +1215,73 @@ namespace Sandogh_PG
                 }
             }
 
+        }
+
+        private void cmbDaryaftkonande_Leave(object sender, EventArgs e)
+        {
+            if (En == EnumCED.Create)
+            {
+                using (var db = new MyContext())
+                {
+                    try
+                    {
+                        var q = db.Tanzimats.FirstOrDefault(s => s.Id == _IDSandogh);
+                        if (q != null)
+                        {
+                            if (q.checkEdit2)
+                            {
+                                if (!string.IsNullOrEmpty(cmbDaryaftkonande.Text))
+                                {
+                                    int _AazaId = Convert.ToInt32(cmbDaryaftkonande.EditValue);
+                                    var q1 = db.VamPardakhtis.FirstOrDefault(s => s.IsTasviye == false && s.AazaId == _AazaId);
+                                    if (q1 != null)
+                                    {
+                                        XtraMessageBox.Show("عضو انتخابی وام تسویه نشده قبلی دارد لذا اعطای وام مجدد به ایشان مقدور نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        cmbDaryaftkonande.EditValue = 0;
+                                        cmbDaryaftkonande_Enter(null, null);
+                                        cmbDaryaftkonande.Focus();
+                                        return;
+                                    }
+
+
+                                }
+                                //if (Fm.gridView1.RowCount > 0)
+                                //{
+                                //    List<int> ListAazaId = new List<int>();
+                                //    for (int i = 0; i < Fm.gridView1.RowCount; i++)
+                                //    {
+                                //        ListAazaId.Add(Convert.ToInt32(Fm.gridView1.GetRowCellValue(i, "AazaId")));
+                                //        if (ListAazaId[i] == _AazaId)
+                                //        {
+                                //            XtraMessageBox.Show("عضو انتخابی وام تسویه نشده قبلی دارد لذا اعطای وام مجدد به ایشان مقدور نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                //            cmbDaryaftkonande.EditValue = 0;
+                                //            return;
+                                //        }
+                                //    }
+                                //}
+
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+            }
+
+        }
+
+        private void cmbDaryaftkonande_EditValueChanged_1(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(cmbDaryaftkonande.EditValue)> 0)
+            {
+                FillchkcmbEntekhabZamenin();
+                FillDataGridCheckTazmin();
+
+            }
         }
     }
 }
