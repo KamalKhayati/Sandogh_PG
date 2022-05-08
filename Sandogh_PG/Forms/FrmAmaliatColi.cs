@@ -18,8 +18,8 @@ namespace Sandogh_PG.Forms
             InitializeComponent();
         }
 
-         FrmTarifAaza_1 Fm;
-        public FrmAmaliatColi( FrmTarifAaza_1 fm)
+        FrmTarifAaza_1 Fm;
+        public FrmAmaliatColi(FrmTarifAaza_1 fm)
         {
             InitializeComponent();
             Fm = fm;
@@ -35,13 +35,39 @@ namespace Sandogh_PG.Forms
                 {
                     if (XtraMessageBox.Show("آیا مطمئن هستید؟", "پیغام ذخیره", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
-                        var q = db.AazaSandoghs.Where(s => s.IsActive == IsActiveList).ToList();
+                        var dt = new DataTable();
+
+                        var keys = new DataColumn[1];
+                        DataColumn column = new DataColumn();
+                        column.DataType = Type.GetType("System.String");
+                        column.ColumnName = "Id";
+                        dt.Columns.Add(column);
+                        keys[0] = column;
+                        dt.PrimaryKey = keys;
+
+
+                        for (int i = 0; i < Fm.gridView1.RowCount; i++)
+                        {
+                            DataRow dRow = dt.NewRow();
+                            dRow["Id"] = Fm.gridView1.GetRowCellValue(i, "Id");
+                            dt.Rows.Add(dRow);
+                        }
+
+                        var q2 = db.AazaSandoghs.ToList();
+                        var q = db.AazaSandoghs.ToList();
+                        for (int i = 0; i < q2.Count; i++)
+                        {
+                            if (!dt.Rows.Contains(q2[i].Id))
+                                q.Remove(q2[i]);
+                        }
+                        //var q = db.AazaSandoghs.Where(s => s.IsActive == IsActiveList).ToList();
+
                         for (int i = 0; i < q.Count; i++)
                         {
                             q[i].HaghOzviat = Convert.ToDecimal(txtHaghOzviat.Text.Replace(",", ""));
                         }
                         db.SaveChanges();
-                        XtraMessageBox.Show("مبلغ پس انداز " + q.Count + " عضو صندوق اصلاح گردید","پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        XtraMessageBox.Show("مبلغ پس انداز " + q.Count + " عضو صندوق اصلاح گردید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                         Fm.FillDataGridTarifAaza();
                     }
@@ -57,7 +83,7 @@ namespace Sandogh_PG.Forms
 
         private void txtHaghOzviat_EditValueChanged(object sender, EventArgs e)
         {
-            if (txtHaghOzviat.Text!="0" && !string.IsNullOrEmpty(txtHaghOzviat.Text))
+            if (!string.IsNullOrEmpty(txtHaghOzviat.Text))
             {
                 btnSaveAndClose.Enabled = true;
             }

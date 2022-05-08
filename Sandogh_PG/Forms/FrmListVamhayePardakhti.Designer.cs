@@ -137,7 +137,7 @@
             this.panelControl2.Location = new System.Drawing.Point(440, 0);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(680, 854);
+            this.panelControl2.Size = new System.Drawing.Size(977, 854);
             this.panelControl2.TabIndex = 4;
             // 
             // groupBox4
@@ -149,7 +149,7 @@
             this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox4.Size = new System.Drawing.Size(676, 754);
+            this.groupBox4.Size = new System.Drawing.Size(973, 754);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "لیست وامهای پرداختی (تسویه نشده)";
@@ -163,7 +163,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(4);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(668, 721);
+            this.gridControl1.Size = new System.Drawing.Size(965, 721);
             this.gridControl1.TabIndex = 33;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -628,12 +628,19 @@
             // 
             // colTozihat
             // 
+            this.colTozihat.AppearanceCell.Options.UseTextOptions = true;
+            this.colTozihat.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colTozihat.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colTozihat.AppearanceHeader.Options.UseTextOptions = true;
+            this.colTozihat.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colTozihat.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colTozihat.Caption = "توضیحات";
             this.colTozihat.FieldName = "Tozihat";
             this.colTozihat.MinWidth = 23;
             this.colTozihat.Name = "colTozihat";
             this.colTozihat.Visible = true;
             this.colTozihat.VisibleIndex = 22;
-            this.colTozihat.Width = 85;
+            this.colTozihat.Width = 600;
             // 
             // panelControl6
             // 
@@ -644,7 +651,7 @@
             this.panelControl6.Location = new System.Drawing.Point(2, 2);
             this.panelControl6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl6.Name = "panelControl6";
-            this.panelControl6.Size = new System.Drawing.Size(676, 48);
+            this.panelControl6.Size = new System.Drawing.Size(973, 48);
             this.panelControl6.TabIndex = 4;
             // 
             // btnEdit1
@@ -698,7 +705,7 @@
             this.panelControl3.Location = new System.Drawing.Point(2, 804);
             this.panelControl3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(676, 48);
+            this.panelControl3.Size = new System.Drawing.Size(973, 48);
             this.panelControl3.TabIndex = 1;
             // 
             // btnDesignReport1
@@ -1227,7 +1234,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1120, 854);
+            this.ClientSize = new System.Drawing.Size(1417, 854);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.panelControl2);
             this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("FrmListVamhayePardakhti.IconOptions.Icon")));

@@ -450,6 +450,7 @@
             this.txtPassword2.Properties.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword2.Properties.Appearance.Options.UseFont = true;
             this.txtPassword2.Properties.MaxLength = 23;
+            this.txtPassword2.Properties.PasswordChar = '*';
             this.txtPassword2.Size = new System.Drawing.Size(151, 30);
             this.txtPassword2.TabIndex = 6;
             // 

@@ -799,6 +799,7 @@
             this.pictureEdit1.Location = new System.Drawing.Point(12, 97);
             this.pictureEdit1.Name = "pictureEdit1";
             this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pictureEdit1.Properties.ReadOnly = true;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             this.pictureEdit1.Size = new System.Drawing.Size(120, 109);
             this.pictureEdit1.TabIndex = 0;

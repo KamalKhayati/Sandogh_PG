@@ -759,10 +759,23 @@ namespace Sandogh_PG
             }
         }
 
+        decimal SumBed = 0;
+        decimal SumBes = 0;
+        decimal MandeHesab = 0;
+        int _cmbNoeSanad = 0;
+        string _cmbHesabMoin1 = string.Empty;
+        int AllTafId = 0;
+        string _NameAaza = string.Empty;
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (TextEditValidation())
             {
+                _cmbNoeSanad = cmbNoeSanad.SelectedIndex;
+                _cmbHesabMoin1 = cmbHesabMoin1.Text;
+                AllTafId = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                _NameAaza = cmbHesabTafzili1.Text;
+
                 if (En == EnumCED.Create)
                 {
                     using (var db = new MyContext())
@@ -831,10 +844,12 @@ namespace Sandogh_PG
                             //XtraMessageBox.Show("عملیات ایجاد با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                             gridControl1.Enabled = true;
                             gridView1.MoveLast();
+
                             ActiveButtons();
                             ClearControls();
                             InActiveControls();
                             En = EnumCED.Save;
+
                         }
                         catch (Exception ex)
                         {
@@ -928,6 +943,125 @@ namespace Sandogh_PG
                         }
                     }
                 }
+
+                using (var db = new MyContext())
+                {
+                    try
+                    {
+                        if ((_cmbNoeSanad == 1 || _cmbNoeSanad == 2) && _cmbHesabMoin1 == "سرمایه" && AllTafId > 0)
+                        {
+
+                            var q3 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == AllTafId && f.HesabMoinCode == 7001).ToList();
+                            if (q3.Count > 0)
+                            {
+                                foreach (var item in q3)
+                                {
+                                    if (item.Bed != null)
+                                        SumBed += (decimal)item.Bed;
+                                    else
+                                        SumBes += (decimal)item.Bes;
+                                }
+                                MandeHesab = SumBed - SumBes;
+                                if (MandeHesab == 0)
+                                {
+                                    if (XtraMessageBox.Show("با ثبت این سند مانده حساب سرمایه " + _NameAaza + " صفر میشود آیا شخص مورد نظر غیر فعال شود ؟", "پیغام ثبت ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                                    {
+                                        var q1 = db.VamPardakhtis.FirstOrDefault(s => s.IsTasviye == false && s.AazaId == AllTafId);
+                                        var q5 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.ZameninName.Contains(_NameAaza));
+                                        var q4 = db.CheckTazmins.FirstOrDefault(f => f.IsInSandogh == true && f.VamGerandeId == AllTafId);
+                                        var q6 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == AllTafId && f.HesabMoinCode == 3001).ToList();
+                                        var q7 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == AllTafId && f.HesabMoinCode == 4001).ToList();
+                                        var q8 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == AllTafId && f.HesabMoinCode == 6003).ToList();
+
+                                        if (q1 != null)
+                                        {
+                                            XtraMessageBox.Show("عضو مورد نظر وام تسویه نشده دارد لذا نمیتوان آنرا غیر فعال نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                            return;
+                                        }
+                                        else if (q5.Count() > 0)
+                                        {
+                                            foreach (var item in q5)
+                                            {
+                                                XtraMessageBox.Show("عضو مورد نظر ضامن وام " + item.NameAaza + " است لذا نمیتوان آنرا غیر فعال نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                            }
+                                            return;
+                                        }
+                                        else if (q4 != null)
+                                        {
+                                            XtraMessageBox.Show("عضو مورد نظر نزد صندوق سند تضمینی دارد لذا نمیتوان آنرا غیر فعال نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                            return;
+                                        }
+                                        else if (q6.Count > 0)
+                                        {
+                                            foreach (var item in q6)
+                                            {
+                                                if (item.Bed != null)
+                                                    SumBed += (decimal)item.Bed;
+                                                else
+                                                    SumBes += (decimal)item.Bes;
+                                            }
+                                            MandeHesab = SumBed - SumBes;
+                                            if (MandeHesab != 0)
+                                            {
+                                                XtraMessageBox.Show("حساب مساعده عضو نظر مورد مانده دارد لذا نمیتوان آنرا غیر فعال نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                                return;
+                                            }
+                                        }
+                                        else if (q7.Count > 0)
+                                        {
+                                            foreach (var item in q7)
+                                            {
+                                                if (item.Bed != null)
+                                                    SumBed += (decimal)item.Bed;
+                                                else
+                                                    SumBes += (decimal)item.Bes;
+                                            }
+                                            MandeHesab = SumBed - SumBes;
+                                            if (MandeHesab != 0)
+                                            {
+                                                XtraMessageBox.Show("حساب بدهکاران عضو مورد نظر مانده دارد لذا نمیتوان آنرا غیر فعال نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                                return;
+                                            }
+                                        }
+                                        else if (q8.Count > 0)
+                                        {
+                                            foreach (var item in q8)
+                                            {
+                                                if (item.Bed != null)
+                                                    SumBed += (decimal)item.Bed;
+                                                else
+                                                    SumBes += (decimal)item.Bes;
+                                            }
+                                            MandeHesab = SumBed - SumBes;
+                                            if (MandeHesab != 0)
+                                            {
+                                                XtraMessageBox.Show("حساب بستانکاران عضو مورد نظر مانده دارد لذا نمیتوان آنرا غیر فعال نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                                return;
+                                            }
+                                        }
+
+                                        var qq1 = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 3 && f.Id == AllTafId);
+                                        qq1.IsActive = false;
+                                        int _Id2 = qq1.Id2;
+
+                                        var qq2 = db.AazaSandoghs.FirstOrDefault(f => f.GroupTafziliId == 3 && f.Id == _Id2);
+                                        qq2.IsActive = false;
+                                        db.SaveChanges();
+
+
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
             }
         }
 

@@ -240,6 +240,9 @@
             // 
             // colId
             // 
+            this.colId.AppearanceCell.Options.UseTextOptions = true;
+            this.colId.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colId.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colId.AppearanceHeader.Options.UseTextOptions = true;
             this.colId.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colId.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -789,14 +792,18 @@
             // 
             // colLogo
             // 
-            this.colLogo.Caption = "gridColumn1";
+            this.colLogo.AppearanceCell.Options.UseTextOptions = true;
+            this.colLogo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colLogo.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colLogo.AppearanceHeader.Options.UseTextOptions = true;
+            this.colLogo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colLogo.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colLogo.Caption = "عکس";
             this.colLogo.FieldName = "Logo";
             this.colLogo.MinWidth = 25;
             this.colLogo.Name = "colLogo";
             this.colLogo.UnboundType = DevExpress.Data.UnboundColumnType.Object;
-            this.colLogo.Visible = true;
-            this.colLogo.VisibleIndex = 32;
-            this.colLogo.Width = 94;
+            this.colLogo.Width = 156;
             // 
             // gridControl1
             // 
@@ -1243,6 +1250,7 @@
             this.chkIsActive.Name = "chkIsActive";
             this.chkIsActive.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
             this.chkIsActive.Properties.Caption = "فعال";
+            this.chkIsActive.Properties.ReadOnly = true;
             this.chkIsActive.Size = new System.Drawing.Size(62, 35);
             this.chkIsActive.TabIndex = 13;
             this.chkIsActive.CheckedChanged += new System.EventHandler(this.chkIsActive_CheckedChanged);
@@ -1258,6 +1266,7 @@
             this.chkIsOzveSandogh.Name = "chkIsOzveSandogh";
             this.chkIsOzveSandogh.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
             this.chkIsOzveSandogh.Properties.Caption = "عضو صندوق";
+            this.chkIsOzveSandogh.Properties.ReadOnly = true;
             this.chkIsOzveSandogh.Size = new System.Drawing.Size(115, 35);
             this.chkIsOzveSandogh.TabIndex = 12;
             // 
@@ -2247,7 +2256,6 @@
         #endregion
         private DevExpress.XtraGrid.Columns.GridColumn colCode;
         private DevExpress.XtraGrid.Columns.GridColumn Line;
-        private DevExpress.XtraGrid.Columns.GridColumn colId;
         public DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn colShomareHesab;
         private DevExpress.XtraGrid.Columns.GridColumn colShomareKart;
@@ -2371,5 +2379,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colDaramadeMahiane;
         private DevExpress.XtraEditors.SimpleButton btnAmaliatColi;
         private DevExpress.XtraGrid.Columns.GridColumn colLogo;
+        public DevExpress.XtraGrid.Columns.GridColumn colId;
     }
 }

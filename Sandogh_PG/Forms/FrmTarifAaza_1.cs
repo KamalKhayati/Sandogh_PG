@@ -585,6 +585,7 @@ namespace Sandogh_PG
                 txtSharhHesab.ReadOnly = false;
                 txtNobatbandiVam.ReadOnly = false;
                 chkIsActive.ReadOnly = false;
+                chkIsOzveSandogh.ReadOnly = false;
                 pictureEdit1.ReadOnly = false;
                 btnBrowsPictuer.Enabled = true;
                 btnDeletePictuer.Enabled = true;
@@ -625,6 +626,7 @@ namespace Sandogh_PG
                 txtSharhHesab.ReadOnly = true;
                 txtNobatbandiVam.ReadOnly = true;
                 chkIsActive.ReadOnly = true;
+                chkIsOzveSandogh.ReadOnly = true;
                 pictureEdit1.ReadOnly = true;
                 btnBrowsPictuer.Enabled = false;
                 btnDeletePictuer.Enabled = false;
@@ -755,6 +757,8 @@ namespace Sandogh_PG
                 txtSharhHesab.Text = gridView1.GetFocusedRowCellDisplayText("SharhHesab");
                 txtNobatbandiVam.Text = gridView1.GetFocusedRowCellDisplayText("NobatbandiVam") ?? "0";
                 chkIsActive.Checked = Convert.ToBoolean(gridView1.GetFocusedRowCellValue("IsActive"));
+                chkIsOzveSandogh.Checked = Convert.ToBoolean(gridView1.GetFocusedRowCellValue("IsOzveSandogh"));
+
                 using (var db = new MyContext())
                 {
                     try
@@ -1429,6 +1433,7 @@ namespace Sandogh_PG
                     txtSharhHesab.Text = gridView1.GetFocusedRowCellDisplayText("SharhHesab");
                     txtNobatbandiVam.Text = gridView1.GetFocusedRowCellDisplayText("NobatbandiVam") ?? "0";
                     chkIsActive.Checked = Convert.ToBoolean(gridView1.GetFocusedRowCellValue("IsActive"));
+                    chkIsOzveSandogh.Checked = Convert.ToBoolean(gridView1.GetFocusedRowCellValue("IsOzveSandogh"));
                     using (var db = new MyContext())
                     {
                         try

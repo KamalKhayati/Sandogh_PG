@@ -594,7 +594,7 @@ namespace Sandogh_PG
 
         private void btnMandeAshkhas_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            FrmMandeAshkhas frm = new FrmMandeAshkhas();
+            FrmMandeAshkhas frm = new FrmMandeAshkhas(this);
             frm._SandoghName = ribbonControl1.ApplicationDocumentCaption;
             frm.ShowDialog();
 

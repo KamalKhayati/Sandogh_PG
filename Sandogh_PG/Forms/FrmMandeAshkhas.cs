@@ -20,12 +20,21 @@ namespace Sandogh_PG
             InitializeComponent();
         }
 
+        FrmMain Fm;
+        public FrmMandeAshkhas(FrmMain fm)
+        {
+            InitializeComponent();
+            Fm = fm;
+        }
+
+        int _SandoghId = 0;
         private void FrmMandeAshkhas_Load(object sender, EventArgs e)
         {
             txtTaTarikh.Text = DateTime.Now.ToString().Substring(0, 10);
             HelpClass1.DateTimeMask(txtTaTarikh);
+            _SandoghId = Convert.ToInt32(Fm.IDSandogh.Caption);
             FillDataGridView1();
-            FillDataGridView2();
+            //FillDataGridView2();
 
             txtTaTarikh.Focus();
         }
@@ -38,28 +47,61 @@ namespace Sandogh_PG
                 {
                     DateTime _Ta = Convert.ToDateTime(txtTaTarikh.Text);
                     List<AsnadeHesabdariRow> List1 = new List<AsnadeHesabdariRow>();
+                    var q2 = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SandoghId).checkEdit4;
+                    var q3 = db.AllHesabTafzilis.Where(s => s.IsActive == false).ToList();
                     var q1 = db.AsnadeHesabdariRows.Where(f => f.Tarikh <= _Ta && f.HesabTafCode >= 7000001 && f.HesabTafCode <= 7999999).ToList();
-                    if (q1.Count > 0)
+                    var q4 = q1.Select(s => s.HesabTafId).Distinct().ToList();
+
+                    if (q4.Count > 0)
                     {
-                        foreach (var item in q1)
+                        foreach (var item in q4)
                         {
-                            AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
-                            if (!List1.Any(f => f.HesabTafId == item.HesabTafId))
+                            var q5 = q1.FirstOrDefault(s => s.HesabTafId == item);
+                            if (q2)
                             {
-                                //obj1.Id = item.Id;
-                                obj1.HesabMoinId = item.HesabMoinId;
-                                obj1.HesabMoinCode = item.HesabMoinCode;
-                                obj1.HesabMoinName = item.HesabMoinName;
-                                obj1.HesabTafId = item.HesabTafId;
-                                obj1.HesabTafCode = item.HesabTafCode;
-                                obj1.HesabTafName = item.HesabTafName;
-                                //obj1.HesabTafId = item.HesabTafId;
-                                //obj1.HesabTafCode = item.HesabTafCode;
-                                //obj1.HesabTafName = item.HesabTafName;
-                                obj1.Mande01 = q1.Where(f => f.HesabTafId == item.HesabTafId).Sum(f => f.Bed) - q1.Where(f => f.HesabTafId == item.HesabTafId).Sum(f => f.Bes);
-                                //obj1.Bes = q1.Where(f => f.HesabTafId == item.HesabTafId).Sum(f => f.Bes);
-                                List1.Add(obj1);
+                                if (!q3.Any(s => s.Id == item))
+                                {
+                                    AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
+                                    if (!List1.Any(f => f.HesabTafId == item))
+                                    {
+                                        //obj1.Id = item.Id;
+                                        obj1.HesabMoinId = q5.HesabMoinId;
+                                        obj1.HesabMoinCode = q5.HesabMoinCode;
+                                        obj1.HesabMoinName = q5.HesabMoinName;
+                                        obj1.HesabTafId = q5.HesabTafId;
+                                        obj1.HesabTafCode = q5.HesabTafCode;
+                                        obj1.HesabTafName = q5.HesabTafName;
+                                        //obj1.HesabTafId = item.HesabTafId;
+                                        //obj1.HesabTafCode = item.HesabTafCode;
+                                        //obj1.HesabTafName = item.HesabTafName;
+                                        obj1.Mande01 = q1.Where(f => f.HesabTafId == item).Sum(f => f.Bed) - q1.Where(f => f.HesabTafId == item).Sum(f => f.Bes);
+                                        //obj1.Bes = q1.Where(f => f.HesabTafId == item.HesabTafId).Sum(f => f.Bes);
+                                        List1.Add(obj1);
+                                    }
+                                }
                             }
+                            else
+                            {
+                                AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
+                                if (!List1.Any(f => f.HesabTafId == item))
+                                {
+                                    //obj1.Id = item.Id;
+                                    obj1.HesabMoinId = q5.HesabMoinId;
+                                    obj1.HesabMoinCode = q5.HesabMoinCode;
+                                    obj1.HesabMoinName = q5.HesabMoinName;
+                                    obj1.HesabTafId = q5.HesabTafId;
+                                    obj1.HesabTafCode = q5.HesabTafCode;
+                                    obj1.HesabTafName = q5.HesabTafName;
+                                    //obj1.HesabTafId = item.HesabTafId;
+                                    //obj1.HesabTafCode = item.HesabTafCode;
+                                    //obj1.HesabTafName = item.HesabTafName;
+                                    obj1.Mande01 = q1.Where(f => f.HesabTafId == item).Sum(f => f.Bed) - q1.Where(f => f.HesabTafId == item).Sum(f => f.Bes);
+                                    //obj1.Bes = q1.Where(f => f.HesabTafId == item.HesabTafId).Sum(f => f.Bes);
+                                    List1.Add(obj1);
+                                }
+
+                            }
+
                         }
                         asnadeHesabdariRowsBindingSource.DataSource = List1.OrderBy(f => f.HesabTafCode);
                     }
@@ -147,6 +189,28 @@ namespace Sandogh_PG
         {
             if (xtraTabControl1.SelectedTabPageIndex == 0)
             {
+                DataTable dt = new DataTable();
+                for (int i = 0; i < gridView1.Columns.Count; i++)
+                {
+                    //if (gridView1.Columns[i].Visible)
+                    dt.Columns.Add(gridView1.Columns[i].FieldName);
+                }
+
+                for (int i = 0; i < gridView1.RowCount; i++)
+                {
+                    DataRow dRow = dt.NewRow();
+                    //dRow[cell.ColumnIndex] = cell.Value;
+                    if (gridView1.Columns["Line"].Visible)
+                        dRow["Line"] = gridView1.GetRowCellValue(i, "Line");
+                    if (gridView1.Columns["HesabTafCode"].Visible)
+                        dRow["HesabTafCode"] = gridView1.GetRowCellValue(i, "HesabTafCode");
+                    if (gridView1.Columns["HesabTafName"].Visible)
+                        dRow["HesabTafName"] = gridView1.GetRowCellDisplayText(i, "HesabTafName");
+                    if (gridView1.Columns["Mande01"].Visible)
+                        dRow["Mande01"] = gridView1.GetRowCellDisplayText(i, "Mande01");
+                    dt.Rows.Add(dRow);
+                }
+
                 if (System.IO.File.Exists(FilePath + FileName1))
                 {
                     if (gridView1.RowCount > 0)
@@ -154,7 +218,8 @@ namespace Sandogh_PG
                         XtraReport XtraReport1 = new XtraReport();
                         XtraReport1.LoadLayoutFromXml(FilePath + FileName1);
 
-                        XtraReport1.DataSource = gridView1.DataSource;
+                        //XtraReport1.DataSource = gridView1.DataSource;
+                        XtraReport1.DataSource = dt;
 
                         // XtraReport1.Parameters["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : new MyContext().AsnadeHesabdariRows.Min(f => f.Tarikh).ToString().Substring(0, 10);
                         XtraReport1.Parameters["Ta_Tarikh"].Value = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
@@ -174,6 +239,42 @@ namespace Sandogh_PG
             }
             else
             {
+                DataTable dt = new DataTable();
+                for (int i = 0; i < gridView2.Columns.Count; i++)
+                {
+                    //if (gridView1.Columns[i].Visible)
+                    dt.Columns.Add(gridView2.Columns[i].FieldName);
+                }
+
+                for (int i = 0; i < gridView2.RowCount; i++)
+                {
+                    DataRow dRow = dt.NewRow();
+                    //dRow[cell.ColumnIndex] = cell.Value;
+                    if (gridView2.Columns["Line"].Visible)
+                        dRow["Line"] = gridView2.GetRowCellValue(i, "Line");
+                    if (gridView2.Columns["HesabTafCode"].Visible)
+                        dRow["HesabTafCode"] = gridView2.GetRowCellValue(i, "HesabTafCode");
+                    if (gridView2.Columns["HesabTafName"].Visible)
+                        dRow["HesabTafName"] = gridView2.GetRowCellDisplayText(i, "HesabTafName");
+                    if (gridView2.Columns["2001"].Visible)
+                        dRow["2001"] = gridView2.GetRowCellDisplayText(i, "2001");
+                    if (gridView2.Columns["3001"].Visible)
+                        dRow["3001"] = gridView2.GetRowCellDisplayText(i, "3001");
+                    if (gridView2.Columns["4001"].Visible)
+                        dRow["4001"] = gridView2.GetRowCellDisplayText(i, "4001");
+                    if (gridView2.Columns["6001"].Visible)
+                        dRow["6001"] = gridView2.GetRowCellDisplayText(i, "6001");
+                    if (gridView2.Columns["6002"].Visible)
+                        dRow["6002"] = gridView2.GetRowCellDisplayText(i, "6002");
+                    if (gridView2.Columns["6003"].Visible)
+                        dRow["6003"] = gridView2.GetRowCellDisplayText(i, "6003");
+                    if (gridView2.Columns["7001"].Visible)
+                        dRow["7001"] = gridView2.GetRowCellDisplayText(i, "7001");
+                    if (gridView2.Columns["Mande01"].Visible)
+                        dRow["Mande01"] = gridView2.GetRowCellDisplayText(i, "Mande01");
+                    dt.Rows.Add(dRow);
+                }
+
                 if (System.IO.File.Exists(FilePath + FileName2))
                 {
                     if (gridView2.RowCount > 0)
@@ -181,7 +282,8 @@ namespace Sandogh_PG
                         XtraReport XtraReport1 = new XtraReport();
                         XtraReport1.LoadLayoutFromXml(FilePath + FileName2);
 
-                        XtraReport1.DataSource = gridControl2.DataSource;
+                        //XtraReport1.DataSource = gridControl2.DataSource;
+                        XtraReport1.DataSource = dt;
 
                         // XtraReport1.Parameters["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : new MyContext().AsnadeHesabdariRows.Min(f => f.Tarikh).ToString().Substring(0, 10);
                         XtraReport1.Parameters["Ta_Tarikh"].Value = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
@@ -205,7 +307,7 @@ namespace Sandogh_PG
 
         private void btnDesignReport_Click(object sender, EventArgs e)
         {
-            if (xtraTabControl1.SelectedTabPageIndex==0)
+            if (xtraTabControl1.SelectedTabPageIndex == 0)
             {
                 HelpClass1.LoadReportDesigner(FilePath, FileName1);
 
@@ -225,8 +327,10 @@ namespace Sandogh_PG
 
         private void btnDisplyList_Click(object sender, EventArgs e)
         {
-            FillDataGridView1();
-            FillDataGridView2();
+            if (xtraTabControl1.SelectedTabPageIndex == 0)
+                FillDataGridView1();
+            else
+                FillDataGridView2();
         }
 
         private void ChkTarikh_CheckedChanged(object sender, EventArgs e)
@@ -245,6 +349,11 @@ namespace Sandogh_PG
         {
             btnDisplyList_Click(null, null);
 
+        }
+
+        private void xtraTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+        {
+            btnDisplyList_Click(null, null);
         }
     }
 }

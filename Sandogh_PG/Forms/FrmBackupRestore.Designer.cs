@@ -42,9 +42,9 @@
             this.backgroundWorkerBackup = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerRestore = new System.ComponentModel.BackgroundWorker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.rbtnRestore = new System.Windows.Forms.RadioButton();
             this.rbtnBackup = new System.Windows.Forms.RadioButton();
-            this.label3 = new System.Windows.Forms.Label();
             this.gbxBackup.SuspendLayout();
             this.gbxRestore.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -145,7 +145,7 @@
             // btnBrowserRestore
             // 
             this.btnBrowserRestore.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBrowserRestore.Location = new System.Drawing.Point(23, 75);
+            this.btnBrowserRestore.Location = new System.Drawing.Point(14, 75);
             this.btnBrowserRestore.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnBrowserRestore.Name = "btnBrowserRestore";
             this.btnBrowserRestore.Size = new System.Drawing.Size(90, 40);
@@ -156,11 +156,11 @@
             // 
             // txtSelectFile
             // 
-            this.txtSelectFile.Location = new System.Drawing.Point(123, 76);
+            this.txtSelectFile.Location = new System.Drawing.Point(111, 76);
             this.txtSelectFile.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.txtSelectFile.Name = "txtSelectFile";
             this.txtSelectFile.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtSelectFile.Size = new System.Drawing.Size(671, 39);
+            this.txtSelectFile.Size = new System.Drawing.Size(674, 39);
             this.txtSelectFile.TabIndex = 2;
             // 
             // label2
@@ -198,11 +198,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "انتخاب حالت";
             // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label3.Location = new System.Drawing.Point(176, 35);
+            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(609, 59);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "توجه : لطفاً نام پوشه های مسیر فایل پشتیبان بصورت فارسی تایپ نشود در غیر اینصورت " +
+    "احتمال دارد فایل پشتیبان بصورت ناقص ذخیره گردد.";
+            // 
             // rbtnRestore
             // 
             this.rbtnRestore.AutoSize = true;
             this.rbtnRestore.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.rbtnRestore.Location = new System.Drawing.Point(81, 62);
+            this.rbtnRestore.Location = new System.Drawing.Point(75, 68);
             this.rbtnRestore.Name = "rbtnRestore";
             this.rbtnRestore.Size = new System.Drawing.Size(93, 35);
             this.rbtnRestore.TabIndex = 3;
@@ -215,7 +228,7 @@
             this.rbtnBackup.AutoSize = true;
             this.rbtnBackup.Checked = true;
             this.rbtnBackup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.rbtnBackup.Location = new System.Drawing.Point(20, 21);
+            this.rbtnBackup.Location = new System.Drawing.Point(14, 28);
             this.rbtnBackup.Name = "rbtnBackup";
             this.rbtnBackup.Size = new System.Drawing.Size(154, 35);
             this.rbtnBackup.TabIndex = 3;
@@ -223,19 +236,6 @@
             this.rbtnBackup.Text = "پشتیبان گیری";
             this.rbtnBackup.UseVisualStyleBackColor = true;
             this.rbtnBackup.CheckedChanged += new System.EventHandler(this.rbtnBackup_CheckedChanged);
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(197, 28);
-            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(603, 51);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "توجه : لطفاً نام پوشه های مسیر فایل پشتیبان بصورت فارسی تایپ نشود در غیر اینصورت " +
-    "احتمال دارد فایل پشتیبان بصورت ناقص ذخیره گردد.";
             // 
             // FrmBackupRestore
             // 

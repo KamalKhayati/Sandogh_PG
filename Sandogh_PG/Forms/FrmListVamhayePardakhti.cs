@@ -317,8 +317,12 @@ namespace Sandogh_PG
                 }
                 else
                 {
-                    total.Add(total[rowIndex - 1] + MablaghAghsat - MablaghDaryafti);
-                    e.Value = total[rowIndex];
+                    if (total.Count()> rowIndex - 1)
+                    {
+                        //long a = total[rowIndex - 1];
+                        total.Add(total[rowIndex - 1] + MablaghAghsat - MablaghDaryafti);
+                        e.Value = total[rowIndex];
+                    }
                 }
 
             }

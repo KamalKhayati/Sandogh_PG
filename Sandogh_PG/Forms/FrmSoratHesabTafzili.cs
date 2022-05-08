@@ -80,7 +80,11 @@ namespace Sandogh_PG
             {
                 try
                 {
+                    var q1 = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SandoghId).checkEdit4;
                     var q = db.AllHesabTafzilis.OrderBy(f => f.GroupTafziliId).ToList();
+
+                    if (q1)
+                        q = db.AllHesabTafzilis.Where(f => f.IsActive == q1).OrderBy(f => f.GroupTafziliId).ToList();
                     if (q.Count > 0)
                     {
                         allHesabTafzilisBindingSource.DataSource = q;
@@ -183,13 +187,14 @@ namespace Sandogh_PG
 
         }
 
+        int _SandoghId = 0;
         private void FrmSoratHesabTafzili_Load(object sender, EventArgs e)
         {
             txtAzTarikh.Text = new MyContext().AsnadeHesabdariRows.Any() ? new MyContext().AsnadeHesabdariRows.Min(f => f.Tarikh).ToString().Substring(0, 10) : "1398/01/01";
             txtTaTarikh.Text = DateTime.Now.ToString().Substring(0, 10);
             HelpClass1.DateTimeMask(txtAzTarikh);
             HelpClass1.DateTimeMask(txtTaTarikh);
-
+            _SandoghId = Convert.ToInt32(Fm.IDSandogh.Caption);
             FillcmbHesabTafzili();
             cmbHesabTafzili.Focus();
 
@@ -296,8 +301,8 @@ namespace Sandogh_PG
 
                     XtraReport1.DataSource = HelpClass1.ConvettDatagridviewToDataSet(gridView2);
 
-                    XtraReport1.Parameters["Az_Tarikh"].Value =  txtAzTarikh.Text ;
-                    XtraReport1.Parameters["Ta_Tarikh"].Value =  txtTaTarikh.Text ;
+                    XtraReport1.Parameters["Az_Tarikh"].Value = txtAzTarikh.Text;
+                    XtraReport1.Parameters["Ta_Tarikh"].Value = txtTaTarikh.Text;
                     XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
                     XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
                     XtraReport1.Parameters["HesabTafzil"].Value = cmbHesabTafzili.Text;

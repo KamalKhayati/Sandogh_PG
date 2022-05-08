@@ -40,7 +40,7 @@ namespace Sandogh_PG
                     dt.Columns.Add("MablaghAghsat");
                     dt.Columns.Add("CodePersoneli");
                     dt.Columns.Add("Tozihat");
-                    
+
                     dt.Columns["MablaghPasandaz"].DataType = typeof(Decimal);
                     dt.Columns["MablaghAghsat"].DataType = typeof(Decimal);
                     var q = db.AazaSandoghs.Where(f => f.IsActive == true && f.IsOzveSandogh == chkIsOzveSandogh.Checked).ToList();
@@ -53,6 +53,8 @@ namespace Sandogh_PG
                             DataRow1[0] = q[RowCounter].NameVFamil;
                             DataRow1[1] = txtSal.Text;
                             DataRow1[2] = cmbMonth.Text;
+                            DataRow1[3] = 0;
+                            DataRow1[4] = 0;
 
                             int _AllTafId = q[RowCounter].AllTafId;
                             var qq1 = db.HaghOzviats.Where(f => f.AazaId == _AllTafId && f.Sal == _Sal).ToList();
@@ -84,6 +86,7 @@ namespace Sandogh_PG
                                     if (q[RowCounter].HaghOzviat.Value > 0)
                                         _Tozihat += "پس انداز " + 1 + " ماه";
                                 }
+                                    
                             }
                             string IndexMah = string.Empty;
                             DateTime? StartMonth = null;
@@ -183,8 +186,8 @@ namespace Sandogh_PG
 
                                 if (checkEdit1.Checked)
                                 {
-                                    var q2 = db.RizeAghsatVams.Where(f => f.AazaId == q1.Id && f.TarikhSarresid <= EndMonth && f.MablaghDaryafti == 0 ).ToList();
-                                    var q3 = db.RizeAghsatVams.Where(f => f.AazaId == q1.Id && f.TarikhSarresid <= EndMonth && f.MablaghDaryafti != 0 && f.MablaghDaryafti < f.MablaghAghsat).ToList();
+                                    var q2 = db.RizeAghsatVams.Where(f => f.AazaId == q1.Id && f.TarikhSarresid <= EndMonth && f.MablaghDaryafti == 0 && f.VamPardakhti1.IsTasviye == false).ToList();
+                                    var q3 = db.RizeAghsatVams.Where(f => f.AazaId == q1.Id && f.TarikhSarresid <= EndMonth && f.MablaghDaryafti != 0 && f.MablaghDaryafti < f.MablaghAghsat && f.VamPardakhti1.IsTasviye == false).ToList();
 
                                     List<RizeAghsatVam> List1 = new List<RizeAghsatVam>();
                                     List1.AddRange(q2);
@@ -212,8 +215,8 @@ namespace Sandogh_PG
                                 }
                                 else
                                 {
-                                    var q2 = db.RizeAghsatVams.Where(f => f.AazaId == q1.Id && f.TarikhSarresid >= StartMonth && f.TarikhSarresid <= EndMonth && f.MablaghDaryafti == 0).ToList();
-                                    var q3 = db.RizeAghsatVams.Where(f => f.AazaId == q1.Id && f.TarikhSarresid >= StartMonth && f.TarikhSarresid <= EndMonth && f.MablaghDaryafti != 0 && f.MablaghDaryafti < f.MablaghAghsat).ToList();
+                                    var q2 = db.RizeAghsatVams.Where(f => f.AazaId == q1.Id && f.TarikhSarresid >= StartMonth && f.TarikhSarresid <= EndMonth && f.MablaghDaryafti == 0 && f.VamPardakhti1.IsTasviye == false).ToList();
+                                    var q3 = db.RizeAghsatVams.Where(f => f.AazaId == q1.Id && f.TarikhSarresid >= StartMonth && f.TarikhSarresid <= EndMonth && f.MablaghDaryafti != 0 && f.MablaghDaryafti < f.MablaghAghsat && f.VamPardakhti1.IsTasviye == false).ToList();
 
                                     //var q2 = db.RizeAghsatVams.Where(f => f.AazaId == q1.Id && f.TarikhSarresid <= _Tarikh && f.MablaghDaryafti == 0).ToList();
                                     //var q3 = db.RizeAghsatVams.Where(f => f.AazaId == q1.Id && f.TarikhSarresid <= _Tarikh && f.MablaghDaryafti != 0 && f.MablaghDaryafti < f.MablaghAghsat).ToList();
@@ -245,8 +248,10 @@ namespace Sandogh_PG
 
                             DataRow1[5] = q[RowCounter].CodePersoneli;
                             DataRow1[6] = _Tozihat;
-
-                            dt.Rows.Add(DataRow1);
+                            decimal DataRow3 = DataRow1[3] != null ? Convert.ToDecimal(DataRow1[3]) : 0;
+                            decimal DataRow4 = DataRow1[4].ToString() != "" ? Convert.ToDecimal(DataRow1[4]) : 0;
+                            if (DataRow3 > 0 || DataRow4 > 0)
+                                dt.Rows.Add(DataRow1);
                         }
                         gridControl1.DataSource = dt;
                         //ds.Tables.Add(dt);
