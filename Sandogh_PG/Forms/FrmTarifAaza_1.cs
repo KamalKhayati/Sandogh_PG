@@ -44,7 +44,10 @@ namespace Sandogh_PG
                     {
                         var q1 = dataContext.AazaSandoghs.Where(s => s.IsActive == true).OrderBy(s => s.Code).ToList();
                         if (q1.Count > 0)
+                        {
                             gridControl1.DataSource = q1;
+                            gridView1.MoveLast();
+                        }
                         else
                             gridControl1.DataSource = null;
                     }
@@ -52,7 +55,10 @@ namespace Sandogh_PG
                     {
                         var q = dataContext.AazaSandoghs.Where(s => s.IsActive == false).OrderBy(s => s.Code);
                         if (q.Count() > 0)
+                        {
                             gridControl1.DataSource = q.ToList();
+                            gridView1.MoveLast();
+                        }
                         else
                             gridControl1.DataSource = null;
                     }
@@ -138,7 +144,7 @@ namespace Sandogh_PG
         private void FrmTarifAaza_1_Load(object sender, EventArgs e)
         {
             FillDataGridTarifAaza();
-            gridView1.MoveLast();
+
             HelpClass1.DateTimeMask(txtTarikhOzviat);
             HelpClass1.DateTimeMask(txtBirthDate);
         }
@@ -1615,6 +1621,11 @@ namespace Sandogh_PG
             //frd.Show();
             HelpClass1.LoadReportDesigner(FilePath1, FileName1);
 
+        }
+
+        private void FrmTarifAaza_1_Shown(object sender, EventArgs e)
+        {
+            gridView1.MoveLast();
         }
     }
 }

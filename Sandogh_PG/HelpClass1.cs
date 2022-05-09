@@ -70,7 +70,7 @@ namespace Sandogh_PG
                 {
                     Color foreColor = Color.Red;
                     e.Appearance.ForeColor = foreColor;
-                    e.Appearance.BackColor = Color.Orange;
+                    e.Appearance.BackColor = Color.LightYellow;
                 }
 
             }
@@ -351,6 +351,22 @@ namespace Sandogh_PG
             }
         }
 
+        /// <summary>
+        /// شماره بندی ردیف های اندیکاتور گرید ویو
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="gridView1"></param>
+        public static void CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e, GridView gridView1)
+        {
+            gridView1.IndicatorWidth = 60;
+            // Handle this event to paint RowIndicator manually
+            //GridView view = sender as GridView;
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+            {
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+            }
+        }
         public static void SetNumberRowsColumnUnboundGirdView(object sender, CustomColumnDataEventArgs e)
         {
             GridView view = (GridView)sender;
@@ -387,7 +403,7 @@ namespace Sandogh_PG
         }
 
         public static List<decimal> Result2;
-        public static int IndexAkharinDaruaft = -1;
+        //public static int IndexAkharinDaruaft = -1;
         public static void gridView_CustomUnboundColumnData(object sender, CustomColumnDataEventArgs e, GridView gridView1, string Bed = "Bed", string Bes = "Bes", string Mande = "Mande")
         {
             if (gridView1.RowCount == 0)
@@ -402,21 +418,23 @@ namespace Sandogh_PG
             {
                 if (rowIndex == 0)
                 {
+
                     Result2.Add(bed - bes);
                     e.Value = Result2[rowIndex];
-                    if (Convert.ToDecimal(e.Value) == 0)
-                    {
-                        IndexAkharinDaruaft = rowIndex;
-                    }
+                    //if (Convert.ToDecimal(e.Value) == 0)
+                    //{
+                    //    IndexAkharinDaruaft = rowIndex;
+                    //}
                 }
                 else
                 {
+                    //var a = Result2[rowIndex - 1];
                     Result2.Add(Result2[rowIndex - 1] + bed - bes);
                     e.Value = Result2[rowIndex];
-                    if (Convert.ToDecimal(e.Value) == 0)
-                    {
-                        IndexAkharinDaruaft = rowIndex;
-                    }
+                    //if (Convert.ToDecimal(e.Value) == 0)
+                    //{
+                    //    IndexAkharinDaruaft = rowIndex;
+                    //}
 
                     //if (gridView1.RowCount == rowIndex + 1)
                     //{

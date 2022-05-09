@@ -244,7 +244,9 @@ namespace Sandogh_PG
                                 q.Add(obj);
                             }
                             HelpClass1.Result2 = new List<decimal>();
+                            asnadeHesabdariRowsBindingSource1.DataSource = null;
                             asnadeHesabdariRowsBindingSource1.DataSource = q.OrderBy(f => f.Tarikh).ThenBy(f => f.ShomareSanad);
+                            HelpClass1.MoveLast(gridView2);
                         }
                         else
                             asnadeHesabdariRowsBindingSource1.DataSource = null;

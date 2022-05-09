@@ -33,7 +33,10 @@ namespace Sandogh_PG
                 {
                     var q1 = db.DaryaftPardakhtBinHesabhas.OrderBy(s => s.Seryal).ToList();
                     if (q1.Count > 0)
+                    {
                         gridControl1.DataSource = q1;
+                        gridView1.MoveLast();
+                    }
                     else
                         gridControl1.DataSource = null;
                 }
@@ -443,7 +446,7 @@ namespace Sandogh_PG
         private void FrmDaryaftPardakhtBinHesabha_Load(object sender, EventArgs e)
         {
             FillDataGridDaryaftPardakhtBinHesabha();
-            gridView1.MoveLast();
+            //gridView1.MoveLast();
             HelpClass1.DateTimeMask(txtTarikh);
         }
 
@@ -1302,6 +1305,11 @@ namespace Sandogh_PG
                         break;
                     }
             }
+        }
+
+        private void FrmDaryaftPardakhtBinHesabha_Shown(object sender, EventArgs e)
+        {
+            gridView1.MoveLast();
         }
 
 

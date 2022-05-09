@@ -41,7 +41,10 @@ namespace Sandogh_PG
                     {
                         var q1 = db.VamPardakhtis.Where(s => s.IsTasviye == false).OrderBy(s => s.Code).ToList();
                         if (q1.Count > 0)
+                        {
                             vamPardakhtisBindingSource.DataSource = q1;
+                            gridView1.MoveLast();
+                        }
                         else
                             vamPardakhtisBindingSource.DataSource = null;
                     }
@@ -49,7 +52,10 @@ namespace Sandogh_PG
                     {
                         var q = db.VamPardakhtis.Where(s => s.IsTasviye == true).OrderBy(s => s.Code);
                         if (q.Count() > 0)
+                        {
                             vamPardakhtisBindingSource.DataSource = q.ToList();
+                            gridView1.MoveLast();
+                        }
                         else
                             vamPardakhtisBindingSource.DataSource = null;
                     }
@@ -149,7 +155,7 @@ namespace Sandogh_PG
         private void FrmListVamhayePardakhti_Load(object sender, EventArgs e)
         {
             FillDataGridVamhayePardakhti();
-            gridView1.MoveLast();
+            //gridView1.MoveLast();
             btnCreate1.Focus();
         }
 
@@ -295,12 +301,12 @@ namespace Sandogh_PG
             HelpClass1.SetNumberRowsColumnUnboundGirdView(sender, e);
 
         }
-        List<long> total ; 
+        List<long> total;
         public void gridView2_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
         {
             int rowIndex = e.ListSourceRowIndex;
             if (rowIndex == 0)
-                total= new List<long>();
+                total = new List<long>();
 
             HelpClass1.SetNumberRowsColumnUnboundGirdView(sender, e);
 
@@ -317,7 +323,7 @@ namespace Sandogh_PG
                 }
                 else
                 {
-                    if (total.Count()> rowIndex - 1)
+                    if (total.Count() > rowIndex - 1)
                     {
                         //long a = total[rowIndex - 1];
                         total.Add(total[rowIndex - 1] + MablaghAghsat - MablaghDaryafti);
@@ -1123,5 +1129,9 @@ namespace Sandogh_PG
             HelpClass1.gridView4_RowCellStyle(sender, e);
         }
 
+        private void FrmListVamhayePardakhti_Shown(object sender, EventArgs e)
+        {
+            gridView1.MoveLast();
+        }
     }
 }

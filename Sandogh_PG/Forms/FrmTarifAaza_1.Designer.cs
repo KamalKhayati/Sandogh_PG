@@ -2197,6 +2197,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "تعریف اشخاص";
             this.Load += new System.EventHandler(this.FrmTarifAaza_1_Load);
+            this.Shown += new System.EventHandler(this.FrmTarifAaza_1_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmTarifAaza_1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();

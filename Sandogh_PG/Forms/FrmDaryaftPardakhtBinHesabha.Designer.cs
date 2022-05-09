@@ -982,6 +982,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "دریافت و پرداخت بین حسابها";
             this.Load += new System.EventHandler(this.FrmDaryaftPardakhtBinHesabha_Load);
+            this.Shown += new System.EventHandler(this.FrmDaryaftPardakhtBinHesabha_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmDaryaftPardakhtBinHesabha_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.txtMablagh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTarikh.Properties)).EndInit();
