@@ -645,6 +645,7 @@ namespace Sandogh_PG
 
             DateTime DateNow = DateTime.Now;
             GridView view = sender as GridView;
+            int SalSarresid = 0;
             string MonthSarresid = string.Empty;
             if (view.RowCount > 0)
             {
@@ -654,24 +655,41 @@ namespace Sandogh_PG
                 //decimal MablaghDaryafti = Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, "MablaghDaryafti"));
                 //DateTime Date1 = Convert.ToDateTime(view.GetRowCellValue(e.RowHandle, "Tozihat"));
                 if (view.GetRowCellDisplayText(e.RowHandle, "Tozihat") != null)
-                    MonthSarresid = view.GetRowCellDisplayText(e.RowHandle, "Tozihat").ToString().Substring(5, 2);
-
-                if (MonthSarresid == IndexMah)
                 {
-                    return;
+                    SalSarresid = Convert.ToInt32(view.GetRowCellDisplayText(e.RowHandle, "Tozihat").ToString().Substring(0, 4));
+                    MonthSarresid = view.GetRowCellDisplayText(e.RowHandle, "Tozihat").ToString().Substring(5, 2);
                 }
-                else if (Convert.ToInt16(MonthSarresid) < Convert.ToInt16(IndexMah))
+
+                if (SalSarresid < Convert.ToInt32(_txtSal.Text))
                 {
                     Color foreColor = Color.Red;
                     e.Appearance.ForeColor = foreColor;
-                    e.Appearance.BackColor = Color.LightYellow;
+                }
+                else if (SalSarresid == Convert.ToInt32(_txtSal.Text))
+                {
+                    if (MonthSarresid == IndexMah)
+                    {
+                        return;
+                    }
+                    else if (Convert.ToInt16(MonthSarresid) < Convert.ToInt16(IndexMah))
+                    {
+                        Color foreColor = Color.Red;
+                        e.Appearance.ForeColor = foreColor;
+                        //e.Appearance.BackColor = Color.LightYellow;
+
+                    }
+                    else if (Convert.ToInt16(MonthSarresid) > Convert.ToInt16(IndexMah))
+                    {
+                        Color foreColor = Color.Blue;
+                        e.Appearance.ForeColor = foreColor;
+                        //e.Appearance.BackColor = Color.LightBlue;
+                    }
 
                 }
-                else if (Convert.ToInt16(MonthSarresid) > Convert.ToInt16(IndexMah))
+                else if (SalSarresid > Convert.ToInt32(_txtSal.Text))
                 {
-                    Color foreColor = Color.Green;
+                    Color foreColor = Color.Blue;
                     e.Appearance.ForeColor = foreColor;
-                    e.Appearance.BackColor = Color.YellowGreen;
                 }
 
             }

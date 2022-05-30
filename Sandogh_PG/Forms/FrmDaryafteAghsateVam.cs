@@ -908,6 +908,13 @@ namespace Sandogh_PG
                                             q1.IsTasviye = true;
                                             db.SaveChanges();
                                             Fm.btnDisplyActiveList3_Click(null, null);
+
+                                            var n1 = db.CheckTazmins.FirstOrDefault(s => s.VamGerandeId == _HesabTafId2);
+                                            if (n1!=null)
+                                            {
+                                                XtraMessageBox.Show("سند تضمینی بلوکه شده با وام فوق آزاد گردید لذا عودت آن به وام گیرنده بلامانع است", "پیغام ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                            }
                                         }
                                     }
                                 }
@@ -1424,6 +1431,14 @@ namespace Sandogh_PG
                                                 q1.IsTasviye = true;
                                                 db.SaveChanges();
                                                 Fm.btnDisplyActiveList3_Click(null, null);
+
+                                                var n1 = db.CheckTazmins.FirstOrDefault(s => s.VamGerandeId == _HesabTafId2);
+                                                if (n1 != null)
+                                                {
+                                                    XtraMessageBox.Show("سند تضمینی بلوکه شده با وام فوق آزاد گردید لذا عودت آن به وام گیرنده بلامانع است", "پیغام ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                                }
+
                                             }
                                         }
 
@@ -1446,6 +1461,8 @@ namespace Sandogh_PG
                                 }
                             }
                         }
+
+
                     }
                     catch (Exception ex)
                     {

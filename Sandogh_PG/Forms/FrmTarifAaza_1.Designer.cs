@@ -64,6 +64,7 @@
             this.colAdressMohalKar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSharhHesab = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colShomareSanad = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSaghfeEtebar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colLogo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.aazaSandoghsBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -76,6 +77,7 @@
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.btnChangeSaghfeEtebar = new DevExpress.XtraEditors.SimpleButton();
             this.btnAmaliatColi = new DevExpress.XtraEditors.SimpleButton();
             this.btnDesignReport = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
@@ -151,6 +153,8 @@
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
+            this.txtSaghfeEtebar = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl30 = new DevExpress.XtraEditors.LabelControl();
             this.txtDaramadeMahiane = new DevExpress.XtraEditors.TextEdit();
             this.labelControl29 = new DevExpress.XtraEditors.LabelControl();
             this.btnNobatVam = new DevExpress.XtraEditors.SimpleButton();
@@ -201,6 +205,7 @@
             this.xtraTabPage2.SuspendLayout();
             this.xtraTabPage3.SuspendLayout();
             this.xtraTabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSaghfeEtebar.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDaramadeMahiane.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNobatbandiVam.Properties)).BeginInit();
             this.SuspendLayout();
@@ -287,6 +292,7 @@
             this.colAdressMohalKar,
             this.colSharhHesab,
             this.colShomareSanad,
+            this.colSaghfeEtebar,
             this.colLogo});
             this.gridView1.DetailHeight = 378;
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
@@ -486,7 +492,7 @@
             this.colHaghOzviat.MinWidth = 22;
             this.colHaghOzviat.Name = "colHaghOzviat";
             this.colHaghOzviat.Visible = true;
-            this.colHaghOzviat.VisibleIndex = 12;
+            this.colHaghOzviat.VisibleIndex = 13;
             this.colHaghOzviat.Width = 145;
             // 
             // colSarmayhAvali
@@ -504,7 +510,7 @@
             this.colSarmayhAvali.MinWidth = 22;
             this.colSarmayhAvali.Name = "colSarmayhAvali";
             this.colSarmayhAvali.Visible = true;
-            this.colSarmayhAvali.VisibleIndex = 13;
+            this.colSarmayhAvali.VisibleIndex = 14;
             this.colSarmayhAvali.Width = 134;
             // 
             // colHazineEftetah
@@ -522,7 +528,7 @@
             this.colHazineEftetah.MinWidth = 22;
             this.colHazineEftetah.Name = "colHazineEftetah";
             this.colHazineEftetah.Visible = true;
-            this.colHazineEftetah.VisibleIndex = 14;
+            this.colHazineEftetah.VisibleIndex = 15;
             this.colHazineEftetah.Width = 145;
             // 
             // colDaramadeMahiane
@@ -540,7 +546,7 @@
             this.colDaramadeMahiane.MinWidth = 25;
             this.colDaramadeMahiane.Name = "colDaramadeMahiane";
             this.colDaramadeMahiane.Visible = true;
-            this.colDaramadeMahiane.VisibleIndex = 15;
+            this.colDaramadeMahiane.VisibleIndex = 16;
             this.colDaramadeMahiane.Width = 170;
             // 
             // colNamePedar
@@ -556,7 +562,7 @@
             this.colNamePedar.MinWidth = 22;
             this.colNamePedar.Name = "colNamePedar";
             this.colNamePedar.Visible = true;
-            this.colNamePedar.VisibleIndex = 16;
+            this.colNamePedar.VisibleIndex = 17;
             this.colNamePedar.Width = 122;
             // 
             // colCodeMelli
@@ -572,7 +578,7 @@
             this.colCodeMelli.MinWidth = 22;
             this.colCodeMelli.Name = "colCodeMelli";
             this.colCodeMelli.Visible = true;
-            this.colCodeMelli.VisibleIndex = 17;
+            this.colCodeMelli.VisibleIndex = 18;
             this.colCodeMelli.Width = 145;
             // 
             // colShShenasname
@@ -588,7 +594,7 @@
             this.colShShenasname.MinWidth = 22;
             this.colShShenasname.Name = "colShShenasname";
             this.colShShenasname.Visible = true;
-            this.colShShenasname.VisibleIndex = 18;
+            this.colShShenasname.VisibleIndex = 19;
             this.colShShenasname.Width = 122;
             // 
             // colBirthDate
@@ -604,7 +610,7 @@
             this.colBirthDate.MinWidth = 22;
             this.colBirthDate.Name = "colBirthDate";
             this.colBirthDate.Visible = true;
-            this.colBirthDate.VisibleIndex = 19;
+            this.colBirthDate.VisibleIndex = 20;
             this.colBirthDate.Width = 111;
             // 
             // colNameBank
@@ -620,7 +626,7 @@
             this.colNameBank.MinWidth = 22;
             this.colNameBank.Name = "colNameBank";
             this.colNameBank.Visible = true;
-            this.colNameBank.VisibleIndex = 20;
+            this.colNameBank.VisibleIndex = 21;
             this.colNameBank.Width = 134;
             // 
             // colShomareHesab
@@ -636,7 +642,7 @@
             this.colShomareHesab.MinWidth = 22;
             this.colShomareHesab.Name = "colShomareHesab";
             this.colShomareHesab.Visible = true;
-            this.colShomareHesab.VisibleIndex = 21;
+            this.colShomareHesab.VisibleIndex = 22;
             this.colShomareHesab.Width = 166;
             // 
             // colShomareKart
@@ -652,7 +658,7 @@
             this.colShomareKart.MinWidth = 22;
             this.colShomareKart.Name = "colShomareKart";
             this.colShomareKart.Visible = true;
-            this.colShomareKart.VisibleIndex = 22;
+            this.colShomareKart.VisibleIndex = 23;
             this.colShomareKart.Width = 200;
             // 
             // colShomareShaba
@@ -668,7 +674,7 @@
             this.colShomareShaba.MinWidth = 22;
             this.colShomareShaba.Name = "colShomareShaba";
             this.colShomareShaba.Visible = true;
-            this.colShomareShaba.VisibleIndex = 23;
+            this.colShomareShaba.VisibleIndex = 24;
             this.colShomareShaba.Width = 222;
             // 
             // colShoghl
@@ -684,7 +690,7 @@
             this.colShoghl.MinWidth = 22;
             this.colShoghl.Name = "colShoghl";
             this.colShoghl.Visible = true;
-            this.colShoghl.VisibleIndex = 24;
+            this.colShoghl.VisibleIndex = 25;
             this.colShoghl.Width = 145;
             // 
             // colIsOzveSandogh
@@ -700,7 +706,7 @@
             this.colIsOzveSandogh.MinWidth = 22;
             this.colIsOzveSandogh.Name = "colIsOzveSandogh";
             this.colIsOzveSandogh.Visible = true;
-            this.colIsOzveSandogh.VisibleIndex = 25;
+            this.colIsOzveSandogh.VisibleIndex = 26;
             this.colIsOzveSandogh.Width = 122;
             // 
             // colNobatbandiVam
@@ -716,7 +722,7 @@
             this.colNobatbandiVam.MinWidth = 23;
             this.colNobatbandiVam.Name = "colNobatbandiVam";
             this.colNobatbandiVam.Visible = true;
-            this.colNobatbandiVam.VisibleIndex = 27;
+            this.colNobatbandiVam.VisibleIndex = 28;
             this.colNobatbandiVam.Width = 200;
             // 
             // colIsActive
@@ -732,7 +738,7 @@
             this.colIsActive.MinWidth = 21;
             this.colIsActive.Name = "colIsActive";
             this.colIsActive.Visible = true;
-            this.colIsActive.VisibleIndex = 26;
+            this.colIsActive.VisibleIndex = 27;
             this.colIsActive.Width = 84;
             // 
             // colAdressManzel
@@ -745,7 +751,7 @@
             this.colAdressManzel.MinWidth = 22;
             this.colAdressManzel.Name = "colAdressManzel";
             this.colAdressManzel.Visible = true;
-            this.colAdressManzel.VisibleIndex = 28;
+            this.colAdressManzel.VisibleIndex = 29;
             this.colAdressManzel.Width = 445;
             // 
             // colAdressMohalKar
@@ -758,7 +764,7 @@
             this.colAdressMohalKar.MinWidth = 22;
             this.colAdressMohalKar.Name = "colAdressMohalKar";
             this.colAdressMohalKar.Visible = true;
-            this.colAdressMohalKar.VisibleIndex = 29;
+            this.colAdressMohalKar.VisibleIndex = 30;
             this.colAdressMohalKar.Width = 445;
             // 
             // colSharhHesab
@@ -771,7 +777,7 @@
             this.colSharhHesab.MinWidth = 21;
             this.colSharhHesab.Name = "colSharhHesab";
             this.colSharhHesab.Visible = true;
-            this.colSharhHesab.VisibleIndex = 30;
+            this.colSharhHesab.VisibleIndex = 31;
             this.colSharhHesab.Width = 445;
             // 
             // colShomareSanad
@@ -787,8 +793,26 @@
             this.colShomareSanad.MinWidth = 22;
             this.colShomareSanad.Name = "colShomareSanad";
             this.colShomareSanad.Visible = true;
-            this.colShomareSanad.VisibleIndex = 31;
+            this.colShomareSanad.VisibleIndex = 32;
             this.colShomareSanad.Width = 111;
+            // 
+            // colSaghfeEtebar
+            // 
+            this.colSaghfeEtebar.AppearanceCell.Options.UseTextOptions = true;
+            this.colSaghfeEtebar.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSaghfeEtebar.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colSaghfeEtebar.AppearanceHeader.Options.UseTextOptions = true;
+            this.colSaghfeEtebar.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSaghfeEtebar.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colSaghfeEtebar.Caption = "سقف اعتبار";
+            this.colSaghfeEtebar.DisplayFormat.FormatString = "n";
+            this.colSaghfeEtebar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colSaghfeEtebar.FieldName = "SaghfeEtebar";
+            this.colSaghfeEtebar.MinWidth = 25;
+            this.colSaghfeEtebar.Name = "colSaghfeEtebar";
+            this.colSaghfeEtebar.Visible = true;
+            this.colSaghfeEtebar.VisibleIndex = 12;
+            this.colSaghfeEtebar.Width = 145;
             // 
             // colLogo
             // 
@@ -936,6 +960,7 @@
             // 
             // panelControl2
             // 
+            this.panelControl2.Controls.Add(this.btnChangeSaghfeEtebar);
             this.panelControl2.Controls.Add(this.btnAmaliatColi);
             this.panelControl2.Controls.Add(this.btnDesignReport);
             this.panelControl2.Controls.Add(this.btnClose);
@@ -961,6 +986,21 @@
             this.panelControl2.Size = new System.Drawing.Size(1264, 56);
             this.panelControl2.TabIndex = 26;
             // 
+            // btnChangeSaghfeEtebar
+            // 
+            this.btnChangeSaghfeEtebar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnChangeSaghfeEtebar.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnChangeSaghfeEtebar.Enabled = false;
+            this.btnChangeSaghfeEtebar.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnChangeSaghfeEtebar.ImageOptions.SvgImage")));
+            this.btnChangeSaghfeEtebar.Location = new System.Drawing.Point(581, 8);
+            this.btnChangeSaghfeEtebar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnChangeSaghfeEtebar.Name = "btnChangeSaghfeEtebar";
+            this.btnChangeSaghfeEtebar.Size = new System.Drawing.Size(169, 40);
+            this.btnChangeSaghfeEtebar.TabIndex = 46;
+            this.btnChangeSaghfeEtebar.Text = "تغییر سقف اعتبار";
+            this.btnChangeSaghfeEtebar.ToolTip = "F6";
+            this.btnChangeSaghfeEtebar.Click += new System.EventHandler(this.btnChangeSaghfeEtebar_Click);
+            // 
             // btnAmaliatColi
             // 
             this.btnAmaliatColi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -980,7 +1020,7 @@
             // 
             this.btnDesignReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDesignReport.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDesignReport.ImageOptions.SvgImage")));
-            this.btnDesignReport.Location = new System.Drawing.Point(302, 8);
+            this.btnDesignReport.Location = new System.Drawing.Point(233, 8);
             this.btnDesignReport.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDesignReport.Name = "btnDesignReport";
             this.btnDesignReport.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
@@ -1028,7 +1068,7 @@
             this.btnNext.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnNext.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.ImageOptions.Image")));
             this.btnNext.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNext.ImageOptions.SvgImage")));
-            this.btnNext.Location = new System.Drawing.Point(579, 8);
+            this.btnNext.Location = new System.Drawing.Point(450, 8);
             this.btnNext.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnNext.Name = "btnNext";
             this.btnNext.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
@@ -1042,7 +1082,7 @@
             this.btnPrintPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrintPreview.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnPrintPreview.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPrintPreview.ImageOptions.SvgImage")));
-            this.btnPrintPreview.Location = new System.Drawing.Point(247, 8);
+            this.btnPrintPreview.Location = new System.Drawing.Point(178, 8);
             this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPrintPreview.Name = "btnPrintPreview";
             this.btnPrintPreview.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
@@ -1072,7 +1112,7 @@
             this.btnAdvancedSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdvancedSearch.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnAdvancedSearch.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnAdvancedSearch.ImageOptions.SvgImage")));
-            this.btnAdvancedSearch.Location = new System.Drawing.Point(357, 8);
+            this.btnAdvancedSearch.Location = new System.Drawing.Point(288, 8);
             this.btnAdvancedSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAdvancedSearch.Name = "btnAdvancedSearch";
             this.btnAdvancedSearch.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
@@ -1105,7 +1145,7 @@
             this.btnFirst.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnFirst.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnFirst.ImageOptions.Image")));
             this.btnFirst.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnFirst.ImageOptions.SvgImage")));
-            this.btnFirst.Location = new System.Drawing.Point(482, 8);
+            this.btnFirst.Location = new System.Drawing.Point(353, 8);
             this.btnFirst.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnFirst.Name = "btnFirst";
             this.btnFirst.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
@@ -1136,7 +1176,7 @@
             this.btnPreview.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPreview.ImageOptions.Image")));
             this.btnPreview.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnPreview.ImageOptions.SvgImage")));
-            this.btnPreview.Location = new System.Drawing.Point(531, 8);
+            this.btnPreview.Location = new System.Drawing.Point(402, 8);
             this.btnPreview.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
@@ -1150,7 +1190,7 @@
             this.btnLast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLast.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnLast.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLast.ImageOptions.SvgImage")));
-            this.btnLast.Location = new System.Drawing.Point(628, 8);
+            this.btnLast.Location = new System.Drawing.Point(499, 8);
             this.btnLast.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnLast.Name = "btnLast";
             this.btnLast.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
@@ -1164,7 +1204,7 @@
             this.btnDisplyActiveList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDisplyActiveList.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnDisplyActiveList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyActiveList.ImageOptions.SvgImage")));
-            this.btnDisplyActiveList.Location = new System.Drawing.Point(192, 8);
+            this.btnDisplyActiveList.Location = new System.Drawing.Point(123, 8);
             this.btnDisplyActiveList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDisplyActiveList.Name = "btnDisplyActiveList";
             this.btnDisplyActiveList.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
@@ -1179,7 +1219,7 @@
             this.btnDisplyNotActiveList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDisplyNotActiveList.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnDisplyNotActiveList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDisplyNotActiveList.ImageOptions.SvgImage")));
-            this.btnDisplyNotActiveList.Location = new System.Drawing.Point(143, 8);
+            this.btnDisplyNotActiveList.Location = new System.Drawing.Point(74, 8);
             this.btnDisplyNotActiveList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDisplyNotActiveList.Name = "btnDisplyNotActiveList";
             this.btnDisplyNotActiveList.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
@@ -2087,6 +2127,8 @@
             // 
             // xtraTabPage4
             // 
+            this.xtraTabPage4.Controls.Add(this.txtSaghfeEtebar);
+            this.xtraTabPage4.Controls.Add(this.labelControl30);
             this.xtraTabPage4.Controls.Add(this.txtDaramadeMahiane);
             this.xtraTabPage4.Controls.Add(this.labelControl29);
             this.xtraTabPage4.Controls.Add(this.btnNobatVam);
@@ -2101,6 +2143,36 @@
             this.xtraTabPage4.Name = "xtraTabPage4";
             this.xtraTabPage4.Size = new System.Drawing.Size(1262, 218);
             this.xtraTabPage4.Text = "سایر";
+            // 
+            // txtSaghfeEtebar
+            // 
+            this.txtSaghfeEtebar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSaghfeEtebar.Cursor = System.Windows.Forms.Cursors.Default;
+            this.txtSaghfeEtebar.EnterMoveNextControl = true;
+            this.txtSaghfeEtebar.Location = new System.Drawing.Point(534, 56);
+            this.txtSaghfeEtebar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtSaghfeEtebar.Name = "txtSaghfeEtebar";
+            this.txtSaghfeEtebar.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtSaghfeEtebar.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.txtSaghfeEtebar.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.txtSaghfeEtebar.Properties.Mask.EditMask = "n";
+            this.txtSaghfeEtebar.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtSaghfeEtebar.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtSaghfeEtebar.Properties.ReadOnly = true;
+            this.txtSaghfeEtebar.Size = new System.Drawing.Size(177, 34);
+            this.txtSaghfeEtebar.TabIndex = 47;
+            // 
+            // labelControl30
+            // 
+            this.labelControl30.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl30.AutoEllipsis = true;
+            this.labelControl30.Cursor = System.Windows.Forms.Cursors.Default;
+            this.labelControl30.Location = new System.Drawing.Point(719, 59);
+            this.labelControl30.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.labelControl30.Name = "labelControl30";
+            this.labelControl30.Size = new System.Drawing.Size(107, 27);
+            this.labelControl30.TabIndex = 48;
+            this.labelControl30.Text = "مبلغ سقف اعتبار";
             // 
             // txtDaramadeMahiane
             // 
@@ -2248,6 +2320,7 @@
             this.xtraTabPage3.PerformLayout();
             this.xtraTabPage4.ResumeLayout(false);
             this.xtraTabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSaghfeEtebar.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDaramadeMahiane.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNobatbandiVam.Properties)).EndInit();
             this.ResumeLayout(false);
@@ -2381,5 +2454,9 @@
         private DevExpress.XtraEditors.SimpleButton btnAmaliatColi;
         private DevExpress.XtraGrid.Columns.GridColumn colLogo;
         public DevExpress.XtraGrid.Columns.GridColumn colId;
+        public DevExpress.XtraEditors.TextEdit txtSaghfeEtebar;
+        private DevExpress.XtraEditors.LabelControl labelControl30;
+        private DevExpress.XtraGrid.Columns.GridColumn colSaghfeEtebar;
+        private DevExpress.XtraEditors.SimpleButton btnChangeSaghfeEtebar;
     }
 }

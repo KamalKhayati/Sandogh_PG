@@ -284,7 +284,7 @@
             this.gridColumn27.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn27.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn27.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn27.Caption = "کد وام";
+            this.gridColumn27.Caption = "شماره وام";
             this.gridColumn27.FieldName = "Code";
             this.gridColumn27.MinWidth = 21;
             this.gridColumn27.Name = "gridColumn27";
@@ -1245,6 +1245,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "لیست وامهای پرداختی به اعضاء";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmListVamhayePardakhti_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmListVamhayePardakhti_FormClosed);
             this.Load += new System.EventHandler(this.FrmListVamhayePardakhti_Load);
             this.Shown += new System.EventHandler(this.FrmListVamhayePardakhti_Shown);

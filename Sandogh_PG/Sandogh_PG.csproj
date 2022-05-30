@@ -165,6 +165,12 @@
     <Compile Include="Forms\FrmCalling_1.Designer.cs">
       <DependentUpon>FrmCalling_1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmChangeSaghfeEtebar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmChangeSaghfeEtebar.Designer.cs">
+      <DependentUpon>FrmChangeSaghfeEtebar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmCodingDaramadVHazine.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -414,6 +420,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmCalling_1.resx">
       <DependentUpon>FrmCalling_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmChangeSaghfeEtebar.resx">
+      <DependentUpon>FrmChangeSaghfeEtebar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmCodingDaramadVHazine.resx">
       <DependentUpon>FrmCodingDaramadVHazine.cs</DependentUpon>

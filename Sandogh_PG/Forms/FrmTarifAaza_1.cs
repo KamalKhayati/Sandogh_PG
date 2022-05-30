@@ -549,6 +549,7 @@ namespace Sandogh_PG
             txtTell.Text = string.Empty;
             txtShoghl.Text = string.Empty;
             cmbMoaref.EditValue = 0;
+            txtSaghfeEtebar.Text = string.Empty;
             txtHaghOzviat.Text = string.Empty;
             txtBesAvali.Text = string.Empty;
             //txtBedAvali.Text = string.Empty;
@@ -583,6 +584,7 @@ namespace Sandogh_PG
                 txtTell.ReadOnly = false;
                 txtShoghl.ReadOnly = false;
                 cmbMoaref.ReadOnly = false;
+                txtSaghfeEtebar.ReadOnly = false;
                 txtHaghOzviat.ReadOnly = false;
                 txtBesAvali.ReadOnly = false;
                 //txtBedAvali.ReadOnly = false;
@@ -851,6 +853,8 @@ namespace Sandogh_PG
                             obj.BesAvali = !string.IsNullOrEmpty(txtBesAvali.Text.Replace(",", "")) ? Convert.ToDecimal(txtBesAvali.Text.Replace(",", "")) : 0;
                             //obj.BedAvali = !string.IsNullOrEmpty(txtBedAvali.Text) ? Convert.ToDecimal(txtBedAvali.Text) : 0;
                             obj.HaghOzviat = !string.IsNullOrEmpty(txtHaghOzviat.Text.Replace(",", "")) ? Convert.ToDecimal(txtHaghOzviat.Text.Replace(",", "")) : 0;
+                            if (!string.IsNullOrEmpty(txtSaghfeEtebar.Text.Replace(",", "")))
+                                obj.SaghfeEtebar = Convert.ToDecimal(txtSaghfeEtebar.Text.Replace(",", ""));
                             obj.DaramadeMahiane = !string.IsNullOrEmpty(txtDaramadeMahiane.Text.Replace(",", "")) ? Convert.ToDecimal(txtDaramadeMahiane.Text.Replace(",", "")) : 0;
                             obj.IsActive = chkIsActive.Checked;
                             obj.SharhHesab = txtSharhHesab.Text;
@@ -1062,6 +1066,8 @@ namespace Sandogh_PG
                                 q.BesAvali = !string.IsNullOrEmpty(txtBesAvali.Text.Replace(",", "")) ? Convert.ToDecimal(txtBesAvali.Text.Replace(",", "")) : 0;
                                 //q.BedAvali = !string.IsNullOrEmpty(txtBedAvali.Text) ? Convert.ToDecimal(txtBedAvali.Text) : 0;
                                 q.HaghOzviat = !string.IsNullOrEmpty(txtHaghOzviat.Text.Replace(",", "")) ? Convert.ToDecimal(txtHaghOzviat.Text.Replace(",", "")) : 0;
+                                if (!string.IsNullOrEmpty(txtSaghfeEtebar.Text.Replace(",", "")))
+                                    q.SaghfeEtebar = Convert.ToDecimal(txtSaghfeEtebar.Text.Replace(",", ""));
                                 q.DaramadeMahiane = !string.IsNullOrEmpty(txtDaramadeMahiane.Text.Replace(",", "")) ? Convert.ToDecimal(txtDaramadeMahiane.Text.Replace(",", "")) : 0;
                                 q.SharhHesab = txtSharhHesab.Text;
                                 if (pictureEdit1.Image != null)
@@ -1432,7 +1438,7 @@ namespace Sandogh_PG
                     else
                         cmbMoaref.EditValue = 0;
                     txtBesAvali.Text = gridView1.GetFocusedRowCellDisplayText("BesAvali");
-                    //txtBedAvali.Text = gridView1.GetFocusedRowCellDisplayText("BedAvali");
+                    txtSaghfeEtebar.Text = gridView1.GetFocusedRowCellDisplayText("SaghfeEtebar");
                     txtHaghOzviat.Text = gridView1.GetFocusedRowCellDisplayText("HaghOzviat");
                     txtHazineEftetah.Text = gridView1.GetFocusedRowCellDisplayText("HazineEftetah");
                     txtDaramadeMahiane.Text = gridView1.GetFocusedRowCellDisplayText("DaramadeMahiane");
@@ -1567,10 +1573,12 @@ namespace Sandogh_PG
             if (gridView1.RowCount > 0)
             {
                 btnAmaliatColi.Enabled = true;
+                btnChangeSaghfeEtebar.Enabled = true;
             }
             else
             {
                 btnAmaliatColi.Enabled = false;
+                btnChangeSaghfeEtebar.Enabled = false;
 
             }
         }
@@ -1626,6 +1634,13 @@ namespace Sandogh_PG
         private void FrmTarifAaza_1_Shown(object sender, EventArgs e)
         {
             gridView1.MoveLast();
+        }
+
+        private void btnChangeSaghfeEtebar_Click(object sender, EventArgs e)
+        {
+            FrmChangeSaghfeEtebar fm = new FrmChangeSaghfeEtebar(this);
+            fm.IsActiveList = IsActiveList;
+            fm.ShowDialog(this);
         }
     }
 }

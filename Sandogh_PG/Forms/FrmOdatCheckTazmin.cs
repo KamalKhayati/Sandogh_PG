@@ -102,13 +102,44 @@ namespace Sandogh_PG
 
         private bool TextEditValidation()
         {
-            if (string.IsNullOrEmpty(txtTarikhOdat.Text))
+            using (var db = new MyContext())
             {
-                XtraMessageBox.Show("لطفاً تاریخ عودت چک را وارد کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtSeryalDaryaft.Focus();
-                return false;
+                try
+                {
+                    if (string.IsNullOrEmpty(txtTarikhOdat.Text))
+                    {
+                        XtraMessageBox.Show("لطفاً تاریخ عودت چک را وارد کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtSeryalDaryaft.Focus();
+                        return false;
+                    }
+                    else 
+                    {
+                        int _AazaId = Convert.ToInt32(cmbVamGerande.EditValue);
+                        var n1 = db.VamPardakhtis.FirstOrDefault(s => s.AazaId == _AazaId && s.IsTasviye==false);
+                        if (n1!=null)
+                        {
+                            if (XtraMessageBox.Show("صاحب چک وام تسویه نشده دارد آیا با این حال باز هم چک عودت شود", "پیغام", MessageBoxButtons.YesNo, MessageBoxIcon.Information)==DialogResult.Yes)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+
             return true;
+
+
         }
 
         private void FrmOdatCheckTazmin_KeyDown(object sender, KeyEventArgs e)

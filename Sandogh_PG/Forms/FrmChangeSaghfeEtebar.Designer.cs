@@ -1,6 +1,6 @@
 ﻿namespace Sandogh_PG.Forms
 {
-    partial class FrmAmaliatColi
+    partial class FrmChangeSaghfeEtebar
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAmaliatColi));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmChangeSaghfeEtebar));
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSaveAndClose = new DevExpress.XtraEditors.SimpleButton();
-            this.txtHaghOzviat = new DevExpress.XtraEditors.TextEdit();
+            this.txtSaghfeEtebar = new DevExpress.XtraEditors.TextEdit();
             this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHaghOzviat.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSaghfeEtebar.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -48,7 +48,7 @@
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
             this.xtraTabControl1.Size = new System.Drawing.Size(341, 152);
-            this.xtraTabControl1.TabIndex = 0;
+            this.xtraTabControl1.TabIndex = 1;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1});
             // 
@@ -56,11 +56,11 @@
             // 
             this.xtraTabPage1.Controls.Add(this.btnClose);
             this.xtraTabPage1.Controls.Add(this.btnSaveAndClose);
-            this.xtraTabPage1.Controls.Add(this.txtHaghOzviat);
+            this.xtraTabPage1.Controls.Add(this.txtSaghfeEtebar);
             this.xtraTabPage1.Controls.Add(this.labelControl18);
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(339, 111);
-            this.xtraTabPage1.Text = "ویرایش کلی مبلغ پس انداز ماهیانه اعضاء";
+            this.xtraTabPage1.Text = "ویرایش کلی مبلغ سقف اعتبار";
             // 
             // btnClose
             // 
@@ -93,55 +93,55 @@
             this.btnSaveAndClose.ToolTipTitle = "ذخیره و بستن";
             this.btnSaveAndClose.Click += new System.EventHandler(this.btnSaveAndClose_Click);
             // 
-            // txtHaghOzviat
+            // txtSaghfeEtebar
             // 
-            this.txtHaghOzviat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtHaghOzviat.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtHaghOzviat.EnterMoveNextControl = true;
-            this.txtHaghOzviat.Location = new System.Drawing.Point(8, 12);
-            this.txtHaghOzviat.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtHaghOzviat.Name = "txtHaghOzviat";
-            this.txtHaghOzviat.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtHaghOzviat.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.txtHaghOzviat.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.txtHaghOzviat.Properties.Mask.EditMask = "n";
-            this.txtHaghOzviat.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtHaghOzviat.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtHaghOzviat.Size = new System.Drawing.Size(177, 34);
-            this.txtHaghOzviat.TabIndex = 44;
-            this.txtHaghOzviat.EditValueChanged += new System.EventHandler(this.txtHaghOzviat_EditValueChanged);
+            this.txtSaghfeEtebar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSaghfeEtebar.Cursor = System.Windows.Forms.Cursors.Default;
+            this.txtSaghfeEtebar.EnterMoveNextControl = true;
+            this.txtSaghfeEtebar.Location = new System.Drawing.Point(8, 12);
+            this.txtSaghfeEtebar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtSaghfeEtebar.Name = "txtSaghfeEtebar";
+            this.txtSaghfeEtebar.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtSaghfeEtebar.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.txtSaghfeEtebar.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.txtSaghfeEtebar.Properties.Mask.EditMask = "n";
+            this.txtSaghfeEtebar.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtSaghfeEtebar.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtSaghfeEtebar.Size = new System.Drawing.Size(166, 34);
+            this.txtSaghfeEtebar.TabIndex = 44;
+            this.txtSaghfeEtebar.EditValueChanged += new System.EventHandler(this.txtSaghfeEtebar_EditValueChanged);
             // 
             // labelControl18
             // 
             this.labelControl18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelControl18.AutoEllipsis = true;
             this.labelControl18.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelControl18.Location = new System.Drawing.Point(193, 15);
+            this.labelControl18.Location = new System.Drawing.Point(182, 15);
             this.labelControl18.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl18.Name = "labelControl18";
-            this.labelControl18.Size = new System.Drawing.Size(134, 27);
+            this.labelControl18.Size = new System.Drawing.Size(148, 27);
             this.labelControl18.TabIndex = 45;
-            this.labelControl18.Text = "مبلغ پس انداز جدید";
+            this.labelControl18.Text = "مبلغ سقف اعتبار جدید";
             // 
-            // FrmAmaliatColi
+            // FrmChangeSaghfeEtebar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(341, 152);
             this.Controls.Add(this.xtraTabControl1);
-            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("FrmAmaliatColi.IconOptions.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("FrmChangeSaghfeEtebar.IconOptions.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmAmaliatColi";
+            this.Name = "FrmChangeSaghfeEtebar";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "تغییر مبلغ پس انداز";
+            this.Text = "تغییر سقف اعتبار";
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
             this.xtraTabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHaghOzviat.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSaghfeEtebar.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -150,9 +150,9 @@
 
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
-        public DevExpress.XtraEditors.TextEdit txtHaghOzviat;
-        private DevExpress.XtraEditors.LabelControl labelControl18;
-        private DevExpress.XtraEditors.SimpleButton btnSaveAndClose;
         public DevExpress.XtraEditors.SimpleButton btnClose;
+        private DevExpress.XtraEditors.SimpleButton btnSaveAndClose;
+        public DevExpress.XtraEditors.TextEdit txtSaghfeEtebar;
+        private DevExpress.XtraEditors.LabelControl labelControl18;
     }
 }

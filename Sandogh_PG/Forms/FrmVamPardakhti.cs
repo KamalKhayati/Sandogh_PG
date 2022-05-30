@@ -528,6 +528,75 @@ namespace Sandogh_PG
                                 return false;
                             }
                         }
+                        var q2 = db.Tanzimats.FirstOrDefault(f => f.Id == _IDSandogh).checkEdit5;
+                        if (q2)
+                        {
+                            if (chkcmbEntekhabZamenin.Text != string.Empty)
+                            {
+                                var CheckedList1 = chkcmbEntekhabZamenin.Properties.GetItems().GetCheckedValues();
+                                decimal MablaghAsli = !string.IsNullOrEmpty(txtMablaghAsli.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghAsli.Text.Replace(",", "")) : 0;
+                                decimal MablaghKarmozd = !string.IsNullOrEmpty(txtMablaghKarmozd.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghKarmozd.Text.Replace(",", "")) : 0;
+                                decimal SumMablaghVam = MablaghAsli + MablaghKarmozd;
+                                var q3 = db.AllHesabTafzilis.Where(s => s.IsActive == true).ToList();
+                                var q4 = db.AazaSandoghs.Where(s => s.IsActive == true).ToList();
+                                var q5 = db.VamPardakhtis.Where(s => s.IsTasviye == false).ToList();
+
+                                decimal MandeSaghfeEtebarZamenin = 0;
+                                foreach (var item in CheckedList1)
+                                {
+                                    string NameZamen = q3.FirstOrDefault(s => s.Id == (int)item).Name;
+                                    decimal SaghfeEtebarZamen = q4.FirstOrDefault(s => s.AllTafId == (int)item).SaghfeEtebar;
+                                    decimal MandeSaghfeEtebarZamen = SaghfeEtebarZamen;
+
+                                    List<VamPardakhti> q6 = new List<VamPardakhti>();
+                                    if (En == EnumCED.Create)
+                                    {
+                                        q6 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.ZameninName.Contains(NameZamen)).ToList();
+                                    }
+                                    else if (En == EnumCED.Edit)
+                                    {
+                                        int _VamId = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("Id"));
+                                        q6 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.Id != _VamId && s.ZameninName.Contains(NameZamen)).ToList();
+                                    }
+                                    if (q6.Count > 0)
+                                    {
+                                        foreach (var item1 in q6)
+                                        {
+                                            if (MandeSaghfeEtebarZamen > 0)
+                                            {
+                                                MandeSaghfeEtebarZamen = (MandeSaghfeEtebarZamen - item1.MablaghAsli - item1.MablaghKarmozd) > 0 ? MandeSaghfeEtebarZamen - item1.MablaghAsli - item1.MablaghKarmozd : 0;
+
+                                            }
+                                        }
+
+                                        MandeSaghfeEtebarZamenin += MandeSaghfeEtebarZamen > 0 ? MandeSaghfeEtebarZamen : 0;
+                                    }
+                                    else
+                                    {
+                                        MandeSaghfeEtebarZamenin += MandeSaghfeEtebarZamen;
+                                    }
+
+                                }
+
+                                //lstZamenin.Items.Clear();
+                                //string _MandeSaghfeEtebarZamenin = "مانده سقف اعتبار ضامن یا ضامنین : " + MandeSaghfeEtebarZamenin.ToString("n0") + " ریال ";
+                                //lstZamenin.Items.Add(_MandeSaghfeEtebarZamenin);
+                                if (MandeSaghfeEtebarZamenin < SumMablaghVam)
+                                {
+                                    XtraMessageBox.Show("مانده سقف اعتبار ضامن یا ضامنین جهت ضمانت وام جاری کافی نیست لطفاً اصلاح بفرمایید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    return false;
+                                }
+                                else
+                                {
+                                    return true;
+                                }
+                            }
+                            else
+                            {
+                                return true;
+                            }
+                        }
+
                     }
                     catch (Exception ex)
                     {
@@ -535,7 +604,6 @@ namespace Sandogh_PG
                             "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-
             }
             return true;
         }
@@ -617,6 +685,7 @@ namespace Sandogh_PG
                             obj.HesabMoinName = cmbHesabMoin.Text;
                             obj.HesabTafziliId = Convert.ToInt32(cmbHesabTafzili.EditValue);
                             obj.HesabTafziliName = cmbHesabTafzili.Text;
+                            //List<int> ListZameninId = new List<int>();
                             if (!string.IsNullOrEmpty(chkcmbEntekhabZamenin.Text))
                             {
                                 obj.ZameninName = chkcmbEntekhabZamenin.Text;
@@ -1100,8 +1169,91 @@ namespace Sandogh_PG
 
         private void chkcmbAazaSandoogh_EditValueChanged(object sender, EventArgs e)
         {
-            lstZamenin.Items.Clear();
-            lstZamenin.Items.Add(chkcmbEntekhabZamenin.Text);
+            //lstZamenin.Items.Clear();
+            //lstZamenin.Items.Add(chkcmbEntekhabZamenin.Text);
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    int _IDSandogh = Convert.ToInt32(Fm.Fm.IDSandogh.Caption);
+                    var q2 = db.Tanzimats.FirstOrDefault(f => f.Id == _IDSandogh).checkEdit5;
+                    if (q2)
+                    {
+                        if (chkcmbEntekhabZamenin.Text != string.Empty)
+                        {
+                            var CheckedList1 = chkcmbEntekhabZamenin.Properties.GetItems().GetCheckedValues();
+                            decimal MablaghAsli = !string.IsNullOrEmpty(txtMablaghAsli.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghAsli.Text.Replace(",", "")) : 0;
+                            decimal MablaghKarmozd = !string.IsNullOrEmpty(txtMablaghKarmozd.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghKarmozd.Text.Replace(",", "")) : 0;
+                            decimal SumMablaghVam = MablaghAsli + MablaghKarmozd;
+                            var q3 = db.AllHesabTafzilis.Where(s => s.IsActive == true).ToList();
+                            var q4 = db.AazaSandoghs.Where(s => s.IsActive == true).ToList();
+                            //var q5 = db.VamPardakhtis.Where(s => s.IsTasviye == false).ToList();
+
+                            decimal MandeSaghfeEtebarZamenin = 0;
+                            foreach (var item in CheckedList1)
+                            {
+                                string NameZamen = q3.FirstOrDefault(s => s.Id == (int)item).Name;
+                                decimal SaghfeEtebarZamen = q4.FirstOrDefault(s => s.AllTafId == (int)item).SaghfeEtebar;
+                                decimal MandeSaghfeEtebarZamen = SaghfeEtebarZamen;
+
+                                List<VamPardakhti> q6 = new List<VamPardakhti>();
+                                if (En==EnumCED.Create)
+                                {
+                                    q6 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.ZameninName.Contains(NameZamen)).ToList();
+                                }
+                                else if (En == EnumCED.Edit)
+                                {
+                                    int _VamId = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("Id"));
+                                    q6 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.Id != _VamId && s.ZameninName.Contains(NameZamen)).ToList();
+                                }
+
+                                if (q6.Count > 0)
+                                {
+                                    foreach (var item1 in q6)
+                                    {
+                                        if (MandeSaghfeEtebarZamen > 0)
+                                        {
+                                            MandeSaghfeEtebarZamen = (MandeSaghfeEtebarZamen - item1.MablaghAsli - item1.MablaghKarmozd) > 0 ? MandeSaghfeEtebarZamen - item1.MablaghAsli - item1.MablaghKarmozd : 0;
+
+                                        }
+                                    }
+
+                                    MandeSaghfeEtebarZamenin += MandeSaghfeEtebarZamen > 0 ? MandeSaghfeEtebarZamen : 0;
+                                }
+                                else
+                                {
+                                    MandeSaghfeEtebarZamenin += MandeSaghfeEtebarZamen;
+                                }
+
+                            }
+
+                            lstZamenin.Items.Clear();
+                            string _MandeSaghfeEtebarZamenin = "مانده سقف اعتبار ضامن یا ضامنین : " + MandeSaghfeEtebarZamenin.ToString("n0")+ " ریال ";
+                            lstZamenin.Items.Add(_MandeSaghfeEtebarZamenin);
+                            //if (MandeSaghfeEtebarZamenin < SumMablaghVam)
+                            //{
+                            //    XtraMessageBox.Show("مانده سقف اعتبار ضامن یا ضامنین جهت ضمانت وام جاری کافی نیست لطفاً اصلاح بفرمایید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //    //btnSaveClose.Enabled = false;
+                            //}
+                            //else
+                            //{
+                            //    //btnSaveClose.Enabled = true;
+                            //}
+                        }
+                        else
+                        {
+                            lstZamenin.Items.Clear();
+                        }
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
 
         }
 
@@ -1276,7 +1428,7 @@ namespace Sandogh_PG
 
         private void cmbDaryaftkonande_EditValueChanged_1(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(cmbDaryaftkonande.EditValue)> 0)
+            if (Convert.ToInt32(cmbDaryaftkonande.EditValue) > 0)
             {
                 FillchkcmbEntekhabZamenin();
                 FillDataGridCheckTazmin();

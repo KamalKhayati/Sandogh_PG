@@ -158,6 +158,7 @@ namespace Sandogh_PG
                         checkEdit2.Checked = q1.checkEdit2;
                         checkEdit3.Checked = q1.checkEdit3;
                         checkEdit4.Checked = q1.checkEdit4;
+                        checkEdit5.Checked = q1.checkEdit5;
                         cmbMoin.EditValue = q1.MoinDefaultId;
                         cmbNameHesab.EditValue = q1.TafsiliDefaultId;
                     }
@@ -202,6 +203,7 @@ namespace Sandogh_PG
                         q1.checkEdit2 = checkEdit2.Checked;
                         q1.checkEdit3 = checkEdit3.Checked;
                         q1.checkEdit4 = checkEdit4.Checked;
+                        q1.checkEdit5 = checkEdit5.Checked;
                         q1.MoinDefaultId = Convert.ToInt32(cmbMoin.EditValue);
                         q1.TafsiliDefaultId = Convert.ToInt32(cmbNameHesab.EditValue);
                     }
@@ -218,6 +220,7 @@ namespace Sandogh_PG
                         obj.checkEdit2 = checkEdit2.Checked;
                         obj.checkEdit3 = checkEdit3.Checked;
                         obj.checkEdit4 = checkEdit4.Checked;
+                        obj.checkEdit5 = checkEdit5.Checked;
                         obj.Id = _SandoghId;
                         obj.MoinDefaultId = Convert.ToInt32(cmbMoin.EditValue);
                         obj.TafsiliDefaultId = Convert.ToInt32(cmbNameHesab.EditValue);

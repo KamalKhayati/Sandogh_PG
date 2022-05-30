@@ -1133,5 +1133,36 @@ namespace Sandogh_PG
         {
             gridView1.MoveLast();
         }
+
+        private void FrmListVamhayePardakhti_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    var q1 = db.VamPardakhtis.Where(s => s.IsTasviye == false).ToList();
+                    var q2 = db.RizeAghsatVams.Where(s => s.VamPardakhti1.IsTasviye==false).ToList();
+                    foreach (var item in q1)
+                    {
+                        if (item.MablaghAsli+item.MablaghKarmozd!=q2.Where(s=>s.VamPardakhtiId==item.Id).Sum(s=>s.MablaghAghsat))
+                        {
+                            XtraMessageBox.Show("مبلغ وام شماره "+ item.Code +" " + item.NameAaza + " با جمع مبلغ ریز اقساط برابر نیست لطفاً قبل از بستن فرم آنرا اصلاح فرمایید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            e.Cancel = true;
+                            return;
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            //var SumMablaghAsli = gridView1.Columns["MablaghAsli"].SummaryText;
+            //var SumMablaghKarmozd = gridView1.Columns["MablaghKarmozd"].SummaryText;
+            //var SumMMablaghAghsat = gridView2.Columns["MablaghAghsat"].SummaryText;
+        }
     }
 }

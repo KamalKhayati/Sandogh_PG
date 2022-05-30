@@ -59,7 +59,6 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.txtSal1 = new DevExpress.XtraEditors.TextEdit();
-            this.label1 = new System.Windows.Forms.Label();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
@@ -510,7 +509,6 @@
             this.panelControl3.Controls.Add(this.labelControl3);
             this.panelControl3.Controls.Add(this.labelControl4);
             this.panelControl3.Controls.Add(this.txtSal1);
-            this.panelControl3.Controls.Add(this.label1);
             this.panelControl3.Controls.Add(this.simpleButton1);
             this.panelControl3.Controls.Add(this.simpleButton2);
             this.panelControl3.Controls.Add(this.simpleButton3);
@@ -581,19 +579,6 @@
             this.txtSal1.Properties.MaxLength = 4;
             this.txtSal1.Size = new System.Drawing.Size(82, 34);
             this.txtSal1.TabIndex = 28;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(-95, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(866, 27);
-            this.label1.TabIndex = 25;
-            this.label1.Text = "در این گزارش نفراتی که در قسمت پس انداز ماهیانه در تعریف اشخاص مبلغی پیش فرض تعیی" +
-    "ن نشده است نمایش داده نمیشود";
-            this.label1.Visible = false;
             // 
             // simpleButton1
             // 
@@ -1270,7 +1255,6 @@
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private DevExpress.XtraEditors.PanelControl panelControl3;
-        private System.Windows.Forms.Label label1;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.SimpleButton simpleButton3;
