@@ -30,6 +30,13 @@ namespace Sandogh_PG
             Fm = fm;
         }
 
+        FrmVamPardakhti Km;
+        public FrmTarifAaza_1(FrmVamPardakhti km)
+        {
+            InitializeComponent();
+            Km = km;
+        }
+
 
         public EnumCED En;
         public bool IsActiveList = true;
@@ -147,6 +154,23 @@ namespace Sandogh_PG
 
             HelpClass1.DateTimeMask(txtTarikhOzviat);
             HelpClass1.DateTimeMask(txtBirthDate);
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    var q = db.Tanzimats.FirstOrDefault();
+                    if (q!=null)
+                    {
+                        btnChangeSaghfeEtebar.Text = q.checkEdit7 ? "بروزرسانی سقف اعتبار" : "تغییر سقف اعتبار";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -758,7 +782,9 @@ namespace Sandogh_PG
                 else
                     cmbMoaref.EditValue = 0;
                 txtBesAvali.Text = gridView1.GetFocusedRowCellDisplayText("BesAvali");
-                //txtBedAvali.Text = gridView1.GetFocusedRowCellDisplayText("BedAvali");
+                txtSaghfeEtebar.Text = gridView1.GetFocusedRowCellDisplayText("SaghfeEtebar");
+                txtEtebarBlookeShode.Text = gridView1.GetFocusedRowCellDisplayText("EtebarBlookeShode");
+                txtMandeEtebar.Text = (Convert.ToDecimal(txtSaghfeEtebar.Text.Replace(",", "")) - Convert.ToDecimal(txtEtebarBlookeShode.Text.Replace(",", ""))).ToString();
                 txtHaghOzviat.Text = gridView1.GetFocusedRowCellDisplayText("HaghOzviat");
                 txtHazineEftetah.Text = gridView1.GetFocusedRowCellDisplayText("HazineEftetah");
                 txtDaramadeMahiane.Text = gridView1.GetFocusedRowCellDisplayText("DaramadeMahiane");
@@ -1439,6 +1465,8 @@ namespace Sandogh_PG
                         cmbMoaref.EditValue = 0;
                     txtBesAvali.Text = gridView1.GetFocusedRowCellDisplayText("BesAvali");
                     txtSaghfeEtebar.Text = gridView1.GetFocusedRowCellDisplayText("SaghfeEtebar");
+                    txtEtebarBlookeShode.Text = gridView1.GetFocusedRowCellDisplayText("EtebarBlookeShode");
+                    txtMandeEtebar.Text = (Convert.ToDecimal(txtSaghfeEtebar.Text.Replace(",", "")) - Convert.ToDecimal(txtEtebarBlookeShode.Text.Replace(",", ""))).ToString();
                     txtHaghOzviat.Text = gridView1.GetFocusedRowCellDisplayText("HaghOzviat");
                     txtHazineEftetah.Text = gridView1.GetFocusedRowCellDisplayText("HazineEftetah");
                     txtDaramadeMahiane.Text = gridView1.GetFocusedRowCellDisplayText("DaramadeMahiane");
@@ -1641,6 +1669,18 @@ namespace Sandogh_PG
             FrmChangeSaghfeEtebar fm = new FrmChangeSaghfeEtebar(this);
             fm.IsActiveList = IsActiveList;
             fm.ShowDialog(this);
+        }
+
+        public bool IsChangeSaghfeEtebar;
+        private void FrmTarifAaza_1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Km!=null && IsChangeSaghfeEtebar)
+            {
+                //Km.chkcmbEntekhabZamenin.EditValue = 0;
+                //Km.chkcmbEntekhabZamenin.EditValue = null;
+                //Km.chkcmbEntekhabZamenin.Text = "";
+                Km.chkcmbAazaSandoogh_EditValueChanged(null,null);
+            }
         }
     }
 }

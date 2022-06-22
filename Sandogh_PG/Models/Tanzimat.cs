@@ -18,6 +18,8 @@ namespace Sandogh_PG
         public int? MablaghDirkard { get; set; }
         public int? MaximumAghsatMahane { get; set; }
         public int? MaximumAghsatSalane { get; set; }
+        public int XBrabarSarmaye { get; set; }
+        public decimal MazrabEtebar { get; set; }
         [MaxLength(400)]
         public string Path { get; set; }
         public bool checkEdit1 { get; set; }
@@ -25,6 +27,9 @@ namespace Sandogh_PG
         public bool checkEdit3 { get; set; }
         public bool checkEdit4 { get; set; }
         public bool checkEdit5 { get; set; }
+        public bool checkEdit6 { get; set; }
+        public bool checkEdit7 { get; set; }
+        public bool checkEdit8 { get; set; }
         [Required]
         public int MoinDefaultId { get; set; }
         [Required]

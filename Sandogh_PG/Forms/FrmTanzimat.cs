@@ -153,12 +153,17 @@ namespace Sandogh_PG
                         txtMablaghDirkard.Text = q1.MablaghDirkard.ToString();
                         txtMaximumAghsatMahane.Text = q1.MaximumAghsatMahane.ToString();
                         txtMaximumAghsatSalane.Text = q1.MaximumAghsatSalane.ToString();
+                        txtXBrabarSarmaye.Text = q1.XBrabarSarmaye.ToString();
+                        txtMazrabEtebar.Text = q1.MazrabEtebar.ToString();
                         txtPath.Text = q1.Path;
                         checkEdit1.Checked = q1.checkEdit1;
                         checkEdit2.Checked = q1.checkEdit2;
                         checkEdit3.Checked = q1.checkEdit3;
                         checkEdit4.Checked = q1.checkEdit4;
                         checkEdit5.Checked = q1.checkEdit5;
+                        checkEdit6.Checked = q1.checkEdit6;
+                        checkEdit7.Checked = q1.checkEdit7;
+                        checkEdit8.Checked = q1.checkEdit8;
                         cmbMoin.EditValue = q1.MoinDefaultId;
                         cmbNameHesab.EditValue = q1.TafsiliDefaultId;
                     }
@@ -198,12 +203,17 @@ namespace Sandogh_PG
                         q1.MablaghDirkard = !string.IsNullOrEmpty(txtMablaghDirkard.Text.Replace(",", "")) ? Convert.ToInt32(txtMablaghDirkard.Text.Replace(",", "")) : 0;
                         q1.MaximumAghsatMahane = !string.IsNullOrEmpty(txtMaximumAghsatMahane.Text.Replace(",", "")) ? Convert.ToInt32(txtMaximumAghsatMahane.Text.Replace(",", "")) : 0;
                         q1.MaximumAghsatSalane = !string.IsNullOrEmpty(txtMaximumAghsatSalane.Text.Replace(",", "")) ? Convert.ToInt32(txtMaximumAghsatSalane.Text.Replace(",", "")) : 0;
+                        q1.XBrabarSarmaye = !string.IsNullOrEmpty(txtXBrabarSarmaye.Text.Replace(",", "")) ? Convert.ToInt32(txtXBrabarSarmaye.Text.Replace(",", "")) : 0;
+                        q1.MazrabEtebar = !string.IsNullOrEmpty(txtMazrabEtebar.Text.Replace(",", "")) ? Convert.ToInt32(txtMazrabEtebar.Text.Replace(",", "")) : 0;
                         q1.Path = txtPath.Text;
                         q1.checkEdit1 = checkEdit1.Checked;
                         q1.checkEdit2 = checkEdit2.Checked;
                         q1.checkEdit3 = checkEdit3.Checked;
                         q1.checkEdit4 = checkEdit4.Checked;
                         q1.checkEdit5 = checkEdit5.Checked;
+                        q1.checkEdit6 = checkEdit6.Checked;
+                        q1.checkEdit7 = checkEdit7.Checked;
+                        q1.checkEdit8 = checkEdit8.Checked;
                         q1.MoinDefaultId = Convert.ToInt32(cmbMoin.EditValue);
                         q1.TafsiliDefaultId = Convert.ToInt32(cmbNameHesab.EditValue);
                     }
@@ -215,12 +225,17 @@ namespace Sandogh_PG
                         obj.MablaghDirkard = !string.IsNullOrEmpty(txtMablaghDirkard.Text.Replace(",", "")) ? Convert.ToInt32(txtMablaghDirkard.Text.Replace(",", "")) : 0;
                         obj.MaximumAghsatMahane = !string.IsNullOrEmpty(txtMaximumAghsatMahane.Text.Replace(",", "")) ? Convert.ToInt32(txtMaximumAghsatMahane.Text.Replace(",", "")) : 0;
                         obj.MaximumAghsatSalane = !string.IsNullOrEmpty(txtMaximumAghsatSalane.Text.Replace(",", "")) ? Convert.ToInt32(txtMaximumAghsatSalane.Text.Replace(",", "")) : 0;
+                        obj.XBrabarSarmaye = !string.IsNullOrEmpty(txtXBrabarSarmaye.Text.Replace(",", "")) ? Convert.ToInt32(txtXBrabarSarmaye.Text.Replace(",", "")) : 0;
+                        obj.MazrabEtebar = !string.IsNullOrEmpty(txtMazrabEtebar.Text.Replace(",", "")) ? Convert.ToInt32(txtMazrabEtebar.Text.Replace(",", "")) : 0;
                         obj.Path = txtPath.Text;
                         obj.checkEdit1 = checkEdit1.Checked;
                         obj.checkEdit2 = checkEdit2.Checked;
                         obj.checkEdit3 = checkEdit3.Checked;
                         obj.checkEdit4 = checkEdit4.Checked;
                         obj.checkEdit5 = checkEdit5.Checked;
+                        obj.checkEdit6 = checkEdit6.Checked;
+                        obj.checkEdit7 = checkEdit7.Checked;
+                        obj.checkEdit8 = checkEdit8.Checked;
                         obj.Id = _SandoghId;
                         obj.MoinDefaultId = Convert.ToInt32(cmbMoin.EditValue);
                         obj.TafsiliDefaultId = Convert.ToInt32(cmbNameHesab.EditValue);
@@ -280,6 +295,60 @@ namespace Sandogh_PG
         private void cmbMoin_EditValueChanged(object sender, EventArgs e)
         {
             FillcmbNameHesab();
+        }
+
+        private void checkEdit5_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkEdit5.Checked ==true && checkEdit1.Checked == false)
+            {
+                checkEdit1.Checked = true;
+            }
+                checkEdit6.Checked = checkEdit5.Checked ? true : false;
+        }
+
+        private void checkEdit1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkEdit1.Checked == false && checkEdit5.Checked == true)
+            {
+                checkEdit5.Checked = false;
+            }
+        }
+
+        private void checkEdit6_CheckedChanged(object sender, EventArgs e)
+        {
+            //if (checkEdit6.Checked == true && checkEdit5.Checked == false)
+            //{
+            //    checkEdit5.Checked = true;
+            //}
+
+        }
+
+        private void checkEdit7_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkEdit7.Checked)
+            {
+                txtXBrabarSarmaye.ReadOnly = false ;
+                checkEdit8.ReadOnly = false;
+            }
+            else
+            {
+                txtXBrabarSarmaye.ReadOnly = true;
+                checkEdit8.ReadOnly = true;
+                checkEdit8.Checked = false;
+            }
+
+        }
+
+        private void checkEdit8_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkEdit8.Checked)
+            {
+                txtMazrabEtebar.ReadOnly = false;
+            }
+            else
+            {
+                txtMazrabEtebar.ReadOnly = true;
+            }
         }
     }
 }

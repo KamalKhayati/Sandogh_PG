@@ -64,6 +64,7 @@ namespace Sandogh_PG
         public decimal? HazineEftetah { get; set; }
         public decimal? DaramadeMahiane { get; set; }
         public decimal SaghfeEtebar { get; set; }
+        public decimal EtebarBlookeShode { get; set; }
 
         [Required]
         public bool IsActive { get; set; }

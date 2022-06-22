@@ -118,7 +118,7 @@ namespace Sandogh_PG
                         var n1 = db.VamPardakhtis.FirstOrDefault(s => s.AazaId == _AazaId && s.IsTasviye==false);
                         if (n1!=null)
                         {
-                            if (XtraMessageBox.Show("صاحب چک وام تسویه نشده دارد آیا با این حال باز هم چک عودت شود", "پیغام", MessageBoxButtons.YesNo, MessageBoxIcon.Information)==DialogResult.Yes)
+                            if (XtraMessageBox.Show("صاحب چک وام تسویه نشده دارد آیا با این حال باز هم چک عودت شود؟", "پیغام", MessageBoxButtons.YesNo, MessageBoxIcon.Information)==DialogResult.Yes)
                             {
                                 return true;
                             }

@@ -56,10 +56,12 @@ namespace Sandogh_PG
         public int HesabTafziliId { get; set; }
         [Required, MaxLength(200)]
         public string HesabTafziliName { get; set; }
-        [MaxLength(100)]
+        [MaxLength(200)]
         public string ZameninId { get; set; }
         [MaxLength(500)]
         public string ZameninName { get; set; }
+        //[MaxLength(500)]
+        //public string ZameninCode { get; set; }
         public bool? HaveCheckTazmin { get; set; }
         public bool? IsTasviye { get; set; }
         [Required]
@@ -70,5 +72,42 @@ namespace Sandogh_PG
         public string Tozihat { get; set; }
         public virtual AllHesabTafzili AllHesabTafzili1 { get; set; }
         public virtual ICollection<RizeAghsatVam> RizeAghsatVams { get; set; }
+        public virtual ICollection<R_VamPardakhti_B_Zamenin> R_VamPardakhti_B_Zamenins { get; set; }
+        public virtual ICollection<R_VamPardakhti_B_CheckTazmin> R_VamPardakhti_B_CheckTazmins { get; set; }
     }
+
+    public class R_VamPardakhti_B_Zamenin
+    {
+        [Key]
+        [Required, Column(Order = 0)]
+        public int VamPardakhtiId { get; set; }
+        [Key]
+        [Required, Column(Order = 1)]
+        public int AllTafId { get; set; }
+        [Required, Column(Order = 2)]
+        public decimal EtebarBlookeShode { get; set; }
+        [Required, Column(Order = 3)]
+        public int SalMaliId { get; set; }
+        public virtual VamPardakhti VamPardakhtin1 { get; set; }
+        public virtual AllHesabTafzili AllHesabTafzili1 { get; set; }
+
+    }
+
+    public class R_VamPardakhti_B_CheckTazmin
+    {
+        [Key]
+        [Required, Column(Order = 0)]
+        public int VamPardakhtiId { get; set; }
+        [Key]
+        [Required, Column(Order = 1)]
+        public int CheckTazminId { get; set; }
+        [Required, Column(Order = 2)]
+        public decimal MablageCheck { get; set; }
+        [Required, Column(Order = 3)]
+        public int SalMaliId { get; set; }
+        public virtual VamPardakhti VamPardakhtin1 { get; set; }
+        public virtual CheckTazmin CheckTazmin1 { get; set; }
+
+    }
+
 }

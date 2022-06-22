@@ -607,10 +607,10 @@ namespace Sandogh_PG
 
         private void FrmDaryaftCheckTazmin_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (Application.OpenForms["FrmVamPardakhti"] != null)
-            {
-                Am.FillDataGridCheckTazmin();
-            }
+            //if (Application.OpenForms["FrmVamPardakhti"] != null)
+            //{
+            //    Am.FillDataGridCheckTazmin();
+            //}
         }
 
         private void cmbVamGerande_Enter(object sender, EventArgs e)

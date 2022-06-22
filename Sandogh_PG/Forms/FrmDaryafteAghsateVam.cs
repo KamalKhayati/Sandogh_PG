@@ -906,13 +906,27 @@ namespace Sandogh_PG
                                         if (q1 != null)
                                         {
                                             q1.IsTasviye = true;
+
+                                            var w = db.R_VamPardakhti_B_Zamenins.Where(s => s.VamPardakhtiId == q.VamPardakhtiId).ToList();
+                                            if (w.Count > 0)
+                                            {
+                                                foreach (var item in w)
+                                                {
+                                                    var r = db.AazaSandoghs.FirstOrDefault(s => s.AllTafId == item.AllTafId).EtebarBlookeShode;
+                                                    r = r - item.EtebarBlookeShode;
+                                                }
+                                            }
+
                                             db.SaveChanges();
                                             Fm.btnDisplyActiveList3_Click(null, null);
 
                                             var n1 = db.CheckTazmins.FirstOrDefault(s => s.VamGerandeId == _HesabTafId2);
                                             if (n1!=null)
                                             {
-                                                XtraMessageBox.Show("سند تضمینی بلوکه شده با وام فوق آزاد گردید لذا عودت آن به وام گیرنده بلامانع است", "پیغام ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                //int _AllTaf = Convert.ToInt32(cmbPardakhtKonande.EditValue);
+                                                var q5 = db.VamPardakhtis.FirstOrDefault(s => s.Id != q.VamPardakhtiId && s.AazaId== _HesabTafId2 && s.IsTasviye==false);
+                                                if(q5==null)
+                                                XtraMessageBox.Show("سند تضمینی بلوکه شده بابت وام فوق آزاد گردید لذا عودت آن به وام گیرنده بلامانع است", "پیغام ", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                             }
                                         }
@@ -1435,7 +1449,10 @@ namespace Sandogh_PG
                                                 var n1 = db.CheckTazmins.FirstOrDefault(s => s.VamGerandeId == _HesabTafId2);
                                                 if (n1 != null)
                                                 {
-                                                    XtraMessageBox.Show("سند تضمینی بلوکه شده با وام فوق آزاد گردید لذا عودت آن به وام گیرنده بلامانع است", "پیغام ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    //int _AllTaf = Convert.ToInt32(cmbPardakhtKonande.EditValue);
+                                                    var q5 = db.VamPardakhtis.FirstOrDefault(s => s.Id != q.VamPardakhtiId && s.AazaId == _HesabTafId2 && s.IsTasviye == false);
+                                                    if (q5 == null)
+                                                        XtraMessageBox.Show("سند تضمینی بلوکه شده بابت وام فوق آزاد گردید لذا عودت آن به وام گیرنده بلامانع است", "پیغام ", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                                 }
 

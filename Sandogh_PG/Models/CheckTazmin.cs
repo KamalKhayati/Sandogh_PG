@@ -45,7 +45,11 @@ namespace Sandogh_PG
         [Required]
         public int SalMaliId { get; set; }
         public bool IsInSandogh { get; set; }
+        //public bool VaziatAtf { get; set; }
+        //public int AtfVamId { get; set; }
         public virtual AllHesabTafzili AllHesabTafzili1 { get; set; }
         public virtual SalMali SalMali1 { get; set; }
+        public virtual ICollection<R_VamPardakhti_B_CheckTazmin> R_VamPardakhti_B_CheckTazmins { get; set; }
+
     }
 }

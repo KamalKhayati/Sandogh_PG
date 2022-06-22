@@ -141,6 +141,7 @@ namespace Sandogh_PG
                             fm.En = EnumCED.Edit;
                             //fm.IsEditRizAghsat = true;
                             fm.panelControl1.Enabled = fm.panelControl3.Enabled = fm.panelControl4.Enabled = fm.panelControl5.Enabled = fm.panelControl6.Enabled = fm.panelControl7.Enabled = false;
+                            fm.chkcmbEntekhabZamenin.Enabled = fm.lstZamenin.Enabled = fm.gridControl1.Enabled = false;
                             fm.ShowDialog();
                         }
                     }
@@ -154,9 +155,40 @@ namespace Sandogh_PG
 
         private void FrmListVamhayePardakhti_Load(object sender, EventArgs e)
         {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    var q = db.VamPardakhtis.ToList();
+                    if (q.Count > 0)
+                    {
+                        var q1 = q.FirstOrDefault(s => s.ZameninId != null);
+                        if (q1 != null)
+                        {
+                            if (q1.ZameninId.Substring(0, 1) != ",")
+                            {
+                                var q2 = q.Where(s => s.ZameninId != null).ToList();
+                                foreach (var item in q2)
+                                {
+                                    if (item.ZameninId.Substring(0, 1) != ",")
+                                        item.ZameninId = "," + item.ZameninId;
+                                }
+                                db.SaveChanges();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
             FillDataGridVamhayePardakhti();
             //gridView1.MoveLast();
             btnCreate1.Focus();
+
         }
 
         public void btnDisplyActiveList1_Click(object sender, EventArgs e)
@@ -223,10 +255,21 @@ namespace Sandogh_PG
                                 var q = db.VamPardakhtis.FirstOrDefault(p => p.Id == RowId);
                                 if (q != null)
                                 {
+                                    var w = db.R_VamPardakhti_B_Zamenins.Where(s => s.VamPardakhtiId == RowId).ToList();
+                                    if (w.Count > 0)
+                                    {
+                                        foreach (var item in w)
+                                        {
+                                            var r = db.AazaSandoghs.FirstOrDefault(s => s.AllTafId == item.AllTafId).EtebarBlookeShode;
+                                            r = r - item.EtebarBlookeShode;
+                                        }
+                                    }
+
                                     db.VamPardakhtis.Remove(q);
                                     var q1 = db.AsnadeHesabdariRows.Where(f => f.ShomareSanad == q.ShomareSanad);
                                     if (q1.Count() > 0)
                                         db.AsnadeHesabdariRows.RemoveRange(q1);
+
                                     /////////////////////////////////////////////////////////////////////////////
                                     db.SaveChanges();
 
@@ -1141,14 +1184,26 @@ namespace Sandogh_PG
                 try
                 {
                     var q1 = db.VamPardakhtis.Where(s => s.IsTasviye == false).ToList();
-                    var q2 = db.RizeAghsatVams.Where(s => s.VamPardakhti1.IsTasviye==false).ToList();
+                    var q2 = db.RizeAghsatVams.Where(s => s.VamPardakhti1.IsTasviye == false).ToList();
                     foreach (var item in q1)
                     {
-                        if (item.MablaghAsli+item.MablaghKarmozd!=q2.Where(s=>s.VamPardakhtiId==item.Id).Sum(s=>s.MablaghAghsat))
+                        if (q2.Where(s => s.VamPardakhtiId == item.Id).Sum(s => s.MablaghAghsat)!=0)
                         {
-                            XtraMessageBox.Show("مبلغ وام شماره "+ item.Code +" " + item.NameAaza + " با جمع مبلغ ریز اقساط برابر نیست لطفاً قبل از بستن فرم آنرا اصلاح فرمایید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            e.Cancel = true;
-                            return;
+                            if (item.MablaghAsli + item.MablaghKarmozd != q2.Where(s => s.VamPardakhtiId == item.Id).Sum(s => s.MablaghAghsat))
+                            {
+                                XtraMessageBox.Show("مبلغ وام شماره " + item.Code + " " + item.NameAaza + " با جمع مبلغ ریز اقساط برابر نیست لطفاً قبل از بستن فرم آنرا اصلاح فرمایید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                e.Cancel = true;
+                                return;
+                            }
+
+                        }
+                        else
+                        {
+                            if (XtraMessageBox.Show("وام شماره " + item.Code + " " + item.NameAaza + " قسط بندی نشده است آیا فرم بسته شود؟", "پیغام", MessageBoxButtons.YesNo, MessageBoxIcon.Information)==DialogResult.No)
+                            {
+                                e.Cancel = true;
+                                return;
+                            }
                         }
                     }
 

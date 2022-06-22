@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Data.Entity;
+using System.Collections;
+using Sandogh_PG.Forms;
 
 namespace Sandogh_PG
 {
@@ -277,12 +279,44 @@ namespace Sandogh_PG
             {
                 try
                 {
-                    int AazaId = Convert.ToInt32(cmbDaryaftkonande.EditValue);
-                    var q1 = db.CheckTazmins.Where(s => s.IsInSandogh == true && s.VamGerandeId == AazaId).OrderBy(s => s.SeryalDaryaft).ToList();
-                    if (q1.Count > 0)
-                        checkTazminsBindingSource.DataSource = q1;
-                    else
-                        checkTazminsBindingSource.DataSource = null;
+                    if (Convert.ToInt32(cmbDaryaftkonande.EditValue) > 0)
+                    {
+                        int AazaId = Convert.ToInt32(cmbDaryaftkonande.EditValue);
+                        int _SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
+                        var f1 = db.R_VamPardakhti_B_CheckTazmins.Where(s => s.SalMaliId == _SalMaliId && s.CheckTazmin1.VamGerandeId == AazaId && s.VamPardakhtin1.IsTasviye == false).ToList();
+                        var q1 = db.CheckTazmins.Where(s => s.IsInSandogh == true && s.SalMaliId == _SalMaliId && s.VamGerandeId == AazaId).OrderBy(s => s.SeryalDaryaft).ToList();
+                        if (q1.Count > 0)
+                        {
+                            if (En == EnumCED.Create)
+                            {
+                                if (f1.Count > 0)
+                                {
+                                    foreach (var item in f1)
+                                    {
+                                        q1.Remove(q1.FirstOrDefault(s => s.Id == item.CheckTazminId));
+                                    }
+                                }
+                                checkTazminsBindingSource.DataSource = q1.ToList();
+                            }
+                            else
+                            {
+                                int _VamId = Convert.ToInt32(txtId.Text);
+                                var f2 = f1.Where(s => s.VamPardakhtiId != _VamId).ToList();
+                                if (f2.Count > 0)
+                                {
+                                    foreach (var item in f2)
+                                    {
+                                        q1.Remove(q1.FirstOrDefault(s => s.Id == item.CheckTazminId));
+                                    }
+                                }
+
+                                checkTazminsBindingSource.DataSource = q1.ToList();
+                            }
+                        }
+                        else
+                            checkTazminsBindingSource.DataSource = null;
+
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -325,8 +359,13 @@ namespace Sandogh_PG
                 }
             }
         }
+        List<CheckTazmin> BefourEditgridView = null;
         private void FrmVamPardakhti_Load(object sender, EventArgs e)
         {
+            xtraTabControl1.SelectedTabPageIndex = 1;
+            xtraTabControl2.SelectedTabPageIndex = 1;
+            xtraTabControl1.SelectedTabPageIndex = 0;
+            xtraTabControl2.SelectedTabPageIndex = 0;
             FillcmbDaryaftkonande();
             FillcmbHesabMoin();
             HelpClass1.DateTimeMask(txtTarikhDarkhast);
@@ -387,6 +426,83 @@ namespace Sandogh_PG
                             chkIsTasviye.Enabled = true;
                         }
 
+
+                        //cmbDaryaftkonande.ReadOnly = true;
+                        EditRowIndex = Fm.gridView1.FocusedRowHandle;
+                        txtId.Text = Fm.gridView1.GetFocusedRowCellDisplayText("Id");
+                        cmbDaryaftkonande.EditValue = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("AazaId"));
+                        cmbNahveyePardakht.SelectedIndex = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("IndexNahveyePardakht"));
+                        cmbNoeVam.SelectedIndex = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("IndexNoeVam"));
+                        txtDarsadeKarmozd.Text = Fm.gridView1.GetFocusedRowCellDisplayText("DarsadeKarmozd");
+                        txtMablaghDirkard.Text = Fm.gridView1.GetFocusedRowCellDisplayText("MablaghDirkard");
+                        checkEdit1.Checked = Convert.ToBoolean(Fm.gridView1.GetFocusedRowCellValue("checkEdit1"));
+                        checkEdit2.Checked = Convert.ToBoolean(Fm.gridView1.GetFocusedRowCellValue("checkEdit2"));
+                        if (!string.IsNullOrEmpty(Fm.gridView1.GetFocusedRowCellDisplayText("TarikhDarkhast")))
+                        {
+                            txtTarikhDarkhast.Text = Fm.gridView1.GetFocusedRowCellDisplayText("TarikhDarkhast").Substring(0, 10);
+
+                        }
+                        txtShomareDarkhast.Text = Fm.gridView1.GetFocusedRowCellDisplayText("ShomareDarkhast");
+                        txtCode.Text = Fm.gridView1.GetFocusedRowCellDisplayText("Code");
+                        if (!string.IsNullOrEmpty(Fm.gridView1.GetFocusedRowCellDisplayText("TarikhPardakht")))
+                        {
+                            txtTarikhPardakht.Text = Fm.gridView1.GetFocusedRowCellDisplayText("TarikhPardakht").Substring(0, 10);
+
+                        }
+                        txtMablaghAsli.Text = Fm.gridView1.GetFocusedRowCellDisplayText("MablaghAsli");
+                        txtMablaghKarmozd.Text = Fm.gridView1.GetFocusedRowCellDisplayText("MablaghKarmozd");
+                        cmbFaseleAghsat.SelectedIndex = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("IndexFaseleAghsat"));
+                        txtTedadAghsat.Text = Fm.gridView1.GetFocusedRowCellDisplayText("TedadAghsat");
+                        txtMablaghAghsat.Text = Fm.gridView1.GetFocusedRowCellDisplayText("MablaghAghsat");
+                        if (!string.IsNullOrEmpty(Fm.gridView1.GetFocusedRowCellDisplayText("SarresidAvalinGhest")))
+                        {
+                            txtSarresidAvalinGhest.Text = Fm.gridView1.GetFocusedRowCellDisplayText("SarresidAvalinGhest").Substring(0, 10);
+
+                        }
+                        cmbHesabMoin.EditValue = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("HesabMoinId"));
+                        cmbHesabTafzili.EditValue = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("HesabTafziliId"));
+                        lstZamenin.Items.Add(Fm.gridView1.GetFocusedRowCellDisplayText("ZameninName"));
+                        if (!string.IsNullOrEmpty(Fm.gridView1.GetFocusedRowCellDisplayText("ZameninId")))
+                        {
+                            chkcmbEntekhabZamenin.SetEditValue(Fm.gridView1.GetFocusedRowCellDisplayText("ZameninId"));
+
+                        }
+                        txtTozihat.Text = Fm.gridView1.GetFocusedRowCellDisplayText("Tozihat") != null ? Fm.gridView1.GetFocusedRowCellDisplayText("Tozihat") : null;
+                        chkIsTasviye.Visible = true;
+                        chkIsTasviye.Checked = Convert.ToBoolean(Fm.gridView1.GetFocusedRowCellValue("IsTasviye"));
+
+                        if (Convert.ToInt32(cmbDaryaftkonande.EditValue) > 0)
+                        {
+                            int AazaId = Convert.ToInt32(cmbDaryaftkonande.EditValue);
+                            int _VamId = Convert.ToInt32(txtId.Text);
+                            int _SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
+                            var f1 = db.R_VamPardakhti_B_CheckTazmins.Where(s => s.SalMaliId == _SalMaliId && s.CheckTazmin1.VamGerandeId == AazaId && s.VamPardakhtin1.IsTasviye == false && s.VamPardakhtiId == _VamId).ToList();
+                            var q1 = db.CheckTazmins.Where(s => s.IsInSandogh == true && s.SalMaliId == _SalMaliId && s.VamGerandeId == AazaId).OrderBy(s => s.SeryalDaryaft).ToList();
+                            List<CheckTazmin> list2 = new List<CheckTazmin>();
+                            if (q1.Count > 0)
+                            {
+                                if (f1.Count > 0)
+                                {
+                                    foreach (var item in f1)
+                                    {
+                                        list2.Add(q1.FirstOrDefault(s => s.Id == item.CheckTazminId));
+                                    }
+
+                                    checkTazminsBindingSource.DataSource = list2.ToList();
+                                }
+                                else
+                                {
+                                    checkTazminsBindingSource.DataSource = null;
+                                }
+                            }
+                            else
+                                checkTazminsBindingSource.DataSource = null;
+                        }
+
+                        BefourEditgridView = new List<CheckTazmin>();
+                        //BefourEditgridView = gridView1.DataSource;
+                        BefourEditgridView = ((IEnumerable)gridView1.DataSource).Cast<CheckTazmin>().ToList();
+
                     }
                     catch (Exception ex)
                     {
@@ -394,52 +510,7 @@ namespace Sandogh_PG
                             "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-
-                //cmbDaryaftkonande.ReadOnly = true;
-                EditRowIndex = Fm.gridView1.FocusedRowHandle;
-                txtId.Text = Fm.gridView1.GetFocusedRowCellDisplayText("Id");
-                cmbDaryaftkonande.EditValue = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("AazaId"));
-                cmbNahveyePardakht.SelectedIndex = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("IndexNahveyePardakht"));
-                cmbNoeVam.SelectedIndex = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("IndexNoeVam"));
-                txtDarsadeKarmozd.Text = Fm.gridView1.GetFocusedRowCellDisplayText("DarsadeKarmozd");
-                txtMablaghDirkard.Text = Fm.gridView1.GetFocusedRowCellDisplayText("MablaghDirkard");
-                checkEdit1.Checked = Convert.ToBoolean(Fm.gridView1.GetFocusedRowCellValue("checkEdit1"));
-                checkEdit2.Checked = Convert.ToBoolean(Fm.gridView1.GetFocusedRowCellValue("checkEdit2"));
-                if (!string.IsNullOrEmpty(Fm.gridView1.GetFocusedRowCellDisplayText("TarikhDarkhast")))
-                {
-                    txtTarikhDarkhast.Text = Fm.gridView1.GetFocusedRowCellDisplayText("TarikhDarkhast").Substring(0, 10);
-
-                }
-                txtShomareDarkhast.Text = Fm.gridView1.GetFocusedRowCellDisplayText("ShomareDarkhast");
-                txtCode.Text = Fm.gridView1.GetFocusedRowCellDisplayText("Code");
-                if (!string.IsNullOrEmpty(Fm.gridView1.GetFocusedRowCellDisplayText("TarikhPardakht")))
-                {
-                    txtTarikhPardakht.Text = Fm.gridView1.GetFocusedRowCellDisplayText("TarikhPardakht").Substring(0, 10);
-
-                }
-                txtMablaghAsli.Text = Fm.gridView1.GetFocusedRowCellDisplayText("MablaghAsli");
-                txtMablaghKarmozd.Text = Fm.gridView1.GetFocusedRowCellDisplayText("MablaghKarmozd");
-                cmbFaseleAghsat.SelectedIndex = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("IndexFaseleAghsat"));
-                txtTedadAghsat.Text = Fm.gridView1.GetFocusedRowCellDisplayText("TedadAghsat");
-                txtMablaghAghsat.Text = Fm.gridView1.GetFocusedRowCellDisplayText("MablaghAghsat");
-                if (!string.IsNullOrEmpty(Fm.gridView1.GetFocusedRowCellDisplayText("SarresidAvalinGhest")))
-                {
-                    txtSarresidAvalinGhest.Text = Fm.gridView1.GetFocusedRowCellDisplayText("SarresidAvalinGhest").Substring(0, 10);
-
-                }
-                cmbHesabMoin.EditValue = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("HesabMoinId"));
-                cmbHesabTafzili.EditValue = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("HesabTafziliId"));
-                lstZamenin.Items.Add(Fm.gridView1.GetFocusedRowCellDisplayText("ZameninName"));
-                if (!string.IsNullOrEmpty(Fm.gridView1.GetFocusedRowCellDisplayText("ZameninId")))
-                {
-                    chkcmbEntekhabZamenin.SetEditValue(Fm.gridView1.GetFocusedRowCellDisplayText("ZameninId"));
-
-                }
-                txtTozihat.Text = Fm.gridView1.GetFocusedRowCellDisplayText("Tozihat") != null ? Fm.gridView1.GetFocusedRowCellDisplayText("Tozihat") : null;
-                chkIsTasviye.Visible = true;
-                chkIsTasviye.Checked = Convert.ToBoolean(Fm.gridView1.GetFocusedRowCellValue("IsTasviye"));
             }
-            cmbDaryaftkonande.Focus();
         }
 
         private void FrmVamPardakhti_KeyDown(object sender, KeyEventArgs e)
@@ -519,84 +590,76 @@ namespace Sandogh_PG
                     try
                     {
                         int _IDSandogh = Convert.ToInt32(Fm.Fm.IDSandogh.Caption);
-                        var q = db.Tanzimats.FirstOrDefault(f => f.Id == _IDSandogh).checkEdit1;
-                        if (q)
+                        var q = db.Tanzimats.FirstOrDefault(f => f.Id == _IDSandogh);
+                        if (q.checkEdit1)
                         {
                             if (chkcmbEntekhabZamenin.Text == string.Empty && checkTazminsBindingSource.DataSource == null)
                             {
                                 XtraMessageBox.Show("لطفاً نوع ضمانت وام را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 return false;
                             }
-                        }
-                        var q2 = db.Tanzimats.FirstOrDefault(f => f.Id == _IDSandogh).checkEdit5;
-                        if (q2)
-                        {
-                            if (chkcmbEntekhabZamenin.Text != string.Empty)
+                            else
                             {
-                                var CheckedList1 = chkcmbEntekhabZamenin.Properties.GetItems().GetCheckedValues();
-                                decimal MablaghAsli = !string.IsNullOrEmpty(txtMablaghAsli.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghAsli.Text.Replace(",", "")) : 0;
-                                decimal MablaghKarmozd = !string.IsNullOrEmpty(txtMablaghKarmozd.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghKarmozd.Text.Replace(",", "")) : 0;
-                                decimal SumMablaghVam = MablaghAsli + MablaghKarmozd;
-                                var q3 = db.AllHesabTafzilis.Where(s => s.IsActive == true).ToList();
-                                var q4 = db.AazaSandoghs.Where(s => s.IsActive == true).ToList();
-                                var q5 = db.VamPardakhtis.Where(s => s.IsTasviye == false).ToList();
-
-                                decimal MandeSaghfeEtebarZamenin = 0;
-                                foreach (var item in CheckedList1)
+                                if (q.checkEdit5)
                                 {
-                                    string NameZamen = q3.FirstOrDefault(s => s.Id == (int)item).Name;
-                                    decimal SaghfeEtebarZamen = q4.FirstOrDefault(s => s.AllTafId == (int)item).SaghfeEtebar;
-                                    decimal MandeSaghfeEtebarZamen = SaghfeEtebarZamen;
+                                    decimal SumEtebarZamenin = 0;
+                                    decimal SumMablaghVam = 0;
+                                    decimal MablaghAsli = !string.IsNullOrEmpty(txtMablaghAsli.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghAsli.Text.Replace(",", "")) : 0;
+                                    decimal MablaghKarmozd = !string.IsNullOrEmpty(txtMablaghKarmozd.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghKarmozd.Text.Replace(",", "")) : 0;
+                                    SumMablaghVam = MablaghAsli + MablaghKarmozd;
 
-                                    List<VamPardakhti> q6 = new List<VamPardakhti>();
-                                    if (En == EnumCED.Create)
+                                    if (chkcmbEntekhabZamenin.Text != string.Empty)
                                     {
-                                        q6 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.ZameninName.Contains(NameZamen)).ToList();
-                                    }
-                                    else if (En == EnumCED.Edit)
-                                    {
-                                        int _VamId = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("Id"));
-                                        q6 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.Id != _VamId && s.ZameninName.Contains(NameZamen)).ToList();
-                                    }
-                                    if (q6.Count > 0)
-                                    {
-                                        foreach (var item1 in q6)
+                                        var CheckedList1 = chkcmbEntekhabZamenin.Properties.GetItems().GetCheckedValues();
+                                        var q4 = db.AazaSandoghs.Where(s => s.IsActive == true).ToList();
+
+                                        foreach (var item in CheckedList1)
                                         {
-                                            if (MandeSaghfeEtebarZamen > 0)
+                                            decimal MandeSaghfeEtebarZamen = 0;
+
+                                            if (En == EnumCED.Create)
+                                                MandeSaghfeEtebarZamen = q4.FirstOrDefault(s => s.AllTafId == (int)item).SaghfeEtebar - q4.FirstOrDefault(s => s.AllTafId == (int)item).EtebarBlookeShode;
+                                            else
                                             {
-                                                MandeSaghfeEtebarZamen = (MandeSaghfeEtebarZamen - item1.MablaghAsli - item1.MablaghKarmozd) > 0 ? MandeSaghfeEtebarZamen - item1.MablaghAsli - item1.MablaghKarmozd : 0;
+                                                int VamId = Convert.ToInt32(txtId.Text);
+                                                MandeSaghfeEtebarZamen = q4.FirstOrDefault(s => s.AllTafId == (int)item).SaghfeEtebar - q4.FirstOrDefault(s => s.AllTafId == (int)item).EtebarBlookeShode;
+                                                var w = db.R_VamPardakhti_B_Zamenins.FirstOrDefault(s => s.VamPardakhtiId == VamId && s.AllTafId == (int)item);
+                                                if (w != null)
+                                                {
+                                                    MandeSaghfeEtebarZamen += w.EtebarBlookeShode;
+                                                }
 
                                             }
+                                            SumEtebarZamenin += MandeSaghfeEtebarZamen;
                                         }
+                                    }
 
-                                        MandeSaghfeEtebarZamenin += MandeSaghfeEtebarZamen > 0 ? MandeSaghfeEtebarZamen : 0;
+                                    if (gridView1.RowCount > 0)
+                                    {
+                                        decimal SumAsnadTazmini = Convert.ToDecimal(gridView1.Columns["Mablagh"].SummaryText.Replace(",", ""));
+                                        SumEtebarZamenin += SumAsnadTazmini;
+                                    }
+
+                                    if (SumEtebarZamenin < SumMablaghVam)
+                                    {
+                                        XtraMessageBox.Show("جمع سقف اعتبار ضامن یا ضامنین و اسناد تضمینی جهت ضمانت وام جاری کافی نیست لطفاً اصلاح بفرمایید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        return false;
                                     }
                                     else
                                     {
-                                        MandeSaghfeEtebarZamenin += MandeSaghfeEtebarZamen;
+                                        return true;
                                     }
-
-                                }
-
-                                //lstZamenin.Items.Clear();
-                                //string _MandeSaghfeEtebarZamenin = "مانده سقف اعتبار ضامن یا ضامنین : " + MandeSaghfeEtebarZamenin.ToString("n0") + " ریال ";
-                                //lstZamenin.Items.Add(_MandeSaghfeEtebarZamenin);
-                                if (MandeSaghfeEtebarZamenin < SumMablaghVam)
-                                {
-                                    XtraMessageBox.Show("مانده سقف اعتبار ضامن یا ضامنین جهت ضمانت وام جاری کافی نیست لطفاً اصلاح بفرمایید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    return false;
                                 }
                                 else
                                 {
                                     return true;
                                 }
                             }
-                            else
-                            {
-                                return true;
-                            }
                         }
-
+                        else
+                        {
+                            return true;
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -653,6 +716,9 @@ namespace Sandogh_PG
                 {
                     try
                     {
+                        int _SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
+                        //_IDSandogh = Convert.ToInt32(Fm.Fm.IDSandogh.Caption);
+                        //var b1 = db.AllHesabTafzilis.Where(s => s.SandoghId == _IDSandogh && s.GroupTafziliId == 3).ToList();
                         if (En == EnumCED.Create)
                         {
                             var q1 = db.AsnadeHesabdariRows.Any() ? db.AsnadeHesabdariRows.Max(f => f.ShomareSanad) : 0;
@@ -690,7 +756,8 @@ namespace Sandogh_PG
                             {
                                 obj.ZameninName = chkcmbEntekhabZamenin.Text;
 
-                                string CheckedItems = string.Empty;
+                                string CheckedItems = ",";
+                                //string CheckedCodes = string.Empty;
                                 var CheckedList = chkcmbEntekhabZamenin.Properties.GetItems().GetCheckedValues();
                                 if (CheckedList != null)
                                 {
@@ -700,6 +767,7 @@ namespace Sandogh_PG
                                     }
                                 }
                                 obj.ZameninId = CheckedItems;
+                                //obj.ZameninCode = b1.FirstOrDefault(s=>s.Id==;
                             }
                             else
                             {
@@ -711,6 +779,73 @@ namespace Sandogh_PG
                             obj.SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
                             obj.ShomareSanad = q1 + 1;
                             obj.Tozihat = txtTozihat.Text;
+
+                            List<R_VamPardakhti_B_CheckTazmin> list2 = new List<R_VamPardakhti_B_CheckTazmin>();
+                            if (gridView1.RowCount > 0)
+                            {
+                                for (int i = 0; i < gridView1.RowCount; i++)
+                                {
+                                    list2.Add(new R_VamPardakhti_B_CheckTazmin() { CheckTazminId = Convert.ToInt32(gridView1.GetRowCellValue(i, "Id")), MablageCheck = Convert.ToDecimal(gridView1.GetRowCellValue(i, "Mablagh")), SalMaliId = _SalMaliId });
+                                }
+                                obj.R_VamPardakhti_B_CheckTazmins = list2;
+                            }
+
+                            decimal SumAsnadTazmini = gridView1.RowCount > 0 ? Convert.ToDecimal(gridView1.Columns["Mablagh"].SummaryText.Replace(",", "")) : 0;
+                            List<R_VamPardakhti_B_Zamenin> List1 = new List<R_VamPardakhti_B_Zamenin>();
+                            var p2 = db.Tanzimats.FirstOrDefault(f => f.Id == _IDSandogh).checkEdit5;
+                            if (p2)
+                            {
+                                if (chkcmbEntekhabZamenin.Text != string.Empty)
+                                {
+                                    var CheckedList1 = chkcmbEntekhabZamenin.Properties.GetItems().GetCheckedValues();
+                                    decimal MablaghAsli = !string.IsNullOrEmpty(txtMablaghAsli.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghAsli.Text.Replace(",", "")) : 0;
+                                    decimal MablaghKarmozd = !string.IsNullOrEmpty(txtMablaghKarmozd.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghKarmozd.Text.Replace(",", "")) : 0;
+                                    decimal SumMablaghVam = MablaghAsli + MablaghKarmozd;
+                                    var q4 = db.AazaSandoghs.ToList();
+
+                                    decimal EtebarZamenGhabli = SumAsnadTazmini;
+                                    decimal MandeEtebar = 0;
+                                    foreach (var item in CheckedList1)
+                                    {
+                                        if (EtebarZamenGhabli < SumMablaghVam)
+                                        {
+                                            MandeEtebar = q4.FirstOrDefault(s => s.AllTafId == (int)item).SaghfeEtebar - q4.FirstOrDefault(s => s.AllTafId == (int)item).EtebarBlookeShode;
+                                            var q5 = q4.FirstOrDefault(s => s.AllTafId == (int)item);
+                                            if (q5 != null)
+                                            {
+                                                if (MandeEtebar == SumMablaghVam - EtebarZamenGhabli)
+                                                {
+                                                    q5.EtebarBlookeShode = q5.EtebarBlookeShode + MandeEtebar - EtebarZamenGhabli;
+                                                    List1.Add(new R_VamPardakhti_B_Zamenin() { AllTafId = (int)item, EtebarBlookeShode = MandeEtebar, SalMaliId = _SalMaliId });
+
+                                                }
+                                                else if (MandeEtebar > SumMablaghVam - EtebarZamenGhabli)
+                                                {
+                                                    q5.EtebarBlookeShode = q5.EtebarBlookeShode + SumMablaghVam - EtebarZamenGhabli;
+                                                    List1.Add(new R_VamPardakhti_B_Zamenin() { AllTafId = (int)item, EtebarBlookeShode = SumMablaghVam - EtebarZamenGhabli, SalMaliId = _SalMaliId });
+
+                                                }
+                                                else if (MandeEtebar < SumMablaghVam - EtebarZamenGhabli)
+                                                {
+                                                    q5.EtebarBlookeShode = q5.EtebarBlookeShode + MandeEtebar - EtebarZamenGhabli;
+                                                    List1.Add(new R_VamPardakhti_B_Zamenin() { AllTafId = (int)item, EtebarBlookeShode = MandeEtebar, SalMaliId = _SalMaliId });
+
+                                                }
+
+                                            }
+                                            EtebarZamenGhabli += MandeEtebar;
+
+                                        }
+                                        else
+                                        {
+                                            List1.Add(new R_VamPardakhti_B_Zamenin() { AllTafId = (int)item, EtebarBlookeShode = 0, SalMaliId = _SalMaliId });
+                                        }
+                                    }
+                                }
+                                obj.R_VamPardakhti_B_Zamenins = List1;
+                            }
+
+
                             db.VamPardakhtis.Add(obj);
                             db.SaveChanges();
                             //////////////////////////////////////////////////////////////////////////////////////
@@ -870,7 +1005,7 @@ namespace Sandogh_PG
                                     {
                                         q.ZameninName = chkcmbEntekhabZamenin.Text;
 
-                                        string CheckedItems = string.Empty;
+                                        string CheckedItems = ",";
                                         var CheckedList = chkcmbEntekhabZamenin.Properties.GetItems().GetCheckedValues();
                                         if (CheckedList != null)
                                         {
@@ -889,6 +1024,118 @@ namespace Sandogh_PG
                                     q.HaveCheckTazmin = checkTazminsBindingSource.DataSource != null ? true : false;
                                     q.IsTasviye = chkIsTasviye.Checked ? true : false;
                                     q.Tozihat = txtTozihat.Text;
+
+                                    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                                    List<CheckTazmin> _gridView1 = new List<CheckTazmin>();
+                                    //BefourEditgridView = gridView1.DataSource;
+                                    _gridView1 = ((IEnumerable)gridView1.DataSource).Cast<CheckTazmin>().ToList();
+
+                                    //var _gridView1 = gridView1.DataSource;
+                                    if (_gridView1 != BefourEditgridView)
+                                    {
+                                        var w = db.R_VamPardakhti_B_CheckTazmins.Where(s => s.VamPardakhtiId == RowId).ToList();
+                                        if (w.Count > 0)
+                                        {
+                                            db.R_VamPardakhti_B_CheckTazmins.RemoveRange(w);
+                                        }
+
+                                        List<R_VamPardakhti_B_CheckTazmin> list2 = new List<R_VamPardakhti_B_CheckTazmin>();
+                                        if (gridView1.RowCount > 0)
+                                        {
+                                            for (int i = 0; i < gridView1.RowCount; i++)
+                                            {
+                                                list2.Add(new R_VamPardakhti_B_CheckTazmin() { CheckTazminId = Convert.ToInt32(gridView1.GetRowCellValue(i, "Id")), MablageCheck = Convert.ToDecimal(gridView1.GetRowCellValue(i, "Mablagh")), SalMaliId = _SalMaliId });
+                                            }
+                                            q.R_VamPardakhti_B_CheckTazmins = list2;
+                                        }
+                                    }
+
+                                    ///////////////////////////////////////////////////////////////////////////////////////////
+                                    //if (CheckedList_0 != CheckedList_1)
+                                    {
+                                        var q4 = db.AazaSandoghs.ToList();
+
+                                        var w = db.R_VamPardakhti_B_Zamenins.Where(s => s.VamPardakhtiId == RowId).ToList();
+                                        if (w.Count > 0)
+                                        {
+                                            foreach (var item in w)
+                                                q4.FirstOrDefault(s => s.AllTafId == item.AllTafId).EtebarBlookeShode = q4.FirstOrDefault(s => s.AllTafId == item.AllTafId).EtebarBlookeShode - item.EtebarBlookeShode;
+
+                                            db.R_VamPardakhti_B_Zamenins.RemoveRange(w);
+                                        }
+
+
+                                        decimal SumAsnadTazmini = gridView1.RowCount > 0 ? Convert.ToDecimal(gridView1.Columns["Mablagh"].SummaryText.Replace(",", "")) : 0;
+                                        List<R_VamPardakhti_B_Zamenin> List1 = new List<R_VamPardakhti_B_Zamenin>();
+                                        var p2 = db.Tanzimats.FirstOrDefault(f => f.Id == _IDSandogh).checkEdit5;
+                                        if (p2)
+                                        {
+                                            if (chkcmbEntekhabZamenin.Text != string.Empty)
+                                            {
+                                                var CheckedList1 = chkcmbEntekhabZamenin.Properties.GetItems().GetCheckedValues();
+                                                decimal MablaghAsli = !string.IsNullOrEmpty(txtMablaghAsli.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghAsli.Text.Replace(",", "")) : 0;
+                                                decimal MablaghKarmozd = !string.IsNullOrEmpty(txtMablaghKarmozd.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghKarmozd.Text.Replace(",", "")) : 0;
+                                                decimal SumMablaghVam = MablaghAsli + MablaghKarmozd;
+
+                                                decimal EtebarZamenGhabli = SumAsnadTazmini;
+                                                decimal MandeEtebar = 0;
+                                                foreach (var item in CheckedList1)
+                                                {
+                                                    if (EtebarZamenGhabli < SumMablaghVam)
+                                                    {
+                                                        MandeEtebar = q4.FirstOrDefault(s => s.AllTafId == (int)item).SaghfeEtebar - q4.FirstOrDefault(s => s.AllTafId == (int)item).EtebarBlookeShode;
+                                                        var q5 = q4.FirstOrDefault(s => s.AllTafId == (int)item);
+                                                        if (q5 != null)
+                                                        {
+                                                            if (MandeEtebar == SumMablaghVam - EtebarZamenGhabli)
+                                                            {
+                                                                q5.EtebarBlookeShode = q5.EtebarBlookeShode + MandeEtebar - EtebarZamenGhabli;
+                                                                List1.Add(new R_VamPardakhti_B_Zamenin() { AllTafId = (int)item, EtebarBlookeShode = MandeEtebar, SalMaliId = _SalMaliId });
+
+                                                            }
+                                                            else if (MandeEtebar > SumMablaghVam - EtebarZamenGhabli)
+                                                            {
+                                                                q5.EtebarBlookeShode = q5.EtebarBlookeShode + SumMablaghVam - EtebarZamenGhabli;
+                                                                List1.Add(new R_VamPardakhti_B_Zamenin() { AllTafId = (int)item, EtebarBlookeShode = SumMablaghVam - EtebarZamenGhabli, SalMaliId = _SalMaliId });
+
+                                                            }
+                                                            else if (MandeEtebar < SumMablaghVam - EtebarZamenGhabli)
+                                                            {
+                                                                q5.EtebarBlookeShode = q5.EtebarBlookeShode + MandeEtebar - EtebarZamenGhabli;
+                                                                List1.Add(new R_VamPardakhti_B_Zamenin() { AllTafId = (int)item, EtebarBlookeShode = MandeEtebar, SalMaliId = _SalMaliId });
+
+                                                            }
+
+                                                        }
+                                                        EtebarZamenGhabli += MandeEtebar;
+
+                                                    }
+                                                    else
+                                                    {
+                                                        List1.Add(new R_VamPardakhti_B_Zamenin() { AllTafId = (int)item, EtebarBlookeShode = 0, SalMaliId = _SalMaliId });
+                                                    }
+                                                    #region MyRegion
+                                                    //List<VamPardakhti> q6 = new List<VamPardakhti>();
+                                                    //if (En == EnumCED.Create)
+                                                    //{
+                                                    //    //q6 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.ZameninName.Contains(NameZamen)).ToList();
+                                                    //    q6 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.ZameninId.Contains("," + (int)item + ",")).ToList();
+                                                    //}
+                                                    //else if (En == EnumCED.Edit)
+                                                    //{
+                                                    //    int _VamId = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("Id"));
+                                                    //    //q6 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.Id != _VamId && s.ZameninName.Contains(ZamenId)).ToList();
+                                                    //    q6 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.Id < _VamId && s.ZameninId.Contains("," + (int)item + ",")).ToList();
+                                                    //}
+
+                                                    #endregion
+                                                }
+                                            }
+                                            q.R_VamPardakhti_B_Zamenins = List1;
+                                        }
+                                    }
+
                                     ////////////////////////////////////////////////////////////////////////////////////////////
                                     if (IsEditRizAghsat)
                                     {
@@ -1167,7 +1414,9 @@ namespace Sandogh_PG
             }
         }
 
-        private void chkcmbAazaSandoogh_EditValueChanged(object sender, EventArgs e)
+        string CheckedList_0 = string.Empty;
+        string CheckedList_1 = string.Empty;
+        public void chkcmbAazaSandoogh_EditValueChanged(object sender, EventArgs e)
         {
             //lstZamenin.Items.Clear();
             //lstZamenin.Items.Add(chkcmbEntekhabZamenin.Text);
@@ -1176,77 +1425,108 @@ namespace Sandogh_PG
                 try
                 {
                     int _IDSandogh = Convert.ToInt32(Fm.Fm.IDSandogh.Caption);
+                    var CheckedListValue = chkcmbEntekhabZamenin.Properties.GetItems().GetCheckedValues();
+                    CheckedList_1 = chkcmbEntekhabZamenin.Text;
                     var q2 = db.Tanzimats.FirstOrDefault(f => f.Id == _IDSandogh).checkEdit5;
                     if (q2)
                     {
-                        if (chkcmbEntekhabZamenin.Text != string.Empty)
+                        if (CheckedList_1 != string.Empty)
                         {
-                            var CheckedList1 = chkcmbEntekhabZamenin.Properties.GetItems().GetCheckedValues();
                             decimal MablaghAsli = !string.IsNullOrEmpty(txtMablaghAsli.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghAsli.Text.Replace(",", "")) : 0;
                             decimal MablaghKarmozd = !string.IsNullOrEmpty(txtMablaghKarmozd.Text.Replace(",", "")) ? Convert.ToDecimal(txtMablaghKarmozd.Text.Replace(",", "")) : 0;
                             decimal SumMablaghVam = MablaghAsli + MablaghKarmozd;
-                            var q3 = db.AllHesabTafzilis.Where(s => s.IsActive == true).ToList();
-                            var q4 = db.AazaSandoghs.Where(s => s.IsActive == true).ToList();
-                            //var q5 = db.VamPardakhtis.Where(s => s.IsTasviye == false).ToList();
+                            var q4 = db.AazaSandoghs.Where(s => s.GroupTafziliId == 3).ToList();
+                            List<string> ListZamenin = new List<string>();
+                            decimal MandeSaghfeEtebarZamen = 0;
+                            lstZamenin.Items.Clear();
 
-                            decimal MandeSaghfeEtebarZamenin = 0;
-                            foreach (var item in CheckedList1)
+                            if (En == EnumCED.Create)
                             {
-                                string NameZamen = q3.FirstOrDefault(s => s.Id == (int)item).Name;
-                                decimal SaghfeEtebarZamen = q4.FirstOrDefault(s => s.AllTafId == (int)item).SaghfeEtebar;
-                                decimal MandeSaghfeEtebarZamen = SaghfeEtebarZamen;
+                                foreach (var item in CheckedListValue)
+                                {
+                                    MandeSaghfeEtebarZamen = q4.FirstOrDefault(s => s.AllTafId == (int)item).SaghfeEtebar - q4.FirstOrDefault(s => s.AllTafId == (int)item).EtebarBlookeShode;
 
-                                List<VamPardakhti> q6 = new List<VamPardakhti>();
-                                if (En==EnumCED.Create)
-                                {
-                                    q6 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.ZameninName.Contains(NameZamen)).ToList();
-                                }
-                                else if (En == EnumCED.Edit)
-                                {
-                                    int _VamId = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("Id"));
-                                    q6 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.Id != _VamId && s.ZameninName.Contains(NameZamen)).ToList();
-                                }
+                                    #region MyRegion
+                                    //List<VamPardakhti> q6 = new List<VamPardakhti>();
+                                    //if (En == EnumCED.Create)
+                                    //{
+                                    //    //q6 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.ZameninName.Contains(NameZamen)).ToList();
+                                    //    q6 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.ZameninId.Contains("," + (int)item + ",")).ToList();
+                                    //}
+                                    //else if (En == EnumCED.Edit)
+                                    //{
+                                    //    int _VamId = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("Id"));
+                                    //    //q6 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.Id != _VamId && s.ZameninName.Contains(ZamenId)).ToList();
+                                    //    q6 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.Id < _VamId && s.ZameninId.Contains("," + (int)item + ",")).ToList();
+                                    //}
 
-                                if (q6.Count > 0)
+                                    #endregion
+                                    if (MandeSaghfeEtebarZamen > 0)
+                                        ListZamenin.Add(q4.FirstOrDefault(s => s.AllTafId == (int)item).NameVFamil + " : " + "مانده اعتبار جهت ضمانت = " + MandeSaghfeEtebarZamen.ToString("n0") + " ریال ");
+                                    else
+                                        ListZamenin.Add(q4.FirstOrDefault(s => s.AllTafId == (int)item).NameVFamil + " : " + "مانده اعتبار جهت ضمانت = " + "0" + " ریال ");
+                                }
+                            }
+                            else
+                            {
+                                int _VamId = Convert.ToInt32(txtId.Text);
+                                var q = db.R_VamPardakhti_B_Zamenins.Where(s => s.VamPardakhtiId == _VamId).ToList();
+                                if (CheckedList_0 == CheckedList_1)
                                 {
-                                    foreach (var item1 in q6)
+                                    if (q.Count > 0)
                                     {
-                                        if (MandeSaghfeEtebarZamen > 0)
+                                        foreach (var item1 in q)
                                         {
-                                            MandeSaghfeEtebarZamen = (MandeSaghfeEtebarZamen - item1.MablaghAsli - item1.MablaghKarmozd) > 0 ? MandeSaghfeEtebarZamen - item1.MablaghAsli - item1.MablaghKarmozd : 0;
-
+                                            ListZamenin.Add(q4.FirstOrDefault(s => s.AllTafId == item1.AllTafId).NameVFamil + " : " + "اعتبار بلوکه شده جهت ضمانت = " + item1.EtebarBlookeShode.ToString("n0") + " ریال ");
                                         }
                                     }
+                                    else
+                                    {
+                                        ListZamenin.Clear();
+                                    }
 
-                                    MandeSaghfeEtebarZamenin += MandeSaghfeEtebarZamen > 0 ? MandeSaghfeEtebarZamen : 0;
                                 }
                                 else
                                 {
-                                    MandeSaghfeEtebarZamenin += MandeSaghfeEtebarZamen;
-                                }
+                                    foreach (var item in CheckedListValue)
+                                    {
+                                        if (q != null)
+                                        {
+                                            MandeSaghfeEtebarZamen = q4.FirstOrDefault(s => s.AllTafId == (int)item).SaghfeEtebar - q4.FirstOrDefault(s => s.AllTafId == (int)item).EtebarBlookeShode;
 
+                                            if (q.Any(s => s.VamPardakhtiId == _VamId && s.AllTafId == (int)item))
+                                            {
+                                                ListZamenin.Add(q4.FirstOrDefault(s => s.AllTafId == (int)item).NameVFamil + " : " + "اعتبار بلوکه شده + مانده اعتبار جهت ضمانت = " + (MandeSaghfeEtebarZamen + q.FirstOrDefault(s => s.VamPardakhtiId == _VamId && s.AllTafId == (int)item).EtebarBlookeShode).ToString("n0") + " ریال ");
+                                            }
+                                            else
+                                            {
+                                                if (MandeSaghfeEtebarZamen > 0)
+                                                    ListZamenin.Add(q4.FirstOrDefault(s => s.AllTafId == (int)item).NameVFamil + " : " + "مانده اعتبار جهت ضمانت = " + MandeSaghfeEtebarZamen.ToString("n0") + " ریال ");
+                                                else
+                                                    ListZamenin.Add(q4.FirstOrDefault(s => s.AllTafId == (int)item).NameVFamil + " : " + "مانده اعتبار جهت ضمانت = " + "0" + " ریال ");
+
+                                            }
+                                        }
+                                    }
+
+                                }
                             }
 
-                            lstZamenin.Items.Clear();
-                            string _MandeSaghfeEtebarZamenin = "مانده سقف اعتبار ضامن یا ضامنین : " + MandeSaghfeEtebarZamenin.ToString("n0")+ " ریال ";
-                            lstZamenin.Items.Add(_MandeSaghfeEtebarZamenin);
-                            //if (MandeSaghfeEtebarZamenin < SumMablaghVam)
-                            //{
-                            //    XtraMessageBox.Show("مانده سقف اعتبار ضامن یا ضامنین جهت ضمانت وام جاری کافی نیست لطفاً اصلاح بفرمایید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //    //btnSaveClose.Enabled = false;
-                            //}
-                            //else
-                            //{
-                            //    //btnSaveClose.Enabled = true;
-                            //}
+                            //lstZamenin.Items.Clear();
+                            foreach (var item in ListZamenin)
+                            {
+                                lstZamenin.Items.Add(item);
+                            }
                         }
                         else
                         {
                             lstZamenin.Items.Clear();
                         }
                     }
-
-
+                    else
+                    {
+                        lstZamenin.Items.Clear();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -1274,14 +1554,10 @@ namespace Sandogh_PG
 
         }
 
-        private void btnCreate_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void xtraTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
         {
-            btnCreate.Visible = xtraTabControl1.SelectedTabPageIndex == 1 ? true : false;
+            btnCreate.Visible = btnDelete.Visible = btnNemayeshCheckhaiAtfNashode.Visible = xtraTabControl1.SelectedTabPageIndex == 1 ? true : false;
+            btnTarifAaza.Visible = xtraTabControl1.SelectedTabPageIndex == 0 ? true : false;
         }
 
         private void btnCreate_Click_1(object sender, EventArgs e)
@@ -1431,9 +1707,121 @@ namespace Sandogh_PG
             if (Convert.ToInt32(cmbDaryaftkonande.EditValue) > 0)
             {
                 FillchkcmbEntekhabZamenin();
-                FillDataGridCheckTazmin();
 
             }
+        }
+
+
+        private void FrmVamPardakhti_Shown(object sender, EventArgs e)
+        {
+            if (En == EnumCED.Edit)
+            {
+                CheckedList_0 = chkcmbEntekhabZamenin.Text;
+                cmbDaryaftkonande.ReadOnly = true;
+                using (var db = new MyContext())
+                {
+                    try
+                    {
+
+
+                        int _IDSandogh = Convert.ToInt32(Fm.Fm.IDSandogh.Caption);
+                        var CheckedListValue = chkcmbEntekhabZamenin.Properties.GetItems().GetCheckedValues();
+                        CheckedList_1 = chkcmbEntekhabZamenin.Text;
+                        var q2 = db.Tanzimats.FirstOrDefault(f => f.Id == _IDSandogh).checkEdit5;
+                        if (q2)
+                        {
+                            //cmbDaryaftkonande.ReadOnly = txtMablaghAsli.ReadOnly = txtMablaghKarmozd.ReadOnly = true;
+                            var q4 = db.AazaSandoghs.Where(s => s.GroupTafziliId == 3).ToList();
+                            int _VamId = Convert.ToInt32(txtId.Text);
+                            var q = db.R_VamPardakhti_B_Zamenins.Where(s => s.VamPardakhtiId == _VamId).ToList();
+                            if (q.Count > 0)
+                            {
+                                lstZamenin.Items.Clear();
+                                foreach (var item1 in q)
+                                {
+                                    if (Fm.ListTasviyeNashode)
+                                        lstZamenin.Items.Add(q4.FirstOrDefault(s => s.AllTafId == item1.AllTafId).NameVFamil + " : " + "اعتبار بلوکه شده جهت ضمانت = " + item1.EtebarBlookeShode.ToString("n0") + " ریال ");
+                                    else
+                                        lstZamenin.Items.Add(q4.FirstOrDefault(s => s.AllTafId == item1.AllTafId).NameVFamil + " : " + "اعتبار آزاد شده جهت ضمانت = " + item1.EtebarBlookeShode.ToString("n0") + " ریال ");
+                                }
+                            }
+                            else
+                            {
+                                lstZamenin.Items.Clear();
+                            }
+                        }
+                        else
+                        {
+                            lstZamenin.Items.Clear();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+            }
+            else
+            {
+                cmbDaryaftkonande.Focus();
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            gridView1.DeleteSelectedRows();
+        }
+
+        private void btnNemayeshCheckhaiAtfNashode_Click(object sender, EventArgs e)
+        {
+            FillDataGridCheckTazmin();
+            //using (var db = new MyContext())
+            //{
+            //    try
+            //    {
+            //        if (Convert.ToInt32(cmbDaryaftkonande.EditValue) > 0)
+            //        {
+            //            int AazaId = Convert.ToInt32(cmbDaryaftkonande.EditValue);
+            //            var q1 = db.CheckTazmins.Where(s => s.IsInSandogh == true && s.VamGerandeId == AazaId).OrderBy(s => s.SeryalDaryaft).ToList();
+            //            if (q1.Count > 0)
+            //            {
+            //                if (En == EnumCED.Create)
+            //                {
+            //                    checkTazminsBindingSource.DataSource = q1.Where(s => s.VaziatAtf == false).ToList();
+            //                }
+            //                else
+            //                {
+            //                    int _VamId = Convert.ToInt32(txtId.Text);
+            //                    checkTazminsBindingSource.DataSource = q1.Where(s => s.AtfVamId == _VamId || s.AtfVamId == 0).ToList();
+            //                }
+            //            }
+            //            else
+            //                checkTazminsBindingSource.DataSource = null;
+
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+            //            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //}
+        }
+
+        private void txtTozihat_Leave(object sender, EventArgs e)
+        {
+            xtraTabControl2.SelectedTabPageIndex = 1;
+            xtraTabControl1.SelectedTabPageIndex = 0;
+            chkcmbEntekhabZamenin.Focus();
+        }
+
+        private void btnTarifAaza_Click(object sender, EventArgs e)
+        {
+            FrmTarifAaza_1 fm = new FrmTarifAaza_1(this);
+            fm.IsActiveList = true;
+            fm.ShowDialog(this);
         }
     }
 }

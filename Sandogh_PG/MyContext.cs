@@ -80,6 +80,8 @@
         public virtual DbSet<HaghOzviat> HaghOzviats { get; set; }
         public virtual DbSet<RizeAghsatVam> RizeAghsatVams { get; set; }
         public virtual DbSet<VamPardakhti> VamPardakhtis { get; set; }
+        public virtual DbSet<R_VamPardakhti_B_Zamenin> R_VamPardakhti_B_Zamenins { get; set; }
+        public virtual DbSet<R_VamPardakhti_B_CheckTazmin> R_VamPardakhti_B_CheckTazmins { get; set; }
         public virtual DbSet<DaryaftPardakhtBinHesabha> DaryaftPardakhtBinHesabhas { get; set; }
         public virtual DbSet<CheckTazmin> CheckTazmins { get; set; }
         public virtual DbSet<AsnadeHesabdariRow> AsnadeHesabdariRows { get; set; }
@@ -124,6 +126,10 @@
                 modelBuilder.Entity<GroupTafzili>().HasMany(m => m.AllHesabTafzilis).WithRequired(m => m.GroupTafzili1).HasForeignKey(m => m.GroupTafziliId).WillCascadeOnDelete(false);
 
                 modelBuilder.Entity<VamPardakhti>().HasMany(m => m.RizeAghsatVams).WithRequired(m => m.VamPardakhti1).HasForeignKey(m => m.VamPardakhtiId).WillCascadeOnDelete(true);
+                modelBuilder.Entity<VamPardakhti>().HasMany(m => m.R_VamPardakhti_B_Zamenins).WithRequired(m => m.VamPardakhtin1).HasForeignKey(m => m.VamPardakhtiId).WillCascadeOnDelete(true);
+                modelBuilder.Entity<VamPardakhti>().HasMany(m => m.R_VamPardakhti_B_CheckTazmins).WithRequired(m => m.VamPardakhtin1).HasForeignKey(m => m.VamPardakhtiId).WillCascadeOnDelete(true);
+                modelBuilder.Entity<AllHesabTafzili>().HasMany(m => m.R_VamPardakhti_B_Zamenins).WithRequired(m => m.AllHesabTafzili1).HasForeignKey(m => m.AllTafId).WillCascadeOnDelete(false);
+                modelBuilder.Entity<CheckTazmin>().HasMany(m => m.R_VamPardakhti_B_CheckTazmins).WithRequired(m => m.CheckTazmin1).HasForeignKey(m => m.CheckTazminId).WillCascadeOnDelete(false);
 
                 //modelBuilder.Entity<AllHesabTafzili>().HasMany(m => m.VamPardakhtis).WithRequired(m => m.AllHesabTafzili1).HasForeignKey(m => m.AazaId).WillCascadeOnDelete(false);
                 //modelBuilder.Entity<AllHesabTafzili>().HasMany(m => m.VamPardakhtis).WithRequired(m => m.AllHesabTafzili1).HasForeignKey(m => m.HesabTafziliId).WillCascadeOnDelete(false);

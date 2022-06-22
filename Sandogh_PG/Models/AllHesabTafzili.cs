@@ -29,5 +29,7 @@ namespace Sandogh_PG
         public virtual ICollection<AsnadeHesabdariRow> AsnadeHesabdariRows { get; set; }
         public virtual ICollection<CheckTazmin> CheckTazmins { get; set; }
         //public virtual ICollection<VamPardakhti> VamPardakhtis { get; set; }
+        public virtual ICollection<R_VamPardakhti_B_Zamenin> R_VamPardakhti_B_Zamenins { get; set; }
+
     }
 }

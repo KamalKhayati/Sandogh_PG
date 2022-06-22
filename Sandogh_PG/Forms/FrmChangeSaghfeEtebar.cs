@@ -55,18 +55,53 @@ namespace Sandogh_PG.Forms
 
                         var q2 = db.AazaSandoghs.ToList();
                         var q = db.AazaSandoghs.ToList();
+                        var q3 = db.Tanzimats.FirstOrDefault();
+                        var q4 = db.AsnadeHesabdariRows.Where(s => s.HesabMoinCode == 7001).ToList();
+
                         for (int i = 0; i < q2.Count; i++)
                         {
                             if (!dt.Rows.Contains(q2[i].Id))
                                 q.Remove(q2[i]);
                         }
+
                         //var q = db.AazaSandoghs.Where(s => s.IsActive == IsActiveList).ToList();
 
                         for (int i = 0; i < q.Count; i++)
                         {
-                            q[i].SaghfeEtebar = Convert.ToDecimal(txtSaghfeEtebar.Text.Replace(",", ""));
+                            if (radioGroup1.SelectedIndex == 0)
+                            {
+                                q[i].SaghfeEtebar = Convert.ToDecimal(txtSaghfeEtebar.Text.Replace(",", ""));
+                            }
+                            else
+                            {
+                                var q5 = q4.Where(s => s.HesabTafId == q[i].AllTafId).ToList();
+                                decimal sumbed = q5.Sum(s => s.Bed) ?? 0;
+                                decimal sumbes = q5.Sum(s => s.Bes) ?? 0;
+                                decimal _SaghfeEtebar = (sumbes - sumbed) >= 0 ? q3.XBrabarSarmaye * (sumbes - sumbed) : 0;
+                                if (q3.checkEdit8 == false)
+                                {
+                                    q[i].SaghfeEtebar = _SaghfeEtebar;
+                                }
+                                else
+                                {
+                                    decimal _MablaghMazrab = q3.MazrabEtebar;
+                                    if (_MablaghMazrab != 0)
+                                    {
+
+                                        float Sm = Convert.ToSingle(_SaghfeEtebar / _MablaghMazrab);
+                                        int rounded = (int)Math.Round(Sm);
+                                        q[i].SaghfeEtebar = rounded * _MablaghMazrab;
+                                    }
+                                    else
+                                    {
+                                        XtraMessageBox.Show("مضرب اعتبار نمیتواند صفر باشد لطفاً در برگه 2 تنظیمات اصلاح بفرمایید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        return;
+                                    }
+                                }
+                            }
                         }
                         db.SaveChanges();
+                        Fm.IsChangeSaghfeEtebar = true;
                         XtraMessageBox.Show("سقف اعتبار " + q.Count + " عضو صندوق اصلاح گردید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                         Fm.FillDataGridTarifAaza();
@@ -99,5 +134,55 @@ namespace Sandogh_PG.Forms
             this.Close();
         }
 
+        private void radioGroup1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtSaghfeEtebar.ReadOnly = radioGroup1.SelectedIndex == 0 ? false : true;
+            if (radioGroup1.SelectedIndex == 0)
+            {
+                if (!string.IsNullOrEmpty(txtSaghfeEtebar.Text))
+                    btnSaveAndClose.Enabled = true;
+                else
+                    btnSaveAndClose.Enabled = false;
+            }
+            else
+            {
+                btnSaveAndClose.Enabled = true;
+
+            }
+        }
+
+        private void FrmChangeSaghfeEtebar_Load(object sender, EventArgs e)
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    var q = db.Tanzimats.FirstOrDefault();
+                    if (q != null)
+                    {
+                        //radioGroup1.Properties.Items[0].Description = "مبلغ سقف اعتبار جدید (بصورت یکسان)";
+                        if (q.checkEdit7)
+                        {
+                            radioGroup1.Properties.Items[1].Description = "مبلغ سقف اعتبار جدید " + q.XBrabarSarmaye.ToString() + " برابر مبلغ سرمایه";
+                            radioGroup1.SelectedIndex = 1;
+                            radioGroup1.Properties.Items[1].Enabled = true;
+                            if (q.checkEdit8)
+                                radioGroup1.Properties.Items[1].Description = "مبلغ سقف اعتبار جدید " + q.XBrabarSarmaye.ToString() + " برابر مبلغ سرمایه" + " (مضرب اعتبار: " + q.MazrabEtebar.ToString("n0") + ")";
+                        }
+                        else
+                        {
+                            radioGroup1.SelectedIndex = 0;
+                            radioGroup1.Properties.Items[1].Enabled = false;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
     }
 }

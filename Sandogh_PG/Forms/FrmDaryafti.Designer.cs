@@ -63,10 +63,10 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Line = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCodePersoneli = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTarikhOzviat = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNameVFamil = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCodePersoneli = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTarikhOzviat = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colJensiat = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTaahol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMobil1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -176,6 +176,9 @@
             this.btnDisplyActiveList4 = new DevExpress.XtraEditors.SimpleButton();
             this.btnCreate4 = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl10 = new DevExpress.XtraEditors.PanelControl();
+            this.colSaghfeEtebar = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colEtebarBlookeShode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl9)).BeginInit();
             this.panelControl9.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -648,10 +651,10 @@
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colId,
             this.Line,
-            this.colCode,
-            this.colCodePersoneli,
-            this.colTarikhOzviat,
             this.colNameVFamil,
+            this.colCodePersoneli,
+            this.colCode,
+            this.colTarikhOzviat,
             this.colJensiat,
             this.colTaahol,
             this.colMobil1,
@@ -675,7 +678,10 @@
             this.colIsActive,
             this.colAdressManzel,
             this.colAdressMohalKar,
-            this.colSharhHesab});
+            this.colSharhHesab,
+            this.colSaghfeEtebar,
+            this.colEtebarBlookeShode,
+            this.gridColumn14});
             this.gridView1.DetailHeight = 378;
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView1.GridControl = this.gridControl1;
@@ -703,6 +709,7 @@
             this.colId.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colId.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colId.FieldName = "Id";
+            this.colId.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
             this.colId.MinWidth = 21;
             this.colId.Name = "colId";
             this.colId.Width = 84;
@@ -717,6 +724,7 @@
             this.Line.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.Line.Caption = "ردیف";
             this.Line.FieldName = "Line";
+            this.Line.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
             this.Line.MinWidth = 21;
             this.Line.Name = "Line";
             this.Line.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -724,23 +732,21 @@
             this.Line.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
             this.Line.Visible = true;
             this.Line.VisibleIndex = 0;
-            this.Line.Width = 66;
+            this.Line.Width = 61;
             // 
-            // colCode
+            // colNameVFamil
             // 
-            this.colCode.AppearanceCell.Options.UseTextOptions = true;
-            this.colCode.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colCode.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colCode.AppearanceHeader.Options.UseTextOptions = true;
-            this.colCode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colCode.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colCode.Caption = "کد حساب";
-            this.colCode.FieldName = "Code";
-            this.colCode.MinWidth = 21;
-            this.colCode.Name = "colCode";
-            this.colCode.Visible = true;
-            this.colCode.VisibleIndex = 1;
-            this.colCode.Width = 89;
+            this.colNameVFamil.AppearanceHeader.Options.UseTextOptions = true;
+            this.colNameVFamil.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colNameVFamil.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colNameVFamil.Caption = "نام و نام خانوادگی";
+            this.colNameVFamil.FieldName = "NameVFamil";
+            this.colNameVFamil.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+            this.colNameVFamil.MinWidth = 22;
+            this.colNameVFamil.Name = "colNameVFamil";
+            this.colNameVFamil.Visible = true;
+            this.colNameVFamil.VisibleIndex = 1;
+            this.colNameVFamil.Width = 245;
             // 
             // colCodePersoneli
             // 
@@ -758,6 +764,22 @@
             this.colCodePersoneli.VisibleIndex = 2;
             this.colCodePersoneli.Width = 118;
             // 
+            // colCode
+            // 
+            this.colCode.AppearanceCell.Options.UseTextOptions = true;
+            this.colCode.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colCode.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colCode.AppearanceHeader.Options.UseTextOptions = true;
+            this.colCode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colCode.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colCode.Caption = "کد حساب";
+            this.colCode.FieldName = "Code";
+            this.colCode.MinWidth = 21;
+            this.colCode.Name = "colCode";
+            this.colCode.Visible = true;
+            this.colCode.VisibleIndex = 3;
+            this.colCode.Width = 89;
+            // 
             // colTarikhOzviat
             // 
             this.colTarikhOzviat.AppearanceCell.Options.UseTextOptions = true;
@@ -771,21 +793,8 @@
             this.colTarikhOzviat.MinWidth = 22;
             this.colTarikhOzviat.Name = "colTarikhOzviat";
             this.colTarikhOzviat.Visible = true;
-            this.colTarikhOzviat.VisibleIndex = 3;
+            this.colTarikhOzviat.VisibleIndex = 4;
             this.colTarikhOzviat.Width = 111;
-            // 
-            // colNameVFamil
-            // 
-            this.colNameVFamil.AppearanceHeader.Options.UseTextOptions = true;
-            this.colNameVFamil.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colNameVFamil.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colNameVFamil.Caption = "نام و نام خانوادگی";
-            this.colNameVFamil.FieldName = "NameVFamil";
-            this.colNameVFamil.MinWidth = 22;
-            this.colNameVFamil.Name = "colNameVFamil";
-            this.colNameVFamil.Visible = true;
-            this.colNameVFamil.VisibleIndex = 4;
-            this.colNameVFamil.Width = 245;
             // 
             // colJensiat
             // 
@@ -2442,6 +2451,62 @@
             this.panelControl10.Size = new System.Drawing.Size(1756, 415);
             this.panelControl10.TabIndex = 4;
             // 
+            // colSaghfeEtebar
+            // 
+            this.colSaghfeEtebar.AppearanceCell.Options.UseTextOptions = true;
+            this.colSaghfeEtebar.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSaghfeEtebar.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colSaghfeEtebar.AppearanceHeader.Options.UseTextOptions = true;
+            this.colSaghfeEtebar.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSaghfeEtebar.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colSaghfeEtebar.Caption = "سقف اعتبار";
+            this.colSaghfeEtebar.DisplayFormat.FormatString = "n";
+            this.colSaghfeEtebar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colSaghfeEtebar.FieldName = "SaghfeEtebar";
+            this.colSaghfeEtebar.MinWidth = 25;
+            this.colSaghfeEtebar.Name = "colSaghfeEtebar";
+            this.colSaghfeEtebar.Visible = true;
+            this.colSaghfeEtebar.VisibleIndex = 29;
+            this.colSaghfeEtebar.Width = 145;
+            // 
+            // colEtebarBlookeShode
+            // 
+            this.colEtebarBlookeShode.AppearanceCell.Options.UseTextOptions = true;
+            this.colEtebarBlookeShode.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colEtebarBlookeShode.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colEtebarBlookeShode.AppearanceHeader.Options.UseTextOptions = true;
+            this.colEtebarBlookeShode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colEtebarBlookeShode.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colEtebarBlookeShode.Caption = "اعتبار بلوکه شده";
+            this.colEtebarBlookeShode.DisplayFormat.FormatString = "n";
+            this.colEtebarBlookeShode.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colEtebarBlookeShode.FieldName = "EtebarBlookeShode";
+            this.colEtebarBlookeShode.MinWidth = 25;
+            this.colEtebarBlookeShode.Name = "colEtebarBlookeShode";
+            this.colEtebarBlookeShode.Visible = true;
+            this.colEtebarBlookeShode.VisibleIndex = 30;
+            this.colEtebarBlookeShode.Width = 145;
+            // 
+            // gridColumn14
+            // 
+            this.gridColumn14.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn14.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn14.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn14.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn14.Caption = "مانده اعتبار";
+            this.gridColumn14.DisplayFormat.FormatString = "n";
+            this.gridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gridColumn14.FieldName = "gridColumn14";
+            this.gridColumn14.MinWidth = 25;
+            this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.UnboundExpression = "[SaghfeEtebar] - [EtebarBlookeShode]";
+            this.gridColumn14.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
+            this.gridColumn14.Visible = true;
+            this.gridColumn14.VisibleIndex = 31;
+            this.gridColumn14.Width = 145;
+            // 
             // FrmDaryafti
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 27F);
@@ -2646,5 +2711,8 @@
         private DevExpress.XtraEditors.SimpleButton btnDelete5;
         private DevExpress.XtraEditors.SimpleButton btnCreate5;
         private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraGrid.Columns.GridColumn colSaghfeEtebar;
+        private DevExpress.XtraGrid.Columns.GridColumn colEtebarBlookeShode;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
     }
 }
