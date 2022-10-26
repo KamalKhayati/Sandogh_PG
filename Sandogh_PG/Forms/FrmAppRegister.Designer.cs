@@ -64,14 +64,14 @@
             this.txtCode.Location = new System.Drawing.Point(259, 94);
             this.txtCode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtCode.Name = "txtCode";
-            this.txtCode.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCode.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCode.Properties.Appearance.Options.UseFont = true;
             this.txtCode.Properties.Appearance.Options.UseTextOptions = true;
             this.txtCode.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtCode.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtCode.Properties.ReadOnly = true;
             this.txtCode.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtCode.Size = new System.Drawing.Size(225, 34);
+            this.txtCode.Size = new System.Drawing.Size(225, 32);
             this.txtCode.TabIndex = 14;
             // 
             // txtSeryal
@@ -80,13 +80,14 @@
             this.txtSeryal.Location = new System.Drawing.Point(259, 135);
             this.txtSeryal.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSeryal.Name = "txtSeryal";
-            this.txtSeryal.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSeryal.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSeryal.Properties.Appearance.Options.UseFont = true;
             this.txtSeryal.Properties.Appearance.Options.UseTextOptions = true;
             this.txtSeryal.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtSeryal.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.txtSeryal.Properties.PasswordChar = '*';
             this.txtSeryal.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtSeryal.Size = new System.Drawing.Size(225, 34);
+            this.txtSeryal.Size = new System.Drawing.Size(225, 32);
             this.txtSeryal.TabIndex = 15;
             // 
             // btnSabt
@@ -140,7 +141,7 @@
             this.Controls.Add(this.txtSeryal);
             this.Controls.Add(this.btnSabt);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("FrmAppRegister.IconOptions.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

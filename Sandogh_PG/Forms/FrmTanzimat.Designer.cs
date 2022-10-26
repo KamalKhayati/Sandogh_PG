@@ -68,10 +68,10 @@
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.txtMazrabEtebar = new DevExpress.XtraEditors.TextEdit();
             this.checkEdit8 = new DevExpress.XtraEditors.CheckEdit();
-            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtXBrabarSarmaye.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit7.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit6.Properties)).BeginInit();
@@ -103,7 +103,7 @@
             // 
             this.labelControl10.AutoEllipsis = true;
             this.labelControl10.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
-            this.labelControl10.Location = new System.Drawing.Point(271, 240);
+            this.labelControl10.Location = new System.Drawing.Point(264, 240);
             this.labelControl10.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(637, 27);
@@ -115,7 +115,7 @@
             // 
             this.txtXBrabarSarmaye.EditValue = "";
             this.txtXBrabarSarmaye.EnterMoveNextControl = true;
-            this.txtXBrabarSarmaye.Location = new System.Drawing.Point(916, 237);
+            this.txtXBrabarSarmaye.Location = new System.Drawing.Point(912, 237);
             this.txtXBrabarSarmaye.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtXBrabarSarmaye.Name = "txtXBrabarSarmaye";
             this.txtXBrabarSarmaye.Properties.Appearance.Options.UseTextOptions = true;
@@ -569,6 +569,17 @@
             this.xtraTabPage2.Size = new System.Drawing.Size(996, 363);
             this.xtraTabPage2.Text = "برگه 2";
             // 
+            // labelControl12
+            // 
+            this.labelControl12.AutoEllipsis = true;
+            this.labelControl12.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
+            this.labelControl12.Location = new System.Drawing.Point(527, 277);
+            this.labelControl12.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.labelControl12.Name = "labelControl12";
+            this.labelControl12.Size = new System.Drawing.Size(64, 27);
+            this.labelControl12.TabIndex = 51;
+            this.labelControl12.Text = "ریال باشد";
+            // 
             // labelControl11
             // 
             this.labelControl11.AutoEllipsis = true;
@@ -607,17 +618,6 @@
             this.checkEdit8.Size = new System.Drawing.Size(30, 24);
             this.checkEdit8.TabIndex = 48;
             this.checkEdit8.CheckedChanged += new System.EventHandler(this.checkEdit8_CheckedChanged);
-            // 
-            // labelControl12
-            // 
-            this.labelControl12.AutoEllipsis = true;
-            this.labelControl12.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
-            this.labelControl12.Location = new System.Drawing.Point(527, 277);
-            this.labelControl12.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(64, 27);
-            this.labelControl12.TabIndex = 51;
-            this.labelControl12.Text = "ریال باشد";
             // 
             // FrmTanzimat
             // 

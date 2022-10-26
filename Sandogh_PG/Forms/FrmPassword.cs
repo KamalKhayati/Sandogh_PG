@@ -31,7 +31,7 @@ namespace Sandogh_PG
 
         private void txtPassword_Leave(object sender, EventArgs e)
         {
-            string _DefaultPassword = "km113012";
+            string _DefaultPassword = "@Km1373971983113012";
             if (!string.IsNullOrEmpty(txtPassword.Text))
             {
                 if (_DefaultPassword == txtPassword.Text)

@@ -458,7 +458,8 @@ namespace Sandogh_PG
 
         private void FrmLogin_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Alt && e.Control && e.Shift && e.KeyCode == Keys.F12)
+            //if (e.Alt && e.Control && e.Shift && e.KeyCode == Keys.F12)
+            if (e.Alt && e.Control && e.KeyCode == Keys.Insert)
             {
                 FrmPassword frm = new FrmPassword(this);
                 frm.txtPassword.Focus();
