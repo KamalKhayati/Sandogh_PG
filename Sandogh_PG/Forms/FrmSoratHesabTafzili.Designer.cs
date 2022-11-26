@@ -230,7 +230,7 @@
             this.gridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn6.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn6.Caption = "شرح معین";
-            this.gridColumn6.FieldName = "HesabMoinName";
+            this.gridColumn6.FieldName = "CodeMoin1.Name";
             this.gridColumn6.MinWidth = 22;
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;

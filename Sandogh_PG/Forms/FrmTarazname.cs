@@ -28,6 +28,7 @@ namespace Sandogh_PG
             {
                 try
                 {
+                    var p1 = db.CodeMoins.ToList();
                     DateTime _Ta = Convert.ToDateTime(txtTaTarikh.Text);
                     List<AsnadeHesabdariRow> List1 = new List<AsnadeHesabdariRow>();
                     var q1 = db.AsnadeHesabdariRows.Where(f => f.Tarikh <= _Ta).ToList();
@@ -41,7 +42,7 @@ namespace Sandogh_PG
                                 obj1.Id = item.Id;
                                 obj1.HesabMoinId = item.HesabMoinId;
                                 obj1.HesabMoinCode = item.HesabMoinCode;
-                                obj1.HesabMoinName = item.HesabMoinName;
+                                obj1.HesabMoinName = p1.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Id == item.HesabMoinId).Name;
                                 //obj1.HesabTafId = item.HesabTafId;
                                 //obj1.HesabTafCode = item.HesabTafCode;
                                 //obj1.HesabTafName = item.HesabTafName;
@@ -64,8 +65,10 @@ namespace Sandogh_PG
 
         }
 
+        int _SandoghId = 0;
         private void FrmTarazname_Load(object sender, EventArgs e)
         {
+            _SandoghId = Convert.ToInt32(Fm.IDSandogh.Caption);
             txtTaTarikh.Text = DateTime.Now.ToString().Substring(0, 10);
             HelpClass1.DateTimeMask(txtTaTarikh);
             FillDataGridView1();

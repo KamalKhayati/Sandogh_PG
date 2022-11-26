@@ -331,7 +331,7 @@
             this.colMoinName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colMoinName.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colMoinName.Caption = "شرح معین";
-            this.colMoinName.FieldName = "HesabMoinName";
+            this.colMoinName.FieldName = "CodeMoin1.Name";
             this.colMoinName.MinWidth = 22;
             this.colMoinName.Name = "colMoinName";
             this.colMoinName.Visible = true;
@@ -347,7 +347,7 @@
             this.colHesabTafCode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colHesabTafCode.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colHesabTafCode.Caption = "کد تفضیلی";
-            this.colHesabTafCode.FieldName = "HesabTafCode";
+            this.colHesabTafCode.FieldName = "AllHesabTafzili1.Code";
             this.colHesabTafCode.MinWidth = 22;
             this.colHesabTafCode.Name = "colHesabTafCode";
             this.colHesabTafCode.Visible = true;
@@ -362,7 +362,7 @@
             this.colHesabTafName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colHesabTafName.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.colHesabTafName.Caption = "نام حساب";
-            this.colHesabTafName.FieldName = "HesabTafName";
+            this.colHesabTafName.FieldName = "AllHesabTafzili1.Name";
             this.colHesabTafName.MinWidth = 22;
             this.colHesabTafName.Name = "colHesabTafName";
             this.colHesabTafName.Visible = true;

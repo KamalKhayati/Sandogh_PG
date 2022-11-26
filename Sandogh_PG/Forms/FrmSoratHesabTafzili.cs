@@ -24,6 +24,8 @@ namespace Sandogh_PG
             InitializeComponent();
             Fm = fm;
         }
+
+        int _SandoghId = 0;
         public void FillDataGridView1()
         {
             int TafziliId = Convert.ToInt32(cmbHesabTafzili.EditValue);
@@ -35,24 +37,27 @@ namespace Sandogh_PG
                 {
                     List<AsnadeHesabdariRow> List1 = new List<AsnadeHesabdariRow>();
                     var q1 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == TafziliId && f.Tarikh <= EndData).ToList();
+                    //var p1 = db.CodeMoins.ToList();
                     if (q1.Count > 0)
                     {
                         var q2 = q1.Select(s => s.HesabMoinId).Distinct().ToList();
                         foreach (var item in q2)
                         {
-                            var q3 = q1.Where(s => s.HesabMoinId == item).ToList();
+                            //var q3 = q1.Where(s => s.HesabMoinId == item).ToList();
                             AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
                             if (!List1.Any(f => f.HesabMoinId == item))
                             {
-                                obj1.Id = q3.FirstOrDefault().Id;
-                                obj1.HesabMoinId = q3.FirstOrDefault().HesabMoinId;
-                                obj1.HesabMoinCode = q3.FirstOrDefault().HesabMoinCode;
-                                obj1.HesabMoinName = q3.FirstOrDefault().HesabMoinName;
+                                //obj1.Id = q1.FirstOrDefault(s => s.HesabMoinId == item).Id;
+                                obj1.HesabMoinId = item;
+                                obj1.HesabMoinCode = q1.FirstOrDefault(s => s.HesabMoinId == item).CodeMoin1.Code;
+                                //obj1.HesabMoinName = q3.FirstOrDefault().HesabMoinName;
+                                obj1.HesabMoinName =q1.FirstOrDefault(s=>s.HesabMoinId== item).CodeMoin1.Name;
+                                //obj1.HesabMoinName = p1.FirstOrDefault(s=>s.SandoghId==_SandoghId && s.Id==item).Name;
                                 //obj1.HesabTafId = item.HesabTafId;
                                 //obj1.HesabTafCode = item.HesabTafCode;
                                 //obj1.HesabTafName = item.HesabTafName;
-                                obj1.Bed = q3.Sum(f => f.Bed);
-                                obj1.Bes = q3.Sum(f => f.Bes);
+                                obj1.Bed = q1.Where(s => s.HesabMoinId == item).Sum(f => f.Bed);
+                                obj1.Bes = q1.Where(s => s.HesabMoinId == item).Sum(f => f.Bes);
                                 List1.Add(obj1);
                             }
                         }
@@ -187,7 +192,7 @@ namespace Sandogh_PG
 
         }
 
-        int _SandoghId = 0;
+        
         private void FrmSoratHesabTafzili_Load(object sender, EventArgs e)
         {
             txtAzTarikh.Text = new MyContext().AsnadeHesabdariRows.Any() ? new MyContext().AsnadeHesabdariRows.Min(f => f.Tarikh).ToString().Substring(0, 10) : "1398/01/01";

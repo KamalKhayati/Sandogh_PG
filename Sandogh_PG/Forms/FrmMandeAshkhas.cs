@@ -291,6 +291,14 @@ namespace Sandogh_PG
                         //XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
                         //XtraReport1.Parameters["HesabTafzil"].Value = cmbHesabTafzili.Text;
                         XtraReport1.Parameters["SandoghName"].Value = _SandoghName;
+                        XtraReport1.Parameters["Vam_Daryaftani"].Value = gridView2.Columns["2001"].Caption;
+                        XtraReport1.Parameters["Mosaede"].Value = gridView2.Columns["3001"].Caption;
+                        XtraReport1.Parameters["Bedehkaran"].Value = gridView2.Columns["4001"].Caption;
+                        XtraReport1.Parameters["Vam_Pardakhtani"].Value = gridView2.Columns["6001"].Caption;
+                        XtraReport1.Parameters["Asnade_Pardakhtani"].Value = gridView2.Columns["6002"].Caption;
+                        XtraReport1.Parameters["Bestankaran"].Value = gridView2.Columns["6003"].Caption;
+                        XtraReport1.Parameters["Sarmaye"].Value = gridView2.Columns["7001"].Caption;
+                        XtraReport1.Parameters["Mande"].Value = gridView2.Columns["Mande01"].Caption;
                         FrmPrinPreview FPP = new FrmPrinPreview();
                         FPP.documentViewer1.DocumentSource = XtraReport1;
                         FPP.RepotPageWidth = 133;
@@ -353,6 +361,31 @@ namespace Sandogh_PG
 
         private void xtraTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
         {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    var q = db.CodeMoins.ToList();
+                    if (xtraTabControl1.SelectedTabPageIndex == 1)
+                    {
+                        gridView2.Columns["2001"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 2001).Name;
+                        gridView2.Columns["3001"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 3001).Name;
+                        gridView2.Columns["4001"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 4001).Name;
+                        gridView2.Columns["6001"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 6001).Name;
+                        gridView2.Columns["6002"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 6002).Name;
+                        gridView2.Columns["6003"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 6003).Name;
+                        gridView2.Columns["7001"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 7001).Name;
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
             btnDisplyList_Click(null, null);
         }
     }

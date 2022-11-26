@@ -31,9 +31,16 @@ namespace Sandogh_PG
             {
                 try
                 {
+                    var q2 = db.CodeMoins.ToList();
                     var q1 = db.DaryaftPardakhtBinHesabhas.OrderBy(s => s.Seryal).ToList();
                     if (q1.Count > 0)
                     {
+                        foreach (var item in q1)
+                        {
+                            item.HesabMoineName1 = q2.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Id == item.HesabMoinId1).Name;
+                            item.HesabMoineName2 = q2.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Id == item.HesabMoinId2).Name;
+                        }
+
                         gridControl1.DataSource = q1;
                         gridView1.MoveLast();
                     }
@@ -442,12 +449,14 @@ namespace Sandogh_PG
         //        }
         //    }
         //}
-
+        int _SandoghId = 0;
         private void FrmDaryaftPardakhtBinHesabha_Load(object sender, EventArgs e)
         {
+            _SandoghId = Convert.ToInt32(Fm.IDSandogh.Caption);
+            HelpClass1.DateTimeMask(txtTarikh);
             FillDataGridDaryaftPardakhtBinHesabha();
             //gridView1.MoveLast();
-            HelpClass1.DateTimeMask(txtTarikh);
+            
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -766,19 +775,20 @@ namespace Sandogh_PG
         decimal SumBes = 0;
         decimal MandeHesab = 0;
         int _cmbNoeSanad = 0;
-        string _cmbHesabMoin1 = string.Empty;
+        //string _cmbHesabMoin1 = string.Empty;
         int AllTafId = 0;
         string _NameAaza = string.Empty;
-
+        int _HesabMoinId1 = 0;
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (TextEditValidation())
             {
                 _cmbNoeSanad = cmbNoeSanad.SelectedIndex;
-                _cmbHesabMoin1 = cmbHesabMoin1.Text;
+                
                 AllTafId = Convert.ToInt32(cmbHesabTafzili1.EditValue);
                 _NameAaza = cmbHesabTafzili1.Text;
-
+                 Convert.ToInt32(cmbHesabMoin1.EditValue);
+                
                 if (En == EnumCED.Create)
                 {
                     using (var db = new MyContext())
@@ -809,7 +819,7 @@ namespace Sandogh_PG
                             obj.NoeSanadName = cmbNoeSanad.Text;
                             db.DaryaftPardakhtBinHesabhas.Add(obj);
                             //////////////////////////////////////////////////////////////////////////////////////////
-                            int _HesabMoinId1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                            _HesabMoinId1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
                             int _HesabTafziliId1 = Convert.ToInt32(cmbHesabTafzili1.EditValue);
                             AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
                             obj1.ShomareSanad = q2 + 1;
@@ -893,7 +903,7 @@ namespace Sandogh_PG
                                     db.AsnadeHesabdariRows.RemoveRange(q2);
 
 
-                                int _HesabMoinId1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                                _HesabMoinId1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
                                 int _HesabTafziliId1 = Convert.ToInt32(cmbHesabTafzili1.EditValue);
                                 AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
                                 obj1.ShomareSanad = q.ShomareSanad;
@@ -951,7 +961,9 @@ namespace Sandogh_PG
                 {
                     try
                     {
-                        if ((_cmbNoeSanad == 1 || _cmbNoeSanad == 2) && _cmbHesabMoin1 == "سرمایه" && AllTafId > 0)
+
+                        int _HesabMoinCode = db.CodeMoins.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Id == _HesabMoinId1).Code;
+                        if ((_cmbNoeSanad == 1 || _cmbNoeSanad == 2) && _HesabMoinCode == 7001 && AllTafId > 0)
                         {
 
                             var q3 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == AllTafId && f.HesabMoinCode == 7001).ToList();
@@ -1006,7 +1018,7 @@ namespace Sandogh_PG
                                             MandeHesab = SumBed - SumBes;
                                             if (MandeHesab != 0)
                                             {
-                                                XtraMessageBox.Show("حساب مساعده عضو نظر مورد مانده دارد لذا نمیتوان آنرا غیر فعال نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                                XtraMessageBox.Show("حساب مساعده عضو مورد نظر مانده دارد لذا نمیتوان آنرا غیر فعال نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                                 return;
                                             }
                                         }

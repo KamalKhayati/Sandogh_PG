@@ -87,6 +87,43 @@ namespace Sandogh_PG
 
         private void btnPrintPreview_Click(object sender, EventArgs e)
         {
+            DataTable dt = new DataTable();
+            for (int i = 0; i < gridView1.Columns.Count; i++)
+            {
+                //if (gridView1.Columns[i].Visible)
+                dt.Columns.Add(gridView1.Columns[i].FieldName);
+            }
+
+            for (int i = 0; i < gridView1.RowCount; i++)
+            {
+                DataRow dRow = dt.NewRow();
+                //dRow[cell.ColumnIndex] = cell.Value;
+                //if (gridView1.Columns["Line"].Visible)
+                //dRow["Line"] = gridView1.GetRowCellValue(i, "Line");
+                if (gridView1.Columns["HesabTafCode"].Visible)
+                    dRow["HesabTafCode"] = gridView1.GetRowCellDisplayText(i, "HesabTafCode");
+                if (gridView1.Columns["HesabTafName"].Visible)
+                    dRow["HesabTafName"] = gridView1.GetRowCellDisplayText(i, "HesabTafName");
+                //if (gridView1.Columns["Sal"].Visible)
+                //dRow["Sal"] = _txtSal.Text;
+                //if (gridView1.Columns["Month"].Visible)
+                //dRow["Month"] = _cmbMonth.Text;
+                if (gridView1.Columns["Bed"].Visible)
+                    dRow["Bed"] = gridView1.GetRowCellDisplayText(i, "Bed");
+                //if (gridView1.Columns["MablaghAghsat"].Visible)
+                //    dRow["MablaghAghsat"] = gridView1.GetRowCellDisplayText(i, "MablaghAghsat");
+                //if (gridView1.Columns["Sum"].Visible)
+                //    dRow["Sum"] = gridView1.Columns["MablaghPasandaz"].Visible && gridView1.Columns["MablaghAghsat"].Visible ? gridView1.GetRowCellDisplayText(i, "Sum") :
+                //        gridView1.Columns["MablaghPasandaz"].Visible && !gridView1.Columns["MablaghAghsat"].Visible ? gridView1.GetRowCellDisplayText(i, "MablaghPasandaz") :
+                //        !gridView1.Columns["MablaghPasandaz"].Visible && gridView1.Columns["MablaghAghsat"].Visible ? gridView1.GetRowCellDisplayText(i, "MablaghAghsat") : "";
+                //else
+                //    dRow["Sum"] = string.Empty;
+                //if (gridView1.Columns["Tozihat"].Visible && gridView1.Columns["MablaghPasandaz"].Visible && gridView1.Columns["MablaghAghsat"].Visible)
+                //    dRow["Tozihat"] = gridView1.GetRowCellDisplayText(i, "Tozihat");
+                dt.Rows.Add(dRow);
+            }
+
+
             if (System.IO.File.Exists(FilePath + FileName))
             {
                 if (gridView1.RowCount > 0)
@@ -94,7 +131,8 @@ namespace Sandogh_PG
                     XtraReport XtraReport1 = new XtraReport();
                     XtraReport1.LoadLayoutFromXml(FilePath + FileName);
 
-                    XtraReport1.DataSource = gridView1.DataSource;
+                    XtraReport1.DataSource = dt;
+                    //XtraReport1.DataSource = gridView1.DataSource;
 
                     XtraReport1.Parameters["Az_Tarikh"].Value = _Az_Tarikh;
                     XtraReport1.Parameters["Ta_Tarikh"].Value = _Ta_Tarikh;

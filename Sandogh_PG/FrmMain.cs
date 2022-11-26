@@ -779,5 +779,29 @@ namespace Sandogh_PG
             if (Application.OpenForms["FrmBackupRestore"] == null && IsDataDelete == false)
                 HelpClass1.FrmMain_FormClosing(sender, e);
         }
+
+        private void btnListHesabMoin_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmCodingDaramadVHazine fm = new FrmCodingDaramadVHazine(this);
+            fm.Text = "لیست حسابهای معین";
+            fm.Name = "ListHesabMoin";
+            fm.labelControl6.Visible = false;
+            fm.cmbGroupHesab.Visible = false;
+            fm.btnCreate.Visible = false;
+            fm.btnDelete.Visible = false;
+            fm.btnSaveNext.Visible = false;
+            fm.btnDisplyNotActiveList.Visible = false;
+            fm.btnAdvancedSearch.Visible = false;
+            fm.btnPrintPreview.Visible = false;
+            fm.btnPrint.Visible = false;
+            fm.labelControl2.Visible = false;
+            fm.chkIsActive.Visible = false;
+            fm.gridView1.Columns["GroupName"].Visible = false;
+            fm.gridView1.Columns["IsActive"].Visible = false;
+            fm.gridView1.Columns["HesabName"].Width = 700;
+            fm.gridView1.Columns["HesabName"].FieldName= "Name";
+            ActiveForm(fm);
+
+        }
     }
 }

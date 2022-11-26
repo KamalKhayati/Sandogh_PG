@@ -81,6 +81,7 @@
             this.ShNoskheBarname = new DevExpress.XtraBars.BarStaticItem();
             this.barStaticItem7 = new DevExpress.XtraBars.BarStaticItem();
             this.barStaticItem8 = new DevExpress.XtraBars.BarStaticItem();
+            this.btnListHesabMoin = new DevExpress.XtraBars.BarButtonItem();
             this.DaryaftVPardakht = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgDaryaft = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgPardakhtha = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -174,10 +175,11 @@
             this.barStaticItem4,
             this.ShNoskheBarname,
             this.barStaticItem7,
-            this.barStaticItem8});
+            this.barStaticItem8,
+            this.btnListHesabMoin});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.ribbonControl1.MaxItemId = 83;
+            this.ribbonControl1.MaxItemId = 84;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsPageCategories.ShowCaptions = false;
             this.ribbonControl1.PageHeaderItemLinks.Add(this.barStaticItem7);
@@ -603,6 +605,15 @@
             this.barStaticItem8.Name = "barStaticItem8";
             this.barStaticItem8.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
+            // btnListHesabMoin
+            // 
+            this.btnListHesabMoin.Caption = "لیست حسابهای معین";
+            this.btnListHesabMoin.Id = 83;
+            this.btnListHesabMoin.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnListHesabMoin.ImageOptions.SvgImage")));
+            this.btnListHesabMoin.Name = "btnListHesabMoin";
+            this.btnListHesabMoin.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.btnListHesabMoin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnListHesabMoin_ItemClick);
+            // 
             // DaryaftVPardakht
             // 
             this.DaryaftVPardakht.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -652,6 +663,7 @@
             this.rpgInfoBase.ItemLinks.Add(this.btnTarifHesabBanki, true);
             this.rpgInfoBase.ItemLinks.Add(this.btnTarifAaza, true);
             this.rpgInfoBase.ItemLinks.Add(this.btnCodingDaramadVHazine, true);
+            this.rpgInfoBase.ItemLinks.Add(this.btnListHesabMoin, true);
             this.rpgInfoBase.Name = "rpgInfoBase";
             this.rpgInfoBase.Text = "اطلاعات پایه ";
             // 
@@ -914,6 +926,7 @@
         public DevExpress.XtraEditors.PictureEdit pictureEdit3;
         public DevExpress.XtraEditors.PictureEdit pictureEdit1;
         private DevExpress.XtraBars.BarStaticItem barStaticItem8;
+        private DevExpress.XtraBars.BarButtonItem btnListHesabMoin;
     }
 }
 
