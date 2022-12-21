@@ -20,6 +20,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using DevExpress.XtraReports.Parameters;
 using System.Globalization;
+using System.Management;
 
 namespace Sandogh_PG
 {
@@ -58,7 +59,7 @@ namespace Sandogh_PG
                 int ShomareSanad = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "ShomareSanad"));
                 decimal MablaghAghsat = Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, "MablaghAghsat"));
                 decimal MablaghDaryafti = Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, "MablaghDaryafti"));
-                int Mande = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "Mande"));
+                decimal Mande = Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, "Mande"));
 
                 if (ShomareSanad == 0 || (ShomareSanad > 0 && MablaghAghsat == MablaghDaryafti) || MablaghAghsat == 0)
                 {
@@ -619,6 +620,78 @@ namespace Sandogh_PG
 
             return result;
         }
+
+        // گرفتن سریال مادربرد سیستم
+        public static string GetMadarBoardSerial()
+        {
+            // string cpuSerial = string.Empty;
+            // string hardSerial = string.Empty;
+            string MadarBoardCode = string.Empty;
+            //----------------------
+
+            //ManagementClass mgmt = new ManagementClass("Win32_Processor");
+            //ManagementObjectCollection objcol = mgmt.GetInstances();
+            //foreach (ManagementObject obj in objcol)
+            //{
+            //    if (obj.Properties["ProcessorId"] != null)
+            //        cpuSerial = obj.Properties["ProcessorId"].Value.ToString().Trim();
+            //}
+
+            ////---------------------
+
+            //ManagementObjectSearcher sercher = new ManagementObjectSearcher("select * from Win32_PhysicalMedia");
+            //foreach (ManagementObject wmi_Hd in sercher.Get())
+            //{
+            //    if (wmi_Hd["SerialNumber"] != null)
+            //        hardSerial = wmi_Hd["SerialNumber"].ToString().Trim();
+            //}
+
+            //---------------------
+
+            ManagementObjectSearcher sercher2 = new ManagementObjectSearcher("select * from Win32_BaseBoard");
+            foreach (ManagementObject wmi_Board in sercher2.Get())
+            {
+                if (wmi_Board["SerialNumber"] != null)
+                    MadarBoardCode = wmi_Board["SerialNumber"].ToString().Trim();
+            }
+
+            //-----------
+
+            //return cpuSerial + hardSerial + mainBoardSerial;
+            return MadarBoardCode;
+        }
+
+        public static int RandomNumber(int min, int max)
+        {
+            var rand = new Random();
+            return rand.Next(min, max);
+        }
+
+        // گرفتن یک عدد تصادفی مابین دو عدد 
+        public static string RandomCode()
+        {
+            StringBuilder builder = new StringBuilder();
+            //builder.Append(RandomString(4, true));
+            builder.Append(RandomNumber(1000000000, 2147483647));
+            //builder.Append(RandomString(2, false));
+            return builder.ToString();
+        }
+
+        //public static string RandomString(int size, bool lowerCase)
+        //{
+        //    StringBuilder builder = new StringBuilder();
+        //    Random random = new Random();
+        //    char ch;
+        //    for (int i = 0; i < size; i++)
+        //    {
+        //        //تولید عدد و تبدیل آن به کاراکتر
+        //        ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
+        //        builder.Append(ch);
+        //    }
+        //    if (lowerCase)
+        //        return builder.ToString().ToLower();
+        //    return builder.ToString();
+        //}
 
         ////////////////////////////جلوگیری از خارج شدن برنامه //////////////////////////////////////
         public static void FrmMain_FormClosing(object sender, FormClosingEventArgs e)

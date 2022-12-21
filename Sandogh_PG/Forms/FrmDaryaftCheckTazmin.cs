@@ -91,9 +91,9 @@ namespace Sandogh_PG
                 {
                     if (En == EnumCED.Create)
                     {
-                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3 && IsActive == true).ToList();
+                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3 ).ToList();
                         if (q1.Count > 0)
-                            allHesabTafzilisBindingSource.DataSource = q1;
+                            allHesabTafzilisBindingSource.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
                         else
                             allHesabTafzilisBindingSource.DataSource = null;
                     }

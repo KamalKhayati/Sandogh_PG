@@ -391,8 +391,15 @@ namespace Sandogh_PG
                     if (gridView1.GetFocusedRowCellDisplayText("Code") == "1000001" || gridView1.GetFocusedRowCellDisplayText("Code") == "1000002"
                         || gridView1.GetFocusedRowCellDisplayText("Code") == "2000001")
                     {
-                        XtraMessageBox.Show("این کد سیستمی است لذا قابل ویرایش نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
+                        cmbGroupHesab.ReadOnly = true;
+                        txtCode.ReadOnly = true;
+                        XtraMessageBox.Show("این کد سیستمی است لذا فقط نام حساب قابل ویرایش است", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //return;
+                    }
+                    else
+                    {
+                        cmbGroupHesab.ReadOnly = false;
+                        txtCode.ReadOnly = false;
                     }
                     gridControl1.Enabled = false;
                     EditRowIndex = gridView1.FocusedRowHandle;

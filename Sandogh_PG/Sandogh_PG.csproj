@@ -207,11 +207,11 @@
     <Compile Include="Forms\FrmListKarbaran.Designer.cs">
       <DependentUpon>FrmListKarbaran.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmLogin.cs">
+    <Compile Include="Forms\FrmLogin1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FrmLogin.Designer.cs">
-      <DependentUpon>FrmLogin.cs</DependentUpon>
+    <Compile Include="Forms\FrmLogin1.Designer.cs">
+      <DependentUpon>FrmLogin1.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmMabaleghGhabelDaryaft.cs">
       <SubType>Form</SubType>
@@ -237,11 +237,11 @@
     <Compile Include="Forms\FrmOdatCheckTazmin.Designer.cs">
       <DependentUpon>FrmOdatCheckTazmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmPassword.cs">
+    <Compile Include="Forms\FrmPassword1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FrmPassword.Designer.cs">
-      <DependentUpon>FrmPassword.cs</DependentUpon>
+    <Compile Include="Forms\FrmPassword1.Designer.cs">
+      <DependentUpon>FrmPassword1.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmRizMoin.cs">
       <SubType>Form</SubType>
@@ -280,6 +280,7 @@
       <DependentUpon>FrmYadavari.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AllHesabTafzili.cs" />
+    <Compile Include="Models\AllowedDevise.cs" />
     <Compile Include="Models\AsnadeHesabdariRow.cs" />
     <Compile Include="Models\CheckTazmin.cs" />
     <Compile Include="Forms\FrmDaryafteAghsateVam.cs">
@@ -414,6 +415,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmAppRegister.resx">
       <DependentUpon>FrmAppRegister.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmBackupRestore.resx">
       <DependentUpon>FrmBackupRestore.cs</DependentUpon>
@@ -454,8 +456,8 @@
     <EmbeddedResource Include="Forms\FrmListVamhayePardakhti.resx">
       <DependentUpon>FrmListVamhayePardakhti.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmLogin.resx">
-      <DependentUpon>FrmLogin.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmLogin1.resx">
+      <DependentUpon>FrmLogin1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmMabaleghGhabelDaryaft.resx">
       <DependentUpon>FrmMabaleghGhabelDaryaft.cs</DependentUpon>
@@ -469,8 +471,8 @@
     <EmbeddedResource Include="Forms\FrmOdatCheckTazmin.resx">
       <DependentUpon>FrmOdatCheckTazmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmPassword.resx">
-      <DependentUpon>FrmPassword.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmPassword1.resx">
+      <DependentUpon>FrmPassword1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmRizAghsatVam.resx">
       <DependentUpon>FrmRizAghsatVam.cs</DependentUpon>

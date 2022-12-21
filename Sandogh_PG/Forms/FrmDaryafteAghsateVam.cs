@@ -135,7 +135,8 @@ namespace Sandogh_PG
         }
 
         decimal MablaghDaryaftBeforEdit = 0;
-
+        string _deviceID = string.Empty;
+        string _dataBaseName = string.Empty;
         private void FrmDaryafteAghsateVam_Load(object sender, EventArgs e)
         {
             FillcmbPardakhtKonande();
@@ -150,6 +151,9 @@ namespace Sandogh_PG
             {
                 try
                 {
+                    _deviceID = HelpClass1.GetMadarBoardSerial();
+                    _dataBaseName = db.Database.Connection.Database;
+
                     if (En == EnumCED.Create)
                     {
                         NewSeryal();
@@ -214,6 +218,17 @@ namespace Sandogh_PG
                         MablaghDaryaftBeforEdit = Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", ""));
                     }
                     txtTarikhDaryaft.Focus();
+
+                    var k = db.AllowedDevises.FirstOrDefault(s => s.DeviceID == _deviceID && s.DataBaseName == _dataBaseName);
+                    if (k.VersionType == "Demo")
+                    {
+                        var d = db.AsnadeHesabdariRows.Count();
+                        if (d >= 200)
+                        {
+                            k.IsActive = false;
+                            db.SaveChanges();
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -239,6 +254,56 @@ namespace Sandogh_PG
 
         }
 
+        public bool IsValidation()
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    var k = db.AllowedDevises.FirstOrDefault(s => s.DeviceID == _deviceID && s.DataBaseName == _dataBaseName);
+                    if (k != null)
+                    {
+                        if (k.VersionType == "Orginal")
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            if (k.VersionType == "Demo")
+                            {
+                                if (k.IsActive == true)
+                                {
+                                    return true;
+                                }
+                                else if (k.IsActive == false)
+                                {
+                                    XtraMessageBox.Show("در نسخه آزمایشی نمیتوان بیشتر از 100 مورد سند صادر و یا ویرایش نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    return false;
+                                }
+
+                            }
+                            else if (k.VersionType == "Display")
+                            {
+                                XtraMessageBox.Show("در نسخه نمایشی نمیتوان سند صادر و یا ویرایش نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return false;
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return true;
+            }
+
+        }
         private void btnSaveClose_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(cmbPardakhtKonande.Text))
@@ -246,12 +311,12 @@ namespace Sandogh_PG
                 XtraMessageBox.Show("فیلد نام پرداخت کننده نبایستی خالی باشد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (string.IsNullOrEmpty(txtCodeVam.Text))
+            else if (string.IsNullOrEmpty(txtCodeVam.Text))
             {
                 XtraMessageBox.Show("فیلد کد وام نبایستی خالی باشد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (string.IsNullOrEmpty(txtSeryal.Text))
+            else if (string.IsNullOrEmpty(txtSeryal.Text))
             {
                 XtraMessageBox.Show("فیلد سریال نبایستی خالی باشد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -276,7 +341,7 @@ namespace Sandogh_PG
                 XtraMessageBox.Show("لطفاً حساب بانک یا صندوق را انتخاب کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            else
+            else if (IsValidation())
             {
                 using (var db = new MyContext())
                 {
@@ -887,7 +952,6 @@ namespace Sandogh_PG
                                     }
                                 }
 
-
                                 db.SaveChanges();
                                 //XtraMessageBox.Show("اطلاعات با موفقیت ثبت شد", "پیغام ثبت ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 En = EnumCED.Save;
@@ -921,12 +985,12 @@ namespace Sandogh_PG
                                             Fm.btnDisplyActiveList3_Click(null, null);
 
                                             var n1 = db.CheckTazmins.FirstOrDefault(s => s.VamGerandeId == _HesabTafId2);
-                                            if (n1!=null)
+                                            if (n1 != null)
                                             {
                                                 //int _AllTaf = Convert.ToInt32(cmbPardakhtKonande.EditValue);
-                                                var q5 = db.VamPardakhtis.FirstOrDefault(s => s.Id != q.VamPardakhtiId && s.AazaId== _HesabTafId2 && s.IsTasviye==false);
-                                                if(q5==null)
-                                                XtraMessageBox.Show("سند تضمینی بلوکه شده بابت وام فوق آزاد گردید لذا عودت آن به وام گیرنده بلامانع است", "پیغام ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                var q5 = db.VamPardakhtis.FirstOrDefault(s => s.Id != q.VamPardakhtiId && s.AazaId == _HesabTafId2 && s.IsTasviye == false);
+                                                if (q5 == null)
+                                                    XtraMessageBox.Show("سند تضمینی بلوکه شده بابت وام فوق آزاد گردید لذا عودت آن به وام گیرنده بلامانع است", "پیغام ", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                             }
                                         }
@@ -1498,6 +1562,30 @@ namespace Sandogh_PG
 
         private void FrmDaryafteAghsateVam_FormClosing(object sender, FormClosingEventArgs e)
         {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    var k = db.AllowedDevises.FirstOrDefault(s => s.DeviceID == _deviceID && s.DataBaseName == _dataBaseName);
+                    if (k.VersionType != "Orginal")
+                    {
+                        if (k.IsActive == true)
+                        {
+                            var d = db.AsnadeHesabdariRows.Count();
+                            if (d > 200)
+                            {
+                                k.IsActive = false;
+                                db.SaveChanges();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
             En = EnumCED.Cancel;
         }
 
@@ -1556,9 +1644,9 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "NameHesab";
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2 ).OrderBy(s => s.Code).ToList();
                                         if (q1.Count > 0)
-                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                            allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
                                         else
                                             allHesabTafzilisBindingSource1.DataSource = null;
                                     }
@@ -1579,9 +1667,9 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "NameVFamil";
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3 ).OrderBy(s => s.Code).ToList();
                                         if (q1.Count > 0)
-                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                            allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
                                         else
                                             allHesabTafzilisBindingSource1.DataSource = null;
                                     }
@@ -1607,9 +1695,9 @@ namespace Sandogh_PG
                                 {
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6 ).OrderBy(s => s.Code).ToList();
                                         if (q1.Count > 0)
-                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                            allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
                                         else
                                             allHesabTafzilisBindingSource1.DataSource = null;
                                     }
@@ -1646,9 +1734,9 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "HesabName";
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4 ).OrderBy(s => s.Code).ToList();
                                         if (q1.Count > 0)
-                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                            allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
                                         else
                                             allHesabTafzilisBindingSource1.DataSource = null;
                                     }
@@ -1669,9 +1757,9 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "HesabName";
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5 && f.IsActive == true).OrderBy(s => s.Code).ToList();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5 ).OrderBy(s => s.Code).ToList();
                                         if (q1.Count > 0)
-                                            allHesabTafzilisBindingSource1.DataSource = q1;
+                                            allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
                                         else
                                             allHesabTafzilisBindingSource1.DataSource = null;
                                     }

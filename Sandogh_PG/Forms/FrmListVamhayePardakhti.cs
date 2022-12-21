@@ -153,12 +153,17 @@ namespace Sandogh_PG
             }
         }
 
+        string _deviceID = string.Empty;
+        string _dataBaseName = string.Empty;
         private void FrmListVamhayePardakhti_Load(object sender, EventArgs e)
         {
             using (var db = new MyContext())
             {
                 try
                 {
+                    _deviceID = HelpClass1.GetMadarBoardSerial();
+                    _dataBaseName = db.Database.Connection.Database;
+
                     var q = db.VamPardakhtis.ToList();
                     if (q.Count > 0)
                     {
@@ -280,6 +285,19 @@ namespace Sandogh_PG
                                     //XtraMessageBox.Show("عملیات حذف با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                                     if (gridView1.RowCount > 0)
                                         gridView1.FocusedRowHandle = EditRowIndex - 1;
+
+
+                                    var k = db.AllowedDevises.FirstOrDefault(s => s.DeviceID == _deviceID && s.DataBaseName == _dataBaseName);
+                                    if (k.VersionType == "Demo")
+                                    {
+                                        var d = db.AsnadeHesabdariRows.Count();
+                                        if (d < 200)
+                                        {
+                                            k.IsActive = true;
+                                            db.SaveChanges();
+                                        }
+                                    }
+
                                 }
                                 else
                                     XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -729,7 +747,18 @@ namespace Sandogh_PG
                     Shcheak10 = ".................";
                     MablaghTazmin10 = ".................";
 
+                    _VamPardakhtiId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id"));
                     var q5 = db.CheckTazmins.Where(f => f.VamGerandeId == IdShakhs && f.IsInSandogh == true).ToList();
+                    var q51=q5.Select(s => s.Id).ToList();
+                    var p5 = db.R_VamPardakhti_B_CheckTazmins.Where(s => s.CheckTazmin1.VamGerandeId == IdShakhs && s.VamPardakhtiId == _VamPardakhtiId).Select(s=>s.CheckTazminId).ToList();
+                    foreach (var item in q51)
+                    {
+                        if (!p5.Any(s=>s.Equals(item)))
+                        {
+                            q5.Remove(q5.FirstOrDefault(s => s.Id == item));
+                        }
+                    }
+
                     if (q5.Count > 0)
                         switch (q5.Count)
                         {

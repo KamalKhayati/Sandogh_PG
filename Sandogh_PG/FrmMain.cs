@@ -107,11 +107,9 @@ namespace Sandogh_PG
             ActiveForm(fm);
         }
 
+        public string _MadarBoardSerial = string.Empty;
         public void FrmMain_Load(object sender, EventArgs e)
         {
-            HelpClass1.SwitchToPersianLanguage();
-            HelpClass1.SetRegionAndLanguage();
-
             // فراخوانی پوسته برنامه از مسیر دایرکتوری %appdata%
             // try
             //{
@@ -127,22 +125,28 @@ namespace Sandogh_PG
             {
                 try
                 {
+                    HelpClass1.SwitchToPersianLanguage();
+                    HelpClass1.SetRegionAndLanguage();
+                    Settings[AppVariable.IsChangeDbName] = "False";
+                    string _DeviceID = HelpClass1.GetMadarBoardSerial();
+                    string _dataBaseName = db.Database.Connection.Database;
+                     
+                    var q5 = db.AllowedDevises.FirstOrDefault(s => s.DeviceID == _DeviceID && s.DataBaseName== _dataBaseName);
                     var q = db.TarifSandoghs.FirstOrDefault(s => s.IsDefault == true);
-                    if (q != null)
+                    if (q != null && q5 != null)
                     {
                         IDSandogh.Caption = q.Id.ToString();
-                        ribbonControl1.ApplicationDocumentCaption =  q.NameSandogh;
+                        ribbonControl1.ApplicationDocumentCaption = q.NameSandogh;
                         int _SId = Convert.ToInt32(IDSandogh.Caption);
-                        var q2 = db.TarifSandoghs.FirstOrDefault(s => s.Id == _SId);
-                        if (q2.PicBackground != null)
+                        if (q.PicBackground != null)
                         {
-                            MemoryStream ms = new MemoryStream(q2.PicBackground);
+                            MemoryStream ms = new MemoryStream(q.PicBackground);
                             pictureEdit3.Image = Image.FromStream(ms);
                             img1 = pictureEdit3.Image;
                         }
-                        if (q2.Pictuer != null)
+                        if (q.Pictuer != null)
                         {
-                            MemoryStream ms = new MemoryStream(q2.Pictuer);
+                            MemoryStream ms = new MemoryStream(q.Pictuer);
                             pictureEdit1.Image = Image.FromStream(ms);
                             //img1 = pictureEdit1.Image;
                         }
@@ -158,101 +162,147 @@ namespace Sandogh_PG
                     }
 
 
-                    EtmamGaranti.Caption = db.TarifSandoghs.FirstOrDefault().TarikhEtmamGaranti != null ? "اتمام گارانتی : " + db.TarifSandoghs.FirstOrDefault().TarikhEtmamGaranti.ToString().Substring(0, 10) : "0000/00/00";
                     int yyyy1 = Convert.ToInt32(DateTime.Now.ToString().Substring(0, 4));
                     int MM1 = Convert.ToInt32(DateTime.Now.ToString().Substring(5, 2));
                     int dd1 = Convert.ToInt32(DateTime.Now.ToString().Substring(8, 2));
                     Mydate d1 = new Mydate(yyyy1, MM1, dd1);
-                    int yyyy2 = Convert.ToInt32(db.TarifSandoghs.FirstOrDefault().TarikhEtmamGaranti.ToString().Substring(0, 4));
-                    int MM2 = Convert.ToInt32(db.TarifSandoghs.FirstOrDefault().TarikhEtmamGaranti.ToString().Substring(5, 2));
-                    int dd2 = Convert.ToInt32(db.TarifSandoghs.FirstOrDefault().TarikhEtmamGaranti.ToString().Substring(8, 2));
+                    int yyyy2 = Convert.ToInt32(q5.GarantiEndData.ToString().Substring(0, 4));
+                    int MM2 = Convert.ToInt32(q5.GarantiEndData.ToString().Substring(5, 2));
+                    int dd2 = Convert.ToInt32(q5.GarantiEndData.ToString().Substring(8, 2));
                     Mydate d2 = new Mydate(yyyy2, MM2, dd2);
                     Color r = btnTamdidGaranti.ItemAppearance.Normal.ForeColor;
-                    if (d2 < d1)
-                    {
-                        q.IsGaranti = false;
-                        db.SaveChanges();
-                        EtmamGaranti.ItemAppearance.Normal.ForeColor = Color.Red;
-                        btnTamdidGaranti.Enabled = true;
-                    }
-                    else
-                    {
-                        if (q.IsGaranti == true)
-                        {
-                            EtmamGaranti.ItemAppearance.Normal.ForeColor = r;
-                            btnTamdidGaranti.Enabled = false;
-                            //btnTamdidGaranti.Enabled = DevExpress.XtraBars.BarItemVisibility.Always;
 
+                    if (q5.VersionType == "Orginal")
+                    {
+                        EtmamGaranti.Caption = q5.GarantiEndData != null ? "اتمام مدت پشتیبانی : " + q5.GarantiEndData.ToString().Substring(0, 10) : "1397/01/01";
+                        if (d2 < d1)
+                        {
+                            if (q5.IsGaranti == true)
+                            {
+                                //q.IsGaranti = false;
+                                q5.IsGaranti = false;
+                                db.SaveChanges();
+                            }
+                            EtmamGaranti.ItemAppearance.Normal.ForeColor = Color.Red;
                         }
                         else
                         {
-                            EtmamGaranti.ItemAppearance.Normal.ForeColor = Color.Red;
-                            btnTamdidGaranti.Enabled = true;
+                            EtmamGaranti.ItemAppearance.Normal.ForeColor = r;
                         }
                     }
-
-
-                    if (Application.OpenForms["FrmTarifSandogh"] == null)
+                    else if (q5.VersionType == "Demo")
                     {
-                        var q3 = db.Tanzimats.Any(f => f.checkEdit3 == true);
-                        if (q3)
+                        if (q5.IsActive == true)
                         {
-                            FrmYadavari fm = new FrmYadavari();
+                            var w = db.AsnadeHesabdariRows.Count();
+                            if (w >= 200)
                             {
-                                DateTime _DateTimeNow = DateTime.Now;
-                                var q7 = db.RizeAghsatVams.Where(f => f.ShomareSanad == 0 && f.TarikhSarresid < _DateTimeNow).ToList();
-                                if (q7.Count > 0)
-                                    fm.rizeAghsatVamsBindingSource.DataSource = q7.OrderBy(f => f.TarikhSarresid);
-                                else
-                                    fm.rizeAghsatVamsBindingSource.DataSource = null;
-                                //////////////////////////////////////////////////////////////
-                                //int yyyy1 = Convert.ToInt32(DateTime.Now.ToString().Substring(0, 4));
-                                //int MM1 = Convert.ToInt32(DateTime.Now.ToString().Substring(5, 2));
-                                //int dd1 = Convert.ToInt32(DateTime.Now.ToString().Substring(8, 2));
-                                //Mydate d1 = new Mydate(yyyy1, MM1, dd1);
-                                d1.DecrementMonth();
-                                DateTime _DateTimeNow_1 = Convert.ToDateTime(d1.ToString());
-                                List<HaghOzviat> List = new List<HaghOzviat>();
-                                var q2 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 3 && s.IsActive == true).ToList();
-                                if (q2.Count > 0)
+                                //q.AppActived = false;
+                                if (q5.IsActive == true)
                                 {
-                                    foreach (var item in q2)
-                                    {
-                                        var q8 = db.HaghOzviats.Where(f => f.AazaId == item.Id).ToList();
-                                        //var q1 = db.HaghOzviats.Where(f => f.Tarikh < _DateTimeNow_1);
-                                        if (q8.Count > 0)
-                                        {
-                                            var q9 = q8.Max(f => f.Tarikh);
-                                            if (q9 <= _DateTimeNow_1)
-                                            {
-                                                HaghOzviat obj = new HaghOzviat();
-                                                obj.Id = item.Id;
-                                                obj.NameAaza = item.Name;
-                                                obj.Tarikh = q9;
-                                                //obj.Tarikh =Convert.ToDateTime(q3.ToString().Substring(0,10));
-                                                List.Add(obj);
-                                            }
-                                        }
-
-                                    }
+                                    q5.IsActive = false;
                                 }
-
-                                if (List.Count > 0)
-                                    fm.haghOzviatsBindingSource.DataSource = List.OrderBy(f => f.Tarikh);
-                                else
-                                    fm.haghOzviatsBindingSource.DataSource = null;
                             }
 
-                            if (fm.rizeAghsatVamsBindingSource.DataSource != null || fm.haghOzviatsBindingSource.DataSource != null)
-                                fm.ShowDialog();
-                        }
-                        //Application.OpenForms["FrmYadavari"].Activate();
-                    }
+                            //q.AppActived = false;
+                            //q5.IsGaranti = false;
+                            db.SaveChanges();
+                            //EtmamGaranti.ItemAppearance.Normal.ForeColor = Color.Red;
 
+                        }
+                        EtmamGaranti.Visibility = btnTamdidGaranti.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                    }
+                    else
+                    {
+                        EtmamGaranti.Visibility = btnTamdidGaranti.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                    }
+                    string _VersionName = q5.VersionType == "Orginal" ? "اصلی" : q5.VersionType == "Demo" ? "آزمایشی" : "نمایشی";
+                    barStaticItem4.Caption = "نسخه " + _VersionName + " برنامه :";
+                    //EtmamGaranti.Visibility = q5.VersionType == "Orginal" ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+
+                    ////// دستور مربوط به فرم یادآوری روزانه
+                    var q3 = db.Tanzimats.Any(f => f.checkEdit3 == true);
+                    if (q3)
+                    {
+                        FrmYadavari fm = new FrmYadavari();
+                        {
+                            DateTime _DateTimeNow = DateTime.Now;
+                            var q7 = db.RizeAghsatVams.Where(f => f.ShomareSanad == 0 && f.TarikhSarresid < _DateTimeNow).ToList();
+                            if (q7.Count > 0)
+                                fm.rizeAghsatVamsBindingSource.DataSource = q7.OrderBy(f => f.TarikhSarresid);
+                            else
+                                fm.rizeAghsatVamsBindingSource.DataSource = null;
+                            //////////////////////////////////////////////////////////////
+                            //int yyyy1 = Convert.ToInt32(DateTime.Now.ToString().Substring(0, 4));
+                            //int MM1 = Convert.ToInt32(DateTime.Now.ToString().Substring(5, 2));
+                            //int dd1 = Convert.ToInt32(DateTime.Now.ToString().Substring(8, 2));
+                            //Mydate d1 = new Mydate(yyyy1, MM1, dd1);
+                            d1.DecrementMonth();
+                            DateTime _DateTimeNow_1 = Convert.ToDateTime(d1.ToString());
+                            List<HaghOzviat> List = new List<HaghOzviat>();
+                            var q2 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 3 && s.IsActive == true).ToList();
+                            if (q2.Count > 0)
+                            {
+                                foreach (var item in q2)
+                                {
+                                    var q8 = db.HaghOzviats.Where(f => f.AazaId == item.Id).ToList();
+                                    //var q1 = db.HaghOzviats.Where(f => f.Tarikh < _DateTimeNow_1);
+                                    if (q8.Count > 0)
+                                    {
+                                        var q9 = q8.Max(f => f.Tarikh);
+                                        if (q9 <= _DateTimeNow_1)
+                                        {
+                                            HaghOzviat obj = new HaghOzviat();
+                                            obj.Id = item.Id;
+                                            obj.NameAaza = item.Name;
+                                            obj.Tarikh = q9;
+                                            //obj.Tarikh =Convert.ToDateTime(q3.ToString().Substring(0,10));
+                                            List.Add(obj);
+                                        }
+                                    }
+
+                                }
+                            }
+
+                            if (List.Count > 0)
+                                fm.haghOzviatsBindingSource.DataSource = List.OrderBy(f => f.Tarikh);
+                            else
+                                fm.haghOzviatsBindingSource.DataSource = null;
+                        }
+
+                        if (fm.rizeAghsatVamsBindingSource.DataSource != null || fm.haghOzviatsBindingSource.DataSource != null)
+                            fm.ShowDialog();
+                    }
+                    #region MyRegion
+                    //Application.OpenForms["FrmYadavari"].Activate();
+                    //string _NameDataBase = HelpClass1.EncryptText(NameDataBase.Caption);
+                    //var p = db.AllowedDataBasess.FirstOrDefault(s => s.DataBaseName == _NameDataBase);
+
+                    //_MadarBoardSerial = HelpClass1.EncryptText(HelpClass1.GetMadarBoardSerial());
+                    //// اجرای دستور مقایسه شماره سریال ماردبرد سیستم با دیتابیس
+                    //if (p.DeviceID == null)
+                    //{
+
+                    //    p.DeviceID = _MadarBoardSerial;
+                    //    db.SaveChanges();
+                    //}
+                    //else
+                    //{
+                    //    if (_MadarBoardSerial != p.DeviceID)
+                    //    {
+                    //        if (XtraMessageBox.Show("با توجه به اینکه اطلاعات سیستم دیگری روی این سیستم بازیابی شده است" + "/n" + "لاینسس قفل برنامه قابل اجرا نیست جهت اجرای مجدد برنامه لطفاً با پشتیبانی تماس حاصل فرمایید", "پیغام مجوز اجرای نرم افزار", MessageBoxButtons.OK, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.OK)
+                    //        {
+                    //            this.Enabled = false;
+                    //            FrmPassword frm = new FrmPassword(this);
+                    //            frm.txtPassword.Focus();
+                    //            frm.ShowDialog();
+                    //        }
+                    //    }
+                    //}
 
                     ////////////////////////////////////////////////////////////////////////////////
                     /// درتاریخ 99/04/19 این کدها غیر فعال شدند
-                    #region MyRegion
+
                     //var q4 = db.CodingDaramadVHazines.Where(f => f.AllTafId == 0).ToList();
                     //if (q4.Count > 0)
                     //{
@@ -600,17 +650,17 @@ namespace Sandogh_PG
 
         }
 
-        private void btnTamdidGaranti_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        public void btnTamdidGaranti_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            FrmAppRegister frm = new FrmAppRegister(this);
-            frm.Text = "تمدید گارانتی برنامه";
-            frm.btnExit.Text = "بستن";
+            FrmPassword1 frm = new FrmPassword1(this);
+            frm.Text = "تمدید مدت پشتیبانی";
             frm.ShowDialog();
+
         }
 
         private void EtmamGaranti_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (btnTamdidGaranti.Enabled == true)
+            if (btnTamdidGaranti.Visibility == DevExpress.XtraBars.BarItemVisibility.Always)
             {
                 btnTamdidGaranti_ItemClick(null, null);
             }
@@ -713,7 +763,7 @@ namespace Sandogh_PG
             {
                 try
                 {
-                    FilePath = Application.StartupPath +  @"\Report\DarkhastVam";
+                    FilePath = Application.StartupPath + @"\Report\DarkhastVam";
                     //  Just to kill WINWORD.EXE if it is running
                     KillProcess("winword");
                     //  copy letter format to temp.doc
@@ -753,8 +803,8 @@ namespace Sandogh_PG
                 }
                 catch //(Exception ex)
                 {
-                   // XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                     //   "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                    //   "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -777,7 +827,9 @@ namespace Sandogh_PG
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (Application.OpenForms["FrmBackupRestore"] == null && IsDataDelete == false)
-                HelpClass1.FrmMain_FormClosing(sender, e);
+                if (Application.OpenForms["FrmLogin1"] == null)
+                    if (Application.OpenForms["FrmAppRegister"] == null)
+                        HelpClass1.FrmMain_FormClosing(sender, e);
         }
 
         private void btnListHesabMoin_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -799,9 +851,39 @@ namespace Sandogh_PG
             fm.gridView1.Columns["GroupName"].Visible = false;
             fm.gridView1.Columns["IsActive"].Visible = false;
             fm.gridView1.Columns["HesabName"].Width = 700;
-            fm.gridView1.Columns["HesabName"].FieldName= "Name";
+            fm.gridView1.Columns["HesabName"].FieldName = "Name";
             ActiveForm(fm);
 
+        }
+
+        private void NameDataBase_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmLogin1 frm = new FrmLogin1();
+            frm.ShowDialog();
+        }
+
+        public bool IsAllowed = false;
+        public void btnSupportSetting_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (IsAllowed)
+            {
+                FrmAppRegister frm = new FrmAppRegister(this);
+
+                frm.ShowDialog();
+            }
+            else
+            {
+                FrmPassword1 frm = new FrmPassword1(this);
+                frm.labelControl4.Visible = false;
+                frm.ShowDialog();
+
+            }
+
+        }
+
+        private void barButtonItem3_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            NameDataBase_ItemClick(null, null);
         }
     }
 }

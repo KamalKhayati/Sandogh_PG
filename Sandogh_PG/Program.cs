@@ -6,6 +6,7 @@ using DevExpress.UserSkins;
 using DevExpress.Skins;
 using System.Threading;
 using DevExpress.XtraEditors;
+using Sandogh_PG.Forms;
 
 namespace Sandogh_PG
 {
@@ -78,7 +79,7 @@ namespace Sandogh_PG
             {
                 Application.Idle += new EventHandler(Application_Idle);
                 //new FrmMain().Show();
-                new FrmLogin().ShowDialog();
+                new FrmLogin1().ShowDialog();
             }
 
             private void Application_Idle(object sender, EventArgs e)

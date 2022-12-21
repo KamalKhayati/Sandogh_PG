@@ -188,9 +188,15 @@ namespace Sandogh_PG
             HelpClass1.SetNumberRowsColumnUnboundGirdView(sender, e);
         }
 
+        string _deviceID = string.Empty;
+        string _dataBaseName = string.Empty;
+
         private void FrmDaryafti_Load(object sender, EventArgs e)
         {
             FillDataGridAazaSandogh();
+            _deviceID = HelpClass1.GetMadarBoardSerial();
+            _dataBaseName = new MyContext().Database.Connection.Database;
+
         }
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
@@ -401,6 +407,19 @@ namespace Sandogh_PG
                             }
                             else
                                 XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+                            var k = db.AllowedDevises.FirstOrDefault(s => s.DeviceID == _deviceID && s.DataBaseName == _dataBaseName);
+                            if (k.VersionType == "Demo")
+                            {
+                                var d = db.AsnadeHesabdariRows.Count();
+                                if (d < 200)
+                                {
+                                    k.IsActive = true;
+                                    db.SaveChanges();
+                                }
+                            }
+
                         }
                         catch (Exception ex)
                         {
@@ -446,7 +465,7 @@ namespace Sandogh_PG
         {
             int rowIndex = e.ListSourceRowIndex;
             //if (rowIndex == 0)
-                
+
             HelpClass1.SetNumberRowsColumnUnboundGirdView(sender, e);
 
             //int rowIndex = e.ListSourceRowIndex;
@@ -607,6 +626,19 @@ namespace Sandogh_PG
                                 }
                                 else
                                     XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+                                var k = db.AllowedDevises.FirstOrDefault(s => s.DeviceID == _deviceID && s.DataBaseName == _dataBaseName);
+                                if (k.VersionType == "Demo")
+                                {
+                                    var d = db.AsnadeHesabdariRows.Count();
+                                    if (d < 200)
+                                    {
+                                        k.IsActive = true;
+                                        db.SaveChanges();
+                                    }
+                                }
+
                             }
                             catch (Exception ex)
                             {

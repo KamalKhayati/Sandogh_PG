@@ -164,18 +164,18 @@ namespace Sandogh_PG
 
                             }
                             /////////////////////////////////////////////////////////////////////
-                            string MadarBoardCode = string.Empty;
-                            ManagementObjectSearcher sercher2 = new ManagementObjectSearcher("select * from Win32_BaseBoard");
-                            foreach (ManagementObject wmi_Board in sercher2.Get())
-                            {
-                                if (wmi_Board["SerialNumber"] != null)
-                                    MadarBoardCode = wmi_Board["SerialNumber"].ToString().Trim();
-                            }
-                            if (q1.MadarBoardCode != MadarBoardCode.Substring(0, 10))
-                            {
-                                q1.MadarBoardCode = MadarBoardCode.Substring(0, 10);
-                                db.SaveChanges();
-                            }
+                            //string MadarBoardCode = string.Empty;
+                            //ManagementObjectSearcher sercher2 = new ManagementObjectSearcher("select * from Win32_BaseBoard");
+                            //foreach (ManagementObject wmi_Board in sercher2.Get())
+                            //{
+                            //    if (wmi_Board["SerialNumber"] != null)
+                            //        MadarBoardCode = wmi_Board["SerialNumber"].ToString().Trim();
+                            //}
+                            //if (q1.MadarBoardCode != MadarBoardCode.Substring(0, 10))
+                            //{
+                            //    q1.MadarBoardCode = MadarBoardCode.Substring(0, 10);
+                            //    db.SaveChanges();
+                            //}
 
                         }
                         //else

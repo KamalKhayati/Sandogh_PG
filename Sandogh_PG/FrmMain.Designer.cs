@@ -30,6 +30,8 @@
         {
             DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Sandogh_PG.SplashScreen1), true, true);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barStaticItem6 = new DevExpress.XtraBars.BarStaticItem();
             this.btnTarifSandogh = new DevExpress.XtraBars.BarButtonItem();
@@ -82,6 +84,8 @@
             this.barStaticItem7 = new DevExpress.XtraBars.BarStaticItem();
             this.barStaticItem8 = new DevExpress.XtraBars.BarStaticItem();
             this.btnListHesabMoin = new DevExpress.XtraBars.BarButtonItem();
+            this.btnSupportSetting = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.DaryaftVPardakht = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgDaryaft = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgPardakhtha = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -176,10 +180,12 @@
             this.ShNoskheBarname,
             this.barStaticItem7,
             this.barStaticItem8,
-            this.btnListHesabMoin});
+            this.btnListHesabMoin,
+            this.btnSupportSetting,
+            this.barButtonItem3});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.ribbonControl1.MaxItemId = 84;
+            this.ribbonControl1.MaxItemId = 86;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsPageCategories.ShowCaptions = false;
             this.ribbonControl1.PageHeaderItemLinks.Add(this.barStaticItem7);
@@ -190,12 +196,13 @@
             this.Reports,
             this.Emkanat,
             this.Other});
+            this.ribbonControl1.QuickToolbarItemLinks.Add(this.barButtonItem3);
             this.ribbonControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemPictureEdit1,
             this.repositoryItemImageEdit1,
             this.repositoryItemHypertextLabel1});
             this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControl1.Size = new System.Drawing.Size(1455, 236);
+            this.ribbonControl1.Size = new System.Drawing.Size(1571, 236);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // barStaticItem6
@@ -255,7 +262,7 @@
             // 
             // btnTanzimat
             // 
-            this.btnTanzimat.Caption = "تنظیمات";
+            this.btnTanzimat.Caption = "تنظیمات صندوق";
             this.btnTanzimat.Id = 11;
             this.btnTanzimat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnTanzimat.ImageOptions.Image")));
             this.btnTanzimat.LargeWidth = 80;
@@ -510,7 +517,13 @@
             // 
             this.NameDataBase.Caption = "NameDataBase";
             this.NameDataBase.Id = 62;
+            this.NameDataBase.ItemAppearance.Normal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.NameDataBase.ItemAppearance.Normal.Options.UseForeColor = true;
             this.NameDataBase.Name = "NameDataBase";
+            toolTipTitleItem1.Text = "تغییر پارامترها (دیتابیس،کاربر،...)";
+            superToolTip1.Items.Add(toolTipTitleItem1);
+            this.NameDataBase.SuperTip = superToolTip1;
+            this.NameDataBase.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.NameDataBase_ItemClick);
             // 
             // barStaticItem1
             // 
@@ -520,7 +533,7 @@
             // 
             // barStaticItem2
             // 
-            this.barStaticItem2.Caption = "نام بانک اطلاعاتی :";
+            this.barStaticItem2.Caption = "دیتابیس :";
             this.barStaticItem2.Id = 65;
             this.barStaticItem2.Name = "barStaticItem2";
             // 
@@ -549,7 +562,7 @@
             // 
             // EtmamGaranti
             // 
-            this.EtmamGaranti.Caption = "0000/00/00";
+            this.EtmamGaranti.Caption = "0001/01/01";
             this.EtmamGaranti.Id = 70;
             this.EtmamGaranti.Name = "EtmamGaranti";
             this.EtmamGaranti.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.EtmamGaranti_ItemClick);
@@ -562,7 +575,7 @@
             // 
             // btnTamdidGaranti
             // 
-            this.btnTamdidGaranti.Caption = "تمدید گارانتی";
+            this.btnTamdidGaranti.Caption = "تمدید پشتیبانی";
             this.btnTamdidGaranti.Id = 72;
             this.btnTamdidGaranti.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnTamdidGaranti.ImageOptions.SvgImage")));
             this.btnTamdidGaranti.Name = "btnTamdidGaranti";
@@ -579,7 +592,7 @@
             // 
             // barStaticItem4
             // 
-            this.barStaticItem4.Caption = "ش نسخه برنامه :";
+            this.barStaticItem4.Caption = "نسخه برنامه :";
             this.barStaticItem4.Id = 75;
             this.barStaticItem4.Name = "barStaticItem4";
             // 
@@ -613,6 +626,25 @@
             this.btnListHesabMoin.Name = "btnListHesabMoin";
             this.btnListHesabMoin.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.btnListHesabMoin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnListHesabMoin_ItemClick);
+            // 
+            // btnSupportSetting
+            // 
+            this.btnSupportSetting.Caption = "منوی ویژه پشتیبانی";
+            this.btnSupportSetting.Id = 84;
+            this.btnSupportSetting.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSupportSetting.ImageOptions.Image")));
+            this.btnSupportSetting.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnSupportSetting.ImageOptions.LargeImage")));
+            this.btnSupportSetting.Name = "btnSupportSetting";
+            this.btnSupportSetting.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.btnSupportSetting.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSupportSetting_ItemClick);
+            // 
+            // barButtonItem3
+            // 
+            this.barButtonItem3.Caption = "تغییر پارامترها (دیتابیس،کاربر،...)";
+            this.barButtonItem3.Id = 85;
+            this.barButtonItem3.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem3.ImageOptions.SvgImage")));
+            this.barButtonItem3.Name = "barButtonItem3";
+            this.barButtonItem3.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText;
+            this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick_1);
             // 
             // DaryaftVPardakht
             // 
@@ -729,6 +761,7 @@
             this.ribbonPageGroup3.ItemLinks.Add(this.btnYadavari, true);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnCalculate, true);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnTamdidGaranti, true);
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnSupportSetting, true);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "سایر امکانات";
             // 
@@ -782,7 +815,7 @@
             this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(5);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(1455, 37);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1571, 37);
             // 
             // barButtonItem1
             // 
@@ -802,7 +835,7 @@
             this.pictureEdit3.Properties.ReadOnly = true;
             this.pictureEdit3.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit3.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit3.Size = new System.Drawing.Size(1455, 466);
+            this.pictureEdit3.Size = new System.Drawing.Size(1571, 466);
             this.pictureEdit3.TabIndex = 15;
             // 
             // pictureEdit1
@@ -820,7 +853,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1455, 702);
+            this.ClientSize = new System.Drawing.Size(1571, 702);
             this.Controls.Add(this.pictureEdit1);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.pictureEdit3);
@@ -916,7 +949,6 @@
         public DevExpress.XtraBars.BarButtonItem btnTamdidGaranti;
         private DevExpress.XtraBars.BarButtonItem btnDarkhastVam;
         private DevExpress.XtraBars.BarButtonItem btnMabaleghGhabelDaryaft;
-        private DevExpress.XtraBars.BarStaticItem barStaticItem4;
         public DevExpress.XtraBars.BarStaticItem ShNoskheBarname;
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemImageEdit repositoryItemImageEdit1;
@@ -927,6 +959,9 @@
         public DevExpress.XtraEditors.PictureEdit pictureEdit1;
         private DevExpress.XtraBars.BarStaticItem barStaticItem8;
         private DevExpress.XtraBars.BarButtonItem btnListHesabMoin;
+        public DevExpress.XtraBars.BarStaticItem barStaticItem4;
+        private DevExpress.XtraBars.BarButtonItem btnSupportSetting;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
     }
 }
 

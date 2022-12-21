@@ -10,6 +10,7 @@
     using System.Xml;
     using System.Configuration;
     using System.Data;
+    using Sandogh_PG.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Sandogh_PG.MyContext>
     {
@@ -28,7 +29,8 @@
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
-            context.Entry(new TarifSandogh() { Id = 1, NameSandogh = "صندوق قرض الحسنه", IsDefault = true, AppActived=false, TarikhEjad= Convert.ToDateTime(DateTime.Now.ToString().Substring(0, 10)) , IsGaranti=false , ShomareNoskheBarname="1.0.0.25"}).State = context.TarifSandoghs.Any(s => s.Id == 1) ? EntityState.Unchanged : EntityState.Added;
+            context.Entry(new TarifSandogh() { Id = 1, NameSandogh = "صندوق قرض الحسنه", IsDefault = true, TarikhEjad= Convert.ToDateTime(DateTime.Now.ToString().Substring(0, 10))}).State = context.TarifSandoghs.Any(s => s.Id == 1) ? EntityState.Unchanged : EntityState.Added;
+            context.Entry(new AllowedDevise() { VersionType = "Demo",IsActive=false,IsGaranti= false, DeviceID="0123456789"}).State = context.AllowedDevises.Any() ? EntityState.Unchanged : EntityState.Added;
             context.Entry(new SalMali() { Id = 1, TarifSandoghId = 1, NameSandogh = "صندوق قرض الحسنه", SaleMali = 1398, StartDate = Convert.ToDateTime("2019/03/21"), EndDate = Convert.ToDateTime("2020/03/19"), IsDefault = true }).State = context.SalMalis.Any(s => s.Id == 1) ? EntityState.Unchanged : EntityState.Added;
             //context.Entry(new HesabBanki() { Id = 1, TarifSandoghId = 1, GroupTafziliId = 2, NameHesab = "ملت مرکزی جاری 123456789", StartDate = Convert.ToDateTime("2019/03/21"), IsDefault = true, IsActive = true, Code = 3000001, GroupHesabIndex = 1, GroupHesab = "بانک", NameBank = "ملت", NoeHesab = "جاری", ShomareHesab = "123456789", NameShobe = "مرکزی" }).State = context.HesabBankis.Any(s => s.Code == 3000001) ? EntityState.Unchanged : EntityState.Added;
             //context.Entry(new HesabBanki() { Id = 2, TarifSandoghId = 1, GroupTafziliId = 2, NameHesab = "صادرات مرکزی جاری 456789000", StartDate = Convert.ToDateTime("2019/03/21"), IsDefault = false, IsActive = true, Code = 3000002, GroupHesabIndex = 1, GroupHesab = "بانک", NameBank = "صادرات", NoeHesab = "جاری", ShomareHesab = "456789000", NameShobe = "مرکزی" }).State = context.HesabBankis.Any(s => s.Code == 3000002) ? EntityState.Unchanged : EntityState.Added;
@@ -72,6 +74,17 @@
             context.Entry(new GroupTafzili() { Id = 5, Code = 5, Name = "هزینه", SandoghId = 1 }).State = context.GroupTafzilis.Any(s => s.Code == 5) ? EntityState.Unchanged : EntityState.Added;
             context.Entry(new GroupTafzili() { Id = 6, Code = 6, Name = "اموال", SandoghId = 1 }).State = context.GroupTafzilis.Any(s => s.Code == 6) ? EntityState.Unchanged : EntityState.Added;
 
+            //context.Entry(new AllowedDataBases() { Id = 1, CompanyID = 12251, DataBaseName = HelpClass1.EncryptText("Sandogh_PG") }).State = context.AllowedDataBasess.Any(s => s.Id == 1) ? EntityState.Unchanged : EntityState.Added;
+            //context.Entry(new AllowedDataBases() { Id = 2, CompanyID = 12252, DataBaseName = HelpClass1.EncryptText("Sandogh_Ehsan") }).State = context.AllowedDataBasess.Any(s => s.Id == 2) ? EntityState.Unchanged : EntityState.Added;
+            //context.Entry(new AllowedDataBases() { Id = 3, CompanyID = 12253, DataBaseName = HelpClass1.EncryptText("Harir_VA1") }).State = context.AllowedDataBasess.Any(s => s.Id == 3) ? EntityState.Unchanged : EntityState.Added;
+            //context.Entry(new AllowedDataBases() { Id = 4, CompanyID = 12254, DataBaseName = HelpClass1.EncryptText("Harir_VA2") }).State = context.AllowedDataBasess.Any(s => s.Id == 4) ? EntityState.Unchanged : EntityState.Added;
+            //context.Entry(new AllowedDataBases() { Id = 5, CompanyID = 12255, DataBaseName = HelpClass1.EncryptText("Kapris_VA") }).State = context.AllowedDataBasess.Any(s => s.Id == 5) ? EntityState.Unchanged : EntityState.Added;
+            //context.Entry(new AllowedDataBases() { Id = 6, CompanyID = 12256, DataBaseName = HelpClass1.EncryptText("SandoghData1") }).State = context.AllowedDataBasess.Any(s => s.Id == 6) ? EntityState.Unchanged : EntityState.Added;
+            //context.Entry(new AllowedDataBases() { Id = 7, CompanyID = 12257, DataBaseName = HelpClass1.EncryptText("SandoghData2") }).State = context.AllowedDataBasess.Any(s => s.Id == 7) ? EntityState.Unchanged : EntityState.Added;
+            //context.Entry(new AllowedDataBases() { Id = 8, CompanyID = 12258, DataBaseName = HelpClass1.EncryptText("SandoghData3") }).State = context.AllowedDataBasess.Any(s => s.Id == 8) ? EntityState.Unchanged : EntityState.Added;
+            //context.Entry(new AllowedDataBases() { Id = 9, CompanyID = 12259, DataBaseName = HelpClass1.EncryptText("SandoghData4") }).State = context.AllowedDataBasess.Any(s => s.Id == 9) ? EntityState.Unchanged : EntityState.Added;
+            //context.Entry(new AllowedDataBases() { Id = 10, CompanyID = 12260, DataBaseName = HelpClass1.EncryptText("SandoghData5") }).State = context.AllowedDataBasess.Any(s => s.Id == 10) ? EntityState.Unchanged : EntityState.Added;
+            //context.SaveChanges();
         }
     }
 }

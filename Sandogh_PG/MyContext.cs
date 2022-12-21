@@ -87,8 +87,8 @@
         public virtual DbSet<AsnadeHesabdariRow> AsnadeHesabdariRows { get; set; }
         public virtual DbSet<Karbaran> Karbarans { get; set; }
         public virtual DbSet<CodingAmval> CodingAmvals { get; set; }
+        public virtual DbSet<Models.AllowedDevise> AllowedDevises { get; set; }
 
-        //public virtual DbSet<DaryaftNaghdiVBanki> DaryaftNaghdiVBankis { get; set; }
         //public virtual DbSet<PardakhtNaghdiVBanki> PardakhtNaghdiVBankis { get; set; }
         //public virtual DbSet<SabDaramad> SabDaramads { get; set; }
         //public virtual DbSet<SabtHazine> SabtHazines { get; set; }
