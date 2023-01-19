@@ -651,6 +651,8 @@ namespace Sandogh_PG
                                 XtraReport1.LoadLayoutFromXml(FilePath1 + FileName1);
                                 XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
                                 XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
+                                XtraReport1.Parameters["Logo_Co"].Value = Fm.pictureEdit1.Image;
+
                                 if (IsCheckInSandogh)
                                 {
                                     XtraReport1.DataSource = q.Where(f => f.IsInSandogh == true);

@@ -91,6 +91,9 @@
             this.colAdressManzel = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAdressMohalKar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSharhHesab = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSaghfeEtebar = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colEtebarBlookeShode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.btnPrint1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnNext1 = new DevExpress.XtraEditors.SimpleButton();
@@ -176,9 +179,6 @@
             this.btnDisplyActiveList4 = new DevExpress.XtraEditors.SimpleButton();
             this.btnCreate4 = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl10 = new DevExpress.XtraEditors.PanelControl();
-            this.colSaghfeEtebar = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colEtebarBlookeShode = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl9)).BeginInit();
             this.panelControl9.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -1174,6 +1174,62 @@
             this.colSharhHesab.VisibleIndex = 28;
             this.colSharhHesab.Width = 445;
             // 
+            // colSaghfeEtebar
+            // 
+            this.colSaghfeEtebar.AppearanceCell.Options.UseTextOptions = true;
+            this.colSaghfeEtebar.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSaghfeEtebar.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colSaghfeEtebar.AppearanceHeader.Options.UseTextOptions = true;
+            this.colSaghfeEtebar.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSaghfeEtebar.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colSaghfeEtebar.Caption = "سقف اعتبار";
+            this.colSaghfeEtebar.DisplayFormat.FormatString = "n";
+            this.colSaghfeEtebar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colSaghfeEtebar.FieldName = "SaghfeEtebar";
+            this.colSaghfeEtebar.MinWidth = 25;
+            this.colSaghfeEtebar.Name = "colSaghfeEtebar";
+            this.colSaghfeEtebar.Visible = true;
+            this.colSaghfeEtebar.VisibleIndex = 29;
+            this.colSaghfeEtebar.Width = 145;
+            // 
+            // colEtebarBlookeShode
+            // 
+            this.colEtebarBlookeShode.AppearanceCell.Options.UseTextOptions = true;
+            this.colEtebarBlookeShode.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colEtebarBlookeShode.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colEtebarBlookeShode.AppearanceHeader.Options.UseTextOptions = true;
+            this.colEtebarBlookeShode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colEtebarBlookeShode.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colEtebarBlookeShode.Caption = "اعتبار بلوکه شده";
+            this.colEtebarBlookeShode.DisplayFormat.FormatString = "n";
+            this.colEtebarBlookeShode.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colEtebarBlookeShode.FieldName = "EtebarBlookeShode";
+            this.colEtebarBlookeShode.MinWidth = 25;
+            this.colEtebarBlookeShode.Name = "colEtebarBlookeShode";
+            this.colEtebarBlookeShode.Visible = true;
+            this.colEtebarBlookeShode.VisibleIndex = 30;
+            this.colEtebarBlookeShode.Width = 145;
+            // 
+            // gridColumn14
+            // 
+            this.gridColumn14.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn14.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn14.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn14.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn14.Caption = "مانده اعتبار";
+            this.gridColumn14.DisplayFormat.FormatString = "n";
+            this.gridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gridColumn14.FieldName = "gridColumn14";
+            this.gridColumn14.MinWidth = 25;
+            this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.UnboundExpression = "[SaghfeEtebar] - [EtebarBlookeShode]";
+            this.gridColumn14.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
+            this.gridColumn14.Visible = true;
+            this.gridColumn14.VisibleIndex = 31;
+            this.gridColumn14.Width = 145;
+            // 
             // panelControl4
             // 
             this.panelControl4.Controls.Add(this.btnPrint1);
@@ -1202,6 +1258,7 @@
             this.btnPrint1.TabIndex = 27;
             this.btnPrint1.ToolTip = "چاپ لیست";
             this.btnPrint1.Visible = false;
+            this.btnPrint1.Click += new System.EventHandler(this.btnPrint1_Click);
             // 
             // btnNext1
             // 
@@ -2450,62 +2507,6 @@
             this.panelControl10.Name = "panelControl10";
             this.panelControl10.Size = new System.Drawing.Size(1756, 415);
             this.panelControl10.TabIndex = 4;
-            // 
-            // colSaghfeEtebar
-            // 
-            this.colSaghfeEtebar.AppearanceCell.Options.UseTextOptions = true;
-            this.colSaghfeEtebar.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colSaghfeEtebar.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colSaghfeEtebar.AppearanceHeader.Options.UseTextOptions = true;
-            this.colSaghfeEtebar.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colSaghfeEtebar.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colSaghfeEtebar.Caption = "سقف اعتبار";
-            this.colSaghfeEtebar.DisplayFormat.FormatString = "n";
-            this.colSaghfeEtebar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colSaghfeEtebar.FieldName = "SaghfeEtebar";
-            this.colSaghfeEtebar.MinWidth = 25;
-            this.colSaghfeEtebar.Name = "colSaghfeEtebar";
-            this.colSaghfeEtebar.Visible = true;
-            this.colSaghfeEtebar.VisibleIndex = 29;
-            this.colSaghfeEtebar.Width = 145;
-            // 
-            // colEtebarBlookeShode
-            // 
-            this.colEtebarBlookeShode.AppearanceCell.Options.UseTextOptions = true;
-            this.colEtebarBlookeShode.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colEtebarBlookeShode.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colEtebarBlookeShode.AppearanceHeader.Options.UseTextOptions = true;
-            this.colEtebarBlookeShode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colEtebarBlookeShode.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colEtebarBlookeShode.Caption = "اعتبار بلوکه شده";
-            this.colEtebarBlookeShode.DisplayFormat.FormatString = "n";
-            this.colEtebarBlookeShode.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colEtebarBlookeShode.FieldName = "EtebarBlookeShode";
-            this.colEtebarBlookeShode.MinWidth = 25;
-            this.colEtebarBlookeShode.Name = "colEtebarBlookeShode";
-            this.colEtebarBlookeShode.Visible = true;
-            this.colEtebarBlookeShode.VisibleIndex = 30;
-            this.colEtebarBlookeShode.Width = 145;
-            // 
-            // gridColumn14
-            // 
-            this.gridColumn14.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn14.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn14.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn14.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn14.Caption = "مانده اعتبار";
-            this.gridColumn14.DisplayFormat.FormatString = "n";
-            this.gridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumn14.FieldName = "gridColumn14";
-            this.gridColumn14.MinWidth = 25;
-            this.gridColumn14.Name = "gridColumn14";
-            this.gridColumn14.UnboundExpression = "[SaghfeEtebar] - [EtebarBlookeShode]";
-            this.gridColumn14.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
-            this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 31;
-            this.gridColumn14.Width = 145;
             // 
             // FrmDaryafti
             // 

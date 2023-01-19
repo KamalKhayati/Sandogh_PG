@@ -401,6 +401,7 @@ namespace Sandogh_PG
                     XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
                     XtraReport1.Parameters["ReportName"].Value = "مشخصات اعضاء صندوق";
                     XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
+                    XtraReport1.Parameters["Logo_Co"].Value = Fm.pictureEdit1.Image;
 
                     FrmPrinPreview FPP = new FrmPrinPreview();
                     FPP.documentViewer1.DocumentSource = XtraReport1;

@@ -183,6 +183,7 @@ namespace Sandogh_PG
 
         private void cmbHesabTafzili_Enter(object sender, EventArgs e)
         {
+
             cmbHesabTafzili.ShowPopup();
         }
 
@@ -314,6 +315,8 @@ namespace Sandogh_PG
                     XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
                     XtraReport1.Parameters["HesabTafzil"].Value = cmbHesabTafzili.Text;
                     XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
+                    XtraReport1.Parameters["Logo_Co"].Value = Fm.pictureEdit1.Image;
+
                     //List<decimal> ListMande1 = new List<decimal>();
                     //for (int i = 0; i < gridView1.RowCount; i++)
                     //{

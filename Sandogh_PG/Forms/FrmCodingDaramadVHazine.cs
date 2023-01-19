@@ -156,6 +156,40 @@ namespace Sandogh_PG
                 txtNameHesab.Focus();
                 return false;
             }
+            else
+            {
+                using (var db = new MyContext())
+                {
+                    try
+                    {
+                        string _txtName = txtNameHesab.Text.Trim();
+                        var q = db.CodingDaramadVHazines; 
+                        if (En == EnumCED.Create)
+                        {
+                            if (q.Any(s => s.HesabName == _txtName))
+                            {
+                                XtraMessageBox.Show("این حساب قبلاً تعریف شده است", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return false;
+                            }
+                        }
+                        else if (En == EnumCED.Edit)
+                        {
+                            int _RowId = Convert.ToInt32(txtId.Text);
+                            if (q.Any(s => s.HesabName == _txtName && s.Id != _RowId))
+                            {
+                                XtraMessageBox.Show("این حساب قبلاً تعریف شده است", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return false;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+            }
             return true;
         }
 
@@ -563,7 +597,7 @@ namespace Sandogh_PG
                                 {
                                     q.Name = txtNameHesab.Text;
                                     db.SaveChanges();
-                                        btnDisplayActiveList_Click(null, null);
+                                    btnDisplayActiveList_Click(null, null);
                                     if (gridView1.RowCount > 0)
                                         gridView1.FocusedRowHandle = EditRowIndex;
                                     gridControl1.Enabled = true;

@@ -14,12 +14,13 @@ namespace Sandogh_PG
 {
     public partial class FrmSodVZian : DevExpress.XtraEditors.XtraForm
     {
-        FrmMain Fm;
+       public FrmMain Fm;
         public FrmSodVZian(FrmMain fm)
         {
             InitializeComponent();
             Fm = fm;
         }
+
         decimal SodVZian = 0;
         public void FillDataGridView1()
         {
@@ -101,6 +102,8 @@ namespace Sandogh_PG
                     //XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
                     //XtraReport1.Parameters["HesabTafzil"].Value = cmbHesabTafzili.Text;
                     XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
+                    XtraReport1.Parameters["Logo_Co"].Value = Fm.pictureEdit1.Image;
+
                     FrmPrinPreview FPP = new FrmPrinPreview();
                     FPP.documentViewer1.DocumentSource = XtraReport1;
                     FPP.ShowDialog();
@@ -142,7 +145,7 @@ namespace Sandogh_PG
         {
             if (gridView1.RowCount > 0)
             {
-                FrmRizMoin frm = new FrmRizMoin();
+                FrmRizMoin frm = new FrmRizMoin(this);
                 string RowMoinName = gridView1.GetFocusedRowCellDisplayText("HesabMoinName");
                 frm.Text = "ریز حساب معین : " + RowMoinName;
                 frm.RowMoinId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId"));

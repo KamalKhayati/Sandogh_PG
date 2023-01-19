@@ -15,9 +15,23 @@ namespace Sandogh_PG
 {
     public partial class FrmRizMoin : DevExpress.XtraEditors.XtraForm
     {
-        public FrmRizMoin()
+        //public FrmRizMoin()
+        //{
+        //    InitializeComponent();
+        //}
+
+        public FrmSodVZian Fm;
+        public FrmRizMoin(FrmSodVZian fm)
         {
             InitializeComponent();
+            Fm = fm;
+        }
+
+        public FrmTarazname Pm;
+        public FrmRizMoin(FrmTarazname pm)
+        {
+            InitializeComponent();
+            Pm = pm;
         }
 
         private void FrmRizMoin_Load(object sender, EventArgs e)
@@ -140,6 +154,15 @@ namespace Sandogh_PG
                     //XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
                     //XtraReport1.Parameters["HesabTafzil"].Value = cmbHesabTafzili.Text;
                     XtraReport1.Parameters["SandoghName"].Value = _SandoghName;
+                    if (Fm != null)
+                    {
+                        XtraReport1.Parameters["Logo_Co"].Value = Fm.Fm.pictureEdit1.Image;
+                    }
+                    else
+                    {
+                        XtraReport1.Parameters["Logo_Co"].Value = Pm.Fm.pictureEdit1.Image;
+                    }
+
                     FrmPrinPreview FPP = new FrmPrinPreview();
                     FPP.documentViewer1.DocumentSource = XtraReport1;
                     FPP.ShowDialog();

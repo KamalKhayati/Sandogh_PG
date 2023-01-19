@@ -17,9 +17,16 @@ namespace Sandogh_PG
 {
     public partial class FrmMabaleghGhabelDaryaft : DevExpress.XtraEditors.XtraForm
     {
-        public FrmMabaleghGhabelDaryaft()
+        //public FrmMabaleghGhabelDaryaft()
+        //{
+        //    InitializeComponent();
+        //}
+
+        public FrmMain Fm;
+        public FrmMabaleghGhabelDaryaft(FrmMain fm)
         {
             InitializeComponent();
+            Fm = fm;
         }
 
         TextEdit _txtSal;
@@ -534,6 +541,8 @@ namespace Sandogh_PG
                     //XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
                     //XtraReport1.Parameters["HesabTafzil"].Value = cmbHesabTafzili.Text;
                     XtraReport1.Parameters["SandoghName"].Value = _SandoghName;
+                    XtraReport1.Parameters["Logo_Co"].Value = Fm.pictureEdit1.Image;
+
                     FrmPrinPreview FPP = new FrmPrinPreview();
                     FPP.documentViewer1.DocumentSource = XtraReport1;
                     FPP.ShowDialog();

@@ -17,6 +17,7 @@ namespace Sandogh_PG
     public partial class FrmDaftarRozname : DevExpress.XtraEditors.XtraForm
     {
         FrmMain Fm;
+        MyContext MyDb;
         public FrmDaftarRozname(FrmMain fm)
         {
             InitializeComponent();
@@ -25,13 +26,14 @@ namespace Sandogh_PG
 
         public void FillDataGridDaftarRozname()
         {
-            using (var db = new MyContext())
+            //using (var db = new MyContext())
             {
                 try
                 {
+                    MyDb = new MyContext();
                     DateTime _Az = Convert.ToDateTime(txtAzTarikh.Text);
                     DateTime _Ta = Convert.ToDateTime(txtTaTarikh.Text);
-                    var q = db.AsnadeHesabdariRows.Where(f => f.Tarikh >= _Az && f.Tarikh <= _Ta).OrderBy(f => f.Tarikh).ThenBy(f => f.ShomareSanad).ToList();
+                    var q = MyDb.AsnadeHesabdariRows.Where(f => f.Tarikh >= _Az && f.Tarikh <= _Ta).OrderBy(f => f.Tarikh).ThenBy(f => f.ShomareSanad).ToList();
                     if (q.Count > 0)
                         asnadeHesabdariRowsBindingSource.DataSource = q;
                     else
@@ -109,6 +111,8 @@ namespace Sandogh_PG
                     XtraReport1.Parameters["Ta_Tarikh"].Value = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
                     XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
                     XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
+                    XtraReport1.Parameters["Logo_Co"].Value = Fm.pictureEdit1.Image;
+
                     FrmPrinPreview FPP = new FrmPrinPreview();
                     FPP.documentViewer1.DocumentSource = XtraReport1;
                     FPP.ShowDialog();
@@ -125,5 +129,9 @@ namespace Sandogh_PG
             HelpClass1.LoadReportDesigner(FilePath, FileName);
         }
 
+        private void FrmDaftarRozname_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MyDb.Dispose();
+        }
     }
 }

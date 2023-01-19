@@ -1105,6 +1105,7 @@ namespace Sandogh_PG
                     //XtraReport1.Parameters["HesabTafzil"].Value = cmbHesabTafzili.Text;
                     XtraReport1.Parameters["ReportName"].Value = groupBox4.Text;
                     XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
+                    XtraReport1.Parameters["Logo_Co"].Value = Fm.pictureEdit1.Image;
 
                     //List<decimal> ListMande1 = new List<decimal>();
                     //for (int i = 0; i < gridView1.RowCount; i++)
@@ -1142,6 +1143,8 @@ namespace Sandogh_PG
                     XtraReport1.DataSource = HelpClass1.ConvettDatagridviewToDataSet(gridView2);
                     XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
                     XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
+                    XtraReport1.Parameters["Logo_Co"].Value = Fm.pictureEdit1.Image;
+
                     XtraReport1.Parameters["NameAaza"].Value = gridView1.GetFocusedRowCellDisplayText("NameAaza");
                     XtraReport1.Parameters["ShomareSanad"].Value = gridView1.GetFocusedRowCellDisplayText("ShomareSanad");
                     XtraReport1.Parameters["NahveyePardakht"].Value = gridView1.GetFocusedRowCellDisplayText("NahveyePardakht");

@@ -310,7 +310,7 @@
             // 
             // asnadeHesabdariRowsBindingSource
             // 
-            this.asnadeHesabdariRowsBindingSource.DataSource = typeof(Sandogh_PG.AsnadeHesabdariRow);
+            //this.asnadeHesabdariRowsBindingSource.DataSource = typeof(Sandogh_PG.AsnadeHesabdariRow);
             // 
             // ChkTarikh
             // 

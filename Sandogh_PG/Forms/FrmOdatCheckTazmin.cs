@@ -528,6 +528,8 @@ namespace Sandogh_PG
                                 XtraReport1.LoadLayoutFromXml(FilePath1 + FileName1);
                                 XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
                                 XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
+                                XtraReport1.Parameters["Logo_Co"].Value = Fm.pictureEdit1.Image;
+
                                 XtraReport1.DataSource = q;
                                 FrmPrinPreview FPP = new FrmPrinPreview();
                                 FPP.documentViewer1.DocumentSource = XtraReport1;

@@ -599,8 +599,9 @@ namespace Sandogh_PG
         private void MojodiSandogh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             FrmSoratHesabTafzili frm = new FrmSoratHesabTafzili(this);
-            frm.cmbHesabTafzili.EditValue = _IdHesab;
             ActiveForm(frm);
+            frm.cmbHesabTafzili.ClosePopup();
+            frm.cmbHesabTafzili.EditValue = _IdHesab;
         }
 
         bool IsDataDelete = false;
@@ -819,7 +820,7 @@ namespace Sandogh_PG
 
         private void btnMabaleghGhabelDaryaft_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            FrmMabaleghGhabelDaryaft frm = new FrmMabaleghGhabelDaryaft();
+            FrmMabaleghGhabelDaryaft frm = new FrmMabaleghGhabelDaryaft(this);
             frm._SandoghName = ribbonControl1.ApplicationDocumentCaption;
             frm.ShowDialog();
         }

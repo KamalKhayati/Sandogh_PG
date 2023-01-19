@@ -806,6 +806,8 @@ namespace Sandogh_PG
 
                     XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
                     XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
+                    XtraReport1.Parameters["Logo_Co"].Value = Fm.pictureEdit1.Image;
+
                     XtraReport1.Parameters["NameAaza"].Value = gridView3.GetFocusedRowCellDisplayText("NameAaza");
                     XtraReport1.Parameters["ShomareSanad"].Value = gridView3.GetFocusedRowCellDisplayText("ShomareSanad");
                     XtraReport1.Parameters["NahveyePardakht"].Value = gridView3.GetFocusedRowCellDisplayText("NahveyePardakht");
@@ -878,6 +880,8 @@ namespace Sandogh_PG
 
                     XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
                     XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
+                    XtraReport1.Parameters["Logo_Co"].Value = Fm.pictureEdit1.Image;
+
                     //XtraReport1.Parameters["NameAaza"].Value = gridView3.GetFocusedRowCellDisplayText("NameAaza");
                     //XtraReport1.Parameters["ShomareSanad"].Value = gridView3.GetFocusedRowCellDisplayText("ShomareSanad");
                     //XtraReport1.Parameters["NahveyePardakht"].Value = gridView3.GetFocusedRowCellDisplayText("NahveyePardakht");
@@ -1029,6 +1033,11 @@ namespace Sandogh_PG
                     //fm.ShowDialog();
                 }
             }
+
+        }
+
+        private void btnPrint1_Click(object sender, EventArgs e)
+        {
 
         }
     }

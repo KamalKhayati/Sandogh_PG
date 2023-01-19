@@ -52,7 +52,6 @@ namespace Sandogh_PG
                         }
                         else
                             pictureEdit1.Image = null;
-
                     }
                 }
                 catch (Exception ex)
@@ -155,12 +154,12 @@ namespace Sandogh_PG
                                 img.Save(ms, pictureEdit1.Image.RawFormat);
                                 byte[] myarrey = ms.GetBuffer();
                                 q1.Pictuer = myarrey;
-                                pictureEdit1.Image.Save(Application.StartupPath + "\\Pic\\Co_Logo_1.jpg");
+                                //pictureEdit1.Image.Save(Application.StartupPath + "\\Pic\\Co_Logo_1.jpg");
                             }
                             else
                             {
                                 q1.Pictuer = null;
-                                pictureEdit2.Image.Save(Application.StartupPath + "\\Pic\\Co_Logo_1.jpg");
+                                //pictureEdit2.Image.Save(Application.StartupPath + "\\Pic\\Co_Logo_1.jpg");
 
                             }
                             /////////////////////////////////////////////////////////////////////
@@ -208,7 +207,17 @@ namespace Sandogh_PG
                         db.SaveChanges();
                         XtraMessageBox.Show("اطلاعات با موفقیت ثبت گردید", "پیغام ثبت ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         //Fm.FrmMain_Load(null, null);
-                        Fm.pictureEdit1.Image = pictureEdit1.Image;
+                        //Fm.pictureEdit1.Image = pictureEdit1.Image;
+                        if (q1.Pictuer != null)
+                        {
+                            MemoryStream ms = new MemoryStream(q1.Pictuer);
+                            Fm.pictureEdit1.Image = Image.FromStream(ms);
+                            img = pictureEdit1.Image;
+                        }
+                        else
+                            Fm.pictureEdit1.Image = null;
+
+
                         this.Close();
                     }
                     catch (Exception ex)

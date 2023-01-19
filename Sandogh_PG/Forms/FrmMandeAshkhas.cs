@@ -227,6 +227,8 @@ namespace Sandogh_PG
                         //XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
                         //XtraReport1.Parameters["HesabTafzil"].Value = cmbHesabTafzili.Text;
                         XtraReport1.Parameters["SandoghName"].Value = _SandoghName;
+                        XtraReport1.Parameters["Logo_Co"].Value = Fm.pictureEdit1.Image;
+
                         FrmPrinPreview FPP = new FrmPrinPreview();
                         FPP.documentViewer1.DocumentSource = XtraReport1;
                         FPP.ShowDialog();
@@ -291,6 +293,8 @@ namespace Sandogh_PG
                         //XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
                         //XtraReport1.Parameters["HesabTafzil"].Value = cmbHesabTafzili.Text;
                         XtraReport1.Parameters["SandoghName"].Value = _SandoghName;
+                        XtraReport1.Parameters["Logo_Co"].Value = Fm.pictureEdit1.Image;
+
                         XtraReport1.Parameters["Vam_Daryaftani"].Value = gridView2.Columns["2001"].Caption;
                         XtraReport1.Parameters["Mosaede"].Value = gridView2.Columns["3001"].Caption;
                         XtraReport1.Parameters["Bedehkaran"].Value = gridView2.Columns["4001"].Caption;
