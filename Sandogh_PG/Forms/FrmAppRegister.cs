@@ -252,7 +252,7 @@ namespace Sandogh_PG
                     var z = qp.FirstOrDefault(s => s.DeviceID == "0123456789");
                     if (z != null)
                     {
-                        if (db.Database.Connection.Database == "Rahim_Elahi")
+                        if (db.Database.Connection.Database == "Rahim_Elahi" || db.Database.Connection.Database == "Demo")
                         {
                             z.VersionType = "Demo";
                             //z.LNVersionType = HelpClass1.EncryptText("Demo");

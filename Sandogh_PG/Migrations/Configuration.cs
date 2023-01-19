@@ -25,7 +25,7 @@
 
         protected override void Seed(Sandogh_PG.MyContext context)
         {
-            if (Application.ProductVersion.ToString()!="1.0.0.43")
+            if (Application.ProductVersion.ToString()!="1.0.0.44")
             {
                 //  This method will be called after migrating to the latest version.
 
