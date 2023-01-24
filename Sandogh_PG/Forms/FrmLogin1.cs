@@ -627,6 +627,7 @@ namespace Sandogh_PG.Forms
                         Settings[AppVariable.IsChangeDbName] = "false";
                         Settings[AppVariable.txtUserName[ItemIndex]] = null;
                         Settings[AppVariable.txtPassword[ItemIndex]] = null;
+                        Settings[AppVariable.VersionNumber[ItemIndex]] = null;
                     }
                     else
                     {
@@ -643,6 +644,7 @@ namespace Sandogh_PG.Forms
                             Settings[AppVariable.txtDatabaseName[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.txtDatabaseName[ItemIndex + 1]] : null;
                             Settings[AppVariable.txtUserName[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.txtUserName[ItemIndex + 1]] : null;
                             Settings[AppVariable.txtPassword[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.txtPassword[ItemIndex + 1]] : null;
+                            Settings[AppVariable.VersionNumber[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.VersionNumber[ItemIndex + 1]] : null;
 
                         }
                     }

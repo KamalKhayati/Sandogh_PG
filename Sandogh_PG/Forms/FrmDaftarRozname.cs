@@ -33,8 +33,8 @@ namespace Sandogh_PG
                     MyDb = new MyContext();
                     DateTime _Az = Convert.ToDateTime(txtAzTarikh.Text);
                     DateTime _Ta = Convert.ToDateTime(txtTaTarikh.Text);
-                    var q = MyDb.AsnadeHesabdariRows.Where(f => f.Tarikh >= _Az && f.Tarikh <= _Ta).OrderBy(f => f.Tarikh).ThenBy(f => f.ShomareSanad).ToList();
-                    if (q.Count > 0)
+                    var q = MyDb.AsnadeHesabdariRows.Where(f => f.Tarikh >= _Az && f.Tarikh <= _Ta).OrderBy(f => f.Tarikh).ThenBy(f => f.ShomareSanad).AsParallel();
+                    if (q.Count() > 0)
                         asnadeHesabdariRowsBindingSource.DataSource = q;
                     else
                         asnadeHesabdariRowsBindingSource.DataSource = null;

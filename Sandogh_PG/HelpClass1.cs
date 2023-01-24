@@ -360,7 +360,7 @@ namespace Sandogh_PG
         /// <param name="gridView1"></param>
         public static void CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e, GridView gridView1)
         {
-            gridView1.IndicatorWidth = 60;
+            //gridView1.IndicatorWidth = 60;
             // Handle this event to paint RowIndicator manually
             //GridView view = sender as GridView;
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)

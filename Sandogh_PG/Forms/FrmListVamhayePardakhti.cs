@@ -39,8 +39,8 @@ namespace Sandogh_PG
                     rizeAghsatVamsBindingSource.DataSource = null;
                     if (ListTasviyeNashode == true)
                     {
-                        var q1 = db.VamPardakhtis.Where(s => s.IsTasviye == false).OrderBy(s => s.Code).ToList();
-                        if (q1.Count > 0)
+                        var q1 = db.VamPardakhtis.Where(s => s.IsTasviye == false).OrderBy(s => s.Code).AsParallel();
+                        if (q1.Count() > 0)
                         {
                             vamPardakhtisBindingSource.DataSource = q1;
                             gridView1.MoveLast();
@@ -50,10 +50,10 @@ namespace Sandogh_PG
                     }
                     else
                     {
-                        var q = db.VamPardakhtis.Where(s => s.IsTasviye == true).OrderBy(s => s.Code);
+                        var q = db.VamPardakhtis.Where(s => s.IsTasviye == true).OrderBy(s => s.Code).AsParallel(); ;
                         if (q.Count() > 0)
                         {
-                            vamPardakhtisBindingSource.DataSource = q.ToList();
+                            vamPardakhtisBindingSource.DataSource = q;
                             gridView1.MoveLast();
                         }
                         else
@@ -77,8 +77,8 @@ namespace Sandogh_PG
                     rizeAghsatVamsBindingSource.Clear();
                     rizeAghsatVamsBindingSource.DataSource = null;
                     _VamPardakhtiId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id"));
-                    var q1 = db.RizeAghsatVams.Where(s => s.VamPardakhtiId == _VamPardakhtiId).OrderBy(s => s.TarikhSarresid).ToList();
-                    if (q1.Count > 0)
+                    var q1 = db.RizeAghsatVams.Where(s => s.VamPardakhtiId == _VamPardakhtiId).OrderBy(s => s.TarikhSarresid).AsParallel();
+                    if (q1.Count() > 0)
                         rizeAghsatVamsBindingSource.DataSource = q1;
                     else
                         rizeAghsatVamsBindingSource.DataSource = null;

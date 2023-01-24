@@ -11,9 +11,13 @@
     using System.Configuration;
     using System.Data;
     using Sandogh_PG.Models;
+    using nucs.JsonSettings;
+    using nucs.JsonSettings.Fluent;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Sandogh_PG.MyContext>
     {
+        SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().WithEncryption("km113012").LoadNow();
+
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
@@ -25,7 +29,9 @@
 
         protected override void Seed(Sandogh_PG.MyContext context)
         {
-            if (Application.ProductVersion.ToString()!="1.0.0.44")
+            int i= Convert.ToInt32(Settings[AppVariable.DefaltIndexCmbNameSandogh]);
+            //string a = Settings[AppVariable.VersionNumber[i]].ToString();
+            if (Settings[AppVariable.VersionNumber[i]] == null || Settings[AppVariable.VersionNumber[i]].ToString() != "1.0.0.44")
             {
                 //  This method will be called after migrating to the latest version.
 
@@ -88,6 +94,8 @@
                 //context.Entry(new AllowedDataBases() { Id = 10, CompanyID = 12260, DataBaseName = HelpClass1.EncryptText("SandoghData5") }).State = context.AllowedDataBasess.Any(s => s.Id == 10) ? EntityState.Unchanged : EntityState.Added;
                 //context.SaveChanges();
 
-            }        }
+                Settings[AppVariable.VersionNumber[i]] = Application.ProductVersion.ToString();
+            }
+        }
     }
 }

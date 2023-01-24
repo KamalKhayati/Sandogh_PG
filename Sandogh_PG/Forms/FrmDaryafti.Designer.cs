@@ -94,6 +94,7 @@
             this.colSaghfeEtebar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEtebarBlookeShode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAllTafId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.btnPrint1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnNext1 = new DevExpress.XtraEditors.SimpleButton();
@@ -278,21 +279,14 @@
             this.gridView2.DetailHeight = 378;
             this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView2.GridControl = this.gridControl2;
-            this.gridView2.IndicatorWidth = 28;
+            this.gridView2.IndicatorWidth = 50;
             this.gridView2.Name = "gridView2";
-            this.gridView2.OptionsBehavior.AutoSelectAllInEditor = false;
             this.gridView2.OptionsBehavior.Editable = false;
-            this.gridView2.OptionsFind.AllowFindPanel = false;
-            this.gridView2.OptionsFind.FindMode = DevExpress.XtraEditors.FindMode.Always;
             this.gridView2.OptionsFind.FindNullPrompt = "متنی برای جستجو تایپ کنید ...";
-            this.gridView2.OptionsMenu.ShowFooterItem = true;
-            this.gridView2.OptionsNavigation.AutoFocusNewRow = true;
-            this.gridView2.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
             this.gridView2.OptionsView.ColumnAutoWidth = false;
-            this.gridView2.OptionsView.RowAutoHeight = true;
             this.gridView2.OptionsView.ShowAutoFilterRow = true;
             this.gridView2.OptionsView.ShowGroupPanel = false;
-            this.gridView2.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView2_CustomUnboundColumnData);
+            this.gridView2.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridView2_CustomDrawRowIndicator);
             this.gridView2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gridView2_KeyPress);
             this.gridView2.DoubleClick += new System.EventHandler(this.gridView2_DoubleClick);
             // 
@@ -321,8 +315,6 @@
             this.gridColumn2.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Line", "{0}")});
             this.gridColumn2.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 0;
             this.gridColumn2.Width = 66;
             // 
             // colShomareSanad
@@ -338,7 +330,7 @@
             this.colShomareSanad.MinWidth = 22;
             this.colShomareSanad.Name = "colShomareSanad";
             this.colShomareSanad.Visible = true;
-            this.colShomareSanad.VisibleIndex = 1;
+            this.colShomareSanad.VisibleIndex = 0;
             this.colShomareSanad.Width = 89;
             // 
             // gridColumn3
@@ -354,7 +346,7 @@
             this.gridColumn3.MinWidth = 21;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.VisibleIndex = 1;
             this.gridColumn3.Width = 100;
             // 
             // gridColumn4
@@ -370,7 +362,7 @@
             this.gridColumn4.MinWidth = 22;
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn4.VisibleIndex = 2;
             this.gridColumn4.Width = 111;
             // 
             // gridColumn5
@@ -390,7 +382,7 @@
             this.gridColumn5.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Mablagh", "{0:n}")});
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 4;
+            this.gridColumn5.VisibleIndex = 3;
             this.gridColumn5.Width = 145;
             // 
             // gridColumn7
@@ -405,7 +397,7 @@
             this.gridColumn7.MinWidth = 22;
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 5;
+            this.gridColumn7.VisibleIndex = 4;
             this.gridColumn7.Width = 111;
             // 
             // gridColumn8
@@ -421,7 +413,7 @@
             this.gridColumn8.MinWidth = 22;
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 6;
+            this.gridColumn8.VisibleIndex = 5;
             this.gridColumn8.Width = 84;
             // 
             // gridColumn6
@@ -436,7 +428,7 @@
             this.gridColumn6.MinWidth = 22;
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 7;
+            this.gridColumn6.VisibleIndex = 6;
             this.gridColumn6.Width = 389;
             // 
             // gridColumn9
@@ -451,7 +443,7 @@
             this.gridColumn9.MinWidth = 22;
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 8;
+            this.gridColumn9.VisibleIndex = 7;
             this.gridColumn9.Width = 445;
             // 
             // panelControl1
@@ -681,11 +673,12 @@
             this.colSharhHesab,
             this.colSaghfeEtebar,
             this.colEtebarBlookeShode,
-            this.gridColumn14});
+            this.gridColumn14,
+            this.colAllTafId});
             this.gridView1.DetailHeight = 378;
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.IndicatorWidth = 28;
+            this.gridView1.IndicatorWidth = 50;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.AutoSelectAllInEditor = false;
             this.gridView1.OptionsBehavior.Editable = false;
@@ -700,8 +693,9 @@
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
-            this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
-            this.gridView1.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView1_CustomUnboundColumnData);
+            this.gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridView1_CustomDrawRowIndicator);
+            this.gridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyDown);
+            this.gridView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyUp);
             // 
             // colId
             // 
@@ -730,8 +724,6 @@
             this.Line.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Line", "{0}")});
             this.Line.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
-            this.Line.Visible = true;
-            this.Line.VisibleIndex = 0;
             this.Line.Width = 61;
             // 
             // colNameVFamil
@@ -745,7 +737,7 @@
             this.colNameVFamil.MinWidth = 22;
             this.colNameVFamil.Name = "colNameVFamil";
             this.colNameVFamil.Visible = true;
-            this.colNameVFamil.VisibleIndex = 1;
+            this.colNameVFamil.VisibleIndex = 0;
             this.colNameVFamil.Width = 245;
             // 
             // colCodePersoneli
@@ -761,7 +753,7 @@
             this.colCodePersoneli.MinWidth = 22;
             this.colCodePersoneli.Name = "colCodePersoneli";
             this.colCodePersoneli.Visible = true;
-            this.colCodePersoneli.VisibleIndex = 2;
+            this.colCodePersoneli.VisibleIndex = 1;
             this.colCodePersoneli.Width = 118;
             // 
             // colCode
@@ -777,7 +769,7 @@
             this.colCode.MinWidth = 21;
             this.colCode.Name = "colCode";
             this.colCode.Visible = true;
-            this.colCode.VisibleIndex = 3;
+            this.colCode.VisibleIndex = 2;
             this.colCode.Width = 89;
             // 
             // colTarikhOzviat
@@ -793,7 +785,7 @@
             this.colTarikhOzviat.MinWidth = 22;
             this.colTarikhOzviat.Name = "colTarikhOzviat";
             this.colTarikhOzviat.Visible = true;
-            this.colTarikhOzviat.VisibleIndex = 4;
+            this.colTarikhOzviat.VisibleIndex = 3;
             this.colTarikhOzviat.Width = 111;
             // 
             // colJensiat
@@ -809,7 +801,7 @@
             this.colJensiat.MinWidth = 22;
             this.colJensiat.Name = "colJensiat";
             this.colJensiat.Visible = true;
-            this.colJensiat.VisibleIndex = 5;
+            this.colJensiat.VisibleIndex = 4;
             this.colJensiat.Width = 89;
             // 
             // colTaahol
@@ -825,7 +817,7 @@
             this.colTaahol.MinWidth = 22;
             this.colTaahol.Name = "colTaahol";
             this.colTaahol.Visible = true;
-            this.colTaahol.VisibleIndex = 6;
+            this.colTaahol.VisibleIndex = 5;
             this.colTaahol.Width = 89;
             // 
             // colMobil1
@@ -841,7 +833,7 @@
             this.colMobil1.MinWidth = 22;
             this.colMobil1.Name = "colMobil1";
             this.colMobil1.Visible = true;
-            this.colMobil1.VisibleIndex = 7;
+            this.colMobil1.VisibleIndex = 6;
             this.colMobil1.Width = 145;
             // 
             // colMobil2
@@ -857,7 +849,7 @@
             this.colMobil2.MinWidth = 22;
             this.colMobil2.Name = "colMobil2";
             this.colMobil2.Visible = true;
-            this.colMobil2.VisibleIndex = 8;
+            this.colMobil2.VisibleIndex = 7;
             this.colMobil2.Width = 145;
             // 
             // colTell
@@ -873,7 +865,7 @@
             this.colTell.MinWidth = 22;
             this.colTell.Name = "colTell";
             this.colTell.Visible = true;
-            this.colTell.VisibleIndex = 9;
+            this.colTell.VisibleIndex = 8;
             this.colTell.Width = 145;
             // 
             // colMoaref
@@ -888,7 +880,7 @@
             this.colMoaref.MinWidth = 22;
             this.colMoaref.Name = "colMoaref";
             this.colMoaref.Visible = true;
-            this.colMoaref.VisibleIndex = 10;
+            this.colMoaref.VisibleIndex = 9;
             this.colMoaref.Width = 245;
             // 
             // colHaghOzviat
@@ -908,7 +900,7 @@
             this.colHaghOzviat.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "HaghOzviat", "{0:n}")});
             this.colHaghOzviat.Visible = true;
-            this.colHaghOzviat.VisibleIndex = 11;
+            this.colHaghOzviat.VisibleIndex = 10;
             this.colHaghOzviat.Width = 145;
             // 
             // colSarmayhAvali
@@ -928,7 +920,7 @@
             this.colSarmayhAvali.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BesAvali", "{0:n}")});
             this.colSarmayhAvali.Visible = true;
-            this.colSarmayhAvali.VisibleIndex = 12;
+            this.colSarmayhAvali.VisibleIndex = 11;
             this.colSarmayhAvali.Width = 166;
             // 
             // colHazineEftetah
@@ -948,7 +940,7 @@
             this.colHazineEftetah.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "HazineEftetah", "{0:n}")});
             this.colHazineEftetah.Visible = true;
-            this.colHazineEftetah.VisibleIndex = 13;
+            this.colHazineEftetah.VisibleIndex = 12;
             this.colHazineEftetah.Width = 155;
             // 
             // colNamePedar
@@ -963,7 +955,7 @@
             this.colNamePedar.MinWidth = 22;
             this.colNamePedar.Name = "colNamePedar";
             this.colNamePedar.Visible = true;
-            this.colNamePedar.VisibleIndex = 14;
+            this.colNamePedar.VisibleIndex = 13;
             this.colNamePedar.Width = 122;
             // 
             // colCodeMelli
@@ -979,7 +971,7 @@
             this.colCodeMelli.MinWidth = 22;
             this.colCodeMelli.Name = "colCodeMelli";
             this.colCodeMelli.Visible = true;
-            this.colCodeMelli.VisibleIndex = 15;
+            this.colCodeMelli.VisibleIndex = 14;
             this.colCodeMelli.Width = 145;
             // 
             // colShShenasname
@@ -995,7 +987,7 @@
             this.colShShenasname.MinWidth = 22;
             this.colShShenasname.Name = "colShShenasname";
             this.colShShenasname.Visible = true;
-            this.colShShenasname.VisibleIndex = 16;
+            this.colShShenasname.VisibleIndex = 15;
             this.colShShenasname.Width = 134;
             // 
             // colBirthDate
@@ -1011,7 +1003,7 @@
             this.colBirthDate.MinWidth = 22;
             this.colBirthDate.Name = "colBirthDate";
             this.colBirthDate.Visible = true;
-            this.colBirthDate.VisibleIndex = 17;
+            this.colBirthDate.VisibleIndex = 16;
             this.colBirthDate.Width = 111;
             // 
             // colNameBank
@@ -1027,7 +1019,7 @@
             this.colNameBank.MinWidth = 22;
             this.colNameBank.Name = "colNameBank";
             this.colNameBank.Visible = true;
-            this.colNameBank.VisibleIndex = 18;
+            this.colNameBank.VisibleIndex = 17;
             this.colNameBank.Width = 134;
             // 
             // colShomareHesab
@@ -1043,7 +1035,7 @@
             this.colShomareHesab.MinWidth = 22;
             this.colShomareHesab.Name = "colShomareHesab";
             this.colShomareHesab.Visible = true;
-            this.colShomareHesab.VisibleIndex = 19;
+            this.colShomareHesab.VisibleIndex = 18;
             this.colShomareHesab.Width = 166;
             // 
             // colShomareKart
@@ -1059,7 +1051,7 @@
             this.colShomareKart.MinWidth = 22;
             this.colShomareKart.Name = "colShomareKart";
             this.colShomareKart.Visible = true;
-            this.colShomareKart.VisibleIndex = 20;
+            this.colShomareKart.VisibleIndex = 19;
             this.colShomareKart.Width = 200;
             // 
             // colShomareShaba
@@ -1075,7 +1067,7 @@
             this.colShomareShaba.MinWidth = 22;
             this.colShomareShaba.Name = "colShomareShaba";
             this.colShomareShaba.Visible = true;
-            this.colShomareShaba.VisibleIndex = 21;
+            this.colShomareShaba.VisibleIndex = 20;
             this.colShomareShaba.Width = 222;
             // 
             // colShoghl
@@ -1090,7 +1082,7 @@
             this.colShoghl.MinWidth = 22;
             this.colShoghl.Name = "colShoghl";
             this.colShoghl.Visible = true;
-            this.colShoghl.VisibleIndex = 22;
+            this.colShoghl.VisibleIndex = 21;
             this.colShoghl.Width = 145;
             // 
             // colIsOzveSandogh
@@ -1100,7 +1092,7 @@
             this.colIsOzveSandogh.MinWidth = 22;
             this.colIsOzveSandogh.Name = "colIsOzveSandogh";
             this.colIsOzveSandogh.Visible = true;
-            this.colIsOzveSandogh.VisibleIndex = 23;
+            this.colIsOzveSandogh.VisibleIndex = 22;
             this.colIsOzveSandogh.Width = 122;
             // 
             // colNobatbandiVam
@@ -1116,7 +1108,7 @@
             this.colNobatbandiVam.MinWidth = 23;
             this.colNobatbandiVam.Name = "colNobatbandiVam";
             this.colNobatbandiVam.Visible = true;
-            this.colNobatbandiVam.VisibleIndex = 24;
+            this.colNobatbandiVam.VisibleIndex = 23;
             this.colNobatbandiVam.Width = 200;
             // 
             // colIsActive
@@ -1132,7 +1124,7 @@
             this.colIsActive.MinWidth = 21;
             this.colIsActive.Name = "colIsActive";
             this.colIsActive.Visible = true;
-            this.colIsActive.VisibleIndex = 25;
+            this.colIsActive.VisibleIndex = 24;
             this.colIsActive.Width = 84;
             // 
             // colAdressManzel
@@ -1145,7 +1137,7 @@
             this.colAdressManzel.MinWidth = 22;
             this.colAdressManzel.Name = "colAdressManzel";
             this.colAdressManzel.Visible = true;
-            this.colAdressManzel.VisibleIndex = 26;
+            this.colAdressManzel.VisibleIndex = 25;
             this.colAdressManzel.Width = 445;
             // 
             // colAdressMohalKar
@@ -1158,7 +1150,7 @@
             this.colAdressMohalKar.MinWidth = 22;
             this.colAdressMohalKar.Name = "colAdressMohalKar";
             this.colAdressMohalKar.Visible = true;
-            this.colAdressMohalKar.VisibleIndex = 27;
+            this.colAdressMohalKar.VisibleIndex = 26;
             this.colAdressMohalKar.Width = 445;
             // 
             // colSharhHesab
@@ -1171,7 +1163,7 @@
             this.colSharhHesab.MinWidth = 21;
             this.colSharhHesab.Name = "colSharhHesab";
             this.colSharhHesab.Visible = true;
-            this.colSharhHesab.VisibleIndex = 28;
+            this.colSharhHesab.VisibleIndex = 27;
             this.colSharhHesab.Width = 445;
             // 
             // colSaghfeEtebar
@@ -1189,7 +1181,7 @@
             this.colSaghfeEtebar.MinWidth = 25;
             this.colSaghfeEtebar.Name = "colSaghfeEtebar";
             this.colSaghfeEtebar.Visible = true;
-            this.colSaghfeEtebar.VisibleIndex = 29;
+            this.colSaghfeEtebar.VisibleIndex = 28;
             this.colSaghfeEtebar.Width = 145;
             // 
             // colEtebarBlookeShode
@@ -1207,7 +1199,7 @@
             this.colEtebarBlookeShode.MinWidth = 25;
             this.colEtebarBlookeShode.Name = "colEtebarBlookeShode";
             this.colEtebarBlookeShode.Visible = true;
-            this.colEtebarBlookeShode.VisibleIndex = 30;
+            this.colEtebarBlookeShode.VisibleIndex = 29;
             this.colEtebarBlookeShode.Width = 145;
             // 
             // gridColumn14
@@ -1227,8 +1219,15 @@
             this.gridColumn14.UnboundExpression = "[SaghfeEtebar] - [EtebarBlookeShode]";
             this.gridColumn14.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 31;
+            this.gridColumn14.VisibleIndex = 30;
             this.gridColumn14.Width = 145;
+            // 
+            // colAllTafId
+            // 
+            this.colAllTafId.FieldName = "AllTafId";
+            this.colAllTafId.MinWidth = 25;
+            this.colAllTafId.Name = "colAllTafId";
+            this.colAllTafId.Width = 94;
             // 
             // panelControl4
             // 
@@ -1440,7 +1439,6 @@
             this.gridView3.DetailHeight = 378;
             this.gridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView3.GridControl = this.gridControl3;
-            this.gridView3.IndicatorWidth = 28;
             this.gridView3.Name = "gridView3";
             this.gridView3.OptionsBehavior.AutoSelectAllInEditor = false;
             this.gridView3.OptionsBehavior.Editable = false;
@@ -1456,8 +1454,8 @@
             this.gridView3.OptionsView.ShowFooter = true;
             this.gridView3.OptionsView.ShowGroupPanel = false;
             this.gridView3.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView3_RowCellClick);
-            this.gridView3.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView3_FocusedRowChanged);
-            this.gridView3.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView3_CustomUnboundColumnData);
+            this.gridView3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView3_KeyDown);
+            this.gridView3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gridView3_KeyUp);
             // 
             // gridColumn25
             // 
@@ -1487,8 +1485,6 @@
             this.gridColumn26.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Line", "{0}")});
             this.gridColumn26.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
-            this.gridColumn26.Visible = true;
-            this.gridColumn26.VisibleIndex = 0;
             this.gridColumn26.Width = 66;
             // 
             // gridColumn12
@@ -1504,7 +1500,7 @@
             this.gridColumn12.MinWidth = 22;
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 1;
+            this.gridColumn12.VisibleIndex = 0;
             this.gridColumn12.Width = 89;
             // 
             // gridColumn27
@@ -1520,7 +1516,7 @@
             this.gridColumn27.MinWidth = 21;
             this.gridColumn27.Name = "gridColumn27";
             this.gridColumn27.Visible = true;
-            this.gridColumn27.VisibleIndex = 2;
+            this.gridColumn27.VisibleIndex = 1;
             this.gridColumn27.Width = 89;
             // 
             // gridColumn28
@@ -1535,7 +1531,7 @@
             this.gridColumn28.MinWidth = 22;
             this.gridColumn28.Name = "gridColumn28";
             this.gridColumn28.Visible = true;
-            this.gridColumn28.VisibleIndex = 3;
+            this.gridColumn28.VisibleIndex = 2;
             this.gridColumn28.Width = 278;
             // 
             // gridColumn29
@@ -1553,7 +1549,7 @@
             this.gridColumn29.MinWidth = 22;
             this.gridColumn29.Name = "gridColumn29";
             this.gridColumn29.Visible = true;
-            this.gridColumn29.VisibleIndex = 4;
+            this.gridColumn29.VisibleIndex = 3;
             this.gridColumn29.Width = 145;
             // 
             // gridColumn30
@@ -1573,7 +1569,7 @@
             this.gridColumn30.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MablaghAsli", "{0:n}")});
             this.gridColumn30.Visible = true;
-            this.gridColumn30.VisibleIndex = 5;
+            this.gridColumn30.VisibleIndex = 4;
             this.gridColumn30.Width = 155;
             // 
             // gridColumn31
@@ -1593,7 +1589,7 @@
             this.gridColumn31.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MablaghKarmozd", "{0:n}")});
             this.gridColumn31.Visible = true;
-            this.gridColumn31.VisibleIndex = 6;
+            this.gridColumn31.VisibleIndex = 5;
             this.gridColumn31.Width = 145;
             // 
             // gridColumn32
@@ -1609,7 +1605,7 @@
             this.gridColumn32.MinWidth = 22;
             this.gridColumn32.Name = "gridColumn32";
             this.gridColumn32.Visible = true;
-            this.gridColumn32.VisibleIndex = 7;
+            this.gridColumn32.VisibleIndex = 6;
             this.gridColumn32.Width = 111;
             // 
             // gridColumn33
@@ -1629,7 +1625,7 @@
             this.gridColumn33.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MablaghAghsat", "{0:n}")});
             this.gridColumn33.Visible = true;
-            this.gridColumn33.VisibleIndex = 8;
+            this.gridColumn33.VisibleIndex = 7;
             this.gridColumn33.Width = 145;
             // 
             // gridColumn34
@@ -1647,7 +1643,7 @@
             this.gridColumn34.MinWidth = 22;
             this.gridColumn34.Name = "gridColumn34";
             this.gridColumn34.Visible = true;
-            this.gridColumn34.VisibleIndex = 9;
+            this.gridColumn34.VisibleIndex = 8;
             this.gridColumn34.Width = 166;
             // 
             // gridColumn35
@@ -1662,7 +1658,7 @@
             this.gridColumn35.MinWidth = 22;
             this.gridColumn35.Name = "gridColumn35";
             this.gridColumn35.Visible = true;
-            this.gridColumn35.VisibleIndex = 10;
+            this.gridColumn35.VisibleIndex = 9;
             this.gridColumn35.Width = 389;
             // 
             // gridColumn36
@@ -1678,7 +1674,7 @@
             this.gridColumn36.MinWidth = 22;
             this.gridColumn36.Name = "gridColumn36";
             this.gridColumn36.Visible = true;
-            this.gridColumn36.VisibleIndex = 11;
+            this.gridColumn36.VisibleIndex = 10;
             this.gridColumn36.Width = 145;
             // 
             // gridColumn38
@@ -1694,7 +1690,7 @@
             this.gridColumn38.MinWidth = 22;
             this.gridColumn38.Name = "gridColumn38";
             this.gridColumn38.Visible = true;
-            this.gridColumn38.VisibleIndex = 12;
+            this.gridColumn38.VisibleIndex = 11;
             this.gridColumn38.Width = 145;
             // 
             // gridColumn39
@@ -1710,7 +1706,7 @@
             this.gridColumn39.MinWidth = 22;
             this.gridColumn39.Name = "gridColumn39";
             this.gridColumn39.Visible = true;
-            this.gridColumn39.VisibleIndex = 13;
+            this.gridColumn39.VisibleIndex = 12;
             this.gridColumn39.Width = 111;
             // 
             // colFaseleAghsat
@@ -1726,7 +1722,7 @@
             this.colFaseleAghsat.MinWidth = 22;
             this.colFaseleAghsat.Name = "colFaseleAghsat";
             this.colFaseleAghsat.Visible = true;
-            this.colFaseleAghsat.VisibleIndex = 14;
+            this.colFaseleAghsat.VisibleIndex = 13;
             this.colFaseleAghsat.Width = 111;
             // 
             // gridColumn40
@@ -1742,7 +1738,7 @@
             this.gridColumn40.MinWidth = 22;
             this.gridColumn40.Name = "gridColumn40";
             this.gridColumn40.Visible = true;
-            this.gridColumn40.VisibleIndex = 15;
+            this.gridColumn40.VisibleIndex = 14;
             this.gridColumn40.Width = 111;
             // 
             // gridColumn41
@@ -1760,7 +1756,7 @@
             this.gridColumn41.MinWidth = 22;
             this.gridColumn41.Name = "gridColumn41";
             this.gridColumn41.Visible = true;
-            this.gridColumn41.VisibleIndex = 16;
+            this.gridColumn41.VisibleIndex = 15;
             this.gridColumn41.Width = 111;
             // 
             // gridColumn42
@@ -1778,7 +1774,7 @@
             this.gridColumn42.MinWidth = 22;
             this.gridColumn42.Name = "gridColumn42";
             this.gridColumn42.Visible = true;
-            this.gridColumn42.VisibleIndex = 17;
+            this.gridColumn42.VisibleIndex = 16;
             this.gridColumn42.Width = 166;
             // 
             // gridColumn43
@@ -1794,7 +1790,7 @@
             this.gridColumn43.MinWidth = 22;
             this.gridColumn43.Name = "gridColumn43";
             this.gridColumn43.Visible = true;
-            this.gridColumn43.VisibleIndex = 18;
+            this.gridColumn43.VisibleIndex = 17;
             this.gridColumn43.Width = 155;
             // 
             // colHesabMoin
@@ -1809,7 +1805,7 @@
             this.colHesabMoin.MinWidth = 22;
             this.colHesabMoin.Name = "colHesabMoin";
             this.colHesabMoin.Visible = true;
-            this.colHesabMoin.VisibleIndex = 19;
+            this.colHesabMoin.VisibleIndex = 18;
             this.colHesabMoin.Width = 155;
             // 
             // colHesabTafzili
@@ -1824,7 +1820,7 @@
             this.colHesabTafzili.MinWidth = 22;
             this.colHesabTafzili.Name = "colHesabTafzili";
             this.colHesabTafzili.Visible = true;
-            this.colHesabTafzili.VisibleIndex = 20;
+            this.colHesabTafzili.VisibleIndex = 19;
             this.colHesabTafzili.Width = 389;
             // 
             // gridColumn45
@@ -1840,7 +1836,7 @@
             this.gridColumn45.MinWidth = 21;
             this.gridColumn45.Name = "gridColumn45";
             this.gridColumn45.Visible = true;
-            this.gridColumn45.VisibleIndex = 21;
+            this.gridColumn45.VisibleIndex = 20;
             this.gridColumn45.Width = 111;
             // 
             // AazaId
@@ -2042,7 +2038,6 @@
             this.gridView4.DetailHeight = 378;
             this.gridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView4.GridControl = this.gridControl4;
-            this.gridView4.IndicatorWidth = 28;
             this.gridView4.Name = "gridView4";
             this.gridView4.OptionsBehavior.AutoSelectAllInEditor = false;
             this.gridView4.OptionsBehavior.Editable = false;
@@ -2715,5 +2710,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colSaghfeEtebar;
         private DevExpress.XtraGrid.Columns.GridColumn colEtebarBlookeShode;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
+        private DevExpress.XtraGrid.Columns.GridColumn colAllTafId;
     }
 }

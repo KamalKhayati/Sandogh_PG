@@ -21,11 +21,13 @@ namespace Sandogh_PG
         {
             InitializeComponent();
             Fm = fm;
+
         }
         public bool IsActiveList1 = true;
         public bool IsActiveList2 = true;
         int _VamId = 0;
         int _AazaId = 0;
+        int _AllTafId = 0;
         public void FillDataGridAazaSandogh()
         {
             using (var dataContext = new MyContext())
@@ -38,19 +40,15 @@ namespace Sandogh_PG
                     rizeAghsatVamsBindingSource.DataSource = null;
                     if (IsActiveList1 == true)
                     {
-                        var q1 = dataContext.AazaSandoghs.Where(s => s.IsActive == true).OrderBy(s => s.Code).ToList();
-                        if (q1.Count > 0)
-                            aazaSandoghsBindingSource.DataSource = q1;
-                        else
-                            aazaSandoghsBindingSource.DataSource = null;
+                        //var q1 = dataContext.AazaSandoghs.Where(s => s.IsActive == true).OrderBy(s => s.Code).ToList();
+                        var q1 = dataContext.AazaSandoghs.Where(s => s.IsActive == true).OrderBy(s => s.Code).AsParallel();
+                        //var q1 = dataContext.AazaSandoghs.AsParallel();
+                        aazaSandoghsBindingSource.DataSource = q1.Count() > 0 ? q1 : null;
                     }
                     else
                     {
-                        var q = dataContext.AazaSandoghs.Where(s => s.IsActive == false).OrderBy(s => s.Code);
-                        if (q.Count() > 0)
-                            aazaSandoghsBindingSource.DataSource = q.ToList();
-                        else
-                            aazaSandoghsBindingSource.DataSource = null;
+                        var q = dataContext.AazaSandoghs.Where(s => s.IsActive == false).OrderBy(s => s.Code).AsParallel();
+                        aazaSandoghsBindingSource.DataSource = q.Count() > 0 ? q : null;
                     }
                 }
                 catch (Exception ex)
@@ -69,15 +67,13 @@ namespace Sandogh_PG
                 {
                     haghOzviatsBindingSource.DataSource = null;
                     _AazaId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id"));
-                    var qq = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 3 && f.Id2 == _AazaId);
+                    _AllTafId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("AllTafId"));
 
-                    if (qq != null)
+                    //var qq = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 3 && f.Id2 == _AazaId);
+                    //if (qq != null)
                     {
-                        var q1 = db.HaghOzviats.Where(s => s.AazaId == qq.Id).OrderBy(s => s.Tarikh).ThenBy(s => s.Seryal).ToList();
-                        if (q1.Count > 0)
-                            haghOzviatsBindingSource.DataSource = q1;
-                        else
-                            haghOzviatsBindingSource.DataSource = null;
+                        var q1 = db.HaghOzviats.Where(s => s.AazaId == _AllTafId).OrderBy(s => s.Tarikh).ThenBy(s => s.Seryal).AsParallel();
+                        haghOzviatsBindingSource.DataSource = q1.Count() > 0 ? q1 : null;
                     }
                 }
                 catch (Exception ex)
@@ -97,24 +93,20 @@ namespace Sandogh_PG
                     vamPardakhtisBindingSource.DataSource = null;
                     rizeAghsatVamsBindingSource.DataSource = null;
                     _AazaId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id"));
-                    var qq = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 3 && f.Id2 == _AazaId);
-                    if (qq != null)
+                    _AllTafId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("AllTafId"));
+
+                    //var qq = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 3 && f.Id2 == _AazaId);
+                    //if (qq != null)
                     {
                         if (IsActiveList2 == true)
                         {
-                            var q1 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.AazaId == qq.Id).OrderBy(s => s.Code).ToList();
-                            if (q1.Count > 0)
-                                vamPardakhtisBindingSource.DataSource = q1;
-                            else
-                                vamPardakhtisBindingSource.DataSource = null;
+                            var q1 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.AazaId == _AllTafId).OrderBy(s => s.Code).AsParallel();
+                                vamPardakhtisBindingSource.DataSource = q1.Count() > 0 ? q1 : null;
                         }
                         else
                         {
-                            var q = db.VamPardakhtis.Where(s => s.IsTasviye == true && s.AazaId == qq.Id).OrderBy(s => s.Code);
-                            if (q.Count() > 0)
-                                vamPardakhtisBindingSource.DataSource = q.ToList();
-                            else
-                                vamPardakhtisBindingSource.DataSource = null;
+                            var q = db.VamPardakhtis.Where(s => s.IsTasviye == true && s.AazaId == _AllTafId).OrderBy(s => s.Code).AsParallel();
+                            vamPardakhtisBindingSource.DataSource = q.Count() > 0 ? q : null;
                         }
 
                     }
@@ -136,12 +128,8 @@ namespace Sandogh_PG
                     rizeAghsatVamsBindingSource.Clear();
                     rizeAghsatVamsBindingSource.DataSource = null;
                     _VamId = Convert.ToInt32(gridView3.GetFocusedRowCellValue("Id"));
-                    var q1 = db.RizeAghsatVams.Where(s => s.VamPardakhtiId == _VamId).OrderBy(s => s.Id).OrderBy(s => s.TarikhSarresid).ToList();
-                    if (q1.Count > 0)
-                        rizeAghsatVamsBindingSource.DataSource = q1;
-                    else
-                        rizeAghsatVamsBindingSource.DataSource = null;
-
+                    var q1 = db.RizeAghsatVams.Where(s => s.VamPardakhtiId == _VamId).OrderBy(s => s.Id).OrderBy(s => s.TarikhSarresid).AsParallel();
+                    rizeAghsatVamsBindingSource.DataSource = q1.Count() > 0 ? q1 : null;
                 }
                 catch (Exception ex)
                 {
@@ -178,16 +166,6 @@ namespace Sandogh_PG
             FillDataGridHaghOzviat();
         }
 
-        private void gridView1_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
-        {
-            HelpClass1.SetNumberRowsColumnUnboundGirdView(sender, e);
-        }
-
-        private void gridView2_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
-        {
-            HelpClass1.SetNumberRowsColumnUnboundGirdView(sender, e);
-        }
-
         string _deviceID = string.Empty;
         string _dataBaseName = string.Empty;
 
@@ -199,53 +177,11 @@ namespace Sandogh_PG
 
         }
 
-        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
-        {
-            if (IsActiveList1 == true && IsActiveList2 == true)
-            {
-                //FillDataGridVamhayePardakhti();
-                gridView1_RowCellClick(null, null);
-                groupBox1.Text = "اشخاص (فعال)";
-                groupBox1.ForeColor = Color.Blue;
-                groupBox4.Text = "وامهای (تسویه نشده)";
-                groupBox4.ForeColor = Color.Blue;
-            }
-            else if (IsActiveList1 == true && IsActiveList2 == false)
-            {
-                IsActiveList2 = true;
-                //FillDataGridVamhayePardakhti();
-                gridView1_RowCellClick(null, null);
-                groupBox1.Text = "اشخاص (فعال)";
-                groupBox1.ForeColor = Color.Blue;
-                groupBox4.Text = "وامهای (تسویه نشده)";
-                groupBox4.ForeColor = Color.Blue;
-            }
-            else if (IsActiveList1 == false && IsActiveList2 == false)
-            {
-                //FillDataGridVamhayePardakhti();
-                gridView1_RowCellClick(null, null);
-                groupBox1.Text = "اعضاء (غیرفعال)";
-                groupBox1.ForeColor = Color.Red;
-                groupBox4.Text = "وامهای (تسویه شده)";
-                groupBox4.ForeColor = Color.Red;
-            }
-            else if (IsActiveList1 == false && IsActiveList2 == true)
-            {
-                IsActiveList2 = false;
-                //FillDataGridVamhayePardakhti();
-                gridView1_RowCellClick(null, null);
-                groupBox1.Text = "اعضاء (غیرفعال)";
-                groupBox1.ForeColor = Color.Red;
-                groupBox4.Text = "وامهای (تسویه شده)";
-                groupBox4.ForeColor = Color.Red;
-            }
-        }
-
         private void gridView3_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             //total = new List<long>();
             ////FillDataGridRizeAghsatVam();
-            gridView3_RowCellClick(null, null);
+            //gridView3_RowCellClick(sender, null);
         }
 
         private void btnLast1_Click(object sender, EventArgs e)
@@ -299,10 +235,10 @@ namespace Sandogh_PG
         {
             IsActiveList1 = true;
             FillDataGridAazaSandogh();
-            //gridView1_RowCellClick(null, null);
-            //gridView3_RowCellClick(null, null);
-            gridView1_FocusedRowChanged(null, null);
-            gridView3_FocusedRowChanged(null, null);
+            gridView1_RowCellClick(null, null);
+            gridView3_RowCellClick(null, null);
+            //gridView1_FocusedRowChanged(null, null);
+            //gridView3_FocusedRowChanged(null, null);
             groupBox1.Text = "اشخاص (فعال)";
             groupBox1.ForeColor = Color.Blue;
             groupBox4.Text = "وامهای (تسویه نشده)";
@@ -314,10 +250,10 @@ namespace Sandogh_PG
         {
             IsActiveList1 = false;
             FillDataGridAazaSandogh();
-            //gridView1_RowCellClick(null, null);
-            //gridView3_RowCellClick(null, null);
-            gridView1_FocusedRowChanged(null, null);
-            gridView3_FocusedRowChanged(null, null);
+            gridView1_RowCellClick(null, null);
+            gridView3_RowCellClick(null, null);
+            //gridView1_FocusedRowChanged(null, null);
+            //gridView3_FocusedRowChanged(null, null);
             groupBox1.Text = "اعضاء (غیرفعال)";
             groupBox1.ForeColor = Color.Red;
             groupBox4.Text = "وامهای (تسویه شده)";
@@ -332,6 +268,45 @@ namespace Sandogh_PG
 
         private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
+            if (IsActiveList1 == true && IsActiveList2 == true)
+            {
+                //FillDataGridVamhayePardakhti();
+                //gridView1_RowCellClick(null, null);
+                groupBox1.Text = "اشخاص (فعال)";
+                groupBox1.ForeColor = Color.Blue;
+                groupBox4.Text = "وامهای (تسویه نشده)";
+                groupBox4.ForeColor = Color.Blue;
+            }
+            else if (IsActiveList1 == true && IsActiveList2 == false)
+            {
+                IsActiveList2 = true;
+                //FillDataGridVamhayePardakhti();
+                //gridView1_RowCellClick(null, null);
+                groupBox1.Text = "اشخاص (فعال)";
+                groupBox1.ForeColor = Color.Blue;
+                groupBox4.Text = "وامهای (تسویه نشده)";
+                groupBox4.ForeColor = Color.Blue;
+            }
+            else if (IsActiveList1 == false && IsActiveList2 == false)
+            {
+                //FillDataGridVamhayePardakhti();
+                //gridView1_RowCellClick(null, null);
+                groupBox1.Text = "اعضاء (غیرفعال)";
+                groupBox1.ForeColor = Color.Red;
+                groupBox4.Text = "وامهای (تسویه شده)";
+                groupBox4.ForeColor = Color.Red;
+            }
+            else if (IsActiveList1 == false && IsActiveList2 == true)
+            {
+                IsActiveList2 = false;
+                //FillDataGridVamhayePardakhti();
+                //gridView1_RowCellClick(null, null);
+                groupBox1.Text = "اعضاء (غیرفعال)";
+                groupBox1.ForeColor = Color.Red;
+                groupBox4.Text = "وامهای (تسویه شده)";
+                groupBox4.ForeColor = Color.Red;
+            }
+
             FillDataGridHaghOzviat();
 
             if (gridView2.RowCount > 0)
@@ -466,7 +441,7 @@ namespace Sandogh_PG
             int rowIndex = e.ListSourceRowIndex;
             //if (rowIndex == 0)
 
-            HelpClass1.SetNumberRowsColumnUnboundGirdView(sender, e);
+            //HelpClass1.SetNumberRowsColumnUnboundGirdView(sender, e);
 
             //int rowIndex = e.ListSourceRowIndex;
             long MablaghAghsat = Convert.ToInt64(gridView4.GetListSourceRowCellValue(rowIndex, "MablaghAghsat"));
@@ -493,12 +468,6 @@ namespace Sandogh_PG
                     }
                 }
             }
-        }
-
-        private void gridView3_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
-        {
-            HelpClass1.SetNumberRowsColumnUnboundGirdView(sender, e);
-
         }
 
         public int IndexAkharinDaruaftGhest = 0;
@@ -760,10 +729,6 @@ namespace Sandogh_PG
             //btnDisplyActiveList4_Click(null, null);
         }
 
-        private void gridView2_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
-        {
-        }
-
         private void gridView4_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             if (IsActiveList2 == true)
@@ -950,10 +915,6 @@ namespace Sandogh_PG
             HelpClass1.gridView4_RowCellStyle(sender, e);
         }
 
-        private void gridView3_RowClick(object sender, RowClickEventArgs e)
-        {
-        }
-
         private void btnCreate5_Click(object sender, EventArgs e)
         {
             if (gridView3.RowCount > 0)
@@ -1039,6 +1000,40 @@ namespace Sandogh_PG
         private void btnPrint1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void gridView1_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
+        {
+            GridView view = sender as GridView;
+            HelpClass1.CustomDrawRowIndicator(sender, e, view);
+
+        }
+
+        private void gridView2_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
+        {
+            GridView view = sender as GridView;
+            HelpClass1.CustomDrawRowIndicator(sender, e, view);
+
+        }
+
+        private void gridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            gridView1_RowCellClick(null, null);
+        }
+
+        private void gridView1_KeyUp(object sender, KeyEventArgs e)
+        {
+            gridView1_RowCellClick(null, null);
+        }
+
+        private void gridView3_KeyDown(object sender, KeyEventArgs e)
+        {
+            gridView3_RowCellClick(null, null);
+        }
+
+        private void gridView3_KeyUp(object sender, KeyEventArgs e)
+        {
+            gridView3_RowCellClick(null, null);
         }
     }
 }

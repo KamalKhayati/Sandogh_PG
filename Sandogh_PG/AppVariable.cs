@@ -31,6 +31,7 @@ namespace Sandogh_PG
         public static string[] txtPassword2 = { "txtPassword2[0]", "txtPassword2[1]", "txtPassword2[2]", "txtPassword2[3]", "txtPassword2[4]", "txtPassword2[5]", "txtPassword2[6]", "txtPassword2[7]", "txtPassword2[8]", "txtPassword2[9]", "txtPassword2[10]" };
         public static string[] txtAttachDbFilePath = { "txtAttachDbFilePath[0]", "txtAttachDbFilePath[1]", "txtAttachDbFilePath[2]", "txtAttachDbFilePath[3]", "txtAttachDbFilePath[4]", "txtAttachDbFilePath[5]", "txtAttachDbFilePath[6]", "txtAttachDbFilePath[7]", "txtAttachDbFilePath[8]", "txtAttachDbFilePath[9]", "txtAttachDbFilePath[10]" };
         public static string[] txtDatabaseName = { "txtDatabaseName[0]", "txtDatabaseName[1]", "txtDatabaseName[2]", "txtDatabaseName[3]", "txtDatabaseName[4]", "txtDatabaseName[5]", "txtDatabaseName[6]", "txtDatabaseName[7]", "txtDatabaseName[8]", "txtDatabaseName[9]", "txtDatabaseName[10]" };
+        public static string[] VersionNumber = { "VersionNumber[0]", "VersionNumber[1]", "VersionNumber[2]", "VersionNumber[3]", "VersionNumber[4]", "VersionNumber[5]", "VersionNumber[6]", "VersionNumber[7]", "VersionNumber[8]", "VersionNumber[9]", "VersionNumber[10]" };
         public static string DefaltIndexCmbNameSandogh = "DefaltIndexCmbNameSandogh";
 
 
