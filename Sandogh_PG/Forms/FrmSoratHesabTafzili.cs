@@ -36,11 +36,11 @@ namespace Sandogh_PG
                 try
                 {
                     List<AsnadeHesabdariRow> List1 = new List<AsnadeHesabdariRow>();
-                    var q1 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == TafziliId && f.Tarikh <= EndData).ToList();
+                    var q1 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == TafziliId && f.Tarikh <= EndData).AsParallel();
                     //var p1 = db.CodeMoins.ToList();
-                    if (q1.Count > 0)
+                    if (q1.Count() > 0)
                     {
-                        var q2 = q1.Select(s => s.HesabMoinId).Distinct().ToList();
+                        var q2 = q1.Select(s => s.HesabMoinId).Distinct().AsParallel();
                         foreach (var item in q2)
                         {
                             //var q3 = q1.Where(s => s.HesabMoinId == item).ToList();
@@ -51,7 +51,7 @@ namespace Sandogh_PG
                                 obj1.HesabMoinId = item;
                                 obj1.HesabMoinCode = q1.FirstOrDefault(s => s.HesabMoinId == item).CodeMoin1.Code;
                                 //obj1.HesabMoinName = q3.FirstOrDefault().HesabMoinName;
-                                obj1.HesabMoinName =q1.FirstOrDefault(s=>s.HesabMoinId== item).CodeMoin1.Name;
+                                obj1.HesabMoinName = q1.FirstOrDefault(s => s.HesabMoinId == item).CodeMoin1.Name;
                                 //obj1.HesabMoinName = p1.FirstOrDefault(s=>s.SandoghId==_SandoghId && s.Id==item).Name;
                                 //obj1.HesabTafId = item.HesabTafId;
                                 //obj1.HesabTafCode = item.HesabTafCode;
@@ -86,16 +86,27 @@ namespace Sandogh_PG
                 try
                 {
                     var q1 = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SandoghId).checkEdit4;
-                    var q = db.AllHesabTafzilis.OrderBy(f => f.GroupTafziliId).ToList();
 
                     if (q1)
-                        q = db.AllHesabTafzilis.Where(f => f.IsActive == q1).OrderBy(f => f.GroupTafziliId).ToList();
-                    if (q.Count > 0)
                     {
-                        allHesabTafzilisBindingSource.DataSource = q;
+                        var q = db.AllHesabTafzilis.Where(f => f.IsActive == q1).OrderBy(f => f.GroupTafziliId).AsParallel();
+                        if (q.Count() > 0)
+                        {
+                            allHesabTafzilisBindingSource.DataSource = q;
+                        }
+                        else
+                            allHesabTafzilisBindingSource.DataSource = null;
                     }
                     else
-                        allHesabTafzilisBindingSource.DataSource = null;
+                    {
+                        var q = db.AllHesabTafzilis.OrderBy(f => f.GroupTafziliId).AsParallel();
+                        if (q.Count() > 0)
+                        {
+                            allHesabTafzilisBindingSource.DataSource = q;
+                        }
+                        else
+                            allHesabTafzilisBindingSource.DataSource = null;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -122,8 +133,10 @@ namespace Sandogh_PG
                     int dd1 = Convert.ToInt32(txtAzTarikh.Text.Substring(8, 2));
                     Mydate d1 = new Mydate(yyyy1, MM1, dd1);
                     d1.DecrementDay();
-                    var q = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == TafziliId && f.Tarikh <= EndData).OrderBy(f => f.Tarikh).ToList();
-                    var q1 = q.Where(s => s.Tarikh < StartData).OrderBy(f => f.Tarikh).ToList();
+                    var q2 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == TafziliId && f.Tarikh <= EndData).OrderBy(f => f.Tarikh).AsParallel();
+                    var q = q2.ToList();
+                    var p1 = q.Where(s => s.Tarikh < StartData).OrderBy(f => f.Tarikh).AsParallel();
+                    var q1 = p1.ToList();
 
                     if (q.Count > 0)
                     {
@@ -155,7 +168,11 @@ namespace Sandogh_PG
 
         private void cmbHesabTafzili_EditValueChanged(object sender, EventArgs e)
         {
-            btnDisplyList_Click(null, null);
+            if (Convert.ToInt32(cmbHesabTafzili.EditValue) != 0)
+            {
+                btnDisplyList_Click(null, null);
+                //cmbHesabTafzili.ShowPopup(); 
+            }
         }
         List<decimal> Result1;
         private void gridView1_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
@@ -183,7 +200,7 @@ namespace Sandogh_PG
 
         private void cmbHesabTafzili_Enter(object sender, EventArgs e)
         {
-
+            //btnDisplyList_Click(null, null);
             cmbHesabTafzili.ShowPopup();
         }
 
@@ -193,7 +210,7 @@ namespace Sandogh_PG
 
         }
 
-        
+
         private void FrmSoratHesabTafzili_Load(object sender, EventArgs e)
         {
             txtAzTarikh.Text = new MyContext().AsnadeHesabdariRows.Any() ? new MyContext().AsnadeHesabdariRows.Min(f => f.Tarikh).ToString().Substring(0, 10) : "1398/01/01";
@@ -233,8 +250,10 @@ namespace Sandogh_PG
                         int dd1 = Convert.ToInt32(txtAzTarikh.Text.Substring(8, 2));
                         Mydate d1 = new Mydate(yyyy1, MM1, dd1);
                         d1.DecrementDay();
-                        var q = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == TafziliId && f.HesabMoinId == MoinId && f.Tarikh <= EndData).OrderBy(f => f.Tarikh).ToList();
-                        var q1 = q.Where(s => s.Tarikh < StartData).OrderBy(f => f.Tarikh).ToList();
+                        var p = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == TafziliId && f.HesabMoinId == MoinId && f.Tarikh <= EndData).OrderBy(f => f.Tarikh).AsParallel();
+                        var q = p.ToList();
+                        var p1 = p.Where(s => s.Tarikh < StartData).OrderBy(f => f.Tarikh).AsParallel();
+                        var q1 = p1.ToList();
 
                         if (q.Count > 0)
                         {
@@ -346,10 +365,7 @@ namespace Sandogh_PG
 
         }
 
-        private void ChkTarikh_CheckedChanged(object sender, EventArgs e)
-        {
 
-        }
     }
 
 }

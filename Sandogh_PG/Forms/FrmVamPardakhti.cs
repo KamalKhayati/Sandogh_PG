@@ -36,16 +36,16 @@ namespace Sandogh_PG
                 {
                     if (Fm.ListTasviyeNashode)
                     {
-                        var q1 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 3).OrderBy(s => s.Code).ToList();
-                        if (q1.Count > 0)
-                            allHesabTafzilisBindingSource.DataSource = En == EnumCED.Create ? q1.Where(s => s.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
+                        var q1 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 3).OrderBy(s => s.Code).AsParallel();
+                        if (q1.Count() > 0)
+                            allHesabTafzilisBindingSource.DataSource = En == EnumCED.Create ? q1.Where(s => s.IsActive == true).OrderBy(s => s.Code).AsParallel() : q1;
                         else
                             allHesabTafzilisBindingSource.DataSource = null;
                     }
                     else
                     {
-                        var q1 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 3).OrderBy(s => s.Code).ToList();
-                        if (q1.Count > 0)
+                        var q1 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 3).OrderBy(s => s.Code).AsParallel();
+                        if (q1.Count() > 0)
                             allHesabTafzilisBindingSource.DataSource = q1;
                         else
                             allHesabTafzilisBindingSource.DataSource = null;
@@ -65,8 +65,8 @@ namespace Sandogh_PG
             {
                 try
                 {
-                    var q1 = db.CodeMoins.OrderBy(s => s.Code).ToList();
-                    if (q1.Count > 0)
+                    var q1 = db.CodeMoins.OrderBy(s => s.Code).AsParallel();
+                    if (q1.Count() > 0)
                         codeMoinsBindingSource.DataSource = q1;
 
                     else
@@ -100,16 +100,16 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "NameHesab";
                                     if (Fm.ListTasviyeNashode)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2).OrderBy(s => s.Code).ToList();
-                                        if (q1.Count > 0)
-                                            allHesabTafzilisBindingSource1.DataSource =En== EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2).OrderBy(s => s.Code).AsParallel();
+                                        if (q1.Count() > 0)
+                                            allHesabTafzilisBindingSource1.DataSource =En== EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).AsParallel() : q1;
                                         else
                                             allHesabTafzilisBindingSource1.DataSource = null;
                                     }
                                     else
                                     {
-                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2).OrderBy(s => s.Code).ToList();
-                                        if (q2.Count > 0)
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2).OrderBy(s => s.Code).AsParallel();
+                                        if (q2.Count() > 0)
                                             allHesabTafzilisBindingSource1.DataSource = q2;
                                         else
                                             allHesabTafzilisBindingSource1.DataSource = null;
@@ -123,16 +123,16 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "NameVFamil";
                                     if (Fm.ListTasviyeNashode)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3).OrderBy(s => s.Code).ToList();
-                                        if (q1.Count > 0)
-                                            allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3).OrderBy(s => s.Code).AsParallel();
+                                        if (q1.Count() > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).AsParallel() : q1;
                                         else
                                             allHesabTafzilisBindingSource1.DataSource = null;
                                     }
                                     else
                                     {
-                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3).OrderBy(s => s.Code).ToList();
-                                        if (q2.Count > 0)
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3).OrderBy(s => s.Code).AsParallel();
+                                        if (q2.Count() > 0)
                                             allHesabTafzilisBindingSource1.DataSource = q2;
                                         else
                                             allHesabTafzilisBindingSource1.DataSource = null;
@@ -151,16 +151,16 @@ namespace Sandogh_PG
                                 {
                                     if (Fm.ListTasviyeNashode)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6).OrderBy(s => s.Code).ToList();
-                                        if (q1.Count > 0)
-                                            allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6).OrderBy(s => s.Code).AsParallel();
+                                        if (q1.Count() > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).AsParallel() : q1;
                                         else
                                             allHesabTafzilisBindingSource1.DataSource = null;
                                     }
                                     else
                                     {
-                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6).OrderBy(s => s.Code).ToList();
-                                        if (q2.Count > 0)
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6).OrderBy(s => s.Code).AsParallel();
+                                        if (q2.Count() > 0)
                                             allHesabTafzilisBindingSource1.DataSource = q2;
                                         else
                                             allHesabTafzilisBindingSource1.DataSource = null;
@@ -190,16 +190,16 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "HesabName";
                                     if (Fm.ListTasviyeNashode)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4 ).OrderBy(s => s.Code).ToList();
-                                        if (q1.Count > 0)
-                                            allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4 ).OrderBy(s => s.Code).AsParallel();
+                                        if (q1.Count() > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).AsParallel() : q1;
                                         else
                                             allHesabTafzilisBindingSource1.DataSource = null;
                                     }
                                     else if (En == EnumCED.Edit)
                                     {
-                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4).OrderBy(s => s.Code).ToList();
-                                        if (q2.Count > 0)
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4).OrderBy(s => s.Code).AsParallel();
+                                        if (q2.Count() > 0)
                                             allHesabTafzilisBindingSource1.DataSource = q2;
                                         else
                                             allHesabTafzilisBindingSource1.DataSource = null;
@@ -213,16 +213,16 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "HesabName";
                                     if (Fm.ListTasviyeNashode)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5 ).OrderBy(s => s.Code).ToList();
-                                        if (q1.Count > 0)
-                                            allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5 ).OrderBy(s => s.Code).AsParallel();
+                                        if (q1.Count() > 0)
+                                            allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).AsParallel() : q1;
                                         else
                                             allHesabTafzilisBindingSource1.DataSource = null;
                                     }
                                     else if (En == EnumCED.Edit)
                                     {
-                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5).OrderBy(s => s.Code).ToList();
-                                        if (q2.Count > 0)
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5).OrderBy(s => s.Code).AsParallel();
+                                        if (q2.Count() > 0)
                                             allHesabTafzilisBindingSource1.DataSource = q2;
                                         else
                                             allHesabTafzilisBindingSource1.DataSource = null;
@@ -250,16 +250,16 @@ namespace Sandogh_PG
                     int _DaryaftKonandeId = Convert.ToInt32(cmbDaryaftkonande.EditValue);
                     if (Fm.ListTasviyeNashode)
                     {
-                        var q1 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 3 && s.Id != _DaryaftKonandeId).OrderBy(s => s.Code).ToList();
-                        if (q1.Count > 0)
-                            allHesabTafzilisBindingSource2.DataSource = En == EnumCED.Create ? q1.Where(s => s.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
+                        var q1 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 3 && s.Id != _DaryaftKonandeId).OrderBy(s => s.Code).AsParallel();
+                        if (q1.Count() > 0)
+                            allHesabTafzilisBindingSource2.DataSource = En == EnumCED.Create ? q1.Where(s => s.IsActive == true).OrderBy(s => s.Code).AsParallel() : q1;
                         else
                             allHesabTafzilisBindingSource2.DataSource = null;
                     }
                     else
                     {
-                        var q1 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 3 && s.Id != _DaryaftKonandeId).OrderBy(s => s.Code).ToList();
-                        if (q1.Count > 0)
+                        var q1 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 3 && s.Id != _DaryaftKonandeId).OrderBy(s => s.Code).AsParallel();
+                        if (q1.Count() > 0)
                             allHesabTafzilisBindingSource2.DataSource = q1;
                         else
                             allHesabTafzilisBindingSource2.DataSource = null;
@@ -283,8 +283,10 @@ namespace Sandogh_PG
                     {
                         int AazaId = Convert.ToInt32(cmbDaryaftkonande.EditValue);
                         int _SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
-                        var f1 = db.R_VamPardakhti_B_CheckTazmins.Where(s => s.SalMaliId == _SalMaliId && s.CheckTazmin1.VamGerandeId == AazaId && s.VamPardakhtin1.IsTasviye == false).ToList();
-                        var q1 = db.CheckTazmins.Where(s => s.IsInSandogh == true && s.SalMaliId == _SalMaliId && s.VamGerandeId == AazaId).OrderBy(s => s.SeryalDaryaft).ToList();
+                        var f0 = db.R_VamPardakhti_B_CheckTazmins.Where(s => s.SalMaliId == _SalMaliId && s.CheckTazmin1.VamGerandeId == AazaId && s.VamPardakhtin1.IsTasviye == false).AsParallel();
+                        var f1 = f0.ToList();
+                        var q0 = db.CheckTazmins.Where(s => s.IsInSandogh == true && s.SalMaliId == _SalMaliId && s.VamGerandeId == AazaId).OrderBy(s => s.SeryalDaryaft).AsParallel();
+                        var q1 = q0.ToList();
                         if (q1.Count > 0)
                         {
                             if (En == EnumCED.Create)
@@ -296,7 +298,7 @@ namespace Sandogh_PG
                                         q1.Remove(q1.FirstOrDefault(s => s.Id == item.CheckTazminId));
                                     }
                                 }
-                                checkTazminsBindingSource.DataSource = q1.ToList();
+                                checkTazminsBindingSource.DataSource = q1;
                             }
                             else
                             {
@@ -310,7 +312,7 @@ namespace Sandogh_PG
                                     }
                                 }
 
-                                checkTazminsBindingSource.DataSource = q1.ToList();
+                                checkTazminsBindingSource.DataSource = q1;
                             }
                         }
                         else
@@ -1781,8 +1783,8 @@ namespace Sandogh_PG
                             //cmbDaryaftkonande.ReadOnly = txtMablaghAsli.ReadOnly = txtMablaghKarmozd.ReadOnly = true;
                             var q4 = db.AazaSandoghs.Where(s => s.GroupTafziliId == 3).ToList();
                             int _VamId = Convert.ToInt32(txtId.Text);
-                            var q = db.R_VamPardakhti_B_Zamenins.Where(s => s.VamPardakhtiId == _VamId).ToList();
-                            if (q.Count > 0)
+                            var q = db.R_VamPardakhti_B_Zamenins.Where(s => s.VamPardakhtiId == _VamId).AsParallel();
+                            if (q.Count() > 0)
                             {
                                 lstZamenin.Items.Clear();
                                 foreach (var item1 in q)

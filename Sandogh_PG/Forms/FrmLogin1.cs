@@ -42,8 +42,20 @@ namespace Sandogh_PG.Forms
             lblSystemDate.Text = DateTime.Now.ToString().Substring(0, 10);
             FillCmbNameDatabase();
             lblVersion.Text = "نسخه: " + Application.ProductVersion;
-            lblDataBace.Text = "دیتابیس: " + new MyContext().Database.Connection.Database.ToString();
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    lblDataBace.Text = "دیتابیس: " + db.Database.Connection.Database.ToString();
 
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            
             if (cmbNameDataBaseSandogh.Properties.Items.Count > 1)
             {
                 cmbNameDataBaseSandogh.Visible = true;
@@ -606,60 +618,73 @@ namespace Sandogh_PG.Forms
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (Application.OpenForms["FrmMain"] == null || (Application.OpenForms["FrmMain"] != null) && new MyContext().Database.Connection.Database != cmbNameDataBaseSandogh.Text)
+            using (var db = new MyContext())
             {
-                int ItemCount = cmbNameDataBaseSandogh.Properties.Items.Count;
-                int ItemIndex = cmbNameDataBaseSandogh.SelectedIndex;
-                if (ItemCount > 0 && ItemIndex != -1)
+                try
                 {
-                    if (ItemIndex + 1 == ItemCount)
+                    if (Application.OpenForms["FrmMain"] == null || (Application.OpenForms["FrmMain"] != null) && db.Database.Connection.Database != cmbNameDataBaseSandogh.Text)
                     {
-                        Settings[AppVariable.SkinName[ItemIndex]] = null;
-                        Settings[AppVariable.cmbNameDataBaseSandogh[ItemIndex]] = null;
-                        Settings[AppVariable.cmbServerType[ItemIndex]] = null;
-                        Settings[AppVariable.cmbServerName[ItemIndex]] = null;
-                        Settings[AppVariable.cmbAuthentication[ItemIndex]] = null;
-                        Settings[AppVariable.txtUserName2[ItemIndex]] = null;
-                        Settings[AppVariable.txtPassword2[ItemIndex]] = null;
-                        Settings[AppVariable.txtAttachDbFilePath[ItemIndex]] = null;
-                        Settings[AppVariable.txtDatabaseName[ItemIndex]] = null;
-                        Settings[AppVariable.DefaltIndexCmbNameSandogh] = "-1";
-                        Settings[AppVariable.IsChangeDbName] = "false";
-                        Settings[AppVariable.txtUserName[ItemIndex]] = null;
-                        Settings[AppVariable.txtPassword[ItemIndex]] = null;
-                        Settings[AppVariable.VersionNumber[ItemIndex]] = null;
+                        int ItemCount = cmbNameDataBaseSandogh.Properties.Items.Count;
+                        int ItemIndex = cmbNameDataBaseSandogh.SelectedIndex;
+                        if (ItemCount > 0 && ItemIndex != -1)
+                        {
+                            if (ItemIndex + 1 == ItemCount)
+                            {
+                                Settings[AppVariable.SkinName[ItemIndex]] = null;
+                                Settings[AppVariable.cmbNameDataBaseSandogh[ItemIndex]] = null;
+                                Settings[AppVariable.cmbServerType[ItemIndex]] = null;
+                                Settings[AppVariable.cmbServerName[ItemIndex]] = null;
+                                Settings[AppVariable.cmbAuthentication[ItemIndex]] = null;
+                                Settings[AppVariable.txtUserName2[ItemIndex]] = null;
+                                Settings[AppVariable.txtPassword2[ItemIndex]] = null;
+                                Settings[AppVariable.txtAttachDbFilePath[ItemIndex]] = null;
+                                Settings[AppVariable.txtDatabaseName[ItemIndex]] = null;
+                                Settings[AppVariable.DefaltIndexCmbNameSandogh] = "-1";
+                                Settings[AppVariable.IsChangeDbName] = "false";
+                                Settings[AppVariable.txtUserName[ItemIndex]] = null;
+                                Settings[AppVariable.txtPassword[ItemIndex]] = null;
+                                Settings[AppVariable.VersionNumber[ItemIndex]] = null;
+                            }
+                            else
+                            {
+                                for (int i = ItemIndex; ItemIndex < ItemCount; ItemIndex++)
+                                {
+                                    Settings[AppVariable.SkinName[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.SkinName[ItemIndex + 1]] : null;
+                                    Settings[AppVariable.cmbNameDataBaseSandogh[ItemIndex]] = ItemIndex != ItemCount - 1 ? ItemIndex.ToString() : null;
+                                    Settings[AppVariable.cmbServerType[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.cmbServerType[ItemIndex + 1]] : null;
+                                    Settings[AppVariable.cmbServerName[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.cmbServerName[ItemIndex + 1]] : null;
+                                    Settings[AppVariable.cmbAuthentication[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.cmbAuthentication[ItemIndex + 1]] : null;
+                                    Settings[AppVariable.txtUserName2[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.txtUserName2[ItemIndex + 1]] : null;
+                                    Settings[AppVariable.txtPassword2[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.txtPassword2[ItemIndex + 1]] : null;
+                                    Settings[AppVariable.txtAttachDbFilePath[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.txtAttachDbFilePath[ItemIndex + 1]] : null;
+                                    Settings[AppVariable.txtDatabaseName[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.txtDatabaseName[ItemIndex + 1]] : null;
+                                    Settings[AppVariable.txtUserName[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.txtUserName[ItemIndex + 1]] : null;
+                                    Settings[AppVariable.txtPassword[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.txtPassword[ItemIndex + 1]] : null;
+                                    Settings[AppVariable.VersionNumber[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.VersionNumber[ItemIndex + 1]] : null;
+
+                                }
+                            }
+                            Settings[AppVariable.DefaltIndexCmbNameSandogh] = "-1";
+                            Settings[AppVariable.IsChangeDbName] = "false";
+                            FillCmbNameDatabase();
+                            cmbNameDataBaseSandogh.SelectedIndex = -1;
+                            cmbNameDataBaseSandogh_SelectedIndexChanged(null, null);
+                            XtraMessageBox.Show("دیتابیس انتخابی حذف شد", "پیغام حذف", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                        }
                     }
                     else
                     {
-                        for (int i = ItemIndex; ItemIndex < ItemCount; ItemIndex++)
-                        {
-                            Settings[AppVariable.SkinName[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.SkinName[ItemIndex + 1]] : null;
-                            Settings[AppVariable.cmbNameDataBaseSandogh[ItemIndex]] = ItemIndex != ItemCount - 1 ? ItemIndex.ToString() : null;
-                            Settings[AppVariable.cmbServerType[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.cmbServerType[ItemIndex + 1]] : null;
-                            Settings[AppVariable.cmbServerName[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.cmbServerName[ItemIndex + 1]] : null;
-                            Settings[AppVariable.cmbAuthentication[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.cmbAuthentication[ItemIndex + 1]] : null;
-                            Settings[AppVariable.txtUserName2[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.txtUserName2[ItemIndex + 1]] : null;
-                            Settings[AppVariable.txtPassword2[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.txtPassword2[ItemIndex + 1]] : null;
-                            Settings[AppVariable.txtAttachDbFilePath[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.txtAttachDbFilePath[ItemIndex + 1]] : null;
-                            Settings[AppVariable.txtDatabaseName[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.txtDatabaseName[ItemIndex + 1]] : null;
-                            Settings[AppVariable.txtUserName[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.txtUserName[ItemIndex + 1]] : null;
-                            Settings[AppVariable.txtPassword[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.txtPassword[ItemIndex + 1]] : null;
-                            Settings[AppVariable.VersionNumber[ItemIndex]] = ItemIndex != ItemCount - 1 ? Settings[AppVariable.VersionNumber[ItemIndex + 1]] : null;
-
-                        }
+                        XtraMessageBox.Show("دیتابیس فعال قابل حذف نیست", "پیغام حذف", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                     }
-                    Settings[AppVariable.DefaltIndexCmbNameSandogh] = "-1";
-                    Settings[AppVariable.IsChangeDbName] = "false";
-                    FillCmbNameDatabase();
-                    cmbNameDataBaseSandogh.SelectedIndex = -1;
-                    cmbNameDataBaseSandogh_SelectedIndexChanged(null, null);
-                    XtraMessageBox.Show("دیتابیس انتخابی حذف شد", "پیغام حذف", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
-            {
-                XtraMessageBox.Show("دیتابیس فعال قابل حذف نیست", "پیغام حذف", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
-            }
+
         }
     }
 }

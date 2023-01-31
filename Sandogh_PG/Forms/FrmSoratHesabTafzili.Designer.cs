@@ -707,6 +707,8 @@
             this.cmbHesabTafzili.Properties.NullText = "";
             this.cmbHesabTafzili.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbHesabTafzili.Properties.PopupWidth = 455;
+            this.cmbHesabTafzili.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
+            this.cmbHesabTafzili.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cmbHesabTafzili.Properties.ValueMember = "Id";
             this.cmbHesabTafzili.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbHesabTafzili.Size = new System.Drawing.Size(348, 34);

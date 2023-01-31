@@ -252,7 +252,8 @@ namespace Sandogh_PG
                     var z = qp.FirstOrDefault(s => s.DeviceID == "0123456789");
                     if (z != null)
                     {
-                        if (db.Database.Connection.Database == "Rahim_Elahi" || db.Database.Connection.Database == "Demo")
+                        //if (db.Database.Connection.Database == "Rahim_Elahi" || db.Database.Connection.Database == "Demo")
+                        if (db.Database.Connection.Database == "Demo")
                         {
                             z.VersionType = "Demo";
                             //z.LNVersionType = HelpClass1.EncryptText("Demo");
@@ -289,6 +290,13 @@ namespace Sandogh_PG
 
 
                         }
+                        //else if (db.Database.Connection.Database == "Harir_VA1"
+                        //    || db.Database.Connection.Database == "Harir_VZ1"
+                        //    || db.Database.Connection.Database == "Kapris_VA"
+                        //    || db.Database.Connection.Database == "Harir_VA1"
+                        //    || db.Database.Connection.Database == "Sandogh_Ehsan"
+                        //    || db.Database.Connection.Database == "Sandogh_PG"
+                        //    || db.Database.Connection.Database == "Sandogh_PG1")
                         else if (db.Database.Connection.Database == "Harir_VA1"
                             || db.Database.Connection.Database == "Harir_VZ1"
                             || db.Database.Connection.Database == "Kapris_VA"
@@ -472,162 +480,176 @@ namespace Sandogh_PG
 
         public bool IsValidation()
         {
-            if (!string.IsNullOrEmpty(txtGarantiEndData.Text) && !string.IsNullOrEmpty(txtRegisterDate.Text))
+            using (var db = new MyContext())
             {
-                if (Convert.ToInt32(txtGarantiEndData.Text.Substring(0, 4)) - Convert.ToInt32(txtRegisterDate.Text.Substring(0, 4)) > 1)
+                try
                 {
-                    if (XtraMessageBox.Show("تاریخ اتمام مدت پشتیبانی بیشتر از یکسال است آیا مایلید اصلاح کنید؟", "پیغام", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    if (!string.IsNullOrEmpty(txtGarantiEndData.Text) && !string.IsNullOrEmpty(txtRegisterDate.Text))
+                    {
+                        if (Convert.ToInt32(txtGarantiEndData.Text.Substring(0, 4)) - Convert.ToInt32(txtRegisterDate.Text.Substring(0, 4)) > 1)
+                        {
+                            if (XtraMessageBox.Show("تاریخ اتمام مدت پشتیبانی بیشتر از یکسال است آیا مایلید اصلاح کنید؟", "پیغام", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                                return false;
+                        }
+                    }
+
+                    if (db.AllowedDevises.Any(s => s.DeviceID == txtDeviceID.Text && s.DataBaseName == txtDataBase.Text) && En == EnumCED.Create)
+                    {
+                        XtraMessageBox.Show(" این سخت افزار با این دیتابیس قبلا مجوز دسترسی داده شده است", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return false;
+                    }
+                    else if (comVersionType.SelectedIndex == -1)
+                    {
+                        XtraMessageBox.Show("نوع ورژن را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                    else if (string.IsNullOrEmpty(txtLNVersionType.Text) && comVersionType.SelectedIndex == 0)
+                    {
+                        XtraMessageBox.Show("لاینسس نوع ورژن را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                    else if (string.IsNullOrEmpty(txtRegisterDate.Text) && comVersionType.SelectedIndex == 0)
+                    {
+                        XtraMessageBox.Show("تاریخ ریجیستر را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                    else if (string.IsNullOrEmpty(txtVersionNumber.Text))
+                    {
+                        XtraMessageBox.Show("شماره ورژن را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                    else if (string.IsNullOrEmpty(txtLNVersionNumber.Text) && comVersionType.SelectedIndex == 0)
+                    {
+                        XtraMessageBox.Show("لاینسس شماره ورژن را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                    else if (string.IsNullOrEmpty(txtDeviceID.Text))
+                    {
+                        XtraMessageBox.Show("آی دی دیوایس را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                    else if (string.IsNullOrEmpty(txtLNDeviceID.Text) && comVersionType.SelectedIndex == 0)
+                    {
+                        XtraMessageBox.Show("لاینسس آی دی دیوایس را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                    else if (string.IsNullOrEmpty(txtDataBase.Text))
+                    {
+                        XtraMessageBox.Show("نام دیتابیس را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                    else if (string.IsNullOrEmpty(txtLNDataBase.Text) && comVersionType.SelectedIndex == 0)
+                    {
+                        XtraMessageBox.Show("لاینسس نام دیتابیس را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                    else if (string.IsNullOrEmpty(txtGarantiEndData.Text) && comVersionType.SelectedIndex == 0)
+                    {
+                        XtraMessageBox.Show("تاریخ اتمام پشتیبانی را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                    else if (string.IsNullOrEmpty(txtLNGarantiEndData.Text) && comVersionType.SelectedIndex == 0)
+                    {
+                        XtraMessageBox.Show("لاینسس تاریخ اتمام پشتیبانی را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                    else if (comIsGaranti.SelectedIndex == -1)
+                    {
+                        XtraMessageBox.Show("وضعیت پشتیبانی را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                    else if (comIsActive.SelectedIndex == -1)
+                    {
+                        XtraMessageBox.Show("وضعیت فعال را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                    else if (comVersionType.SelectedIndex == 0)
+                    {
+                        if (comVersionType.Text != HelpClass1.DecryptText(txtLNVersionType.Text))
+                        {
+                            XtraMessageBox.Show("لاینسس نوع ورژن اشتباه است", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return false;
+                        }
+                        else if (txtVersionNumber.Text != HelpClass1.DecryptText(txtLNVersionNumber.Text))
+                        {
+                            XtraMessageBox.Show("لاینسس شماره ورژن اشتباه است", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return false;
+                        }
+                        else if (txtDeviceID.Text != HelpClass1.DecryptText(txtLNDeviceID.Text))
+                        {
+                            XtraMessageBox.Show("لاینسس آی دی دیوایس اشتباه است", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return false;
+                        }
+                        else if (txtDataBase.Text != HelpClass1.DecryptText(txtLNDataBase.Text))
+                        {
+                            XtraMessageBox.Show("لاینسس دیتابیس اشتباه است", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return false;
+                        }
+                        else if (txtGarantiEndData.Text != HelpClass1.DecryptText(txtLNGarantiEndData.Text))
+                        {
+                            XtraMessageBox.Show("لاینسس تاریخ اتمام پشتیبانی اشتباه است", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        string _VersionName = comVersionType.Text == "Orginal" ? "اصلی" : comVersionType.Text == "Demo" ? "آزمایشی" : "نمایشی";
+
+                        if (!string.IsNullOrEmpty(txtLNVersionType.Text))
+                        {
+                            XtraMessageBox.Show("در حالت " + _VersionName + " لاینسس نوع ورژن لازم نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return false;
+                        }
+                        else if (!string.IsNullOrEmpty(txtLNVersionNumber.Text))
+                        {
+                            XtraMessageBox.Show("در حالت " + _VersionName + " لاینسس شماره ورژن لازم نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return false;
+                        }
+                        else if (!string.IsNullOrEmpty(txtLNDeviceID.Text))
+                        {
+                            XtraMessageBox.Show("در حالت " + _VersionName + " لاینسس آی دی دیوایس لازم نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return false;
+                        }
+                        else if (!string.IsNullOrEmpty(txtLNDataBase.Text))
+                        {
+                            XtraMessageBox.Show("در حالت " + _VersionName + " لاینسس دیتابیس لازم نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return false;
+                        }
+                        else if (!string.IsNullOrEmpty(txtLNGarantiEndData.Text))
+                        {
+                            XtraMessageBox.Show("در حالت " + _VersionName + " لاینسس تاریخ اتمام پشتیبانی لازم نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return false;
+                        }
+
+                    }
+
+                    _VersionType = string.IsNullOrEmpty(comVersionType.Text) ? null : comVersionType.Text;
+                    _LNVersionType = string.IsNullOrEmpty(txtLNVersionType.Text) ? null : txtLNVersionType.Text;
+                    if (_VersionType == "Orginal")
+                        _RegisterDate = Convert.ToDateTime(txtRegisterDate.Text);
+                    _VersionNumber = string.IsNullOrEmpty(txtVersionNumber.Text) ? null : txtVersionNumber.Text;
+                    _LNVersionNumber = string.IsNullOrEmpty(txtLNVersionNumber.Text) ? null : txtLNVersionNumber.Text;
+                    _DeviceID = string.IsNullOrEmpty(txtDeviceID.Text) ? null : txtDeviceID.Text;
+                    _LNDeviceID = string.IsNullOrEmpty(txtLNDeviceID.Text) ? null : txtLNDeviceID.Text;
+                    _DataBaseName = string.IsNullOrEmpty(txtDataBase.Text) ? null : txtDataBase.Text;
+                    _LNDataBaseName = string.IsNullOrEmpty(txtLNDataBase.Text) ? null : txtLNDataBase.Text;
+                    if (_VersionType == "Orginal")
+                        _GarantiEndData = Convert.ToDateTime(txtGarantiEndData.Text);
+                    _LNGarantiEndData = string.IsNullOrEmpty(txtLNGarantiEndData.Text) ? null : txtLNGarantiEndData.Text;
+                    _IsGaranti = Convert.ToBoolean(comIsGaranti.SelectedIndex);
+                    _IsActive = Convert.ToBoolean(comIsActive.SelectedIndex);
+
+                    return true;
+
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
                 }
             }
 
-            if (new MyContext().AllowedDevises.Any(s => s.DeviceID == txtDeviceID.Text && s.DataBaseName == txtDataBase.Text) && En == EnumCED.Create)
-            {
-                XtraMessageBox.Show(" این سخت افزار با این دیتابیس قبلا مجوز دسترسی داده شده است", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            else if (comVersionType.SelectedIndex == -1)
-            {
-                XtraMessageBox.Show("نوع ورژن را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            else if (string.IsNullOrEmpty(txtLNVersionType.Text) && comVersionType.SelectedIndex == 0)
-            {
-                XtraMessageBox.Show("لاینسس نوع ورژن را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            else if (string.IsNullOrEmpty(txtRegisterDate.Text) && comVersionType.SelectedIndex == 0)
-            {
-                XtraMessageBox.Show("تاریخ ریجیستر را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            else if (string.IsNullOrEmpty(txtVersionNumber.Text))
-            {
-                XtraMessageBox.Show("شماره ورژن را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            else if (string.IsNullOrEmpty(txtLNVersionNumber.Text) && comVersionType.SelectedIndex == 0)
-            {
-                XtraMessageBox.Show("لاینسس شماره ورژن را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            else if (string.IsNullOrEmpty(txtDeviceID.Text))
-            {
-                XtraMessageBox.Show("آی دی دیوایس را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            else if (string.IsNullOrEmpty(txtLNDeviceID.Text) && comVersionType.SelectedIndex == 0)
-            {
-                XtraMessageBox.Show("لاینسس آی دی دیوایس را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            else if (string.IsNullOrEmpty(txtDataBase.Text))
-            {
-                XtraMessageBox.Show("نام دیتابیس را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            else if (string.IsNullOrEmpty(txtLNDataBase.Text) && comVersionType.SelectedIndex == 0)
-            {
-                XtraMessageBox.Show("لاینسس نام دیتابیس را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            else if (string.IsNullOrEmpty(txtGarantiEndData.Text) && comVersionType.SelectedIndex == 0)
-            {
-                XtraMessageBox.Show("تاریخ اتمام پشتیبانی را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            else if (string.IsNullOrEmpty(txtLNGarantiEndData.Text) && comVersionType.SelectedIndex == 0)
-            {
-                XtraMessageBox.Show("لاینسس تاریخ اتمام پشتیبانی را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            else if (comIsGaranti.SelectedIndex == -1)
-            {
-                XtraMessageBox.Show("وضعیت پشتیبانی را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            else if (comIsActive.SelectedIndex == -1)
-            {
-                XtraMessageBox.Show("وضعیت فعال را مشخص کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            else if (comVersionType.SelectedIndex == 0)
-            {
-                if (comVersionType.Text != HelpClass1.DecryptText(txtLNVersionType.Text))
-                {
-                    XtraMessageBox.Show("لاینسس نوع ورژن اشتباه است", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return false;
-                }
-                else if (txtVersionNumber.Text != HelpClass1.DecryptText(txtLNVersionNumber.Text))
-                {
-                    XtraMessageBox.Show("لاینسس شماره ورژن اشتباه است", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return false;
-                }
-                else if (txtDeviceID.Text != HelpClass1.DecryptText(txtLNDeviceID.Text))
-                {
-                    XtraMessageBox.Show("لاینسس آی دی دیوایس اشتباه است", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return false;
-                }
-                else if (txtDataBase.Text != HelpClass1.DecryptText(txtLNDataBase.Text))
-                {
-                    XtraMessageBox.Show("لاینسس دیتابیس اشتباه است", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return false;
-                }
-                else if (txtGarantiEndData.Text != HelpClass1.DecryptText(txtLNGarantiEndData.Text))
-                {
-                    XtraMessageBox.Show("لاینسس تاریخ اتمام پشتیبانی اشتباه است", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return false;
-                }
-            }
-            else
-            {
-                string _VersionName = comVersionType.Text == "Orginal" ? "اصلی" : comVersionType.Text == "Demo" ? "آزمایشی" : "نمایشی";
-
-                if (!string.IsNullOrEmpty(txtLNVersionType.Text))
-                {
-                    XtraMessageBox.Show("در حالت " + _VersionName + " لاینسس نوع ورژن لازم نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return false;
-                }
-                else if (!string.IsNullOrEmpty(txtLNVersionNumber.Text))
-                {
-                    XtraMessageBox.Show("در حالت " + _VersionName + " لاینسس شماره ورژن لازم نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return false;
-                }
-                else if (!string.IsNullOrEmpty(txtLNDeviceID.Text))
-                {
-                    XtraMessageBox.Show("در حالت " + _VersionName + " لاینسس آی دی دیوایس لازم نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return false;
-                }
-                else if (!string.IsNullOrEmpty(txtLNDataBase.Text))
-                {
-                    XtraMessageBox.Show("در حالت " + _VersionName + " لاینسس دیتابیس لازم نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return false;
-                }
-                else if (!string.IsNullOrEmpty(txtLNGarantiEndData.Text))
-                {
-                    XtraMessageBox.Show("در حالت " + _VersionName + " لاینسس تاریخ اتمام پشتیبانی لازم نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return false;
-                }
-
-            }
-
-            _VersionType = string.IsNullOrEmpty(comVersionType.Text) ? null : comVersionType.Text;
-            _LNVersionType = string.IsNullOrEmpty(txtLNVersionType.Text) ? null : txtLNVersionType.Text;
-            if (_VersionType == "Orginal")
-                _RegisterDate = Convert.ToDateTime(txtRegisterDate.Text);
-            _VersionNumber = string.IsNullOrEmpty(txtVersionNumber.Text) ? null : txtVersionNumber.Text;
-            _LNVersionNumber = string.IsNullOrEmpty(txtLNVersionNumber.Text) ? null : txtLNVersionNumber.Text;
-            _DeviceID = string.IsNullOrEmpty(txtDeviceID.Text) ? null : txtDeviceID.Text;
-            _LNDeviceID = string.IsNullOrEmpty(txtLNDeviceID.Text) ? null : txtLNDeviceID.Text;
-            _DataBaseName = string.IsNullOrEmpty(txtDataBase.Text) ? null : txtDataBase.Text;
-            _LNDataBaseName = string.IsNullOrEmpty(txtLNDataBase.Text) ? null : txtLNDataBase.Text;
-            if (_VersionType == "Orginal")
-                _GarantiEndData = Convert.ToDateTime(txtGarantiEndData.Text);
-            _LNGarantiEndData = string.IsNullOrEmpty(txtLNGarantiEndData.Text) ? null : txtLNGarantiEndData.Text;
-            _IsGaranti = Convert.ToBoolean(comIsGaranti.SelectedIndex);
-            _IsActive = Convert.ToBoolean(comIsActive.SelectedIndex);
-
-            return true;
         }
 
         public string _UserId = string.Empty;
@@ -1191,7 +1213,19 @@ namespace Sandogh_PG
 
         private void lblDataBase_Click(object sender, EventArgs e)
         {
-            txtDataBase.Text = new MyContext().Database.Connection.Database;
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    txtDataBase.Text = db.Database.Connection.Database;
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
         }
 
         private void lblLNDataBase_Click(object sender, EventArgs e)
