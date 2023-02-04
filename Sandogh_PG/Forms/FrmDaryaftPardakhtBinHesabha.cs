@@ -31,8 +31,10 @@ namespace Sandogh_PG
             {
                 try
                 {
-                    var q2 = db.CodeMoins.ToList();
-                    var q1 = db.DaryaftPardakhtBinHesabhas.OrderBy(s => s.Seryal).ToList();
+                    var p2 = db.CodeMoins.AsParallel();
+                    var q2 = p2.ToList();
+                    var p1 = db.DaryaftPardakhtBinHesabhas.OrderBy(s => s.Seryal).AsParallel();
+                    var q1 = p1.ToList();
                     if (q1.Count > 0)
                     {
                         foreach (var item in q1)
@@ -62,9 +64,9 @@ namespace Sandogh_PG
             {
                 try
                 {
-                    var q1 = db.CodeMoins.Select(s => s).ToList();
-                    if (q1.Count > 0)
-                        codeMoinsBindingSource.DataSource = q1;
+                    var q1 = db.CodeMoins.Select(s => s).AsParallel();
+                    if (q1.Count() > 0)
+                        codeMoinsBindingSource.DataSource = q1.ToList();
                     else
                         codeMoinsBindingSource.DataSource = null;
                 }
@@ -96,17 +98,17 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "NameHesab";
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2 ).OrderBy(s => s.Code).ToList();
-                                        if (q1.Count > 0)
-                                            allHesabTafzilisBindingSource.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2).OrderBy(s => s.Code).AsParallel();
+                                        if (q1.Count() > 0)
+                                            allHesabTafzilisBindingSource.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1.ToList();
                                         else
                                             allHesabTafzilisBindingSource.DataSource = null;
                                     }
                                     else if (En == EnumCED.Edit)
                                     {
-                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2).OrderBy(s => s.Code).ToList();
-                                        if (q2.Count > 0)
-                                            allHesabTafzilisBindingSource.DataSource = q2;
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2).OrderBy(s => s.Code).AsParallel();
+                                        if (q2.Count() > 0)
+                                            allHesabTafzilisBindingSource.DataSource = q2.ToList();
                                         else
                                             allHesabTafzilisBindingSource.DataSource = null;
                                     }
@@ -119,17 +121,17 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "NameVFamil";
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3 ).OrderBy(s => s.Code).ToList();
-                                        if (q1.Count > 0)
-                                            allHesabTafzilisBindingSource.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3).OrderBy(s => s.Code).AsParallel();
+                                        if (q1.Count() > 0)
+                                            allHesabTafzilisBindingSource.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1.ToList();
                                         else
                                             allHesabTafzilisBindingSource.DataSource = null;
                                     }
                                     else if (En == EnumCED.Edit)
                                     {
-                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3).OrderBy(s => s.Code).ToList();
-                                        if (q2.Count > 0)
-                                            allHesabTafzilisBindingSource.DataSource = q2;
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3).OrderBy(s => s.Code).AsParallel();
+                                        if (q2.Count() > 0)
+                                            allHesabTafzilisBindingSource.DataSource = q2.ToList();
                                         else
                                             allHesabTafzilisBindingSource.DataSource = null;
                                     }
@@ -147,17 +149,17 @@ namespace Sandogh_PG
                                 {
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6 ).OrderBy(s => s.Code).ToList();
-                                        if (q1.Count > 0)
-                                            allHesabTafzilisBindingSource.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6).OrderBy(s => s.Code).AsParallel();
+                                        if (q1.Count() > 0)
+                                            allHesabTafzilisBindingSource.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1.ToList();
                                         else
                                             allHesabTafzilisBindingSource.DataSource = null;
                                     }
                                     else if (En == EnumCED.Edit)
                                     {
-                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6).OrderBy(s => s.Code).ToList();
-                                        if (q2.Count > 0)
-                                            allHesabTafzilisBindingSource.DataSource = q2;
+                                        var q2 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6).OrderBy(s => s.Code).AsParallel();
+                                        if (q2.Count() > 0)
+                                            allHesabTafzilisBindingSource.DataSource = q2.ToList();
                                         else
                                             allHesabTafzilisBindingSource.DataSource = null;
                                     }
@@ -186,17 +188,17 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "HesabName";
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4 ).OrderBy(s => s.Code).ToList();
-                                        if (q1.Count > 0)
-                                            allHesabTafzilisBindingSource.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4).OrderBy(s => s.Code).AsParallel();
+                                        if (q1.Count() > 0)
+                                            allHesabTafzilisBindingSource.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1.ToList();
                                         else
                                             allHesabTafzilisBindingSource.DataSource = null;
                                     }
                                     else if (En == EnumCED.Edit)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4).OrderBy(s => s.Code).ToList();
-                                        if (q1.Count > 0)
-                                            allHesabTafzilisBindingSource.DataSource = q1;
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4).OrderBy(s => s.Code).AsParallel();
+                                        if (q1.Count() > 0)
+                                            allHesabTafzilisBindingSource.DataSource = q1.ToList();
                                         else
                                             allHesabTafzilisBindingSource.DataSource = null;
                                     }
@@ -209,17 +211,17 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "HesabName";
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5 ).OrderBy(s => s.Code).ToList();
-                                        if (q1.Count > 0)
-                                            allHesabTafzilisBindingSource.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5).OrderBy(s => s.Code).AsParallel();
+                                        if (q1.Count() > 0)
+                                            allHesabTafzilisBindingSource.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1.ToList();
                                         else
                                             allHesabTafzilisBindingSource.DataSource = null;
                                     }
                                     else if (En == EnumCED.Edit)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5).OrderBy(s => s.Code).ToList();
-                                        if (q1.Count > 0)
-                                            allHesabTafzilisBindingSource.DataSource = q1;
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5).OrderBy(s => s.Code).AsParallel();
+                                        if (q1.Count() > 0)
+                                            allHesabTafzilisBindingSource.DataSource = q1.ToList();
                                         else
                                             allHesabTafzilisBindingSource.DataSource = null;
                                     }
@@ -255,7 +257,7 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource1.Columns[1].FieldName = "NameHesab";
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2 ).OrderBy(s => s.Code).ToList();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2).OrderBy(s => s.Code).ToList();
                                         if (q1.Count > 0)
                                             allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
                                         else
@@ -278,7 +280,7 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource1.Columns[1].FieldName = "NameVFamil";
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3 ).OrderBy(s => s.Code).ToList();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3).OrderBy(s => s.Code).ToList();
                                         if (q1.Count > 0)
                                             allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
                                         else
@@ -306,7 +308,7 @@ namespace Sandogh_PG
                                 {
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6 ).OrderBy(s => s.Code).ToList();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6).OrderBy(s => s.Code).ToList();
                                         if (q1.Count > 0)
                                             allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
                                         else
@@ -345,7 +347,7 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource1.Columns[1].FieldName = "HesabName";
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4 ).OrderBy(s => s.Code).ToList();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4).OrderBy(s => s.Code).ToList();
                                         if (q1.Count > 0)
                                             allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
                                         else
@@ -368,7 +370,7 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource1.Columns[1].FieldName = "HesabName";
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5 ).OrderBy(s => s.Code).ToList();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5).OrderBy(s => s.Code).ToList();
                                         if (q1.Count > 0)
                                             allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
                                         else
@@ -460,7 +462,7 @@ namespace Sandogh_PG
             FillDataGridDaryaftPardakhtBinHesabha();
             _deviceID = HelpClass1.GetMadarBoardSerial();
             _dataBaseName = new MyContext().Database.Connection.Database;
-
+            FillcmbHesabMoin();
             //gridView1.MoveLast();
 
         }
@@ -657,7 +659,7 @@ namespace Sandogh_PG
 
         private void gridView1_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
         {
-            HelpClass1.SetNumberRowsColumnUnboundGirdView(sender, e);
+            ///HelpClass1.SetNumberRowsColumnUnboundGirdView(sender, e);
         }
 
         private void btnAdvancedSearch_Click(object sender, EventArgs e)
@@ -787,8 +789,8 @@ namespace Sandogh_PG
                             var k = db.AllowedDevises.FirstOrDefault(s => s.DeviceID == _deviceID && s.DataBaseName == _dataBaseName);
                             if (k.VersionType == "Demo")
                             {
-                                var d = db.AsnadeHesabdariRows.Count();
-                                if (d < 200)
+                                var d = db.AsnadeHesabdariRows.AsParallel();
+                                if (d.Count() < 200)
                                 {
                                     k.IsActive = true;
                                     db.SaveChanges();
@@ -821,17 +823,17 @@ namespace Sandogh_PG
                 InActiveButtons();
                 ActiveControls();
 
-                txtId.Text = gridView1.GetFocusedRowCellValue("Id").ToString();
-                txtSeryal.Text = gridView1.GetFocusedRowCellValue("Seryal").ToString();
-                if (gridView1.GetFocusedRowCellValue("Tarikh") != null)
-                    txtTarikh.Text = gridView1.GetFocusedRowCellValue("Tarikh").ToString().Substring(0, 10); ;
-                txtMablagh.Text = gridView1.GetFocusedRowCellValue("Mablagh").ToString();
-                cmbHesabMoin1.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId1"));
-                cmbHesabTafzili1.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabTafziliId1"));
-                cmbHesabMoin2.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId2"));
-                cmbHesabTafzili2.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabTafziliId2"));
-                txtSharh.Text = gridView1.GetFocusedRowCellValue("Sharh").ToString();
-                cmbNoeSanad.SelectedIndex = Convert.ToInt32(gridView1.GetFocusedRowCellValue("NoeSanadIndex"));
+                //txtId.Text = gridView1.GetFocusedRowCellValue("Id").ToString();
+                //txtSeryal.Text = gridView1.GetFocusedRowCellValue("Seryal").ToString();
+                //if (gridView1.GetFocusedRowCellValue("Tarikh") != null)
+                //    txtTarikh.Text = gridView1.GetFocusedRowCellValue("Tarikh").ToString().Substring(0, 10); ;
+                //txtMablagh.Text = gridView1.GetFocusedRowCellValue("Mablagh").ToString();
+                //cmbHesabMoin1.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId1"));
+                //cmbHesabTafzili1.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabTafziliId1"));
+                //cmbHesabMoin2.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId2"));
+                //cmbHesabTafzili2.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabTafziliId2"));
+                //txtSharh.Text = gridView1.GetFocusedRowCellValue("Sharh").ToString();
+                //cmbNoeSanad.SelectedIndex = Convert.ToInt32(gridView1.GetFocusedRowCellValue("NoeSanadIndex"));
 
                 cmbNoeSanad.Focus();
             }
@@ -850,11 +852,11 @@ namespace Sandogh_PG
             if (TextEditValidation())
             {
                 _cmbNoeSanad = cmbNoeSanad.SelectedIndex;
-                
+
                 AllTafId = Convert.ToInt32(cmbHesabTafzili1.EditValue);
                 _NameAaza = cmbHesabTafzili1.Text;
-                 Convert.ToInt32(cmbHesabMoin1.EditValue);
-                
+                Convert.ToInt32(cmbHesabMoin1.EditValue);
+
                 if (En == EnumCED.Create)
                 {
                     using (var db = new MyContext())
@@ -932,8 +934,8 @@ namespace Sandogh_PG
                             var k = db.AllowedDevises.FirstOrDefault(s => s.DeviceID == _deviceID && s.DataBaseName == _dataBaseName);
                             if (k.VersionType == "Demo")
                             {
-                                var d = db.AsnadeHesabdariRows.Count();
-                                if (d >= 200)
+                                var d = db.AsnadeHesabdariRows.AsParallel();
+                                if (d.Count() >= 200)
                                 {
                                     k.IsActive = false;
                                     db.SaveChanges();
@@ -1044,7 +1046,8 @@ namespace Sandogh_PG
                         if ((_cmbNoeSanad == 1 || _cmbNoeSanad == 2) && _HesabMoinCode == 7001 && AllTafId > 0)
                         {
 
-                            var q3 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == AllTafId && f.HesabMoinCode == 7001).ToList();
+                            var p3 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == AllTafId && f.HesabMoinCode == 7001).AsParallel();
+                            var q3 = p3.ToList();
                             if (q3.Count > 0)
                             {
                                 foreach (var item in q3)
@@ -1062,9 +1065,12 @@ namespace Sandogh_PG
                                         var q1 = db.VamPardakhtis.FirstOrDefault(s => s.IsTasviye == false && s.AazaId == AllTafId);
                                         var q5 = db.VamPardakhtis.Where(s => s.IsTasviye == false && s.ZameninName.Contains(_NameAaza));
                                         var q4 = db.CheckTazmins.FirstOrDefault(f => f.IsInSandogh == true && f.VamGerandeId == AllTafId);
-                                        var q6 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == AllTafId && f.HesabMoinCode == 3001).ToList();
-                                        var q7 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == AllTafId && f.HesabMoinCode == 4001).ToList();
-                                        var q8 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == AllTafId && f.HesabMoinCode == 6003).ToList();
+                                        var p6 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == AllTafId && f.HesabMoinCode == 3001).AsParallel();
+                                        var q6 = p6.ToList();
+                                        var p7 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == AllTafId && f.HesabMoinCode == 4001).AsParallel();
+                                        var q7 = p7.ToList();
+                                        var p8 = db.AsnadeHesabdariRows.Where(f => f.HesabTafId == AllTafId && f.HesabMoinCode == 6003).AsParallel();
+                                        var q8 = p8.ToList();
 
                                         if (q1 != null)
                                         {
@@ -1178,7 +1184,7 @@ namespace Sandogh_PG
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            gridView1_RowCellClick(null, null);
+            
         }
 
         private void btnSaveNext_Click(object sender, EventArgs e)
@@ -1190,7 +1196,33 @@ namespace Sandogh_PG
 
         private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
-            btnDelete.Enabled = btnEdit.Enabled = gridView1.RowCount > 0 ? true : false;
+            if (btnDelete.Enabled == false)
+            {
+                btnDelete.Enabled = btnEdit.Enabled = gridView1.RowCount > 0 ? true : false;
+            }
+            if (gridView1.SelectedRowsCount > 0 && btnEdit.Visible == true)
+            {
+                //gridControl1.Enabled = false;
+                //EditRowIndex = gridView1.FocusedRowHandle;
+                //En = EnumCED.Edit;
+                //InActiveButtons();
+                //ActiveControls();
+
+                txtId.Text = gridView1.GetFocusedRowCellValue("Id").ToString();
+                txtSeryal.Text = gridView1.GetFocusedRowCellValue("Seryal").ToString();
+                if (gridView1.GetFocusedRowCellValue("Tarikh") != null)
+                    txtTarikh.Text = gridView1.GetFocusedRowCellValue("Tarikh").ToString().Substring(0, 10); ;
+                txtMablagh.Text = gridView1.GetFocusedRowCellValue("Mablagh").ToString();
+                cmbHesabMoin1.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId1"));
+                cmbHesabTafzili1.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabTafziliId1"));
+                cmbHesabMoin2.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId2"));
+                cmbHesabTafzili2.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabTafziliId2"));
+                txtSharh.Text = gridView1.GetFocusedRowCellValue("Sharh").ToString();
+                cmbNoeSanad.SelectedIndex = Convert.ToInt32(gridView1.GetFocusedRowCellValue("NoeSanadIndex"));
+
+                //cmbNoeSanad.Focus();
+            }
+
         }
 
         private void cmbHesabMoin1_Enter(object sender, EventArgs e)
@@ -1402,6 +1434,16 @@ namespace Sandogh_PG
         private void FrmDaryaftPardakhtBinHesabha_Shown(object sender, EventArgs e)
         {
             gridView1.MoveLast();
+        }
+
+        private void gridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            gridView1_RowCellClick(null, null);
+        }
+
+        private void gridView1_KeyUp(object sender, KeyEventArgs e)
+        {
+            gridView1_RowCellClick(null, null);
         }
 
 

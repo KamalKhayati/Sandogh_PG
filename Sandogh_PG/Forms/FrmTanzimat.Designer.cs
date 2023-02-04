@@ -185,6 +185,8 @@
             this.cmbNameHesab.Properties.MaxLength = 150;
             this.cmbNameHesab.Properties.NullText = "";
             this.cmbNameHesab.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.cmbNameHesab.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
+            this.cmbNameHesab.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cmbNameHesab.Properties.ValueMember = "Id";
             this.cmbNameHesab.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbNameHesab.Size = new System.Drawing.Size(493, 34);
@@ -221,6 +223,8 @@
             this.cmbMoin.Properties.MaxLength = 150;
             this.cmbMoin.Properties.NullText = "";
             this.cmbMoin.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.cmbMoin.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
+            this.cmbMoin.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cmbMoin.Properties.ValueMember = "Id";
             this.cmbMoin.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbMoin.Size = new System.Drawing.Size(493, 34);

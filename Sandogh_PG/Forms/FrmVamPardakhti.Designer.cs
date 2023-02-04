@@ -641,7 +641,7 @@
             // 
             // btnTarifAaza
             // 
-            this.btnTarifAaza.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnChangeSaghfeEtebar.ImageOptions.SvgImage")));
+            this.btnTarifAaza.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnTarifAaza.ImageOptions.SvgImage")));
             this.btnTarifAaza.Location = new System.Drawing.Point(666, 5);
             this.btnTarifAaza.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnTarifAaza.Name = "btnTarifAaza";
@@ -758,6 +758,8 @@
             this.cmbHesabTafzili.Properties.MaxLength = 150;
             this.cmbHesabTafzili.Properties.NullText = "";
             this.cmbHesabTafzili.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.cmbHesabTafzili.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
+            this.cmbHesabTafzili.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cmbHesabTafzili.Properties.ValueMember = "Id";
             this.cmbHesabTafzili.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbHesabTafzili.Size = new System.Drawing.Size(398, 34);
@@ -798,6 +800,8 @@
             this.cmbHesabMoin.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbHesabMoin.Properties.PopupSizeable = false;
             this.cmbHesabMoin.Properties.PopupWidth = 364;
+            this.cmbHesabMoin.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
+            this.cmbHesabMoin.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cmbHesabMoin.Properties.ValueMember = "Id";
             this.cmbHesabMoin.Size = new System.Drawing.Size(171, 34);
             this.cmbHesabMoin.TabIndex = 0;
@@ -1378,6 +1382,7 @@
             this.cmbDaryaftkonande.Properties.NullText = "";
             this.cmbDaryaftkonande.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbDaryaftkonande.Properties.PopupWidth = 455;
+            this.cmbDaryaftkonande.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
             this.cmbDaryaftkonande.Properties.ValueMember = "Id";
             this.cmbDaryaftkonande.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbDaryaftkonande.Size = new System.Drawing.Size(254, 34);

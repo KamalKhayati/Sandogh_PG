@@ -1988,6 +1988,8 @@
             this.cmbMoaref.Properties.NullText = "";
             this.cmbMoaref.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbMoaref.Properties.ReadOnly = true;
+            this.cmbMoaref.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
+            this.cmbMoaref.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cmbMoaref.Properties.ValueMember = "Id";
             this.cmbMoaref.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbMoaref.Size = new System.Drawing.Size(237, 34);

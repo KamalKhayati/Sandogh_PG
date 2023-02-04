@@ -638,6 +638,8 @@
             this.cmbVamGerande.Properties.NullText = "";
             this.cmbVamGerande.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbVamGerande.Properties.ReadOnly = true;
+            this.cmbVamGerande.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
+            this.cmbVamGerande.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cmbVamGerande.Properties.ValueMember = "Id";
             this.cmbVamGerande.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbVamGerande.Size = new System.Drawing.Size(442, 34);

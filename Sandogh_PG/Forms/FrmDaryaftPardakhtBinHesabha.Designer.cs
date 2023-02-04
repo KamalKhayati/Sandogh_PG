@@ -209,8 +209,6 @@
             this.Line.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Line", "{0}")});
             this.Line.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
-            this.Line.Visible = true;
-            this.Line.VisibleIndex = 0;
             this.Line.Width = 78;
             // 
             // allHesabTafzilisBindingSource1
@@ -259,7 +257,7 @@
             this.gridView1.DetailHeight = 378;
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.IndicatorWidth = 28;
+            this.gridView1.IndicatorWidth = 50;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.AutoSelectAllInEditor = false;
             this.gridView1.OptionsBehavior.Editable = false;
@@ -275,8 +273,9 @@
             this.gridView1.OptionsView.ShowFooter = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
-            this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
             this.gridView1.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView1_CustomUnboundColumnData);
+            this.gridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyDown);
+            this.gridView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyUp);
             this.gridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gridView1_KeyPress);
             this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
@@ -293,7 +292,7 @@
             this.colShomareSanad.MinWidth = 22;
             this.colShomareSanad.Name = "colShomareSanad";
             this.colShomareSanad.Visible = true;
-            this.colShomareSanad.VisibleIndex = 1;
+            this.colShomareSanad.VisibleIndex = 0;
             this.colShomareSanad.Width = 89;
             // 
             // colSeryal
@@ -309,7 +308,7 @@
             this.colSeryal.MinWidth = 22;
             this.colSeryal.Name = "colSeryal";
             this.colSeryal.Visible = true;
-            this.colSeryal.VisibleIndex = 2;
+            this.colSeryal.VisibleIndex = 1;
             this.colSeryal.Width = 89;
             // 
             // colTarikh
@@ -325,7 +324,7 @@
             this.colTarikh.MinWidth = 22;
             this.colTarikh.Name = "colTarikh";
             this.colTarikh.Visible = true;
-            this.colTarikh.VisibleIndex = 3;
+            this.colTarikh.VisibleIndex = 2;
             this.colTarikh.Width = 122;
             // 
             // colNoeSanadName
@@ -340,7 +339,7 @@
             this.colNoeSanadName.MinWidth = 22;
             this.colNoeSanadName.Name = "colNoeSanadName";
             this.colNoeSanadName.Visible = true;
-            this.colNoeSanadName.VisibleIndex = 4;
+            this.colNoeSanadName.VisibleIndex = 3;
             this.colNoeSanadName.Width = 111;
             // 
             // colMablagh
@@ -360,7 +359,7 @@
             this.colMablagh.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Mablagh", "{0:n}")});
             this.colMablagh.Visible = true;
-            this.colMablagh.VisibleIndex = 5;
+            this.colMablagh.VisibleIndex = 4;
             this.colMablagh.Width = 155;
             // 
             // colHesabMoineName1
@@ -375,7 +374,7 @@
             this.colHesabMoineName1.MinWidth = 22;
             this.colHesabMoineName1.Name = "colHesabMoineName1";
             this.colHesabMoineName1.Visible = true;
-            this.colHesabMoineName1.VisibleIndex = 6;
+            this.colHesabMoineName1.VisibleIndex = 5;
             this.colHesabMoineName1.Width = 189;
             // 
             // colHesabTafziliName1
@@ -390,7 +389,7 @@
             this.colHesabTafziliName1.MinWidth = 22;
             this.colHesabTafziliName1.Name = "colHesabTafziliName1";
             this.colHesabTafziliName1.Visible = true;
-            this.colHesabTafziliName1.VisibleIndex = 7;
+            this.colHesabTafziliName1.VisibleIndex = 6;
             this.colHesabTafziliName1.Width = 222;
             // 
             // colHesabMoineName2
@@ -405,7 +404,7 @@
             this.colHesabMoineName2.MinWidth = 22;
             this.colHesabMoineName2.Name = "colHesabMoineName2";
             this.colHesabMoineName2.Visible = true;
-            this.colHesabMoineName2.VisibleIndex = 8;
+            this.colHesabMoineName2.VisibleIndex = 7;
             this.colHesabMoineName2.Width = 189;
             // 
             // colHesabTafziliName2
@@ -420,7 +419,7 @@
             this.colHesabTafziliName2.MinWidth = 22;
             this.colHesabTafziliName2.Name = "colHesabTafziliName2";
             this.colHesabTafziliName2.Visible = true;
-            this.colHesabTafziliName2.VisibleIndex = 9;
+            this.colHesabTafziliName2.VisibleIndex = 8;
             this.colHesabTafziliName2.Width = 222;
             // 
             // colSharh
@@ -435,7 +434,7 @@
             this.colSharh.MinWidth = 22;
             this.colSharh.Name = "colSharh";
             this.colSharh.Visible = true;
-            this.colSharh.VisibleIndex = 10;
+            this.colSharh.VisibleIndex = 9;
             this.colSharh.Width = 445;
             // 
             // gridControl1
@@ -736,6 +735,7 @@
             this.cmbHesabTafzili2.Properties.NullText = "";
             this.cmbHesabTafzili2.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbHesabTafzili2.Properties.ReadOnly = true;
+            this.cmbHesabTafzili2.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
             this.cmbHesabTafzili2.Properties.ValueMember = "Id";
             this.cmbHesabTafzili2.Size = new System.Drawing.Size(405, 34);
             this.cmbHesabTafzili2.TabIndex = 6;
@@ -796,6 +796,7 @@
             this.cmbHesabTafzili1.Properties.NullText = "";
             this.cmbHesabTafzili1.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbHesabTafzili1.Properties.ReadOnly = true;
+            this.cmbHesabTafzili1.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
             this.cmbHesabTafzili1.Properties.ValueMember = "Id";
             this.cmbHesabTafzili1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbHesabTafzili1.Size = new System.Drawing.Size(405, 34);
@@ -857,6 +858,7 @@
             this.cmbHesabMoin2.Properties.NullText = "";
             this.cmbHesabMoin2.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbHesabMoin2.Properties.ReadOnly = true;
+            this.cmbHesabMoin2.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
             this.cmbHesabMoin2.Properties.ValueMember = "Id";
             this.cmbHesabMoin2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbHesabMoin2.Size = new System.Drawing.Size(260, 34);
@@ -885,6 +887,7 @@
             this.cmbHesabMoin1.Properties.NullText = "";
             this.cmbHesabMoin1.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbHesabMoin1.Properties.ReadOnly = true;
+            this.cmbHesabMoin1.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
             this.cmbHesabMoin1.Properties.ValueMember = "Id";
             this.cmbHesabMoin1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbHesabMoin1.Size = new System.Drawing.Size(260, 34);

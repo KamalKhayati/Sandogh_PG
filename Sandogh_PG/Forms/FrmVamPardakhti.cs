@@ -102,7 +102,7 @@ namespace Sandogh_PG
                                     {
                                         var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2).OrderBy(s => s.Code).AsParallel();
                                         if (q1.Count() > 0)
-                                            allHesabTafzilisBindingSource1.DataSource =En== EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).AsParallel() : q1;
+                                            allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).AsParallel() : q1;
                                         else
                                             allHesabTafzilisBindingSource1.DataSource = null;
                                     }
@@ -190,7 +190,7 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "HesabName";
                                     if (Fm.ListTasviyeNashode)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4 ).OrderBy(s => s.Code).AsParallel();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4).OrderBy(s => s.Code).AsParallel();
                                         if (q1.Count() > 0)
                                             allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).AsParallel() : q1;
                                         else
@@ -213,7 +213,7 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "HesabName";
                                     if (Fm.ListTasviyeNashode)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5 ).OrderBy(s => s.Code).AsParallel();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5).OrderBy(s => s.Code).AsParallel();
                                         if (q1.Count() > 0)
                                             allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).AsParallel() : q1;
                                         else
@@ -334,7 +334,7 @@ namespace Sandogh_PG
             {
                 try
                 {
-                    var q = db.VamPardakhtis.Select(s => s);
+                    var q = db.VamPardakhtis.Select(s => s).AsParallel();
                     if (q.Any())
                     {
                         var MaximumCode = q.Max(p => p.Code);
@@ -474,8 +474,10 @@ namespace Sandogh_PG
                             int AazaId = Convert.ToInt32(cmbDaryaftkonande.EditValue);
                             int _VamId = Convert.ToInt32(txtId.Text);
                             int _SalMaliId = Convert.ToInt32(Fm.Fm.IDSalMali.Caption);
-                            var f1 = db.R_VamPardakhti_B_CheckTazmins.Where(s => s.SalMaliId == _SalMaliId && s.CheckTazmin1.VamGerandeId == AazaId && s.VamPardakhtin1.IsTasviye == false && s.VamPardakhtiId == _VamId).ToList();
-                            var q1 = db.CheckTazmins.Where(s => s.IsInSandogh == true && s.SalMaliId == _SalMaliId && s.VamGerandeId == AazaId).OrderBy(s => s.SeryalDaryaft).ToList();
+                            var f0 = db.R_VamPardakhti_B_CheckTazmins.Where(s => s.SalMaliId == _SalMaliId && s.CheckTazmin1.VamGerandeId == AazaId && s.VamPardakhtin1.IsTasviye == false && s.VamPardakhtiId == _VamId).AsParallel();
+                            var f1 = f0.ToList();
+                            var q0 = db.CheckTazmins.Where(s => s.IsInSandogh == true && s.SalMaliId == _SalMaliId && s.VamGerandeId == AazaId).OrderBy(s => s.SeryalDaryaft).AsParallel();
+                            var q1 = q0.ToList();
                             List<CheckTazmin> list2 = new List<CheckTazmin>();
                             if (q1.Count > 0)
                             {
@@ -506,8 +508,8 @@ namespace Sandogh_PG
                     var k = db.AllowedDevises.FirstOrDefault(s => s.DeviceID == _deviceID && s.DataBaseName == _dataBaseName);
                     if (k.VersionType == "Demo")
                     {
-                        var d = db.AsnadeHesabdariRows.Count();
-                        if (d >= 200)
+                        var d = db.AsnadeHesabdariRows.AsParallel();
+                        if (d.Count() >= 200)
                         {
                             k.IsActive = false;
                             db.SaveChanges();
@@ -1421,8 +1423,10 @@ namespace Sandogh_PG
         }
         private void txtMablaghAsli_EditValueChanged(object sender, EventArgs e)
         {
-            txtMablaghKarmozd.Text = MohasebeKarmozd();
-            txtMablaghAghsat.Text = MohasebeMablaghAgsat();
+            if (txtMablaghKarmozd.Text != "0")
+                txtMablaghKarmozd.Text = MohasebeKarmozd();
+            if (txtMablaghAghsat.Text != "0")
+                txtMablaghAghsat.Text = MohasebeMablaghAgsat();
         }
 
         private void txtDarsadeKarmozd_EditValueChanged(object sender, EventArgs e)
@@ -1438,7 +1442,8 @@ namespace Sandogh_PG
 
         private void txtMablaghKarmozd_EditValueChanged(object sender, EventArgs e)
         {
-            txtMablaghAghsat.Text = MohasebeMablaghAgsat();
+            if (txtMablaghAghsat.Text != "0")
+                txtMablaghAghsat.Text = MohasebeMablaghAgsat();
 
         }
 

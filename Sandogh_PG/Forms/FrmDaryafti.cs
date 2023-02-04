@@ -387,8 +387,8 @@ namespace Sandogh_PG
                             var k = db.AllowedDevises.FirstOrDefault(s => s.DeviceID == _deviceID && s.DataBaseName == _dataBaseName);
                             if (k.VersionType == "Demo")
                             {
-                                var d = db.AsnadeHesabdariRows.Count();
-                                if (d < 200)
+                                var d = db.AsnadeHesabdariRows.AsParallel();
+                                if (d.Count() < 200)
                                 {
                                     k.IsActive = true;
                                     db.SaveChanges();
@@ -600,8 +600,8 @@ namespace Sandogh_PG
                                 var k = db.AllowedDevises.FirstOrDefault(s => s.DeviceID == _deviceID && s.DataBaseName == _dataBaseName);
                                 if (k.VersionType == "Demo")
                                 {
-                                    var d = db.AsnadeHesabdariRows.Count();
-                                    if (d < 200)
+                                    var d = db.AsnadeHesabdariRows.AsParallel();
+                                    if (d.Count() < 200)
                                     {
                                         k.IsActive = true;
                                         db.SaveChanges();

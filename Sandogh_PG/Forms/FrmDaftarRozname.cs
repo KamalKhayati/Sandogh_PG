@@ -66,7 +66,7 @@ namespace Sandogh_PG
             txtTaTarikh.Text = DateTime.Now.ToString().Substring(0, 10);
             HelpClass1.DateTimeMask(txtAzTarikh);
             HelpClass1.DateTimeMask(txtTaTarikh);
-            FillDataGridDaftarRozname();
+            //FillDataGridDaftarRozname();
 
             txtAzTarikh.Focus();
         }
@@ -78,12 +78,12 @@ namespace Sandogh_PG
 
         private void txtAzTarikh_EditValueChanged(object sender, EventArgs e)
         {
-            FillDataGridDaftarRozname();
+            //FillDataGridDaftarRozname();
         }
 
         private void txtTaTarikh_EditValueChanged(object sender, EventArgs e)
         {
-            FillDataGridDaftarRozname();
+            //FillDataGridDaftarRozname();
 
         }
 
