@@ -23,6 +23,10 @@ namespace Sandogh_PG
             Fm = fm;
 
         }
+        public FrmDaryafti()
+        {
+            InitializeComponent();
+        }
         public bool IsActiveList1 = true;
         public bool IsActiveList2 = true;
         int _VamId = 0;

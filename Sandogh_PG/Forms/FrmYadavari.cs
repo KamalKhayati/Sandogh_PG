@@ -26,7 +26,8 @@ namespace Sandogh_PG
                 try
                 {
                     DateTime _DateTimeNow = DateTime.Now;
-                    var q = db.RizeAghsatVams.Where(f => f.ShomareSanad == 0 && f.TarikhSarresid < _DateTimeNow && f.VamPardakhti1.IsTasviye==false ).ToList();
+                    var p = db.RizeAghsatVams.Where(f => f.ShomareSanad == 0 && f.TarikhSarresid < _DateTimeNow && f.VamPardakhti1.IsTasviye==false ).AsParallel();
+                    var q = p.ToList();
                     if (q != null)
                         rizeAghsatVamsBindingSource.DataSource = q.OrderBy(f=>f.TarikhSarresid);
                     else
@@ -39,12 +40,14 @@ namespace Sandogh_PG
                     d1.DecrementMonth();
                     DateTime _DateTimeNow_1 = Convert.ToDateTime(d1.ToString());
                     List<HaghOzviat> List = new List<HaghOzviat>();
-                    var q2 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 3 && s.IsActive == true).ToList();
+                    var p2 = db.AllHesabTafzilis.Where(s => s.GroupTafziliId == 3 && s.IsActive == true).AsParallel();
+                    var q2 = p2.ToList();
                     if (q2.Count > 0)
                     {
                         foreach (var item in q2)
                         {
-                            var q1 = db.HaghOzviats.Where(f => f.AazaId == item.Id).ToList();
+                            var p1 = db.HaghOzviats.Where(f => f.AazaId == item.Id).AsParallel();
+                            var q1 = p1.ToList();
                             //var q1 = db.HaghOzviats.Where(f => f.Tarikh < _DateTimeNow_1);
                             if (q1.Count > 0)
                             {

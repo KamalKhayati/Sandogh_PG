@@ -62,7 +62,7 @@ namespace Sandogh_PG
 
         private void FrmDaftarRozname_Load(object sender, EventArgs e)
         {
-            txtAzTarikh.Text = new MyContext().AsnadeHesabdariRows.Any()? new MyContext().AsnadeHesabdariRows.Min(f => f.Tarikh).ToString().Substring(0, 10): "1398/01/01";
+            txtAzTarikh.Text = new MyContext().AsnadeHesabdariRows.Any() ? new MyContext().AsnadeHesabdariRows.Min(f => f.Tarikh).ToString().Substring(0, 10) : "1398/01/01";
             txtTaTarikh.Text = DateTime.Now.ToString().Substring(0, 10);
             HelpClass1.DateTimeMask(txtAzTarikh);
             HelpClass1.DateTimeMask(txtTaTarikh);
@@ -131,7 +131,8 @@ namespace Sandogh_PG
 
         private void FrmDaftarRozname_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MyDb.Dispose();
+            if (MyDb != null)
+                MyDb.Dispose();
         }
     }
 }

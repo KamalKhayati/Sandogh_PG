@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sandogh_PG
 {
-    public class AppVariable
+    public static class AppVariable
     {
         // مسیر دایکتوری ذخیره فایل کانفیگ 
         public static string fileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)

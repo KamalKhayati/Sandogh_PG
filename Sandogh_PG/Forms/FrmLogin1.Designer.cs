@@ -594,6 +594,7 @@
             this.Name = "FrmLogin1";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmLogin1_FormClosed);
             this.Load += new System.EventHandler(this.FrmLogin1_Load);
             this.Shown += new System.EventHandler(this.FrmLogin_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();

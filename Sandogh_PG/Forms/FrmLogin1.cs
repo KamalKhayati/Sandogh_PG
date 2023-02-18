@@ -12,12 +12,13 @@ using nucs.JsonSettings;
 using nucs.JsonSettings.Fluent;
 using System.Configuration;
 using System.Xml;
+using System.Data.SqlClient;
 
 namespace Sandogh_PG.Forms
 {
     public partial class FrmLogin1 : DevExpress.XtraEditors.XtraForm
     {
-        SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().WithEncryption("km113012").LoadNow();
+        SettingsBag Settings { get; set; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().WithEncryption("km113012").LoadNow();
 
         public FrmLogin1()
         {
@@ -35,8 +36,10 @@ namespace Sandogh_PG.Forms
 
 
             if (Settings[AppVariable.IsChangeDbName] == null)
+            //if (Settings.Data["IsChangeDbName" ]== null)
             {
                 Settings[AppVariable.IsChangeDbName] = "False";
+                //Settings.Set("IsChangeDbName", "False");
             }
             //string k = Settings[AppVariable.IsChangeDbName].ToString();
             lblSystemDate.Text = DateTime.Now.ToString().Substring(0, 10);
@@ -46,7 +49,10 @@ namespace Sandogh_PG.Forms
             {
                 try
                 {
-                    lblDataBace.Text = "دیتابیس: " + db.Database.Connection.Database.ToString();
+                    if (Settings[AppVariable.txtDatabaseName[0]] != null)
+                    {
+                        lblDataBace.Text = "دیتابیس: " + db.Database.Connection.Database.ToString();
+                    }
 
                 }
                 catch (Exception ex)
@@ -55,7 +61,7 @@ namespace Sandogh_PG.Forms
                         "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            
+
             if (cmbNameDataBaseSandogh.Properties.Items.Count > 1)
             {
                 cmbNameDataBaseSandogh.Visible = true;
@@ -314,6 +320,7 @@ namespace Sandogh_PG.Forms
             txtUserName2.Enabled = txtPassword2.Enabled = cmbAuthentication.SelectedIndex == 1 ? true : false;
         }
 
+
         //public class AppContext : ApplicationContext
         //{
         //    public AppContext()
@@ -358,6 +365,7 @@ namespace Sandogh_PG.Forms
                         Settings[AppVariable.IsChangeDbName] = "True";
                         Settings[AppVariable.txtUserName[_index]] = txtShenase.Text;
                         Settings[AppVariable.txtPassword[_index]] = txtPassword.Text;
+                        //Application.Exit();
                         Application.Restart();
                         return;
                     }
@@ -385,9 +393,22 @@ namespace Sandogh_PG.Forms
         {
             using (var db = new MyContext())
             {
-
+                
                 try
                 {
+                    //if (!string.IsNullOrEmpty(LblNameDatabase.Text))
+                    //{
+                    //    //string s1 = Application.StartupPath + @"\DB\" + cmbNameDataBaseSandogh.Text + ".mdf";
+                    //    string _connectionString = db.Database.Connection.ConnectionString;
+                    //    SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(_connectionString);
+                    //    if (System.IO.File.Exists(builder.AttachDBFilename))
+                    //    {
+                    //        string command1 = " ALTER DATABASE " + LblNameDatabase.Text + " SET ONLINE";
+                    //        db.Database.CommandTimeout = 360;
+                    //        db.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command1);
+                    //    }
+                    //}
+                    //db.Database.Initialize(true);
                     string _Shenase = HelpClass1.EncryptText(_Shenase1);
                     var q = db.Karbarans.FirstOrDefault(f => f.Shenase == _Shenase);
                     if (q != null)
@@ -412,6 +433,16 @@ namespace Sandogh_PG.Forms
                             frm._Shenase = _Shenase;
                             //frm.Text = "تمدید پشتیبانی برنامه";
                             frm.Show();
+
+                            //FrmMain fm = new FrmMain();
+                            //fm.txtUserId.Caption = p.Id.ToString(); ;
+                            //fm.txtUserName.Caption = p.Name;
+                            //fm.txtDateTimeNow.Caption = DateTime.Now.ToString().Substring(0, 10);
+                            ////fm.NameDataBase.Caption = x.DataBaseName;
+                            ////fm.ShNoskheBarname.Caption = x.VersionNumber;
+                            ////fm.IndexNameDataBase.Caption = cmbNameDataBaseSandogh.SelectedIndex.ToString();
+                            //fm.Show();
+
 
                             #region MyRegion
                             //var qq = db.TarifSandoghs.FirstOrDefault(s => s.IsDefault == true);
@@ -685,6 +716,12 @@ namespace Sandogh_PG.Forms
                 }
             }
 
+        }
+
+        private void FrmLogin1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Settings.Save();
+            Settings.Dispose();
         }
     }
 }

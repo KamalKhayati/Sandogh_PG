@@ -12,7 +12,6 @@ using DevExpress.XtraEditors;
 using nucs.JsonSettings;
 using nucs.JsonSettings.Fluent;
 using System.Data.Entity;
-using Sandogh_PG.Models;
 using Sandogh_PG.Forms;
 
 namespace Sandogh_PG

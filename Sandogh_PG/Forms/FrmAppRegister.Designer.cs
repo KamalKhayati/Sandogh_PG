@@ -55,6 +55,7 @@
             this.lblIsGaranti = new DevExpress.XtraEditors.LabelControl();
             this.comIsGaranti = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cmbDeviceID = new DevExpress.XtraEditors.LookUpEdit();
+            this.allowedDevisesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblcmbDeviceID = new DevExpress.XtraEditors.LabelControl();
             this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
@@ -71,7 +72,6 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.allowedDevisesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.txtCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSerial.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comVersionType.Properties)).BeginInit();
@@ -84,11 +84,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLNGarantiEndData.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comIsGaranti.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbDeviceID.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allowedDevisesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comIsActive.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLNVersionNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRegisterDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLNVersionType.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.allowedDevisesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCode
@@ -133,6 +133,7 @@
             this.txtSerial.Properties.Appearance.Options.UseTextOptions = true;
             this.txtSerial.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtSerial.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.txtSerial.Properties.PasswordChar = '*';
             this.txtSerial.Properties.ReadOnly = true;
             this.txtSerial.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtSerial.Size = new System.Drawing.Size(215, 34);
@@ -407,6 +408,10 @@
             this.cmbDeviceID.TabIndex = 0;
             this.cmbDeviceID.EditValueChanged += new System.EventHandler(this.cmbDeviceID_EditValueChanged);
             // 
+            // allowedDevisesBindingSource
+            // 
+            this.allowedDevisesBindingSource.DataSource = typeof(Sandogh_PG.AllowedDevise);
+            // 
             // lblcmbDeviceID
             // 
             this.lblcmbDeviceID.Location = new System.Drawing.Point(13, 25);
@@ -598,10 +603,6 @@
             this.btnCancel.ToolTipTitle = "انصراف";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // allowedDevisesBindingSource
-            // 
-            this.allowedDevisesBindingSource.DataSource = typeof(Sandogh_PG.Models.AllowedDevise);
-            // 
             // FrmAppRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 27F);
@@ -672,11 +673,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLNGarantiEndData.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comIsGaranti.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbDeviceID.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allowedDevisesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comIsActive.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLNVersionNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRegisterDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLNVersionType.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.allowedDevisesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

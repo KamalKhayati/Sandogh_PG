@@ -10,13 +10,12 @@
     using System.Xml;
     using System.Configuration;
     using System.Data;
-    using Sandogh_PG.Models;
     using nucs.JsonSettings;
     using nucs.JsonSettings.Fluent;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Sandogh_PG.MyContext>
     {
-        SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().WithEncryption("km113012").LoadNow();
+        SettingsBag Settings { get; set; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().WithEncryption("km113012").LoadNow();
 
         public Configuration()
         {
@@ -96,6 +95,14 @@
 
                 Settings[AppVariable.VersionNumber[i]] = Application.ProductVersion.ToString();
             }
+
+            //context.SaveChanges();
+            //context.Dispose();
+            //Settings.Save();
+            //Settings.Dispose();
         }
+
+
+
     }
 }

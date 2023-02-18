@@ -514,6 +514,8 @@ namespace Sandogh_PG
         {
             // int i = Convert.ToInt32(IndexNameDataBase.Caption);
             Settings[AppVariable.SkinName[0]] = DevExpress.LookAndFeel.UserLookAndFeel.Default.ActiveSkinName;
+            Settings.Save();
+            Settings.Dispose();
         }
 
         private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -885,6 +887,12 @@ namespace Sandogh_PG
         private void barButtonItem3_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             NameDataBase_ItemClick(null, null);
+        }
+
+        private void FrmMain_Shown(object sender, EventArgs e)
+        {
+            Settings.Save();
+            Settings.Dispose();
         }
     }
 }
