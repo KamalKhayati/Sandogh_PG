@@ -18,23 +18,23 @@ namespace Sandogh_PG
         public bool IsGaranti { get; set; }
         [Column(TypeName = "Date")]
         public DateTime GarantiEndData { get; set; }
-        [MaxLength(500)]
+        //[MaxLength(500)]
         public string LNGarantiEndData { get; set; }
-        [MaxLength(500)]
+        //[MaxLength(500)]
         public string DeviceID { get; set; }
-        [MaxLength(500)]
+        //[MaxLength(500)]
         public string LNDeviceID { get; set; }
-        [MaxLength(500)]
+        //[MaxLength(500)]
         public string DataBaseName { get; set; }
-        [MaxLength(500)]
+        //[MaxLength(500)]
         public string LNDataBaseName { get; set; }
-        [MaxLength(500)]
+        //[MaxLength(500)]
         public string VersionType { get; set; }
-        [MaxLength(500)]
+       // [MaxLength(500)]
         public string LNVersionType { get; set; }
-        [MaxLength(500)]
+       // [MaxLength(500)]
         public string VersionNumber { get; set; }
-        [MaxLength(500)]
+        //[MaxLength(500)]
         public string LNVersionNumber { get; set; }
         [Column(TypeName = "Date")]
         public DateTime RegisterDate { get; set; }

@@ -18,7 +18,7 @@ namespace Sandogh_PG
 {
     public partial class FrmAppRegister : DevExpress.XtraEditors.XtraForm
     {
-        //SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().WithEncryption("km113012").LoadNow();
+        //SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().LoadNow();
 
         FrmMain Fm;
         public FrmAppRegister(FrmMain fm)
@@ -139,7 +139,7 @@ namespace Sandogh_PG
                                     this.Close();
 
                                     var k = f.FirstOrDefault(s => s.DataBaseName == dataBase);
-                                    if (k!=null)
+                                    if (k != null)
                                     {
                                         if ((k.VersionType == "Orginal" && k.GarantiEndData >= DateTime.Now && k.IsGaranti == true) || k.VersionType == "Demo" || k.VersionType == "Display")
                                         {
@@ -212,8 +212,8 @@ namespace Sandogh_PG
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> InformationChecked()" + "\n" + ex.Message,
+                        "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -448,31 +448,52 @@ namespace Sandogh_PG
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> frmAppRegister_Load()" + "\n" + ex.Message,
+                        "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private string ReveresString(string RandomCode)
         {
-            char[] ch = RandomCode.ToCharArray();
-            Array.Reverse(ch);
-            return new string(ch);
+            try
+            {
+                char[] ch = RandomCode.ToCharArray();
+                Array.Reverse(ch);
+                return new string(ch);
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> ReveresString()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
         }
 
         private string GenerateSerial(string RandomCode)
         {
-            string ReveresRandomCode = ReveresString(RandomCode);
-            string Serial = string.Empty;
-            string code = ReveresRandomCode.Substring(0, 10);
-            for (int i = 0; i < code.Length; i++)
+            try
             {
-                char ch = char.Parse(code.Substring(i, 1));
-                Serial += ((int)ch).ToString();
+                string ReveresRandomCode = ReveresString(RandomCode);
+                string Serial = string.Empty;
+                string code = ReveresRandomCode.Substring(0, 10);
+                for (int i = 0; i < code.Length; i++)
+                {
+                    char ch = char.Parse(code.Substring(i, 1));
+                    Serial += ((int)ch).ToString();
+                }
+                string ReveresSerial = ReveresString(Serial);
+                return ReveresSerial.Substring(0, 10);
+
             }
-            string ReveresSerial = ReveresString(Serial);
-            return ReveresSerial.Substring(0, 10);
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> GenerateSerial()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+
+            }
         }
 
         public EnumCED En;
@@ -643,8 +664,8 @@ namespace Sandogh_PG
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> IsValidation()" + "\n" + ex.Message,
+                        "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
@@ -727,8 +748,9 @@ namespace Sandogh_PG
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> SetGarantiEndDate()" + "\n" + ex.Message,
+                        "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return string.Empty;
                 }
                 return string.Empty;
             }
@@ -736,13 +758,14 @@ namespace Sandogh_PG
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (txtSerial.ReadOnly == false)
+            try
             {
-                if (txtSerial.Text == GenerateSerial(_RandomCode))
+
+                if (txtSerial.ReadOnly == false)
                 {
-                    using (var db = new MyContext())
+                    if (txtSerial.Text == GenerateSerial(_RandomCode))
                     {
-                        try
+                        using (var db = new MyContext())
                         {
                             if (IsValidation())
                             {
@@ -839,32 +862,41 @@ namespace Sandogh_PG
                                 //Settings[AppVariable.GarantiDate[Convert.ToInt32(AppVariable.DefaltIndexCmbNameSandogh)]] = _GarantiEndData.ToString().Substring(0, 10);
                             }
                         }
-                        catch (Exception ex)
-                        {
-                            XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                                "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
                     }
-                }
-                else
-                {
-                    if (string.IsNullOrEmpty(txtSerial.Text))
-                        XtraMessageBox.Show("لطفاً سریال را وارد کنید");
                     else
-                        XtraMessageBox.Show("سریال وردی اشتباه است");
-                }
+                    {
+                        if (string.IsNullOrEmpty(txtSerial.Text))
+                            XtraMessageBox.Show("لطفاً سریال را وارد کنید");
+                        else
+                            XtraMessageBox.Show("سریال وردی اشتباه است");
+                    }
 
+                }
             }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> btnSave_Click()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
 
         private void FrmAppRegister_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (Fm != null)
+            try
             {
-                Fm.IsAllowed = false;
-            }
+                if (Fm != null)
+                {
+                    Fm.IsAllowed = false;
+                }
 
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> FrmAppRegister_FormClosed()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -903,8 +935,8 @@ namespace Sandogh_PG
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> btnCreate_Click()" + "\n" + ex.Message,
+                        "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -972,8 +1004,8 @@ namespace Sandogh_PG
                     }
                     catch (Exception ex)
                     {
-                        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> btnDelete_Click()" + "\n" + ex.Message,
+                            "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
@@ -997,37 +1029,45 @@ namespace Sandogh_PG
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(cmbDeviceID.EditValue) > 0)
+            try
             {
-                comVersionType.ReadOnly = false;
-                txtLNVersionType.ReadOnly = false;
-                comIsGaranti.ReadOnly = false;
-                comIsActive.ReadOnly = false;
-                txtRegisterDate.ReadOnly = false;
-                txtVersionNumber.ReadOnly = false;
-                txtLNVersionNumber.ReadOnly = false;
-                txtDeviceID.ReadOnly = false;
-                txtLNDeviceID.ReadOnly = false;
-                txtDataBase.ReadOnly = false;
-                txtLNDataBase.ReadOnly = false;
-                txtGarantiEndData.ReadOnly = false;
-                txtLNGarantiEndData.ReadOnly = false;
+                if (Convert.ToInt32(cmbDeviceID.EditValue) > 0)
+                {
+                    comVersionType.ReadOnly = false;
+                    txtLNVersionType.ReadOnly = false;
+                    comIsGaranti.ReadOnly = false;
+                    comIsActive.ReadOnly = false;
+                    txtRegisterDate.ReadOnly = false;
+                    txtVersionNumber.ReadOnly = false;
+                    txtLNVersionNumber.ReadOnly = false;
+                    txtDeviceID.ReadOnly = false;
+                    txtLNDeviceID.ReadOnly = false;
+                    txtDataBase.ReadOnly = false;
+                    txtLNDataBase.ReadOnly = false;
+                    txtGarantiEndData.ReadOnly = false;
+                    txtLNGarantiEndData.ReadOnly = false;
 
-                txtSerial.ReadOnly = false;
+                    txtSerial.ReadOnly = false;
 
-                En = EnumCED.Edit;
-                btnSave.Enabled = true;
+                    En = EnumCED.Edit;
+                    btnSave.Enabled = true;
+                }
+
             }
-
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> btnEdit_Click()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void cmbDeviceID_EditValueChanged(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(cmbDeviceID.EditValue) > 0)
+            try
             {
-                using (var db = new MyContext())
+                if (Convert.ToInt32(cmbDeviceID.EditValue) > 0)
                 {
-                    try
+                    using (var db = new MyContext())
                     {
                         int _Id = Convert.ToInt32(cmbDeviceID.EditValue);
                         var q = db.AllowedDevises.FirstOrDefault(s => s.Id == _Id);
@@ -1067,49 +1107,50 @@ namespace Sandogh_PG
                         }
 
                     }
-                    catch (Exception ex)
-                    {
-                        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+
                 }
+                else if (Convert.ToInt32(cmbDeviceID.EditValue) == 0)
+                {
+                    comVersionType.SelectedIndex = -1;
+                    txtLNVersionType.Text = string.Empty;
+                    txtRegisterDate.Text = string.Empty;
+                    txtVersionNumber.Text = string.Empty;
+                    txtLNVersionNumber.Text = string.Empty;
+                    txtDeviceID.Text = string.Empty;
+                    txtLNDeviceID.Text = string.Empty;
+                    txtDataBase.Text = string.Empty;
+                    txtLNDataBase.Text = string.Empty;
+                    txtGarantiEndData.Text = string.Empty;
+                    txtLNGarantiEndData.Text = string.Empty;
+                    comIsGaranti.SelectedIndex = 0;
+                    comIsActive.SelectedIndex = 0;
 
+                    deviceID = string.Empty;
+
+                    comVersionType.ReadOnly = false;
+                    txtLNVersionType.ReadOnly = false;
+                    comIsGaranti.ReadOnly = false;
+                    comIsActive.ReadOnly = false;
+                    txtRegisterDate.ReadOnly = false;
+                    txtVersionNumber.ReadOnly = false;
+                    txtLNVersionNumber.ReadOnly = false;
+                    txtDeviceID.ReadOnly = false;
+                    txtLNDeviceID.ReadOnly = false;
+                    txtDataBase.ReadOnly = false;
+                    txtLNDataBase.ReadOnly = false;
+                    txtGarantiEndData.ReadOnly = false;
+                    txtLNGarantiEndData.ReadOnly = false;
+
+                    txtSerial.ReadOnly = false;
+
+                }
             }
-            else if (Convert.ToInt32(cmbDeviceID.EditValue) == 0)
+            catch (Exception ex)
             {
-                comVersionType.SelectedIndex = -1;
-                txtLNVersionType.Text = string.Empty;
-                txtRegisterDate.Text = string.Empty;
-                txtVersionNumber.Text = string.Empty;
-                txtLNVersionNumber.Text = string.Empty;
-                txtDeviceID.Text = string.Empty;
-                txtLNDeviceID.Text = string.Empty;
-                txtDataBase.Text = string.Empty;
-                txtLNDataBase.Text = string.Empty;
-                txtGarantiEndData.Text = string.Empty;
-                txtLNGarantiEndData.Text = string.Empty;
-                comIsGaranti.SelectedIndex = 0;
-                comIsActive.SelectedIndex = 0;
-
-                deviceID = string.Empty;
-
-                comVersionType.ReadOnly = false;
-                txtLNVersionType.ReadOnly = false;
-                comIsGaranti.ReadOnly = false;
-                comIsActive.ReadOnly = false;
-                txtRegisterDate.ReadOnly = false;
-                txtVersionNumber.ReadOnly = false;
-                txtLNVersionNumber.ReadOnly = false;
-                txtDeviceID.ReadOnly = false;
-                txtLNDeviceID.ReadOnly = false;
-                txtDataBase.ReadOnly = false;
-                txtLNDataBase.ReadOnly = false;
-                txtGarantiEndData.ReadOnly = false;
-                txtLNGarantiEndData.ReadOnly = false;
-
-                txtSerial.ReadOnly = false;
-
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> cmbDeviceID_EditValueChanged()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void lblVersionType_Click(object sender, EventArgs e)
@@ -1169,8 +1210,8 @@ namespace Sandogh_PG
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> lblVersionType_Click()" + "\n" + ex.Message,
+                        "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -1178,10 +1219,19 @@ namespace Sandogh_PG
 
         private void lblRegisterDate_Click(object sender, EventArgs e)
         {
-            if (comVersionType.SelectedIndex == 0)
-                txtRegisterDate.Text = DateTime.Now.ToString().Substring(0, 10);
-            else
-                txtRegisterDate.Text = string.Empty;
+            try
+            {
+                if (comVersionType.SelectedIndex == 0)
+                    txtRegisterDate.Text = DateTime.Now.ToString().Substring(0, 10);
+                else
+                    txtRegisterDate.Text = string.Empty;
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> lblRegisterDate_Click()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void lblVersionNumber_Click(object sender, EventArgs e)
@@ -1191,10 +1241,19 @@ namespace Sandogh_PG
 
         private void lblLNVersionNumber_Click(object sender, EventArgs e)
         {
-            if (comVersionType.SelectedIndex == 0)
-                txtLNVersionNumber.Text = HelpClass1.EncryptText(txtVersionNumber.Text);
-            else
-                txtLNVersionNumber.Text = string.Empty;
+            try
+            {
+                if (comVersionType.SelectedIndex == 0)
+                    txtLNVersionNumber.Text = HelpClass1.EncryptText(txtVersionNumber.Text);
+                else
+                    txtLNVersionNumber.Text = string.Empty;
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> lblLNVersionNumber_Click()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void lblDeviceID_Click(object sender, EventArgs e)
@@ -1204,10 +1263,19 @@ namespace Sandogh_PG
 
         private void lblLNDeviceID_Click(object sender, EventArgs e)
         {
-            if (comVersionType.SelectedIndex == 0)
-                txtLNDeviceID.Text = HelpClass1.EncryptText(txtDeviceID.Text);
-            else
-                txtLNDeviceID.Text = string.Empty;
+            try
+            {
+                if (comVersionType.SelectedIndex == 0)
+                    txtLNDeviceID.Text = HelpClass1.EncryptText(txtDeviceID.Text);
+                else
+                    txtLNDeviceID.Text = string.Empty;
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> lblLNDeviceID_Click()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void lblDataBase_Click(object sender, EventArgs e)
@@ -1220,8 +1288,8 @@ namespace Sandogh_PG
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> lblDataBase_Click()" + "\n" + ex.Message,
+                        "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -1229,58 +1297,120 @@ namespace Sandogh_PG
 
         private void lblLNDataBase_Click(object sender, EventArgs e)
         {
-            if (comVersionType.SelectedIndex == 0)
-                txtLNDataBase.Text = HelpClass1.EncryptText(txtDataBase.Text);
-            else
-                txtLNDataBase.Text = string.Empty;
+            try
+            {
+                if (comVersionType.SelectedIndex == 0)
+                    txtLNDataBase.Text = HelpClass1.EncryptText(txtDataBase.Text);
+                else
+                    txtLNDataBase.Text = string.Empty;
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> lblLNDataBase_Click()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void lblGarantiEndData_Click(object sender, EventArgs e)
         {
-            if (comVersionType.SelectedIndex == 0)
-                txtGarantiEndData.Text = SetGarantiEndDate(txtDeviceID.Text, txtDataBase.Text, comVersionType.Text);
-            else
-                txtGarantiEndData.Text = string.Empty;
+            try
+            {
+                if (comVersionType.SelectedIndex == 0)
+                    txtGarantiEndData.Text = SetGarantiEndDate(txtDeviceID.Text, txtDataBase.Text, comVersionType.Text);
+                else
+                    txtGarantiEndData.Text = string.Empty;
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> lblGarantiEndData_Click()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void lblLNGarantiDate_Click(object sender, EventArgs e)
         {
-            if (comVersionType.SelectedIndex == 0)
-                txtLNGarantiEndData.Text = HelpClass1.EncryptText(txtGarantiEndData.Text);
-            else
-                txtLNGarantiEndData.Text = string.Empty;
+            try
+            {
+                if (comVersionType.SelectedIndex == 0)
+                    txtLNGarantiEndData.Text = HelpClass1.EncryptText(txtGarantiEndData.Text);
+                else
+                    txtLNGarantiEndData.Text = string.Empty;
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> lblLNGarantiDate_Click()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void lblIsGaranti_Click(object sender, EventArgs e)
         {
-            if (comVersionType.Text != "Orginal")
+            try
             {
-                comIsGaranti.SelectedIndex = 0;
+                if (comVersionType.Text != "Orginal")
+                {
+                    comIsGaranti.SelectedIndex = 0;
+                }
+                else
+                {
+                    comIsGaranti.SelectedIndex = Convert.ToDateTime(txtGarantiEndData.Text) > DateTime.Now ? 1 : 0;
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                comIsGaranti.SelectedIndex = Convert.ToDateTime(txtGarantiEndData.Text) > DateTime.Now ? 1 : 0;
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> lblIsGaranti_Click()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void lblIsActive_Click(object sender, EventArgs e)
         {
-            comIsActive.SelectedIndex = comVersionType.Text == "Display" ? 0 : 1;
+            try
+            {
+                comIsActive.SelectedIndex = comVersionType.Text == "Display" ? 0 : 1;
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> lblIsActive_Click()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void lblCode_Click(object sender, EventArgs e)
         {
-            _RandomCode = HelpClass1.RandomCode();
-            txtCode.Text = _RandomCode;
+            try
+            {
+                _RandomCode = HelpClass1.RandomCode();
+                txtCode.Text = _RandomCode;
 
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> lblCode_Click()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void lblLNVersionType_Click(object sender, EventArgs e)
         {
-            if (comVersionType.SelectedIndex == 0)
-                txtLNVersionType.Text = HelpClass1.EncryptText(comVersionType.Text);
-            else
-                txtLNVersionType.Text = string.Empty;
+            try
+            {
+                if (comVersionType.SelectedIndex == 0)
+                    txtLNVersionType.Text = HelpClass1.EncryptText(comVersionType.Text);
+                else
+                    txtLNVersionType.Text = string.Empty;
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> lblLNVersionType_Click()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void lblcmbDeviceID_Click(object sender, EventArgs e)
@@ -1400,25 +1530,34 @@ namespace Sandogh_PG
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            comVersionType.ReadOnly = true;
-            txtLNVersionType.ReadOnly = true;
-            comIsGaranti.ReadOnly = true;
-            comIsActive.ReadOnly = true;
-            txtRegisterDate.ReadOnly = true;
-            txtVersionNumber.ReadOnly = true;
-            txtLNVersionNumber.ReadOnly = true;
-            txtDeviceID.ReadOnly = true;
-            txtLNDeviceID.ReadOnly = true;
-            txtDataBase.ReadOnly = true;
-            txtLNDataBase.ReadOnly = true;
-            txtGarantiEndData.ReadOnly = true;
-            txtLNGarantiEndData.ReadOnly = true;
+            try
+            {
+                comVersionType.ReadOnly = true;
+                txtLNVersionType.ReadOnly = true;
+                comIsGaranti.ReadOnly = true;
+                comIsActive.ReadOnly = true;
+                txtRegisterDate.ReadOnly = true;
+                txtVersionNumber.ReadOnly = true;
+                txtLNVersionNumber.ReadOnly = true;
+                txtDeviceID.ReadOnly = true;
+                txtLNDeviceID.ReadOnly = true;
+                txtDataBase.ReadOnly = true;
+                txtLNDataBase.ReadOnly = true;
+                txtGarantiEndData.ReadOnly = true;
+                txtLNGarantiEndData.ReadOnly = true;
 
-            txtSerial.ReadOnly = true;
+                txtSerial.ReadOnly = true;
 
-            En = EnumCED.Cancel;
-            btnSave.Enabled = false;
+                En = EnumCED.Cancel;
+                btnSave.Enabled = false;
 
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> btnCancel_Click()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

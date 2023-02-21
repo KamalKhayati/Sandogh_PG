@@ -698,7 +698,7 @@ namespace Sandogh_PG
                     Date2 = q3 != null ? Reverse(q3.ToString().Substring(0, 10)) : "....................";
                     MablaghVam = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("MablaghAsli")) ? gridView1.GetFocusedRowCellDisplayText("MablaghAsli") : "....................";
                     MablaghKarmozd = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("MablaghKarmozd")) ? gridView1.GetFocusedRowCellDisplayText("MablaghKarmozd") : "....................";
-                    DarsadKarmozd = MablaghVam != "0" && MablaghKarmozd != "0" ? (Convert.ToInt32(MablaghVam.Replace(",", "")) / Convert.ToInt32(MablaghKarmozd.Replace(",", ""))).ToString() : "...........";
+                    DarsadKarmozd = MablaghVam != "0" && MablaghKarmozd != "0" ? (Convert.ToDecimal(MablaghVam.Replace(",", "")) / Convert.ToDecimal(MablaghKarmozd.Replace(",", ""))).ToString() : "...........";
                     FasleAghsat = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("FaseleAghsat")) ? gridView1.GetFocusedRowCellDisplayText("FaseleAghsat") : "....................";
                     TedadeAghsat = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("TedadAghsat")) ? gridView1.GetFocusedRowCellDisplayText("TedadAghsat") : "..........";
                     MablaghGhestAval = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("MablaghAghsat")) ? gridView1.GetFocusedRowCellDisplayText("MablaghAghsat") : "....................";
@@ -749,11 +749,11 @@ namespace Sandogh_PG
 
                     _VamPardakhtiId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id"));
                     var q5 = db.CheckTazmins.Where(f => f.VamGerandeId == IdShakhs && f.IsInSandogh == true).ToList();
-                    var q51=q5.Select(s => s.Id).ToList();
-                    var p5 = db.R_VamPardakhti_B_CheckTazmins.Where(s => s.CheckTazmin1.VamGerandeId == IdShakhs && s.VamPardakhtiId == _VamPardakhtiId).Select(s=>s.CheckTazminId).ToList();
+                    var q51 = q5.Select(s => s.Id).ToList();
+                    var p5 = db.R_VamPardakhti_B_CheckTazmins.Where(s => s.CheckTazmin1.VamGerandeId == IdShakhs && s.VamPardakhtiId == _VamPardakhtiId).Select(s => s.CheckTazminId).ToList();
                     foreach (var item in q51)
                     {
-                        if (!p5.Any(s=>s.Equals(item)))
+                        if (!p5.Any(s => s.Equals(item)))
                         {
                             q5.Remove(q5.FirstOrDefault(s => s.Id == item));
                         }
@@ -894,8 +894,8 @@ namespace Sandogh_PG
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> GetInfoForWord()" + "\n" + ex.Message,
+                        "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -904,11 +904,11 @@ namespace Sandogh_PG
 
         private void btnGharardad_Click(object sender, EventArgs e)
         {
-            btnGharardad.Enabled = false;
-            GetInfoForWord();
-            //  create offer letter
             try
             {
+                btnGharardad.Enabled = false;
+                GetInfoForWord();
+                //  create offer letter
                 FilePath = Application.StartupPath + @"\Report\Gharardad";
                 //  Just to kill WINWORD.EXE if it is running
                 KillProcess("winword");
@@ -998,13 +998,14 @@ namespace Sandogh_PG
                 else
                     XtraMessageBox.Show("فایل  موقت Gharardade_Temp یافت نشد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                btnGharardad.Enabled = true;
+                OpenFilWord();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //XtraMessageBox.Show("عملیات با خطا مواجه شد", "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> btnGharardad_Click()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            btnGharardad.Enabled = true;
-            OpenFilWord();
         }
 
         private void FindAndReplace(Word.Application wordApp, object findText, object replaceText)
@@ -1219,7 +1220,7 @@ namespace Sandogh_PG
                     var q2 = db.RizeAghsatVams.Where(s => s.VamPardakhti1.IsTasviye == false).ToList();
                     foreach (var item in q1)
                     {
-                        if (q2.Where(s => s.VamPardakhtiId == item.Id).Sum(s => s.MablaghAghsat)!=0)
+                        if (q2.Where(s => s.VamPardakhtiId == item.Id).Sum(s => s.MablaghAghsat) != 0)
                         {
                             if (item.MablaghAsli + item.MablaghKarmozd != q2.Where(s => s.VamPardakhtiId == item.Id).Sum(s => s.MablaghAghsat))
                             {
@@ -1231,7 +1232,7 @@ namespace Sandogh_PG
                         }
                         else
                         {
-                            if (XtraMessageBox.Show("وام شماره " + item.Code + " " + item.NameAaza + " قسط بندی نشده است آیا فرم بسته شود؟", "پیغام", MessageBoxButtons.YesNo, MessageBoxIcon.Information)==DialogResult.No)
+                            if (XtraMessageBox.Show("وام شماره " + item.Code + " " + item.NameAaza + " قسط بندی نشده است آیا فرم بسته شود؟", "پیغام", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
                             {
                                 e.Cancel = true;
                                 return;

@@ -73,8 +73,8 @@ namespace Sandogh_PG
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> FrmYadavari_Load()" + "\n" + ex.Message,
+                        "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

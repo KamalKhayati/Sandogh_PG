@@ -22,46 +22,64 @@
         public MyContext()
             : base("name=MyContext")
         {
-            #region
-            //پیش فرض
-            //Database.SetInitializer<MyContext>(new CreateDatabaseIfNotExists<MyContext>());
-            //    if (SetIni == SetInitialize.DropCreateDatabaseAlways)
-            //حذف دیتابیس قبلی بهمراه داده های داخلش و ایجاد دیتابیس جدید بدون داده در صورت تغییرویاعدم تغییر(در هرصورت) کلاس مدل
-            ////     Database.SetInitializer<MyContext>(new DropCreateDatabaseAlways<MyContext>());
-            // حذف دیتابیس قبلی بهمراه داده های داخلش و ایجاد دیتابیس جدید بدون داده در صورت تغییر کلاس مدل
-            //Database.SetInitializer<MyContext>(new DropCreateDatabaseIfModelChanges<MyContext>());
-            // غیرفعال کردن پیکربندی دیتابیس برای اینکه داده های فعلی موجود در دیتا بیس حذف نشود
-            //Database.SetInitializer<MyContext>(null);
-            //پیکربندی دیتابیس بصورت Coustom
-            //Database.SetInitializer<MyContext>(new MyContextInitializer());
-            #endregion
-            //Migration SetInitializer
-            if (Database.Connection.ConnectionString != "")
+            try
             {
-                Database.SetInitializer<MyContext>(new MigrateDatabaseToLatestVersion<MyContext, Configuration>(true));
-                SqlConnection.ClearAllPools();
+                #region
+                //پیش فرض
+                //Database.SetInitializer<MyContext>(new CreateDatabaseIfNotExists<MyContext>());
+                //    if (SetIni == SetInitialize.DropCreateDatabaseAlways)
+                //حذف دیتابیس قبلی بهمراه داده های داخلش و ایجاد دیتابیس جدید بدون داده در صورت تغییرویاعدم تغییر(در هرصورت) کلاس مدل
+                ////     Database.SetInitializer<MyContext>(new DropCreateDatabaseAlways<MyContext>());
+                // حذف دیتابیس قبلی بهمراه داده های داخلش و ایجاد دیتابیس جدید بدون داده در صورت تغییر کلاس مدل
+                //Database.SetInitializer<MyContext>(new DropCreateDatabaseIfModelChanges<MyContext>());
+                // غیرفعال کردن پیکربندی دیتابیس برای اینکه داده های فعلی موجود در دیتا بیس حذف نشود
+                //Database.SetInitializer<MyContext>(null);
+                //پیکربندی دیتابیس بصورت Coustom
+                //Database.SetInitializer<MyContext>(new MyContextInitializer());
+                #endregion
+                //Migration SetInitializer
+                if (Database.Connection.ConnectionString != "")
+                {
+                    Database.SetInitializer<MyContext>(new MigrateDatabaseToLatestVersion<MyContext, Configuration>(true));
+                    SqlConnection.ClearAllPools();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> MyContext()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public MyContext(SetInitialize SetIni)
             : base("name=MyContext")
         {
-            if (SetIni == SetInitialize.DropCreateDatabaseAlways)
-                //حذف دیتابیس قبلی بهمراه داده های داخلش و ایجاد دیتابیس جدید بدون داده در صورت تغییرویاعدم تغییر(در هرصورت) کلاس مدل
-                Database.SetInitializer<MyContext>(new DropCreateDatabaseAlways<MyContext>());
-            SqlConnection.ClearAllPools();
-            #region
-            //پیش فرض
-            //Database.SetInitializer<MyContext>(new CreateDatabaseIfNotExists<MyContext>());
-            // حذف دیتابیس قبلی بهمراه داده های داخلش و ایجاد دیتابیس جدید بدون داده در صورت تغییر کلاس مدل
-            //Database.SetInitializer<MyContext>(new DropCreateDatabaseIfModelChanges<MyContext>());
-            // غیرفعال کردن پیکربندی دیتابیس برای اینکه داده های فعلی موجود در دیتا بیس حذف نشود
-            //Database.SetInitializer<MyContext>(null);
-            //پیکربندی دیتابیس بصورت Coustom
-            //Database.SetInitializer<MyContext>(new MyContextInitializer());
-            //    if (SetIni == SetInitialize.MigrateDatabaseToLatestVersion)
-            //Migration SetInitializer
-            //        Database.SetInitializer<MyContext>(new MigrateDatabaseToLatestVersion<MyContext, Configuration>(true));
-            #endregion
+            try
+            {
+                if (SetIni == SetInitialize.DropCreateDatabaseAlways)
+                    //حذف دیتابیس قبلی بهمراه داده های داخلش و ایجاد دیتابیس جدید بدون داده در صورت تغییرویاعدم تغییر(در هرصورت) کلاس مدل
+                    Database.SetInitializer<MyContext>(new DropCreateDatabaseAlways<MyContext>());
+                SqlConnection.ClearAllPools();
+                #region
+                //پیش فرض
+                //Database.SetInitializer<MyContext>(new CreateDatabaseIfNotExists<MyContext>());
+                // حذف دیتابیس قبلی بهمراه داده های داخلش و ایجاد دیتابیس جدید بدون داده در صورت تغییر کلاس مدل
+                //Database.SetInitializer<MyContext>(new DropCreateDatabaseIfModelChanges<MyContext>());
+                // غیرفعال کردن پیکربندی دیتابیس برای اینکه داده های فعلی موجود در دیتا بیس حذف نشود
+                //Database.SetInitializer<MyContext>(null);
+                //پیکربندی دیتابیس بصورت Coustom
+                //Database.SetInitializer<MyContext>(new MyContextInitializer());
+                //    if (SetIni == SetInitialize.MigrateDatabaseToLatestVersion)
+                //Migration SetInitializer
+                //        Database.SetInitializer<MyContext>(new MigrateDatabaseToLatestVersion<MyContext, Configuration>(true));
+                #endregion
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> MyContext()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
@@ -149,9 +167,8 @@
             }
             catch (Exception ex)
             {
-
-                XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                    "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> OnModelCreating()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //finally
             //{

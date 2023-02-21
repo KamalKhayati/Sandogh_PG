@@ -23,27 +23,36 @@ namespace Sandogh_PG
     public partial class FrmMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         //SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().WithEncryption("asdjklasjdkajsd654654").LoadNow();
-        SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().WithEncryption("km113012").LoadNow();
+        SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().LoadNow();
         public FrmMain()
         {
             InitializeComponent();
 
-            #region کدهای مربوط به ذخیره تم های فرم اصلی برنامه 
+            try
+            {
+                #region کدهای مربوط به ذخیره تم های فرم اصلی برنامه 
 
-            DevExpress.XtraBars.Helpers.SkinHelper.InitSkinGallery(skinRibbonGalleryBarItem1, true, true);
-            skinRibbonGalleryBarItem1.GalleryItemClick += new DevExpress.XtraBars.Ribbon.GalleryItemClickEventHandler(skinRibbonGalleryBarItem1_GalleryItemClick);
+                DevExpress.XtraBars.Helpers.SkinHelper.InitSkinGallery(skinRibbonGalleryBarItem1, true, true);
+                skinRibbonGalleryBarItem1.GalleryItemClick += new DevExpress.XtraBars.Ribbon.GalleryItemClickEventHandler(skinRibbonGalleryBarItem1_GalleryItemClick);
 
-            //try
-            //{
-            //    DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(Settings[AppVariable.SkinName].ToString() ?? "The Bezier");
+                //try
+                //{
+                //    DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(Settings[AppVariable.SkinName].ToString() ?? "The Bezier");
 
-            //}
-            //catch (Exception)
-            //{
+                //}
+                //catch (Exception)
+                //{
 
-            //}
+                //}
 
-            #endregion کدهای مربوط به ذخیره تم های فرم اصلی برنامه 
+                #endregion کدهای مربوط به ذخیره تم های فرم اصلی برنامه 
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> FrmMain()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public new void ActiveForm(XtraForm form)
@@ -130,8 +139,8 @@ namespace Sandogh_PG
                     Settings[AppVariable.IsChangeDbName] = "False";
                     string _DeviceID = HelpClass1.GetMadarBoardSerial();
                     string _dataBaseName = db.Database.Connection.Database;
-                     
-                    var q5 = db.AllowedDevises.FirstOrDefault(s => s.DeviceID == _DeviceID && s.DataBaseName== _dataBaseName);
+
+                    var q5 = db.AllowedDevises.FirstOrDefault(s => s.DeviceID == _DeviceID && s.DataBaseName == _dataBaseName);
                     var q = db.TarifSandoghs.FirstOrDefault(s => s.IsDefault == true);
                     if (q != null && q5 != null)
                     {
@@ -349,8 +358,8 @@ namespace Sandogh_PG
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> FrmMain_Load()" + "\n" + ex.Message,
+                        "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -481,8 +490,8 @@ namespace Sandogh_PG
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> btnChangeBackground_ItemClick()" + "\n" + ex.Message,
+                        "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -512,45 +521,62 @@ namespace Sandogh_PG
 
         private void skinRibbonGalleryBarItem1_GalleryItemClick(object sender, DevExpress.XtraBars.Ribbon.GalleryItemClickEventArgs e)
         {
-            // int i = Convert.ToInt32(IndexNameDataBase.Caption);
-            Settings[AppVariable.SkinName[0]] = DevExpress.LookAndFeel.UserLookAndFeel.Default.ActiveSkinName;
-            Settings.Save();
-            Settings.Dispose();
+            try
+            {
+                // int i = Convert.ToInt32(IndexNameDataBase.Caption);
+                Settings[AppVariable.SkinName[0]] = DevExpress.LookAndFeel.UserLookAndFeel.Default.ActiveSkinName;
+                Settings.Save();
+                Settings.Dispose();
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> skinRibbonGalleryBarItem1_GalleryItemClick()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //using (var context = new MyContext())
-            //{
-            //    string _NameDataBase = NameDataBase.Caption;
-            //    //string command = "ALTER DATABASE Sandogh_PG SET OFFLINE WITH ROLLBACK IMMEDIATE " +
-            //    //                   " RESTORE DATABASE Sandogh_PG FROM DISK='" + txtSelectFile.Text + "' WITH REPLACE " +
-            //    //                    "ALTER DATABASE Sandogh_PG SET ONLINE";
-            //    //string command = "ALTER DATABASE " + cmbNameDataBaseSandogh.Text + " SET OFFLINE WITH ROLLBACK IMMEDIATE " +
-            //    //                 "ALTER DATABASE " + cmbNameDataBaseSandogh.Text + " SET ONLINE";
-            //    //string command = " ALTER DATABASE " + cmbNameDataBaseSandogh.Text + " SET ONLINE";
-            //    string command = "DECLARE	@Spid INT DECLARE @ExecSQL VARCHAR(255) DECLARE KillCursor CURSOR LOCAL STATIC READ_ONLY FORWARD_ONLY " +
-            //                     "FOR SELECT DISTINCT SPID FROM    MASTER..SysProcesses WHERE DBID = DB_ID('" + _NameDataBase + "') OPEN KillCursor " +
-            //                     "--Grab the first SPID FETCH   NEXT FROM    KillCursor INTO    @Spid WHILE	@@FETCH_STATUS = 0 BEGIN " +
-            //                     "SET     @ExecSQL = 'KILL ' + CAST(@Spid AS VARCHAR(50)) EXEC(@ExecSQL) -- Pull the next SPID FETCH NEXT FROM KillCursor INTO @Spid END " +
-            //                     "CLOSE   KillCursor DEALLOCATE  KillCursor " /*+
-            //                     "ALTER DATABASE " + _NameDataBase + " SET ONLINE"*/;
-            //    context.Database.CommandTimeout = 360;
-            //    context.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command);
-            //}
-
-            //SqlConnection.ClearAllPools();
-            //Application.Exit();
-            //Application.ExitThread();
-
-            if (!string.IsNullOrEmpty(FilePath))
+            try
             {
-                foreach (var file in Directory.GetFiles(FilePath, "*.tmp", SearchOption.AllDirectories))
-                {
-                    File.Delete(file);
-                }
-            }
+                //using (var context = new MyContext())
+                //{
+                //    string _NameDataBase = NameDataBase.Caption;
+                //    //string command = "ALTER DATABASE Sandogh_PG SET OFFLINE WITH ROLLBACK IMMEDIATE " +
+                //    //                   " RESTORE DATABASE Sandogh_PG FROM DISK='" + txtSelectFile.Text + "' WITH REPLACE " +
+                //    //                    "ALTER DATABASE Sandogh_PG SET ONLINE";
+                //    //string command = "ALTER DATABASE " + cmbNameDataBaseSandogh.Text + " SET OFFLINE WITH ROLLBACK IMMEDIATE " +
+                //    //                 "ALTER DATABASE " + cmbNameDataBaseSandogh.Text + " SET ONLINE";
+                //    //string command = " ALTER DATABASE " + cmbNameDataBaseSandogh.Text + " SET ONLINE";
+                //    string command = "DECLARE	@Spid INT DECLARE @ExecSQL VARCHAR(255) DECLARE KillCursor CURSOR LOCAL STATIC READ_ONLY FORWARD_ONLY " +
+                //                     "FOR SELECT DISTINCT SPID FROM    MASTER..SysProcesses WHERE DBID = DB_ID('" + _NameDataBase + "') OPEN KillCursor " +
+                //                     "--Grab the first SPID FETCH   NEXT FROM    KillCursor INTO    @Spid WHILE	@@FETCH_STATUS = 0 BEGIN " +
+                //                     "SET     @ExecSQL = 'KILL ' + CAST(@Spid AS VARCHAR(50)) EXEC(@ExecSQL) -- Pull the next SPID FETCH NEXT FROM KillCursor INTO @Spid END " +
+                //                     "CLOSE   KillCursor DEALLOCATE  KillCursor " /*+
+                //                     "ALTER DATABASE " + _NameDataBase + " SET ONLINE"*/;
+                //    context.Database.CommandTimeout = 360;
+                //    context.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command);
+                //}
 
+                //SqlConnection.ClearAllPools();
+                //Application.Exit();
+                //Application.ExitThread();
+
+                if (!string.IsNullOrEmpty(FilePath))
+                {
+                    foreach (var file in Directory.GetFiles(FilePath, "*.tmp", SearchOption.AllDirectories))
+                    {
+                        File.Delete(file);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> FrmMain_FormClosed()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnSoratSoodVZiyan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -590,8 +616,8 @@ namespace Sandogh_PG
                     }
                     catch (Exception ex)
                     {
-                        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> FrmMain_KeyDown()" + "\n" + ex.Message,
+                            "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
@@ -610,17 +636,17 @@ namespace Sandogh_PG
         public bool IsOkDelete = false;
         private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (XtraMessageBox.Show("آیا همه اطلاعات ثبت شده حذف گردد ؟", "پیغام حذف کلیه اطلاعات", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            try
             {
-                if (XtraMessageBox.Show("آیا برای انجام اینکار مطمئن هستید ؟", "پیغام حذف کلیه اطلاعات", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                if (XtraMessageBox.Show("آیا همه اطلاعات ثبت شده حذف گردد ؟", "پیغام حذف کلیه اطلاعات", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
-                    FrmShenaseVRamz Fm = new FrmShenaseVRamz(this);
-                    Fm.ShowDialog();
-                    if (IsOkDelete)
+                    if (XtraMessageBox.Show("آیا برای انجام اینکار مطمئن هستید ؟", "پیغام حذف کلیه اطلاعات", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
-                        using (var db = new MyContext(SetInitialize.DropCreateDatabaseAlways))
+                        FrmShenaseVRamz Fm = new FrmShenaseVRamz(this);
+                        Fm.ShowDialog();
+                        if (IsOkDelete)
                         {
-                            try
+                            using (var db = new MyContext(SetInitialize.DropCreateDatabaseAlways))
                             {
                                 db.Database.Initialize(true);
                                 // XtraMessageBox.Show("کلیه اطلاعات ثبت شده با موفقیت حذف گردید و نرم افزار مجدداً راه اندازی خواهد شد", "پیغام", MessageBoxButtons.OK);
@@ -629,14 +655,14 @@ namespace Sandogh_PG
                                 //Application.Restart();
                                 Application.Exit();
                             }
-                            catch (Exception ex)
-                            {
-                                //Application.Exit();
-                                XtraMessageBox.Show(ex.Message);
-                            }
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> barButtonItem3_ItemClick()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -689,10 +715,10 @@ namespace Sandogh_PG
                 //Word.Document document = ap.Documents.Open(FilePath + @"\Gharardade_Temp.doc",);
 
             }
-            catch //(Exception)
+            catch (Exception ex)
             {
-                //doc.Application.Quit(ref missing, ref missing, ref missing);
-                //throw;
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> OpenFilWord()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -712,8 +738,8 @@ namespace Sandogh_PG
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> GetInfoForWord()" + "\n" + ex.Message,
+                        "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -722,41 +748,59 @@ namespace Sandogh_PG
 
         public static void KillProcess(string name)
         {
-            Process[] pr = Process.GetProcessesByName(name);
-
-            foreach (Process prs in pr)
+            try
             {
-                if (prs.ProcessName.ToLower() == name)
+                Process[] pr = Process.GetProcessesByName(name);
+
+                foreach (Process prs in pr)
                 {
-                    prs.Kill();
+                    if (prs.ProcessName.ToLower() == name)
+                    {
+                        prs.Kill();
+                    }
                 }
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> KillProcess()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
 
         private void FindAndReplace(Word.Application wordApp, object findText, object replaceText)
         {
-            object matchCase = true;
-            object matchWholeWord = true;
-            object matchWildCards = false;
-            object matchSoundsLike = false;
-            object matchAllWordForms = false;
-            object forward = true;
-            object format = false;
-            object matchKashida = false;
-            object matchDiacritics = false;
-            object matchAlefHamza = false;
-            object matchControl = false;
-            object read_only = false;
-            object visible = true;
-            object replace = 2;
-            object wrap = 1;
-            wordApp.Selection.Find.Execute(ref findText, ref matchCase,
-                ref matchWholeWord, ref matchWildCards, ref matchSoundsLike,
-                ref matchAllWordForms, ref forward, ref wrap, ref format,
-                ref replaceText, ref replace, ref matchKashida,
-                        ref matchDiacritics,
-                ref matchAlefHamza, ref matchControl);
+            try
+            {
+                object matchCase = true;
+                object matchWholeWord = true;
+                object matchWildCards = false;
+                object matchSoundsLike = false;
+                object matchAllWordForms = false;
+                object forward = true;
+                object format = false;
+                object matchKashida = false;
+                object matchDiacritics = false;
+                object matchAlefHamza = false;
+                object matchControl = false;
+                object read_only = false;
+                object visible = true;
+                object replace = 2;
+                object wrap = 1;
+                wordApp.Selection.Find.Execute(ref findText, ref matchCase,
+                    ref matchWholeWord, ref matchWildCards, ref matchSoundsLike,
+                    ref matchAllWordForms, ref forward, ref wrap, ref format,
+                    ref replaceText, ref replace, ref matchKashida,
+                            ref matchDiacritics,
+                    ref matchAlefHamza, ref matchControl);
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> FindAndReplace()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         string FilePath = string.Empty;
@@ -804,10 +848,10 @@ namespace Sandogh_PG
                     else
                         XtraMessageBox.Show("فایل  موقت Gharardade_Temp یافت نشد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch //(Exception ex)
+                catch (Exception ex)
                 {
-                    // XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
-                    //   "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> SetInFoToWord()" + "\n" + ex.Message,
+                        "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -891,8 +935,17 @@ namespace Sandogh_PG
 
         private void FrmMain_Shown(object sender, EventArgs e)
         {
-            Settings.Save();
-            Settings.Dispose();
+            try
+            {
+                Settings.Save();
+                Settings.Dispose();
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> FrmMain_Shown()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
