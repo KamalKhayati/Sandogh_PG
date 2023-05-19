@@ -34,8 +34,8 @@
             {
                 int i = Convert.ToInt32(Settings[AppVariable.DefaltIndexCmbNameSandogh]);
                 //string a = Settings[AppVariable.VersionNumber[i]].ToString();
-                //if (Settings[AppVariable.VersionNumber[i]] == null || Settings[AppVariable.VersionNumber[i]].ToString() != "1.0.0.44")
-                if (Settings[AppVariable.VersionNumber[i]] == null)
+                //if (Settings[AppVariable.VersionNumber[i]] == null)
+                if (Settings[AppVariable.VersionNumber[i]] == null || Settings[AppVariable.VersionNumber[i]].ToString() != "1.0.0.52")
                 {
                     //  This method will be called after migrating to the latest version.
 
@@ -68,7 +68,9 @@
                     context.Entry(new AllHesabTafzili() { Id = 5, Id2 = 2, Code = 5000002, Name = "امتیاز نرم افزار", SandoghId = 1, IsActive = true, GroupTafziliId = 6 }).State = context.AllHesabTafzilis.Any(s => s.Code == 5000002) ? EntityState.Unchanged : EntityState.Added;
 
                     context.Entry(new CodeMoin() { Id = 1, Code = 1001, Name = "صندوق و بانک", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 1001) ? EntityState.Unchanged : EntityState.Added;
-                    context.Entry(new CodeMoin() { Id = 2, Code = 2001, Name = "وامهای دریافتنی", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 2001) ? EntityState.Unchanged : EntityState.Added;
+                    context.Entry(new CodeMoin() { Id = 2, Code = 2001, Name = "وامهای دریافتنی (ق ح)", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 2001) ? EntityState.Unchanged : EntityState.Added;
+                    context.Entry(new CodeMoin() { Id = 12, Code = 2002, Name = "وامهای دریافتنی (و ع)", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 2002) ? EntityState.Unchanged : EntityState.Added;
+                    context.Entry(new CodeMoin() { Id = 13, Code = 2003, Name = "وامهای دریافتنی (و ض)", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 2003) ? EntityState.Unchanged : EntityState.Added;
                     context.Entry(new CodeMoin() { Id = 3, Code = 3001, Name = "مساعده", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 3001) ? EntityState.Unchanged : EntityState.Added;
                     context.Entry(new CodeMoin() { Id = 4, Code = 4001, Name = "بدهکاران", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 4001) ? EntityState.Unchanged : EntityState.Added;
                     context.Entry(new CodeMoin() { Id = 5, Code = 6001, Name = "وامهای پرداختنی", SandoghId = 1 }).State = context.CodeMoins.Any(s => s.Code == 6001) ? EntityState.Unchanged : EntityState.Added;
@@ -99,12 +101,14 @@
                     //context.SaveChanges();
 
                     Settings[AppVariable.VersionNumber[i]] = Application.ProductVersion.ToString();
+
+                    context.SaveChanges();
+                    //context.Dispose();
+                    Settings.Save();
+                    //Settings.Dispose();
+
                 }
 
-                //context.SaveChanges();
-                //context.Dispose();
-                //Settings.Save();
-                //Settings.Dispose();
 
             }
             catch (Exception ex)

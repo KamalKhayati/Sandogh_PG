@@ -139,6 +139,14 @@ namespace Sandogh_PG
                                     }
                                     break;
                                 }
+                            case 2002:
+                                {
+                                    goto case 2001;
+                                }
+                            case 2003:
+                                {
+                                    goto case 2001;
+                                }
                             case 3001:
                                 {
                                     goto case 2001;
@@ -902,12 +910,13 @@ namespace Sandogh_PG
                             //////////////////////////////////////////////////////////////////////////////////////
                             int _HesabAazaId2 = Convert.ToInt32(cmbDaryaftkonande.EditValue);
                             var _q2 = db.AllHesabTafzilis.FirstOrDefault(f => f.Id == _HesabAazaId2);
-                            var _q1 = db.CodeMoins.FirstOrDefault(f => f.Code == 2001);
+
+                            var _q1 = db.CodeMoins.FirstOrDefault(f => f.Code == _CodeMoin);
                             AsnadeHesabdariRow obj2 = new AsnadeHesabdariRow();
                             obj2.ShomareSanad = q1 + 1;
                             obj2.Tarikh = Convert.ToDateTime(txtTarikhPardakht.Text.Substring(0, 10));
                             obj2.HesabMoinId = _q1.Id;
-                            obj2.HesabMoinCode = 2001;
+                            obj2.HesabMoinCode = _q1.Code;
                             obj2.HesabMoinName = _q1.Name;
                             obj2.HesabTafId = _HesabAazaId2;
                             obj2.HesabTafCode = _q2.Code;
@@ -1197,12 +1206,12 @@ namespace Sandogh_PG
                                         //////////////////////////////////////////////////////////////////////////////////////
                                         int _HesabAazaId2 = Convert.ToInt32(cmbDaryaftkonande.EditValue);
                                         var _q2 = db.AllHesabTafzilis.FirstOrDefault(f => f.Id == _HesabAazaId2);
-                                        var _q1 = db.CodeMoins.FirstOrDefault(f => f.Code == 2001);
+                                        var _q1 = db.CodeMoins.FirstOrDefault(f => f.Code == _CodeMoin);
                                         AsnadeHesabdariRow obj2 = new AsnadeHesabdariRow();
                                         obj2.ShomareSanad = q.ShomareSanad;
                                         obj2.Tarikh = Convert.ToDateTime(txtTarikhPardakht.Text.Substring(0, 10));
                                         obj2.HesabMoinId = _q1.Id;
-                                        obj2.HesabMoinCode = 2001;
+                                        obj2.HesabMoinCode = _q1.Code;
                                         obj2.HesabMoinName = _q1.Name;
                                         obj2.HesabTafId = _HesabAazaId2;
                                         obj2.HesabTafCode = _q2.Code;
@@ -1877,6 +1886,54 @@ namespace Sandogh_PG
             FrmTarifAaza_1 fm = new FrmTarifAaza_1(this);
             fm.IsActiveList = true;
             fm.ShowDialog(this);
+        }
+
+        int _CodeMoin = 0;
+        private void cmbNoeVam_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    var q = db.CodeMoins.ToList();
+                    switch (cmbNoeVam.SelectedIndex)
+                    {
+                        case 0:
+                            {
+                                _CodeMoin = 2001;
+                                textEdit1.Text = q.FirstOrDefault(s => s.Code == _CodeMoin).Name;
+                                break;
+                            }
+                        case 1:
+                            {
+                                _CodeMoin = 2002;
+                                textEdit1.Text = q.FirstOrDefault(s => s.Code == _CodeMoin).Name;
+                                break;
+                            }
+                        case 2:
+                            {
+                                _CodeMoin = 2003;
+                                textEdit1.Text = q.FirstOrDefault(s => s.Code == _CodeMoin).Name;
+                                break;
+                            }
+                        default:
+                            {
+                                _CodeMoin = 0;
+                                textEdit1.Text = "";
+                                break;
+                            }
+
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
         }
     }
 }

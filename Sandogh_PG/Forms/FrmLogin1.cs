@@ -444,6 +444,7 @@ namespace Sandogh_PG.Forms
                     //}
                     //db.Database.Initialize(true);
                     string _Shenase = HelpClass1.EncryptText(_Shenase1);
+                    //var q33 = db.Karbarans.FirstOrDefault();
                     var q = db.Karbarans.FirstOrDefault(f => f.Shenase == _Shenase);
                     if (q != null)
                     {

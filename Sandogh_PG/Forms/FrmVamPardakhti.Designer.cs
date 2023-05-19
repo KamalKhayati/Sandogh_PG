@@ -759,7 +759,6 @@
             this.cmbHesabTafzili.Properties.NullText = "";
             this.cmbHesabTafzili.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbHesabTafzili.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
-            this.cmbHesabTafzili.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cmbHesabTafzili.Properties.ValueMember = "Id";
             this.cmbHesabTafzili.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbHesabTafzili.Size = new System.Drawing.Size(398, 34);
@@ -801,7 +800,6 @@
             this.cmbHesabMoin.Properties.PopupSizeable = false;
             this.cmbHesabMoin.Properties.PopupWidth = 364;
             this.cmbHesabMoin.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
-            this.cmbHesabMoin.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cmbHesabMoin.Properties.ValueMember = "Id";
             this.cmbHesabMoin.Size = new System.Drawing.Size(171, 34);
             this.cmbHesabMoin.TabIndex = 0;
@@ -1192,6 +1190,7 @@
             // 
             // panelControl3
             // 
+            this.panelControl3.Controls.Add(this.textEdit1);
             this.panelControl3.Controls.Add(this.checkEdit2);
             this.panelControl3.Controls.Add(this.checkEdit1);
             this.panelControl3.Controls.Add(this.txtMablaghDirkard);
@@ -1210,7 +1209,7 @@
             // 
             // checkEdit2
             // 
-            this.checkEdit2.Location = new System.Drawing.Point(7, 57);
+            this.checkEdit2.Location = new System.Drawing.Point(7, 42);
             this.checkEdit2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.checkEdit2.Name = "checkEdit2";
             this.checkEdit2.Properties.Caption = "مبلغ اصل وام + مبلغ کارمزد قسط بندی شود";
@@ -1222,7 +1221,7 @@
             // checkEdit1
             // 
             this.checkEdit1.EditValue = true;
-            this.checkEdit1.Location = new System.Drawing.Point(464, 57);
+            this.checkEdit1.Location = new System.Drawing.Point(104, 67);
             this.checkEdit1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.checkEdit1.Name = "checkEdit1";
             this.checkEdit1.Properties.Caption = "مبلغ اصل وام قسط بندی شود";
@@ -1235,23 +1234,23 @@
             // 
             this.txtMablaghDirkard.EditValue = "";
             this.txtMablaghDirkard.EnterMoveNextControl = true;
-            this.txtMablaghDirkard.Location = new System.Drawing.Point(50, 7);
+            this.txtMablaghDirkard.Location = new System.Drawing.Point(599, 46);
             this.txtMablaghDirkard.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtMablaghDirkard.Name = "txtMablaghDirkard";
             this.txtMablaghDirkard.Properties.Appearance.Options.UseTextOptions = true;
             this.txtMablaghDirkard.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtMablaghDirkard.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.txtMablaghDirkard.Properties.Mask.EditMask = "n";
-            this.txtMablaghDirkard.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtMablaghDirkard.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtMablaghDirkard.Size = new System.Drawing.Size(78, 34);
+            this.txtMablaghDirkard.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtMablaghDirkard.Properties.MaskSettings.Set("mask", "n");
+            this.txtMablaghDirkard.Size = new System.Drawing.Size(110, 34);
             this.txtMablaghDirkard.TabIndex = 2;
             // 
             // labelControl9
             // 
             this.labelControl9.Appearance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl9.Appearance.Options.UseFont = true;
-            this.labelControl9.Location = new System.Drawing.Point(10, 13);
+            this.labelControl9.Location = new System.Drawing.Point(563, 50);
             this.labelControl9.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(28, 27);
@@ -1261,20 +1260,23 @@
             // cmbNoeVam
             // 
             this.cmbNoeVam.EnterMoveNextControl = true;
-            this.cmbNoeVam.Location = new System.Drawing.Point(582, 6);
+            this.cmbNoeVam.Location = new System.Drawing.Point(494, 6);
             this.cmbNoeVam.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbNoeVam.Name = "cmbNoeVam";
             this.cmbNoeVam.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbNoeVam.Properties.ImmediatePopup = true;
             this.cmbNoeVam.Properties.Items.AddRange(new object[] {
-            "قرض الحسنه "});
+            "قرض الحسنه ",
+            "وام عادی",
+            "وام ضروری"});
             this.cmbNoeVam.Properties.MaxLength = 5;
             this.cmbNoeVam.Properties.PopupSizeable = true;
             this.cmbNoeVam.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cmbNoeVam.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmbNoeVam.Size = new System.Drawing.Size(127, 34);
+            this.cmbNoeVam.Size = new System.Drawing.Size(215, 34);
             this.cmbNoeVam.TabIndex = 0;
+            this.cmbNoeVam.SelectedIndexChanged += new System.EventHandler(this.cmbNoeVam_SelectedIndexChanged);
             this.cmbNoeVam.Enter += new System.EventHandler(this.cmbNoeVam_Enter);
             // 
             // labelControl21
@@ -1291,7 +1293,7 @@
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(327, 9);
+            this.labelControl8.Location = new System.Drawing.Point(14, 9);
             this.labelControl8.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(12, 27);
@@ -1300,7 +1302,7 @@
             // 
             // labelControl13
             // 
-            this.labelControl13.Location = new System.Drawing.Point(138, 9);
+            this.labelControl13.Location = new System.Drawing.Point(719, 48);
             this.labelControl13.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(75, 27);
@@ -1311,7 +1313,7 @@
             // 
             this.txtDarsadeKarmozd.EditValue = "";
             this.txtDarsadeKarmozd.EnterMoveNextControl = true;
-            this.txtDarsadeKarmozd.Location = new System.Drawing.Point(352, 7);
+            this.txtDarsadeKarmozd.Location = new System.Drawing.Point(39, 7);
             this.txtDarsadeKarmozd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtDarsadeKarmozd.Name = "txtDarsadeKarmozd";
             this.txtDarsadeKarmozd.Properties.Appearance.Options.UseTextOptions = true;
@@ -1326,7 +1328,7 @@
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(437, 9);
+            this.labelControl10.Location = new System.Drawing.Point(124, 9);
             this.labelControl10.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(82, 27);
@@ -1335,7 +1337,6 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.textEdit1);
             this.panelControl1.Controls.Add(this.cmbDaryaftkonande);
             this.panelControl1.Controls.Add(this.labelControl5);
             this.panelControl1.Controls.Add(this.cmbNahveyePardakht);
@@ -1348,9 +1349,9 @@
             // 
             // textEdit1
             // 
-            this.textEdit1.EditValue = "وامهای دریافتنی";
+            this.textEdit1.EditValue = "";
             this.textEdit1.EnterMoveNextControl = true;
-            this.textEdit1.Location = new System.Drawing.Point(332, 11);
+            this.textEdit1.Location = new System.Drawing.Point(236, 5);
             this.textEdit1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
@@ -1358,16 +1359,16 @@
             this.textEdit1.Properties.Appearance.Options.UseTextOptions = true;
             this.textEdit1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.textEdit1.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.textEdit1.Properties.Mask.EditMask = "000000";
+            this.textEdit1.Properties.MaskSettings.Set("mask", "000000");
             this.textEdit1.Properties.MaxLength = 7;
-            this.textEdit1.Size = new System.Drawing.Size(120, 34);
+            this.textEdit1.Size = new System.Drawing.Size(250, 34);
             this.textEdit1.TabIndex = 78;
             this.textEdit1.TabStop = false;
             // 
             // cmbDaryaftkonande
             // 
             this.cmbDaryaftkonande.EnterMoveNextControl = true;
-            this.cmbDaryaftkonande.Location = new System.Drawing.Point(455, 11);
+            this.cmbDaryaftkonande.Location = new System.Drawing.Point(327, 11);
             this.cmbDaryaftkonande.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbDaryaftkonande.Name = "cmbDaryaftkonande";
             this.cmbDaryaftkonande.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1385,7 +1386,7 @@
             this.cmbDaryaftkonande.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
             this.cmbDaryaftkonande.Properties.ValueMember = "Id";
             this.cmbDaryaftkonande.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmbDaryaftkonande.Size = new System.Drawing.Size(254, 34);
+            this.cmbDaryaftkonande.Size = new System.Drawing.Size(382, 34);
             this.cmbDaryaftkonande.TabIndex = 0;
             this.cmbDaryaftkonande.EditValueChanged += new System.EventHandler(this.cmbDaryaftkonande_EditValueChanged_1);
             this.cmbDaryaftkonande.Enter += new System.EventHandler(this.cmbDaryaftkonande_Enter);

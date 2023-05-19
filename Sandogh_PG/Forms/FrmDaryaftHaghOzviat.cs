@@ -166,8 +166,8 @@ namespace Sandogh_PG
             {
                 try
                 {
-                    var q1 = db.CodeMoins.Select(s => s).ToList();
-                    if (q1.Count > 0)
+                    var q1 = db.CodeMoins.OrderBy(s => s.Code).AsParallel();
+                    if (q1.Count() > 0)
                         codeMoinsBindingSource.DataSource = q1;
                     else
                         codeMoinsBindingSource.DataSource = null;
@@ -650,6 +650,14 @@ namespace Sandogh_PG
                                             allHesabTafzilisBindingSource1.DataSource = null;
                                     }
                                     break;
+                                }
+                            case 2002:
+                                {
+                                    goto case 2001;
+                                }
+                            case 2003:
+                                {
+                                    goto case 2001;
                                 }
                             case 3001:
                                 {

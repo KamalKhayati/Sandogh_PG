@@ -37,7 +37,7 @@
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.cmbMoin = new DevExpress.XtraEditors.LookUpEdit();
             this.codeMoinsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.txtNameMoin = new DevExpress.XtraEditors.TextEdit();
             this.txtSarresidGhest = new DevExpress.XtraEditors.TextEdit();
             this.cmbPardakhtKonande = new DevExpress.XtraEditors.LookUpEdit();
             this.allHesabTafzilisBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -61,13 +61,14 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.txtNoeVam = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             this.panelControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMoin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.codeMoinsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNameMoin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSarresidGhest.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPardakhtKonande.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).BeginInit();
@@ -81,6 +82,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTarikhDaryaft.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeryal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSharh.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNoeVam.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl2
@@ -136,8 +138,9 @@
             // 
             // panelControl4
             // 
+            this.panelControl4.Controls.Add(this.txtNoeVam);
             this.panelControl4.Controls.Add(this.cmbMoin);
-            this.panelControl4.Controls.Add(this.textEdit1);
+            this.panelControl4.Controls.Add(this.txtNameMoin);
             this.panelControl4.Controls.Add(this.txtSarresidGhest);
             this.panelControl4.Controls.Add(this.cmbPardakhtKonande);
             this.panelControl4.Controls.Add(this.txtMablaghGhest);
@@ -183,7 +186,6 @@
             this.cmbMoin.Properties.NullText = "";
             this.cmbMoin.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbMoin.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
-            this.cmbMoin.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cmbMoin.Properties.ValueMember = "Id";
             this.cmbMoin.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbMoin.Size = new System.Drawing.Size(171, 34);
@@ -195,23 +197,23 @@
             // 
             this.codeMoinsBindingSource.DataSource = typeof(Sandogh_PG.CodeMoin);
             // 
-            // textEdit1
+            // txtNameMoin
             // 
-            this.textEdit1.EditValue = "وامهای دریافتنی";
-            this.textEdit1.EnterMoveNextControl = true;
-            this.textEdit1.Location = new System.Drawing.Point(5, 12);
-            this.textEdit1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.textEdit1.Properties.Appearance.Options.UseBackColor = true;
-            this.textEdit1.Properties.Appearance.Options.UseTextOptions = true;
-            this.textEdit1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.textEdit1.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.textEdit1.Properties.Mask.EditMask = "000000";
-            this.textEdit1.Properties.MaxLength = 7;
-            this.textEdit1.Size = new System.Drawing.Size(140, 34);
-            this.textEdit1.TabIndex = 77;
-            this.textEdit1.TabStop = false;
+            this.txtNameMoin.EditValue = "نام معین وام";
+            this.txtNameMoin.EnterMoveNextControl = true;
+            this.txtNameMoin.Location = new System.Drawing.Point(5, 12);
+            this.txtNameMoin.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtNameMoin.Name = "txtNameMoin";
+            this.txtNameMoin.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.txtNameMoin.Properties.Appearance.Options.UseBackColor = true;
+            this.txtNameMoin.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtNameMoin.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.txtNameMoin.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.txtNameMoin.Properties.MaskSettings.Set("mask", "000000");
+            this.txtNameMoin.Properties.MaxLength = 7;
+            this.txtNameMoin.Size = new System.Drawing.Size(210, 34);
+            this.txtNameMoin.TabIndex = 77;
+            this.txtNameMoin.TabStop = false;
             // 
             // txtSarresidGhest
             // 
@@ -235,7 +237,7 @@
             // cmbPardakhtKonande
             // 
             this.cmbPardakhtKonande.EnterMoveNextControl = true;
-            this.cmbPardakhtKonande.Location = new System.Drawing.Point(152, 13);
+            this.cmbPardakhtKonande.Location = new System.Drawing.Point(223, 13);
             this.cmbPardakhtKonande.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbPardakhtKonande.Name = "cmbPardakhtKonande";
             this.cmbPardakhtKonande.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -251,7 +253,7 @@
             this.cmbPardakhtKonande.Properties.ReadOnly = true;
             this.cmbPardakhtKonande.Properties.ValueMember = "Id";
             this.cmbPardakhtKonande.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmbPardakhtKonande.Size = new System.Drawing.Size(391, 34);
+            this.cmbPardakhtKonande.Size = new System.Drawing.Size(320, 34);
             this.cmbPardakhtKonande.TabIndex = 62;
             this.cmbPardakhtKonande.TabStop = false;
             // 
@@ -361,7 +363,6 @@
             this.cmbNameHesab.Properties.NullText = "";
             this.cmbNameHesab.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbNameHesab.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
-            this.cmbNameHesab.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cmbNameHesab.Properties.ValueMember = "Id";
             this.cmbNameHesab.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbNameHesab.Size = new System.Drawing.Size(360, 34);
@@ -529,6 +530,25 @@
             this.labelControl3.TabIndex = 69;
             this.labelControl3.Text = "واریز به ";
             // 
+            // txtNoeVam
+            // 
+            this.txtNoeVam.EditValue = "نوع وام";
+            this.txtNoeVam.Location = new System.Drawing.Point(5, 50);
+            this.txtNoeVam.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtNoeVam.Name = "txtNoeVam";
+            this.txtNoeVam.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.txtNoeVam.Properties.Appearance.Options.UseForeColor = true;
+            this.txtNoeVam.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtNoeVam.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.txtNoeVam.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtNoeVam.Properties.MaskSettings.Set("mask", "f0");
+            this.txtNoeVam.Properties.NullText = "آیدی انبار";
+            this.txtNoeVam.Properties.ReadOnly = true;
+            this.txtNoeVam.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtNoeVam.Size = new System.Drawing.Size(210, 34);
+            this.txtNoeVam.TabIndex = 78;
+            this.txtNoeVam.TabStop = false;
+            // 
             // FrmDaryafteAghsateVam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 27F);
@@ -556,7 +576,7 @@
             this.panelControl4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMoin.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.codeMoinsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNameMoin.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSarresidGhest.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPardakhtKonande.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).EndInit();
@@ -570,6 +590,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTarikhDaryaft.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeryal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSharh.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNoeVam.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -601,10 +622,11 @@
         public DevExpress.XtraEditors.TextEdit txtCodeVam;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.SimpleButton btnSaveNext;
-        public DevExpress.XtraEditors.TextEdit textEdit1;
+        public DevExpress.XtraEditors.TextEdit txtNameMoin;
         private System.Windows.Forms.BindingSource allHesabTafzilisBindingSource;
         private System.Windows.Forms.BindingSource allHesabTafzilisBindingSource1;
         private System.Windows.Forms.BindingSource codeMoinsBindingSource;
         public DevExpress.XtraEditors.LookUpEdit cmbMoin;
+        public DevExpress.XtraEditors.TextEdit txtNoeVam;
     }
 }

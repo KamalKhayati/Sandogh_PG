@@ -86,8 +86,8 @@ namespace Sandogh_PG
             {
                 try
                 {
-                    var q1 = db.CodeMoins.Select(s => s).ToList();
-                    if (q1.Count > 0)
+                    var q1 = db.CodeMoins.OrderBy(s => s.Code).AsParallel(); 
+                    if (q1.Count() > 0)
                         codeMoinsBindingSource.DataSource = q1;
                     else
                         codeMoinsBindingSource.DataSource = null;
@@ -137,6 +137,7 @@ namespace Sandogh_PG
         decimal MablaghDaryaftBeforEdit = 0;
         string _deviceID = string.Empty;
         string _dataBaseName = string.Empty;
+        int _CodeMoin = 0;
         private void FrmDaryafteAghsateVam_Load(object sender, EventArgs e)
         {
             FillcmbPardakhtKonande();
@@ -153,6 +154,43 @@ namespace Sandogh_PG
                 {
                     _deviceID = HelpClass1.GetMadarBoardSerial();
                     _dataBaseName = db.Database.Connection.Database;
+                    int _CodeVam= Convert.ToInt32(txtCodeVam.Text);
+                    int _IndexNoeVam = db.VamPardakhtis.FirstOrDefault(s => s.Code == _CodeVam).IndexNoeVam;
+                    var z = db.CodeMoins.ToList();
+
+                    switch (_IndexNoeVam)
+                    {
+                        case 0:
+                            {
+                                _CodeMoin = 2001;
+                                txtNameMoin.Text = z.FirstOrDefault(s => s.Code == _CodeMoin).Name;
+                                txtNoeVam.Text = "قرض الحسنه";
+                                break;
+                            }
+                        case 1:
+                            {
+                                _CodeMoin = 2002;
+                                txtNameMoin.Text = z.FirstOrDefault(s => s.Code == _CodeMoin).Name;
+                                txtNoeVam.Text = "وام عادی";
+                                break;
+                            }
+                        case 2:
+                            {
+                                _CodeMoin = 2003;
+                                txtNameMoin.Text = z.FirstOrDefault(s => s.Code == _CodeMoin).Name;
+                                txtNoeVam.Text = "وام ضروری";
+                                break;
+                            }
+                        default:
+                            {
+                                _CodeMoin = 0;
+                                txtNameMoin.Text = "";
+                                txtNoeVam.Text = "";
+                                break;
+                            }
+
+
+                    }
 
                     if (En == EnumCED.Create)
                     {
@@ -181,7 +219,7 @@ namespace Sandogh_PG
                         }
 
 
-                        int _CodeVam = Convert.ToInt32(Fm.gridView3.GetFocusedRowCellDisplayText("Code"));
+                        //int _CodeVam = Convert.ToInt32(Fm.gridView3.GetFocusedRowCellDisplayText("Code"));
                         int MinShomareGhest = db.RizeAghsatVams.Where(s => s.VamPardakhtiCode == _CodeVam && s.SeryalDaryaft == 0).Min(s => s.ShomareGhest);
                         var q1 = db.RizeAghsatVams.FirstOrDefault(s => s.VamPardakhtiCode == _CodeVam && s.SeryalDaryaft == 0 && s.ShomareGhest == MinShomareGhest);
 
@@ -396,13 +434,13 @@ namespace Sandogh_PG
                                 db.AsnadeHesabdariRows.Add(obj1);
 
                                 int _HesabTafId2 = Convert.ToInt32(cmbPardakhtKonande.EditValue);
-                                var qq3 = db.CodeMoins.FirstOrDefault(f => f.Code == 2001);
+                                var qq3 = db.CodeMoins.FirstOrDefault(f => f.Code == _CodeMoin);
                                 var qq4 = db.AllHesabTafzilis.FirstOrDefault(f => f.Id == _HesabTafId2);
                                 AsnadeHesabdariRow obj2 = new AsnadeHesabdariRow();
                                 obj2.ShomareSanad = q2 + 1;
                                 obj2.Tarikh = Convert.ToDateTime(txtTarikhDaryaft.Text.Substring(0, 10));
                                 obj2.HesabMoinId = qq3.Id;
-                                obj2.HesabMoinCode = 2001;
+                                obj2.HesabMoinCode = qq3.Code;
                                 obj2.HesabMoinName = qq3.Name;
                                 obj2.HesabTafId = _HesabTafId2;
                                 obj2.HesabTafCode = qq4.Code;
@@ -1038,13 +1076,13 @@ namespace Sandogh_PG
                                 db.AsnadeHesabdariRows.Add(obj1);
 
                                 int _HesabTafId2 = Convert.ToInt32(cmbPardakhtKonande.EditValue);
-                                var qq3 = db.CodeMoins.FirstOrDefault(f => f.Code == 2001);
+                                var qq3 = db.CodeMoins.FirstOrDefault(f => f.Code == _CodeMoin);
                                 var qq4 = db.AllHesabTafzilis.FirstOrDefault(f => f.Id == _HesabTafId2);
                                 AsnadeHesabdariRow obj2 = new AsnadeHesabdariRow();
                                 obj2.ShomareSanad = q.ShomareSanad;
                                 obj2.Tarikh = Convert.ToDateTime(txtTarikhDaryaft.Text.Substring(0, 10));
                                 obj2.HesabMoinId = qq3.Id;
-                                obj2.HesabMoinCode = 2001;
+                                obj2.HesabMoinCode = qq3.Code;
                                 obj2.HesabMoinName = qq3.Name;
                                 obj2.HesabTafId = _HesabTafId2;
                                 obj2.HesabTafCode = qq4.Code;
@@ -1682,6 +1720,14 @@ namespace Sandogh_PG
                                             allHesabTafzilisBindingSource1.DataSource = null;
                                     }
                                     break;
+                                }
+                            case 2002:
+                                {
+                                    goto case 2001;
+                                }
+                            case 2003:
+                                {
+                                    goto case 2001;
                                 }
                             case 3001:
                                 {

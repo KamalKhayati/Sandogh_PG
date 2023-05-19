@@ -698,7 +698,7 @@ namespace Sandogh_PG
                     Date2 = q3 != null ? Reverse(q3.ToString().Substring(0, 10)) : "....................";
                     MablaghVam = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("MablaghAsli")) ? gridView1.GetFocusedRowCellDisplayText("MablaghAsli") : "....................";
                     MablaghKarmozd = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("MablaghKarmozd")) ? gridView1.GetFocusedRowCellDisplayText("MablaghKarmozd") : "....................";
-                    DarsadKarmozd = MablaghVam != "0" && MablaghKarmozd != "0" ? (Convert.ToDecimal(MablaghVam.Replace(",", "")) / Convert.ToDecimal(MablaghKarmozd.Replace(",", ""))).ToString() : "...........";
+                    DarsadKarmozd = MablaghVam != "0" && MablaghKarmozd != "0" ? (Convert.ToDecimal(MablaghKarmozd.Replace(",", "")) / Convert.ToDecimal(MablaghVam.Replace(",", ""))).ToString("f3") : "...........";
                     FasleAghsat = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("FaseleAghsat")) ? gridView1.GetFocusedRowCellDisplayText("FaseleAghsat") : "....................";
                     TedadeAghsat = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("TedadAghsat")) ? gridView1.GetFocusedRowCellDisplayText("TedadAghsat") : "..........";
                     MablaghGhestAval = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("MablaghAghsat")) ? gridView1.GetFocusedRowCellDisplayText("MablaghAghsat") : "....................";
@@ -1089,41 +1089,136 @@ namespace Sandogh_PG
 
         private void btnPrintPreview1_Click(object sender, EventArgs e)
         {
-            if (System.IO.File.Exists(FilePath1 + FileName1))
+            try
             {
-                if (gridView1.RowCount > 0)
+                if (System.IO.File.Exists(FilePath1 + FileName1))
                 {
-                    XtraReport XtraReport1 = new XtraReport();
-                    XtraReport1.LoadLayoutFromXml(FilePath1 + FileName1);
-
-                    // XtraReport1.DataSource = HelpClass1.ConvettDatagridviewToDataSet(gridView1);
-                    XtraReport1.DataSource = gridView1.DataSource;
-
-                    //XtraReport1.Parameters["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : gridView2.GetRowCellDisplayText(0, "Tarikh").Substring(0, 10);
-                    //XtraReport1.Parameters["Ta_Tarikh"].Value = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
-                    XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
-                    //XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
-                    //XtraReport1.Parameters["HesabTafzil"].Value = cmbHesabTafzili.Text;
-                    XtraReport1.Parameters["ReportName"].Value = groupBox4.Text;
-                    XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
-                    XtraReport1.Parameters["Logo_Co"].Value = Fm.pictureEdit1.Image;
-
-                    //List<decimal> ListMande1 = new List<decimal>();
-                    //for (int i = 0; i < gridView1.RowCount; i++)
+                    //if (gridView1.RowCount > 0)
                     //{
-                    //    ListMande1.Add(Convert.ToDecimal(gridView2.GetRowCellValue(i, "Mande1")));
-                    //}
-                    //XtraReport1.Parameters["Mande1"].Value = ListMande1;
-                    FrmPrinPreview FPP = new FrmPrinPreview();
-                    FPP.documentViewer1.DocumentSource = XtraReport1;
-                    FPP.RepotPageWidth = 130;
-                    FPP.ShowDialog();
+                    //    XtraReport XtraReport1 = new XtraReport();
+                    //    XtraReport1.LoadLayoutFromXml(FilePath1 + FileName1);
 
+                    //    // XtraReport1.DataSource = HelpClass1.ConvettDatagridviewToDataSet(gridView1);
+                    //    XtraReport1.DataSource = gridView1.DataSource;
+
+                    //    //XtraReport1.Parameters["Az_Tarikh"].Value = ChkTarikh.Checked ? txtAzTarikh.Text : gridView2.GetRowCellDisplayText(0, "Tarikh").Substring(0, 10);
+                    //    //XtraReport1.Parameters["Ta_Tarikh"].Value = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
+                    //    XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
+                    //    //XtraReport1.Parameters["HesabMoin"].Value = _HesabMoin;
+                    //    //XtraReport1.Parameters["HesabTafzil"].Value = cmbHesabTafzili.Text;
+                    //    XtraReport1.Parameters["ReportName"].Value = groupBox4.Text;
+                    //    XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
+                    //    XtraReport1.Parameters["Logo_Co"].Value = Fm.pictureEdit1.Image;
+
+                    //    //List<decimal> ListMande1 = new List<decimal>();
+                    //    //for (int i = 0; i < gridView1.RowCount; i++)
+                    //    //{
+                    //    //    ListMande1.Add(Convert.ToDecimal(gridView2.GetRowCellValue(i, "Mande1")));
+                    //    //}
+                    //    //XtraReport1.Parameters["Mande1"].Value = ListMande1;
+                    //    FrmPrinPreview FPP = new FrmPrinPreview();
+                    //    FPP.documentViewer1.DocumentSource = XtraReport1;
+                    //    FPP.RepotPageWidth = 130;
+                    //    FPP.ShowDialog();
+
+                    //}
+
+                    DataTable dt = new DataTable();
+                    for (int i = 0; i < gridView1.Columns.Count; i++)
+                    {
+                        //if (gridView.Columns[i].Visible)
+                        dt.Columns.Add(gridView1.Columns[i].FieldName);
+                    }
+
+                    for (int i = 0; i < gridView1.RowCount; i++)
+                    {
+                        DataRow dRow = dt.NewRow();
+                        //dRow[cell.ColumnIndex] = cell.Value;
+                        if (gridView1.Columns["Line"].Visible)
+                            dRow["Line"] = gridView1.GetRowCellValue(i, "Line");
+                        if (gridView1.Columns["ShomareSanad"].Visible)
+                            dRow["ShomareSanad"] = gridView1.GetRowCellDisplayText(i, "ShomareSanad");
+                        if (gridView1.Columns["Code"].Visible)
+                            dRow["Code"] = gridView1.GetRowCellDisplayText(i, "Code");
+                        if (gridView1.Columns["NameAaza"].Visible)
+                            dRow["NameAaza"] = gridView1.GetRowCellDisplayText(i, "NameAaza");
+                        if (gridView1.Columns["TarikhPardakht"].Visible)
+                            dRow["TarikhPardakht"] = gridView1.GetRowCellDisplayText(i, "TarikhPardakht");
+                        if (gridView1.Columns["MablaghAsli"].Visible)
+                            dRow["MablaghAsli"] = gridView1.GetRowCellDisplayText(i, "MablaghAsli");
+                        if (gridView1.Columns["MablaghKarmozd"].Visible)
+                            dRow["MablaghKarmozd"] = gridView1.GetRowCellDisplayText(i, "MablaghKarmozd");
+                        if (gridView1.Columns["TedadAghsat"].Visible)
+                            dRow["TedadAghsat"] = gridView1.GetRowCellDisplayText(i, "TedadAghsat");
+                        if (gridView1.Columns["MablaghAghsat"].Visible)
+                            dRow["MablaghAghsat"] = gridView1.GetRowCellDisplayText(i, "MablaghAghsat");
+                        if (gridView1.Columns["SarresidAvalinGhest"].Visible)
+                            dRow["SarresidAvalinGhest"] = gridView1.GetRowCellDisplayText(i, "SarresidAvalinGhest");
+                        if (gridView1.Columns["ZameninName"].Visible)
+                            dRow["ZameninName"] = gridView1.GetRowCellDisplayText(i, "ZameninName");
+                        if (gridView1.Columns["HaveCheckTazmin"].Visible)
+                            dRow["HaveCheckTazmin"] = gridView1.GetRowCellDisplayText(i, "HaveCheckTazmin");
+                        if (gridView1.Columns["NahveyePardakht"].Visible)
+                            dRow["NahveyePardakht"] = gridView1.GetRowCellDisplayText(i, "NahveyePardakht");
+                        if (gridView1.Columns["NoeVam"].Visible)
+                            dRow["NoeVam"] = gridView1.GetRowCellDisplayText(i, "NoeVam");
+                        if (gridView1.Columns["FaseleAghsat"].Visible)
+                            dRow["FaseleAghsat"] = gridView1.GetRowCellDisplayText(i, "FaseleAghsat");
+                        if (gridView1.Columns["DarsadeKarmozd"].Visible)
+                            dRow["DarsadeKarmozd"] = gridView1.GetRowCellDisplayText(i, "DarsadeKarmozd");
+                        if (gridView1.Columns["MablaghDirkard"].Visible)
+                            dRow["MablaghDirkard"] = gridView1.GetRowCellDisplayText(i, "MablaghDirkard");
+                        if (gridView1.Columns["TarikhDarkhast"].Visible)
+                            dRow["TarikhDarkhast"] = gridView1.GetRowCellDisplayText(i, "TarikhDarkhast");
+                        if (gridView1.Columns["ShomareDarkhast"].Visible)
+                            dRow["ShomareDarkhast"] = gridView1.GetRowCellDisplayText(i, "ShomareDarkhast");
+                        if (gridView1.Columns["HesabMoinName"].Visible)
+                            dRow["HesabMoinName"] = gridView1.GetRowCellDisplayText(i, "HesabMoinName");
+                        if (gridView1.Columns["HesabTafziliName"].Visible)
+                            dRow["HesabTafziliName"] = gridView1.GetRowCellDisplayText(i, "HesabTafziliName");
+                        if (gridView1.Columns["IsTasviye"].Visible)
+                            dRow["IsTasviye"] = gridView1.GetRowCellDisplayText(i, "IsTasviye");
+                        if (gridView1.Columns["Tozihat"].Visible)
+                            dRow["Tozihat"] = gridView1.GetRowCellDisplayText(i, "Tozihat");
+
+                        //if (gridView1.Columns["Sum"].Visible)
+                        //    dRow["Sum"] = gridView1.Columns["MablaghPasandaz"].Visible && gridView1.Columns["MablaghAghsat"].Visible ? gridView1.GetRowCellDisplayText(i, "Sum") :
+                        //        gridView1.Columns["MablaghPasandaz"].Visible && !gridView1.Columns["MablaghAghsat"].Visible ? gridView1.GetRowCellDisplayText(i, "MablaghPasandaz") :
+                        //        !gridView1.Columns["MablaghPasandaz"].Visible && gridView1.Columns["MablaghAghsat"].Visible ? gridView1.GetRowCellDisplayText(i, "MablaghAghsat") : "";
+                        //else
+                        //    dRow["Sum"] = string.Empty;
+
+                        dt.Rows.Add(dRow);
+                    }
+
+                    if (gridView1.RowCount > 0)
+                    {
+                        XtraReport XtraReport1 = new XtraReport();
+                        XtraReport1.LoadLayoutFromXml(FilePath1 + FileName1);
+
+
+                        XtraReport1.DataSource = dt;
+
+                        XtraReport1.Parameters["TarikhVSaat"].Value = DateTime.Now;
+                        XtraReport1.Parameters["ReportName"].Value = groupBox4.Text;
+                        XtraReport1.Parameters["SandoghName"].Value = Fm.ribbonControl1.ApplicationDocumentCaption;
+                        XtraReport1.Parameters["Logo_Co"].Value = Fm.pictureEdit1.Image;
+
+                        FrmPrinPreview FPP = new FrmPrinPreview();
+                        FPP.documentViewer1.DocumentSource = XtraReport1;
+                        FPP.RepotPageWidth = 130;
+                        FPP.ShowDialog();
+                    }
                 }
+                else
+                {
+                    HelpClass1.NewReportDesigner(FilePath1, FileName1);
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                HelpClass1.NewReportDesigner(FilePath1, FileName1);
+                XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message, "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
