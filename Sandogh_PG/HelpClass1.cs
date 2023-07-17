@@ -628,6 +628,181 @@ namespace Sandogh_PG
 
         }
 
+        public static void ExportDataGridViewToExcel(GridView gridView1,int RowCount)
+        {
+            try
+            {
+                Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
+                Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
+                Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+                worksheet = workbook.Sheets["Sheet1"];
+                worksheet = workbook.ActiveSheet;
+                worksheet.Name = "Sheet1";
+                worksheet.Columns.ColumnWidth = 13;
+                //workbook.ActiveSheet.FileFormat = XlFileFormat.xlExcel8;
+
+                // Storing header part in Excel   
+                for (int i = 1; i < gridView1.Columns.Count + 1; i++)
+                {
+                    worksheet.Cells[1, i] = gridView1.Columns[i - 1].Caption;
+                }
+                //worksheet.Columns["کد حساب"].ColumnWidth = gridView1.Columns["CodeHesab"].Width;
+                //worksheet.Columns["نام حساب"].ColumnWidth = gridView1.Columns["NameAaza"].Width;
+                //worksheet.Columns["مبلغ پس انداز"].ColumnWidth = gridView1.Columns["MablaghPasandaz"].Width;
+                //worksheet.Columns["مبلغ اقساط"].ColumnWidth = gridView1.Columns["MablaghAghsat"].Width;
+                //worksheet.Columns["کد وام"].ColumnWidth = gridView1.Columns["CodeVam"].Width;
+
+                // Storing Each row and column value to excel sheet   
+                for (int i = 0; i < RowCount; i++)
+                {
+                    for (int j = 0; j < gridView1.Columns.Count; j++)
+                    {
+                        worksheet.Cells[i + 2, j + 1] = gridView1.GetRowCellDisplayText(i, gridView1.Columns[j]).ToString();
+                    }
+                }
+
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.FileName = "OutReport" ;
+                sfd.DefaultExt = ".xlsx";
+                sfd.Title = "خروجی گزارش به اکسل";
+                sfd.Filter = "Excel(*.xlsx)|*.xlsx";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    //workBook.SaveAs(@"C:\Users\" + userName + "\\Downloads\\ReportView.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+                    workbook.SaveAs(sfd.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                    //app.ActiveWorkbook.SaveAs(sfd.FileName, XlFileFormat.xlExcel8, null, null, null,
+                    //        null, XlSaveAsAccessMode.xlShared, null, null, null, null, null);
+
+                }
+                //workbook.Close(true, sfd.FileName, Type.Missing);
+                //app.Quit();
+                app.ActiveWorkbook.Saved = true;
+                app.Quit();
+                System.Diagnostics.Process.Start("explorer.exe", sfd.FileName);
+
+            }
+            catch (Exception ex)
+            {
+
+                XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+
+
+            #region MyRegion
+            //SaveFileDialog sfd = new SaveFileDialog();
+            //DialogResult drSaveFile = sfd.ShowDialog();
+            //try
+            //{
+            //    if (drSaveFile == System.Windows.Forms.DialogResult.OK)
+            //    {
+            //        ApplicationClass ExcelApp = new ApplicationClass();
+            //        //Microsoft.Office.Interop.Excel._Application app= new Microsoft.Office.Interop.Excel.Application();
+            //        ExcelApp.Application.Workbooks.Add(Type.Missing);
+            //        //ExcelApp.ActiveWorkbook.FileFormat = XlFileFormat.xlExcel8;   
+            //        // Change properties of the Workbook   
+            //        ExcelApp.Columns.ColumnWidth = 20;
+
+            //        // Storing header part in Excel   
+            //        for (int i = 1; i < gridView1.Columns.Count + 1; i++)
+            //        {
+            //            ExcelApp.Cells[1, i] = gridView1.Columns[i - 1].Caption;
+            //        }
+
+            //        // Storing Each row and column value to excel sheet   
+            //        for (int i = 0; i < gridView1.RowCount-1; i++)
+            //        {
+            //            for (int j = 0; j < gridView1.Columns.Count; j++)
+            //            {
+            //                    ExcelApp.Cells[i + 2, j + 1] =  gridView1.GetRowCellValue(i, gridView1.Columns[j]).ToString();
+            //                //if (j == 2 || j == 5)
+            //                //{
+            //                //}
+            //                //else
+            //                //{
+            //                //    ExcelApp.Cells[i + 2, j + 1] = gridView1.GetRowCellValue(i, gridView1.Columns[j]).ToString();
+            //                //}
+            //            }
+            //        }
+
+            //        //Save Copy by giving file Path   
+            //        //ExcelApp.ActiveWorkbook.SaveCopyAs("C:\\" + FileName);   
+
+            //        //OR using SaveFileDialog   
+            //        ExcelApp.ActiveWorkbook.SaveCopyAs(sfd.FileName);
+
+            //        //OR even you can use SaveAs function   
+            //        //ExcelApp.ActiveWorkbook.SaveAs(sfd.FileName, XlFileFormat.xlExcel8, null, null, null,   
+            //        // null, XlSaveAsAccessMode.xlShared, null, null, null, null, null);   
+            //        ExcelApp.ActiveWorkbook.Saved = true;
+            //        ExcelApp.Quit();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("ERROR: " + ex.Message);
+            //} 
+            #endregion
+
+            #region MyRegion1
+            //string userID = WindowsIdentity.GetCurrent().Name;
+            //var userName = userID.Remove(0, 15);
+            ////test.Text = userName;
+            ////dataGridView_ShowAllData
+            //Excel.Application xlApp;
+            //Excel.Workbook xlWorkBook;
+            //Excel.Worksheet xlWorkSheet;
+            //object misValue = System.Reflection.Missing.Value;
+
+            //Int16 i, j;
+
+            //xlApp = new Excel.Application();
+            //xlWorkBook = xlApp.Workbooks.Add(misValue);
+
+            //xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+
+            //for (i = 0; i <= gridView1.RowCount - 2; i++)
+            //{
+            //    for (j = 0; j <= gridView1.Columns.Count - 1; j++)
+            //    {
+            //        xlWorkSheet.Cells[i + 1, j + 1] = gridView1.GetRowCellValue(i, gridView1.Columns[j]).ToString();
+            //    }
+            //}
+
+            //xlWorkBook.SaveAs(@"C:\Users\" + userName + "\\Downloads\\ReportView.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            //xlWorkBook.Close(true, misValue, misValue);
+            //xlApp.Quit();
+
+            //releaseObject(xlWorkSheet);
+            //releaseObject(xlWorkBook);
+            //releaseObject(xlApp);
+
+            //private void releaseObject(object obj)
+            //{
+            //    try
+            //    {
+            //        System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+            //        obj = null;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        obj = null;
+            //        MessageBox.Show("Exception Occured while releasing object " + ex.ToString());
+            //    }
+            //    finally
+            //    {
+            //        GC.Collect();
+            //    }
+            //}
+
+
+            #endregion
+
+        }
+
+
         public static DataSet ConvettDatagridviewToDataSet(GridView gridView)
         {
             DataSet ds = new DataSet();
@@ -660,6 +835,38 @@ namespace Sandogh_PG
             return ds;
 
         }
+
+        public static DataTable ConvettDatagridviewToDataTable(GridView gridView,int RowCount)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                for (int ColumnCounter = 0; ColumnCounter < gridView.Columns.Count; ColumnCounter++)
+                    dt.Columns.Add(gridView.Columns[ColumnCounter].FieldName);
+
+                for (int RowCounter = 0; RowCounter < RowCount; RowCounter++)
+                {
+                    DataRow DataRow1 = dt.NewRow();
+                    for (int j = 0; j < gridView.Columns.Count; j++)
+                    {
+                        //DataRow1[j] = gridView.Rows[RowCounter].Cells[j].Value.ToString();
+                        DataRow1[j] = gridView.GetRowCellDisplayText(RowCounter, gridView.Columns[j]);
+                    }
+                    dt.Rows.Add(DataRow1);
+                }
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> ConvettDatagridviewToDataTable()" + "\n" + ex.Message,
+                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            
+
+        }
+
 
         /////Encryption یا رمزنگاری
         public static byte[] AES_Encrypt(byte[] bytesToBeEncrypted, byte[] passwordBytes)

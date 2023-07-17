@@ -185,5 +185,14 @@ namespace Sandogh_PG
             HelpClass1.ControlAltShift_KeyDown(sender, e, btnDesignReport);
 
         }
+
+        private void gridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.E)
+            {
+                HelpClass1.ExportDataGridViewToExcel(gridView1, gridView1.RowCount);
+            }
+
+        }
     }
 }

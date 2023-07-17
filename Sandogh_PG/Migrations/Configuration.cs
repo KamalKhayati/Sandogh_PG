@@ -10,8 +10,8 @@
     using System.Xml;
     using System.Configuration;
     using System.Data;
-    using nucs.JsonSettings;
-    using nucs.JsonSettings.Fluent;
+    using Nucs.JsonSettings;
+    using Nucs.JsonSettings.Fluent;
     using DevExpress.XtraEditors;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Sandogh_PG.MyContext>
@@ -35,7 +35,7 @@
                 int i = Convert.ToInt32(Settings[AppVariable.DefaltIndexCmbNameSandogh]);
                 //string a = Settings[AppVariable.VersionNumber[i]].ToString();
                 //if (Settings[AppVariable.VersionNumber[i]] == null)
-                if (Settings[AppVariable.VersionNumber[i]] == null || Settings[AppVariable.VersionNumber[i]].ToString() != "1.0.0.52")
+                if (Settings[AppVariable.VersionNumber[i]] == null || Settings[AppVariable.VersionNumber[i]].ToString() != "1.0.0.53")
                 {
                     //  This method will be called after migrating to the latest version.
 

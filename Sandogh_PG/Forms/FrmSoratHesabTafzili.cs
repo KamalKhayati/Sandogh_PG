@@ -365,7 +365,23 @@ namespace Sandogh_PG
 
         }
 
+        private void gridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.E)
+            {
+                HelpClass1.ExportDataGridViewToExcel(gridView1, gridView1.RowCount);
+            }
 
+        }
+
+        private void gridView2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.E)
+            {
+                HelpClass1.ExportDataGridViewToExcel(gridView2, gridView2.RowCount);
+            }
+
+        }
     }
 
 }

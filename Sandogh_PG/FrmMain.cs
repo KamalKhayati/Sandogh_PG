@@ -1,6 +1,6 @@
 ﻿using DevExpress.XtraEditors;
-using nucs.JsonSettings;
-using nucs.JsonSettings.Fluent;
+using Nucs.JsonSettings;
+using Nucs.JsonSettings.Fluent;
 using Sandogh_PG;
 using Sandogh_PG.Forms;
 using System;
@@ -945,6 +945,22 @@ namespace Sandogh_PG
             {
                 XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> FrmMain_Shown()" + "\n" + ex.Message,
                     "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnDaryaft2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            DialogResult dr = XtraMessageBox.Show("لطفاً قبل از انجام عملیات فوق از اطلاعات فعلی بکاپ گرفته شود \n" + "آیا مایل به اینکار هستید؟", "پیغام", MessageBoxButtons.YesNo, MessageBoxIcon.Hand);
+            if (dr == DialogResult.Yes)
+            {
+                btnBackupRestore_ItemClick(null, null);
+            }
+            else
+            {
+                FrmDaryafti2 fm = new FrmDaryafti2(this);
+                //fm.lblUserId.Text = txtUserId.Caption;
+                //fm.lblUserName.Text = txtUserName.Caption;
+                fm.ShowDialog();
             }
         }
     }

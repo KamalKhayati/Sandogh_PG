@@ -153,5 +153,14 @@ namespace Sandogh_PG
             FillDataGridView1();
 
         }
+
+        private void gridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.E)
+            {
+                HelpClass1.ExportDataGridViewToExcel(gridView1, gridView1.RowCount);
+            }
+
+        }
     }
 }

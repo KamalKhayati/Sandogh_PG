@@ -6,8 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraSplashScreen;
-using nucs.JsonSettings;
-using nucs.JsonSettings.Fluent;
+using Nucs.JsonSettings;
+using Nucs.JsonSettings.Fluent;
 
 namespace Sandogh_PG
 {

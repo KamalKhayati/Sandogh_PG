@@ -1455,6 +1455,11 @@ namespace Sandogh_PG
         private void gridView1_KeyDown(object sender, KeyEventArgs e)
         {
             gridView1_RowCellClick(null, null);
+            if (e.Control && e.KeyCode == Keys.E)
+            {
+                HelpClass1.ExportDataGridViewToExcel(gridView1, gridView1.RowCount);
+            }
+
         }
 
         private void gridView1_KeyUp(object sender, KeyEventArgs e)

@@ -26,20 +26,21 @@ namespace Sandogh_PG
         {
             InitializeComponent();
             Fm = fm;
+            MyContext1 = new MyContext();
         }
 
         public bool ListTasviyeNashode = true;
         public int _VamPardakhtiId = 0;
         public void FillDataGridVamhayePardakhti()
         {
-            using (var db = new MyContext())
+            //using (var MyContext1 = new MyContext())
             {
                 try
                 {
                     rizeAghsatVamsBindingSource.DataSource = null;
                     if (ListTasviyeNashode == true)
                     {
-                        var q1 = db.VamPardakhtis.Where(s => s.IsTasviye == false).OrderBy(s => s.Code).AsParallel();
+                        var q1 = MyContext1.VamPardakhtis.Where(s => s.IsTasviye == false).OrderBy(s => s.Code).AsParallel();
                         if (q1.Count() > 0)
                         {
                             vamPardakhtisBindingSource.DataSource = q1;
@@ -50,7 +51,7 @@ namespace Sandogh_PG
                     }
                     else
                     {
-                        var q = db.VamPardakhtis.Where(s => s.IsTasviye == true).OrderBy(s => s.Code).AsParallel(); ;
+                        var q = MyContext1.VamPardakhtis.Where(s => s.IsTasviye == true).OrderBy(s => s.Code).AsParallel(); ;
                         if (q.Count() > 0)
                         {
                             vamPardakhtisBindingSource.DataSource = q;
@@ -70,14 +71,15 @@ namespace Sandogh_PG
         }
         public void FillDataGridRizeAghsatVam()
         {
-            using (var db = new MyContext())
+            //using (var db = new MyContext())
+            //MyContext1 = new MyContext();
             {
                 try
                 {
                     rizeAghsatVamsBindingSource.Clear();
                     rizeAghsatVamsBindingSource.DataSource = null;
                     _VamPardakhtiId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id"));
-                    var q1 = db.RizeAghsatVams.Where(s => s.VamPardakhtiId == _VamPardakhtiId).OrderBy(s => s.TarikhSarresid).AsParallel();
+                    var q1 = MyContext1.RizeAghsatVams.Where(s => s.VamPardakhtiId == _VamPardakhtiId).OrderBy(s => s.TarikhSarresid).AsParallel();
                     if (q1.Count() > 0)
                         rizeAghsatVamsBindingSource.DataSource = q1;
                     else
@@ -105,14 +107,15 @@ namespace Sandogh_PG
             if (gridView1.SelectedRowsCount > 0)
             {
                 EditRowIndex = gridView1.FocusedRowHandle;
-                using (var db = new MyContext())
+                //using (var MyContext1 = new MyContext())
+                //MyContext1 = new MyContext();
                 {
                     try
                     {
                         if (ListTasviyeNashode)
                         {
                             int RowId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id").ToString());
-                            var q = db.RizeAghsatVams.FirstOrDefault(p => p.VamPardakhtiId == RowId && p.MablaghDaryafti > 0);
+                            var q = MyContext1.RizeAghsatVams.FirstOrDefault(p => p.VamPardakhtiId == RowId && p.MablaghDaryafti > 0);
                             if (q != null)
                             {
                                 XtraMessageBox.Show("به دلیل اقساط دریافتی ، بعضی از اطلاعات قابل ویرایش نیست \nجهت ویرایش کلیه اطلاعات ، بایستی در ابتدا اقساط دریافت شده از طریق منوی (دریافت پس انداز ماهیانه و اقساط وام) حذف شود \nضمناً در صورت نداشتن اقساط دریافتی ، جهت حذف و یا ویرایش اطلاعات مربوط به تاریخ سررسید اقساط و مبلغ اقساط میتوانید\n از طریق منوی سمت چپ اقدام نمایید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
@@ -157,14 +160,14 @@ namespace Sandogh_PG
         string _dataBaseName = string.Empty;
         private void FrmListVamhayePardakhti_Load(object sender, EventArgs e)
         {
-            using (var db = new MyContext())
+            ///using (var MyContext1 = new MyContext())
             {
                 try
                 {
                     _deviceID = HelpClass1.GetMadarBoardSerial();
-                    _dataBaseName = db.Database.Connection.Database;
+                    _dataBaseName = MyContext1.Database.Connection.Database;
 
-                    var q = db.VamPardakhtis.ToList();
+                    var q = MyContext1.VamPardakhtis.ToList();
                     if (q.Count > 0)
                     {
                         var q1 = q.FirstOrDefault(s => s.ZameninId != null);
@@ -178,7 +181,7 @@ namespace Sandogh_PG
                                     if (item.ZameninId.Substring(0, 1) != ",")
                                         item.ZameninId = "," + item.ZameninId;
                                 }
-                                db.SaveChanges();
+                                MyContext1.SaveChanges();
                             }
                         }
                     }
@@ -407,7 +410,6 @@ namespace Sandogh_PG
             {
                 btnEdit1_Click(null, null);
             }
-
         }
 
         private void gridView2_DoubleClick(object sender, EventArgs e)
@@ -1081,6 +1083,11 @@ namespace Sandogh_PG
                     File.Delete(file);
                 }
             }
+
+            if (MyContext1 != null)
+            {
+                MyContext1.Dispose();
+            }
         }
 
         string FilePath1 = Application.StartupPath + @"\Report\Ghozareshat\";
@@ -1146,6 +1153,8 @@ namespace Sandogh_PG
                             dRow["TarikhPardakht"] = gridView1.GetRowCellDisplayText(i, "TarikhPardakht");
                         if (gridView1.Columns["MablaghAsli"].Visible)
                             dRow["MablaghAsli"] = gridView1.GetRowCellDisplayText(i, "MablaghAsli");
+                        if (gridView1.Columns["MandeVam"].Visible)
+                            dRow["MandeVam"] = gridView1.GetRowCellDisplayText(i, "MandeVam");
                         if (gridView1.Columns["MablaghKarmozd"].Visible)
                             dRow["MablaghKarmozd"] = gridView1.GetRowCellDisplayText(i, "MablaghKarmozd");
                         if (gridView1.Columns["TedadAghsat"].Visible)
@@ -1346,6 +1355,146 @@ namespace Sandogh_PG
             //var SumMablaghAsli = gridView1.Columns["MablaghAsli"].SummaryText;
             //var SumMablaghKarmozd = gridView1.Columns["MablaghKarmozd"].SummaryText;
             //var SumMMablaghAghsat = gridView2.Columns["MablaghAghsat"].SummaryText;
+        }
+
+        MyContext MyContext1;
+        private void chkDisplyMande_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkDisplyMande.Checked)
+            {
+
+                {
+                    try
+                    {
+                        //DataTable DataTable1 = new DataTable();
+                        //DataTable1 = HelpClass1.ConvettDatagridviewToDataTable(gridView1, gridView1.RowCount);
+                        //DataTable1.Columns[12].DataType = typeof(bool);
+                        //DataTable1.Columns[22].DataType = typeof(bool);
+                        //MyContext1 = new MyContext();
+                        var q = MyContext1.RizeAghsatVams.AsParallel();
+                        for (int i = 0; i < gridView1.RowCount; i++)
+                        {
+                            //MyContext1 = new MyContext();
+                            int VamPardakhtiId = Convert.ToInt32(gridView1.GetRowCellValue(i, "Id"));
+                            decimal MablaghAghsat = q.Where(s => s.VamPardakhtiId == VamPardakhtiId).Sum(s => s.MablaghAghsat);
+                            decimal MablaghDaryafti = q.Where(s => s.VamPardakhtiId == VamPardakhtiId).Sum(s => s.MablaghDaryafti);
+                            decimal MandeVam = MablaghAghsat - MablaghDaryafti;
+
+                            //DataTable1.Rows[i][26] = Mande.ToString("n0");
+                            gridView1.SetRowCellValue(i, "MandeVam", MandeVam.ToString("n0"));
+                        }
+
+                        //gridControl1.DataSource = DataTable1;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                            "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+            }
+            else
+            {
+                for (int i = 0; i < gridView1.RowCount; i++)
+                {
+                    //int VamPardakhtiId = Convert.ToInt32(gridView1.GetRowCellValue(i, "Id"));
+                    //decimal MablaghAghsat = q.Where(s => s.VamPardakhtiId == VamPardakhtiId).Sum(s => s.MablaghAghsat);
+                    //decimal MablaghDaryafti = q.Where(s => s.VamPardakhtiId == VamPardakhtiId).Sum(s => s.MablaghDaryafti);
+                    //decimal MandeVam = MablaghAghsat - MablaghDaryafti;
+
+                    //DataTable1.Rows[i][26] = Mande.ToString("n0");
+                    gridView1.SetRowCellValue(i, "MandeVam", "");
+                }
+            }
+        }
+
+        private void gridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.E)
+            {
+                HelpClass1.ExportDataGridViewToExcel(gridView1, gridView1.RowCount);
+            }
+
+        }
+
+        private void gridView2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.E)
+            {
+                HelpClass1.ExportDataGridViewToExcel(gridView2, gridView2.RowCount);
+            }
+
+        }
+
+        private void gridView1_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            try
+            {
+                if (gridView1.RowCount > 0)
+                {
+                    // bool IsActive = Convert.ToBoolean(view.GetRowCellValue(e.RowHandle, "IsActive"));
+                    //int ShomareSanad = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "ShomareSanad"));
+                    //decimal MablaghAghsat = Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, "MablaghAghsat"));
+                    //decimal MablaghDaryafti = Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, "MablaghDaryafti"));
+                    string Mande =string.IsNullOrEmpty( gridView1.GetRowCellDisplayText(e.RowHandle, "MandeVam"))?"1": gridView1.GetRowCellDisplayText(e.RowHandle, "MandeVam");
+
+                    //if (string.IsNullOrEmpty(Mande))
+                    //{
+                    //    return;
+                    //    //Color foreColor = Color.Black;
+                    //    //e.Appearance.ForeColor = foreColor;
+                    //}
+                    //else if (Convert.ToDecimal(Mande.ToString())!=0)
+                    //{
+                    //    return;
+                    //}
+                    if (Convert.ToDecimal(Mande.ToString()) == 0 )
+                    {
+                        //Color foreColor = Color.Red;
+                        //e.Appearance.ForeColor = foreColor;
+                        e.Appearance.BackColor = Color.GreenYellow;
+                    }
+                   else if ( Convert.ToDecimal(Mande.ToString()) < 0)
+                    {
+                        //Color foreColor = Color.Red;
+                        //e.Appearance.ForeColor = foreColor;
+                        e.Appearance.BackColor = Color.Red;
+                    }
+
+
+                    //DataTable DataTable1 = new DataTable();
+                    //DataTable1 = HelpClass1.ConvettDatagridviewToDataTable(gridView1, gridView1.RowCount);
+                    //DataTable1.Columns[12].DataType = typeof(bool);
+                    //DataTable1.Columns[22].DataType = typeof(bool);
+
+                    //    var q = MyContext1.RizeAghsatVams;
+                    //for (int i = 0; i < gridView1.RowCount; i++)
+                    //{
+                    //    int VamPardakhtiId = Convert.ToInt32(gridView1.GetRowCellValue(i, "Id"));
+                    //    decimal MablaghAghsat = q.Where(s => s.VamPardakhtiId == VamPardakhtiId).Sum(s => s.MablaghAghsat);
+                    //    decimal MablaghDaryafti = q.Where(s => s.VamPardakhtiId == VamPardakhtiId).Sum(s => s.MablaghDaryafti);
+                    //    decimal MandeVam = MablaghAghsat - MablaghDaryafti;
+
+                    //    //DataTable1.Rows[i][26] = Mande.ToString("n0");
+                    //    //gridView1.SetRowCellValue(i, "MandeVam", MandeVam.ToString("n0"));
+                    //    if (MandeVam == 0 || MandeVam < 0)
+                    //    {
+                    //        e.Appearance.BackColor = Color.LightGreen;
+                    //    }
+
+                }
+
+                //gridControl1.DataSource = DataTable1;
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                    "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
 }

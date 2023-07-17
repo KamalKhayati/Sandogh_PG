@@ -196,6 +196,7 @@
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
             this.gridView1.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView1_CustomUnboundColumnData);
+            this.gridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyDown);
             this.gridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gridView1_KeyPress);
             this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
@@ -1098,7 +1099,6 @@
             this.cmbVamGerande.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbVamGerande.Properties.ReadOnly = true;
             this.cmbVamGerande.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
-            this.cmbVamGerande.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cmbVamGerande.Properties.ValueMember = "Id";
             this.cmbVamGerande.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbVamGerande.Size = new System.Drawing.Size(442, 34);

@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Management;
 using DevExpress.XtraEditors;
-using nucs.JsonSettings;
-using nucs.JsonSettings.Fluent;
+using Nucs.JsonSettings;
+using Nucs.JsonSettings.Fluent;
 using System.Data.Entity;
 using Sandogh_PG.Forms;
 

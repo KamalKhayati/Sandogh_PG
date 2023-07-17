@@ -260,6 +260,10 @@ namespace Sandogh_PG
                         dRow["HesabTafName"] = gridView2.GetRowCellDisplayText(i, "HesabTafName");
                     if (gridView2.Columns["2001"].Visible)
                         dRow["2001"] = gridView2.GetRowCellDisplayText(i, "2001");
+                    if (gridView2.Columns["2002"].Visible)
+                        dRow["2002"] = gridView2.GetRowCellDisplayText(i, "2002");
+                    if (gridView2.Columns["2003"].Visible)
+                        dRow["2003"] = gridView2.GetRowCellDisplayText(i, "2003");
                     if (gridView2.Columns["3001"].Visible)
                         dRow["3001"] = gridView2.GetRowCellDisplayText(i, "3001");
                     if (gridView2.Columns["4001"].Visible)
@@ -295,7 +299,9 @@ namespace Sandogh_PG
                         XtraReport1.Parameters["SandoghName"].Value = _SandoghName;
                         XtraReport1.Parameters["Logo_Co"].Value = Fm.pictureEdit1.Image;
 
-                        XtraReport1.Parameters["Vam_Daryaftani"].Value = gridView2.Columns["2001"].Caption;
+                        XtraReport1.Parameters["Vam_Daryaftani_2001"].Value = gridView2.Columns["2001"].Caption;
+                        XtraReport1.Parameters["Vam_Daryaftani_2002"].Value = gridView2.Columns["2002"].Caption;
+                        XtraReport1.Parameters["Vam_Daryaftani_2003"].Value = gridView2.Columns["2003"].Caption;
                         XtraReport1.Parameters["Mosaede"].Value = gridView2.Columns["3001"].Caption;
                         XtraReport1.Parameters["Bedehkaran"].Value = gridView2.Columns["4001"].Caption;
                         XtraReport1.Parameters["Vam_Pardakhtani"].Value = gridView2.Columns["6001"].Caption;
@@ -373,6 +379,8 @@ namespace Sandogh_PG
                     if (xtraTabControl1.SelectedTabPageIndex == 1)
                     {
                         gridView2.Columns["2001"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 2001).Name;
+                        gridView2.Columns["2002"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 2002).Name;
+                        gridView2.Columns["2003"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 2003).Name;
                         gridView2.Columns["3001"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 3001).Name;
                         gridView2.Columns["4001"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 4001).Name;
                         gridView2.Columns["6001"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 6001).Name;
@@ -391,6 +399,24 @@ namespace Sandogh_PG
             }
 
             btnDisplyList_Click(null, null);
+        }
+
+        private void gridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.E)
+            {
+                HelpClass1.ExportDataGridViewToExcel(gridView1, gridView1.RowCount);
+            }
+
+        }
+
+        private void gridView2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.E)
+            {
+                HelpClass1.ExportDataGridViewToExcel(gridView2, gridView2.RowCount);
+            }
+
         }
     }
 }

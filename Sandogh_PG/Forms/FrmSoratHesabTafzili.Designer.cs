@@ -156,6 +156,7 @@
             this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.CustomSummaryCalculate += new DevExpress.Data.CustomSummaryEventHandler(this.gridView2_CustomSummaryCalculate);
             this.gridView2.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView2_CustomUnboundColumnData);
+            this.gridView2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView2_KeyDown);
             // 
             // gridColumn1
             // 
@@ -406,6 +407,7 @@
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             this.gridView1.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView1_CustomUnboundColumnData);
+            this.gridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyDown);
             // 
             // colId
             // 
@@ -708,7 +710,6 @@
             this.cmbHesabTafzili.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.cmbHesabTafzili.Properties.PopupWidth = 455;
             this.cmbHesabTafzili.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
-            this.cmbHesabTafzili.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cmbHesabTafzili.Properties.ValueMember = "Id";
             this.cmbHesabTafzili.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbHesabTafzili.Size = new System.Drawing.Size(348, 34);

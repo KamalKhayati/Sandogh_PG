@@ -794,7 +794,7 @@ namespace Sandogh_PG
                             obj.checkEdit2 = checkEdit2.Checked ? true : false;
                             if (!string.IsNullOrEmpty(txtTarikhDarkhast.Text))
                                 obj.TarikhDarkhast = Convert.ToDateTime(txtTarikhDarkhast.Text.Substring(0, 10));
-                            obj.ShomareDarkhast = txtShomareDarkhast.Text;
+                            obj.ShomareDarkhast = Convert.ToInt32(txtShomareDarkhast.Text);
                             obj.Code = Convert.ToInt32(txtCode.Text);
                             if (!string.IsNullOrEmpty(txtTarikhPardakht.Text))
                                 obj.TarikhPardakht = Convert.ToDateTime(txtTarikhPardakht.Text.Substring(0, 10));
@@ -1045,7 +1045,7 @@ namespace Sandogh_PG
                                     q.checkEdit2 = checkEdit2.Checked ? true : false;
                                     if (!string.IsNullOrEmpty(txtTarikhDarkhast.Text))
                                         q.TarikhDarkhast = Convert.ToDateTime(txtTarikhDarkhast.Text.Substring(0, 10));
-                                    q.ShomareDarkhast = txtShomareDarkhast.Text;
+                                    q.ShomareDarkhast = Convert.ToInt32(txtShomareDarkhast.Text);
                                     q.Code = Convert.ToInt32(txtCode.Text);
                                     if (!string.IsNullOrEmpty(txtTarikhPardakht.Text))
                                         q.TarikhPardakht = Convert.ToDateTime(txtTarikhPardakht.Text.Substring(0, 10));
@@ -1690,13 +1690,30 @@ namespace Sandogh_PG
             {
                 try
                 {
-                    var q = db.VamPardakhtis.Max(s => s.ShomareDarkhast);
-                    if (!string.IsNullOrEmpty(q))
+                    var q = db.VamPardakhtis;
+                    var q1 = q.Max(s => s.ShomareDarkhast);
+                    if (q != null)
                     {
-                        txtShomareDarkhast.Text = (Convert.ToInt32(q) + 1).ToString();
+                        if (q.Count() != q1)
+                        {
+                            int i = 0;
+                            foreach (var item in q)
+                            {
+                                i++;
+                                item.ShomareDarkhast = i ; 
+                            }
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            txtShomareDarkhast.Text = (q1 + 1).ToString();
+
+                        }
                     }
                     else
+                    {
                         txtShomareDarkhast.Text = "1";
+                    }
                     txtTarikhPardakht.Focus();
 
                 }

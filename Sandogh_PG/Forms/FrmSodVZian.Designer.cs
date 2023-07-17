@@ -270,6 +270,7 @@
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowFooter = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyDown);
             // 
             // MandeBed
             // 
@@ -307,10 +308,6 @@
             this.gridControl1.TabIndex = 37;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
-            // 
-            // asnadeHesabdariRowsBindingSource
-            // 
-            //this.asnadeHesabdariRowsBindingSource.DataSource = typeof(Sandogh_PG.AsnadeHesabdariRow);
             // 
             // ChkTarikh
             // 

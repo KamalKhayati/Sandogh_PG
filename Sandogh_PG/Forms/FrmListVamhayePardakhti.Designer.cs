@@ -61,7 +61,9 @@
             this.AazaId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colZameninId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTozihat = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ColMandeVam = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl6 = new DevExpress.XtraEditors.PanelControl();
+            this.chkDisplyMande = new DevExpress.XtraEditors.CheckEdit();
             this.btnEdit1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnDelete1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnCreate1 = new DevExpress.XtraEditors.SimpleButton();
@@ -111,6 +113,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl6)).BeginInit();
             this.panelControl6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkDisplyMande.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -203,7 +206,8 @@
             this.gridColumn45,
             this.AazaId,
             this.colZameninId,
-            this.colTozihat});
+            this.colTozihat,
+            this.ColMandeVam});
             this.gridView1.DetailHeight = 378;
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView1.GridControl = this.gridControl1;
@@ -223,8 +227,10 @@
             this.gridView1.OptionsView.ShowFooter = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
+            this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
             this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
             this.gridView1.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView1_CustomUnboundColumnData);
+            this.gridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyDown);
             this.gridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gridView1_KeyPress);
             this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
@@ -642,8 +648,29 @@
             this.colTozihat.VisibleIndex = 22;
             this.colTozihat.Width = 600;
             // 
+            // ColMandeVam
+            // 
+            this.ColMandeVam.AppearanceCell.Options.UseTextOptions = true;
+            this.ColMandeVam.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.ColMandeVam.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.ColMandeVam.AppearanceHeader.Options.UseTextOptions = true;
+            this.ColMandeVam.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.ColMandeVam.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.ColMandeVam.Caption = "مانده وام";
+            this.ColMandeVam.DisplayFormat.FormatString = "n";
+            this.ColMandeVam.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.ColMandeVam.FieldName = "MandeVam";
+            this.ColMandeVam.MinWidth = 25;
+            this.ColMandeVam.Name = "ColMandeVam";
+            this.ColMandeVam.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Mande", "{0:n}")});
+            this.ColMandeVam.Visible = true;
+            this.ColMandeVam.VisibleIndex = 23;
+            this.ColMandeVam.Width = 250;
+            // 
             // panelControl6
             // 
+            this.panelControl6.Controls.Add(this.chkDisplyMande);
             this.panelControl6.Controls.Add(this.btnEdit1);
             this.panelControl6.Controls.Add(this.btnDelete1);
             this.panelControl6.Controls.Add(this.btnCreate1);
@@ -653,6 +680,19 @@
             this.panelControl6.Name = "panelControl6";
             this.panelControl6.Size = new System.Drawing.Size(973, 48);
             this.panelControl6.TabIndex = 4;
+            // 
+            // chkDisplyMande
+            // 
+            this.chkDisplyMande.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkDisplyMande.Location = new System.Drawing.Point(803, 10);
+            this.chkDisplyMande.Name = "chkDisplyMande";
+            this.chkDisplyMande.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.chkDisplyMande.Properties.Appearance.Options.UseForeColor = true;
+            this.chkDisplyMande.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
+            this.chkDisplyMande.Properties.Caption = "نمایش مانده وام";
+            this.chkDisplyMande.Size = new System.Drawing.Size(160, 31);
+            this.chkDisplyMande.TabIndex = 3;
+            this.chkDisplyMande.CheckedChanged += new System.EventHandler(this.chkDisplyMande_CheckedChanged);
             // 
             // btnEdit1
             // 
@@ -901,6 +941,7 @@
             this.gridView2.CustomSummaryCalculate += new DevExpress.Data.CustomSummaryEventHandler(this.gridView2_CustomSummaryCalculate);
             this.gridView2.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView2_FocusedRowChanged);
             this.gridView2.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView2_CustomUnboundColumnData);
+            this.gridView2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView2_KeyDown);
             this.gridView2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gridView2_KeyPress);
             this.gridView2.DoubleClick += new System.EventHandler(this.gridView2_DoubleClick);
             // 
@@ -1258,6 +1299,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl6)).EndInit();
             this.panelControl6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chkDisplyMande.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
@@ -1350,5 +1392,7 @@
         private DevExpress.XtraEditors.SimpleButton btnDesignReport2;
         private DevExpress.XtraGrid.Columns.GridColumn colSharh;
         private DevExpress.XtraGrid.Columns.GridColumn colTozihat;
+        private DevExpress.XtraGrid.Columns.GridColumn ColMandeVam;
+        private DevExpress.XtraEditors.CheckEdit chkDisplyMande;
     }
 }

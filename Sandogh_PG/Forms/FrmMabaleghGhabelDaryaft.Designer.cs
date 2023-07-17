@@ -360,6 +360,7 @@
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridView1_CustomDrawRowIndicator);
             this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
+            this.gridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyDown);
             // 
             // gridColumn1
             // 
@@ -686,6 +687,7 @@
             this.gridView2.OptionsView.ShowFooter = true;
             this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView2_RowCellStyle);
+            this.gridView2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView2_KeyDown);
             // 
             // gridColumn2
             // 
@@ -1030,6 +1032,7 @@
             this.gridView3.OptionsView.ShowAutoFilterRow = true;
             this.gridView3.OptionsView.ShowFooter = true;
             this.gridView3.OptionsView.ShowGroupPanel = false;
+            this.gridView3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView3_KeyDown);
             // 
             // gridColumn14
             // 

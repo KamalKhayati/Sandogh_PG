@@ -86,6 +86,7 @@
             this.btnListHesabMoin = new DevExpress.XtraBars.BarButtonItem();
             this.btnSupportSetting = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDaryaft2 = new DevExpress.XtraBars.BarButtonItem();
             this.DaryaftVPardakht = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgDaryaft = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgPardakhtha = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -182,10 +183,11 @@
             this.barStaticItem8,
             this.btnListHesabMoin,
             this.btnSupportSetting,
-            this.barButtonItem3});
+            this.barButtonItem3,
+            this.btnDaryaft2});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.ribbonControl1.MaxItemId = 86;
+            this.ribbonControl1.MaxItemId = 87;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsPageCategories.ShowCaptions = false;
             this.ribbonControl1.PageHeaderItemLinks.Add(this.barStaticItem7);
@@ -243,7 +245,7 @@
             // 
             // btnDaryaft1
             // 
-            this.btnDaryaft1.Caption = "دریافت پس انداز ماهیانه و اقساط وام";
+            this.btnDaryaft1.Caption = "دریافت پس انداز ماهیانه و اقساط وام بصورت تکی";
             this.btnDaryaft1.Id = 4;
             this.btnDaryaft1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDaryaft1.ImageOptions.SvgImage")));
             this.btnDaryaft1.Name = "btnDaryaft1";
@@ -646,6 +648,15 @@
             this.barButtonItem3.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText;
             this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick_1);
             // 
+            // btnDaryaft2
+            // 
+            this.btnDaryaft2.Caption = "دریافت پس انداز ماهیانه و اقساط وام بصورت گروهی";
+            this.btnDaryaft2.Id = 86;
+            this.btnDaryaft2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDaryaft2.ImageOptions.SvgImage")));
+            this.btnDaryaft2.Name = "btnDaryaft2";
+            this.btnDaryaft2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.btnDaryaft2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDaryaft2_ItemClick);
+            // 
             // DaryaftVPardakht
             // 
             this.DaryaftVPardakht.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -658,7 +669,8 @@
             // 
             // rpgDaryaft
             // 
-            this.rpgDaryaft.ItemLinks.Add(this.btnDaryaft1);
+            this.rpgDaryaft.ItemLinks.Add(this.btnDaryaft1, true);
+            this.rpgDaryaft.ItemLinks.Add(this.btnDaryaft2, true);
             this.rpgDaryaft.Name = "rpgDaryaft";
             this.rpgDaryaft.Text = " پس انداز و اقساط";
             // 
@@ -963,6 +975,7 @@
         public DevExpress.XtraBars.BarStaticItem barStaticItem4;
         private DevExpress.XtraBars.BarButtonItem btnSupportSetting;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
+        private DevExpress.XtraBars.BarButtonItem btnDaryaft2;
     }
 }
 

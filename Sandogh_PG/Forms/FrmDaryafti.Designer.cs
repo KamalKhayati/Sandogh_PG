@@ -287,6 +287,7 @@
             this.gridView2.OptionsView.ShowAutoFilterRow = true;
             this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridView2_CustomDrawRowIndicator);
+            this.gridView2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView2_KeyDown);
             this.gridView2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gridView2_KeyPress);
             this.gridView2.DoubleClick += new System.EventHandler(this.gridView2_DoubleClick);
             // 
@@ -2056,6 +2057,7 @@
             this.gridView4.CustomSummaryCalculate += new DevExpress.Data.CustomSummaryEventHandler(this.gridView4_CustomSummaryCalculate);
             this.gridView4.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView4_FocusedRowChanged);
             this.gridView4.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView4_CustomUnboundColumnData);
+            this.gridView4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView4_KeyDown);
             // 
             // gridColumn10
             // 

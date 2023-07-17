@@ -29,8 +29,8 @@ namespace Sandogh_PG
         public bool checkEdit2 { get; set; }
         [Column(TypeName = "Date")]
         public DateTime? TarikhDarkhast { get; set; }
-        [MaxLength(10)]
-        public string ShomareDarkhast { get; set; }
+        //[MaxLength(10)]
+        public int ShomareDarkhast { get; set; }
         [Required]
         public int Code { get; set; }
         [Required, Column(TypeName = "Date")]
@@ -46,6 +46,8 @@ namespace Sandogh_PG
         public int TedadAghsat { get; set; }
         [Required]
         public decimal MablaghAghsat { get; set; }
+        //[Required]
+        public decimal? MandeVam { get; set; }
         [Required, Column(TypeName = "Date")]
         public DateTime SarresidAvalinGhest { get; set; }
         [Required]
