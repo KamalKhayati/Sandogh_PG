@@ -28,19 +28,27 @@
                 //پیش فرض
                 //Database.SetInitializer<MyContext>(new CreateDatabaseIfNotExists<MyContext>());
                 //    if (SetIni == SetInitialize.DropCreateDatabaseAlways)
+
                 //حذف دیتابیس قبلی بهمراه داده های داخلش و ایجاد دیتابیس جدید بدون داده در صورت تغییرویاعدم تغییر(در هرصورت) کلاس مدل
                 ////     Database.SetInitializer<MyContext>(new DropCreateDatabaseAlways<MyContext>());
+                ///
                 // حذف دیتابیس قبلی بهمراه داده های داخلش و ایجاد دیتابیس جدید بدون داده در صورت تغییر کلاس مدل
                 //Database.SetInitializer<MyContext>(new DropCreateDatabaseIfModelChanges<MyContext>());
+
                 // غیرفعال کردن پیکربندی دیتابیس برای اینکه داده های فعلی موجود در دیتا بیس حذف نشود
                 //Database.SetInitializer<MyContext>(null);
+
                 //پیکربندی دیتابیس بصورت Coustom
                 //Database.SetInitializer<MyContext>(new MyContextInitializer());
+
                 #endregion
                 //Migration SetInitializer
                 if (Database.Connection.ConnectionString != "")
                 {
+                    //Database.Initialize(true);
                     Database.SetInitializer<MyContext>(new MigrateDatabaseToLatestVersion<MyContext, Configuration>(true));
+                    //Database.SetInitializer<MyContext>(new MigrateDatabaseToLatestVersion<MyContext, Configuration>(false));
+                   // Database.Initialize(true);
                     SqlConnection.ClearAllPools();
                 }
 
@@ -89,12 +97,16 @@
         public virtual DbSet<CodeMoin> CodeMoins { get; set; }
         public virtual DbSet<GroupTafzili> GroupTafzilis { get; set; }
         public virtual DbSet<TarifSandogh> TarifSandoghs { get; set; }
+        public virtual DbSet<MasolinSandogh> MasolinSandoghs { get; set; }
         public virtual DbSet<SalMali> SalMalis { get; set; }
         public virtual DbSet<HesabBanki> HesabBankis { get; set; }
         public virtual DbSet<AazaSandogh> AazaSandoghs { get; set; }
         public virtual DbSet<CodingDaramadVHazine> CodingDaramadVHazines { get; set; }
         public virtual DbSet<AllHesabTafzili> AllHesabTafzilis { get; set; }
         public virtual DbSet<Tanzimat> Tanzimats { get; set; }
+        public virtual DbSet<AnvaeVam> AnvaeVams { get; set; }
+        public virtual DbSet<R_AnvaeVam_B_AllHesabTafzili> R_AnvaeVam_B_AllHesabTafzilis { get; set; }
+        public virtual DbSet<TedadZamenin> TedadZamenins { get; set; }
         public virtual DbSet<HaghOzviat> HaghOzviats { get; set; }
         public virtual DbSet<RizeAghsatVam> RizeAghsatVams { get; set; }
         public virtual DbSet<VamPardakhti> VamPardakhtis { get; set; }
@@ -132,7 +144,7 @@
                 modelBuilder.Entity<TarifSandogh>().HasMany(m => m.SalMalis).WithRequired(m => m.TarifSandogh1).HasForeignKey(m => m.TarifSandoghId).WillCascadeOnDelete(false);
                 modelBuilder.Entity<TarifSandogh>().HasMany(m => m.CodeMoins).WithRequired(m => m.TarifSandogh1).HasForeignKey(m => m.SandoghId).WillCascadeOnDelete(false);
                 modelBuilder.Entity<TarifSandogh>().HasMany(m => m.GroupTafzilis).WithRequired(m => m.TarifSandogh1).HasForeignKey(m => m.SandoghId).WillCascadeOnDelete(false);
-                //modelBuilder.Entity<TarifSandogh>().HasMany(m => m.Karbarans).WithRequired(m => m.TarifSandogh1).HasForeignKey(m => m.SandoghId).WillCascadeOnDelete(false);
+                modelBuilder.Entity<TarifSandogh>().HasMany(m => m.MasolinSandoghs).WithRequired(m => m.TarifSandogh1).HasForeignKey(m => m.SandoghId).WillCascadeOnDelete(true);
                 //modelBuilder.Entity<TarifSandogh>().HasMany(m => m.HesabBankis).WithRequired(m => m.TarifSandogh1).HasForeignKey(m => m.TarifSandoghId).WillCascadeOnDelete(false);
                 //modelBuilder.Entity<TarifSandogh>().HasMany(m => m.AazaSandoghs).WithRequired(m => m.TarifSandogh1).HasForeignKey(m => m.TarifSandoghId).WillCascadeOnDelete(false);
                 //modelBuilder.Entity<TarifSandogh>().HasMany(m => m.CodingDaramadVHazines).WithRequired(m => m.TarifSandogh1).HasForeignKey(m => m.SandoghId).WillCascadeOnDelete(false);
@@ -142,12 +154,16 @@
                 //modelBuilder.Entity<GroupTafzili>().HasMany(m => m.AazaSandoghs).WithRequired(m => m.GroupTafzili1).HasForeignKey(m => m.GroupTafziliId).WillCascadeOnDelete(false);
                 //modelBuilder.Entity<GroupTafzili>().HasMany(m => m.CodingDaramadVHazines).WithRequired(m => m.GroupTafzili1).HasForeignKey(m => m.GroupTafziliId).WillCascadeOnDelete(false);
                 modelBuilder.Entity<GroupTafzili>().HasMany(m => m.AllHesabTafzilis).WithRequired(m => m.GroupTafzili1).HasForeignKey(m => m.GroupTafziliId).WillCascadeOnDelete(false);
-
                 modelBuilder.Entity<VamPardakhti>().HasMany(m => m.RizeAghsatVams).WithRequired(m => m.VamPardakhti1).HasForeignKey(m => m.VamPardakhtiId).WillCascadeOnDelete(true);
-                modelBuilder.Entity<VamPardakhti>().HasMany(m => m.R_VamPardakhti_B_Zamenins).WithRequired(m => m.VamPardakhtin1).HasForeignKey(m => m.VamPardakhtiId).WillCascadeOnDelete(true);
-                modelBuilder.Entity<VamPardakhti>().HasMany(m => m.R_VamPardakhti_B_CheckTazmins).WithRequired(m => m.VamPardakhtin1).HasForeignKey(m => m.VamPardakhtiId).WillCascadeOnDelete(true);
-                modelBuilder.Entity<AllHesabTafzili>().HasMany(m => m.R_VamPardakhti_B_Zamenins).WithRequired(m => m.AllHesabTafzili1).HasForeignKey(m => m.AllTafId).WillCascadeOnDelete(false);
+
                 modelBuilder.Entity<CheckTazmin>().HasMany(m => m.R_VamPardakhti_B_CheckTazmins).WithRequired(m => m.CheckTazmin1).HasForeignKey(m => m.CheckTazminId).WillCascadeOnDelete(false);
+                modelBuilder.Entity<VamPardakhti>().HasMany(m => m.R_VamPardakhti_B_CheckTazmins).WithRequired(m => m.VamPardakhtin1).HasForeignKey(m => m.VamPardakhtiId).WillCascadeOnDelete(true);
+
+                modelBuilder.Entity<AllHesabTafzili>().HasMany(m => m.R_VamPardakhti_B_Zamenins).WithRequired(m => m.AllHesabTafzili1).HasForeignKey(m => m.AllTafId).WillCascadeOnDelete(false);
+                modelBuilder.Entity<VamPardakhti>().HasMany(m => m.R_VamPardakhti_B_Zamenins).WithRequired(m => m.VamPardakhtin1).HasForeignKey(m => m.VamPardakhtiId).WillCascadeOnDelete(true);
+
+                modelBuilder.Entity<AllHesabTafzili>().HasMany(m => m.R_AnvaeVam_B_AllHesabTafzilis).WithRequired(m => m.AllHesabTafzili1).HasForeignKey(m => m.AllHesabTafziliId).WillCascadeOnDelete(true);
+                modelBuilder.Entity<AnvaeVam>().HasMany(m => m.R_AnvaeVam_B_AllHesabTafzilis).WithRequired(m => m.AnvaeVam1).HasForeignKey(m => m.AnvaeVamId).WillCascadeOnDelete(false);
 
                 //modelBuilder.Entity<AllHesabTafzili>().HasMany(m => m.VamPardakhtis).WithRequired(m => m.AllHesabTafzili1).HasForeignKey(m => m.AazaId).WillCascadeOnDelete(false);
                 //modelBuilder.Entity<AllHesabTafzili>().HasMany(m => m.VamPardakhtis).WithRequired(m => m.AllHesabTafzili1).HasForeignKey(m => m.HesabTafziliId).WillCascadeOnDelete(false);
@@ -162,7 +178,12 @@
                 modelBuilder.Entity<SalMali>().HasMany(m => m.CheckTazmins).WithRequired(m => m.SalMali1).HasForeignKey(m => m.SalMaliId).WillCascadeOnDelete(false);
 
                 modelBuilder.Entity<CodeMoin>().HasMany(m => m.AsnadeHesabdariRows).WithRequired(m => m.CodeMoin1).HasForeignKey(m => m.HesabMoinId).WillCascadeOnDelete(false);
+                modelBuilder.Entity<Tanzimat>().HasMany(m => m.AnvaeVams).WithRequired(m => m.Tanzimat1).HasForeignKey(m => m.TanzimatId).WillCascadeOnDelete(false);
+                modelBuilder.Entity<AnvaeVam>().HasMany(m => m.TedadZamenins).WithRequired(m => m.AnvaeVam1).HasForeignKey(m => m.AnvaeVamId).WillCascadeOnDelete(false);
 
+                modelBuilder.Entity<AnvaeVam>().Property(p => p.MaxPardakht).HasPrecision(18, 0);
+                modelBuilder.Entity<AnvaeVam>().Property(p => p.MablaghDirkard).HasPrecision(18, 0);
+                //modelBuilder.Entity<AnvaeVam>().Property(p => p.DarsadeKarmozd).HasColumnType("");
 
             }
             catch (Exception ex)

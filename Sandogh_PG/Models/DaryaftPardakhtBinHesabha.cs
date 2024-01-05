@@ -43,5 +43,6 @@ namespace Sandogh_PG
         public int ShomareSanad { get; set; }
         [Required]
         public int SalMaliId { get; set; }
+        public bool TaghirSarmayeAvalye { get; set; }
     }
 }

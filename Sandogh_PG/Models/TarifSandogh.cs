@@ -57,6 +57,7 @@ namespace Sandogh_PG
         public virtual ICollection<CodeMoin> CodeMoins { get; set; }
         public virtual ICollection<GroupTafzili> GroupTafzilis { get; set; }
         public virtual ICollection<AllHesabTafzili> AllHesabTafzilis { get; set; }
-        //public virtual ICollection<Karbaran> Karbarans { get; set; }
+        public virtual ICollection<MasolinSandogh> MasolinSandoghs { get; set; }
+
     }
 }

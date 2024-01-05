@@ -97,7 +97,7 @@ namespace Sandogh_PG
             {
                 Year++;
                 Month = 1;
-                //Day = 1;
+                //Day += 2;
             }
             else
                 Month++;
@@ -187,6 +187,56 @@ namespace Sandogh_PG
             return Year.ToString() + "/" + (Month < 10 ? "0" : "") + Month.ToString() + "/" + (Day < 10 ? "0" : "") + Day.ToString();
         }
 
+        public Mydate AddMont(int n)
+        {
+            //Mydate t = new Mydate(this);
+            for (int i = 1; i <= n; i++)
+            {
+                if (Month == 6)
+                {
+                    if (Day == 31)
+                    {
+                        Month++;
+                        Day--;
+                    }
+                    else
+                        Month++;
+                }
+                else if (Month == 7 || Month == 8 || Month == 9 || Month == 10)
+                    Month++;
+                else if (Month == 11)
+                {
+                    if (Day == 30)
+                    {
+                        Month++;
+                        Day--;
+                    }
+                    else
+                        Month++;
+                }
+                else if (Month == 12)
+                {
+                    if (Day == 29)
+                    {
+                        Year++;
+                        Month = 1;
+                        Day += 2;
+                    }
+                    else
+                    {
+                        Year++;
+                        Month++;
+                    }
+
+                    //Year++;
+                    //Month = 1;
+                    //Day += 2;
+                }
+                else
+                    Month++;
+            }
+            return this;
+        }
         public Mydate Add1(int n)
         {
             for (int i = 1; i <= n; i++)

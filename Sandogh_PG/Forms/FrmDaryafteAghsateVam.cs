@@ -86,7 +86,7 @@ namespace Sandogh_PG
             {
                 try
                 {
-                    var q1 = db.CodeMoins.OrderBy(s => s.Code).AsParallel(); 
+                    var q1 = db.CodeMoins.OrderBy(s => s.Code).AsParallel();
                     if (q1.Count() > 0)
                         codeMoinsBindingSource.DataSource = q1;
                     else
@@ -154,7 +154,7 @@ namespace Sandogh_PG
                 {
                     _deviceID = HelpClass1.GetMadarBoardSerial();
                     _dataBaseName = db.Database.Connection.Database;
-                    int _CodeVam= Convert.ToInt32(txtCodeVam.Text);
+                    int _CodeVam = Convert.ToInt32(txtCodeVam.Text);
                     int _IndexNoeVam = db.VamPardakhtis.FirstOrDefault(s => s.Code == _CodeVam).IndexNoeVam;
                     var z = db.CodeMoins.ToList();
 
@@ -211,7 +211,7 @@ namespace Sandogh_PG
                         //}
 
                         int _SandoghId = Convert.ToInt32(Fm.Fm.IDSandogh.Caption);
-                        var q2 = db.Tanzimats.FirstOrDefault(s => s.Id == _SandoghId);
+                        var q2 = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SandoghId);
                         if (q2 != null)
                         {
                             cmbMoin.EditValue = q2.MoinDefaultId;
@@ -248,8 +248,10 @@ namespace Sandogh_PG
                         txtMablaghGhest.Text = Fm.gridView4.GetFocusedRowCellDisplayText("MablaghAghsat");
                         txtTarikhDaryaft.Text = Fm.gridView4.GetFocusedRowCellDisplayText("TarikhDaryaft").Substring(0, 10);
                         txtMablaghDaryaft.Text = Fm.gridView4.GetFocusedRowCellDisplayText("MablaghDaryafti");
-                        int _MoinId = Convert.ToInt32(db.AsnadeHesabdariRows.FirstOrDefault(f => f.ShomareSanad == _shSanad).HesabMoinId);
-                        cmbMoin.EditValue = _MoinId;
+                        var w = db.AsnadeHesabdariRows.FirstOrDefault(f => f.ShomareSanad == _shSanad);
+                        cmbMoin.EditValue = Convert.ToInt32(w != null ? w.HesabMoinId : 0);
+                        //int _MoinId = Convert.ToInt32(db.AsnadeHesabdariRows.FirstOrDefault(f => f.ShomareSanad == _shSanad).HesabMoinId);
+                        //cmbMoin.EditValue = _MoinId;
                         cmbNameHesab.EditValue = Convert.ToInt32(Fm.gridView4.GetFocusedRowCellValue("NameHesabId"));
                         txtSharh.Text = Fm.gridView4.GetFocusedRowCellDisplayText("Sharh");
                         btnSaveNext.Visible = false;
@@ -475,7 +477,7 @@ namespace Sandogh_PG
 
                                                 if (Convert.ToDecimal(txtMablaghGhest.Text.Trim().Replace(",", "")) == Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
                                                 {
-                                                    var qs1 = XtraMessageBox.Show("با دریافت این قسط مبلغ مانده وام " + rs1.ToString("n0") + "  ریال خواهد بود آیا مبلغ قسط بعدی به مبلغ مانده وام اصلاح گردد؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                                                    var qs1 = XtraMessageBox.Show("با دریافت این قسط مبلغ مانده وام " + rs1.ToString("n0") + "   خواهد بود آیا مبلغ قسط بعدی به مبلغ مانده وام اصلاح گردد؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                                                     if (qs1 == DialogResult.Yes)
                                                     {
                                                         var w = db.RizeAghsatVams.FirstOrDefault(s => s.VamPardakhtiCode == _codevam && s.ShomareGhest == _shomareghestBadi);
@@ -495,7 +497,7 @@ namespace Sandogh_PG
                                                 {
                                                     //var a = Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue) - Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", ""));
 
-                                                    var qs1 = XtraMessageBox.Show("با دریافت این قسط مبلغ مانده وام " + rs1.ToString("n0") + "  ریال خواهد بود آیا مبلغ قسط بعدی به مبلغ مانده وام اصلاح گردد؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                                                    var qs1 = XtraMessageBox.Show("با دریافت این قسط مبلغ مانده وام " + rs1.ToString("n0") + "   خواهد بود آیا مبلغ قسط بعدی به مبلغ مانده وام اصلاح گردد؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                                                     if (qs1 == DialogResult.Yes)
                                                     {
                                                         var w = db.RizeAghsatVams.FirstOrDefault(s => s.VamPardakhtiCode == _codevam && s.ShomareGhest == _shomareghestBadi);
@@ -545,7 +547,7 @@ namespace Sandogh_PG
                                                 RizeAghsatVam ct = new RizeAghsatVam();
                                                 if (Convert.ToDecimal(txtMablaghGhest.Text.Trim().Replace(",", "")) == Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
                                                 {
-                                                    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با دریافت این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "  ریال خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                                                    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با دریافت این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "   خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                                                     if (qs1 == DialogResult.Yes)
                                                     {
                                                         q.MablaghAghsat = Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", ""));
@@ -567,7 +569,7 @@ namespace Sandogh_PG
 
                                                     //var a = Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue) - Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", ""));
 
-                                                    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با دریافت این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "  ریال خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                                                    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با دریافت این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "   خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                                                     if (qs1 == DialogResult.Yes)
                                                     {
                                                         q.MablaghAghsat = Convert.ToDecimal(txtMablaghGhest.Text.Trim().Replace(",", "")) - rs1;
@@ -586,7 +588,7 @@ namespace Sandogh_PG
                                                 else if (Convert.ToDecimal(txtMablaghGhest.Text.Trim().Replace(",", "")) < Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
                                                 {
 
-                                                    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با دریافت این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "  ریال خواهد بود لذا یک قسط جدید به تاریخ دوره بعد و به مبلغ صفر ریال ایجاد میشود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با دریافت این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "   خواهد بود لذا یک قسط جدید به تاریخ دوره بعد و به مبلغ صفر ایجاد میشود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                     //if (qs1 == DialogResult.Yes)
                                                     //{
                                                     //    ct.MablaghAghsat = 0;
@@ -643,7 +645,7 @@ namespace Sandogh_PG
 
                                                 //if (Convert.ToDecimal(txtMablaghGhest.Text.Trim().Replace(",", "")) == Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
                                                 //{
-                                                //    var qs1 = XtraMessageBox.Show("با دریافت این قسط مبلغ مانده وام " + rs1 + "  ریال خواهد بود آیا مبلغ قسط بعدی به مبلغ مانده وام اصلاح گردد؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                                                //    var qs1 = XtraMessageBox.Show("با دریافت این قسط مبلغ مانده وام " + rs1 + "   خواهد بود آیا مبلغ قسط بعدی به مبلغ مانده وام اصلاح گردد؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                                                 //    if (qs1 == DialogResult.Yes)
                                                 //    {
                                                 //        q.MablaghAghsat = Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", ""));
@@ -660,7 +662,7 @@ namespace Sandogh_PG
                                                 //{
                                                 //    //var a = Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue) - Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", ""));
 
-                                                //    var qs1 = XtraMessageBox.Show("با دریافت این قسط مبلغ مانده وام " + rs1 + "  ریال خواهد بود آیا مبلغ قسط بعدی به مبلغ مانده وام اصلاح گردد؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                                                //    var qs1 = XtraMessageBox.Show("با دریافت این قسط مبلغ مانده وام " + rs1 + "   خواهد بود آیا مبلغ قسط بعدی به مبلغ مانده وام اصلاح گردد؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                                                 //    if (qs1 == DialogResult.Yes)
                                                 //    {
                                                 //        q.MablaghAghsat = Convert.ToDecimal(txtMablaghGhest.Text.Trim().Replace(",", "")) - rs1;
@@ -755,7 +757,7 @@ namespace Sandogh_PG
                                                 #region MyRegion
                                                 //if (Convert.ToDecimal(txtMablaghGhest.Text.Trim().Replace(",", "")) == Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
                                                 //{
-                                                //    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با دریافت این قسط مبلغ مانده وام  \n " + rs1 + "  ریال خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                                                //    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با دریافت این قسط مبلغ مانده وام  \n " + rs1 + "   خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                                                 //    if (qs1 == DialogResult.Yes)
                                                 //    {
                                                 //        q.MablaghAghsat = Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", ""));
@@ -773,7 +775,7 @@ namespace Sandogh_PG
 
                                                 //    //var a = Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue) - Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", ""));
 
-                                                //    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با دریافت این قسط مبلغ مانده وام  \n " + rs1 + "  ریال خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                                                //    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با دریافت این قسط مبلغ مانده وام  \n " + rs1 + "   خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                                                 //    if (qs1 == DialogResult.Yes)
                                                 //    {
                                                 //        q.MablaghAghsat = Convert.ToDecimal(txtMablaghGhest.Text.Trim().Replace(",", "")) - rs1;
@@ -792,7 +794,7 @@ namespace Sandogh_PG
                                                     // q.MablaghAghsat = Convert.ToDecimal(txtMablaghGhest.Text.Trim().Replace(",", "")) - (Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue) - Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", "")));
                                                     //ct.MablaghAghsat = 0;
 
-                                                    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با دریافت این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "  ریال خواهد بود لذا یک قسط جدید به تاریخ دوره بعد و به مبلغ صفر ریال ایجاد میشود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با دریافت این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "   خواهد بود لذا یک قسط جدید به تاریخ دوره بعد و به مبلغ صفر ایجاد میشود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                     //if (qs1 == DialogResult.Yes)
                                                     //{
                                                     //q.MablaghAghsat = Convert.ToDecimal(txtMablaghGhest.Text.Trim().Replace(",", "")) - rs1;
@@ -921,7 +923,7 @@ namespace Sandogh_PG
 
                                             //var a = Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue) - Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", ""));
 
-                                            //    var qs1 = XtraMessageBox.Show("با دریافت این قسط مبلغ مانده وام " + rs1.ToString("n0") + "  ریال خواهد بود آیا مبلغ قسط بعدی به مبلغ مانده وام اصلاح گردد؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                                            //    var qs1 = XtraMessageBox.Show("با دریافت این قسط مبلغ مانده وام " + rs1.ToString("n0") + "   خواهد بود آیا مبلغ قسط بعدی به مبلغ مانده وام اصلاح گردد؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                                             //    if (qs1 == DialogResult.Yes)
                                             //    {
                                             //        var w = db.RizeAghsatVams.FirstOrDefault(s => s.VamPardakhtiCode == _codevam && s.ShomareGhest == _shomareghestBadi);
@@ -951,7 +953,7 @@ namespace Sandogh_PG
                                         }
                                         else if (Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", "")) < Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
                                         {
-                                            var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با دریافت این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "  ریال خواهد بود لذا یک قسط جدید به تاریخ دوره بعد و به مبلغ صفر ریال ایجاد میشود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با دریافت این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "   خواهد بود لذا یک قسط جدید به تاریخ دوره بعد و به مبلغ صفر ایجاد میشود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             RizeAghsatVam ct = new RizeAghsatVam();
                                             ct.MablaghAghsat = 0;
                                             //}
@@ -1000,24 +1002,34 @@ namespace Sandogh_PG
                                 var m1 = Convert.ToDecimal(Fm.gridView4.Columns["MablaghDaryafti"].SummaryItem.SummaryValue);
                                 var m2 = Convert.ToDecimal(Fm.gridView3.GetFocusedRowCellValue("MablaghAsli"));
                                 var m3 = Convert.ToDecimal(Fm.gridView3.GetFocusedRowCellValue("MablaghKarmozd"));
-                                if (m1 == m2 + m3)
+                                var q1 = db.VamPardakhtis.FirstOrDefault(s => s.Id == q.VamPardakhtiId);
+                                var m5 = q1.checkEdit1 ? m2 : m2 + m3;
+                                if (m1 == m5)
                                 {
                                     if (XtraMessageBox.Show("با دریافت این قسط وام مذکور تسویه شد آیا وام فوق به لیست وامهای تسویه شده انتقال یابد؟", "پیغام ثبت ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                                     {
-                                        var q1 = db.VamPardakhtis.FirstOrDefault(s => s.Id == q.VamPardakhtiId);
+
                                         if (q1 != null)
                                         {
                                             q1.IsTasviye = true;
+                                            var r = db.AazaSandoghs;
+                                            //int _AllTafId = Convert.ToInt32(cmbPardakhtKonande.EditValue);
+                                            if (r.FirstOrDefault(s => s.AllTafId == _HesabTafId2) != null)
+                                                r.FirstOrDefault(s => s.AllTafId == _HesabTafId2).TarikhTasviyeVam = Convert.ToDateTime(txtTarikhDaryaft.Text.Substring(0, 10));
 
                                             var w = db.R_VamPardakhti_B_Zamenins.Where(s => s.VamPardakhtiId == q.VamPardakhtiId).ToList();
                                             if (w.Count > 0)
                                             {
                                                 foreach (var item in w)
                                                 {
-                                                    var r = db.AazaSandoghs.FirstOrDefault(s => s.AllTafId == item.AllTafId).EtebarBlookeShode;
-                                                    r = r - item.EtebarBlookeShode;
+                                                    r.FirstOrDefault(s => s.AllTafId == item.AllTafId).EtebarBlookeShode -= item.EtebarBlookeShode;
+                                                    //r.FirstOrDefault(s => s.AllTafId == item.AllTafId).EtebarBlookeShode=rr-item.EtebarBlookeShode;
+                                                    //r = r - item.EtebarBlookeShode;
                                                 }
                                             }
+
+                                            //int _VamId = db.RizeAghsatVams.FirstOrDefault(s => s.Id == RowId).VamPardakhtiId;
+                                            q.VamPardakhti1.TarikhTasviyeVam = Convert.ToDateTime(txtTarikhDaryaft.Text.Substring(0, 10));
 
                                             db.SaveChanges();
                                             Fm.btnDisplyActiveList3_Click(null, null);
@@ -1147,7 +1159,7 @@ namespace Sandogh_PG
                                                 RizeAghsatVam ct = new RizeAghsatVam();
                                                 if (Convert.ToDecimal(txtMablaghGhest.Text.Trim().Replace(",", "")) == Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
                                                 {
-                                                    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با ویرایش این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "  ریال خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                                                    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با ویرایش این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "   خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                                                     if (qs1 == DialogResult.Yes)
                                                     {
                                                         q.MablaghAghsat = q.MablaghAghsat - rs1;
@@ -1169,7 +1181,7 @@ namespace Sandogh_PG
 
                                                     //var a = Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue) - Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", ""));
 
-                                                    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با ویرایش این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "  ریال خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                                                    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با ویرایش این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "   خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                                                     if (qs1 == DialogResult.Yes)
                                                     {
                                                         q.MablaghAghsat = q.MablaghAghsat - rs1;
@@ -1187,7 +1199,7 @@ namespace Sandogh_PG
                                                 }
                                                 else if (Convert.ToDecimal(txtMablaghGhest.Text.Trim().Replace(",", "")) < Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
                                                 {
-                                                    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با ویرایش این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "  ریال خواهد بود لذا یک قسط جدید به تاریخ دوره بعد و به مبلغ صفر ریال ایجاد میشود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با ویرایش این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "   خواهد بود لذا یک قسط جدید به تاریخ دوره بعد و به مبلغ صفر ایجاد میشود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                     ct.MablaghAghsat = 0;
 
                                                 }
@@ -1328,7 +1340,7 @@ namespace Sandogh_PG
                                                 RizeAghsatVam ct = new RizeAghsatVam();
                                                 if (Convert.ToDecimal(txtMablaghGhest.Text.Trim().Replace(",", "")) == Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
                                                 {
-                                                    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با ویرایش این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "  ریال خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                                                    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با ویرایش این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "   خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                                                     if (qs1 == DialogResult.Yes)
                                                     {
                                                         q.MablaghAghsat = q.MablaghAghsat - rs1;
@@ -1350,7 +1362,7 @@ namespace Sandogh_PG
 
                                                     //var a = Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue) - Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", ""));
 
-                                                    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با ویرایش این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "  ریال خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                                                    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با ویرایش این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "   خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                                                     if (qs1 == DialogResult.Yes)
                                                     {
                                                         q.MablaghAghsat = q.MablaghAghsat - rs1;
@@ -1369,7 +1381,7 @@ namespace Sandogh_PG
                                                 else if (Convert.ToDecimal(txtMablaghGhest.Text.Trim().Replace(",", "")) < Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
                                                 {
 
-                                                    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با ویرایش این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "  ریال خواهد بود لذا یک قسط جدید به تاریخ دوره بعد و به مبلغ صفر ریال ایجاد میشود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با ویرایش این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "   خواهد بود لذا یک قسط جدید به تاریخ دوره بعد و به مبلغ صفر ایجاد میشود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                     //if (qs1 == DialogResult.Yes)
                                                     //{
                                                     //    ct.MablaghAghsat = 0;
@@ -1446,7 +1458,7 @@ namespace Sandogh_PG
                                             RizeAghsatVam ct = new RizeAghsatVam();
                                             if (Convert.ToDecimal(txtMablaghGhest.Text.Trim().Replace(",", "")) == Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
                                             {
-                                                var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با ویرایش این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "  ریال خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                                                var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با ویرایش این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "   خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                                                 if (qs1 == DialogResult.Yes)
                                                 {
                                                     q.MablaghAghsat = q.MablaghAghsat - rs1;
@@ -1468,7 +1480,7 @@ namespace Sandogh_PG
 
                                                 //var a = Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue) - Convert.ToDecimal(txtMablaghDaryaft.Text.Trim().Replace(",", ""));
 
-                                                var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با ویرایش این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "  ریال خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                                                var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با ویرایش این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "   خواهد بود آیا مایلید یک قسط جدید به تاریخ دوره بعد و به مبلغ مانده وام ایجاد شود؟", "پیغام", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                                                 if (qs1 == DialogResult.Yes)
                                                 {
                                                     q.MablaghAghsat = q.MablaghAghsat - rs1;
@@ -1486,7 +1498,7 @@ namespace Sandogh_PG
                                             }
                                             else if (Convert.ToDecimal(txtMablaghGhest.Text.Trim().Replace(",", "")) < Convert.ToDecimal(Fm.gridView4.Columns["Mande"].SummaryItem.SummaryValue))
                                             {
-                                                var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با ویرایش این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "  ریال خواهد بود لذا یک قسط جدید به تاریخ دوره بعد و به مبلغ صفر ریال ایجاد میشود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                var qs1 = XtraMessageBox.Show("با توجه به اینکه اولاً دریافتی فوق مربوط به قسط آخر می باشد ثانیاً با ویرایش این قسط مبلغ مانده وام  \n " + rs1.ToString("n0") + "   خواهد بود لذا یک قسط جدید به تاریخ دوره بعد و به مبلغ صفر ایجاد میشود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                 ct.MablaghAghsat = 0;
                                             }
                                             //}
@@ -1534,17 +1546,35 @@ namespace Sandogh_PG
                                 var m1 = Convert.ToDecimal(Fm.gridView4.Columns["MablaghDaryafti"].SummaryItem.SummaryValue);
                                 var m2 = Convert.ToDecimal(Fm.gridView3.GetFocusedRowCellValue("MablaghAsli"));
                                 var m3 = Convert.ToDecimal(Fm.gridView3.GetFocusedRowCellValue("MablaghKarmozd"));
-
                                 var q1 = db.VamPardakhtis.FirstOrDefault(s => s.Id == q.VamPardakhtiId);
+                                var m5 = q1.checkEdit1 ? m2 : m2 + m3;
+
                                 if (q1.IsTasviye == false)
                                 {
-                                    if (m1 == m2 + m3)
+                                    if (m1 == m5)
                                     {
                                         if (XtraMessageBox.Show("مبلغ وام تسویه شد آیا به لیست وامهای تسویه شده انتقال یابد؟", "پیغام ثبت ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                                         {
                                             if (q1 != null)
                                             {
                                                 q1.IsTasviye = true;
+                                                var r = db.AazaSandoghs;
+                                                if (r.FirstOrDefault(s => s.AllTafId == _HesabTafId2) != null)
+                                                    r.FirstOrDefault(s => s.AllTafId == _HesabTafId2).TarikhTasviyeVam = Convert.ToDateTime(txtTarikhDaryaft.Text.Substring(0, 10));
+
+                                                //var w = db.R_VamPardakhti_B_Zamenins.Where(s => s.VamPardakhtiId == q.VamPardakhtiId).ToList();
+                                                //if (w.Count > 0)
+                                                //{
+                                                //foreach (var item in w)
+                                                //{
+                                                //r.FirstOrDefault(s => s.AllTafId == item.AllTafId).EtebarBlookeShode -= item.EtebarBlookeShode;
+                                                //r.FirstOrDefault(s => s.AllTafId == item.AllTafId).EtebarBlookeShode=rr-item.EtebarBlookeShode;
+                                                //r = r - item.EtebarBlookeShode;
+                                                //}
+                                                //}
+
+                                                //int _VamId = q.VamPardakhtiId;
+                                                q.VamPardakhti1.TarikhTasviyeVam = Convert.ToDateTime(txtTarikhDaryaft.Text.Substring(0, 10));
                                                 db.SaveChanges();
                                                 Fm.btnDisplyActiveList3_Click(null, null);
 
@@ -1565,7 +1595,7 @@ namespace Sandogh_PG
                                 }
                                 else
                                 {
-                                    if (m1 != m2 + m3)
+                                    if (m1 != m5)
                                     {
                                         if (XtraMessageBox.Show("با ویرایش دریافت این قسط ، وام مذکور از حالت تسویه خارج شد آیا وام فوق به لیست وامهای تسویه نشده انتقال یابد؟", "پیغام ثبت ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                                         {
@@ -1580,8 +1610,6 @@ namespace Sandogh_PG
                                 }
                             }
                         }
-
-
                     }
                     catch (Exception ex)
                     {
@@ -1682,7 +1710,7 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "NameHesab";
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2 ).OrderBy(s => s.Code).ToList();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 1 || f.GroupTafziliId == 2).OrderBy(s => s.Code).ToList();
                                         if (q1.Count > 0)
                                             allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
                                         else
@@ -1705,7 +1733,7 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "NameVFamil";
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3 ).OrderBy(s => s.Code).ToList();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3).OrderBy(s => s.Code).ToList();
                                         if (q1.Count > 0)
                                             allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
                                         else
@@ -1741,7 +1769,7 @@ namespace Sandogh_PG
                                 {
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6 ).OrderBy(s => s.Code).ToList();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6).OrderBy(s => s.Code).ToList();
                                         if (q1.Count > 0)
                                             allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
                                         else
@@ -1780,7 +1808,7 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "HesabName";
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4 ).OrderBy(s => s.Code).ToList();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4).OrderBy(s => s.Code).ToList();
                                         if (q1.Count > 0)
                                             allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
                                         else
@@ -1803,7 +1831,7 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "HesabName";
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5 ).OrderBy(s => s.Code).ToList();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5).OrderBy(s => s.Code).ToList();
                                         if (q1.Count > 0)
                                             allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
                                         else

@@ -105,6 +105,7 @@
             this.btnPreview2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnLast2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnDisplyActiveList2 = new DevExpress.XtraEditors.SimpleButton();
+            this.colTarikhTasviyeVam = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -207,7 +208,8 @@
             this.AazaId,
             this.colZameninId,
             this.colTozihat,
-            this.ColMandeVam});
+            this.ColMandeVam,
+            this.colTarikhTasviyeVam});
             this.gridView1.DetailHeight = 378;
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView1.GridControl = this.gridControl1;
@@ -1271,6 +1273,24 @@
             this.btnDisplyActiveList2.ToolTip = "نمایش لیست";
             this.btnDisplyActiveList2.Click += new System.EventHandler(this.btnDisplyActiveList2_Click);
             // 
+            // colTarikhTasviyeVam
+            // 
+            this.colTarikhTasviyeVam.AppearanceCell.Options.UseTextOptions = true;
+            this.colTarikhTasviyeVam.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colTarikhTasviyeVam.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colTarikhTasviyeVam.AppearanceHeader.Options.UseTextOptions = true;
+            this.colTarikhTasviyeVam.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colTarikhTasviyeVam.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colTarikhTasviyeVam.Caption = "تاریخ تسویه وام";
+            this.colTarikhTasviyeVam.DisplayFormat.FormatString = "d";
+            this.colTarikhTasviyeVam.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colTarikhTasviyeVam.FieldName = "TarikhTasviyeVam";
+            this.colTarikhTasviyeVam.MinWidth = 25;
+            this.colTarikhTasviyeVam.Name = "colTarikhTasviyeVam";
+            this.colTarikhTasviyeVam.Visible = true;
+            this.colTarikhTasviyeVam.VisibleIndex = 24;
+            this.colTarikhTasviyeVam.Width = 148;
+            // 
             // FrmListVamhayePardakhti
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 27F);
@@ -1394,5 +1414,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colTozihat;
         private DevExpress.XtraGrid.Columns.GridColumn ColMandeVam;
         private DevExpress.XtraEditors.CheckEdit chkDisplyMande;
+        private DevExpress.XtraGrid.Columns.GridColumn colTarikhTasviyeVam;
     }
 }

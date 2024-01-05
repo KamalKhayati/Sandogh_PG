@@ -488,41 +488,188 @@ namespace Sandogh_PG
             this.Close();
         }
 
-        private bool TextEditValidation()
+        //private bool ControlMablaghSarmayeAvalye()
+        //{
+        //    using (var db = new MyContext())
+        //    {
+        //        try
+        //        {
+        //            if (true)
+        //            {
+
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+        //                "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        }
+        //        return true;
+        //    }
+
+        //}
+        private bool Validation()
         {
             using (var db = new MyContext())
             {
                 try
                 {
+                    int _HesabMoinId1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                    int _HesabMoinId2 = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                    _CodeMoin1 = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId1).Code;
+                    _CodeMoin2 = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId2).Code;
+
                     var k = db.AllowedDevises.FirstOrDefault(s => s.DeviceID == _deviceID && s.DataBaseName == _dataBaseName);
                     if (k != null)
                     {
-                        if (k.VersionType == "Orginal")
+                        if (k.VersionType == "Display")
                         {
-                            return true;
+                            XtraMessageBox.Show("در نسخه نمایشی نمیتوان سند صادر و یا ویرایش نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return false;
+
                         }
                         else
                         {
                             if (k.VersionType == "Demo")
                             {
-                                if (k.IsActive == true)
-                                {
-                                    return true;
-                                }
-                                else if (k.IsActive == false)
+                                if (k.IsActive == false)
                                 {
                                     XtraMessageBox.Show("در نسخه آزمایشی نمیتوان بیشتر از 100 مورد سند صادر و یا ویرایش نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     return false;
                                 }
-
                             }
-                            else if (k.VersionType == "Display")
+
+                            var t = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SandoghId);
+                            if (_CodeMoin2 == 7001 && chkTaghirSarmayeAvalye.Checked)
                             {
-                                XtraMessageBox.Show("در نسخه نمایشی نمیتوان سند صادر و یا ویرایش نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                return false;
+                                int _AazaId = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                                var a = db.AazaSandoghs.FirstOrDefault(s => s.AllTafId == _AazaId);
+                                if (t.checkEdit10)
+                                {
+                                    var v = db.VamPardakhtis;
+                                    if (a != null)
+                                    {
+                                        if (v.FirstOrDefault(s => s.AazaId == _AazaId) == null)
+                                        {
+                                            ///// تاریخ عضویت کنترل میشود
+                                            int yyyy1 = Convert.ToInt32(a.TarikhOzviat.ToString().Substring(0, 4));
+                                            int MM1 = Convert.ToInt32(a.TarikhOzviat.ToString().Substring(5, 2));
+                                            int dd1 = Convert.ToInt32(a.TarikhOzviat.ToString().Substring(8, 2));
+                                            Mydate d11 = new Mydate(yyyy1, MM1, dd1);
+                                            Mydate d1 = new Mydate(yyyy1, MM1, dd1);
+                                            d1.AddMont(t.XMah);
+
+                                            int yyyy2 = Convert.ToInt32(DateTime.Now.ToString().Substring(0, 4));
+                                            int MM2 = Convert.ToInt32(DateTime.Now.ToString().Substring(5, 2));
+                                            int dd2 = Convert.ToInt32(DateTime.Now.ToString().Substring(8, 2));
+                                            Mydate d2 = new Mydate(yyyy2, MM2, dd2);
+
+                                            if (d1 < d2)
+                                            {
+                                                XtraMessageBox.Show("افزایش سرمایه اولیه حداکثر تا " + t.XMah + " ماه از تاریخ عضویت در صندوق مجاز می باشد" +
+                                                    "\n تاریخ عضویت در صندوق : " + d11.ToString() + "\n پایان مهلت افزایش سرمایه اولیه :" + d1.ToString(), "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                return false;
+
+                                            }
+
+                                        }
+                                        else if (v.FirstOrDefault(s => s.AazaId == _AazaId && s.IsTasviye == false) != null)
+                                        {
+                                            ///// تاریخ دریافت وام کنترل میشود 
+                                            int yyyy1 = Convert.ToInt32(v.FirstOrDefault(s => s.AazaId == _AazaId && s.IsTasviye == false && (s.IndexNoeVam == 0 || s.IndexNoeVam == 0)).TarikhPardakht.ToString().Substring(0, 4));
+                                            int MM1 = Convert.ToInt32(v.FirstOrDefault(s => s.AazaId == _AazaId && s.IsTasviye == false && (s.IndexNoeVam == 0 || s.IndexNoeVam == 0)).TarikhPardakht.ToString().Substring(5, 2));
+                                            int dd1 = Convert.ToInt32(v.FirstOrDefault(s => s.AazaId == _AazaId && s.IsTasviye == false && (s.IndexNoeVam == 0 || s.IndexNoeVam == 0)).TarikhPardakht.ToString().Substring(8, 2));
+                                            Mydate d11 = new Mydate(yyyy1, MM1, dd1);
+                                            Mydate d1 = new Mydate(yyyy1, MM1, dd1);
+                                            d1.AddMont(t.XMah);
+
+                                            int yyyy2 = Convert.ToInt32(DateTime.Now.ToString().Substring(0, 4));
+                                            int MM2 = Convert.ToInt32(DateTime.Now.ToString().Substring(5, 2));
+                                            int dd2 = Convert.ToInt32(DateTime.Now.ToString().Substring(8, 2));
+                                            Mydate d2 = new Mydate(yyyy2, MM2, dd2);
+
+                                            if (d1 < d2)
+                                            {
+                                                XtraMessageBox.Show("افزایش سرمایه اولیه حداکثر تا " + t.XMah + " ماه از تاریخ پرداخت وام مجاز می باشد" +
+                                                    "\n تاریخ پرداخت وام : " + d11.ToString() + "\n پایان مهلت افزایش سرمایه اولیه :" + d1.ToString(), "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                return false;
+
+                                            }
+
+                                        }
+                                    }
+                                }
+
+                                if (t.checkEdit16)
+                                {
+                                    _Mablagh = Convert.ToDecimal(txtMablagh.Text.Replace(",", ""));
+                                    decimal _MinMablagh = t.radioGroup2 == 0 ? t.MinMablaghSarmayeAvalye : Convert.ToDecimal(t.MinTedadSahm) * t.MablaghHarSahm;
+                                    decimal _MaxMablagh = t.radioGroup2 == 0 ? t.MaxMablaghSarmayeAvalye : Convert.ToDecimal(t.MaxTedadSahm) * t.MablaghHarSahm;
+
+                                    if (a.BesAvali == 0)
+                                    {
+
+                                        if (_Mablagh < _MinMablagh)
+                                        {
+                                            XtraMessageBox.Show("ثبت سرمایه اولیه برای بار اول نباید از حداقل مبلغ " + _MinMablagh.ToString("n0") + " کمتر باشد"
+                                                              , "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            return false;
+                                        }
+                                        else if (_Mablagh > _MaxMablagh)
+                                        {
+                                            XtraMessageBox.Show("ثبت سرمایه اولیه نباید از حداکثر مبلغ " + _MaxMablagh.ToString("n0") + " بیشتر باشد"
+                                                  , "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            return false;
+
+                                        }
+                                    }
+                                    else
+                                    {
+
+                                        if (a.BesAvali + _Mablagh > _MaxMablagh)
+                                        {
+                                            XtraMessageBox.Show("عملیات ذخیره انجام نشد زیرا با ثبت این سند مجموعه سرمایه اولیه از حداکثر تعیین شده تجاوز خواهد کرد " +
+                                                "\n حداکثر سرمایه اولیه : " + _MaxMablagh.ToString("n0")
+                                                , "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            return false;
+
+                                        }
+                                    }
+                                }
                             }
 
+
+                            return true;
                         }
+
+
+                        //if (k.VersionType == "Orginal")
+                        //{
+                        //    return true;
+                        //}
+                        //else
+                        //{
+
+                        //    if (k.VersionType == "Demo")
+                        //    {
+                        //        if (k.IsActive == true)
+                        //        {
+                        //            return true;
+                        //        }
+                        //        else if (k.IsActive == false)
+                        //        {
+                        //            XtraMessageBox.Show("در نسخه آزمایشی نمیتوان بیشتر از 100 مورد سند صادر و یا ویرایش نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //            return false;
+                        //        }
+
+                        //    }
+                        //    else if (k.VersionType == "Display")
+                        //    {
+                        //        XtraMessageBox.Show("در نسخه نمایشی نمیتوان سند صادر و یا ویرایش نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //        return false;
+                        //    }
+
+                        //}
                     }
                     else
                     {
@@ -723,6 +870,7 @@ namespace Sandogh_PG
             cmbHesabTafzili1.EditValue = 0;
             cmbHesabTafzili2.EditValue = 0;
             txtSharh.Text = string.Empty;
+            chkTaghirSarmayeAvalye.Checked = false;
         }
 
         public void ActiveControls()
@@ -737,6 +885,7 @@ namespace Sandogh_PG
                 cmbHesabTafzili1.ReadOnly = false;
                 cmbHesabTafzili2.ReadOnly = false;
                 txtSharh.ReadOnly = false;
+                chkTaghirSarmayeAvalye.ReadOnly = false;
                 FillcmbHesabMoin();
             }
         }
@@ -753,6 +902,7 @@ namespace Sandogh_PG
                 cmbHesabTafzili1.ReadOnly = true;
                 cmbHesabTafzili2.ReadOnly = true;
                 txtSharh.ReadOnly = true;
+                chkTaghirSarmayeAvalye.ReadOnly = true;
             }
         }
 
@@ -790,7 +940,35 @@ namespace Sandogh_PG
                                 var q1 = db.AsnadeHesabdariRows.Where(f => f.ShomareSanad == q.ShomareSanad);
                                 if (q1.Count() > 0)
                                     db.AsnadeHesabdariRows.RemoveRange(q1);
-                                /////////////////////////////////////////////////////////////////////////////
+                                ///////////////////////////////////////////////////////////////////////////////
+                                int _HesabMoinId1 = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId1"));
+                                int _HesabMoinId2 = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId2"));
+                                //int _Moin1Id = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                                // int _Moin1Id = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                                _Mablagh = Convert.ToDecimal(txtMablagh.Text);
+                                var m = db.CodeMoins;
+                                _CodeMoin1 = m.FirstOrDefault(f => f.Id == _HesabMoinId1).Code;
+                                _CodeMoin2 = m.FirstOrDefault(f => f.Id == _HesabMoinId2).Code;
+
+                                _Mablagh = Convert.ToDecimal(gridView1.GetFocusedRowCellValue("Mablagh").ToString());
+                                bool _chkTaghirSarmayeAvalye = Convert.ToBoolean(gridView1.GetFocusedRowCellValue("TaghirSarmayeAvalye"));
+                                if (_chkTaghirSarmayeAvalye)
+                                {
+                                    if (_CodeMoin1 == 7001)
+                                    {
+                                        int _AazaId = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                                        var As = db.AazaSandoghs.FirstOrDefault(s => s.AllTafId == _AazaId);
+                                        As.BesAvali += _Mablagh;
+                                    }
+                                    if (_CodeMoin2 == 7001)
+                                    {
+                                        int _AazaId = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                                        var As = db.AazaSandoghs.FirstOrDefault(s => s.AllTafId == _AazaId);
+                                        As.BesAvali -= _Mablagh;
+
+                                    }
+                                }
+                                ///////////////////////////////////////////////////////////////////////////////////
                                 db.SaveChanges();
 
                                 btnDisplayList_Click(null, null);
@@ -799,7 +977,10 @@ namespace Sandogh_PG
                                     gridView1.FocusedRowHandle = EditRowIndex - 1;
                             }
                             else
+                            {
                                 XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
 
 
                             var k = db.AllowedDevises.FirstOrDefault(s => s.DeviceID == _deviceID && s.DataBaseName == _dataBaseName);
@@ -829,28 +1010,31 @@ namespace Sandogh_PG
             }
         }
 
+        bool _BeforEditchkTaghirSarmayeAvalye = false;
         private void btnEdit_Click(object sender, EventArgs e)
         {
             if (gridView1.SelectedRowsCount > 0 && btnEdit.Visible == true)
             {
+
                 gridControl1.Enabled = false;
                 EditRowIndex = gridView1.FocusedRowHandle;
                 En = EnumCED.Edit;
                 InActiveButtons();
                 ActiveControls();
 
-                //txtId.Text = gridView1.GetFocusedRowCellValue("Id").ToString();
-                //txtSeryal.Text = gridView1.GetFocusedRowCellValue("Seryal").ToString();
-                //if (gridView1.GetFocusedRowCellValue("Tarikh") != null)
-                //    txtTarikh.Text = gridView1.GetFocusedRowCellValue("Tarikh").ToString().Substring(0, 10); ;
-                //txtMablagh.Text = gridView1.GetFocusedRowCellValue("Mablagh").ToString();
-                //cmbHesabMoin1.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId1"));
-                //cmbHesabTafzili1.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabTafziliId1"));
-                //cmbHesabMoin2.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId2"));
-                //cmbHesabTafzili2.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabTafziliId2"));
-                //txtSharh.Text = gridView1.GetFocusedRowCellValue("Sharh").ToString();
-                //cmbNoeSanad.SelectedIndex = Convert.ToInt32(gridView1.GetFocusedRowCellValue("NoeSanadIndex"));
-
+                txtId.Text = gridView1.GetFocusedRowCellValue("Id").ToString();
+                txtSeryal.Text = gridView1.GetFocusedRowCellValue("Seryal").ToString();
+                if (gridView1.GetFocusedRowCellValue("Tarikh") != null)
+                    txtTarikh.Text = gridView1.GetFocusedRowCellValue("Tarikh").ToString().Substring(0, 10); ;
+                txtMablagh.Text = gridView1.GetFocusedRowCellValue("Mablagh").ToString();
+                cmbHesabMoin1.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId1"));
+                cmbHesabTafzili1.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabTafziliId1"));
+                cmbHesabMoin2.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId2"));
+                cmbHesabTafzili2.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabTafziliId2"));
+                txtSharh.Text = gridView1.GetFocusedRowCellValue("Sharh").ToString();
+                cmbNoeSanad.SelectedIndex = Convert.ToInt32(gridView1.GetFocusedRowCellValue("NoeSanadIndex"));
+                chkTaghirSarmayeAvalye.Checked = Convert.ToBoolean(gridView1.GetFocusedRowCellValue("TaghirSarmayeAvalye"));
+                _BeforEditchkTaghirSarmayeAvalye = chkTaghirSarmayeAvalye.Checked;
                 cmbNoeSanad.Focus();
             }
         }
@@ -863,15 +1047,23 @@ namespace Sandogh_PG
         int AllTafId = 0;
         string _NameAaza = string.Empty;
         int _HesabMoinId1 = 0;
+        int _HesabMoinId2 = 0;
+        int _HesabTafziliId1 = 0;
+        int _HesabTafziliId2 = 0;
+        Decimal _Mablagh = 0;
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (TextEditValidation())
+            if (Validation())
             {
                 _cmbNoeSanad = cmbNoeSanad.SelectedIndex;
 
                 AllTafId = Convert.ToInt32(cmbHesabTafzili1.EditValue);
                 _NameAaza = cmbHesabTafzili1.Text;
-                Convert.ToInt32(cmbHesabMoin1.EditValue);
+                _HesabMoinId1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                _HesabMoinId2 = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                _HesabTafziliId1 = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                _HesabTafziliId2 = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                //Convert.ToInt32(cmbHesabMoin1.EditValue);
 
                 if (En == EnumCED.Create)
                 {
@@ -896,6 +1088,7 @@ namespace Sandogh_PG
                                 obj.HesabTafziliId2 = Convert.ToInt32(cmbHesabTafzili2.EditValue);
                                 obj.HesabTafziliName2 = cmbHesabTafzili2.Text;
                             }
+                            obj.TaghirSarmayeAvalye = chkTaghirSarmayeAvalye.Checked;
                             obj.Sharh = txtSharh.Text;
                             obj.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
                             obj.ShomareSanad = q2 + 1;
@@ -903,8 +1096,8 @@ namespace Sandogh_PG
                             obj.NoeSanadName = cmbNoeSanad.Text;
                             db.DaryaftPardakhtBinHesabhas.Add(obj);
                             //////////////////////////////////////////////////////////////////////////////////////////
-                            _HesabMoinId1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
-                            int _HesabTafziliId1 = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                            //_HesabMoinId1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                            //int _HesabTafziliId1 = Convert.ToInt32(cmbHesabTafzili1.EditValue);
                             AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
                             obj1.ShomareSanad = q2 + 1;
                             obj1.Tarikh = Convert.ToDateTime(txtTarikh.Text.Substring(0, 10));
@@ -919,8 +1112,8 @@ namespace Sandogh_PG
                             obj1.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
                             db.AsnadeHesabdariRows.Add(obj1);
 
-                            int _HesabMoinId2 = Convert.ToInt32(cmbHesabMoin2.EditValue);
-                            int _HesabTafziliId2 = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                            //int _HesabMoinId2 = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                            //int _HesabTafziliId2 = Convert.ToInt32(cmbHesabTafzili2.EditValue);
                             AsnadeHesabdariRow obj2 = new AsnadeHesabdariRow();
                             obj2.ShomareSanad = q2 + 1;
                             obj2.Tarikh = Convert.ToDateTime(txtTarikh.Text.Substring(0, 10));
@@ -935,6 +1128,28 @@ namespace Sandogh_PG
                             obj2.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
                             db.AsnadeHesabdariRows.Add(obj2);
                             ///////////////////////////////////////////////////////////////////////////////
+
+                            _Mablagh = Convert.ToDecimal(txtMablagh.Text);
+                            var m = db.CodeMoins;
+                            _CodeMoin1 = m.FirstOrDefault(f => f.Id == _HesabMoinId1).Code;
+                            _CodeMoin2 = m.FirstOrDefault(f => f.Id == _HesabMoinId2).Code;
+                            if (chkTaghirSarmayeAvalye.Checked)
+                            {
+                                if (_CodeMoin1 == 7001)
+                                {
+                                    int _AazaId = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                                    var As = db.AazaSandoghs.FirstOrDefault(s => s.AllTafId == _AazaId);
+                                    As.BesAvali -= _Mablagh;
+                                }
+                                if (_CodeMoin2 == 7001)
+                                {
+                                    int _AazaId = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                                    var As = db.AazaSandoghs.FirstOrDefault(s => s.AllTafId == _AazaId);
+                                    As.BesAvali += _Mablagh;
+
+                                }
+                            }
+                            ///////////////////////////////////////////////////////////////////////////////////
                             db.SaveChanges();
                             btnDisplayList_Click(null, null);
 
@@ -972,79 +1187,258 @@ namespace Sandogh_PG
                     {
                         try
                         {
-                            int RowId = Convert.ToInt32(txtId.Text);
-                            var q = db.DaryaftPardakhtBinHesabhas.FirstOrDefault(p => p.Id == RowId);
-                            if (q != null)
+
+                            int RowId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id").ToString());
+                            int _ShomareSanad = Convert.ToInt32(gridView1.GetFocusedRowCellValue("ShomareSanad").ToString());
+                            bool _chkTaghirSarmayeAvalye = Convert.ToBoolean(gridView1.GetFocusedRowCellValue("TaghirSarmayeAvalye"));
+                            if (_chkTaghirSarmayeAvalye)
                             {
-                                if (!string.IsNullOrEmpty(txtTarikh.Text))
-                                    q.Tarikh = Convert.ToDateTime(txtTarikh.Text);
-                                if (txtMablagh.Text != "0")
+                                //XtraMessageBox.Show("این سند به دلیل تاثیر روی سرمایه اولیه قابل ویرایش نیست \nدر صورت لزوم میتوانید آنرا حذف و مجدداً سند جدید صادر کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //return;
+                                ////////////////////////////////////////////اول سند را حذف میکنیم بعد سند جدید با همان شماره سند قبلی صادر میکنیم///////////////////////////////////////
+                                var q11 = db.DaryaftPardakhtBinHesabhas.FirstOrDefault(p => p.Id == RowId);
+                                if (q11 != null)
                                 {
-                                    q.Mablagh = Convert.ToDecimal(txtMablagh.Text);
-                                    q.HesabMoinId1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
-                                    q.HesabMoineName1 = cmbHesabMoin1.Text;
-                                    q.HesabMoinId2 = Convert.ToInt32(cmbHesabMoin2.EditValue);
-                                    q.HesabMoineName2 = cmbHesabMoin2.Text;
-                                    q.HesabTafziliId1 = Convert.ToInt32(cmbHesabTafzili1.EditValue);
-                                    q.HesabTafziliName1 = cmbHesabTafzili1.Text;
-                                    q.HesabTafziliId2 = Convert.ToInt32(cmbHesabTafzili2.EditValue);
-                                    q.HesabTafziliName2 = cmbHesabTafzili2.Text;
+                                    db.DaryaftPardakhtBinHesabhas.Remove(q11);
+                                    ///////////////////////////////////////////////////////////////////
+                                    var q12 = db.AsnadeHesabdariRows.Where(f => f.ShomareSanad == q11.ShomareSanad);
+                                    if (q12.Count() > 0)
+                                        db.AsnadeHesabdariRows.RemoveRange(q12);
+                                    ///////////////////////////////////////////////////////////////////////////////
+                                    //int _HesabMoinId1 = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId1"));
+                                    //int _HesabMoinId2 = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId2"));
+                                    //int _Moin1Id = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                                    // int _Moin1Id = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                                    _Mablagh = Convert.ToDecimal(txtMablagh.Text);
+                                    var m = db.CodeMoins;
+                                    _CodeMoin1 = m.FirstOrDefault(f => f.Id == _HesabMoinId1).Code;
+                                    _CodeMoin2 = m.FirstOrDefault(f => f.Id == _HesabMoinId2).Code;
+
+                                    _Mablagh = Convert.ToDecimal(gridView1.GetFocusedRowCellValue("Mablagh").ToString());
+                                    //bool _chkTaghirSarmayeAvalye = Convert.ToBoolean(gridView1.GetFocusedRowCellValue("TaghirSarmayeAvalye"));
+                                    if (_chkTaghirSarmayeAvalye)
+                                    {
+                                        if (_CodeMoin1 == 7001)
+                                        {
+                                            int _AazaId = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                                            var As = db.AazaSandoghs.FirstOrDefault(s => s.AllTafId == _AazaId);
+                                            As.BesAvali += _Mablagh;
+                                        }
+                                        if (_CodeMoin2 == 7001)
+                                        {
+                                            int _AazaId = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                                            var As = db.AazaSandoghs.FirstOrDefault(s => s.AllTafId == _AazaId);
+                                            As.BesAvali -= _Mablagh;
+
+                                        }
+                                    }
+                                    //////////////////////////////////////صدور سند جدید به شماره سند قبلی/////////////////////////////////////////////
+                                    //int q2 = db.AsnadeHesabdariRows.Any() ? db.AsnadeHesabdariRows.Max(f => f.ShomareSanad) : 0;
+                                    DaryaftPardakhtBinHesabha obj = new DaryaftPardakhtBinHesabha();
+                                    obj.Seryal = Convert.ToInt32(txtSeryal.Text);
+                                    if (!string.IsNullOrEmpty(txtTarikh.Text))
+                                        obj.Tarikh = Convert.ToDateTime(txtTarikh.Text);
+                                    if (txtMablagh.Text != "0")
+                                    {
+                                        obj.Mablagh = Convert.ToDecimal(txtMablagh.Text);
+                                        obj.HesabMoinId1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                                        obj.HesabMoineName1 = cmbHesabMoin1.Text;
+                                        obj.HesabMoinId2 = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                                        obj.HesabMoineName2 = cmbHesabMoin2.Text;
+                                        obj.HesabTafziliId1 = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                                        obj.HesabTafziliName1 = cmbHesabTafzili1.Text;
+                                        obj.HesabTafziliId2 = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                                        obj.HesabTafziliName2 = cmbHesabTafzili2.Text;
+                                    }
+                                    obj.TaghirSarmayeAvalye = chkTaghirSarmayeAvalye.Checked;
+                                    obj.Sharh = txtSharh.Text;
+                                    obj.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
+                                    obj.ShomareSanad = _ShomareSanad;
+                                    obj.NoeSanadIndex = cmbNoeSanad.SelectedIndex;
+                                    obj.NoeSanadName = cmbNoeSanad.Text;
+                                    db.DaryaftPardakhtBinHesabhas.Add(obj);
+                                    //////////////////////////////////////////////////////////////////////////////////////////
+
+                                    AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
+                                    obj1.ShomareSanad = _ShomareSanad;
+                                    obj1.Tarikh = Convert.ToDateTime(txtTarikh.Text.Substring(0, 10));
+                                    obj1.HesabMoinId = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                                    obj1.HesabMoinCode = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId1).Code;
+                                    obj1.HesabMoinName = cmbHesabMoin1.Text; ;
+                                    obj1.HesabTafId = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                                    obj1.HesabTafCode = db.AllHesabTafzilis.FirstOrDefault(f => f.Id == _HesabTafziliId1).Code;
+                                    obj1.HesabTafName = cmbHesabTafzili1.Text;
+                                    obj1.Bed = Convert.ToDecimal(txtMablagh.Text.Replace(",", ""));
+                                    obj1.Sharh = txtSharh.Text;
+                                    obj1.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
+                                    db.AsnadeHesabdariRows.Add(obj1);
+
+                                    //int _HesabMoinId2 = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                                    //int _HesabTafziliId2 = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                                    AsnadeHesabdariRow obj2 = new AsnadeHesabdariRow();
+                                    obj2.ShomareSanad = _ShomareSanad;
+                                    obj2.Tarikh = Convert.ToDateTime(txtTarikh.Text.Substring(0, 10));
+                                    obj2.HesabMoinId = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                                    obj2.HesabMoinCode = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId2).Code;
+                                    obj2.HesabMoinName = cmbHesabMoin2.Text; ;
+                                    obj2.HesabTafId = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                                    obj2.HesabTafCode = db.AllHesabTafzilis.FirstOrDefault(f => f.Id == _HesabTafziliId2).Code;
+                                    obj2.HesabTafName = cmbHesabTafzili2.Text;
+                                    obj2.Bes = Convert.ToDecimal(txtMablagh.Text.Replace(",", ""));
+                                    obj2.Sharh = txtSharh.Text;
+                                    obj2.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
+                                    db.AsnadeHesabdariRows.Add(obj2);
+                                    ///////////////////////////////////////////////////////////////////////////////
+
+                                    _Mablagh = Convert.ToDecimal(txtMablagh.Text);
+                                    //var m = db.CodeMoins;
+                                    _CodeMoin1 = m.FirstOrDefault(f => f.Id == _HesabMoinId1).Code;
+                                    _CodeMoin2 = m.FirstOrDefault(f => f.Id == _HesabMoinId2).Code;
+                                    if (chkTaghirSarmayeAvalye.Checked)
+                                    {
+                                        if (_CodeMoin1 == 7001)
+                                        {
+                                            int _AazaId = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                                            var As = db.AazaSandoghs.FirstOrDefault(s => s.AllTafId == _AazaId);
+                                            As.BesAvali -= _Mablagh;
+                                        }
+                                        if (_CodeMoin2 == 7001)
+                                        {
+                                            int _AazaId = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                                            var As = db.AazaSandoghs.FirstOrDefault(s => s.AllTafId == _AazaId);
+                                            As.BesAvali += _Mablagh;
+
+                                        }
+                                    }
+
+                                    //////////////////////////////////////////////////////////////////////////////////
+                                    db.SaveChanges();
+                                    btnDisplayList_Click(null, null);
+
+                                    //XtraMessageBox.Show("عملیات ویرایش با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                                    if (gridView1.RowCount > 0)
+                                        gridView1.FocusedRowHandle = EditRowIndex;
+                                    gridControl1.Enabled = true;
+                                    ActiveButtons();
+                                    ClearControls();
+                                    InActiveControls();
+                                    En = EnumCED.Save;
+
                                 }
-                                q.Sharh = txtSharh.Text;
-                                q.NoeSanadIndex = cmbNoeSanad.SelectedIndex;
-                                q.NoeSanadName = cmbNoeSanad.Text;
-                                /////////////////////////////////////////////////////////////////////////////////////
-                                var q2 = db.AsnadeHesabdariRows.Where(f => f.ShomareSanad == q.ShomareSanad);
-                                if (q2.Count() > 0)
-                                    db.AsnadeHesabdariRows.RemoveRange(q2);
+                                else
+                                {
+                                    XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                }
 
-
-                                _HesabMoinId1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
-                                int _HesabTafziliId1 = Convert.ToInt32(cmbHesabTafzili1.EditValue);
-                                AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
-                                obj1.ShomareSanad = q.ShomareSanad;
-                                obj1.Tarikh = Convert.ToDateTime(txtTarikh.Text.Substring(0, 10));
-                                obj1.HesabMoinId = Convert.ToInt32(cmbHesabMoin1.EditValue);
-                                obj1.HesabMoinCode = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId1).Code;
-                                obj1.HesabMoinName = cmbHesabMoin1.Text; ;
-                                obj1.HesabTafId = Convert.ToInt32(cmbHesabTafzili1.EditValue);
-                                obj1.HesabTafCode = db.AllHesabTafzilis.FirstOrDefault(f => f.Id == _HesabTafziliId1).Code;
-                                obj1.HesabTafName = cmbHesabTafzili1.Text;
-                                obj1.Bed = Convert.ToDecimal(txtMablagh.Text.Replace(",", ""));
-                                obj1.Sharh = txtSharh.Text;
-                                obj1.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
-                                db.AsnadeHesabdariRows.Add(obj1);
-
-                                int _HesabMoinId2 = Convert.ToInt32(cmbHesabMoin2.EditValue);
-                                int _HesabTafziliId2 = Convert.ToInt32(cmbHesabTafzili2.EditValue);
-                                AsnadeHesabdariRow obj2 = new AsnadeHesabdariRow();
-                                obj2.ShomareSanad = q.ShomareSanad;
-                                obj2.Tarikh = Convert.ToDateTime(txtTarikh.Text.Substring(0, 10));
-                                obj2.HesabMoinId = Convert.ToInt32(cmbHesabMoin2.EditValue);
-                                obj2.HesabMoinCode = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId2).Code;
-                                obj2.HesabMoinName = cmbHesabMoin2.Text; ;
-                                obj2.HesabTafId = Convert.ToInt32(cmbHesabTafzili2.EditValue);
-                                obj2.HesabTafCode = db.AllHesabTafzilis.FirstOrDefault(f => f.Id == _HesabTafziliId2).Code;
-                                obj2.HesabTafName = cmbHesabTafzili2.Text;
-                                obj2.Bes = Convert.ToDecimal(txtMablagh.Text.Replace(",", ""));
-                                obj2.Sharh = txtSharh.Text;
-                                obj2.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
-                                db.AsnadeHesabdariRows.Add(obj2);
-                                /////////////////////////////////////////////////////////////
-                                db.SaveChanges();
-                                btnDisplayList_Click(null, null);
-
-                                //XtraMessageBox.Show("عملیات ویرایش با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
-                                if (gridView1.RowCount > 0)
-                                    gridView1.FocusedRowHandle = EditRowIndex;
-                                gridControl1.Enabled = true;
-                                ActiveButtons();
-                                ClearControls();
-                                InActiveControls();
-                                En = EnumCED.Save;
                             }
                             else
-                                XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            {
+                                //int RowId = Convert.ToInt32(txtId.Text);
+                                var q = db.DaryaftPardakhtBinHesabhas.FirstOrDefault(p => p.Id == RowId);
+                                if (q != null)
+                                {
+                                    if (!string.IsNullOrEmpty(txtTarikh.Text))
+                                        q.Tarikh = Convert.ToDateTime(txtTarikh.Text);
+                                    if (txtMablagh.Text != "0")
+                                    {
+                                        q.Mablagh = Convert.ToDecimal(txtMablagh.Text);
+                                        q.HesabMoinId1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                                        q.HesabMoineName1 = cmbHesabMoin1.Text;
+                                        q.HesabMoinId2 = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                                        q.HesabMoineName2 = cmbHesabMoin2.Text;
+                                        q.HesabTafziliId1 = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                                        q.HesabTafziliName1 = cmbHesabTafzili1.Text;
+                                        q.HesabTafziliId2 = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                                        q.HesabTafziliName2 = cmbHesabTafzili2.Text;
+                                    }
+                                    q.TaghirSarmayeAvalye = chkTaghirSarmayeAvalye.Checked;
+                                    q.Sharh = txtSharh.Text;
+                                    q.NoeSanadIndex = cmbNoeSanad.SelectedIndex;
+                                    q.NoeSanadName = cmbNoeSanad.Text;
+                                    /////////////////////////////////////////////////////////////////////////////////////
+                                    var q2 = db.AsnadeHesabdariRows.Where(f => f.ShomareSanad == q.ShomareSanad);
+                                    if (q2.Count() > 0)
+                                        db.AsnadeHesabdariRows.RemoveRange(q2);
+
+
+                                    //_HesabMoinId1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                                    //int _HesabTafziliId1 = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                                    AsnadeHesabdariRow obj1 = new AsnadeHesabdariRow();
+                                    obj1.ShomareSanad = q.ShomareSanad;
+                                    obj1.Tarikh = Convert.ToDateTime(txtTarikh.Text.Substring(0, 10));
+                                    obj1.HesabMoinId = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                                    obj1.HesabMoinCode = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId1).Code;
+                                    obj1.HesabMoinName = cmbHesabMoin1.Text; ;
+                                    obj1.HesabTafId = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                                    obj1.HesabTafCode = db.AllHesabTafzilis.FirstOrDefault(f => f.Id == _HesabTafziliId1).Code;
+                                    obj1.HesabTafName = cmbHesabTafzili1.Text;
+                                    obj1.Bed = Convert.ToDecimal(txtMablagh.Text.Replace(",", ""));
+                                    obj1.Sharh = txtSharh.Text;
+                                    obj1.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
+                                    db.AsnadeHesabdariRows.Add(obj1);
+
+                                    //int _HesabMoinId2 = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                                    //int _HesabTafziliId2 = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                                    AsnadeHesabdariRow obj2 = new AsnadeHesabdariRow();
+                                    obj2.ShomareSanad = q.ShomareSanad;
+                                    obj2.Tarikh = Convert.ToDateTime(txtTarikh.Text.Substring(0, 10));
+                                    obj2.HesabMoinId = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                                    obj2.HesabMoinCode = db.CodeMoins.FirstOrDefault(f => f.Id == _HesabMoinId2).Code;
+                                    obj2.HesabMoinName = cmbHesabMoin2.Text; ;
+                                    obj2.HesabTafId = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                                    obj2.HesabTafCode = db.AllHesabTafzilis.FirstOrDefault(f => f.Id == _HesabTafziliId2).Code;
+                                    obj2.HesabTafName = cmbHesabTafzili2.Text;
+                                    obj2.Bes = Convert.ToDecimal(txtMablagh.Text.Replace(",", ""));
+                                    obj2.Sharh = txtSharh.Text;
+                                    obj2.SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
+                                    db.AsnadeHesabdariRows.Add(obj2);
+                                    ///////////////////////////////////////////////////////////////////////////////
+                                    if (_BeforEditchkTaghirSarmayeAvalye == false && chkTaghirSarmayeAvalye.Checked == true)
+                                    {
+                                        //int _Moin1Id = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                                        // int _Moin1Id = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                                        _Mablagh = Convert.ToDecimal(txtMablagh.Text);
+                                        var m = db.CodeMoins;
+                                        _CodeMoin1 = m.FirstOrDefault(f => f.Id == _HesabMoinId1).Code;
+                                        _CodeMoin2 = m.FirstOrDefault(f => f.Id == _HesabMoinId2).Code;
+                                        if (chkTaghirSarmayeAvalye.Checked)
+                                        {
+                                            if (_CodeMoin1 == 7001)
+                                            {
+                                                int _AazaId = Convert.ToInt32(cmbHesabTafzili1.EditValue);
+                                                var As = db.AazaSandoghs.FirstOrDefault(s => s.AllTafId == _AazaId);
+                                                As.BesAvali -= _Mablagh;
+                                            }
+                                            if (_CodeMoin2 == 7001)
+                                            {
+                                                int _AazaId = Convert.ToInt32(cmbHesabTafzili2.EditValue);
+                                                var As = db.AazaSandoghs.FirstOrDefault(s => s.AllTafId == _AazaId);
+                                                As.BesAvali += _Mablagh;
+
+                                            }
+                                        }
+
+                                    }                                ///////////////////////////////////////////////////////////////////////////////////
+                                    db.SaveChanges();
+                                    btnDisplayList_Click(null, null);
+
+                                    //XtraMessageBox.Show("عملیات ویرایش با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                                    if (gridView1.RowCount > 0)
+                                        gridView1.FocusedRowHandle = EditRowIndex;
+                                    gridControl1.Enabled = true;
+                                    ActiveButtons();
+                                    ClearControls();
+                                    InActiveControls();
+                                    En = EnumCED.Save;
+                                }
+                                else
+                                {
+                                    XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                }
+
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -1200,7 +1594,7 @@ namespace Sandogh_PG
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            
+
         }
 
         private void btnSaveNext_Click(object sender, EventArgs e)
@@ -1223,7 +1617,7 @@ namespace Sandogh_PG
                 //En = EnumCED.Edit;
                 //InActiveButtons();
                 //ActiveControls();
-
+                cmbHesabMoin1.EditValue = cmbHesabMoin2.EditValue = 0;
                 txtId.Text = gridView1.GetFocusedRowCellValue("Id").ToString();
                 txtSeryal.Text = gridView1.GetFocusedRowCellValue("Seryal").ToString();
                 if (gridView1.GetFocusedRowCellValue("Tarikh") != null)
@@ -1235,6 +1629,7 @@ namespace Sandogh_PG
                 cmbHesabTafzili2.EditValue = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabTafziliId2"));
                 txtSharh.Text = gridView1.GetFocusedRowCellValue("Sharh").ToString();
                 cmbNoeSanad.SelectedIndex = Convert.ToInt32(gridView1.GetFocusedRowCellValue("NoeSanadIndex"));
+                chkTaghirSarmayeAvalye.Checked = Convert.ToBoolean(gridView1.GetFocusedRowCellValue("TaghirSarmayeAvalye"));
 
                 //cmbNoeSanad.Focus();
             }
@@ -1261,11 +1656,97 @@ namespace Sandogh_PG
         private void cmbHesabMoin1_EditValueChanged(object sender, EventArgs e)
         {
             FillcmbHesabTafzili1();
-        }
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    int _Id1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                    int _Id2 = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                    var q = db.CodeMoins.FirstOrDefault(s => s.Id == _Id1);
+                    if (q != null)
+                    {
+                        if (q.Code == 7001)
+                        {
+                            _CodeMoin1 = q.Code;
+                            chkTaghirSarmayeAvalye.Visible = true;
+                            if (_Id1 != _Id2)
+                            {
+                                chkTaghirSarmayeAvalye.Text = "کاهش سرمایه اولیه";
+                            }
+                            else
+                            {
+                                chkTaghirSarmayeAvalye.Text = "افزایش/کاهش سرمایه اولیه";
+                            }
+                        }
+                        else if (_CodeMoin2 != 7001)
+                        {
+                            chkTaghirSarmayeAvalye.Visible = false;
+                            chkTaghirSarmayeAvalye.Checked = false;
+                        }
 
+                    }
+                    else
+                    {
+                        chkTaghirSarmayeAvalye.Visible = false;
+                        chkTaghirSarmayeAvalye.Checked = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
+        int _CodeMoin2 = 0;
+        int _CodeMoin1 = 0;
         private void cmbHesabMoin2_EditValueChanged(object sender, EventArgs e)
         {
             FillcmbHesabTafzili2();
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    int _Id1 = Convert.ToInt32(cmbHesabMoin1.EditValue);
+                    int _Id2 = Convert.ToInt32(cmbHesabMoin2.EditValue);
+                    var q = db.CodeMoins.FirstOrDefault(s => s.Id == _Id2);
+
+                    if (q != null)
+                    {
+                        if (q.Code == 7001)
+                        {
+                            _CodeMoin2 = q.Code;
+                            chkTaghirSarmayeAvalye.Visible = true;
+                            if (_Id2 != _Id1)
+                            {
+                                chkTaghirSarmayeAvalye.Text = "افزایش سرمایه اولیه";
+                            }
+                            else
+                            {
+                                chkTaghirSarmayeAvalye.Text = "افزایش/کاهش سرمایه اولیه";
+                            }
+                        }
+                        else if (_CodeMoin1 != 7001)
+                        {
+                            chkTaghirSarmayeAvalye.Visible = false;
+                            chkTaghirSarmayeAvalye.Checked = false;
+                        }
+
+                    }
+                    else
+                    {
+                        chkTaghirSarmayeAvalye.Visible = false;
+                        chkTaghirSarmayeAvalye.Checked = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
         }
 
         private void cmbNoeSanad_Enter(object sender, EventArgs e)
@@ -1309,7 +1790,7 @@ namespace Sandogh_PG
                                 {
                                     String[] Text1 = new string[3];
                                     Text1[0] = "بدینوسیله طی سند شماره " + q.ShomareSanad.ToString() + " در مورخه " + q.Tarikh.ToString().Substring(0, 10);
-                                    Text1[1] = " مبلغ " + q.Mablagh.ToString("N0") + " ریال";
+                                    Text1[1] = " مبلغ " + q.Mablagh.ToString("N0") + " ";
                                     Text1[2] = q.NoeSanadIndex == 0 ? " از خانم / آقای " + q.HesabTafziliName2 + " دریافت گردید." : " به خانم / آقای " + q.HesabTafziliName1 + " پرداخت گردید.";
                                     SharhSanad = Text1[0] + Text1[1] + Text1[2];
                                 }
@@ -1317,7 +1798,7 @@ namespace Sandogh_PG
                                 {
                                     String[] Text1 = new string[3];
                                     Text1[0] = "بدینوسیله طی سند شماره " + q.ShomareSanad.ToString() + " در مورخه " + q.Tarikh.ToString().Substring(0, 10);
-                                    Text1[1] = " مبلغ " + q.Mablagh.ToString("N0") + " ریال";
+                                    Text1[1] = " مبلغ " + q.Mablagh.ToString("N0") + " ";
                                     Text1[2] = " از حساب " + q.HesabTafziliName2 + " به حساب" + q.HesabTafziliName1 + " انتقال پیدا کرد.";
                                     SharhSanad = Text1[0] + Text1[1] + Text1[2];
                                 }
@@ -1325,7 +1806,7 @@ namespace Sandogh_PG
                                 {
                                     String[] Text1 = new string[3];
                                     Text1[0] = "بدینوسیله طی سند شماره " + q.ShomareSanad.ToString() + " در مورخه " + q.Tarikh.ToString().Substring(0, 10);
-                                    Text1[1] = " مبلغ " + q.Mablagh.ToString("N0") + " ریال";
+                                    Text1[1] = " مبلغ " + q.Mablagh.ToString("N0") + " ";
                                     Text1[2] = "  بابت ثبت " + q.HesabTafziliName2 + " سند حسابداری صادر گردید.";
                                     SharhSanad = Text1[0] + Text1[1] + Text1[2];
                                 }
@@ -1333,7 +1814,7 @@ namespace Sandogh_PG
                                 {
                                     String[] Text1 = new string[3];
                                     Text1[0] = "بدینوسیله طی سند شماره " + q.ShomareSanad.ToString() + " در مورخه " + q.Tarikh.ToString().Substring(0, 10);
-                                    Text1[1] = " مبلغ " + q.Mablagh.ToString("N0") + " ریال";
+                                    Text1[1] = " مبلغ " + q.Mablagh.ToString("N0") + " ";
                                     Text1[2] = " بابت ثبت " + q.HesabTafziliName1 + " سند حسابداری صادر گردید.";
                                     SharhSanad = Text1[0] + Text1[1] + Text1[2];
                                 }
@@ -1341,7 +1822,7 @@ namespace Sandogh_PG
                                 {
                                     String[] Text1 = new string[3];
                                     Text1[0] = "بدینوسیله طی سند شماره " + q.ShomareSanad.ToString() + " در مورخه " + q.Tarikh.ToString().Substring(0, 10);
-                                    Text1[1] = " مبلغ " + q.Mablagh.ToString("N0") + " ریال";
+                                    Text1[1] = " مبلغ " + q.Mablagh.ToString("N0") + " ";
                                     Text1[2] = " بابت ثبت " + q.HesabTafziliName1 + " سند حسابداری صادر گردید.";
                                     SharhSanad = Text1[0] + Text1[1] + Text1[2];
                                 }

@@ -30,6 +30,7 @@ namespace Sandogh_PG
         public virtual ICollection<CheckTazmin> CheckTazmins { get; set; }
         //public virtual ICollection<VamPardakhti> VamPardakhtis { get; set; }
         public virtual ICollection<R_VamPardakhti_B_Zamenin> R_VamPardakhti_B_Zamenins { get; set; }
+        public virtual ICollection<R_AnvaeVam_B_AllHesabTafzili> R_AnvaeVam_B_AllHesabTafzilis { get; set; }
 
     }
 }

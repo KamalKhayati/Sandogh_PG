@@ -246,6 +246,7 @@ namespace Sandogh_PG.Forms
                     // int _Sal = Convert.ToInt32(_txtSal.Text);
                     //int _IndexMonth = _cmbMonth.SelectedIndex;
                     // dt.Columns.Add("AazaId");
+                    //if (chkCodeHesab.Checked) dt1.Columns.Add("CodePersoneli"); else dt1.Columns.Add("CodeHesab");
                     dt1.Columns.Add("CodeHesab");
                     dt1.Columns.Add("NameAaza");
                     dt1.Columns.Add("MablaghPasandaz");
@@ -361,17 +362,24 @@ namespace Sandogh_PG.Forms
                     var q = db.AazaSandoghs.Where(f => f.IsActive == true).ToList();
                     if (q.Count > 0)
                     {
+                        //for (int RowCounter = 0; RowCounter < q.Count(); RowCounter++)
                         for (int RowCounter = 0; RowCounter < q.Count(); RowCounter++)
                         {
                             DataRow DataRow1 = dt1.NewRow();
-                            DataRow1["CodeHesab"] = q[RowCounter].Code;
+                            if (chkCodeHesab.Checked) DataRow1["CodeHesab"] = q[RowCounter].CodePersoneli; else DataRow1["CodeHesab"] = q[RowCounter].Code;
+
+                            //if (RowCounter == 98)
+                            //{
+                            //    XtraMessageBox.Show("test", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            //}
                             DataRow1["NameAaza"] = q[RowCounter].NameVFamil;
                             decimal _HaghOzviat = q[RowCounter].HaghOzviat == null ? 0 : (decimal)q[RowCounter].HaghOzviat;
                             DataRow1["MablaghPasandaz"] = _HaghOzviat.ToString("n0");
                             DataRow1["MablaghAghsat"] = 0;
                             DataRow1["CodeVam"] = 0;
 
-                            int _AllTafId = q[RowCounter].AllTafId;
+                            //int _AllTafId = q[RowCounter].AllTafId;
                             //var qq1 = db.HaghOzviats.Where(f => f.AazaId == _AllTafId && f.Sal == _Sal).ToList();
 
                             int _Id = q[RowCounter].Id;
@@ -380,13 +388,13 @@ namespace Sandogh_PG.Forms
                             {
                                 decimal _MablaghAghsat = 0;
                                 //var q2 = db.RizeAghsatVams.Where(f => f.AazaId == q1.Id && f.TarikhSarresid <= EndMonth && f.MablaghDaryafti == 0 && f.VamPardakhti1.IsTasviye == false).ToList();
-                                var q5 = db.VamPardakhtis.Where(s => s.AazaId == q1.Id && s.IsTasviye == false).Select(s => s.Id).ToList();
+                                var q5 = db.VamPardakhtis.Where(s => s.AazaId == q1.Id && s.IsTasviye == false).ToList();
 
                                 if (q5.Count > 0)
                                 {
                                     for (int i = 0; i < q5.Count; i++)
                                     {
-                                        int VamId = q5[i];
+                                        int VamId = q5[i].Id;
                                         var q2 = db.RizeAghsatVams.Where(f => f.AazaId == q1.Id && f.MablaghDaryafti == 0 && f.MablaghAghsat > 0 && f.VamPardakhti1.IsTasviye == false && f.VamPardakhtiId == VamId).ToList();
                                         if (q2.Count > 0)
                                         {
@@ -397,17 +405,19 @@ namespace Sandogh_PG.Forms
                                             {
                                                 DataRow DataRow2 = dt2.NewRow();
                                                 //DataRow2 = dt2.NewRow();
-                                                DataRow2["CodeHesab"] = q[RowCounter].Code;
+                                                if (chkCodeHesab.Checked) DataRow2["CodeHesab"] = q[RowCounter].CodePersoneli; else DataRow2["CodeHesab"] = q[RowCounter].Code;
+                                                //DataRow2["CodeHesab"] = q[RowCounter].Code;
+                                                //DataRow2["CodeHesab"] = q[RowCounter].Code;
                                                 DataRow2["NameAaza"] = q[RowCounter].NameVFamil;
                                                 DataRow2["MablaghPasandaz"] = 0;
                                                 DataRow2["MablaghAghsat"] = _MablaghAghsat.ToString("n0");
-                                                DataRow2["CodeVam"] = q2[i].VamPardakhtiCode;
+                                                DataRow2["CodeVam"] = q5[i].Code;
                                                 dt2.Rows.Add(DataRow2);
                                             }
                                             else
                                             {
                                                 DataRow1["MablaghAghsat"] = _MablaghAghsat.ToString("n0");
-                                                DataRow1["CodeVam"] = q2[i].VamPardakhtiCode;
+                                                DataRow1["CodeVam"] = q5[i].Code;
                                                 //DataRow1[6] = q3.ToString().Substring(0, 10);
 
                                                 dt1.Rows.Add(DataRow1);
@@ -460,7 +470,7 @@ namespace Sandogh_PG.Forms
                     //txtSharhA1.Text = "دریافت بابت وجه اقساط وام";
 
                     int _SandoghId = Convert.ToInt32(Fm.IDSandogh.Caption);
-                    var q2 = db.Tanzimats.FirstOrDefault(s => s.Id == _SandoghId);
+                    var q2 = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SandoghId);
                     if (q2 != null)
                     {
                         cmbMoinP1.EditValue = cmbMoinA1.EditValue = q2.MoinDefaultId;
@@ -572,16 +582,45 @@ namespace Sandogh_PG.Forms
                         var q2 = db.VamPardakhtis.Where(f => f.IsTasviye == false);
                         if (q1.Count() > 0)
                         {
-                            //var CodeHesab = dt.Rows[0];
-                            //var CodeVam = dt.Columns[4];
+                            string CodeHesab = string.Empty;
+                            string CodePersoneli = string.Empty;
                             for (int i = 0; i < DataTable1.Rows.Count; i++)
                             {
-                                int CodeHesab = string.IsNullOrEmpty(DataTable1.Rows[i][0].ToString()) ? 0 : Convert.ToInt32(DataTable1.Rows[i][0].ToString());
-                                if (CodeHesab == 0 || string.IsNullOrEmpty(CodeHesab.ToString()) || !q1.Any(f => f.Code == CodeHesab))
+
+                                CodeHesab = string.IsNullOrEmpty(DataTable1.Rows[i][0].ToString()) ? "0" : DataTable1.Rows[i][0].ToString();
+                                if (CodeHesab == "0" || string.IsNullOrEmpty(CodeHesab.ToString()))
                                 {
-                                    XtraMessageBox.Show("کد حساب در ردیف " + (i + 1) + " صحیح نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    XtraMessageBox.Show(chkCodeHesab.Text + " در ردیف " + (i + 1) + " صحیح نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     return false;
                                 }
+                                else
+                                {
+                                    if (chkCodeHesab.Checked)
+                                    {
+                                        CodePersoneli = DataTable1.Rows[i][0].ToString();
+
+                                        if (q1.Any(s => s.CodePersoneli == CodePersoneli))
+                                        {
+                                            CodeHesab = q1.FirstOrDefault(s => s.CodePersoneli == CodePersoneli).Code.ToString();
+                                        }
+                                        else
+                                        {
+                                            XtraMessageBox.Show(chkCodeHesab.Text + " در ردیف " + (i + 1) + " صحیح نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            return false;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (!q1.Any(f => f.Code.ToString() == CodeHesab))
+                                        {
+                                            XtraMessageBox.Show(chkCodeHesab.Text + " در ردیف " + (i + 1) + " صحیح نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            return false;
+                                        }
+
+                                    }
+
+                                }
+
                                 if (q2.Count() > 0)
                                 {
                                     var CodeVam = string.IsNullOrEmpty(DataTable1.Rows[i][4].ToString()) ? 0 : Convert.ToInt32(DataTable1.Rows[i][4].ToString());
@@ -594,25 +633,22 @@ namespace Sandogh_PG.Forms
                                             XtraMessageBox.Show("کد وام در ردیف " + (i + 1) + " صحیح نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             return false;
                                         }
+                                        else
+                                        {
+                                            int _AazaId = q1.FirstOrDefault(s => s.Code.ToString() == CodeHesab).AllTafId;
+                                            var q = db.RizeAghsatVams.Any(s => s.VamPardakhtiCode == CodeVam && s.AazaId == _AazaId);
+                                            if (q == false)
+                                            {
+                                                XtraMessageBox.Show(" در ردیف " + (i + 1) + " وام شماره " + CodeVam + " با " + chkCodeHesab.Text + " مرتبط نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                return false;
+                                            }
+                                        }
                                     }
                                     else if (CodeVam > 0)
                                     {
                                         XtraMessageBox.Show("مبلغ وام در ردیف " + (i + 1) + " صحیح نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         return false;
                                     }
-
-                                    if (CodeVam > 0)
-                                    {
-                                        int _AazaId = q1.FirstOrDefault(s => s.Code == CodeHesab).AllTafId;
-                                        var q = db.RizeAghsatVams.Any(s => s.VamPardakhtiCode == CodeVam && s.AazaId == _AazaId);
-                                        if (q==false)
-                                        {
-                                            XtraMessageBox.Show(" در ردیف " + (i + 1) + " وام شماره "+ CodeVam + " مربوط به کد حساب "+ CodeHesab + " نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            return false;
-
-                                        }
-                                    }
- 
                                 }
                             }
                             return true;
@@ -648,6 +684,7 @@ namespace Sandogh_PG.Forms
                             List<HaghOzviat> ListHaghOzviat = new List<HaghOzviat>();
                             //List<RizeAghsatVam> ListRizeAghsatVam = new List<RizeAghsatVam>();
                             List<AsnadeHesabdariRow> ListAsnadeHesabdariRow = new List<AsnadeHesabdariRow>();
+                            var AazaSandogh = db.AazaSandoghs.Where(s => s.IsActive == true);
                             var allHesabtafsili = db.AllHesabTafzilis.Where(f => f.IsActive == true);
                             var ShomareAsnadeHesabdari = db.AsnadeHesabdariRows.Any() ? db.AsnadeHesabdariRows.Max(f => f.ShomareSanad) : 0;
                             var SeryalHaghOzviat = db.HaghOzviats.Any() ? db.HaghOzviats.Max(f => f.Seryal) : 0;
@@ -669,11 +706,37 @@ namespace Sandogh_PG.Forms
                             int _SalMaliId = Convert.ToInt32(Fm.IDSalMali.Caption);
 
                             var z1 = db.RizeAghsatVams;
+
+                            int CodeHesabAaza = 0;
                             for (int i = 0; i < DataTable1.Rows.Count; i++)
                             {
                                 // ثبت پس انداز ماهیانه
                                 decimal MablaghPasandaz = string.IsNullOrEmpty(DataTable1.Rows[i][2].ToString()) ? 0 : Convert.ToDecimal(DataTable1.Rows[i][2].ToString());
-                                int CodeHesabAaza = string.IsNullOrEmpty(DataTable1.Rows[i][0].ToString()) ? 0 : Convert.ToInt32(DataTable1.Rows[i][0].ToString());
+                                //string CodePersoneli1 = DataTable1.Rows[i][0].ToString();
+                                //if (CodePersoneli1=="3010308")
+                                //{
+                                //    string CodePersoneli2 = DataTable1.Rows[i][0].ToString();
+                                //}
+                                if (chkCodeHesab.Checked)
+                                {
+                                    string CodePersoneli = DataTable1.Rows[i][0].ToString();
+                                    //CodeHesabAaza = AazaSandogh.FirstOrDefault(s => s.CodePersoneli == CodePersoneli).Code;
+                                    if (AazaSandogh.Any(s => s.CodePersoneli == CodePersoneli))
+                                    {
+                                        CodeHesabAaza = AazaSandogh.FirstOrDefault(s => s.CodePersoneli == CodePersoneli).Code;
+                                    }
+                                    //else
+                                    //{
+                                    //    XtraMessageBox.Show(chkCodeHesab.Text + " در ردیف " + (i + 1) + " صحیح نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    //    return false;
+                                    //}
+
+                                }
+                                else
+                                {
+                                    CodeHesabAaza = string.IsNullOrEmpty(DataTable1.Rows[i][0].ToString()) ? 0 : Convert.ToInt32(DataTable1.Rows[i][0].ToString());
+
+                                }
 
                                 var _allHesabtafsili = allHesabtafsili.FirstOrDefault(f => f.Code == CodeHesabAaza);
 
@@ -739,15 +802,27 @@ namespace Sandogh_PG.Forms
                                 }
 
                                 // ثبت افساط ماهیانه
-                                decimal MablaghAghsat = string.IsNullOrEmpty(DataTable1.Rows[i][3].ToString())?0: Convert.ToDecimal(DataTable1.Rows[i][3].ToString());
-                                int CodeVam = string.IsNullOrEmpty(DataTable1.Rows[i][4].ToString())?0: Convert.ToInt32(DataTable1.Rows[i][4].ToString());
+                                decimal MablaghAghsat = string.IsNullOrEmpty(DataTable1.Rows[i][3].ToString()) ? 0 : Convert.ToDecimal(DataTable1.Rows[i][3].ToString());
+                                int CodeVam = string.IsNullOrEmpty(DataTable1.Rows[i][4].ToString()) ? 0 : Convert.ToInt32(DataTable1.Rows[i][4].ToString());
                                 //int CodeVam = Convert.ToInt32(DataTable1.Rows[i][4].ToString());
 
                                 if (MablaghAghsat > 0 && CodeVam > 0)
                                 {
                                     var pp1 = db.RizeAghsatVams.Where(s => s.VamPardakhtiCode == CodeVam);
+                                    if (pp1.Count()==0)
+                                    {
+                                        XtraMessageBox.Show("وام شماره "+ CodeVam + " "+ _allHesabtafsili.Name+" قسط بندی نشده است", "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        return;
+                                    }
                                     var pp2 = pp1.Where(s => s.MablaghDaryafti == 0);
+                                    if (pp2.Count() == 0)
+                                    {
+                                        XtraMessageBox.Show("وام شماره " + CodeVam + " " + _allHesabtafsili.Name + " هیچ قسطی برای دریافت ندارد", "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        return;
+                                    }
+
                                     var pp3 = pp2.Min(s => s.ShomareGhest);
+
                                     if (pp3 > 0)
                                     {
                                         ShomarandeSanad += 1;
@@ -785,14 +860,14 @@ namespace Sandogh_PG.Forms
                                         var q = pp2.FirstOrDefault(s => s.ShomareGhest == pp3);
                                         if (q != null)
                                         {
-                                            z1.FirstOrDefault(s=>s.Id==q.Id).SeryalDaryaft = SeryalAghsat + i + 1;
-                                            z1.FirstOrDefault(s=>s.Id==q.Id).TarikhDaryaft = TarikhSanad;
-                                            z1.FirstOrDefault(s=>s.Id==q.Id).MablaghDaryafti = MablaghAghsat;
-                                            z1.FirstOrDefault(s=>s.Id==q.Id).NameHesabId = HesabTafsiliIdA1;
-                                            z1.FirstOrDefault(s=>s.Id==q.Id).NameHesab = HesabTafsiliNameA1;
-                                            z1.FirstOrDefault(s=>s.Id==q.Id).Sharh = _SharhAghsat;
+                                            z1.FirstOrDefault(s => s.Id == q.Id).SeryalDaryaft = SeryalAghsat + i + 1;
+                                            z1.FirstOrDefault(s => s.Id == q.Id).TarikhDaryaft = TarikhSanad;
+                                            z1.FirstOrDefault(s => s.Id == q.Id).MablaghDaryafti = MablaghAghsat;
+                                            z1.FirstOrDefault(s => s.Id == q.Id).NameHesabId = HesabTafsiliIdA1;
+                                            z1.FirstOrDefault(s => s.Id == q.Id).NameHesab = HesabTafsiliNameA1;
+                                            z1.FirstOrDefault(s => s.Id == q.Id).Sharh = _SharhAghsat;
                                             z1.FirstOrDefault(s => s.Id == q.Id).ShomareSanad = ShomarandeSanad;
-                                            
+
                                             //db.SaveChanges();
                                             //////////////////////////////////////////////////////////////////////////////////////////
                                             ///
@@ -812,7 +887,7 @@ namespace Sandogh_PG.Forms
                                             obj1.Bed = MablaghAghsat;
                                             obj1.Sharh = _SharhAghsat;
                                             obj1.SalMaliId = _SalMaliId;
-                                            
+
                                             ListAsnadeHesabdariRow.Add(obj1);
 
 
@@ -851,7 +926,7 @@ namespace Sandogh_PG.Forms
                             db.AsnadeHesabdariRows.AddRange(ListAsnadeHesabdariRow);
 
                             db.SaveChanges();
-                            XtraMessageBox.Show("صدور اسناد با موفقیت انجام شد" ,"پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            XtraMessageBox.Show("صدور اسناد با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         }
                         catch (Exception ex)
@@ -1080,11 +1155,11 @@ namespace Sandogh_PG.Forms
                     for (int i = 2; i <= range.Rows.Count; i++)
                     {
                         DataRow DataRow1 = dt1.NewRow();
-                        DataRow1["CodeHesab"] = worksheet.Cells[i, 1].Value.ToString();
-                        DataRow1["NameAaza"] = worksheet.Cells[i, 2].Value.ToString();
-                        DataRow1["MablaghPasandaz"] = worksheet.Cells[i, 3].Value.ToString();
-                        DataRow1["MablaghAghsat"] = worksheet.Cells[i, 4].Value.ToString();
-                        DataRow1["CodeVam"] = worksheet.Cells[i, 5].Value.ToString();
+                        DataRow1["CodeHesab"] = worksheet.Cells[i, 1].Value == null || worksheet.Cells[i, 1].Value.ToString() == string.Empty ? string.Empty : worksheet.Cells[i, 1].Value.ToString();
+                        DataRow1["NameAaza"] = worksheet.Cells[i, 2].Value == null || worksheet.Cells[i, 2].Value.ToString() == string.Empty ? string.Empty : worksheet.Cells[i, 2].Value.ToString();
+                        DataRow1["MablaghPasandaz"] = worksheet.Cells[i, 3].Value == null || worksheet.Cells[i, 3].Value.ToString() == string.Empty ? "0" : worksheet.Cells[i, 3].Value.ToString();
+                        DataRow1["MablaghAghsat"] = worksheet.Cells[i, 4].Value == null || worksheet.Cells[i, 4].Value.ToString() == string.Empty ? "0" : worksheet.Cells[i, 4].Value.ToString();
+                        DataRow1["CodeVam"] = worksheet.Cells[i, 5].Value == null || worksheet.Cells[i, 5].Value.ToString() == string.Empty ? string.Empty : worksheet.Cells[i, 5].Value.ToString();
                         dt1.Rows.Add(DataRow1);
 
 
@@ -1126,6 +1201,8 @@ namespace Sandogh_PG.Forms
         private void gridView1_RowCountChanged(object sender, EventArgs e)
         {
             btnSetInfoToExcel.Enabled = gridView1.RowCount > 0 ? true : false;
+            chkCodeHesab.Enabled = gridView1.RowCount > 0 ? false : true;
+            tbnInsetCodeVam.Enabled = gridView1.RowCount > 0 ? true : false;
             btnTestInfo.Enabled = gridView1.RowCount > 0 ? true : false;
         }
 
@@ -1134,6 +1211,213 @@ namespace Sandogh_PG.Forms
             if (e.Control && e.KeyCode == Keys.E)
             {
                 HelpClass1.ExportDataGridViewToExcel(gridView1, gridView1.RowCount);
+            }
+
+        }
+
+        private void chkCodeHesab_CheckedChanged(object sender, EventArgs e)
+        {
+            chkCodeHesab.Text = gridView1.Columns[0].Caption = chkCodeHesab.Checked ? "کد پرسنلی" : "کد حساب";
+            //gridView1.Columns[0].FieldName = chkCodeHesab.Checked ? "CodePersoneli": "Code";
+            //chkCodeHesab.Checked ? "کد پرسنلی" : "کد حساب";
+        }
+
+        private void tbnInsetCodeVam_Click(object sender, EventArgs e)
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    DataTable1 = new DataTable();
+                    DataTable1 = HelpClass1.ConvettDatagridviewToDataTable(gridView1, gridView1.RowCount - 1);
+                    //DataTable1.Columns["MablaghPasandaz"].DataType = typeof(Decimal);
+                    //DataTable1.Columns["MablaghAghsat"].DataType = typeof(Decimal);
+
+                    var q1 = db.AazaSandoghs.Where(f => f.IsActive == true);
+                    var q2 = db.VamPardakhtis.Where(f => f.IsTasviye == false);
+
+                    if (q1.Count() > 0)
+                    {
+                        string CodeHesab = string.Empty;
+                        string CodePersoneli = string.Empty;
+                        string[] List3 = new string[DataTable1.Rows.Count];
+
+                        for (int i = 0; i < DataTable1.Rows.Count; i++)
+                        {
+
+                            CodeHesab = string.IsNullOrEmpty(DataTable1.Rows[i][0].ToString()) ? "0" : DataTable1.Rows[i][0].ToString();
+
+                            if (CodeHesab == "0" || string.IsNullOrEmpty(CodeHesab))
+                            {
+                                XtraMessageBox.Show(chkCodeHesab.Text + " در ردیف " + (i + 1) + " صحیح نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return;
+                            }
+                            else
+                            {
+                                if (chkCodeHesab.Checked)
+                                {
+                                    CodePersoneli = DataTable1.Rows[i][0].ToString();
+
+                                    if (q1.Any(s => s.CodePersoneli == CodePersoneli))
+                                    {
+                                        CodeHesab = q1.FirstOrDefault(s => s.CodePersoneli == CodePersoneli).Code.ToString();
+                                    }
+                                    else
+                                    {
+                                        XtraMessageBox.Show(chkCodeHesab.Text + " در ردیف " + (i + 1) + " صحیح نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        return;
+                                    }
+                                }
+                                else
+                                {
+                                    if (!q1.Any(f => f.Code.ToString() == CodeHesab))
+                                    {
+                                        XtraMessageBox.Show(chkCodeHesab.Text + " در ردیف " + (i + 1) + " صحیح نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        return;
+                                    }
+
+                                }
+                            }
+
+                            if (q2.Count() > 0)
+                            {
+                                var CodeVam = string.IsNullOrEmpty(DataTable1.Rows[i][4].ToString()) ? 0 : Convert.ToInt32(DataTable1.Rows[i][4].ToString());
+                                decimal MablghAghsat = string.IsNullOrEmpty(DataTable1.Rows[i][3].ToString()) ? 0 : Convert.ToDecimal(DataTable1.Rows[i][3].ToString());
+                                int _AazaId = q1.FirstOrDefault(s => s.Code.ToString() == CodeHesab).AllTafId;
+                                if (q2.Any(s => s.AazaId == _AazaId))
+                                {
+                                    if (MablghAghsat > 0)
+                                    {
+                                        if (chkCodeHesab.Checked)
+                                        {
+                                            //int[] List2 = new int[5] {1,2,3,4,5 };
+
+                                            var Vam1 = q2.Where(s => s.AazaId == _AazaId).ToList();
+                                            var _Code = Vam1.Select(s => s.Code).ToArray();
+
+                                            var _CountCode = List3.Count(s => s == CodePersoneli);
+                                            DataTable1.Rows[i][4] = _Code[_CountCode];
+
+                                            //else
+                                            //{
+                                            //    DataTable1.Rows[i][4] = _Code[a] ;
+
+                                            //}
+                                            //var tb1 = DataTable1.Select("CodeHesab=" + CodePersoneli).ToList();
+
+                                        }
+                                        else
+                                        {
+                                            var Vam1 = q2.Where(s => s.AazaId == _AazaId).ToList();
+                                            var _Code = Vam1.Select(s => s.Code).ToArray();
+
+                                            var _CountCode = List3.Count(s => s == CodeHesab);
+                                            DataTable1.Rows[i][4] = _Code[_CountCode];
+
+                                        }
+
+                                        List3[i] += chkCodeHesab.Checked ? CodePersoneli : CodeHesab;
+                                    }
+                                    else
+                                    {
+                                        DataTable1.Rows[i][4] =0;
+                                    }
+                                }
+                                else if (MablghAghsat > 0)
+                                {
+                                    XtraMessageBox.Show(chkCodeHesab.Text + " در ردیف " + (i + 1) + " فاقد وام است", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    return;
+
+                                }
+
+                                /////////////////////////////////////////////////////////////////////////////////////////////
+                                #region MyRegion2
+                                //if (MablghAghsat > 0)
+                                //{
+
+                                //    //var z= db.RizeAghsatVams.Any(s => s.VamPardakhtiCode == CodeVam && s.AazaId == _AazaId))
+                                //    //if (_AazaId == 347)
+                                //    //{
+                                //    //    _AazaId = 347;
+                                //    //}
+                                //    if (CodeVam == 0 || string.IsNullOrEmpty(CodeVam.ToString()) || db.RizeAghsatVams.Any(s => s.VamPardakhtiCode == CodeVam && s.AazaId == _AazaId))
+                                //    {
+                                //        if (chkCodeHesab.Checked)
+                                //        {
+                                //            //int[] List2 = new int[5] {1,2,3,4,5 };
+
+                                //            var Vam1 = q2.Where(s => s.AazaId == _AazaId).ToList();
+                                //            var _Code = Vam1.Select(s => s.Code).ToArray();
+
+                                //            var _CountCode = List3.Count(s => s == CodePersoneli);
+                                //            DataTable1.Rows[i][4] = _Code[_CountCode];
+
+                                //            //else
+                                //            //{
+                                //            //    DataTable1.Rows[i][4] = _Code[a] ;
+
+                                //            //}
+                                //            //var tb1 = DataTable1.Select("CodeHesab=" + CodePersoneli).ToList();
+
+                                //        }
+                                //        else
+                                //        {
+                                //            var Vam1 = q2.Where(s => s.AazaId == _AazaId).ToList();
+                                //            var _Code = Vam1.Select(s => s.Code).ToArray();
+
+                                //            var _CountCode = List3.Count(s => s == CodeHesab);
+                                //            DataTable1.Rows[i][4] = _Code[_CountCode];
+
+                                //        }
+
+                                //        //XtraMessageBox.Show("کد وام در ردیف " + (i + 1) + " صحیح نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                //        //return ;
+                                //    }
+                                //    else
+                                //    {
+                                //        //// int _AazaId = q1.FirstOrDefault(s => s.Code == CodeHesab).AllTafId;
+                                //        // var q = db.RizeAghsatVams.Any(s => s.VamPardakhtiCode == CodeVam && s.AazaId == _AazaId);
+                                //        // if (q == false)
+                                //        // {
+                                //        XtraMessageBox.Show(" در ردیف " + (i + 1) + " وام شماره " + CodeVam + " با " + chkCodeHesab.Text + " مرتبط نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                //        return;
+                                //        //}
+
+                                //    }
+
+                                //    List3[i] += chkCodeHesab.Checked ? CodePersoneli : CodeHesab;
+
+
+                                //    //else
+                                //    //{
+                                //    //    int _AazaId = q1.FirstOrDefault(s => s.Code == CodeHesab).AllTafId;
+                                //    //    var q = db.RizeAghsatVams.Any(s => s.VamPardakhtiCode == CodeVam && s.AazaId == _AazaId);
+                                //    //    if (q == false)
+                                //    //    {
+                                //    //        //XtraMessageBox.Show(" در ردیف " + (i + 1) + " وام شماره " + CodeVam + " با " + chkCodeHesab.Text + " مرتبط نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                //    //        //return ;
+                                //    //    }
+                                //    //}
+                                //}
+                                //else if (CodeVam > 0)
+                                //{
+                                //    XtraMessageBox.Show("مبلغ وام در ردیف " + (i + 1) + " صحیح نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                //    return;
+                                //} 
+                                #endregion
+
+                            }
+                        }
+                        DataTable1.AcceptChanges();
+                        gridControl1.DataSource = DataTable1;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
         }

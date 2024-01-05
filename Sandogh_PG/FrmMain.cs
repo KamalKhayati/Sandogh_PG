@@ -103,11 +103,44 @@ namespace Sandogh_PG
             fm.ShowDialog();
         }
 
+        public bool Dastresi()
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    int _UserId = Convert.ToInt32(txtUserId.Caption);
+                    //btnTanzimat.Visibility = btnAllDataDelete.Visibility = _UserId == 2 ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+                    //rpgTanzimat.Visible = _UserId == 2 ? true : false;
+                    if (_UserId == 2|| _UserId == 3)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("فقط مدیر صندوق اجازه دسترسی به این قسمت را دارد",
+                                                    "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد"  + ex.Message,
+                        "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return true;
+            }
+
+        }
         private void btnTanzimat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            FrmTanzimat fm = new FrmTanzimat(this);
-            ActiveForm(fm);
 
+            if (Dastresi())
+            {
+                FrmTanzimat fm = new FrmTanzimat(this);
+                ActiveForm(fm);
+
+            }
         }
 
         private void btnTarifSalMali_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -115,7 +148,7 @@ namespace Sandogh_PG
             FrmTarifSalMali fm = new FrmTarifSalMali();
             ActiveForm(fm);
         }
-
+        int _SId = 0;
         public string _MadarBoardSerial = string.Empty;
         public void FrmMain_Load(object sender, EventArgs e)
         {
@@ -146,7 +179,7 @@ namespace Sandogh_PG
                     {
                         IDSandogh.Caption = q.Id.ToString();
                         ribbonControl1.ApplicationDocumentCaption = q.NameSandogh;
-                        int _SId = Convert.ToInt32(IDSandogh.Caption);
+                        _SId = Convert.ToInt32(IDSandogh.Caption);
                         if (q.PicBackground != null)
                         {
                             MemoryStream ms = new MemoryStream(q.PicBackground);
@@ -228,6 +261,55 @@ namespace Sandogh_PG
                     string _VersionName = q5.VersionType == "Orginal" ? "اصلی" : q5.VersionType == "Demo" ? "آزمایشی" : "نمایشی";
                     barStaticItem4.Caption = "نسخه " + _VersionName + " برنامه :";
                     //EtmamGaranti.Visibility = q5.VersionType == "Orginal" ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+
+                    /////////////////////////////////اصلاح دیتابیس///////////////////////////////////
+                    var q11 = db.VamPardakhtis.Where(s => s.TarikhTasviyeVam == null && s.IsTasviye == true).AsParallel();
+                    if (q11 != null)
+                    {
+                        foreach (var item in q11)
+                        {
+                            var q21 = db.RizeAghsatVams.Where(s => s.VamPardakhtiId == item.Id && s.VamPardakhti1.IsTasviye == true).AsParallel();
+
+                            if (q21.Count() > 0)
+                            {
+                                item.TarikhTasviyeVam = q21.Max(s => s.TarikhDaryaft);
+                            }
+
+                            //else if (q21.FirstOrDefault(s => s.AazaId == item.AllTafId && s.IsTasviye == true) != null)
+                            //{
+                            //    var q51 = db.RizeAghsatVams.Where(s => s.AazaId == item.AllTafId && s.VamPardakhti1.IsTasviye == true).Max(s => s.TarikhDaryaft);
+                            //    item.TarikhTasviyeVam = Convert.ToDateTime(q51);
+                            //}
+                            //else if (q21.FirstOrDefault(s => s.AazaId == item.AllTafId && s.IsTasviye == false) != null)
+                            //{
+                            //    item.TarikhTasviyeVam = item.TarikhOzviat;
+                            //}
+
+                        }
+                        db.SaveChanges();
+
+                        //}
+                    }
+                    ////////////////////////////////////////////////////////////////////
+
+                    /////////////////////////////////اصلاح دیتابیس///////////////////////////////////
+                    //
+                    var fo= Convert.ToDateTime("1278/10/11");
+                    var q12 = db.AazaSandoghs.Where(s =>s.TarikhTasviyeVam==null|| s.TarikhTasviyeVam== fo).AsParallel();
+                    //var q12 = db.AazaSandoghs.FirstOrDefault().TarikhTasviyeVam.ToString().Substring(0, 10);
+                    //if (q12== "1278/10/11")
+                    //{
+
+                    //}
+                    if (q12.Count() > 0)
+                    {
+                        foreach (var item in q12)
+                        {
+                            item.TarikhTasviyeVam = item.TarikhOzviat;
+                        }
+                        db.SaveChanges();
+                    }
+                    ////////////////////////////////////////////////////////////////////
 
                     ////// دستور مربوط به فرم یادآوری روزانه
                     var q3 = db.Tanzimats.Any(f => f.checkEdit3 == true);
@@ -355,6 +437,12 @@ namespace Sandogh_PG
                     //}
                     /////////////////////////////////////////بعد از یکبار اجرا حذف شود ///////////////////////////////////////////
                     #endregion                ////////////////////////////////////////////////////////////////////////////////
+
+                    var d = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SId);
+                    if (d != null)
+                    {
+                        btnNobatBandiVam.Visibility = d.checkEdit6 == true && d.NoeRezervIndex != -1 ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -503,7 +591,7 @@ namespace Sandogh_PG
 
         private void btnListKarbaran_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            FrmListKarbaran fm = new FrmListKarbaran();
+            FrmListKarbaran fm = new FrmListKarbaran(this);
             fm.ShowDialog();
         }
 
@@ -609,7 +697,7 @@ namespace Sandogh_PG
                                     decimal bed = Convert.ToDecimal(q3.Sum(f => f.Bed));
                                     decimal bes = Convert.ToDecimal(q3.Sum(f => f.Bes));
                                     decimal Mande = bed - bes;
-                                    MojodiSandogh.Caption = "موجودی صندوق/بانک : " + Mande.ToString("###,###,###,###,###") + " ریال";
+                                    MojodiSandogh.Caption = "موجودی صندوق/بانک : " + Mande.ToString("###,###,###,###,###") + " ";
                                 }
                             }
                         }
@@ -636,35 +724,37 @@ namespace Sandogh_PG
         public bool IsOkDelete = false;
         private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            try
+            if (Dastresi())
             {
-                if (XtraMessageBox.Show("آیا همه اطلاعات ثبت شده حذف گردد ؟", "پیغام حذف کلیه اطلاعات", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                try
                 {
-                    if (XtraMessageBox.Show("آیا برای انجام اینکار مطمئن هستید ؟", "پیغام حذف کلیه اطلاعات", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    if (XtraMessageBox.Show("آیا همه اطلاعات ثبت شده حذف گردد ؟", "پیغام حذف کلیه اطلاعات", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
-                        FrmShenaseVRamz Fm = new FrmShenaseVRamz(this);
-                        Fm.ShowDialog();
-                        if (IsOkDelete)
+                        if (XtraMessageBox.Show("آیا برای انجام اینکار مطمئن هستید ؟", "پیغام حذف کلیه اطلاعات", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                         {
-                            using (var db = new MyContext(SetInitialize.DropCreateDatabaseAlways))
+                            FrmShenaseVRamz Fm = new FrmShenaseVRamz(this);
+                            Fm.ShowDialog();
+                            if (IsOkDelete)
                             {
-                                db.Database.Initialize(true);
-                                // XtraMessageBox.Show("کلیه اطلاعات ثبت شده با موفقیت حذف گردید و نرم افزار مجدداً راه اندازی خواهد شد", "پیغام", MessageBoxButtons.OK);
-                                XtraMessageBox.Show("کلیه اطلاعات ثبت شده با موفقیت حذف گردید لطفا برنامه را مجدداً اجرا کنید", "پیغام", MessageBoxButtons.OK);
-                                IsDataDelete = true;
-                                //Application.Restart();
-                                Application.Exit();
+                                using (var db = new MyContext(SetInitialize.DropCreateDatabaseAlways))
+                                {
+                                    db.Database.Initialize(true);
+                                    // XtraMessageBox.Show("کلیه اطلاعات ثبت شده با موفقیت حذف گردید و نرم افزار مجدداً راه اندازی خواهد شد", "پیغام", MessageBoxButtons.OK);
+                                    XtraMessageBox.Show("کلیه اطلاعات ثبت شده با موفقیت حذف گردید لطفا برنامه را مجدداً اجرا کنید", "پیغام", MessageBoxButtons.OK);
+                                    IsDataDelete = true;
+                                    //Application.Restart();
+                                    Application.Exit();
+                                }
                             }
                         }
                     }
                 }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> barButtonItem3_ItemClick()" + "\n" + ex.Message,
+                        "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception ex)
-            {
-                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> barButtonItem3_ItemClick()" + "\n" + ex.Message,
-                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
         }
 
         private void FrmMain_KeyPress(object sender, KeyPressEventArgs e)
@@ -935,17 +1025,21 @@ namespace Sandogh_PG
 
         private void FrmMain_Shown(object sender, EventArgs e)
         {
-            try
+            using (var db = new MyContext())
             {
-                Settings.Save();
-                Settings.Dispose();
+                try
+                {
+                    Settings.Save();
+                    Settings.Dispose();
 
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> FrmMain_Shown()" + "\n" + ex.Message,
+                        "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception ex)
-            {
-                XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> FrmMain_Shown()" + "\n" + ex.Message,
-                    "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
         }
 
         private void btnDaryaft2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -962,6 +1056,273 @@ namespace Sandogh_PG
                 //fm.lblUserName.Text = txtUserName.Caption;
                 fm.ShowDialog();
             }
+        }
+
+        private void BtnRepairDataBase_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    ///////////// بررسی اسناد حسابداری با مرجع داده ها ////////////////////
+                    List<int> List1 = new List<int>();
+                    List<int> List_1 = new List<int>();
+                    //var AsnadHesabdari = db.AsnadeHesabdariRows.ToList();
+                    //var AazaSandogh = db.AazaSandoghs.ToList();
+                    //var VamPardakhti = db.VamPardakhtis.ToList();
+                    //var RizeAghsatVam = db.RizeAghsatVams.ToList();
+                    //var HaghOzviat = db.HaghOzviats.ToList();
+                    //var DaryaftPardakht = db.DaryaftPardakhtBinHesabhas.ToList();
+                    List1.AddRange(db.AsnadeHesabdariRows.Select(s => s.ShomareSanad));
+                    List_1.AddRange(db.AazaSandoghs.Select(s => s.ShomareSanad));
+                    List_1.AddRange(db.VamPardakhtis.Select(s => s.ShomareSanad));
+                    List_1.AddRange(db.RizeAghsatVams.Select(s => s.ShomareSanad));
+                    List_1.AddRange(db.HaghOzviats.Select(s => s.ShomareSanad));
+                    List_1.AddRange(db.DaryaftPardakhtBinHesabhas.Select(s => s.ShomareSanad));
+
+                    List<int> List01 = List1.Distinct().ToList();
+                    string SharhList1 = string.Empty;
+                    List<int> List001 = new List<int>();
+
+                    for (int i = 0; i < List01.Count; i++)
+                    {
+                        if (!List_1.Contains(List01[i]))
+                        {
+                            SharhList1 += "شماره سند " + List01[i] + " مرجع ندارد" + "\n";
+                            List001.Add(List01[i]);
+                        }
+                    }
+                    if (List001.Count > 0)
+                    {
+                        if (XtraMessageBox.Show(SharhList1 + "\n" + "\n" + "آیا سندهای فوق حذف شوند؟", "پیغام", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                        {
+                            List<AsnadeHesabdariRow> AH = new List<AsnadeHesabdariRow>();
+                            foreach (var item in List001)
+                            {
+                                AH.AddRange(db.AsnadeHesabdariRows.Where(s => s.ShomareSanad == item));
+
+                            }
+                            db.AsnadeHesabdariRows.RemoveRange(AH);
+                            db.SaveChanges();
+
+                            XtraMessageBox.Show("عملیات انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+
+                    }
+                    ///////////// بررسی افتتاحیه اعضاء با اسناد حسابداری ////////////////////
+                    List<int> List2 = new List<int>();
+                    List<int> List_2 = new List<int>();
+                    List2.AddRange(db.AsnadeHesabdariRows.Select(s => s.ShomareSanad));
+                    List_2.AddRange(db.AazaSandoghs.Where(s => s.BesAvali > 0).Select(s => s.ShomareSanad));
+                    string SharhList2 = string.Empty;
+
+                    for (int i = 0; i < List_2.Count; i++)
+                    {
+                        if (!List2.Contains(List_2[i]))
+                        {
+                            int _ShomareSanad = Convert.ToInt32(List_2[i]);
+                            var q2 = db.AazaSandoghs.FirstOrDefault(s => s.ShomareSanad == _ShomareSanad);
+                            SharhList2 += "افتتاحیه " + q2.NameVFamil + " سند حسابداری ندارد" + "\n";
+
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(SharhList2))
+                    {
+                        XtraMessageBox.Show(SharhList2 + "\n" + "\n" + "جهت اصلاح موارد فوق در قسمت تعریف اشخاص ، عضو مورد نظر ویرایش و مجدداً ذخیره گردد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+
+                    ///////////// بررسی حق عضویت ماهیانه با اسناد حسابداری ////////////////////
+                    List<int> List3 = new List<int>();
+                    List<int> List_3 = new List<int>();
+                    List3.AddRange(db.AsnadeHesabdariRows.Select(s => s.ShomareSanad));
+                    List_3.AddRange(db.HaghOzviats.Where(s => s.Mablagh > 0).Select(s => s.ShomareSanad));
+                    string SharhList3 = string.Empty;
+
+                    for (int i = 0; i < List_3.Count; i++)
+                    {
+                        if (!List3.Contains(List_3[i]))
+                        {
+                            int _ShomareSanad = Convert.ToInt32(List_3[i]);
+                            var q3 = db.HaghOzviats.FirstOrDefault(s => s.ShomareSanad == _ShomareSanad);
+                            SharhList3 += "دریافت پس انداز ماهیانه " + q3.NameAaza + " به شماره سریال " + q3.Seryal + " سند حسابداری ندارد" + "\n";
+
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(SharhList3))
+                    {
+                        XtraMessageBox.Show(SharhList3 + "\n" + "\n" + "جهت اصلاح موارد فوق در قسمت دریافت پس انداز ماهیانه ، عضو مورد نظر انتخاب و شماره سریال مربوطه ویرایش و مجدداً ذخیره گردد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    ///////////// بررسی اعطای وام با اسناد حسابداری ////////////////////
+                    List<int> List4 = new List<int>();
+                    List<int> List_4 = new List<int>();
+                    List4.AddRange(db.AsnadeHesabdariRows.Select(s => s.ShomareSanad));
+                    List_4.AddRange(db.VamPardakhtis.Where(s => s.MablaghAsli > 0).Select(s => s.ShomareSanad));
+                    string SharhList4 = string.Empty;
+
+                    for (int i = 0; i < List_4.Count; i++)
+                    {
+                        if (!List4.Contains(List_4[i]))
+                        {
+                            int _ShomareSanad = Convert.ToInt32(List_4[i]);
+                            var q4 = db.VamPardakhtis.FirstOrDefault(s => s.ShomareSanad == _ShomareSanad);
+                            //SharhList4 +=q4.NoeVam+ " " + q4.NameAaza + " به شماره " + q4.Code + " سند حسابداری ندارد" + "\n";
+                            SharhList4 += "وام شماره " + q4.Code + " " + q4.NameAaza + " سند حسابداری ندارد" + "\n";
+
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(SharhList4))
+                    {
+                        XtraMessageBox.Show(SharhList4 + "\n" + "\n" + "جهت اصلاح موارد فوق در قسمت اعطای وام ، شماره مربوطه انتخاب ، ویرایش و مجدداً ذخیره گردد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    ///////////// بررسی ریز اقساط وام با اسناد حسابداری ////////////////////
+                    List<int> List5 = new List<int>();
+                    List<int> List_5 = new List<int>();
+                    List5.AddRange(db.AsnadeHesabdariRows.Select(s => s.ShomareSanad));
+                    List_5.AddRange(db.RizeAghsatVams.Where(s => s.MablaghDaryafti > 0).Select(s => s.ShomareSanad));
+                    string SharhList5 = string.Empty;
+
+                    for (int i = 0; i < List_5.Count; i++)
+                    {
+                        if (!List5.Contains(List_5[i]))
+                        {
+                            int _ShomareSanad = Convert.ToInt32(List_5[i]);
+                            var q5 = db.RizeAghsatVams.FirstOrDefault(s => s.ShomareSanad == _ShomareSanad);
+                            SharhList5 += "قسط " + q5.ShomareGhest + " وام شماره " + q5.VamPardakhtiCode + " " + q5.NameAaza + " سند حسابداری ندارد" + "\n";
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(SharhList5))
+                    {
+                        XtraMessageBox.Show(SharhList5 + "\n" + "\n" + "جهت اصلاح موارد فوق در قسمت دریافت اقساط ، شماره وام و قسط مربوطه انتخاب ، ویرایش و مجدداً ذخیره گردد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+
+                    ///////////// بررسی دریافت/پرداخت بین حسابها با اسناد حسابداری ////////////////////
+                    List<int> List6 = new List<int>();
+                    List<int> List_6 = new List<int>();
+                    List6.AddRange(db.AsnadeHesabdariRows.Select(s => s.ShomareSanad));
+                    List_6.AddRange(db.DaryaftPardakhtBinHesabhas.Where(s => s.Mablagh > 0).Select(s => s.ShomareSanad));
+                    string SharhList6 = string.Empty;
+
+                    for (int i = 0; i < List_6.Count; i++)
+                    {
+                        if (!List6.Contains(List_6[i]))
+                        {
+                            int _ShomareSanad = Convert.ToInt32(List_6[i]);
+                            var q6 = db.DaryaftPardakhtBinHesabhas.FirstOrDefault(s => s.ShomareSanad == _ShomareSanad);
+                            SharhList6 += "برگ " + q6.NoeSanadName + " به شماره سریال " + q6.Seryal + " سند حسابداری ندارد" + "\n";
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(SharhList6))
+                    {
+                        XtraMessageBox.Show(SharhList6 + "\n" + "\n" + "جهت اصلاح موارد فوق در قسمت دریافت/پرداخت بین حسابها ، سریال مربوطه انتخاب ، ویرایش و مجدداً ذخیره گردد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    ///////////////////////////// پیغام درستی اطلاعات دیتابیس ////////////////////////////
+                    if (string.IsNullOrEmpty(SharhList1) && string.IsNullOrEmpty(SharhList2) && string.IsNullOrEmpty(SharhList3) &&
+                        string.IsNullOrEmpty(SharhList4) && string.IsNullOrEmpty(SharhList5) && string.IsNullOrEmpty(SharhList6))
+                    {
+                        XtraMessageBox.Show("کلیه اسناد دیتابیس صحیح می باشد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                        "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
+
+        private void btnNobatBandiVam_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmNobatVam frm = new FrmNobatVam(this);
+            ActiveForm(frm);
+        }
+
+        //string FilePath = string.Empty;
+
+        OpenFileDialog ofd = new OpenFileDialog();
+        private void btnAsasName_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            using (var db = new MyContext())
+            {
+                try
+                {
+                    FilePath = Application.StartupPath + @"\Report\AsasNameh";
+                    if (Directory.Exists(FilePath))
+                    {
+                        object filename = FilePath + @"\AsasNameh_Org.doc";
+                        if (File.Exists((string)filename))
+                        {
+                            Word.Application ap = new Word.Application();
+                            ap.Visible = true;
+                            object miss = Missing.Value;
+                            //object path = Application.StartupPath + @"\Report\DarkhastVam\DarkhastVam.doc";
+                            object path = filename;
+                            object readOnly = false;
+                            object isVisible = true;
+                            Word.Document doc = new Word.Document();
+                            doc = ap.Documents.Open(ref path, ref miss, ref readOnly, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref isVisible, ref miss, ref miss, ref miss, ref miss);
+                            doc.Activate();
+
+                        }
+                        else
+                        {
+                            try
+                            {
+                                ofd.Filter = "WordFile (*.doc)|*.doc|WordFile(*.docx) | *.docx";
+                                if (ofd.ShowDialog() == DialogResult.OK)
+                                {
+                                    string FileName1 = ofd.FileName;
+                                    File.Copy(FileName1, FilePath + @"\AsasNameh_Org.doc");
+
+                                    Word.Application ap = new Word.Application();
+                                    ap.Visible = true;
+                                    object miss = Missing.Value;
+                                    //object path = Application.StartupPath + @"\Report\DarkhastVam\DarkhastVam.doc";
+                                    object path = FilePath + @"\AsasNameh_Org.doc";
+                                    object readOnly = false;
+                                    object isVisible = true;
+                                    Word.Document doc = new Word.Document();
+                                    doc = ap.Documents.Open(ref path, ref miss, ref readOnly, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref isVisible, ref miss, ref miss, ref miss, ref miss);
+                                    doc.Activate();
+
+
+
+                                }
+                            }
+                            catch (PathTooLongException)
+                            {
+
+                                MessageBox.Show("مسیر فایل طولانی است");
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        //XtraMessageBox.Show("پوشه ای با نام AsasNameh یافت نشد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //return;
+                        Directory.CreateDirectory(FilePath);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> SetInFoToWord()" + "\n" + ex.Message,
+                        "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
         }
     }
 }

@@ -15,8 +15,10 @@ namespace Sandogh_PG
         public int Code { get; set; }
         [MaxLength(40)]
         public string CodePersoneli { get; set; }
-        [Required,Column(TypeName = "Date")]
+        [Required, Column(TypeName = "Date")]
         public DateTime TarikhOzviat { get; set; }
+        [Required]
+        public DateTime TarikhTasviyeVam { get; set; }
         [Required, MaxLength(100)]
         public string NameVFamil { get; set; }
         [MaxLength(40)]
@@ -61,10 +63,13 @@ namespace Sandogh_PG
         public decimal? BesAvali { get; set; }
         //public decimal? BedAvali { get; set; }
         public decimal? HaghOzviat { get; set; }
-        public decimal? HazineEftetah { get; set; }
+        //public decimal? MaxHaghOzviat { get; set; }
+        //public decimal? HazineEftetah { get; set; }
         public decimal? DaramadeMahiane { get; set; }
         public decimal SaghfeEtebar { get; set; }
         public decimal EtebarBlookeShode { get; set; }
+        public double DarsadPasandaz { get; set; }
+        //public double MaxDarsadPasandaz { get; set; }
 
         [Required]
         public bool IsActive { get; set; }
@@ -78,7 +83,7 @@ namespace Sandogh_PG
         //public virtual TarifSandogh TarifSandogh1 { get; set; }
         [Required]
         public int GroupTafziliId { get; set; }
-        [Required]
+        [Required]/////////////// از روی ناچاری شماره سند را حذف نکردم چون در گذشته امکان دارد بعضی از مبالغ سرمایه و هزینه افتتاح سند خوره باشد
         public int ShomareSanad { get; set; }
         public int AllTafId { get; set; }
         public int NobatbandiVam { get; set; }

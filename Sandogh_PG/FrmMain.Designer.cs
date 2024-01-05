@@ -60,6 +60,7 @@
             this.btnMabaleghGhabelDaryaft = new DevExpress.XtraBars.BarButtonItem();
             this.btnTarazname = new DevExpress.XtraBars.BarButtonItem();
             this.btnSoratSoodVZiyan = new DevExpress.XtraBars.BarButtonItem();
+            this.btnNobatBandiVam = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem3 = new DevExpress.XtraBars.BarSubItem();
             this.btnListKarbaran = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
@@ -87,6 +88,8 @@
             this.btnSupportSetting = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.btnDaryaft2 = new DevExpress.XtraBars.BarButtonItem();
+            this.BtnRepairDataBase = new DevExpress.XtraBars.BarButtonItem();
+            this.btnAsasName = new DevExpress.XtraBars.BarButtonItem();
             this.DaryaftVPardakht = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgDaryaft = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgPardakhtha = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -184,10 +187,13 @@
             this.btnListHesabMoin,
             this.btnSupportSetting,
             this.barButtonItem3,
-            this.btnDaryaft2});
+            this.btnDaryaft2,
+            this.BtnRepairDataBase,
+            this.btnNobatBandiVam,
+            this.btnAsasName});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.ribbonControl1.MaxItemId = 87;
+            this.ribbonControl1.MaxItemId = 90;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsPageCategories.ShowCaptions = false;
             this.ribbonControl1.PageHeaderItemLinks.Add(this.barStaticItem7);
@@ -408,7 +414,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnMandeAshkhas),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnMabaleghGhabelDaryaft),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnTarazname),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnSoratSoodVZiyan)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnSoratSoodVZiyan),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnNobatBandiVam)});
             this.barSubItem2.Name = "barSubItem2";
             // 
             // btnSoratHesabTafzili
@@ -445,6 +452,13 @@
             this.btnSoratSoodVZiyan.Id = 51;
             this.btnSoratSoodVZiyan.Name = "btnSoratSoodVZiyan";
             this.btnSoratSoodVZiyan.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSoratSoodVZiyan_ItemClick);
+            // 
+            // btnNobatBandiVam
+            // 
+            this.btnNobatBandiVam.Caption = "نوبت بندی اعطای وام";
+            this.btnNobatBandiVam.Id = 88;
+            this.btnNobatBandiVam.Name = "btnNobatBandiVam";
+            this.btnNobatBandiVam.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnNobatBandiVam_ItemClick);
             // 
             // barSubItem3
             // 
@@ -657,6 +671,26 @@
             this.btnDaryaft2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.btnDaryaft2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDaryaft2_ItemClick);
             // 
+            // BtnRepairDataBase
+            // 
+            this.BtnRepairDataBase.Caption = "بررسی اسناد ثبت شده در دیتابیس";
+            this.BtnRepairDataBase.Id = 87;
+            this.BtnRepairDataBase.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnRepairDataBase.ImageOptions.Image")));
+            this.BtnRepairDataBase.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BtnRepairDataBase.ImageOptions.LargeImage")));
+            this.BtnRepairDataBase.Name = "BtnRepairDataBase";
+            this.BtnRepairDataBase.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.BtnRepairDataBase.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BtnRepairDataBase_ItemClick);
+            // 
+            // btnAsasName
+            // 
+            this.btnAsasName.Caption = "اساسنامه صندوق";
+            this.btnAsasName.Id = 89;
+            this.btnAsasName.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnAsasName.ImageOptions.SvgImage")));
+            this.btnAsasName.LargeWidth = 75;
+            this.btnAsasName.Name = "btnAsasName";
+            this.btnAsasName.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.btnAsasName.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAsasName_ItemClick);
+            // 
             // DaryaftVPardakht
             // 
             this.DaryaftVPardakht.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -708,6 +742,7 @@
             this.rpgInfoBase.ItemLinks.Add(this.btnTarifAaza, true);
             this.rpgInfoBase.ItemLinks.Add(this.btnCodingDaramadVHazine, true);
             this.rpgInfoBase.ItemLinks.Add(this.btnListHesabMoin, true);
+            this.rpgInfoBase.ItemLinks.Add(this.btnAsasName, true);
             this.rpgInfoBase.Name = "rpgInfoBase";
             this.rpgInfoBase.Text = "اطلاعات پایه ";
             // 
@@ -770,6 +805,7 @@
             // 
             // ribbonPageGroup3
             // 
+            this.ribbonPageGroup3.ItemLinks.Add(this.BtnRepairDataBase);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnYadavari, true);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnCalculate, true);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnTamdidGaranti, true);
@@ -976,6 +1012,9 @@
         private DevExpress.XtraBars.BarButtonItem btnSupportSetting;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
         private DevExpress.XtraBars.BarButtonItem btnDaryaft2;
+        private DevExpress.XtraBars.BarButtonItem BtnRepairDataBase;
+        private DevExpress.XtraBars.BarButtonItem btnNobatBandiVam;
+        private DevExpress.XtraBars.BarButtonItem btnAsasName;
     }
 }
 

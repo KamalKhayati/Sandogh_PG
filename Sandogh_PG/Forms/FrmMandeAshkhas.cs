@@ -264,6 +264,8 @@ namespace Sandogh_PG
                         dRow["2002"] = gridView2.GetRowCellDisplayText(i, "2002");
                     if (gridView2.Columns["2003"].Visible)
                         dRow["2003"] = gridView2.GetRowCellDisplayText(i, "2003");
+                    if (gridView2.Columns["2004"].Visible)
+                        dRow["2004"] = gridView2.GetRowCellDisplayText(i, "2004");
                     if (gridView2.Columns["3001"].Visible)
                         dRow["3001"] = gridView2.GetRowCellDisplayText(i, "3001");
                     if (gridView2.Columns["4001"].Visible)
@@ -302,6 +304,7 @@ namespace Sandogh_PG
                         XtraReport1.Parameters["Vam_Daryaftani_2001"].Value = gridView2.Columns["2001"].Caption;
                         XtraReport1.Parameters["Vam_Daryaftani_2002"].Value = gridView2.Columns["2002"].Caption;
                         XtraReport1.Parameters["Vam_Daryaftani_2003"].Value = gridView2.Columns["2003"].Caption;
+                        XtraReport1.Parameters["Vam_Daryaftani_2004"].Value = gridView2.Columns["2004"].Caption;
                         XtraReport1.Parameters["Mosaede"].Value = gridView2.Columns["3001"].Caption;
                         XtraReport1.Parameters["Bedehkaran"].Value = gridView2.Columns["4001"].Caption;
                         XtraReport1.Parameters["Vam_Pardakhtani"].Value = gridView2.Columns["6001"].Caption;

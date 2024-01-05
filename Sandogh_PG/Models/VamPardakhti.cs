@@ -72,6 +72,7 @@ namespace Sandogh_PG
         public int SalMaliId { get; set; }
         [MaxLength(500)]
         public string Tozihat { get; set; }
+        public DateTime? TarikhTasviyeVam { get; set; }
         public virtual AllHesabTafzili AllHesabTafzili1 { get; set; }
         public virtual ICollection<RizeAghsatVam> RizeAghsatVams { get; set; }
         public virtual ICollection<R_VamPardakhti_B_Zamenin> R_VamPardakhti_B_Zamenins { get; set; }

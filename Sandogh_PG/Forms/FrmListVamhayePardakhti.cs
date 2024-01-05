@@ -72,7 +72,7 @@ namespace Sandogh_PG
         public void FillDataGridRizeAghsatVam()
         {
             //using (var db = new MyContext())
-            //MyContext1 = new MyContext();
+            MyContext1 = new MyContext();
             {
                 try
                 {
@@ -80,6 +80,7 @@ namespace Sandogh_PG
                     rizeAghsatVamsBindingSource.DataSource = null;
                     _VamPardakhtiId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id"));
                     var q1 = MyContext1.RizeAghsatVams.Where(s => s.VamPardakhtiId == _VamPardakhtiId).OrderBy(s => s.TarikhSarresid).AsParallel();
+                    //var q2 = q1.ToList();
                     if (q1.Count() > 0)
                         rizeAghsatVamsBindingSource.DataSource = q1;
                     else
@@ -144,7 +145,7 @@ namespace Sandogh_PG
                             fm.En = EnumCED.Edit;
                             //fm.IsEditRizAghsat = true;
                             fm.panelControl1.Enabled = fm.panelControl3.Enabled = fm.panelControl4.Enabled = fm.panelControl5.Enabled = fm.panelControl6.Enabled = fm.panelControl7.Enabled = false;
-                            fm.chkcmbEntekhabZamenin.Enabled = fm.lstZamenin.Enabled = fm.gridControl1.Enabled = false;
+                            fm.chkcmbEntekhabZamenin.Enabled = fm.lstZamenin1.Enabled = fm.gridControl1.Enabled = false;
                             fm.ShowDialog();
                         }
                     }
@@ -167,24 +168,24 @@ namespace Sandogh_PG
                     _deviceID = HelpClass1.GetMadarBoardSerial();
                     _dataBaseName = MyContext1.Database.Connection.Database;
 
-                    var q = MyContext1.VamPardakhtis.ToList();
-                    if (q.Count > 0)
-                    {
-                        var q1 = q.FirstOrDefault(s => s.ZameninId != null);
-                        if (q1 != null)
-                        {
-                            if (q1.ZameninId.Substring(0, 1) != ",")
-                            {
-                                var q2 = q.Where(s => s.ZameninId != null).ToList();
-                                foreach (var item in q2)
-                                {
-                                    if (item.ZameninId.Substring(0, 1) != ",")
-                                        item.ZameninId = "," + item.ZameninId;
-                                }
-                                MyContext1.SaveChanges();
-                            }
-                        }
-                    }
+                    //var q = MyContext1.VamPardakhtis.ToList();
+                    //if (q.Count > 0)
+                    //{
+                    //    var q1 = q.FirstOrDefault(s => s.ZameninId != null);
+                    //    if (q1 != null)
+                    //    {
+                    //        if (q1.ZameninId.Substring(0, 1) != ",")
+                    //        {
+                    //            var q2 = q.Where(s => s.ZameninId != null).ToList();
+                    //            foreach (var item in q2)
+                    //            {
+                    //                if (item.ZameninId.Substring(0, 1) != ",")
+                    //                    item.ZameninId = "," + item.ZameninId;
+                    //            }
+                    //            MyContext1.SaveChanges();
+                    //        }
+                    //    }
+                    //}
                 }
                 catch (Exception ex)
                 {
@@ -1326,13 +1327,25 @@ namespace Sandogh_PG
                     {
                         if (q2.Where(s => s.VamPardakhtiId == item.Id).Sum(s => s.MablaghAghsat) != 0)
                         {
-                            if (item.MablaghAsli + item.MablaghKarmozd != q2.Where(s => s.VamPardakhtiId == item.Id).Sum(s => s.MablaghAghsat))
+                            if (item.checkEdit1)
                             {
-                                XtraMessageBox.Show("مبلغ وام شماره " + item.Code + " " + item.NameAaza + " با جمع مبلغ ریز اقساط برابر نیست لطفاً قبل از بستن فرم آنرا اصلاح فرمایید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                e.Cancel = true;
-                                return;
+                                if (item.MablaghAsli != q2.Where(s => s.VamPardakhtiId == item.Id).Sum(s => s.MablaghAghsat))
+                                {
+                                    XtraMessageBox.Show("مبلغ وام شماره " + item.Code + " " + item.NameAaza + " با جمع مبلغ ریز اقساط برابر نیست لطفاً قبل از بستن فرم آنرا اصلاح فرمایید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    e.Cancel = true;
+                                    return;
+                                }
                             }
+                            else
+                            {
+                                if (item.MablaghAsli + item.MablaghKarmozd != q2.Where(s => s.VamPardakhtiId == item.Id).Sum(s => s.MablaghAghsat))
+                                {
+                                    XtraMessageBox.Show("مبلغ وام شماره " + item.Code + " " + item.NameAaza + " با جمع مبلغ ریز اقساط برابر نیست لطفاً قبل از بستن فرم آنرا اصلاح فرمایید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    e.Cancel = true;
+                                    return;
+                                }
 
+                            }
                         }
                         else
                         {

@@ -16,9 +16,11 @@ namespace Sandogh_PG
 {
     public partial class FrmListKarbaran : DevExpress.XtraEditors.XtraForm
     {
-        public FrmListKarbaran()
+        FrmMain Fm;
+        public FrmListKarbaran(FrmMain fm)
         {
             InitializeComponent();
+            Fm = fm;
         }
 
         public EnumCED En;
@@ -29,11 +31,25 @@ namespace Sandogh_PG
             {
                 try
                 {
-                    var q1 = db.Karbarans.ToList();
-                    if (q1.Count > 0)
-                        karbaransBindingSource.DataSource = q1;
+                    int _UserId = Convert.ToInt32(Fm.txtUserId.Caption);
+                    if (_UserId==2)
+                    {
+                        var q1 = db.Karbarans.ToList();
+                        if (q1.Count > 0)
+                            karbaransBindingSource.DataSource = q1;
+                        else
+                            karbaransBindingSource.DataSource = null;
+
+                    }
                     else
-                        karbaransBindingSource.DataSource = null;
+                    {
+                        var q1 = db.Karbarans.FirstOrDefault(s=>s.Id== _UserId);
+                        if (q1!=null)
+                            karbaransBindingSource.DataSource = q1;
+                        else
+                            karbaransBindingSource.DataSource = null;
+
+                    }
 
                 }
                 catch (Exception ex)
@@ -47,6 +63,18 @@ namespace Sandogh_PG
         private void FrmListKarbaran_Load(object sender, EventArgs e)
         {
             FillDataGridListKarbaran();
+            int _UserId = Convert.ToInt32(Fm.txtUserId.Caption);
+            if (_UserId == 2 || _UserId == 3)
+            {
+                //txtName.Enabled = false;
+                btnCreate.Visible = true;
+            }
+            else
+            {
+                //txtName.Enabled = true;
+                btnCreate.Visible = false;
+            }
+
         }
 
         private void FrmListKarbaran_KeyDown(object sender, KeyEventArgs e)
@@ -262,10 +290,13 @@ namespace Sandogh_PG
             if (En == EnumCED.Create || En == EnumCED.Edit)
             {
                 //cmbNameSandoogh.ReadOnly = false;
+               
                 txtName.ReadOnly = false;
                 txtShenase.ReadOnly = false;
                 txtPassword.ReadOnly = false;
             }
+            if(En == EnumCED.Create)
+            txtName.Enabled = true;
         }
 
         public void InActiveControls()
@@ -273,10 +304,13 @@ namespace Sandogh_PG
             if (En == EnumCED.Create || En == EnumCED.Edit)
             {
                 //cmbNameSandoogh.ReadOnly = true;
+                txtName.Enabled = false;
                 txtName.ReadOnly = true;
                 txtShenase.ReadOnly = true;
                 txtPassword.ReadOnly = true;
             }
+            txtName.Enabled = false;
+
         }
 
         public void ClearControls()
@@ -385,6 +419,20 @@ namespace Sandogh_PG
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             // btnDelete.Enabled = btnEdit.Enabled = gridView1.RowCount > 0 ? true : false;
+            int _UserId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id"));
+            //btnTanzimat.Visibility = btnAllDataDelete.Visibility = _UserId == 2 ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            //rpgTanzimat.Visible = _UserId == 2 ? true : false;
+            if (_UserId == 1||_UserId == 2 || _UserId == 3)
+            {
+                txtName.Enabled = false;
+                btnDelete.Visible = false;
+            }
+            else
+            {
+                txtName.Enabled = true;
+                btnDelete.Visible = true;
+            }
+
         }
 
         private void btnSaveNext_Click(object sender, EventArgs e)

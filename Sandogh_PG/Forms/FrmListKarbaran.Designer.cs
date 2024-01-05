@@ -290,7 +290,7 @@
             this.colName.AppearanceHeader.Options.UseTextOptions = true;
             this.colName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colName.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colName.Caption = "نام و نام خانوادگی کاربر";
+            this.colName.Caption = "نام کاربر";
             this.colName.FieldName = "Name";
             this.colName.MinWidth = 22;
             this.colName.Name = "colName";
@@ -365,7 +365,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Properties.MaxLength = 50;
             this.txtName.Properties.ReadOnly = true;
-            this.txtName.Size = new System.Drawing.Size(315, 34);
+            this.txtName.Size = new System.Drawing.Size(431, 34);
             this.txtName.TabIndex = 0;
             // 
             // txtId
@@ -428,12 +428,12 @@
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(681, 68);
+            this.labelControl5.Location = new System.Drawing.Point(799, 67);
             this.labelControl5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(158, 27);
+            this.labelControl5.Size = new System.Drawing.Size(53, 27);
             this.labelControl5.TabIndex = 32;
-            this.labelControl5.Text = "نام و نام خانوادگی کاربر";
+            this.labelControl5.Text = "نام کاربر";
             // 
             // panelControl2
             // 
@@ -535,6 +535,7 @@
             this.btnCreate.TabIndex = 1;
             this.btnCreate.ToolTip = "F2";
             this.btnCreate.ToolTipTitle = "ایجاد";
+            this.btnCreate.Visible = false;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // FrmListKarbaran

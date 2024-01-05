@@ -119,45 +119,57 @@ namespace Sandogh_PG
         public void SelectMonth()
         {
             Month = Convert.ToInt32(txtTarikh.Text.Substring(5, 2));
-            switch (Month)
-            {
-                case 1:
-                    cmbMonth.SelectedIndex = 0;
-                    break;
-                case 2:
-                    cmbMonth.SelectedIndex = 1;
-                    break;
-                case 3:
-                    cmbMonth.SelectedIndex = 2;
-                    break;
-                case 4:
-                    cmbMonth.SelectedIndex = 3;
-                    break;
-                case 5:
-                    cmbMonth.SelectedIndex = 4;
-                    break;
-                case 6:
-                    cmbMonth.SelectedIndex = 5;
-                    break;
-                case 7:
-                    cmbMonth.SelectedIndex = 6;
-                    break;
-                case 8:
-                    cmbMonth.SelectedIndex = 7;
-                    break;
-                case 9:
-                    cmbMonth.SelectedIndex = 8;
-                    break;
-                case 10:
-                    cmbMonth.SelectedIndex = 9;
-                    break;
-                case 11:
-                    cmbMonth.SelectedIndex = 10;
-                    break;
-                case 12:
-                    cmbMonth.SelectedIndex = 11;
-                    break;
-            }
+            _Sal = txtTarikh.Text.Substring(0, 4);
+            //string M1 = string.Empty;
+            int IndexMonth = 0;
+            IndexMonth = Month - 1;
+            //switch (Month)
+            //{
+            //    case 1:
+            //        M01 = 0;
+            //        break;
+            //    case 2:
+            //        M01 = 1;
+            //        break;
+            //    case 3:
+            //        M01 = 2;
+            //        break;
+            //    case 4:
+            //        M01 = 3;
+            //        break;
+            //    case 5:
+            //        M01 = 4;
+            //        break;
+            //    case 6:
+            //        M01 = 5;
+            //        break;
+            //    case 7:
+            //        M01 = 6;
+            //        break;
+            //    case 8:
+            //        M01 = 7;
+            //        break;
+            //    case 9:
+            //        M01 = 8;
+            //        break;
+            //    case 10:
+            //        M01 = 9;
+            //        break;
+            //    case 11:
+            //        M01 = 10;
+            //        break;
+            //    case 12:
+            //        M01 = 11;
+            //        break;
+            //}
+
+            //string M2 = Fm.gridView2.GetFocusedRowCellDisplayText("Month");
+            int M02 = Fm.gridView2.RowCount > 0 ? Convert.ToInt32(Fm.gridView2.GetFocusedRowCellDisplayText("IndexMonth") ?? IndexMonth.ToString()) : IndexMonth;
+            int S02 = Fm.gridView2.RowCount > 0 ? Convert.ToInt32(Fm.gridView2.GetFocusedRowCellDisplayText("Sal") ?? _Sal) : Convert.ToInt32(_Sal);
+
+            cmbMonth.SelectedIndex = Fm.gridView2.RowCount > 0 ? (M02 == 11 ? 0 : M02 + 1) : M02;
+            txtSal.Text = Fm.gridView2.RowCount > 0 ? (M02 == 11 ? (S02 + 1).ToString() : S02.ToString()) : S02.ToString();
+
         }
 
         public void FillcmbHesabMoin()
@@ -181,12 +193,13 @@ namespace Sandogh_PG
 
         }
 
+        int _SandoghId = 0;
         private void FrmDaryaftHaghOzviat_Load(object sender, EventArgs e)
         {
             FillcmbPardakhtKonande();
             FillcmbHesabMoin();
             HelpClass1.DateTimeMask(txtTarikh);
-
+            _SandoghId = Convert.ToInt32(Fm.Fm.IDSandogh.Caption);
             using (var db = new MyContext())
             {
                 try
@@ -203,10 +216,32 @@ namespace Sandogh_PG
                         NewSeryal();
                         txtTarikh.Text = DateTime.Now.ToString().Substring(0, 10);
                         SelectMonth();
-                        txtSal.Text = txtTarikh.Text.Substring(0, 4);
                         var q = db.AazaSandoghs.FirstOrDefault(s => s.Id == _AazaId);
                         if (q != null)
-                            txtMablagh.Text = q.HaghOzviat.ToString();
+                        {
+                            //txtMablagh.Text = q.HaghOzviat.ToString();
+                            //_SandoghId = Convert.ToInt32(Fm.Fm.IDSandogh.Caption);
+                            var t = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SandoghId);
+                            if (t != null)
+                            {
+                                cmbMoin.EditValue = t.MoinDefaultId;
+                                cmbNameHesab.EditValue = t.TafsiliDefaultId;
+
+                                if (t.radioGroup3 == 0)
+                                {
+                                    txtMablagh.Text = q.HaghOzviat.ToString();
+                                }
+                                else
+                                {
+                                    decimal _MinMablagh = Convert.ToDecimal(q.DarsadPasandaz) / 100 * q.BesAvali ?? 0;
+
+                                    txtMablagh.Text = _MinMablagh.ToString();
+                                }
+
+                            }
+
+
+                        }
 
                         //var q2 = db.HesabBankis.FirstOrDefault(s => s.IsActive == true && s.IsDefault == true);
                         //if (q2 != null)
@@ -221,13 +256,13 @@ namespace Sandogh_PG
                         //}
                         // cmbMonth.ShowPopup();
 
-                        int _SandoghId = Convert.ToInt32(Fm.Fm.IDSandogh.Caption);
-                        var q2 = db.Tanzimats.FirstOrDefault(s => s.Id == _SandoghId);
-                        if (q2 != null)
-                        {
-                            cmbMoin.EditValue = q2.MoinDefaultId;
-                            cmbNameHesab.EditValue = q2.TafsiliDefaultId;
-                        }
+                        // _SandoghId = Convert.ToInt32(Fm.Fm.IDSandogh.Caption);
+                        //var q2 = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SandoghId);
+                        //if (q2 != null)
+                        //{
+                        //    cmbMoin.EditValue = q2.MoinDefaultId;
+                        //    cmbNameHesab.EditValue = q2.TafsiliDefaultId;
+                        //}
 
                         _NameAaza = cmbPardakhtKonande.Text;
                         if (cmbMonth.SelectedIndex != -1)
@@ -244,7 +279,8 @@ namespace Sandogh_PG
                         txtSeryal.Text = Fm.gridView2.GetFocusedRowCellDisplayText("Seryal");
                         txtTarikh.Text = Fm.gridView2.GetFocusedRowCellDisplayText("Tarikh").Substring(0, 10);
                         txtMablagh.Text = Fm.gridView2.GetFocusedRowCellDisplayText("Mablagh");
-                        cmbMoin.EditValue = Convert.ToInt32(db.AsnadeHesabdariRows.FirstOrDefault(f => f.ShomareSanad == _shSanad).HesabMoinId);
+                        var w = db.AsnadeHesabdariRows.FirstOrDefault(f => f.ShomareSanad == _shSanad);
+                        cmbMoin.EditValue = Convert.ToInt32(w != null ? w.HesabMoinId : 0);
                         cmbNameHesab.EditValue = Convert.ToInt32(Fm.gridView2.GetFocusedRowCellValue("NameHesabId"));
                         cmbMonth.SelectedIndex = Convert.ToInt32(Fm.gridView2.GetFocusedRowCellValue("IndexMonth"));
                         txtSal.Text = Fm.gridView2.GetFocusedRowCellDisplayText("Sal");
@@ -301,32 +337,62 @@ namespace Sandogh_PG
                     var k = db.AllowedDevises.FirstOrDefault(s => s.DeviceID == _deviceID && s.DataBaseName == _dataBaseName);
                     if (k != null)
                     {
-                        if (k.VersionType == "Orginal")
+                        if (k.VersionType == "Display")
                         {
-                            return true;
+                            XtraMessageBox.Show("در نسخه نمایشی نمیتوان سند صادر و یا ویرایش نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return false;
                         }
                         else
                         {
                             if (k.VersionType == "Demo")
                             {
-                                if (k.IsActive == true)
-                                {
-                                    return true;
-                                }
-                                else if (k.IsActive == false)
+                                if (k.IsActive == false)
                                 {
                                     XtraMessageBox.Show("در نسخه آزمایشی نمیتوان بیشتر از 100 مورد سند صادر و یا ویرایش نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     return false;
                                 }
 
                             }
-                            else if (k.VersionType == "Display")
+
+                            var t = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SandoghId);
+                            if (t != null && t.checkEdit17)
                             {
-                                XtraMessageBox.Show("در نسخه نمایشی نمیتوان سند صادر و یا ویرایش نمود", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                return false;
+                                int _AazaId = Convert.ToInt32(cmbPardakhtKonande.EditValue);
+                                var a = db.AazaSandoghs.FirstOrDefault(s => s.AllTafId == _AazaId);
+
+                                decimal _Mablagh = Convert.ToDecimal(txtMablagh.Text.Replace(",", ""));
+                                decimal _MablaghDefault1 = t.radioGroup3 == 0 ? a.HaghOzviat ?? 0 : Convert.ToDecimal(a.DarsadPasandaz) / 100 * a.BesAvali ?? 0;
+                                decimal _MinMablagh = t.radioGroup3 == 0 ? t.MinMablaghPasandaz : Convert.ToDecimal(t.MinDarsadPasandaz) / 100 * a.BesAvali ?? 0;
+                                decimal _MaxMablagh = t.radioGroup3 == 0 ? t.MaxMablaghPasandaz : Convert.ToDecimal(t.MaxDarsadPasandaz) / 100 * a.BesAvali ?? 0;
+                                //decimal _MaxMablagh = t.radioGroup3 == 0 ? a.MaxHaghOzviat??0 : Convert.ToDecimal(a.MaxDarsadPasandaz)/100 * a.BesAvali ?? 0;
+
+
+                                if (_Mablagh != _MablaghDefault1)
+                                {
+                                    XtraMessageBox.Show("مبلغ پس انداز با مبلغ تعیین شده شخص برابر نیست \n مبلغ پس انداز شخص : " + _MablaghDefault1.ToString("n0")
+                                           , "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    return false;
+
+                                }
+
+                                if (_Mablagh < _MinMablagh)
+                                {
+                                    XtraMessageBox.Show("مبلغ پس انداز از حداقل مبلغ پیش فرض تعیین شده کمتر است \n مبلغ پس انداز پیش فرض : " + _MinMablagh.ToString("n0")
+                                           , "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    return false;
+
+                                }
+                                else if (_Mablagh > _MaxMablagh)
+                                {
+                                    XtraMessageBox.Show("مبلغ پس انداز از حداکثر مبلغ پیش فرض تعیین شده بیشتر است \n مبلغ پس انداز پیش فرض : " + _MaxMablagh.ToString("n0")
+                                           , "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    return false;
+
+                                }
                             }
 
                         }
+
                     }
                     else
                     {
@@ -635,7 +701,7 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "NameVFamil";
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3 ).OrderBy(s => s.Code).ToList();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 3).OrderBy(s => s.Code).ToList();
                                         if (q1.Count > 0)
                                             allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
                                         else
@@ -671,7 +737,7 @@ namespace Sandogh_PG
                                 {
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6 ).OrderBy(s => s.Code).ToList();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 6).OrderBy(s => s.Code).ToList();
                                         if (q1.Count > 0)
                                             allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
                                         else
@@ -710,7 +776,7 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "HesabName";
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4 ).OrderBy(s => s.Code).ToList();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 4).OrderBy(s => s.Code).ToList();
                                         if (q1.Count > 0)
                                             allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
                                         else
@@ -733,7 +799,7 @@ namespace Sandogh_PG
                                     //allHesabTafzilisBindingSource.Columns[1].FieldName = "HesabName";
                                     if (En == EnumCED.Create)
                                     {
-                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5 ).OrderBy(s => s.Code).ToList();
+                                        var q1 = db.AllHesabTafzilis.Where(f => f.GroupTafziliId == 5).OrderBy(s => s.Code).ToList();
                                         if (q1.Count > 0)
                                             allHesabTafzilisBindingSource1.DataSource = En == EnumCED.Create ? q1.Where(f => f.IsActive == true).OrderBy(s => s.Code).ToList() : q1;
                                         else

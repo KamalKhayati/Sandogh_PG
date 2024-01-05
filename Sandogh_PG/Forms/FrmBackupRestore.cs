@@ -33,16 +33,16 @@ namespace Sandogh_PG
                     string _NameDataBase = Fm.NameDataBase.Caption;
                     if (SPath.SelectedPath.Length == 3)
                     {
-                        txtSelectPath.Text = SPath.SelectedPath + "Backup_" + _NameDataBase + "_Date_" +
-                            DateTime.Now.ToString().Replace("/", "").Substring(0, 8) + "_Time_" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(".", " ").Substring(8, 11) + ".BAK";
+                        txtSelectPath.Text = SPath.SelectedPath + "Backup_" + _NameDataBase + "_V" + Application.ProductVersion + "_Date_" +
+                            DateTime.Now.ToString().Replace("/", "").Substring(0, 8) + "_Time_" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(".", " ").Replace("ب ظ", "PM").Replace("ق ظ", "AM").Substring(8, 10) + ".BAK";
                         //txtSelectPath.Text = SPath.SelectedPath + "BackupFile_" +
                         //    DateTime.Now.Date.Year + DateTime.Now.Date.Month + DateTime.Now.Date.Day + "_" +
                         //    DateTime.Now.TimeOfDay.Hours + DateTime.Now.TimeOfDay.Minutes + DateTime.Now.TimeOfDay.Seconds + ".BAK";
                     }
                     else
                     {
-                        txtSelectPath.Text = SPath.SelectedPath + "\\Backup_" + _NameDataBase + "_Date_" +
-                            DateTime.Now.ToString().Replace("/", "").Substring(0, 8) + "_Time_" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(".", " ").Substring(8, 11) + ".BAK";
+                        txtSelectPath.Text = SPath.SelectedPath + "\\Backup_" + _NameDataBase + "_V" + Application.ProductVersion + "_Date_" +
+                            DateTime.Now.ToString().Replace("/", "").Substring(0, 8) + "_Time_" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(".", " ").Replace("ب ظ", "PM").Replace("ق ظ", "AM").Substring(8, 10) + ".BAK";
                         //txtSelectPath.Text = SPath.SelectedPath + "\\BackupFile_" +
                         //    DateTime.Now.Date.Year + DateTime.Now.Date.Month + DateTime.Now.Date.Day + "_" +
                         //    DateTime.Now.TimeOfDay.Hours + DateTime.Now.TimeOfDay.Minutes + DateTime.Now.TimeOfDay.Seconds + ".BAK";
@@ -123,7 +123,8 @@ namespace Sandogh_PG
 
             using (var context = new MyContext())
             {
-                string command = @"BACKUP DATABASE " + _NameDataBase + " TO DISK='" + txtSelectPath.Text + "' WITH INIT";
+                //string command = @"BACKUP DATABASE " + _NameDataBase + " TO DISK='" + txtSelectPath.Text + "' WITH INIT";
+                string command = @"BACKUP DATABASE " + _NameDataBase + " TO DISK='" + txtSelectPath.Text + "' WITH COMPRESSION";
                 context.Database.CommandTimeout = 360;
                 context.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command);
             }
@@ -190,7 +191,8 @@ namespace Sandogh_PG
             string _NameDataBase = Fm.NameDataBase.Caption;
             using (var context = new MyContext())
             {
-                string command = @"BACKUP DATABASE " + _NameDataBase + " TO DISK='" + txtSelectFile.Text + "_KmOld" + "' WITH INIT";
+                //string command = @"BACKUP DATABASE " + _NameDataBase + " TO DISK='" + txtSelectFile.Text + "_KmOld" + "' WITH INIT";
+                string command = @"BACKUP DATABASE " + _NameDataBase + " TO DISK='" + txtSelectFile.Text + "_KmOld" + "' WITH COMPRESSION";
                 context.Database.CommandTimeout = 360;
                 context.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.DoNotEnsureTransaction, command);
             }
@@ -207,7 +209,7 @@ namespace Sandogh_PG
                                      "SET @LogicalNameLog = (SELECT LogicalName FROM @Table WHERE Type = 'L')" +
                                   "SELECT @LogicalNameData";
                 context.Database.CommandTimeout = 360;
-                string LogicalNameData = context.Database.SqlQuery<string>(command1).FirstOrDefault();
+                string LogicalNameData  = context.Database.SqlQuery<string>(command1).FirstOrDefault();
 
                 string command2 = "DECLARE @Table TABLE (LogicalName varchar(128),[PhysicalName] varchar(128), [Type] varchar, [FileGroupName] varchar(128), [Size] varchar(128)," +
                                   "[MaxSize] varchar(128), [FileId] varchar(128), [CreateLSN] varchar(128), [DropLSN] varchar(128), [UniqueId] varchar(128), [ReadOnlyLSN] varchar(128), [ReadWriteLSN] varchar(128)," +
@@ -220,6 +222,8 @@ namespace Sandogh_PG
                                   "SELECT @LogicalNameLog";
                 context.Database.CommandTimeout = 360;
                 string LogicalNameLog = context.Database.SqlQuery<string>(command2).FirstOrDefault();
+
+
 
                 string command3 = string.Empty;
                 if (LogicalNameData != _NameDataBase + ".mdf")
@@ -302,9 +306,9 @@ namespace Sandogh_PG
                 {
                     string _NameDataBase = Fm.NameDataBase.Caption;
                     int _SId = Convert.ToInt32(Fm.IDSandogh.Caption);
-                    string sText = "\\Backup_" + _NameDataBase + "_Date_" +
-                            DateTime.Now.ToString().Replace("/", "").Substring(0, 8) + "_Time_" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(".", " ").Substring(8, 11) + ".BAK";
-                    var q2 = db.Tanzimats.FirstOrDefault(s => s.Id == _SId);
+                    string sText = "\\Backup_" + _NameDataBase + "_V"+ Application.ProductVersion +"_Date_" +
+                            DateTime.Now.ToString().Replace("/", "").Substring(0, 8) + "_Time_" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(".", " ").Replace("ب ظ", "PM").Replace("ق ظ", "AM").Substring(8, 10) + ".BAK";
+                    var q2 = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SId);
                     if (!string.IsNullOrEmpty(q2.Path))
                     {
                         txtSelectPath.Text = q2.Path + sText;

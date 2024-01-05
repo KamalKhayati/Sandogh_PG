@@ -133,6 +133,7 @@ namespace Sandogh_PG
                     rizeAghsatVamsBindingSource.DataSource = null;
                     _VamId = Convert.ToInt32(gridView3.GetFocusedRowCellValue("Id"));
                     var q1 = db.RizeAghsatVams.Where(s => s.VamPardakhtiId == _VamId).OrderBy(s => s.Id).OrderBy(s => s.TarikhSarresid).AsParallel();
+                    var q2 = q1.ToList();
                     rizeAghsatVamsBindingSource.DataSource = q1.Count() > 0 ? q1 : null;
                 }
                 catch (Exception ex)
@@ -150,6 +151,7 @@ namespace Sandogh_PG
             {
                 FrmDaryaftHaghOzviat fm = new FrmDaryaftHaghOzviat(this);
                 fm.En = EnumCED.Create;
+                gridView2.MoveLast();
                 fm.ShowDialog();
             }
         }
@@ -457,7 +459,7 @@ namespace Sandogh_PG
                 {
                     total.Add(MablaghAghsat - MablaghDaryafti);
                     e.Value = total[rowIndex];
-                    if (Convert.ToInt32(e.Value) == 0)
+                    if (Convert.ToInt64(e.Value) == 0)
                     {
                         IndexAkharinDaruaft = rowIndex;
                     }
@@ -466,7 +468,7 @@ namespace Sandogh_PG
                 {
                     total.Add(total[rowIndex - 1] + MablaghAghsat - MablaghDaryafti);
                     e.Value = total[rowIndex];
-                    if (Convert.ToInt32(e.Value) == 0)
+                    if (Convert.ToInt64(e.Value) == 0)
                     {
                         IndexAkharinDaruaft = rowIndex;
                     }

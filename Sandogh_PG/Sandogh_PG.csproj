@@ -150,11 +150,11 @@
   <ItemGroup>
     <Compile Include="AppVariable.cs" />
     <Compile Include="Cultures.cs" />
-    <Compile Include="Forms\FrmAmaliatColi.cs">
+    <Compile Include="Forms\FrmChangMablaghPasandaz.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FrmAmaliatColi.Designer.cs">
-      <DependentUpon>FrmAmaliatColi.cs</DependentUpon>
+    <Compile Include="Forms\FrmChangMablaghPasandaz.Designer.cs">
+      <DependentUpon>FrmChangMablaghPasandaz.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmAppRegister.cs">
       <SubType>Form</SubType>
@@ -240,11 +240,11 @@
     <Compile Include="Forms\FrmMandeAshkhas.Designer.cs">
       <DependentUpon>FrmMandeAshkhas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmNobatbandiVam.cs">
+    <Compile Include="Forms\FrmNobatVam.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FrmNobatbandiVam.Designer.cs">
-      <DependentUpon>FrmNobatbandiVam.cs</DependentUpon>
+    <Compile Include="Forms\FrmNobatVam.Designer.cs">
+      <DependentUpon>FrmNobatVam.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmOdatCheckTazmin.cs">
       <SubType>Form</SubType>
@@ -296,6 +296,7 @@
     </Compile>
     <Compile Include="Models\AllHesabTafzili.cs" />
     <Compile Include="Models\AllowedDevise.cs" />
+    <Compile Include="Models\AnvaeVam.cs" />
     <Compile Include="Models\AsnadeHesabdariRow.cs" />
     <Compile Include="Models\CheckTazmin.cs" />
     <Compile Include="Forms\FrmDaryafteAghsateVam.cs">
@@ -381,10 +382,13 @@
     <Compile Include="Models\HaghOzviat.cs" />
     <Compile Include="Models\HesabBanki.cs" />
     <Compile Include="Models\Karbaran.cs" />
+    <Compile Include="Models\MasolinSandogh.cs" />
+    <Compile Include="Models\NoeNobatbandi.cs" />
     <Compile Include="Models\RizeAghsatVam.cs" />
     <Compile Include="Models\SalMali.cs" />
     <Compile Include="Models\Tanzimat.cs" />
     <Compile Include="Models\TarifSandogh.cs" />
+    <Compile Include="Models\TedadZamenin.cs" />
     <Compile Include="Models\VamPardakhti.cs" />
     <Compile Include="MyContext.cs" />
     <Compile Include="MyDate.cs" />
@@ -425,8 +429,8 @@
     <Compile Include="WaitForm1.Designer.cs">
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Forms\FrmAmaliatColi.resx">
-      <DependentUpon>FrmAmaliatColi.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmChangMablaghPasandaz.resx">
+      <DependentUpon>FrmChangMablaghPasandaz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmAppRegister.resx">
       <DependentUpon>FrmAppRegister.cs</DependentUpon>
@@ -483,8 +487,8 @@
     <EmbeddedResource Include="Forms\FrmMandeAshkhas.resx">
       <DependentUpon>FrmMandeAshkhas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmNobatbandiVam.resx">
-      <DependentUpon>FrmNobatbandiVam.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmNobatVam.resx">
+      <DependentUpon>FrmNobatVam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmOdatCheckTazmin.resx">
       <DependentUpon>FrmOdatCheckTazmin.cs</DependentUpon>
