@@ -1122,7 +1122,7 @@ namespace Sandogh_PG.Forms
 
         private void btnExportInfoToExcel_Click(object sender, EventArgs e)
         {
-            HelpClass1.ExportDataGridViewToExcel(gridView1, gridView1.RowCount);
+            HelpClass1.ExportDataGridViewToExcel(this,gridView1, gridView1.RowCount);
         }
 
         private void btnGetInfoFromExcel_Click(object sender, EventArgs e)
@@ -1210,7 +1210,7 @@ namespace Sandogh_PG.Forms
         {
             if (e.Control && e.KeyCode == Keys.E)
             {
-                HelpClass1.ExportDataGridViewToExcel(gridView1, gridView1.RowCount);
+                HelpClass1.ExportDataGridViewToExcel(this,gridView1, gridView1.RowCount);
             }
 
         }

@@ -453,6 +453,10 @@ namespace Sandogh_PG
             {
                 HelpClass1.ControlAltShift_KeyDown(sender, e, btnDesignReport);
             }
+            else if (e.Alt && e.Control)
+            {
+                _ControlAlt = true ;
+            }
 
 
         }
@@ -1403,7 +1407,7 @@ namespace Sandogh_PG
                                     }
                                 }
 
-                                var q1 = db.AsnadeHesabdariRows.Any() ? db.AsnadeHesabdariRows.Max(f => f.ShomareSanad) : 0;
+                                //var q1 = db.AsnadeHesabdariRows.Any() ? db.AsnadeHesabdariRows.Max(f => f.ShomareSanad) : 0;
                                 //if (txtBesAvali.Text != "0")
                                 //{
                                 //    //int _HesabTafId1 = Convert.ToInt32(cmbNameHesab.EditValue);
@@ -1794,7 +1798,7 @@ namespace Sandogh_PG
             gridView1_RowCellClick(null, null);
             if (e.Control && e.KeyCode == Keys.E)
             {
-                HelpClass1.ExportDataGridViewToExcel(gridView1, gridView1.RowCount);
+                HelpClass1.ExportDataGridViewToExcel(this,gridView1, gridView1.RowCount);
             }
 
         }
@@ -1963,8 +1967,13 @@ namespace Sandogh_PG
 
         private void labelControl31_Click(object sender, EventArgs e)
         {
-            txtEtebarBlookeShode.Enabled = txtEtebarBlookeShode.Enabled == true ? false : true;
-            //txtMandeEtebar.ReadOnly = txtMandeEtebar.ReadOnly == true ? false : true;
+            if (_ControlAlt)
+            {
+                txtEtebarBlookeShode.Enabled = txtEtebarBlookeShode.Enabled == true ? false : true;
+                //txtMandeEtebar.ReadOnly = txtMandeEtebar.ReadOnly == true ? false : true;
+                _ControlAlt = false;
+            }
+
         }
 
         private void txtSaghfeEtebar_EditValueChanged(object sender, EventArgs e)
@@ -2080,9 +2089,14 @@ namespace Sandogh_PG
             this.m_keyCode = e.KeyCode;
         }
 
+        bool _ControlAlt = false;
         private void labelControl19_Click(object sender, EventArgs e)
         {
+            if(_ControlAlt)
+            {
             txtBesAvali.Enabled = txtBesAvali.Enabled ? false : true;
+                _ControlAlt = false;
+            }
         }
 
         private void txtMablaghPasandaz_Leave(object sender, EventArgs e)

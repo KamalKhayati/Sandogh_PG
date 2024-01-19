@@ -63,6 +63,8 @@
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -73,7 +75,6 @@
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Mande01 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.asnadeHesabdariRowsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -469,6 +470,7 @@
             this.gridColumn12,
             this.gridColumn13,
             this.gridColumn14,
+            this.gridColumn15,
             this.gridColumn3,
             this.gridColumn4,
             this.gridColumn5,
@@ -509,6 +511,7 @@
             this.Line.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.Line.Caption = "ردیف";
             this.Line.FieldName = "Line";
+            this.Line.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
             this.Line.MinWidth = 21;
             this.Line.Name = "Line";
             this.Line.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -528,6 +531,7 @@
             this.HesabTafCode.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.HesabTafCode.Caption = "کد تفضیلی";
             this.HesabTafCode.FieldName = "HesabTafCode";
+            this.HesabTafCode.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
             this.HesabTafCode.MinWidth = 22;
             this.HesabTafCode.Name = "HesabTafCode";
             this.HesabTafCode.Visible = true;
@@ -543,6 +547,7 @@
             this.HesabTafName.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.HesabTafName.Caption = "نام حساب";
             this.HesabTafName.FieldName = "HesabTafName";
+            this.HesabTafName.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
             this.HesabTafName.MinWidth = 22;
             this.HesabTafName.Name = "HesabTafName";
             this.HesabTafName.Visible = true;
@@ -617,6 +622,48 @@
             this.gridColumn13.VisibleIndex = 5;
             this.gridColumn13.Width = 180;
             // 
+            // gridColumn14
+            // 
+            this.gridColumn14.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn14.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn14.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn14.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn14.Caption = "وامهای دریافتنی (و ا)";
+            this.gridColumn14.DisplayFormat.FormatString = "n";
+            this.gridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gridColumn14.FieldName = "2004";
+            this.gridColumn14.MinWidth = 25;
+            this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2004", "{0:n}")});
+            this.gridColumn14.Visible = true;
+            this.gridColumn14.VisibleIndex = 6;
+            this.gridColumn14.Width = 178;
+            // 
+            // gridColumn15
+            // 
+            this.gridColumn15.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn15.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn15.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn15.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn15.Caption = "جمع کل وامها";
+            this.gridColumn15.DisplayFormat.FormatString = "n";
+            this.gridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gridColumn15.FieldName = "SumVamha";
+            this.gridColumn15.MinWidth = 25;
+            this.gridColumn15.Name = "gridColumn15";
+            this.gridColumn15.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumVamha", "{0:n}")});
+            this.gridColumn15.UnboundDataType = typeof(decimal);
+            this.gridColumn15.UnboundExpression = "ToDecimal([2001]) + ToDecimal([2002]) + ToDecimal([2003]) + ToDecimal([2004])";
+            this.gridColumn15.Visible = true;
+            this.gridColumn15.VisibleIndex = 7;
+            this.gridColumn15.Width = 176;
+            // 
             // gridColumn3
             // 
             this.gridColumn3.AppearanceCell.Options.UseTextOptions = true;
@@ -634,7 +681,7 @@
             this.gridColumn3.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3001", "{0:n}")});
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 7;
+            this.gridColumn3.VisibleIndex = 8;
             this.gridColumn3.Width = 155;
             // 
             // gridColumn4
@@ -654,7 +701,7 @@
             this.gridColumn4.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4001", "{0:n}")});
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 8;
+            this.gridColumn4.VisibleIndex = 9;
             this.gridColumn4.Width = 155;
             // 
             // gridColumn5
@@ -674,7 +721,7 @@
             this.gridColumn5.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6001", "{0:n}")});
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 9;
+            this.gridColumn5.VisibleIndex = 10;
             this.gridColumn5.Width = 155;
             // 
             // gridColumn6
@@ -694,7 +741,7 @@
             this.gridColumn6.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6002", "{0:n}")});
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 10;
+            this.gridColumn6.VisibleIndex = 11;
             this.gridColumn6.Width = 180;
             // 
             // gridColumn7
@@ -714,7 +761,7 @@
             this.gridColumn7.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6003", "{0:n}")});
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 11;
+            this.gridColumn7.VisibleIndex = 12;
             this.gridColumn7.Width = 155;
             // 
             // gridColumn8
@@ -734,7 +781,7 @@
             this.gridColumn8.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7001", "{0:n}")});
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 12;
+            this.gridColumn8.VisibleIndex = 13;
             this.gridColumn8.Width = 155;
             // 
             // gridColumn9
@@ -778,28 +825,8 @@
             this.Mande01.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Mande01", "{0:n}")});
             this.Mande01.Visible = true;
-            this.Mande01.VisibleIndex = 13;
+            this.Mande01.VisibleIndex = 14;
             this.Mande01.Width = 155;
-            // 
-            // gridColumn14
-            // 
-            this.gridColumn14.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn14.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn14.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn14.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn14.Caption = "وامهای دریافتنی (و ا)";
-            this.gridColumn14.DisplayFormat.FormatString = "n";
-            this.gridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumn14.FieldName = "2004";
-            this.gridColumn14.MinWidth = 25;
-            this.gridColumn14.Name = "gridColumn14";
-            this.gridColumn14.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2004", "{0:n}")});
-            this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 6;
-            this.gridColumn14.Width = 178;
             // 
             // FrmMandeAshkhas
             // 
@@ -879,5 +906,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
     }
 }

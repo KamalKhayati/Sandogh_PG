@@ -289,6 +289,13 @@ namespace Sandogh_PG
 
 
                         }
+                        ////else if (db.Database.Connection.Database == "Harir_VA1"
+                        ////    || db.Database.Connection.Database == "Harir_VZ1"
+                        ////    || db.Database.Connection.Database == "Kapris_VA"
+                        ////    || db.Database.Connection.Database == "Harir_VA1"
+                        ////    || db.Database.Connection.Database == "Sandogh_Ehsan"
+                        ////    || db.Database.Connection.Database == "Sandogh_PG"
+                        ////    || db.Database.Connection.Database == "Sandogh_PG1")
                         //else if (db.Database.Connection.Database == "Harir_VA1"
                         //    || db.Database.Connection.Database == "Harir_VZ1"
                         //    || db.Database.Connection.Database == "Kapris_VA"
@@ -296,34 +303,27 @@ namespace Sandogh_PG
                         //    || db.Database.Connection.Database == "Sandogh_Ehsan"
                         //    || db.Database.Connection.Database == "Sandogh_PG"
                         //    || db.Database.Connection.Database == "Sandogh_PG1")
-                        else if (db.Database.Connection.Database == "Harir_VA1"
-                            || db.Database.Connection.Database == "Harir_VZ1"
-                            || db.Database.Connection.Database == "Kapris_VA"
-                            || db.Database.Connection.Database == "Harir_VA1"
-                            || db.Database.Connection.Database == "Sandogh_Ehsan"
-                            || db.Database.Connection.Database == "Sandogh_PG"
-                            || db.Database.Connection.Database == "Sandogh_PG1")
-                        {
+                        //{
 
-                            z.VersionType = "Orginal";
-                            z.LNVersionType = HelpClass1.EncryptText("Orginal");
-                            z.VersionNumber = pp.ShomareNoskheBarname;
-                            z.LNVersionNumber = HelpClass1.EncryptText(pp.ShomareNoskheBarname);
-                            z.DeviceID = deviceID;
-                            z.LNDeviceID = HelpClass1.EncryptText(deviceID);
-                            z.DataBaseName = db.Database.Connection.Database;
-                            z.LNDataBaseName = HelpClass1.EncryptText(db.Database.Connection.Database);
-                            z.GarantiEndData = pp.TarikhEtmamGaranti;
-                            z.LNGarantiEndData = HelpClass1.EncryptText(pp.TarikhEtmamGaranti.ToString().Substring(0, 10));
-                            z.RegisterDate = pp.TarikhRegister;
-                            z.IsGaranti = pp.IsGaranti;
-                            z.IsActive = true;
+                        //    z.VersionType = "Orginal";
+                        //    z.LNVersionType = HelpClass1.EncryptText("Orginal");
+                        //    z.VersionNumber = pp.ShomareNoskheBarname;
+                        //    z.LNVersionNumber = HelpClass1.EncryptText(pp.ShomareNoskheBarname);
+                        //    z.DeviceID = deviceID;
+                        //    z.LNDeviceID = HelpClass1.EncryptText(deviceID);
+                        //    z.DataBaseName = db.Database.Connection.Database;
+                        //    z.LNDataBaseName = HelpClass1.EncryptText(db.Database.Connection.Database);
+                        //    z.GarantiEndData = pp.TarikhEtmamGaranti;
+                        //    z.LNGarantiEndData = HelpClass1.EncryptText(pp.TarikhEtmamGaranti.ToString().Substring(0, 10));
+                        //    z.RegisterDate = pp.TarikhRegister;
+                        //    z.IsGaranti = pp.IsGaranti;
+                        //    z.IsActive = true;
 
-                            db.SaveChanges();
+                        //    db.SaveChanges();
 
-                            //Settings[AppVariable.GarantiDate[Convert.ToInt32(AppVariable.DefaltIndexCmbNameSandogh)]] = pp.TarikhEtmamGaranti.ToString().Substring(0, 10);
+                        //    //Settings[AppVariable.GarantiDate[Convert.ToInt32(AppVariable.DefaltIndexCmbNameSandogh)]] = pp.TarikhEtmamGaranti.ToString().Substring(0, 10);
 
-                            btnExit_Click(null, null);
+                        //    btnExit_Click(null, null);
 
                             //FrmMain fm = new FrmMain();
                             //fm.txtUserId.Caption = _UserId;
@@ -335,7 +335,7 @@ namespace Sandogh_PG
                             //fm.Show();
 
 
-                        }
+                        //}
                         else
                         {
                             cmbDeviceID.EditValue = z.Id;

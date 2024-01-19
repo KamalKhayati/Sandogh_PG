@@ -393,6 +393,16 @@ namespace Sandogh_PG
                 {
                     _dataBaseName = db.Database.Connection.Database;
 
+                    var q = db.AnvaeVams.ToList();
+                    if (q.Count > 0)
+                    {
+                        cmbNoeVam.Properties.Items.Add(q.FirstOrDefault(s => s.NoeVamIndex == 0).NoeVamName);
+                        cmbNoeVam.Properties.Items.Add(q.FirstOrDefault(s => s.NoeVamIndex == 1).NoeVamName);
+                        cmbNoeVam.Properties.Items.Add(q.FirstOrDefault(s => s.NoeVamIndex == 2).NoeVamName);
+                        cmbNoeVam.Properties.Items.Add(q.FirstOrDefault(s => s.NoeVamIndex == 3).NoeVamName);
+                        db.SaveChanges();
+                    }
+
                     if (En == EnumCED.Create)
                     {
                         NewCode();
@@ -1402,7 +1412,7 @@ namespace Sandogh_PG
                                 {
                                     q.IsTasviye = chkIsTasviye.Checked;
                                 }
-                                
+
                                 db.SaveChanges();
                                 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1888,7 +1898,7 @@ namespace Sandogh_PG
                 try
                 {
                     var q = db.VamPardakhtis;
-                    if (q.Count()>0)
+                    if (q.Count() > 0)
                     {
                         var q1 = q.Max(s => s.ShomareDarkhast);
                         if (q != null)
@@ -2027,7 +2037,7 @@ namespace Sandogh_PG
             {
                 FillchkcmbEntekhabZamenin();
                 cmbNoeVam.ReadOnly = true;
-                
+
 
             }
         }
@@ -2233,7 +2243,7 @@ namespace Sandogh_PG
                     }
 
                     if (En == EnumCED.Create)
-                    cmbDaryaftkonande.Focus();
+                        cmbDaryaftkonande.Focus();
 
 
                 }
@@ -2404,7 +2414,7 @@ namespace Sandogh_PG
         private void cmbNoeVam_Enter_1(object sender, EventArgs e)
         {
             if (En == EnumCED.Create)
-            cmbNoeVam.ShowPopup();
+                cmbNoeVam.ShowPopup();
 
         }
     }

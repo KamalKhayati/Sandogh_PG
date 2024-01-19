@@ -96,12 +96,12 @@ namespace Sandogh_PG.Forms
                 //db.Database.SqlQuery<string>("ALTER LOGIN" + UserNameWindows + "ENABLE");
 
 
-                if (Settings[AppVariable.IsChangeDbName].ToString() == "True")
+                if (Settings[AppVariable.IsChangeDbName].ToString() == "True" && Application.OpenForms["FrmMain"] == null)
                 {
-                    int _index = Convert.ToInt32(Settings[AppVariable.DefaltIndexCmbNameSandogh]);
+                    _index = Convert.ToInt32(Settings[AppVariable.DefaltIndexCmbNameSandogh]);
                     _Shenase1 = Settings[AppVariable.txtUserName[_index]].ToString();
                     _Password1 = Settings[AppVariable.txtPassword[_index]].ToString();
-                    if (Application.OpenForms["FrmMain"] == null)
+                    if (!string.IsNullOrEmpty(_Shenase1) && !string.IsNullOrEmpty(_Password1))
                         CheckUserNameAndPassword();
                 }
 
@@ -366,6 +366,7 @@ namespace Sandogh_PG.Forms
 
         string _Shenase1 = String.Empty;
         string _Password1 = String.Empty;
+        int _index = 0;
         private void btnEnter_Click(object sender, EventArgs e)
         {
             try
@@ -373,7 +374,7 @@ namespace Sandogh_PG.Forms
                 using (var db = new MyContext())
                 {
 
-                    int _index = cmbNameDataBaseSandogh.SelectedIndex;
+                    _index = cmbNameDataBaseSandogh.SelectedIndex;
                     string dbName = db.Database.Connection.Database;
                     if (dbName != cmbNameDataBaseSandogh.Text)
                     {
@@ -459,7 +460,10 @@ namespace Sandogh_PG.Forms
                         var p = db.Karbarans.FirstOrDefault(f => f.Shenase == _Shenase && f.Password == _Password);
                         if (p != null)
                         {
+                            Settings[AppVariable.IsChangeDbName] = "False";
+                            
                             this.Close();
+                            
 
                             FrmAppRegister frm = new FrmAppRegister();
                             frm._UserId = p.Id.ToString();

@@ -1412,29 +1412,24 @@
             this.textEdit1.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.textEdit1.Properties.MaskSettings.Set("mask", "000000");
             this.textEdit1.Properties.MaxLength = 7;
-            this.textEdit1.Size = new System.Drawing.Size(238, 34);
+            this.textEdit1.Size = new System.Drawing.Size(234, 34);
             this.textEdit1.TabIndex = 78;
             this.textEdit1.TabStop = false;
             // 
             // cmbNoeVam
             // 
             this.cmbNoeVam.EnterMoveNextControl = true;
-            this.cmbNoeVam.Location = new System.Drawing.Point(566, 11);
+            this.cmbNoeVam.Location = new System.Drawing.Point(562, 11);
             this.cmbNoeVam.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbNoeVam.Name = "cmbNoeVam";
             this.cmbNoeVam.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbNoeVam.Properties.ImmediatePopup = true;
-            this.cmbNoeVam.Properties.Items.AddRange(new object[] {
-            "قرض الحسنه ",
-            "وام عادی",
-            "وام ضروری",
-            "وام ازدواج"});
-            this.cmbNoeVam.Properties.MaxLength = 5;
+            this.cmbNoeVam.Properties.MaxLength = 100;
             this.cmbNoeVam.Properties.PopupSizeable = true;
             this.cmbNoeVam.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cmbNoeVam.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmbNoeVam.Size = new System.Drawing.Size(215, 34);
+            this.cmbNoeVam.Size = new System.Drawing.Size(219, 34);
             this.cmbNoeVam.TabIndex = 0;
             this.cmbNoeVam.SelectedIndexChanged += new System.EventHandler(this.cmbNoeVam_SelectedIndexChanged);
             this.cmbNoeVam.Enter += new System.EventHandler(this.cmbNoeVam_Enter_1);

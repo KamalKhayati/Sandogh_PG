@@ -14,8 +14,10 @@ namespace Sandogh_PG
         public int Id { get; set; }
         [Required]
         public int Code { get; set; }
-        [Required,MaxLength(50)]
+        [Required, MaxLength(50)]
         public string Name { get; set; }
+        [MaxLength(50)]
+        public string Tozihat { get; set; }
         [Required]
         public int SandoghId { get; set; }
         public virtual TarifSandogh TarifSandogh1 { get; set; }

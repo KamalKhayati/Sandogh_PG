@@ -1013,8 +1013,9 @@ namespace Sandogh_PG
                                         {
                                             q1.IsTasviye = true;
                                             var r = db.AazaSandoghs;
+                                            var av = db.AnvaeVams.FirstOrDefault(s => s.NoeVamIndex == q1.IndexNoeVam);
                                             //int _AllTafId = Convert.ToInt32(cmbPardakhtKonande.EditValue);
-                                            if (r.FirstOrDefault(s => s.AllTafId == _HesabTafId2) != null)
+                                            if (r.FirstOrDefault(s => s.AllTafId == _HesabTafId2) != null && av.DefaultNoeVam==true)
                                                 r.FirstOrDefault(s => s.AllTafId == _HesabTafId2).TarikhTasviyeVam = Convert.ToDateTime(txtTarikhDaryaft.Text.Substring(0, 10));
 
                                             var w = db.R_VamPardakhti_B_Zamenins.Where(s => s.VamPardakhtiId == q.VamPardakhtiId).ToList();
@@ -1559,7 +1560,8 @@ namespace Sandogh_PG
                                             {
                                                 q1.IsTasviye = true;
                                                 var r = db.AazaSandoghs;
-                                                if (r.FirstOrDefault(s => s.AllTafId == _HesabTafId2) != null)
+                                                var av = db.AnvaeVams.FirstOrDefault(s => s.NoeVamIndex == q1.IndexNoeVam);
+                                                if (r.FirstOrDefault(s => s.AllTafId == _HesabTafId2) != null && av.DefaultNoeVam == true)
                                                     r.FirstOrDefault(s => s.AllTafId == _HesabTafId2).TarikhTasviyeVam = Convert.ToDateTime(txtTarikhDaryaft.Text.Substring(0, 10));
 
                                                 //var w = db.R_VamPardakhti_B_Zamenins.Where(s => s.VamPardakhtiId == q.VamPardakhtiId).ToList();

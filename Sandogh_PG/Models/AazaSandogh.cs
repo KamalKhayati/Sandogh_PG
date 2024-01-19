@@ -87,6 +87,12 @@ namespace Sandogh_PG
         public int ShomareSanad { get; set; }
         public int AllTafId { get; set; }
         public int NobatbandiVam { get; set; }
+        //[MaxLength(30)]
+        //public string TarikhOzviat_String { get; set; }
+        //[MaxLength(30)]
+        //public string TarikhTasviyeVam_String { get; set; }
+        //[MaxLength(30)]
+        //public string BirthDate_String { get; set; }
         //[NotMapped]
         //public byte?[] Logo { get; set; }
 

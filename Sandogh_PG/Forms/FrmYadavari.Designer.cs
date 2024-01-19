@@ -38,6 +38,9 @@
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNameAaza1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTarikh = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMonth = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSal = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMablagh = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -74,23 +77,23 @@
             // 
             this.panelControl6.Controls.Add(this.gridControl2);
             this.panelControl6.Controls.Add(this.panelControl5);
-            this.panelControl6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl6.Location = new System.Drawing.Point(0, 368);
             this.panelControl6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl6.Name = "panelControl6";
-            this.panelControl6.Size = new System.Drawing.Size(922, 370);
+            this.panelControl6.Size = new System.Drawing.Size(922, 369);
             this.panelControl6.TabIndex = 35;
             // 
             // gridControl2
             // 
             this.gridControl2.DataSource = this.haghOzviatsBindingSource;
             this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl2.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridControl2.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
             this.gridControl2.Location = new System.Drawing.Point(2, 39);
             this.gridControl2.MainView = this.gridView2;
-            this.gridControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridControl2.Margin = new System.Windows.Forms.Padding(4);
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(918, 329);
+            this.gridControl2.Size = new System.Drawing.Size(918, 328);
             this.gridControl2.TabIndex = 33;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -109,6 +112,9 @@
             this.gridColumn2,
             this.colNameAaza1,
             this.colTarikh,
+            this.colMonth,
+            this.colSal,
+            this.gridColumn3,
             this.colMablagh});
             this.gridView2.DetailHeight = 378;
             this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
@@ -180,7 +186,7 @@
             this.colTarikh.AppearanceHeader.Options.UseTextOptions = true;
             this.colTarikh.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colTarikh.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colTarikh.Caption = "تاریخ آخرین دریافت";
+            this.colTarikh.Caption = "آخرین تاریخ دریافتی";
             this.colTarikh.DisplayFormat.FormatString = "d";
             this.colTarikh.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colTarikh.FieldName = "Tarikh";
@@ -190,6 +196,52 @@
             this.colTarikh.VisibleIndex = 2;
             this.colTarikh.Width = 166;
             // 
+            // colMonth
+            // 
+            this.colMonth.AppearanceCell.Options.UseTextOptions = true;
+            this.colMonth.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colMonth.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colMonth.AppearanceHeader.Options.UseTextOptions = true;
+            this.colMonth.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colMonth.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colMonth.Caption = "آخرین ماه دریافتی";
+            this.colMonth.FieldName = "Month";
+            this.colMonth.MinWidth = 25;
+            this.colMonth.Name = "colMonth";
+            this.colMonth.Width = 94;
+            // 
+            // colSal
+            // 
+            this.colSal.AppearanceCell.Options.UseTextOptions = true;
+            this.colSal.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSal.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colSal.AppearanceHeader.Options.UseTextOptions = true;
+            this.colSal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSal.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colSal.Caption = "سال دریافتی";
+            this.colSal.FieldName = "Sal";
+            this.colSal.MinWidth = 25;
+            this.colSal.Name = "colSal";
+            this.colSal.Width = 94;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.gridColumn3.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn3.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn3.Caption = "آخرین ماه دریافتی";
+            this.gridColumn3.FieldName = "gridColumn3";
+            this.gridColumn3.MinWidth = 25;
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.UnboundDataType = typeof(string);
+            this.gridColumn3.UnboundExpression = "[Month] + \'  \' + [Sal]";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 3;
+            this.gridColumn3.Width = 161;
+            // 
             // colMablagh
             // 
             this.colMablagh.AppearanceCell.Options.UseTextOptions = true;
@@ -198,7 +250,7 @@
             this.colMablagh.AppearanceHeader.Options.UseTextOptions = true;
             this.colMablagh.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colMablagh.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colMablagh.Caption = "مبلغ آخرین دریافت";
+            this.colMablagh.Caption = "آخرین مبلغ دریافتی";
             this.colMablagh.DisplayFormat.FormatString = "n";
             this.colMablagh.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colMablagh.FieldName = "Mablagh";
@@ -206,7 +258,9 @@
             this.colMablagh.Name = "colMablagh";
             this.colMablagh.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Mablagh", "{0:n}")});
-            this.colMablagh.Width = 166;
+            this.colMablagh.Visible = true;
+            this.colMablagh.VisibleIndex = 4;
+            this.colMablagh.Width = 183;
             // 
             // panelControl5
             // 
@@ -222,12 +276,12 @@
             // 
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl2.Appearance.Options.UseForeColor = true;
-            this.labelControl2.Location = new System.Drawing.Point(186, 5);
+            this.labelControl2.Location = new System.Drawing.Point(268, 5);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(506, 27);
+            this.labelControl2.Size = new System.Drawing.Size(347, 27);
             this.labelControl2.TabIndex = 0;
-            this.labelControl2.Text = "لیست اعضایی که از آخرین دریافت پس انداز ماهیانه آنها یکماه گذشته است";
+            this.labelControl2.Text = "لیست اعضایی که پس انداز ماه قبل را واریز نکرده اند";
             // 
             // panelControl4
             // 
@@ -244,10 +298,10 @@
             // 
             this.gridControl1.DataSource = this.rizeAghsatVamsBindingSource;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
             this.gridControl1.Location = new System.Drawing.Point(2, 39);
             this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridControl1.Margin = new System.Windows.Forms.Padding(4);
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.Size = new System.Drawing.Size(918, 327);
             this.gridControl1.TabIndex = 33;
@@ -417,12 +471,12 @@
             // 
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Location = new System.Drawing.Point(254, 5);
+            this.labelControl1.Location = new System.Drawing.Point(294, 5);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(330, 27);
+            this.labelControl1.Size = new System.Drawing.Size(272, 27);
             this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "لیست اعضایی که اقساط وام سررسید گذشته دارند";
+            this.labelControl1.Text = "لیست اعضایی که اقساط وام معوقه دارند";
             // 
             // FrmYadavari
             // 
@@ -488,5 +542,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colNameAaza1;
         public System.Windows.Forms.BindingSource rizeAghsatVamsBindingSource;
         public System.Windows.Forms.BindingSource haghOzviatsBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn colMonth;
+        private DevExpress.XtraGrid.Columns.GridColumn colSal;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
     }
 }

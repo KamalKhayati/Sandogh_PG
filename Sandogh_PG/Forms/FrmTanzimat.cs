@@ -261,6 +261,15 @@ namespace Sandogh_PG
                         XtraMessageBox.Show("لطفاً نوع حالت رزرو نوبت بندی وام را مشخص کنید", "پیغام ثبت ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return false;
                     }
+                    if (string.IsNullOrEmpty(gridView1.GetRowCellDisplayText(0, "NoeVamName"))||
+                        string.IsNullOrEmpty(gridView1.GetRowCellDisplayText(1, "NoeVamName")) ||
+                        string.IsNullOrEmpty(gridView1.GetRowCellDisplayText(2, "NoeVamName")) ||
+                        string.IsNullOrEmpty(gridView1.GetRowCellDisplayText(3, "NoeVamName")) )
+                    {
+                        XtraMessageBox.Show("مشخصه نوع وام در برگه 3 نباید خالی باشد", "پیغام ثبت ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -292,6 +301,7 @@ namespace Sandogh_PG
                             for (int i = 0; i < 4; i++)
                             {
 
+                                q1.AnvaeVams.FirstOrDefault(s => s.NoeVamIndex == i).NoeVamName = !string.IsNullOrEmpty(gridView1.GetRowCellDisplayText(i, "NoeVamName")) ? gridView1.GetRowCellValue(i, "NoeVamName").ToString() : "نوع "+i+1;
                                 q1.AnvaeVams.FirstOrDefault(s => s.NoeVamIndex == i).DarsadeKarmozd = !string.IsNullOrEmpty(gridView1.GetRowCellDisplayText(i, "DarsadeKarmozd")) ? Convert.ToDouble(gridView1.GetRowCellValue(i, "DarsadeKarmozd")) : 0;
                                 q1.AnvaeVams.FirstOrDefault(s => s.NoeVamIndex == i).MablaghDirkard = !string.IsNullOrEmpty(gridView1.GetRowCellDisplayText(i, "MablaghDirkard")) ? Convert.ToDecimal(gridView1.GetRowCellValue(i, "MablaghDirkard")) : 0;
                                 q1.AnvaeVams.FirstOrDefault(s => s.NoeVamIndex == i).MaxAghsatMahane = !string.IsNullOrEmpty(gridView1.GetRowCellDisplayText(i, "MaxAghsatMahane")) ? Convert.ToInt32(gridView1.GetRowCellValue(i, "MaxAghsatMahane")) : 0;
@@ -745,7 +755,7 @@ namespace Sandogh_PG
         {
             if (e.Control && e.KeyCode == Keys.E)
             {
-                HelpClass1.ExportDataGridViewToExcel(gridView1, gridView1.RowCount);
+                HelpClass1.ExportDataGridViewToExcel(this, gridView1, gridView1.RowCount);
             }
 
         }
@@ -754,7 +764,7 @@ namespace Sandogh_PG
         {
             if (e.Control && e.KeyCode == Keys.E)
             {
-                HelpClass1.ExportDataGridViewToExcel(gridView2, gridView2.RowCount);
+                HelpClass1.ExportDataGridViewToExcel(this, gridView2, gridView2.RowCount);
             }
 
         }

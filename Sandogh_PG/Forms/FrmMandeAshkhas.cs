@@ -129,6 +129,7 @@ namespace Sandogh_PG
                     dt.Columns.Add("HesabTafCode");
                     dt.Columns.Add("HesabTafName");
                     dt.Columns.Add("Mande01");
+                    //dt.Columns.Add("SumVamha");
                     var q = db.CodeMoins.Select(f => f.Code).ToArray();
                     for (int ColumnCounter = 0; ColumnCounter < new MyContext().CodeMoins.Count(); ColumnCounter++)
                         dt.Columns.Add(q[ColumnCounter].ToString());
@@ -266,6 +267,8 @@ namespace Sandogh_PG
                         dRow["2003"] = gridView2.GetRowCellDisplayText(i, "2003");
                     if (gridView2.Columns["2004"].Visible)
                         dRow["2004"] = gridView2.GetRowCellDisplayText(i, "2004");
+                    if (gridView2.Columns["2001"].Visible && gridView2.Columns["2002"].Visible && gridView2.Columns["2003"].Visible && gridView2.Columns["2004"].Visible)
+                        dRow["SumVamha"] = gridView2.GetRowCellDisplayText(i, "SumVamha");
                     if (gridView2.Columns["3001"].Visible)
                         dRow["3001"] = gridView2.GetRowCellDisplayText(i, "3001");
                     if (gridView2.Columns["4001"].Visible)
@@ -305,6 +308,7 @@ namespace Sandogh_PG
                         XtraReport1.Parameters["Vam_Daryaftani_2002"].Value = gridView2.Columns["2002"].Caption;
                         XtraReport1.Parameters["Vam_Daryaftani_2003"].Value = gridView2.Columns["2003"].Caption;
                         XtraReport1.Parameters["Vam_Daryaftani_2004"].Value = gridView2.Columns["2004"].Caption;
+                        XtraReport1.Parameters["SumVamha2"].Value = gridView2.Columns["SumVamha"].Caption;
                         XtraReport1.Parameters["Mosaede"].Value = gridView2.Columns["3001"].Caption;
                         XtraReport1.Parameters["Bedehkaran"].Value = gridView2.Columns["4001"].Caption;
                         XtraReport1.Parameters["Vam_Pardakhtani"].Value = gridView2.Columns["6001"].Caption;
@@ -368,7 +372,7 @@ namespace Sandogh_PG
 
         private void txtTaTarikh_Enter(object sender, EventArgs e)
         {
-            btnDisplyList_Click(null, null);
+            //btnDisplyList_Click(null, null);
 
         }
 
@@ -384,6 +388,7 @@ namespace Sandogh_PG
                         gridView2.Columns["2001"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 2001).Name;
                         gridView2.Columns["2002"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 2002).Name;
                         gridView2.Columns["2003"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 2003).Name;
+                        gridView2.Columns["2004"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 2004).Name;
                         gridView2.Columns["3001"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 3001).Name;
                         gridView2.Columns["4001"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 4001).Name;
                         gridView2.Columns["6001"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 6001).Name;
@@ -401,14 +406,15 @@ namespace Sandogh_PG
                 }
             }
 
-            btnDisplyList_Click(null, null);
+            if (gridView1.RowCount > 0)
+                btnDisplyList_Click(null, null);
         }
 
         private void gridView1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.E)
             {
-                HelpClass1.ExportDataGridViewToExcel(gridView1, gridView1.RowCount);
+                HelpClass1.ExportDataGridViewToExcel(this, gridView1, gridView1.RowCount);
             }
 
         }
@@ -417,7 +423,7 @@ namespace Sandogh_PG
         {
             if (e.Control && e.KeyCode == Keys.E)
             {
-                HelpClass1.ExportDataGridViewToExcel(gridView2, gridView2.RowCount);
+                HelpClass1.ExportDataGridViewToExcel(this, gridView2, gridView2.RowCount);
             }
 
         }

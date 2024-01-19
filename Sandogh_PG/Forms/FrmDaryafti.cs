@@ -1028,7 +1028,7 @@ namespace Sandogh_PG
 
             if (e.Control && e.KeyCode == Keys.E)
             {
-                HelpClass1.ExportDataGridViewToExcel(gridView1, gridView1.RowCount);
+                HelpClass1.ExportDataGridViewToExcel(this,gridView1, gridView1.RowCount);
             }
 
         }
@@ -1049,7 +1049,7 @@ namespace Sandogh_PG
 
             if (e.Control && e.KeyCode == Keys.E)
             {
-                HelpClass1.ExportDataGridViewToExcel(gridView3, gridView3.RowCount);
+                HelpClass1.ExportDataGridViewToExcel(this,gridView3, gridView3.RowCount);
             }
 
         }
@@ -1063,7 +1063,7 @@ namespace Sandogh_PG
         {
             if (e.Control && e.KeyCode == Keys.E)
             {
-                HelpClass1.ExportDataGridViewToExcel(gridView2, gridView2.RowCount);
+                HelpClass1.ExportDataGridViewToExcel(this,gridView2, gridView2.RowCount);
             }
 
         }
@@ -1072,7 +1072,7 @@ namespace Sandogh_PG
         {
             if (e.Control && e.KeyCode == Keys.E)
             {
-                HelpClass1.ExportDataGridViewToExcel(gridView4, gridView4.RowCount);
+                HelpClass1.ExportDataGridViewToExcel(this,gridView4, gridView4.RowCount);
             }
 
         }

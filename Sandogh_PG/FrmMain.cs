@@ -112,7 +112,7 @@ namespace Sandogh_PG
                     int _UserId = Convert.ToInt32(txtUserId.Caption);
                     //btnTanzimat.Visibility = btnAllDataDelete.Visibility = _UserId == 2 ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
                     //rpgTanzimat.Visible = _UserId == 2 ? true : false;
-                    if (_UserId == 2|| _UserId == 3)
+                    if (_UserId == 2 || _UserId == 3)
                     {
                         return true;
                     }
@@ -125,7 +125,7 @@ namespace Sandogh_PG
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد"  + ex.Message,
+                    XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + ex.Message,
                         "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 return true;
@@ -167,9 +167,11 @@ namespace Sandogh_PG
             {
                 try
                 {
+                    int i = Convert.ToInt32(Settings[AppVariable.DefaltIndexCmbNameSandogh]);
+                    Settings[AppVariable.VersionNumber[i]] = Application.ProductVersion.ToString();
                     HelpClass1.SwitchToPersianLanguage();
                     HelpClass1.SetRegionAndLanguage();
-                    Settings[AppVariable.IsChangeDbName] = "False";
+                    //Settings[AppVariable.IsChangeDbName] = "False";
                     string _DeviceID = HelpClass1.GetMadarBoardSerial();
                     string _dataBaseName = db.Database.Connection.Database;
 
@@ -294,8 +296,8 @@ namespace Sandogh_PG
 
                     /////////////////////////////////اصلاح دیتابیس///////////////////////////////////
                     //
-                    var fo= Convert.ToDateTime("1278/10/11");
-                    var q12 = db.AazaSandoghs.Where(s =>s.TarikhTasviyeVam==null|| s.TarikhTasviyeVam== fo).AsParallel();
+                    var fo = Convert.ToDateTime("1278/10/11");
+                    var q12 = db.AazaSandoghs.Where(s => s.TarikhTasviyeVam == null || s.TarikhTasviyeVam == fo).AsParallel();
                     //var q12 = db.AazaSandoghs.FirstOrDefault().TarikhTasviyeVam.ToString().Substring(0, 10);
                     //if (q12== "1278/10/11")
                     //{
@@ -1113,7 +1115,7 @@ namespace Sandogh_PG
                     List<int> List2 = new List<int>();
                     List<int> List_2 = new List<int>();
                     List2.AddRange(db.AsnadeHesabdariRows.Select(s => s.ShomareSanad));
-                    List_2.AddRange(db.AazaSandoghs.Where(s => s.BesAvali > 0).Select(s => s.ShomareSanad));
+                    List_2.AddRange(db.AazaSandoghs.Where(s => s.BesAvali > 0 && s.ShomareSanad > 0).Select(s => s.ShomareSanad));
                     string SharhList2 = string.Empty;
 
                     for (int i = 0; i < List_2.Count; i++)
@@ -1129,7 +1131,7 @@ namespace Sandogh_PG
 
                     if (!string.IsNullOrEmpty(SharhList2))
                     {
-                        XtraMessageBox.Show(SharhList2 + "\n" + "\n" + "جهت اصلاح موارد فوق در قسمت تعریف اشخاص ، عضو مورد نظر ویرایش و مجدداً ذخیره گردد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        XtraMessageBox.Show(SharhList2 + "\n" + "\n" + "جهت حل این مشکل با پشتیبانی تماس بگیرید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
 
@@ -1225,13 +1227,56 @@ namespace Sandogh_PG
                         XtraMessageBox.Show(SharhList6 + "\n" + "\n" + "جهت اصلاح موارد فوق در قسمت دریافت/پرداخت بین حسابها ، سریال مربوطه انتخاب ، ویرایش و مجدداً ذخیره گردد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
+
+                    ///////////// بررسی دریافت/پرداخت بین حسابها با سرمایه اولیه در تعریف اشخاص ////////////////////
+                    string SharhList7 = string.Empty;
+                    //DateTime dt = Convert.ToDateTime("1400/01/01");
+                    //var q8 = db.AazaSandoghs.Where(s=>s.ShomareSanad==0).ToList();
+                    var q8 = db.AazaSandoghs.ToList();
+                    if (q8.Count > 0)
+                    {
+                        var q7 = db.DaryaftPardakhtBinHesabhas.Where(s => s.TaghirSarmayeAvalye == true).ToList();
+                        foreach (var item in q8)
+                        {
+                            decimal _Sum3 = q7.Where(s => s.HesabTafziliId2 == item.AllTafId).Sum(s => s.Mablagh) - q7.Where(s => s.HesabTafziliId1 == item.AllTafId).Sum(s => s.Mablagh);
+                            if (item.BesAvali!= _Sum3)
+                            {
+                                SharhList7 += "مبلغ سرمایه اولیه " + item.NameVFamil + " صحیح نیست" + "\n";
+                            }
+                        }
+
+                        if (!string.IsNullOrEmpty(SharhList7))
+                        {
+                            //XtraMessageBox.Show(SharhList7 + "\n" + "\n" + "موارد مشکل دار", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            XtraMessageBox.Show(SharhList7, "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+
+                        //if (q7.Count > 0)
+                        //{
+
+                        //    foreach (var item in q7)
+                        //    {
+                        //        if (q8.Any(s => s.AllTafId == item.HesabTafziliId2))
+                        //        {
+                        //            var q9 = q8.FirstOrDefault(s => s.AllTafId == item.HesabTafziliId2);
+                        //            if (q9.BesAvali != item.Mablagh)
+                        //            {
+                        //                SharhList7 += "مبلغ سرمایه اولیه " + q9.NameVFamil + " صحیح نیست" + "\n";
+                        //            }
+                        //        }
+                        //    }
+
+
+                        //}
+                    }
+
                     ///////////////////////////// پیغام درستی اطلاعات دیتابیس ////////////////////////////
                     if (string.IsNullOrEmpty(SharhList1) && string.IsNullOrEmpty(SharhList2) && string.IsNullOrEmpty(SharhList3) &&
-                        string.IsNullOrEmpty(SharhList4) && string.IsNullOrEmpty(SharhList5) && string.IsNullOrEmpty(SharhList6))
+                        string.IsNullOrEmpty(SharhList4) && string.IsNullOrEmpty(SharhList5) && string.IsNullOrEmpty(SharhList6) &&
+                        string.IsNullOrEmpty(SharhList7))
                     {
                         XtraMessageBox.Show("کلیه اسناد دیتابیس صحیح می باشد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-
 
                 }
                 catch (Exception ex)

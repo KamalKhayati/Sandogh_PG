@@ -21,6 +21,7 @@ using System.Drawing;
 using DevExpress.XtraReports.Parameters;
 using System.Globalization;
 using System.Management;
+using DevExpress.XtraSplashScreen;
 
 namespace Sandogh_PG
 {
@@ -628,10 +629,13 @@ namespace Sandogh_PG
 
         }
 
-        public static void ExportDataGridViewToExcel(GridView gridView1,int RowCount)
+        public static void ExportDataGridViewToExcel(XtraForm Form, GridView gridView1, int RowCount)
         {
             try
             {
+                SplashScreenManager.ShowForm(Form, typeof(WaitForm1),true,true,false);
+                //SplashScreenManager.Default.SetWaitFormCaption("در حال بارگزاری ... لطفاً صبور باشید");
+
                 Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
                 Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
                 Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
@@ -641,11 +645,17 @@ namespace Sandogh_PG
                 worksheet.Columns.ColumnWidth = 13;
                 //workbook.ActiveSheet.FileFormat = XlFileFormat.xlExcel8;
 
-                // Storing header part in Excel   
-                for (int i = 1; i < gridView1.Columns.Count + 1; i++)
+                // Storing header part in Excel 
+                int col = 1;
+                for (int i = 0; i < gridView1.Columns.Count; i++)
                 {
-                    worksheet.Cells[1, i] = gridView1.Columns[i - 1].Caption;
+                    if (gridView1.Columns[i].Visible)
+                    {
+                        worksheet.Cells[1, col] = gridView1.Columns[i].Caption;
+                        col++;
+                    }
                 }
+                col = 1;
                 //worksheet.Columns["کد حساب"].ColumnWidth = gridView1.Columns["CodeHesab"].Width;
                 //worksheet.Columns["نام حساب"].ColumnWidth = gridView1.Columns["NameAaza"].Width;
                 //worksheet.Columns["مبلغ پس انداز"].ColumnWidth = gridView1.Columns["MablaghPasandaz"].Width;
@@ -657,12 +667,30 @@ namespace Sandogh_PG
                 {
                     for (int j = 0; j < gridView1.Columns.Count; j++)
                     {
-                        worksheet.Cells[i + 2, j + 1] = gridView1.GetRowCellDisplayText(i, gridView1.Columns[j]).ToString();
+                        if (gridView1.Columns[j].Visible)
+                        {
+                            var format = gridView1.Columns[j].DisplayFormat.FormatType;
+                            if (format == DevExpress.Utils.FormatType.Numeric)
+                                if (Convert.ToDecimal(gridView1.GetRowCellDisplayText(i, gridView1.Columns[j]).ToString().Replace(",", "")) < 0)
+                                    worksheet.Cells[i + 2, col] = "-" + gridView1.GetRowCellDisplayText(i, gridView1.Columns[j]).ToString().Replace(",", "").Replace("-", "");
+                                else
+                                    worksheet.Cells[i + 2, col] = gridView1.GetRowCellDisplayText(i, gridView1.Columns[j]).ToString().Replace(",", "");
+                            else
+                                worksheet.Cells[i + 2, col] = gridView1.GetRowCellDisplayText(i, gridView1.Columns[j]).ToString();
+
+
+                            col++;
+                        }
+
+                        //if (gridView1.Columns[i].Visible)
                     }
+                    col = 1;
                 }
 
+                SplashScreenManager.CloseForm();
+
                 SaveFileDialog sfd = new SaveFileDialog();
-                sfd.FileName = "OutReport" ;
+                sfd.FileName = "OutReport";
                 sfd.DefaultExt = ".xlsx";
                 sfd.Title = "خروجی گزارش به اکسل";
                 sfd.Filter = "Excel(*.xlsx)|*.xlsx";
@@ -673,12 +701,16 @@ namespace Sandogh_PG
                     //app.ActiveWorkbook.SaveAs(sfd.FileName, XlFileFormat.xlExcel8, null, null, null,
                     //        null, XlSaveAsAccessMode.xlShared, null, null, null, null, null);
 
+
+                    //workbook.Close(true, sfd.FileName, Type.Missing);
+                    //app.Quit();
+                    app.ActiveWorkbook.Saved = true;
+                    app.Quit();
+                    System.Diagnostics.Process.Start("explorer.exe", sfd.FileName);
+
                 }
-                //workbook.Close(true, sfd.FileName, Type.Missing);
-                //app.Quit();
-                app.ActiveWorkbook.Saved = true;
-                app.Quit();
-                System.Diagnostics.Process.Start("explorer.exe", sfd.FileName);
+
+
 
             }
             catch (Exception ex)
@@ -836,7 +868,7 @@ namespace Sandogh_PG
 
         }
 
-        public static DataTable ConvettDatagridviewToDataTable(GridView gridView,int RowCount)
+        public static DataTable ConvettDatagridviewToDataTable(GridView gridView, int RowCount)
         {
             DataTable dt = new DataTable();
             try
@@ -863,7 +895,7 @@ namespace Sandogh_PG
                     "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
-            
+
 
         }
 

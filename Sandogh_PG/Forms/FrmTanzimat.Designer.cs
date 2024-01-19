@@ -497,7 +497,7 @@
             this.cmbNoeRezerv.Properties.ImmediatePopup = true;
             this.cmbNoeRezerv.Properties.Items.AddRange(new object[] {
             "نوبت بندی بر اساس تاریخ عضویت اعضاء در صندوق",
-            "نوبت بندی بر اساس شماره قرعه کشی اعضاء در صندوق",
+            "نوبت بندی بر اساس شماره نوبت اعضاء در صندوق",
             "نوبت بندی بر اساس تاریخ عضویت اعضاء جدید با حداقل مدت انتظار یا تاریخ تسویه وام ق" +
                 "بلی اعضاء"});
             this.cmbNoeRezerv.Properties.MaxLength = 5;

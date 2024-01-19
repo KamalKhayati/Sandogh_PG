@@ -49,43 +49,69 @@ namespace Sandogh_PG.Forms
         }
 
         public int _IDSandogh = 0;
+        int _IndexNoeVam0 = -1;
+        int _IndexNoeVam1 = -1;
+        int _IndexNoeVam2 = -1;
+        int _IndexNoeVam3 = -1;
         private void btnDisplyList_Click(object sender, EventArgs e)
         {
             using (var db = new MyContext())
             {
                 try
                 {
+                    _IndexNoeVam0 = checkEdit1.Checked ? 0 : -1;
+                    _IndexNoeVam1 = checkEdit2.Checked ? 1 : -1;
+                    _IndexNoeVam2 = checkEdit3.Checked ? 2 : -1;
+                    _IndexNoeVam3 = checkEdit4.Checked ? 3 : -1;
                     var q1 = db.AazaSandoghs.Where(s => s.IsActive == true).AsParallel();
                     var q2 = db.VamPardakhtis;
+                    var q4 = db.AsnadeHesabdariRows.Where(f => f.HesabMoinCode == 7001 && f.HesabTafCode >= 7000001 && f.HesabTafCode <= 7999999).ToList();
+
                     List<AazaSandogh> List = new List<AazaSandogh>();
+                    var q3 = q2.Where(s => s.IsTasviye == false && (s.IndexNoeVam == _IndexNoeVam0 || s.IndexNoeVam == _IndexNoeVam1 || s.IndexNoeVam == _IndexNoeVam2 || s.IndexNoeVam == _IndexNoeVam3)).AsParallel();
 
                     if (xtraTabControl1.SelectedTabPageIndex == 0)
                     {
-                        var q3 = q2.Where(s => s.IsTasviye == false).AsParallel();
                         foreach (var item in q1)
                         {
-                            if (q3.FirstOrDefault(s => s.AazaId == item.AllTafId) == null)
-                            {
-                                //q1.Remove(item);
-                                List.Add(item);
-                            }
+
+
+                            item.SharhHesab = q3.FirstOrDefault(s => s.AazaId == item.AllTafId) != null ? q3.FirstOrDefault(s => s.AazaId == item.AllTafId).NoeVam : "";
+                            //item.TarikhOzviat = item.TarikhOzviat;
+                            item.TarikhTasviyeVam = q3.FirstOrDefault(s => s.AazaId == item.AllTafId) != null ? q3.FirstOrDefault(s => s.AazaId == item.AllTafId).TarikhPardakht : Convert.ToDateTime("0001/01/01");
+
+                            var q5 = q4.Where(f => f.HesabTafCode == item.Code);
+                            decimal _SumBed = q5.Sum(f => f.Bed ?? 0);
+                            decimal _SumBes = q5.Sum(f => f.Bes ?? 0);
+                            decimal Mablagh = _SumBed - _SumBes;
+
+                            item.DaramadeMahiane = Mablagh;
+                            List.Add(item);
+
                         }
+
                         aazaSandoghsBindingSource0.DataSource = List.OrderBy(s => s.TarikhOzviat);
                     }
                     else if (xtraTabControl1.SelectedTabPageIndex == 1)
                     {
-                        var q3 = q2.Where(s => s.IsTasviye == false).AsParallel();
                         foreach (var item in q1)
                         {
-                            if (q3.FirstOrDefault(s => s.AazaId == item.AllTafId) == null)
-                            {
-                                //q1.Remove(item);
-                                List.Add(item);
-                            }
+                            //item.SharhHesab = q3.FirstOrDefault(s => s.AazaId == item.AllTafId) == null ? "ندارد":"دارد";
+                            item.SharhHesab = q3.FirstOrDefault(s => s.AazaId == item.AllTafId) != null ? q3.FirstOrDefault(s => s.AazaId == item.AllTafId).NoeVam : "";
+                            //item.TarikhTasviyeVam = q3.FirstOrDefault(s => s.AazaId == item.AllTafId) != null ? q3.FirstOrDefault(s => s.AazaId == item.AllTafId).TarikhPardakht : Convert.ToDateTime("0001/01/01");
+                            item.TarikhTasviyeVam = q3.FirstOrDefault(s => s.AazaId == item.AllTafId) != null ? q3.FirstOrDefault(s => s.AazaId == item.AllTafId).TarikhPardakht: Convert.ToDateTime("0001/01/01");
+
+                            var q5 = q4.Where(f => f.HesabTafCode == item.Code);
+                            decimal _SumBed = q5.Sum(f => f.Bed ?? 0);
+                            decimal _SumBes = q5.Sum(f => f.Bes ?? 0);
+                            decimal Mablagh = _SumBed - _SumBes;
+
+                            item.DaramadeMahiane = Mablagh;
+                            List.Add(item);
+
                         }
                         aazaSandoghsBindingSource1.DataSource = List.OrderBy(s => s.NobatbandiVam);
                     }
-
                     else
                     {
                         //foreach (var item in q1)
@@ -113,18 +139,43 @@ namespace Sandogh_PG.Forms
                         //    }
                         //}
 
-                        var q3 = q2.Where(s => s.IsTasviye == false).AsParallel();
+                        //var q3 = q2.Where(s =>s.IsTasviye == false && (s.IndexNoeVam == 0 || s.IndexNoeVam == 1)).AsParallel();
+                        //foreach (var item in q1)
+                        //{
+                        //    if (q3.FirstOrDefault(s => s.AazaId == item.AllTafId) == null)
+                        //    {
+                        //        //q1.Remove(item);
+                        //        List.Add(item);
+                        //    }
+                        //}
+
+                        string Label = string.Empty;
+                        Label += checkEdit1.Checked ? checkEdit1.Text +", " : "";
+                        Label += checkEdit2.Checked ? checkEdit2.Text + ", " : "";
+                        Label += checkEdit3.Checked ? checkEdit1.Text + ", " : "";
+                        Label += checkEdit4.Checked ? checkEdit1.Text + ", " : "";
+                        labelControl21.Text = "در این گزارش اعضایی که " + Label + " ندارند نمایش داده میشود";
+
                         foreach (var item in q1)
                         {
                             if (q3.FirstOrDefault(s => s.AazaId == item.AllTafId) == null)
                             {
                                 //q1.Remove(item);
+                                //int _CodeMoin = 7001;
+                                //int _CodeTafzil = item.Code;
+                               //tem.TarikhTasviyeVam = item.TarikhTasviyeVam;
+
+                                var q5 = q4.Where(f => f.HesabTafCode == item.Code);
+                                decimal _SumBed = q5.Sum(f => f.Bed ?? 0);
+                                decimal _SumBes = q5.Sum(f => f.Bes ?? 0);
+                                decimal Mablagh = _SumBed - _SumBes;
+
+                                item.DaramadeMahiane = Mablagh;
                                 List.Add(item);
                             }
                         }
 
                         aazaSandoghsBindingSource2.DataSource = List.OrderBy(s => s.TarikhTasviyeVam);
-
                     }
                 }
                 catch (Exception ex)
@@ -169,6 +220,15 @@ namespace Sandogh_PG.Forms
 
                     if (q.checkEdit6)
                     {
+                        checkEdit1.Checked = q.AnvaeVams.FirstOrDefault(s => s.NoeVamIndex == 0).DefaultNoeVam;
+                        checkEdit2.Checked = q.AnvaeVams.FirstOrDefault(s => s.NoeVamIndex == 1).DefaultNoeVam;
+                        checkEdit3.Checked = q.AnvaeVams.FirstOrDefault(s => s.NoeVamIndex == 2).DefaultNoeVam;
+                        checkEdit4.Checked = q.AnvaeVams.FirstOrDefault(s => s.NoeVamIndex == 3).DefaultNoeVam;
+
+                        checkEdit1.Text = q.AnvaeVams.FirstOrDefault(s => s.NoeVamIndex == 0).NoeVamName;
+                        checkEdit2.Text = q.AnvaeVams.FirstOrDefault(s => s.NoeVamIndex == 1).NoeVamName;
+                        checkEdit3.Text = q.AnvaeVams.FirstOrDefault(s => s.NoeVamIndex == 2).NoeVamName;
+                        checkEdit4.Text = q.AnvaeVams.FirstOrDefault(s => s.NoeVamIndex == 3).NoeVamName;
                         if (q.NoeRezervIndex == 0)
                         {
                             xtraTabControl1.SelectedTabPageIndex = 0;
@@ -181,7 +241,7 @@ namespace Sandogh_PG.Forms
                             xtraTabControl1.SelectedTabPageIndex = 1;
                             xtraTabControl1.TabPages[0].PageVisible = false;
                             xtraTabControl1.TabPages[2].PageVisible = false;
-                            xtraTabControl1.TabPages[1].Text = "نوبت بندی بر اساس شماره قرعه کشی اعضاء در صندوق";
+                            xtraTabControl1.TabPages[1].Text = "نوبت بندی بر اساس شماره نوبت اعضاء در صندوق";
 
                         }
                         else if (q.NoeRezervIndex == 2)
@@ -189,8 +249,8 @@ namespace Sandogh_PG.Forms
                             xtraTabControl1.SelectedTabPageIndex = 2;
                             xtraTabControl1.TabPages[0].PageVisible = false;
                             xtraTabControl1.TabPages[1].PageVisible = false;
-                            xtraTabControl1.TabPages[2].Text = "نوبت بندی بر اساس تاریخ عضویت اعضاء جدید با حداقل مدت انتظار یا تاریخ تسویه وام قبلی اعضاء";
-
+                            xtraTabControl1.TabPages[2].Text = "نوبت بندی بر اساس تاریخ عضویت اعضاء جدید یا تاریخ تسویه وام قبلی اعضاء";
+                            //labelControl21.Visible = true;
                         }
                     }
                 }
@@ -213,7 +273,7 @@ namespace Sandogh_PG.Forms
         {
             if (e.Control && e.KeyCode == Keys.E)
             {
-                HelpClass1.ExportDataGridViewToExcel(gridView2, gridView2.RowCount);
+                HelpClass1.ExportDataGridViewToExcel(this, gridView2, gridView2.RowCount);
             }
 
         }
@@ -222,7 +282,7 @@ namespace Sandogh_PG.Forms
         {
             if (e.Control && e.KeyCode == Keys.E)
             {
-                HelpClass1.ExportDataGridViewToExcel(gridView1, gridView1.RowCount);
+                HelpClass1.ExportDataGridViewToExcel(this, gridView1, gridView1.RowCount);
             }
 
         }
@@ -231,9 +291,14 @@ namespace Sandogh_PG.Forms
         {
             if (e.Control && e.KeyCode == Keys.E)
             {
-                HelpClass1.ExportDataGridViewToExcel(gridView3, gridView3.RowCount);
+                HelpClass1.ExportDataGridViewToExcel(this, gridView3, gridView3.RowCount);
             }
 
+        }
+
+        private void xtraTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+        {
+            labelControl21.Visible = xtraTabControl1.SelectedTabPageIndex == 2 ? true:false;
         }
     }
 }

@@ -1394,7 +1394,7 @@ namespace Sandogh_PG
                             decimal MandeVam = MablaghAghsat - MablaghDaryafti;
 
                             //DataTable1.Rows[i][26] = Mande.ToString("n0");
-                            gridView1.SetRowCellValue(i, "MandeVam", MandeVam.ToString("n0"));
+                            gridView1.SetRowCellValue(i, "MandeVam", MandeVam);
                         }
 
                         //gridControl1.DataSource = DataTable1;
@@ -1421,13 +1421,17 @@ namespace Sandogh_PG
                     gridView1.SetRowCellValue(i, "MandeVam", "");
                 }
             }
+
+            gridView1.UpdateTotalSummary();
+            //gridControl1. gridView1.Columns["MandeVam"]
+            //gridView1.Columns[].OptionsColumn.
         }
 
         private void gridView1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.E)
             {
-                HelpClass1.ExportDataGridViewToExcel(gridView1, gridView1.RowCount);
+                HelpClass1.ExportDataGridViewToExcel(this,gridView1, gridView1.RowCount);
             }
 
         }
@@ -1436,7 +1440,7 @@ namespace Sandogh_PG
         {
             if (e.Control && e.KeyCode == Keys.E)
             {
-                HelpClass1.ExportDataGridViewToExcel(gridView2, gridView2.RowCount);
+                HelpClass1.ExportDataGridViewToExcel(this,gridView2, gridView2.RowCount);
             }
 
         }

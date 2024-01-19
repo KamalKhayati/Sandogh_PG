@@ -37,7 +37,6 @@
                 //string a = Settings[AppVariable.VersionNumber[i]].ToString();
                 //if (Settings[AppVariable.VersionNumber[i]] == null)
                 //if (Settings[AppVariable.VersionNumber[i]] == null || Settings[AppVariable.VersionNumber[i]].ToString() != "1.0.0.67")
-                //if (Settings[AppVariable.VersionNumber[i]] == null || Settings[AppVariable.VersionNumber[i]].ToString() != Application.ProductVersion.ToString())
                 if (Settings[AppVariable.VersionNumber[i]] == null )
                 {
                     //  This method will be called after migrating to the latest version.
@@ -108,16 +107,15 @@
                     //context.Entry(new AllowedDataBases() { Id = 9, CompanyID = 12259, DataBaseName = HelpClass1.EncryptText("SandoghData4") }).State = context.AllowedDataBasess.Any(s => s.Id == 9) ? EntityState.Unchanged : EntityState.Added;
                     //context.Entry(new AllowedDataBases() { Id = 10, CompanyID = 12260, DataBaseName = HelpClass1.EncryptText("SandoghData5") }).State = context.AllowedDataBasess.Any(s => s.Id == 10) ? EntityState.Unchanged : EntityState.Added;
                     //context.SaveChanges();
-                    Settings[AppVariable.VersionNumber[i]] = Application.ProductVersion.ToString();
 
                     context.SaveChanges();
                     //context.Dispose();
-                    Settings.Save();
                     //Settings.Dispose();
 
                 }
 
-
+                
+                //Settings.Save();
             }
             catch (Exception ex)
             {
