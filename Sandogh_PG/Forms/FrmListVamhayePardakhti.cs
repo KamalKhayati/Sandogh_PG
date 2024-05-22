@@ -127,7 +127,11 @@ namespace Sandogh_PG
                                 fm.panelControl3.Enabled = false;
                                 fm.panelControl5.Enabled = false;
                                 fm.panelControl6.Enabled = false;
-                                fm.panelControl7.Enabled = false;
+                                //fm.gridControlBed.Enabled = false;
+                                //fm.gridControlBes.Enabled = false;
+                                fm.chkEditSdoorSanad.Enabled = false;
+                                //fm.btnDeleteBed.Enabled = false;
+                                //fm.btnDeleteBes.Enabled = false;
                                 fm.ShowDialog();
                             }
                             else
@@ -144,7 +148,7 @@ namespace Sandogh_PG
                             FrmVamPardakhti fm = new FrmVamPardakhti(this);
                             fm.En = EnumCED.Edit;
                             //fm.IsEditRizAghsat = true;
-                            fm.panelControl1.Enabled = fm.panelControl3.Enabled = fm.panelControl4.Enabled = fm.panelControl5.Enabled = fm.panelControl6.Enabled = fm.panelControl7.Enabled = false;
+                            fm.panelControl1.Enabled = fm.panelControl3.Enabled = fm.panelControl4.Enabled = fm.panelControl5.Enabled = fm.panelControl6.Enabled = false;
                             fm.chkcmbEntekhabZamenin.Enabled = fm.lstZamenin1.Enabled = fm.gridControl1.Enabled = false;
                             fm.ShowDialog();
                         }
@@ -491,12 +495,12 @@ namespace Sandogh_PG
         {
             if (gridView2.SelectedRowsCount > 0)
             {
-                int ColumnSum = 0;
+                decimal ColumnSum = 0;
                 if (chkSelectAll.Checked)
                 {
                     if (XtraMessageBox.Show("آیا همه اقساط وام جاری حذف شوند؟", "پیغام حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
-                        ColumnSum = Convert.ToInt32(gridView2.Columns["MablaghDaryafti"].SummaryItem.SummaryValue);
+                        ColumnSum = Convert.ToDecimal(gridView2.Columns["MablaghDaryafti"].SummaryItem.SummaryValue);
                         if (ColumnSum != 0)
                         {
                             XtraMessageBox.Show("تعدادی از اقساط قبلاً دریافت شده اند لذا قابل حذف نیستند \nجهت حذف اقساط بایستی در ابتدا مبلغ اقساط دریافت شده از طریق منوی (دریافت پس انداز ماهیانه و اقساط وام) حذف شوند ", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
@@ -615,6 +619,7 @@ namespace Sandogh_PG
         string NameSandogh = string.Empty;
         string ModirSandogh = string.Empty;
         string AdressSandogh = string.Empty;
+        string VahedPol = string.Empty;
         string ShTell = string.Empty;
         string NameVFamil = string.Empty;
         string NamePedar = string.Empty;
@@ -629,6 +634,7 @@ namespace Sandogh_PG
         string FasleAghsat = string.Empty;
         string TedadeAghsat = string.Empty;
         string MablaghGhestAval = string.Empty;
+        string MablaghGhestAKhar = string.Empty;
         string MablaghDirkard = string.Empty;
         string Zamenin = string.Empty;
         string NoeSanad1 = "..........";
@@ -655,12 +661,12 @@ namespace Sandogh_PG
         string NoeSanad8 = "..........";
         string Shcheak8 = ".................";
         string MablaghTazmin8 = ".................";
-        string NoeSanad9 = "..........";
-        string Shcheak9 = ".................";
-        string MablaghTazmin9 = ".................";
-        string NoeSanad10 = "..........";
-        string Shcheak10 = ".................";
-        string MablaghTazmin10 = ".................";
+        //string NoeSanad9 = "..........";
+        //string Shcheak9 = ".................";
+        //string MablaghTazmin9 = ".................";
+        //string NoeSanad10 = "..........";
+        //string Shcheak10 = ".................";
+        //string MablaghTazmin10 = ".................";
         string NahveyeDaryaftKarmozd = string.Empty;
 
         //تابع یه ورودی از جنس رشته داره
@@ -689,22 +695,40 @@ namespace Sandogh_PG
                     int IdVam = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id"));
                     var q1 = db.AllHesabTafzilis.FirstOrDefault(f => f.Id == IdShakhs).Id2;
                     var q2 = db.AazaSandoghs.FirstOrDefault(f => f.Id == q1);
-                    var q3 = db.RizeAghsatVams.Where(f => f.VamPardakhtiId == IdVam).Max(f => f.TarikhSarresid);
+                    var q3 = db.RizeAghsatVams.Where(f => f.VamPardakhtiId == IdVam);
                     var q4 = db.TarifSandoghs.FirstOrDefault(f => f.Id == IdSandogh);
+                    var q7 = db.Tanzimats.FirstOrDefault(f => f.Id == IdSandogh);
                     DatePardakht = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("TarikhPardakht")) ? Reverse(gridView1.GetFocusedRowCellDisplayText("TarikhPardakht")) : "....................";
                     NameVFamil = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("NameAaza")) ? gridView1.GetFocusedRowCellDisplayText("NameAaza") : "....................";
                     NamePedar = q2 != null && !string.IsNullOrEmpty(q2.NamePedar) ? q2.NamePedar : "...............";
                     CodeMelli = q2 != null && !string.IsNullOrEmpty(q2.CodeMelli) ? q2.CodeMelli : ".........................";
                     AdressShakhs = q2 != null ? !string.IsNullOrEmpty(q2.AdressManzel) ? q2.AdressManzel : !string.IsNullOrEmpty(q2.AdressMohalKar) ? q2.AdressMohalKar : "......................................................" : "......................................................";
                     ShMobile = q2 != null ? !string.IsNullOrEmpty(q2.Mobile1) ? q2.Mobile1 : !string.IsNullOrEmpty(q2.Mobile2) ? q2.Mobile2 : "........................." : ".........................";
-                    Date1 = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("SarresidAvalinGhest")) ? Reverse(gridView1.GetFocusedRowCellDisplayText("SarresidAvalinGhest")) : "....................";
-                    Date2 = q3 != null ? Reverse(q3.ToString().Substring(0, 10)) : "....................";
+                    //Date1 = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("SarresidAvalinGhest")) ? Reverse(gridView1.GetFocusedRowCellDisplayText("SarresidAvalinGhest")) : "....................";
+                    TedadeAghsat = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("TedadAghsat")) ? gridView1.GetFocusedRowCellDisplayText("TedadAghsat") : "..........";
+                    int _TedadeAghsat = Convert.ToInt32(TedadeAghsat);
+
+                    if (q3.Count()>0)
+                    {
+                        Date1 = q3.Min(f => f.TarikhSarresid) != null ? Reverse(q3.Min(f => f.TarikhSarresid).ToString().Substring(0, 10)) : "....................";
+                        Date2 = q3.Max(f => f.TarikhSarresid) != null ? Reverse(q3.Max(f => f.TarikhSarresid).ToString().Substring(0, 10)) : "....................";
+                        MablaghGhestAval = q3.FirstOrDefault(f => f.ShomareGhest == 1) != null ? q3.FirstOrDefault(f => f.ShomareGhest == 1).MablaghAghsat.ToString("n0") : "....................";
+                        MablaghGhestAKhar = q3.FirstOrDefault(f => f.ShomareGhest == _TedadeAghsat) != null ? q3.FirstOrDefault(f => f.ShomareGhest == _TedadeAghsat).MablaghAghsat.ToString("n0") : "....................";
+
+                    }
+                    else
+                    {
+                        Date1 = "....................";
+                        Date2 = "....................";
+                        MablaghGhestAval = "....................";
+                        MablaghGhestAKhar = "....................";
+
+                    }
                     MablaghVam = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("MablaghAsli")) ? gridView1.GetFocusedRowCellDisplayText("MablaghAsli") : "....................";
                     MablaghKarmozd = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("MablaghKarmozd")) ? gridView1.GetFocusedRowCellDisplayText("MablaghKarmozd") : "....................";
-                    DarsadKarmozd = MablaghVam != "0" && MablaghKarmozd != "0" ? (Convert.ToDecimal(MablaghKarmozd.Replace(",", "")) / Convert.ToDecimal(MablaghVam.Replace(",", ""))).ToString("f3") : "...........";
+                    DarsadKarmozd = MablaghVam != "0" && MablaghKarmozd != "0" ? (Convert.ToDecimal(MablaghKarmozd.Replace(",", "")) / Convert.ToDecimal(MablaghVam.Replace(",", "")) * 100).ToString("f2") : "...........";
                     FasleAghsat = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("FaseleAghsat")) ? gridView1.GetFocusedRowCellDisplayText("FaseleAghsat") : "....................";
-                    TedadeAghsat = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("TedadAghsat")) ? gridView1.GetFocusedRowCellDisplayText("TedadAghsat") : "..........";
-                    MablaghGhestAval = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("MablaghAghsat")) ? gridView1.GetFocusedRowCellDisplayText("MablaghAghsat") : "....................";
+                    //MablaghGhestAval = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("MablaghAghsat")) ? gridView1.GetFocusedRowCellDisplayText("MablaghAghsat") : "....................";
                     MablaghDirkard = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("MablaghDirkard")) ? gridView1.GetFocusedRowCellDisplayText("MablaghDirkard") : ".............";
                     Zamenin = !string.IsNullOrEmpty(gridView1.GetFocusedRowCellDisplayText("ZameninName")) ? gridView1.GetFocusedRowCellDisplayText("ZameninName") : ".........................";
                     var q6 = db.VamPardakhtis.Any(f => f.checkEdit1 == true && f.Id == IdVam);
@@ -718,37 +742,38 @@ namespace Sandogh_PG
                     ModirSandogh = q4 != null && !string.IsNullOrEmpty(q4.NameModir) ? q4.NameModir : "..............................";
                     AdressSandogh = q4 != null && !string.IsNullOrEmpty(q4.Adress) ? q4.Adress : "..................................................";
                     ShTell = q4 != null ? !string.IsNullOrEmpty(q4.Tell) ? q4.Tell : !string.IsNullOrEmpty(q4.Mobile) ? q4.Mobile : "........................" : "........................";
+                    VahedPol = q7 != null ? !string.IsNullOrEmpty(q7.VahedPolName) ? q7.VahedPolName : ".........." : ".........";
 
                     NoeSanad1 = "..........";
-                    Shcheak1 = ".................";
-                    MablaghTazmin1 = ".................";
+                    Shcheak1 = "..........";
+                    MablaghTazmin1 = "..........";
                     NoeSanad2 = "..........";
-                    Shcheak2 = ".................";
-                    MablaghTazmin2 = ".................";
+                    Shcheak2 = "..........";
+                    MablaghTazmin2 = "..........";
                     NoeSanad3 = "..........";
-                    Shcheak3 = ".................";
-                    MablaghTazmin3 = ".................";
+                    Shcheak3 = "..........";
+                    MablaghTazmin3 = "..........";
                     NoeSanad4 = "..........";
-                    Shcheak4 = ".................";
-                    MablaghTazmin4 = ".................";
+                    Shcheak4 = "..........";
+                    MablaghTazmin4 = "..........";
                     NoeSanad5 = "..........";
-                    Shcheak5 = ".................";
-                    MablaghTazmin5 = ".................";
+                    Shcheak5 = "..........";
+                    MablaghTazmin5 = "..........";
                     NoeSanad6 = "..........";
-                    Shcheak6 = ".................";
-                    MablaghTazmin6 = ".................";
+                    Shcheak6 = "..........";
+                    MablaghTazmin6 = "..........";
                     NoeSanad7 = "..........";
-                    Shcheak7 = ".................";
-                    MablaghTazmin7 = ".................";
+                    Shcheak7 = "..........";
+                    MablaghTazmin7 = "..........";
                     NoeSanad8 = "..........";
-                    Shcheak8 = ".................";
-                    MablaghTazmin8 = ".................";
-                    NoeSanad9 = "..........";
-                    Shcheak9 = ".................";
-                    MablaghTazmin9 = ".................";
-                    NoeSanad10 = "..........";
-                    Shcheak10 = ".................";
-                    MablaghTazmin10 = ".................";
+                    Shcheak8 = "..........";
+                    MablaghTazmin8 = "..........";
+                    //NoeSanad9 = "..........";
+                    //Shcheak9 = "..........";
+                    //MablaghTazmin9 = "..........";
+                    //NoeSanad10 = "..........";
+                    //Shcheak10 = "..........";
+                    //MablaghTazmin10 = "..........";
 
                     _VamPardakhtiId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("Id"));
                     var q5 = db.CheckTazmins.Where(f => f.VamGerandeId == IdShakhs && f.IsInSandogh == true).ToList();
@@ -817,18 +842,18 @@ namespace Sandogh_PG
                                             Shcheak8 = q5[i - 1].ShCheck;
                                             MablaghTazmin8 = q5[i - 1].Mablagh.ToString("n0");
                                         }
-                                        else if (i == 9)
-                                        {
-                                            NoeSanad9 = q5[i - 1].NoeSanad;
-                                            Shcheak9 = q5[i - 1].ShCheck;
-                                            MablaghTazmin9 = q5[i - 1].Mablagh.ToString("n0");
-                                        }
-                                        else if (i == 10)
-                                        {
-                                            NoeSanad10 = q5[i - 1].NoeSanad;
-                                            Shcheak10 = q5[i - 1].ShCheck;
-                                            MablaghTazmin10 = q5[i - 1].Mablagh.ToString("n0");
-                                        }
+                                        //else if (i == 9)
+                                        //{
+                                        //    NoeSanad9 = q5[i - 1].NoeSanad;
+                                        //    Shcheak9 = q5[i - 1].ShCheck;
+                                        //    MablaghTazmin9 = q5[i - 1].Mablagh.ToString("n0");
+                                        //}
+                                        //else if (i == 10)
+                                        //{
+                                        //    NoeSanad10 = q5[i - 1].NoeSanad;
+                                        //    Shcheak10 = q5[i - 1].ShCheck;
+                                        //    MablaghTazmin10 = q5[i - 1].Mablagh.ToString("n0");
+                                        //}
                                         else
                                             return;
                                     }
@@ -956,11 +981,13 @@ namespace Sandogh_PG
                     this.FindAndReplace(wordApp, "<FasleAghsat>", FasleAghsat.Trim());
                     this.FindAndReplace(wordApp, "<TedadeAghsat>", TedadeAghsat.Trim());
                     this.FindAndReplace(wordApp, "<MablaghGhestAval>", MablaghGhestAval.Trim());
+                    this.FindAndReplace(wordApp, "<MablaghGhestAKhar>", MablaghGhestAKhar.Trim());
                     this.FindAndReplace(wordApp, "<MablaghDirkard>", MablaghDirkard.Trim());
                     this.FindAndReplace(wordApp, "<Zamenin>", Zamenin.Trim());
                     this.FindAndReplace(wordApp, "<NameSandogh>", NameSandogh.Trim());
                     this.FindAndReplace(wordApp, "<ModirSandogh>", ModirSandogh.Trim());
                     this.FindAndReplace(wordApp, "<AdressSandogh>", AdressSandogh.Trim());
+                    this.FindAndReplace(wordApp, "<VahedPol>", VahedPol.Trim());
                     this.FindAndReplace(wordApp, "<ShTell>", ShTell.Trim());
                     this.FindAndReplace(wordApp, "<NoeSanad1>", NoeSanad1.Trim());
                     this.FindAndReplace(wordApp, "<Shcheak1>", Shcheak1.Trim());
@@ -986,12 +1013,12 @@ namespace Sandogh_PG
                     this.FindAndReplace(wordApp, "<NoeSanad8>", NoeSanad8.Trim());
                     this.FindAndReplace(wordApp, "<Shcheak8>", Shcheak8.Trim());
                     this.FindAndReplace(wordApp, "<MablaghTazmin8>", MablaghTazmin8.Trim());
-                    this.FindAndReplace(wordApp, "<NoeSanad9>", NoeSanad9.Trim());
-                    this.FindAndReplace(wordApp, "<Shcheak9>", Shcheak9.Trim());
-                    this.FindAndReplace(wordApp, "<MablaghTazmin9>", MablaghTazmin9.Trim());
-                    this.FindAndReplace(wordApp, "<NoeSanad10>", NoeSanad10.Trim());
-                    this.FindAndReplace(wordApp, "<Shcheak10>", Shcheak10.Trim());
-                    this.FindAndReplace(wordApp, "<MablaghTazmin10>", MablaghTazmin10.Trim());
+                    //this.FindAndReplace(wordApp, "<NoeSanad9>", NoeSanad9.Trim());
+                    //this.FindAndReplace(wordApp, "<Shcheak9>", Shcheak9.Trim());
+                    //this.FindAndReplace(wordApp, "<MablaghTazmin9>", MablaghTazmin9.Trim());
+                    //this.FindAndReplace(wordApp, "<NoeSanad10>", NoeSanad10.Trim());
+                    //this.FindAndReplace(wordApp, "<Shcheak10>", Shcheak10.Trim());
+                    //this.FindAndReplace(wordApp, "<MablaghTazmin10>", MablaghTazmin10.Trim());
                     this.FindAndReplace(wordApp, "<NahveyeDaryaftKarmozd>", NahveyeDaryaftKarmozd.Trim());
                     //  save temp.doc after modified
                     aDoc.Save();
@@ -1431,7 +1458,7 @@ namespace Sandogh_PG
         {
             if (e.Control && e.KeyCode == Keys.E)
             {
-                HelpClass1.ExportDataGridViewToExcel(this,gridView1, gridView1.RowCount);
+                HelpClass1.ExportDataGridViewToExcel(this, gridView1, gridView1.RowCount);
             }
 
         }
@@ -1440,7 +1467,7 @@ namespace Sandogh_PG
         {
             if (e.Control && e.KeyCode == Keys.E)
             {
-                HelpClass1.ExportDataGridViewToExcel(this,gridView2, gridView2.RowCount);
+                HelpClass1.ExportDataGridViewToExcel(this, gridView2, gridView2.RowCount);
             }
 
         }
@@ -1455,7 +1482,7 @@ namespace Sandogh_PG
                     //int ShomareSanad = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "ShomareSanad"));
                     //decimal MablaghAghsat = Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, "MablaghAghsat"));
                     //decimal MablaghDaryafti = Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, "MablaghDaryafti"));
-                    string Mande =string.IsNullOrEmpty( gridView1.GetRowCellDisplayText(e.RowHandle, "MandeVam"))?"1": gridView1.GetRowCellDisplayText(e.RowHandle, "MandeVam");
+                    string Mande = string.IsNullOrEmpty(gridView1.GetRowCellDisplayText(e.RowHandle, "MandeVam")) ? "1" : gridView1.GetRowCellDisplayText(e.RowHandle, "MandeVam");
 
                     //if (string.IsNullOrEmpty(Mande))
                     //{
@@ -1467,13 +1494,13 @@ namespace Sandogh_PG
                     //{
                     //    return;
                     //}
-                    if (Convert.ToDecimal(Mande.ToString()) == 0 )
+                    if (Convert.ToDecimal(Mande.ToString()) == 0)
                     {
                         //Color foreColor = Color.Red;
                         //e.Appearance.ForeColor = foreColor;
                         e.Appearance.BackColor = Color.GreenYellow;
                     }
-                   else if ( Convert.ToDecimal(Mande.ToString()) < 0)
+                    else if (Convert.ToDecimal(Mande.ToString()) < 0)
                     {
                         //Color foreColor = Color.Red;
                         //e.Appearance.ForeColor = foreColor;

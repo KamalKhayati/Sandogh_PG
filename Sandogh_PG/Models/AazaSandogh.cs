@@ -15,7 +15,8 @@ namespace Sandogh_PG
         public int Code { get; set; }
         [MaxLength(40)]
         public string CodePersoneli { get; set; }
-        [Required, Column(TypeName = "Date")]
+        //[Required, Column(TypeName = "Date")]
+        [Required]
         public DateTime TarikhOzviat { get; set; }
         [Required]
         public DateTime TarikhTasviyeVam { get; set; }

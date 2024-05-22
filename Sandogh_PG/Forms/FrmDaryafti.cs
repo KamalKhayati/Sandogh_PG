@@ -77,6 +77,33 @@ namespace Sandogh_PG
                     //if (qq != null)
                     {
                         var q1 = db.HaghOzviats.Where(s => s.AazaId == _AllTafId).OrderBy(s => s.Tarikh).ThenBy(s => s.Seryal).AsParallel();
+                        foreach (var item in q1)
+                        {
+                            int yyyy2s = Convert.ToInt32(item.Sarresid.ToString().Substring(0, 4));
+                            int MM2s = Convert.ToInt32(item.Sarresid.ToString().Substring(5, 2));
+                            int dd2s = Convert.ToInt32(item.Sarresid.ToString().Substring(8, 2));
+                            Mydate d2s = new Mydate(yyyy2s, MM2s, dd2s);
+
+                            int yyyy2d = Convert.ToInt32(item.Tarikh.ToString().Substring(0, 4));
+                            int MM2d = Convert.ToInt32(item.Tarikh.ToString().Substring(5, 2));
+                            int dd2d = Convert.ToInt32(item.Tarikh.ToString().Substring(8, 2));
+                            Mydate d2d = new Mydate(yyyy2d, MM2d, dd2d);
+
+                            if (d2s< d2d)
+                            {
+                                item.TakhirVaTajil = (d2s - d2d) * -1;
+                            }
+                            else if (d2s > d2d)
+                            {
+                                item.TakhirVaTajil = d2d - d2s;
+                            }
+                            else
+                            {
+                                item.TakhirVaTajil = 0;
+                            }
+
+                        }
+
                         haghOzviatsBindingSource.DataSource = q1.Count() > 0 ? q1 : null;
                     }
                 }
@@ -133,7 +160,41 @@ namespace Sandogh_PG
                     rizeAghsatVamsBindingSource.DataSource = null;
                     _VamId = Convert.ToInt32(gridView3.GetFocusedRowCellValue("Id"));
                     var q1 = db.RizeAghsatVams.Where(s => s.VamPardakhtiId == _VamId).OrderBy(s => s.Id).OrderBy(s => s.TarikhSarresid).AsParallel();
-                    var q2 = q1.ToList();
+                    //var q2 = q1.ToList();
+                    foreach (var item in q1)
+                    {
+                        int yyyy2s = Convert.ToInt32(item.TarikhSarresid.ToString().Substring(0, 4));
+                        int MM2s = Convert.ToInt32(item.TarikhSarresid.ToString().Substring(5, 2));
+                        int dd2s = Convert.ToInt32(item.TarikhSarresid.ToString().Substring(8, 2));
+                        Mydate d2s = new Mydate(yyyy2s, MM2s, dd2s);
+
+                        int yyyy2d = item.TarikhDaryaft!=null? Convert.ToInt32(item.TarikhDaryaft.ToString().Substring(0, 4)) : Convert.ToInt32(DateTime.Now.ToString().Substring(0, 4));
+                        int MM2d = item.TarikhDaryaft != null ? Convert.ToInt32(item.TarikhDaryaft.ToString().Substring(5, 2)) : Convert.ToInt32(DateTime.Now.ToString().Substring(5, 2));
+                        int dd2d = item.TarikhDaryaft != null ? Convert.ToInt32(item.TarikhDaryaft.ToString().Substring(8, 2)) : Convert.ToInt32(DateTime.Now.ToString().Substring(8, 2));
+                        Mydate d2d = new Mydate(yyyy2d, MM2d, dd2d);
+
+                        if (d2s < d2d)
+                        {
+                            item.TakhirVaTajil = (d2s - d2d) * -1;
+                        }
+                        else if (d2s > d2d)
+                        {
+                            if (d2d.ToString()!= DateTime.Now.ToString().Substring(0, 10))
+                            {
+                                item.TakhirVaTajil = d2d - d2s;
+                            }
+                            else
+                            {
+                                item.TakhirVaTajil = 0;
+                            }
+                        }
+                        else
+                        {
+                            item.TakhirVaTajil = 0;
+                        }
+
+                    }
+
                     rizeAghsatVamsBindingSource.DataSource = q1.Count() > 0 ? q1 : null;
                 }
                 catch (Exception ex)
@@ -144,6 +205,9 @@ namespace Sandogh_PG
             }
 
         }
+
+        public int _cmbMoin = 0;
+        public int _cmbNameHesab = 0;
 
         public void btnCreate2_Click(object sender, EventArgs e)
         {
@@ -919,86 +983,36 @@ namespace Sandogh_PG
         private void gridView4_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
             HelpClass1.gridView4_RowCellStyle(sender, e);
-        }
 
-        private void btnCreate5_Click(object sender, EventArgs e)
-        {
-            if (gridView3.RowCount > 0)
+            GridView view = sender as GridView;
+            if (view.RowCount > 0)
             {
-                //FrmRizAghsatVam fm = new FrmRizAghsatVam(this);
-                //fm.En = EnumCED.Create;
-                ////fm.IDSandogh.Text = IDSandogh.Text;
-                //fm.ShowDialog();
-            }
+                // bool IsActive = Convert.ToBoolean(view.GetRowCellValue(e.RowHandle, "IsActive"));
+                //int TakhirVaTajil = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "TedadeFarzand"));
 
-        }
-
-        private void btnDelete5_Click(object sender, EventArgs e)
-        {
-            if (XtraMessageBox.Show("آیا قسط مورد نظر حذف شود؟", "پیغام حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-            {
-                if (Convert.ToInt32(gridView4.GetFocusedRowCellValue("MablaghDaryafti")) > 0)
+                if (e.Column.FieldName == "TakhirVaTajil")
                 {
-                    XtraMessageBox.Show("قسط مورد نظر قبلاً دریافت شده است لذا قابل حذف نیست ", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
-                    return;
-                }
-                else
-                {
-                    EditRowIndex = gridView4.FocusedRowHandle;
-                    using (var db = new MyContext())
+                    if (Convert.ToInt32(e.CellValue) < 0)
                     {
-                        try
-                        {
-                            int RowId = Convert.ToInt32(gridView4.GetFocusedRowCellValue("Id").ToString());
-                            var q = db.RizeAghsatVams.FirstOrDefault(p => p.Id == RowId);
-                            if (q != null)
-                            {
-                                db.RizeAghsatVams.Remove(q);
-                                /////////////////////////////////////////////////////////////////////////////
-                                db.SaveChanges();
-
-                                btnDisplyActiveList4_Click(null, null);
-                                //XtraMessageBox.Show("عملیات حذف با موفقیت انجام شد", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
-                                if (gridView4.RowCount > 0)
-                                    gridView4.FocusedRowHandle = EditRowIndex - 1;
-                            }
-                            else
-                                XtraMessageBox.Show("رکورد جاری در بانک اطلاعاتی موجود نیست", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        //catch (DbUpdateException)
-                        //{
-                        //    XtraMessageBox.Show("عملیات حذف با خطا مواجه شد \n حذف این وام مقدور نیست \n" +
-                        //        "جهت حذف وام مورد نظر در ابتدا بایستی ریز اقساط وام مذکور حذف گردد"
-                        //        , "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        //}
-                        catch (Exception ex)
-                        {
-                            XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message, "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        Color foreColor = Color.Red;
+                        e.Appearance.ForeColor = foreColor;
+                        //e.Appearance.BackColor = Color.LightYellow;
                     }
-                }
-            }
+                    else
+                    {
+                        //return;
+                        Color foreColor = Color.Black;
+                        e.Appearance.ForeColor = foreColor;
+                    }
 
-        }
-
-        private void btnEdit5_Click(object sender, EventArgs e)
-        {
-            if (gridView4.RowCount > 0)
-            {
-                int ColumnMablaghDaryafti = Convert.ToInt32(gridView4.GetFocusedRowCellValue("MablaghDaryafti"));
-                if (ColumnMablaghDaryafti > 0)
-                {
-                    XtraMessageBox.Show("مبلغ قسط مورد نظر قبلاً دریافت شده است لذا قابل ویرایش نیست ", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
-                    return;
                 }
                 else
                 {
-                    //FrmRizAghsatVam fm = new FrmRizAghsatVam(this);
-                    //fm.En = EnumCED.Edit;
-                    //fm.EditRowIndex = gridView4.FocusedRowHandle;
-                    ////fm.IDSandogh.Text = IDSandogh.Text;
-                    //fm.ShowDialog();
+                    //return;
+                    Color foreColor = Color.Black;
+                    e.Appearance.ForeColor = foreColor;
                 }
+
             }
 
         }
@@ -1073,6 +1087,39 @@ namespace Sandogh_PG
             if (e.Control && e.KeyCode == Keys.E)
             {
                 HelpClass1.ExportDataGridViewToExcel(this,gridView4, gridView4.RowCount);
+            }
+
+        }
+
+        private void gridView2_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (view.RowCount > 0)
+            {
+                // bool IsActive = Convert.ToBoolean(view.GetRowCellValue(e.RowHandle, "IsActive"));
+                //int TakhirVaTajil = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "TedadeFarzand"));
+
+                if (e.Column.FieldName == "TakhirVaTajil")
+                {
+                    if (Convert.ToInt32(e.CellValue) < 0)
+                    {
+                        Color foreColor = Color.Red;
+                        e.Appearance.ForeColor = foreColor;
+                        //e.Appearance.BackColor = Color.LightYellow;
+                    }
+                    else
+                    {
+                        Color foreColor = Color.Black;
+                        e.Appearance.ForeColor = foreColor;
+                    }
+
+                }
+                else
+                {
+                    Color foreColor = Color.Black;
+                    e.Appearance.ForeColor = foreColor;
+                }
+
             }
 
         }

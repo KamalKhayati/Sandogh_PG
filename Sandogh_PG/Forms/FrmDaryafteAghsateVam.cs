@@ -181,6 +181,13 @@ namespace Sandogh_PG
                                 txtNoeVam.Text = "وام ضروری";
                                 break;
                             }
+                        case 3:
+                            {
+                                _CodeMoin = 2004;
+                                txtNameMoin.Text = z.FirstOrDefault(s => s.Code == _CodeMoin).Name;
+                                txtNoeVam.Text = "وام ازدواج";
+                                break;
+                            }
                         default:
                             {
                                 _CodeMoin = 0;
@@ -214,8 +221,11 @@ namespace Sandogh_PG
                         var q2 = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SandoghId);
                         if (q2 != null)
                         {
-                            cmbMoin.EditValue = q2.MoinDefaultId;
-                            cmbNameHesab.EditValue = q2.TafsiliDefaultId;
+                            //cmbMoin.EditValue = q2.MoinDefaultId;
+                            //cmbNameHesab.EditValue = q2.TafsiliDefaultId;
+                            cmbMoin.EditValue = Fm._cmbMoin == 0 ? q2.MoinDefaultId : Fm._cmbMoin;
+                            cmbNameHesab.EditValue = Fm._cmbNameHesab == 0 ? q2.TafsiliDefaultId : Fm._cmbNameHesab;
+
                         }
 
 
@@ -397,6 +407,9 @@ namespace Sandogh_PG
                         int MM3 = Convert.ToInt32(txtTarikhDaryaft.Text.Substring(5, 2));
                         int dd3 = Convert.ToInt32(txtTarikhDaryaft.Text.Substring(8, 2));
                         Mydate d3 = new Mydate(yyyy3, MM3, dd3);
+
+                        int _SandoghId = Convert.ToInt32(Fm.Fm.IDSandogh.Caption);
+                        var ta = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SandoghId);
 
                         if (En == EnumCED.Create)
                         {
@@ -1013,10 +1026,10 @@ namespace Sandogh_PG
                                         {
                                             q1.IsTasviye = true;
                                             var r = db.AazaSandoghs;
-                                            var av = db.AnvaeVams.FirstOrDefault(s => s.NoeVamIndex == q1.IndexNoeVam);
+                                            //var av = db.AnvaeVams.FirstOrDefault(s => s.NoeVamIndex == q1.IndexNoeVam);
                                             //int _AllTafId = Convert.ToInt32(cmbPardakhtKonande.EditValue);
-                                            if (r.FirstOrDefault(s => s.AllTafId == _HesabTafId2) != null && av.DefaultNoeVam==true)
-                                                r.FirstOrDefault(s => s.AllTafId == _HesabTafId2).TarikhTasviyeVam = Convert.ToDateTime(txtTarikhDaryaft.Text.Substring(0, 10));
+                                            if (r.FirstOrDefault(s => s.AllTafId == _HesabTafId2) != null && ta.checkEdit6 && ta.NoeRezervIndex == 2 && (q1.IndexNoeVam == 0 || q1.IndexNoeVam == 1))
+                                                r.FirstOrDefault(s => s.AllTafId == _HesabTafId2).TarikhTasviyeVam = Convert.ToDateTime(txtTarikhDaryaft.Text.Substring(0, 10) + " " + DateTime.Now.ToLongTimeString());
 
                                             var w = db.R_VamPardakhti_B_Zamenins.Where(s => s.VamPardakhtiId == q.VamPardakhtiId).ToList();
                                             if (w.Count > 0)
@@ -1030,7 +1043,7 @@ namespace Sandogh_PG
                                             }
 
                                             //int _VamId = db.RizeAghsatVams.FirstOrDefault(s => s.Id == RowId).VamPardakhtiId;
-                                            q.VamPardakhti1.TarikhTasviyeVam = Convert.ToDateTime(txtTarikhDaryaft.Text.Substring(0, 10));
+                                            q.VamPardakhti1.TarikhTasviyeVam = Convert.ToDateTime(txtTarikhDaryaft.Text.Substring(0, 10) + " " +  DateTime.Now.ToLongTimeString());
 
                                             db.SaveChanges();
                                             Fm.btnDisplyActiveList3_Click(null, null);
@@ -1560,9 +1573,9 @@ namespace Sandogh_PG
                                             {
                                                 q1.IsTasviye = true;
                                                 var r = db.AazaSandoghs;
-                                                var av = db.AnvaeVams.FirstOrDefault(s => s.NoeVamIndex == q1.IndexNoeVam);
-                                                if (r.FirstOrDefault(s => s.AllTafId == _HesabTafId2) != null && av.DefaultNoeVam == true)
-                                                    r.FirstOrDefault(s => s.AllTafId == _HesabTafId2).TarikhTasviyeVam = Convert.ToDateTime(txtTarikhDaryaft.Text.Substring(0, 10));
+                                                //var av = db.AnvaeVams.FirstOrDefault(s => s.NoeVamIndex == q1.IndexNoeVam);
+                                                if (r.FirstOrDefault(s => s.AllTafId == _HesabTafId2) != null && ta.checkEdit6 && ta.NoeRezervIndex == 2 && (q1.IndexNoeVam == 0 || q1.IndexNoeVam == 1))
+                                                    r.FirstOrDefault(s => s.AllTafId == _HesabTafId2).TarikhTasviyeVam = Convert.ToDateTime(txtTarikhDaryaft.Text.Substring(0, 10) + " " + r.FirstOrDefault(s => s.AllTafId == _HesabTafId2).TarikhTasviyeVam.ToLongTimeString());
 
                                                 //var w = db.R_VamPardakhti_B_Zamenins.Where(s => s.VamPardakhtiId == q.VamPardakhtiId).ToList();
                                                 //if (w.Count > 0)
@@ -1576,7 +1589,7 @@ namespace Sandogh_PG
                                                 //}
 
                                                 //int _VamId = q.VamPardakhtiId;
-                                                q.VamPardakhti1.TarikhTasviyeVam = Convert.ToDateTime(txtTarikhDaryaft.Text.Substring(0, 10));
+                                                q.VamPardakhti1.TarikhTasviyeVam = Convert.ToDateTime(txtTarikhDaryaft.Text.Substring(0, 10) + " " + (q.VamPardakhti1.TarikhTasviyeVam ?? DateTime.Now).ToLongTimeString());
                                                 db.SaveChanges();
                                                 Fm.btnDisplyActiveList3_Click(null, null);
 
@@ -1863,12 +1876,20 @@ namespace Sandogh_PG
 
         private void cmbMoin_EditValueChanged(object sender, EventArgs e)
         {
+            Fm._cmbMoin = Convert.ToInt32(cmbMoin.EditValue);
+
             FillcmbNameHesab();
         }
 
         private void cmbMoin_Enter(object sender, EventArgs e)
         {
             cmbMoin.ShowPopup();
+        }
+
+        private void cmbNameHesab_EditValueChanged(object sender, EventArgs e)
+        {
+            Fm._cmbNameHesab = Convert.ToInt32(cmbNameHesab.EditValue);
+
         }
     }
 }

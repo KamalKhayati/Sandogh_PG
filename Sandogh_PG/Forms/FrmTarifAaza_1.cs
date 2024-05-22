@@ -150,10 +150,21 @@ namespace Sandogh_PG
         bool IsActiveBeforeEdit = true;
         private void FrmTarifAaza_1_Load(object sender, EventArgs e)
         {
+            //DateTime d0 = DateTime.Now;
+            ////DateTime d1 = DateTime.Now.Date;
+            //string d11 = DateTime.Now.ToLongDateString();
+            //string d3 = DateTime.Now.ToLongTimeString();
+            ////var d2 = DateTime.Now.TimeOfDay;
+            //string d4 = d11+" "+d3;
+            ////string d41 = d1.ToString()+d2.ToString();
+            //DateTime d5 = Convert.ToDateTime(d4);
+            ////DateTime d51 = Convert.ToDateTime(d41);
+
+
             _SandoghId = Convert.ToInt32(Fm.IDSandogh.Caption);
             FillDataGridTarifAaza();
 
-            HelpClass1.DateTimeMask(txtTarikhTasviyeVam);
+            HelpClass1.DateTimeMask(txtTarikhNobatVam);
             HelpClass1.DateTimeMask(txtTarikhOzviat);
             HelpClass1.DateTimeMask(txtBirthDate);
 
@@ -172,8 +183,7 @@ namespace Sandogh_PG
                             }
                             else if (q.NoeRezervIndex == 2)
                             {
-                                btnMohasebeTarikhMabnayeNobatVam.Visible = txtTarikhTasviyeVam.Visible = lblMohasebeTarikhMabnayeNobat.Visible = true;
-
+                                btnMohasebeTarikhMabnayeNobatVam.Visible = txtTarikhNobatVam.Visible = lblMohasebeTarikhMabnayeNobat.Visible = true;
                             }
                         }
 
@@ -277,7 +287,7 @@ namespace Sandogh_PG
                 }
 
             }
-            if (string.IsNullOrEmpty(txtTarikhTasviyeVam.Text))
+            if (string.IsNullOrEmpty(txtTarikhNobatVam.Text))
             {
                 using (var db = new MyContext())
                 {
@@ -289,7 +299,7 @@ namespace Sandogh_PG
                             if (t.NoeRezervIndex == 2)
                             {
                                 XtraMessageBox.Show("تاریخ مبنای نوبت بندی وام را وارد کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                txtTarikhTasviyeVam.Focus();
+                                txtTarikhNobatVam.Focus();
                                 return false;
 
                             }
@@ -311,7 +321,7 @@ namespace Sandogh_PG
                     return false;
 
                 }
-                else 
+                else
                 {
                     using (var db = new MyContext())
                     {
@@ -455,7 +465,7 @@ namespace Sandogh_PG
             }
             else if (e.Alt && e.Control)
             {
-                _ControlAlt = true ;
+                _ControlAlt = true;
             }
 
 
@@ -527,7 +537,9 @@ namespace Sandogh_PG
                     // gridView1.SetRowCellValue(0, colLogo, myarrey);
                     XtraReport XtraReport1 = new XtraReport();
                     XtraReport1.LoadLayoutFromXml(FilePath1 + FileName1);
-                    XtraReport1.DataSource = gridView1.DataSource;
+
+                    //XtraReport1.DataSource = gridView1.DataSource;
+                    XtraReport1.DataSource = HelpClass1.ConvettDatagridviewToDataTable(gridView1, gridView1.RowCount);
 
                     //XtraReport XtraReport2 = new XtraReport();
                     //XtraReport2.LoadLayoutFromXml(FilePath1 + FileName1);
@@ -694,7 +706,7 @@ namespace Sandogh_PG
             txtCode.Text = string.Empty;
             txtCodePersoneli.Text = string.Empty;
             txtTarikhOzviat.Text = string.Empty;
-            txtTarikhTasviyeVam.Text = string.Empty;
+            txtTarikhNobatVam.Text = string.Empty;
             txtNameVFamil.Text = string.Empty;
             txtNamePedar.Text = string.Empty;
             txtCodeMeli.Text = string.Empty;
@@ -734,7 +746,7 @@ namespace Sandogh_PG
             {
                 txtCodePersoneli.ReadOnly = false;
                 txtTarikhOzviat.ReadOnly = false;
-                txtTarikhTasviyeVam.ReadOnly = false;
+                txtTarikhNobatVam.ReadOnly = false;
                 txtNameVFamil.ReadOnly = false;
                 txtNamePedar.ReadOnly = false;
                 txtCodeMeli.ReadOnly = false;
@@ -782,7 +794,7 @@ namespace Sandogh_PG
             {
                 txtCodePersoneli.ReadOnly = true;
                 txtTarikhOzviat.ReadOnly = true;
-                txtTarikhTasviyeVam.ReadOnly = true;
+                txtTarikhNobatVam.ReadOnly = true;
                 txtNameVFamil.ReadOnly = true;
                 txtNamePedar.ReadOnly = true;
                 txtCodeMeli.ReadOnly = true;
@@ -956,7 +968,7 @@ namespace Sandogh_PG
                 if (gridView1.GetFocusedRowCellDisplayText("TarikhOzviat").ToString() != null)
                     txtTarikhOzviat.Text = gridView1.GetFocusedRowCellValue("TarikhOzviat").ToString().Substring(0, 10);
                 if (gridView1.GetFocusedRowCellDisplayText("TarikhTasviyeVam").ToString() != null)
-                    txtTarikhTasviyeVam.Text = gridView1.GetFocusedRowCellValue("TarikhTasviyeVam").ToString().Substring(0, 10);
+                    txtTarikhNobatVam.Text = gridView1.GetFocusedRowCellValue("TarikhTasviyeVam").ToString().Substring(0, 10);
                 txtNameVFamil.Text = gridView1.GetFocusedRowCellDisplayText("NameVFamil");
                 txtNamePedar.Text = gridView1.GetFocusedRowCellDisplayText("NamePedar");
                 txtCodeMeli.Text = gridView1.GetFocusedRowCellDisplayText("CodeMelli");
@@ -1025,6 +1037,7 @@ namespace Sandogh_PG
                 IsActiveBeforeEdit = chkIsActive.Checked;
                 ActiveControls();
                 xtraTabControl1.SelectedTabPageIndex = 0;
+                BeTarikhOzviat = txtTarikhOzviat.Text;
                 txtNameVFamil.Focus();
             }
         }
@@ -1093,10 +1106,10 @@ namespace Sandogh_PG
                             obj.Code = Convert.ToInt32(txtCode.Text);
                             obj.CodePersoneli = txtCodePersoneli.Text;
                             //if ()
-                            obj.TarikhOzviat = !string.IsNullOrEmpty(txtTarikhOzviat.Text) ? Convert.ToDateTime(txtTarikhOzviat.Text) : DateTime.Now;
+                            obj.TarikhOzviat = !string.IsNullOrEmpty(txtTarikhOzviat.Text) ? Convert.ToDateTime(txtTarikhOzviat.Text + " " + DateTime.Now.ToLongTimeString()) : DateTime.Now;
 
-                            obj.TarikhTasviyeVam = !string.IsNullOrEmpty(txtTarikhTasviyeVam.Text) ? Convert.ToDateTime(txtTarikhTasviyeVam.Text) :
-                                !string.IsNullOrEmpty(txtTarikhOzviat.Text) ? Convert.ToDateTime(txtTarikhOzviat.Text) : DateTime.Now;
+                            obj.TarikhTasviyeVam = !string.IsNullOrEmpty(txtTarikhNobatVam.Text) ? Convert.ToDateTime(txtTarikhNobatVam.Text + " " + DateTime.Now.ToLongTimeString()) :
+                                !string.IsNullOrEmpty(txtTarikhOzviat.Text) ? Convert.ToDateTime(txtTarikhOzviat.Text + " " + DateTime.Now.ToLongTimeString()) : DateTime.Now;
                             obj.NameVFamil = txtNameVFamil.Text;
                             obj.NamePedar = txtNamePedar.Text;
                             obj.CodeMelli = txtCodeMeli.Text;
@@ -1312,6 +1325,7 @@ namespace Sandogh_PG
                             string _Name = txtNameVFamil.Text;
                             int RowId = Convert.ToInt32(txtId.Text);
                             var q = db.AazaSandoghs.FirstOrDefault(p => p.Id == RowId);
+                            var ta = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SandoghId);
 
                             if (q != null)
                             {
@@ -1320,10 +1334,13 @@ namespace Sandogh_PG
                                 q.CodePersoneli = txtCodePersoneli.Text;
                                 //if (!string.IsNullOrEmpty(txtTarikhOzviat.Text))
                                 //    q.TarikhOzviat = Convert.ToDateTime(txtTarikhOzviat.Text);
-                                q.TarikhOzviat = !string.IsNullOrEmpty(txtTarikhOzviat.Text) ? Convert.ToDateTime(txtTarikhOzviat.Text) : DateTime.Now;
-                                q.TarikhTasviyeVam = !string.IsNullOrEmpty(txtTarikhTasviyeVam.Text) ? Convert.ToDateTime(txtTarikhTasviyeVam.Text) :
-                                    !string.IsNullOrEmpty(txtTarikhOzviat.Text) ? Convert.ToDateTime(txtTarikhOzviat.Text) : DateTime.Now;
+                                q.TarikhOzviat = !string.IsNullOrEmpty(txtTarikhOzviat.Text) ? Convert.ToDateTime(txtTarikhOzviat.Text + " " + q.TarikhOzviat.ToLongTimeString()) : DateTime.Now;
+                                if (ta.checkEdit6 && (ta.NoeRezervIndex == 0 || ta.NoeRezervIndex == 1) || ((ta.NoeRezervIndex == 2 || ta.NoeRezervIndex == 3) && !db.VamPardakhtis.Any(s => s.AllHesabTafzili1.GroupTafziliId == 3 && s.AllHesabTafzili1.Id2 == RowId)))
+                                {
+                                    q.TarikhTasviyeVam = !string.IsNullOrEmpty(txtTarikhNobatVam.Text) ? Convert.ToDateTime(txtTarikhNobatVam.Text + " " + q.TarikhTasviyeVam.ToLongTimeString()) :
+                                !string.IsNullOrEmpty(txtTarikhOzviat.Text) ? Convert.ToDateTime(txtTarikhOzviat.Text + " " + q.TarikhOzviat.ToLongTimeString()) : DateTime.Now;
 
+                                }
                                 q.NameVFamil = txtNameVFamil.Text;
                                 q.NamePedar = txtNamePedar.Text;
                                 q.CodeMelli = txtCodeMeli.Text;
@@ -1394,18 +1411,68 @@ namespace Sandogh_PG
                                     qq01.GroupTafziliId = 3;
                                     qq01.IsActive = chkIsActive.Checked;
                                 }
-                                db.SaveChanges();
-                                /////////////////////////////////////////////////////////////////////////////////////
-                                int _ShomareSanad = Convert.ToInt32(gridView1.GetFocusedRowCellValue("ShomareSanad"));
-                                if (_ShomareSanad != 0)
+
+                                ////////////////////// اصلاح سررسید پس انداز در حق عضویت ماهیانه در دیتابیس ///////////////
+                                 if (BeTarikhOzviat != txtTarikhOzviat.Text)
                                 {
-                                    var q2 = db.AsnadeHesabdariRows.Where(f => f.ShomareSanad == _ShomareSanad);
-                                    if (q2.Count() > 0)
+                                    var ho1 = db.HaghOzviats.Where(s=>s.AazaId== q.AllTafId).OrderBy(s => s.Tarikh).OrderBy(s => s.IndexMonth).ToList();
+                                    if (ho1.Count > 0)
                                     {
-                                        db.AsnadeHesabdariRows.RemoveRange(q2);
-                                        db.SaveChanges();
+                                        for (int i = 0; i < ho1.Count; i++)
+                                        {
+                                            int yyyy3 = ho1[i].Sal;
+                                            int MM3 = ho1[i].IndexMonth + 1;
+
+                                            int _AllTaf = ho1[i].AazaId;
+                                            //var qq = db.AazaSandoghs.FirstOrDefault(s => s.AllTafId == _AllTaf);
+                                            int dd1 = q != null ? Convert.ToInt32(q.TarikhOzviat.ToString().Substring(8, 2)) : 1;
+
+                                            int dd3 = dd1;
+
+                                            if (dd1 == 31)
+                                            {
+                                                if (ho1[i].IndexMonth + 1 == 12)
+                                                {
+                                                    //yyyy3 = yyyy3 + 1;
+                                                    //MM3 = 1;
+                                                    dd3 = 29;
+                                                }
+                                                else if (ho1[i].IndexMonth + 1 == 11 || ho1[i].IndexMonth + 1 == 10 || ho1[i].IndexMonth + 1 == 9 ||
+                                                    ho1[i].IndexMonth + 1 == 8 || ho1[i].IndexMonth + 1 == 7)
+                                                {
+                                                    //yyyy3 = ho1[i].Sal;
+                                                    //MM3 = MM3 + 1;
+                                                    dd3 = 30;
+                                                }
+                                            }
+                                            else if (dd1 == 30)
+                                            {
+                                                if (ho1[i].IndexMonth + 1 == 12)
+                                                {
+                                                    //yyyy3 = yyyy3 + 1;
+                                                    //MM3 = 1;
+                                                    dd3 = 29;
+                                                }
+                                            }
+
+                                            Mydate d3 = new Mydate(yyyy3, MM3, dd3);
+
+                                            ho1[i].Sarresid = Convert.ToDateTime(d3);
+                                        }
                                     }
                                 }
+                                db.SaveChanges();
+                                /////////////////////////////////////////////////////////////////////////////////////
+                                //int _ShomareSanad = Convert.ToInt32(gridView1.GetFocusedRowCellValue("ShomareSanad"));
+                                //if (_ShomareSanad != 0)
+                                //{
+                                //    var q2 = db.AsnadeHesabdariRows.Where(f => f.ShomareSanad == _ShomareSanad);
+                                //    if (q2.Count() > 0)
+                                //    {
+                                //        db.AsnadeHesabdariRows.RemoveRange(q2);
+                                //        db.SaveChanges();
+                                //    }
+                                //}
 
                                 //var q1 = db.AsnadeHesabdariRows.Any() ? db.AsnadeHesabdariRows.Max(f => f.ShomareSanad) : 0;
                                 //if (txtBesAvali.Text != "0")
@@ -1714,7 +1781,7 @@ namespace Sandogh_PG
                     if (gridView1.GetFocusedRowCellDisplayText("TarikhOzviat").ToString() != null)
                         txtTarikhOzviat.Text = gridView1.GetFocusedRowCellValue("TarikhOzviat").ToString().Substring(0, 10);
                     if (gridView1.GetFocusedRowCellDisplayText("TarikhTasviyeVam").ToString() != null)
-                        txtTarikhTasviyeVam.Text = gridView1.GetFocusedRowCellValue("TarikhTasviyeVam").ToString().Substring(0, 10);
+                        txtTarikhNobatVam.Text = gridView1.GetFocusedRowCellValue("TarikhTasviyeVam").ToString().Substring(0, 10);
                     txtNameVFamil.Text = gridView1.GetFocusedRowCellDisplayText("NameVFamil");
                     txtNamePedar.Text = gridView1.GetFocusedRowCellDisplayText("NamePedar");
                     txtCodeMeli.Text = gridView1.GetFocusedRowCellDisplayText("CodeMelli");
@@ -1798,7 +1865,7 @@ namespace Sandogh_PG
             gridView1_RowCellClick(null, null);
             if (e.Control && e.KeyCode == Keys.E)
             {
-                HelpClass1.ExportDataGridViewToExcel(this,gridView1, gridView1.RowCount);
+                HelpClass1.ExportDataGridViewToExcel(this, gridView1, gridView1.RowCount);
             }
 
         }
@@ -1996,71 +2063,55 @@ namespace Sandogh_PG
         {
             HelpClass1.AddZerooToTextBox(sender, e);
         }
-
-        private void txtTarikhTasviyeVam_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void txtTarikhTasviyeVam_Leave(object sender, EventArgs e)
-        {
-        }
-        //int _indexNoeVam = 0;
         public void btnMohasebeTarikhMabnayeNobatVam_Click(object sender, EventArgs e)
         {
+
             using (var db = new MyContext())
             {
                 try
                 {
-                    if (En == EnumCED.Create)
+                    var q = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SandoghId);
+                    if (q != null)
                     {
-                        //int yyyy1 = Convert.ToInt32(txtTarikhOzviat.Text.ToString().Substring(0, 4));
-                        //int MM1 = Convert.ToInt32(txtTarikhOzviat.Text.ToString().Substring(5, 2));
-                        //int dd1 = Convert.ToInt32(txtTarikhOzviat.Text.ToString().Substring(8, 2));
-                        //Mydate d1 = new Mydate(yyyy1, MM1, dd1);
-                        //int _index = 0;
-                        //int ModatEntezar = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SandoghId).AnvaeVams.FirstOrDefault(s => s.DefaultNoeVam==true).MinModatEntezar;
-                        //txtTarikhTasviyeVam.Text = d1.AddMont(ModatEntezar).ToString();
-                        txtTarikhTasviyeVam.Text = txtTarikhOzviat.Text;
-
-                    }
-                    else if (En == EnumCED.Edit)
-                    {
-                        //var q1 = db.AazaSandoghs.Where(s => s.IsActive == true).AsParallel();
-                        var q2 = db.VamPardakhtis;
-
-                        int _AazaId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("AllTafId"));
-                        if (q2.FirstOrDefault(s => s.AazaId == _AazaId) == null)
+                        if (q.NoeRezervIndex == 2)
                         {
-                            //int yyyy1 = Convert.ToInt32(txtTarikhOzviat.Text.ToString().Substring(0, 4));
-                            //int MM1 = Convert.ToInt32(txtTarikhOzviat.Text.ToString().Substring(5, 2));
-                            //int dd1 = Convert.ToInt32(txtTarikhOzviat.Text.ToString().Substring(8, 2));
-                            //Mydate d1 = new Mydate(yyyy1, MM1, dd1);
-
-                            //int ModatEntezar = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SandoghId).AnvaeVams.FirstOrDefault(s => s.DefaultNoeVam == true).MinModatEntezar;
-                            //txtTarikhTasviyeVam.Text = d1.AddMont(ModatEntezar).ToString();
-                            txtTarikhTasviyeVam.Text = txtTarikhOzviat.Text;
-
-                        }
-                        else
-                        {
-                            if (q2.FirstOrDefault(s => s.AazaId == _AazaId && s.IsTasviye == true && (s.IndexNoeVam == 0 || s.IndexNoeVam == 1)) == null)
+                            if (En == EnumCED.Create)
                             {
-                                //int yyyy1 = Convert.ToInt32(txtTarikhOzviat.Text.ToString().Substring(0, 4));
-                                //int MM1 = Convert.ToInt32(txtTarikhOzviat.Text.ToString().Substring(5, 2));
-                                //int dd1 = Convert.ToInt32(txtTarikhOzviat.Text.ToString().Substring(8, 2));
-                                //Mydate d1 = new Mydate(yyyy1, MM1, dd1);
-                                //int _index = 0;
-                                //int ModatEntezar = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SandoghId).AnvaeVams.FirstOrDefault(s => s.DefaultNoeVam == true).MinModatEntezar;
-                                //txtTarikhTasviyeVam.Text = d1.AddMont(ModatEntezar).ToString();
-                                txtTarikhTasviyeVam.Text = txtTarikhOzviat.Text;
-
+                                txtTarikhNobatVam.Text = txtTarikhOzviat.Text;
                             }
-                            else
+                            else if (En == EnumCED.Edit)
                             {
-                                var q5 = db.RizeAghsatVams.Where(s => s.AazaId == _AazaId && s.VamPardakhti1.IsTasviye == true && (s.VamPardakhti1.IndexNoeVam == 0 || s.VamPardakhti1.IndexNoeVam == 1)).Max(s => s.TarikhDaryaft);
-                                txtTarikhTasviyeVam.Text = q5.ToString();
+                                if (q.checkEdit6)
+                                {
+                                    var q2 = db.VamPardakhtis;
+                                    int _AazaId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("AllTafId"));
+
+                                    if (!q2.Any(s => s.AazaId == _AazaId && (s.IndexNoeVam == 0 || s.IndexNoeVam == 1)))
+                                    {
+                                        if (XtraMessageBox.Show("آیا تاریخ نویت بندی وام بتاریخ عضویت تغییر یابد؟", "پیغام ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                                            txtTarikhNobatVam.Text = txtTarikhOzviat.Text;
+                                    }
+                                    else
+                                    {
+                                        if (XtraMessageBox.Show("آیا تاریخ نویت بندی وام بتاریخ تسویه وام قبلی تغییر یابد؟", "پیغام ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                                        {
+                                            var q3 = q2.Where(s => s.AazaId == _AazaId & (s.IndexNoeVam == 0 || s.IndexNoeVam == 1));
+
+                                            var q1 = q3.Where(s => s.IsTasviye == true).Max(s => s.TarikhTasviyeVam);
+                                            txtTarikhNobatVam.Text = q3.ToString().Substring(0, 10);
+                                            //else if (q.NoeRezervIndex == 3)
+                                            //{
+                                            //    var q4 = q3.Max(s => s.TarikhPardakht);
+                                            //    var q5 = q3.FirstOrDefault(s => s.TarikhPardakht == q4);
+
+                                            //    txtTarikhNobatVam.Text = q5.SarresidAvalinGhest.ToString().Substring(0, 10);
+                                            //}
+
+                                        }
+                                    }
+                                }
                             }
+
                         }
                     }
                 }
@@ -2070,7 +2121,6 @@ namespace Sandogh_PG
                         "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
         }
 
         private void txtMandeEtebar_Leave(object sender, EventArgs e)
@@ -2092,9 +2142,9 @@ namespace Sandogh_PG
         bool _ControlAlt = false;
         private void labelControl19_Click(object sender, EventArgs e)
         {
-            if(_ControlAlt)
+            if (_ControlAlt)
             {
-            txtBesAvali.Enabled = txtBesAvali.Enabled ? false : true;
+                txtBesAvali.Enabled = txtBesAvali.Enabled ? false : true;
                 _ControlAlt = false;
             }
         }
@@ -2219,10 +2269,9 @@ namespace Sandogh_PG
 
         }
 
+        string BeTarikhOzviat = string.Empty;
         private void txtTarikhOzviat_Leave(object sender, EventArgs e)
         {
-            //btnMohasebeTarikhMabnayeNobatVam_Click(null, null);
-
             using (var db = new MyContext())
             {
                 try
@@ -2230,12 +2279,44 @@ namespace Sandogh_PG
                     var q = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SandoghId);
                     if (q != null)
                     {
-                        if (q.checkEdit6)
+                        if (q.NoeRezervIndex == 2)
                         {
-                            if (q.NoeRezervIndex == 2 && txtTarikhOzviat.ReadOnly == false)
+                            if (En == EnumCED.Create)
                             {
-                                btnMohasebeTarikhMabnayeNobatVam_Click(null, null);
+                                txtTarikhNobatVam.Text = txtTarikhOzviat.Text;
                             }
+                            else if (En == EnumCED.Edit && BeTarikhOzviat != txtTarikhOzviat.Text)
+                            {
+                                if (q.checkEdit6)
+                                {
+                                    var q2 = db.VamPardakhtis;
+                                    int _AazaId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("AllTafId"));
+
+                                    if (!q2.Any(s => s.AazaId == _AazaId && (s.IndexNoeVam == 0 || s.IndexNoeVam == 1)))
+                                    {
+                                        if (XtraMessageBox.Show("تاریخ عضویت تغییر پیدا کرده است آیا تاریخ \n نوبت بندی وام بر مبنای آن تغییر پیدا کند؟", "پیغام ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                                            txtTarikhNobatVam.Text = txtTarikhOzviat.Text;
+                                    }
+                                    //else
+                                    //{
+                                    //    if (q.NoeRezervIndex == 2)
+                                    //    {
+                                    //        var q3 = q2.Where(s => s.AazaId == _AazaId && s.IsTasviye == true & (s.IndexNoeVam == 0 || s.IndexNoeVam == 1)).Max(s => s.TarikhTasviyeVam);
+                                    //        txtTarikhNobatVam.Text = q3.ToString().Substring(0, 10);
+                                    //    }
+                                    //    else if (q.NoeRezervIndex == 3)
+                                    //    {
+                                    //        var q3 = q2.Where(s => s.AazaId == _AazaId & (s.IndexNoeVam == 0 || s.IndexNoeVam == 1));
+                                    //        var q4 = q3.Max(s => s.TarikhPardakht);
+                                    //        var q5 = q3.FirstOrDefault(s => s.TarikhPardakht == q4);
+
+                                    //        txtTarikhNobatVam.Text = q5.SarresidAvalinGhest.ToString().Substring(0, 10);
+                                    //    }
+                                    //}
+
+                                }
+                            }
+
                         }
                     }
                 }
@@ -2245,7 +2326,6 @@ namespace Sandogh_PG
                         "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
         }
     }
 }

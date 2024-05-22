@@ -35,6 +35,7 @@
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSaveClose = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
+            this.txtNoeVam = new DevExpress.XtraEditors.TextEdit();
             this.cmbMoin = new DevExpress.XtraEditors.LookUpEdit();
             this.codeMoinsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtNameMoin = new DevExpress.XtraEditors.TextEdit();
@@ -61,11 +62,11 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.txtNoeVam = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             this.panelControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNoeVam.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMoin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.codeMoinsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameMoin.Properties)).BeginInit();
@@ -82,7 +83,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTarikhDaryaft.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeryal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSharh.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNoeVam.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl2
@@ -168,6 +168,25 @@
             this.panelControl4.Name = "panelControl4";
             this.panelControl4.Size = new System.Drawing.Size(656, 304);
             this.panelControl4.TabIndex = 35;
+            // 
+            // txtNoeVam
+            // 
+            this.txtNoeVam.EditValue = "نوع وام";
+            this.txtNoeVam.Location = new System.Drawing.Point(5, 50);
+            this.txtNoeVam.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtNoeVam.Name = "txtNoeVam";
+            this.txtNoeVam.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.txtNoeVam.Properties.Appearance.Options.UseForeColor = true;
+            this.txtNoeVam.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtNoeVam.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.txtNoeVam.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtNoeVam.Properties.MaskSettings.Set("mask", "f0");
+            this.txtNoeVam.Properties.NullText = "آیدی انبار";
+            this.txtNoeVam.Properties.ReadOnly = true;
+            this.txtNoeVam.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtNoeVam.Size = new System.Drawing.Size(210, 34);
+            this.txtNoeVam.TabIndex = 78;
+            this.txtNoeVam.TabStop = false;
             // 
             // cmbMoin
             // 
@@ -367,6 +386,7 @@
             this.cmbNameHesab.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbNameHesab.Size = new System.Drawing.Size(360, 34);
             this.cmbNameHesab.TabIndex = 3;
+            this.cmbNameHesab.EditValueChanged += new System.EventHandler(this.cmbNameHesab_EditValueChanged);
             this.cmbNameHesab.Enter += new System.EventHandler(this.cmbNameHesab_Enter);
             // 
             // allHesabTafzilisBindingSource1
@@ -530,25 +550,6 @@
             this.labelControl3.TabIndex = 69;
             this.labelControl3.Text = "واریز به ";
             // 
-            // txtNoeVam
-            // 
-            this.txtNoeVam.EditValue = "نوع وام";
-            this.txtNoeVam.Location = new System.Drawing.Point(5, 50);
-            this.txtNoeVam.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtNoeVam.Name = "txtNoeVam";
-            this.txtNoeVam.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.txtNoeVam.Properties.Appearance.Options.UseForeColor = true;
-            this.txtNoeVam.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtNoeVam.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.txtNoeVam.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.txtNoeVam.Properties.MaskSettings.Set("mask", "f0");
-            this.txtNoeVam.Properties.NullText = "آیدی انبار";
-            this.txtNoeVam.Properties.ReadOnly = true;
-            this.txtNoeVam.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtNoeVam.Size = new System.Drawing.Size(210, 34);
-            this.txtNoeVam.TabIndex = 78;
-            this.txtNoeVam.TabStop = false;
-            // 
             // FrmDaryafteAghsateVam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 27F);
@@ -561,7 +562,9 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(658, 400);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(658, 400);
             this.Name = "FrmDaryafteAghsateVam";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -574,6 +577,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
             this.panelControl4.ResumeLayout(false);
             this.panelControl4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNoeVam.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMoin.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.codeMoinsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameMoin.Properties)).EndInit();
@@ -590,7 +594,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTarikhDaryaft.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeryal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSharh.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNoeVam.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -193,6 +193,50 @@ namespace Sandogh_PG
 
         }
 
+        public string Taeen_Day()
+        {
+            string dd3 ="0";
+            try
+            {
+                string dd1 = Fm.gridView1.GetFocusedRowCellValue("TarikhOzviat").ToString().Substring(8, 2);
+                dd3 = dd1;
+
+                if (dd1 == "31")
+                {
+                    if (cmbMonth.SelectedIndex + 1 == 12)
+                    {
+                        //yyyy3 = yyyy3 + 1;
+                        //MM3 = 1;
+                        dd3 = "29";
+                    }
+                    else if (cmbMonth.SelectedIndex + 1 == 11 || cmbMonth.SelectedIndex + 1 == 10 || cmbMonth.SelectedIndex + 1 == 9 ||
+                        cmbMonth.SelectedIndex + 1 == 8 || cmbMonth.SelectedIndex + 1 == 7)
+                    {
+                        //yyyy3 = ho1[i].Sal;
+                        //MM3 = MM3 + 1;
+                        dd3 = "30";
+                    }
+                }
+                else if (dd1 == "30")
+                {
+                    if (cmbMonth.SelectedIndex + 1 == 12)
+                    {
+                        //yyyy3 = yyyy3 + 1;
+                        //MM3 = 1;
+                        dd3 ="29";
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("عملیات با خطا مواجه شد" + "\n" + ex.Message,
+                    "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return dd3;
+        }
+
         int _SandoghId = 0;
         private void FrmDaryaftHaghOzviat_Load(object sender, EventArgs e)
         {
@@ -212,7 +256,9 @@ namespace Sandogh_PG
                         int _AazaId = Convert.ToInt32(Fm.gridView1.GetFocusedRowCellValue("Id"));
                         var qq = db.AllHesabTafzilis.FirstOrDefault(f => f.GroupTafziliId == 3 && f.Id2 == _AazaId);
                         if (qq != null)
+                        {
                             cmbPardakhtKonande.EditValue = qq.Id;
+                        }
                         NewSeryal();
                         txtTarikh.Text = DateTime.Now.ToString().Substring(0, 10);
                         SelectMonth();
@@ -224,8 +270,8 @@ namespace Sandogh_PG
                             var t = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SandoghId);
                             if (t != null)
                             {
-                                cmbMoin.EditValue = t.MoinDefaultId;
-                                cmbNameHesab.EditValue = t.TafsiliDefaultId;
+                                cmbMoin.EditValue = Fm._cmbMoin == 0 ? t.MoinDefaultId : Fm._cmbMoin;
+                                cmbNameHesab.EditValue = Fm._cmbNameHesab == 0 ? t.TafsiliDefaultId : Fm._cmbNameHesab;
 
                                 if (t.radioGroup3 == 0)
                                 {
@@ -269,6 +315,10 @@ namespace Sandogh_PG
                             _Month = cmbMonth.Text;
                         _Sal = txtSal.Text;
                         txtSharh.Text = _Text1 + _NameAaza + _Babat + _Month + _Text2 + _Sal;
+
+                        string M = cmbMonth.SelectedIndex < 9 ? ("0" + (cmbMonth.SelectedIndex + 1).ToString()) : (cmbMonth.SelectedIndex + 1).ToString();
+                        txtSarresid.Text = txtSal.Text + "/" + M + "/" + Taeen_Day();
+
                     }
                     else if (En == EnumCED.Edit)
                     {
@@ -278,6 +328,7 @@ namespace Sandogh_PG
                         cmbPardakhtKonande.EditValue = Convert.ToInt32(Fm.gridView2.GetFocusedRowCellValue("AazaId"));
                         txtSeryal.Text = Fm.gridView2.GetFocusedRowCellDisplayText("Seryal");
                         txtTarikh.Text = Fm.gridView2.GetFocusedRowCellDisplayText("Tarikh").Substring(0, 10);
+                        txtSarresid.Text = Fm.gridView2.GetFocusedRowCellDisplayText("Sarresid").Substring(0, 10);
                         txtMablagh.Text = Fm.gridView2.GetFocusedRowCellDisplayText("Mablagh");
                         var w = db.AsnadeHesabdariRows.FirstOrDefault(f => f.ShomareSanad == _shSanad);
                         cmbMoin.EditValue = Convert.ToInt32(w != null ? w.HesabMoinId : 0);
@@ -436,6 +487,11 @@ namespace Sandogh_PG
                 XtraMessageBox.Show("لطفاً ماه را انتخاب کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            else if (string.IsNullOrEmpty(txtSal.Text) || txtSal.Text.Length < 4)
+            {
+                XtraMessageBox.Show("لطفاً سال را انتخاب کنید", "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             else if (IsValidation())
             {
                 using (var db = new MyContext())
@@ -449,6 +505,7 @@ namespace Sandogh_PG
                             obj.AazaId = Convert.ToInt32(cmbPardakhtKonande.EditValue);
                             obj.NameAaza = cmbPardakhtKonande.Text;
                             obj.Seryal = Convert.ToInt32(txtSeryal.Text);
+                            obj.Sarresid = Convert.ToDateTime(txtSarresid.Text.Substring(0, 10));
                             obj.Tarikh = Convert.ToDateTime(txtTarikh.Text.Substring(0, 10));
                             obj.Mablagh = Convert.ToDecimal(txtMablagh.Text.Replace(",", ""));
                             obj.NameHesabId = Convert.ToInt32(cmbNameHesab.EditValue);
@@ -518,6 +575,7 @@ namespace Sandogh_PG
                                 //q.AazaId = Convert.ToInt32(cmbPardakhtKonande.EditValue);
                                 //q.NameAaza = cmbPardakhtKonande.Text;
                                 //q.Seryal = Convert.ToInt32(txtSeryal.Text);
+                                q.Sarresid = Convert.ToDateTime(txtSarresid.Text.Substring(0, 10));
                                 q.Tarikh = Convert.ToDateTime(txtTarikh.Text.Substring(0, 10));
                                 q.Mablagh = !string.IsNullOrEmpty(txtMablagh.Text) ? Convert.ToDecimal(txtMablagh.Text) : 0;
                                 q.NameHesabId = Convert.ToInt32(cmbNameHesab.EditValue);
@@ -829,6 +887,7 @@ namespace Sandogh_PG
 
         private void cmbMoin_EditValueChanged(object sender, EventArgs e)
         {
+            Fm._cmbMoin = Convert.ToInt32(cmbMoin.EditValue);
             FillcmbNameHesab();
         }
 
@@ -837,5 +896,23 @@ namespace Sandogh_PG
             cmbMoin.ShowPopup();
         }
 
+        private void cmbNameHesab_EditValueChanged(object sender, EventArgs e)
+        {
+            Fm._cmbNameHesab = Convert.ToInt32(cmbNameHesab.EditValue);
+
+        }
+
+        private void txtSal_Leave(object sender, EventArgs e)
+        {
+            txtSarresid.Text = txtSal.Text + txtSarresid.Text.Substring(4, 6);
+
+        }
+
+        private void cmbMonth_Leave(object sender, EventArgs e)
+        {
+            string M = cmbMonth.SelectedIndex < 9 ? ("0" + (cmbMonth.SelectedIndex + 1).ToString()) : (cmbMonth.SelectedIndex + 1).ToString();
+            txtSarresid.Text = txtSarresid.Text.Substring(0, 5) + M + "/"+ Taeen_Day();
+
+        }
     }
 }

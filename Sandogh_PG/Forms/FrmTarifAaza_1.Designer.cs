@@ -156,7 +156,7 @@
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
             this.btnMohasebeTarikhMabnayeNobatVam = new DevExpress.XtraEditors.SimpleButton();
             this.lblMohasebeTarikhMabnayeNobat = new DevExpress.XtraEditors.LabelControl();
-            this.txtTarikhTasviyeVam = new DevExpress.XtraEditors.TextEdit();
+            this.txtTarikhNobatVam = new DevExpress.XtraEditors.TextEdit();
             this.labelControl35 = new DevExpress.XtraEditors.LabelControl();
             this.txtDarsadPasandaz = new DevExpress.XtraEditors.TextEdit();
             this.labelControl34 = new DevExpress.XtraEditors.LabelControl();
@@ -215,7 +215,7 @@
             this.xtraTabPage2.SuspendLayout();
             this.xtraTabPage3.SuspendLayout();
             this.xtraTabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTarikhTasviyeVam.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTarikhNobatVam.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDarsadPasandaz.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMandeEtebar.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEtebarBlookeShode.Properties)).BeginInit();
@@ -377,7 +377,7 @@
             this.colTarikhOzviat.AppearanceHeader.Options.UseTextOptions = true;
             this.colTarikhOzviat.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colTarikhOzviat.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.colTarikhOzviat.Caption = "تاریخ ایجاد";
+            this.colTarikhOzviat.Caption = "تاریخ عضویت";
             this.colTarikhOzviat.FieldName = "TarikhOzviat";
             this.colTarikhOzviat.MinWidth = 22;
             this.colTarikhOzviat.Name = "colTarikhOzviat";
@@ -1864,9 +1864,9 @@
             this.labelControl2.Location = new System.Drawing.Point(914, 57);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(76, 27);
+            this.labelControl2.Size = new System.Drawing.Size(94, 27);
             this.labelControl2.TabIndex = 30;
-            this.labelControl2.Text = "تاریخ ایجاد";
+            this.labelControl2.Text = "تاریخ عضویت";
             // 
             // labelControl5
             // 
@@ -2181,7 +2181,7 @@
             // 
             this.xtraTabPage4.Controls.Add(this.btnMohasebeTarikhMabnayeNobatVam);
             this.xtraTabPage4.Controls.Add(this.lblMohasebeTarikhMabnayeNobat);
-            this.xtraTabPage4.Controls.Add(this.txtTarikhTasviyeVam);
+            this.xtraTabPage4.Controls.Add(this.txtTarikhNobatVam);
             this.xtraTabPage4.Controls.Add(this.labelControl35);
             this.xtraTabPage4.Controls.Add(this.txtDarsadPasandaz);
             this.xtraTabPage4.Controls.Add(this.labelControl34);
@@ -2235,28 +2235,26 @@
             this.lblMohasebeTarikhMabnayeNobat.ToolTip = resources.GetString("lblMohasebeTarikhMabnayeNobat.ToolTip");
             this.lblMohasebeTarikhMabnayeNobat.Visible = false;
             // 
-            // txtTarikhTasviyeVam
+            // txtTarikhNobatVam
             // 
-            this.txtTarikhTasviyeVam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTarikhTasviyeVam.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtTarikhTasviyeVam.EnterMoveNextControl = true;
-            this.txtTarikhTasviyeVam.Location = new System.Drawing.Point(84, 49);
-            this.txtTarikhTasviyeVam.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtTarikhTasviyeVam.Name = "txtTarikhTasviyeVam";
-            this.txtTarikhTasviyeVam.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtTarikhTasviyeVam.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.txtTarikhTasviyeVam.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.txtTarikhTasviyeVam.Properties.Mask.BeepOnError = true;
-            this.txtTarikhTasviyeVam.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtTarikhTasviyeVam.Properties.MaskSettings.Set("placeholder", '-');
-            this.txtTarikhTasviyeVam.Properties.ReadOnly = true;
-            this.txtTarikhTasviyeVam.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtTarikhTasviyeVam.Size = new System.Drawing.Size(145, 34);
-            this.txtTarikhTasviyeVam.TabIndex = 10;
-            this.txtTarikhTasviyeVam.ToolTip = resources.GetString("txtTarikhTasviyeVam.ToolTip");
-            this.txtTarikhTasviyeVam.Visible = false;
-            this.txtTarikhTasviyeVam.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTarikhTasviyeVam_KeyDown);
-            this.txtTarikhTasviyeVam.Leave += new System.EventHandler(this.txtTarikhTasviyeVam_Leave);
+            this.txtTarikhNobatVam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTarikhNobatVam.Cursor = System.Windows.Forms.Cursors.Default;
+            this.txtTarikhNobatVam.EnterMoveNextControl = true;
+            this.txtTarikhNobatVam.Location = new System.Drawing.Point(84, 49);
+            this.txtTarikhNobatVam.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtTarikhNobatVam.Name = "txtTarikhNobatVam";
+            this.txtTarikhNobatVam.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtTarikhNobatVam.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.txtTarikhNobatVam.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.txtTarikhNobatVam.Properties.Mask.BeepOnError = true;
+            this.txtTarikhNobatVam.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtTarikhNobatVam.Properties.MaskSettings.Set("placeholder", '-');
+            this.txtTarikhNobatVam.Properties.ReadOnly = true;
+            this.txtTarikhNobatVam.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtTarikhNobatVam.Size = new System.Drawing.Size(145, 34);
+            this.txtTarikhNobatVam.TabIndex = 10;
+            this.txtTarikhNobatVam.ToolTip = resources.GetString("txtTarikhNobatVam.ToolTip");
+            this.txtTarikhNobatVam.Visible = false;
             // 
             // labelControl35
             // 
@@ -2553,7 +2551,7 @@
             this.xtraTabPage3.PerformLayout();
             this.xtraTabPage4.ResumeLayout(false);
             this.xtraTabPage4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTarikhTasviyeVam.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTarikhNobatVam.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDarsadPasandaz.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMandeEtebar.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEtebarBlookeShode.Properties)).EndInit();
@@ -2700,7 +2698,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colEtebarBlookeShode;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraEditors.LabelControl lblMohasebeTarikhMabnayeNobat;
-        private DevExpress.XtraEditors.TextEdit txtTarikhTasviyeVam;
+        private DevExpress.XtraEditors.TextEdit txtTarikhNobatVam;
         private DevExpress.XtraGrid.Columns.GridColumn colTarikhTasviyeVam;
         private DevExpress.XtraEditors.LabelControl labelControl35;
         public DevExpress.XtraEditors.TextEdit txtDarsadPasandaz;

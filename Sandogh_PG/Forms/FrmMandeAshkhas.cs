@@ -395,8 +395,8 @@ namespace Sandogh_PG
                         gridView2.Columns["6002"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 6002).Name;
                         gridView2.Columns["6003"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 6003).Name;
                         gridView2.Columns["7001"].Caption = q.FirstOrDefault(s => s.SandoghId == _SandoghId && s.Code == 7001).Name;
-
                     }
+
 
                 }
                 catch (Exception ex)

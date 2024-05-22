@@ -58,6 +58,7 @@
             this.colHesabMoin = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHesabTafzili = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn45 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colKarmozdeBanki = new DevExpress.XtraGrid.Columns.GridColumn();
             this.AazaId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colZameninId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTozihat = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -106,6 +107,7 @@
             this.btnPreview2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnLast2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnDisplyActiveList2 = new DevExpress.XtraEditors.SimpleButton();
+            this.colchkEditSdoorSanad = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -205,11 +207,13 @@
             this.colHesabMoin,
             this.colHesabTafzili,
             this.gridColumn45,
+            this.colKarmozdeBanki,
             this.AazaId,
             this.colZameninId,
             this.colTozihat,
             this.ColMandeVam,
-            this.colTarikhTasviyeVam});
+            this.colTarikhTasviyeVam,
+            this.colchkEditSdoorSanad});
             this.gridView1.DetailHeight = 378;
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView1.GridControl = this.gridControl1;
@@ -585,8 +589,6 @@
             this.colHesabMoin.FieldName = "HesabMoinName";
             this.colHesabMoin.MinWidth = 22;
             this.colHesabMoin.Name = "colHesabMoin";
-            this.colHesabMoin.Visible = true;
-            this.colHesabMoin.VisibleIndex = 19;
             this.colHesabMoin.Width = 155;
             // 
             // colHesabTafzili
@@ -600,8 +602,6 @@
             this.colHesabTafzili.FieldName = "HesabTafziliName";
             this.colHesabTafzili.MinWidth = 22;
             this.colHesabTafzili.Name = "colHesabTafzili";
-            this.colHesabTafzili.Visible = true;
-            this.colHesabTafzili.VisibleIndex = 20;
             this.colHesabTafzili.Width = 389;
             // 
             // gridColumn45
@@ -617,8 +617,28 @@
             this.gridColumn45.MinWidth = 21;
             this.gridColumn45.Name = "gridColumn45";
             this.gridColumn45.Visible = true;
-            this.gridColumn45.VisibleIndex = 21;
+            this.gridColumn45.VisibleIndex = 19;
             this.gridColumn45.Width = 111;
+            // 
+            // colKarmozdeBanki
+            // 
+            this.colKarmozdeBanki.AppearanceCell.Options.UseTextOptions = true;
+            this.colKarmozdeBanki.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colKarmozdeBanki.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colKarmozdeBanki.AppearanceHeader.Options.UseTextOptions = true;
+            this.colKarmozdeBanki.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colKarmozdeBanki.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colKarmozdeBanki.Caption = "هزینه کارمزد بانکی";
+            this.colKarmozdeBanki.DisplayFormat.FormatString = "n";
+            this.colKarmozdeBanki.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colKarmozdeBanki.FieldName = "KarmozdeBanki";
+            this.colKarmozdeBanki.MinWidth = 25;
+            this.colKarmozdeBanki.Name = "colKarmozdeBanki";
+            this.colKarmozdeBanki.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "KarmozdeBanki", "{0:n}")});
+            this.colKarmozdeBanki.Visible = true;
+            this.colKarmozdeBanki.VisibleIndex = 20;
+            this.colKarmozdeBanki.Width = 156;
             // 
             // AazaId
             // 
@@ -1291,6 +1311,22 @@
             this.btnDisplyActiveList2.ToolTip = "نمایش لیست";
             this.btnDisplyActiveList2.Click += new System.EventHandler(this.btnDisplyActiveList2_Click);
             // 
+            // colchkEditSdoorSanad
+            // 
+            this.colchkEditSdoorSanad.AppearanceCell.Options.UseTextOptions = true;
+            this.colchkEditSdoorSanad.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colchkEditSdoorSanad.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colchkEditSdoorSanad.AppearanceHeader.Options.UseTextOptions = true;
+            this.colchkEditSdoorSanad.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colchkEditSdoorSanad.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colchkEditSdoorSanad.Caption = "صدور سند سیستمی";
+            this.colchkEditSdoorSanad.FieldName = "chkEditSdoorSanad";
+            this.colchkEditSdoorSanad.MinWidth = 25;
+            this.colchkEditSdoorSanad.Name = "colchkEditSdoorSanad";
+            this.colchkEditSdoorSanad.Visible = true;
+            this.colchkEditSdoorSanad.VisibleIndex = 21;
+            this.colchkEditSdoorSanad.Width = 159;
+            // 
             // FrmListVamhayePardakhti
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 27F);
@@ -1415,5 +1451,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn ColMandeVam;
         private DevExpress.XtraEditors.CheckEdit chkDisplyMande;
         private DevExpress.XtraGrid.Columns.GridColumn colTarikhTasviyeVam;
+        private DevExpress.XtraGrid.Columns.GridColumn colKarmozdeBanki;
+        private DevExpress.XtraGrid.Columns.GridColumn colchkEditSdoorSanad;
     }
 }

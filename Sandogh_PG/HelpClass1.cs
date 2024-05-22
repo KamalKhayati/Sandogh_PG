@@ -211,7 +211,7 @@ namespace Sandogh_PG
                 regkey.SetValue("iCalendarType", "1");
                 regkey.SetValue("iCountry", "981");
                 regkey.SetValue("iCurrDigits", "0");
-                regkey.SetValue("iCurrency", "2");
+                regkey.SetValue("iCurrency", "0");
                 regkey.SetValue("iDate", "2");
                 regkey.SetValue("iDigits", "0");
                 regkey.SetValue("iFirstDayOfWeek", "5");
@@ -220,7 +220,7 @@ namespace Sandogh_PG
                 regkey.SetValue("iLocaleName", "fa-IR");
                 regkey.SetValue("iLZero", "1");
                 regkey.SetValue("iMeasure", "0");
-                regkey.SetValue("iNegCurr", "3");
+                regkey.SetValue("iNegCurr", "5");
                 regkey.SetValue("iNegNumber", "3");
                 regkey.SetValue("iNumShape", "0");
                 regkey.SetValue("iPaperSize", "9");

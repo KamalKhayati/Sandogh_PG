@@ -39,6 +39,13 @@ namespace Sandogh_PG
         public bool checkEdit18 { get; set; }
         public bool checkEdit16 { get; set; }
         public bool checkEdit17 { get; set; }
+        public bool checkEdit19 { get; set; }
+        public bool checkEdit20 { get; set; }
+        public bool checkEdit7 { get; set; }
+
+        public int TakhirHoghOzviat { get; set; }
+        public int TakhirAghsatVam { get; set; }
+
         public int radioGroup1 { get; set; }
         public int radioGroup2 { get; set; }
         public int radioGroup3 { get; set; }
@@ -57,11 +64,24 @@ namespace Sandogh_PG
         public double MinDarsadPasandaz { get; set; }
         public double MaxDarsadPasandaz { get; set; }
 
-        [Required]
-        public int MoinDefaultId { get; set; }
         public int NoeRezervIndex { get; set; }
         [Required]
+        public int MoinDefaultId { get; set; }
+        [Required]
         public int TafsiliDefaultId { get; set; }
+        [Required]
+        public int Moin2DefaultId { get; set; }
+        [Required]
+        public int Tafsili2DefaultId { get; set; }
+        [Required]
+        public int Moin3DefaultId { get; set; }
+        [Required]
+        public int Tafsili3DefaultId { get; set; }
+        public int TedadRozAdamVariz { get; set; }
+        public int VahedPolIndex { get; set; }
+        [MaxLength(20)]
+        public string VahedPolName { get; set; }
+
         public virtual TarifSandogh TarifSandogh1 { get; set; }
         public virtual ICollection<AnvaeVam> AnvaeVams { get; set; }
 

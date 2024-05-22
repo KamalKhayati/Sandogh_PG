@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDaryaftHaghOzviat));
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.cmbPardakhtKonande = new DevExpress.XtraEditors.LookUpEdit();
+            this.allHesabTafzilisBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtId = new DevExpress.XtraEditors.TextEdit();
             this.txtSeryal = new DevExpress.XtraEditors.TextEdit();
@@ -48,18 +49,20 @@
             this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
             this.txtMablagh = new DevExpress.XtraEditors.TextEdit();
             this.xtraScrollableControl2 = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.txtSarresid = new DevExpress.XtraEditors.TextEdit();
             this.cmbMoin = new DevExpress.XtraEditors.LookUpEdit();
+            this.codeMoinsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtSal = new DevExpress.XtraEditors.TextEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.cmbNameHesab = new DevExpress.XtraEditors.LookUpEdit();
-            this.cmbMonth = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.codeMoinsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.allHesabTafzilisBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.allHesabTafzilisBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbMonth = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPardakhtKonande.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtId.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeryal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSharh.Properties)).BeginInit();
@@ -68,14 +71,14 @@
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMablagh.Properties)).BeginInit();
             this.xtraScrollableControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSarresid.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMoin.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.codeMoinsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNameHesab.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbMonth.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.codeMoinsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbMonth.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl4
@@ -112,6 +115,10 @@
             this.cmbPardakhtKonande.TabIndex = 15;
             this.cmbPardakhtKonande.TabStop = false;
             // 
+            // allHesabTafzilisBindingSource
+            // 
+            this.allHesabTafzilisBindingSource.DataSource = typeof(Sandogh_PG.AllHesabTafzili);
+            // 
             // labelControl1
             // 
             this.labelControl1.Location = new System.Drawing.Point(538, 51);
@@ -129,8 +136,6 @@
             this.txtId.Name = "txtId";
             this.txtId.Properties.Appearance.Options.UseTextOptions = true;
             this.txtId.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.txtId.Properties.Mask.EditMask = "f0";
-            this.txtId.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtId.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtId.Properties.MaskSettings.Set("mask", "f0");
             this.txtId.Properties.NullText = "آیدی انبار";
@@ -151,8 +156,6 @@
             this.txtSeryal.Properties.Appearance.Options.UseTextOptions = true;
             this.txtSeryal.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtSeryal.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.txtSeryal.Properties.Mask.EditMask = "000000";
-            this.txtSeryal.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtSeryal.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtSeryal.Properties.MaskSettings.Set("mask", "000000");
             this.txtSeryal.Properties.MaxLength = 7;
@@ -229,8 +232,6 @@
             this.txtTarikh.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtTarikh.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.txtTarikh.Properties.Mask.BeepOnError = true;
-            this.txtTarikh.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.txtTarikh.Properties.Mask.PlaceHolder = '-';
             this.txtTarikh.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtTarikh.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.RegExpMaskManager));
             this.txtTarikh.Properties.MaskSettings.Set("placeholder", '-');
@@ -311,8 +312,6 @@
             this.txtMablagh.Properties.Appearance.Options.UseTextOptions = true;
             this.txtMablagh.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtMablagh.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.txtMablagh.Properties.Mask.EditMask = "n";
-            this.txtMablagh.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtMablagh.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtMablagh.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtMablagh.Properties.MaskSettings.Set("mask", "n");
@@ -322,6 +321,8 @@
             // 
             // xtraScrollableControl2
             // 
+            this.xtraScrollableControl2.Controls.Add(this.labelControl7);
+            this.xtraScrollableControl2.Controls.Add(this.txtSarresid);
             this.xtraScrollableControl2.Controls.Add(this.cmbMoin);
             this.xtraScrollableControl2.Controls.Add(this.txtSal);
             this.xtraScrollableControl2.Controls.Add(this.txtMablagh);
@@ -350,6 +351,33 @@
             this.xtraScrollableControl2.TabIndex = 34;
             this.xtraScrollableControl2.TabStop = false;
             // 
+            // labelControl7
+            // 
+            this.labelControl7.AutoEllipsis = true;
+            this.labelControl7.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl7.Location = new System.Drawing.Point(185, 47);
+            this.labelControl7.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(115, 35);
+            this.labelControl7.TabIndex = 45;
+            this.labelControl7.Text = "سررسید پس انداز";
+            // 
+            // txtSarresid
+            // 
+            this.txtSarresid.EnterMoveNextControl = true;
+            this.txtSarresid.Location = new System.Drawing.Point(6, 48);
+            this.txtSarresid.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtSarresid.Name = "txtSarresid";
+            this.txtSarresid.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtSarresid.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.txtSarresid.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.txtSarresid.Properties.Mask.BeepOnError = true;
+            this.txtSarresid.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtSarresid.Properties.ReadOnly = true;
+            this.txtSarresid.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtSarresid.Size = new System.Drawing.Size(171, 34);
+            this.txtSarresid.TabIndex = 44;
+            // 
             // cmbMoin
             // 
             this.cmbMoin.EnterMoveNextControl = true;
@@ -374,6 +402,10 @@
             this.cmbMoin.EditValueChanged += new System.EventHandler(this.cmbMoin_EditValueChanged);
             this.cmbMoin.Enter += new System.EventHandler(this.cmbMoin_Enter);
             // 
+            // codeMoinsBindingSource
+            // 
+            this.codeMoinsBindingSource.DataSource = typeof(Sandogh_PG.CodeMoin);
+            // 
             // txtSal
             // 
             this.txtSal.EnterMoveNextControl = true;
@@ -383,14 +415,13 @@
             this.txtSal.Properties.Appearance.Options.UseTextOptions = true;
             this.txtSal.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtSal.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.txtSal.Properties.Mask.EditMask = "f";
-            this.txtSal.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtSal.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtSal.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtSal.Properties.MaskSettings.Set("mask", "f");
             this.txtSal.Size = new System.Drawing.Size(85, 34);
             this.txtSal.TabIndex = 5;
             this.txtSal.EditValueChanged += new System.EventHandler(this.txtSal_EditValueChanged);
+            this.txtSal.Leave += new System.EventHandler(this.txtSal_Leave);
             // 
             // labelControl4
             // 
@@ -428,7 +459,6 @@
             this.textEdit1.Properties.Appearance.Options.UseTextOptions = true;
             this.textEdit1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.textEdit1.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.textEdit1.Properties.Mask.EditMask = "000000";
             this.textEdit1.Properties.MaskSettings.Set("mask", "000000");
             this.textEdit1.Properties.MaxLength = 7;
             this.textEdit1.Size = new System.Drawing.Size(111, 34);
@@ -457,7 +487,12 @@
             this.cmbNameHesab.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbNameHesab.Size = new System.Drawing.Size(350, 34);
             this.cmbNameHesab.TabIndex = 3;
+            this.cmbNameHesab.EditValueChanged += new System.EventHandler(this.cmbNameHesab_EditValueChanged);
             this.cmbNameHesab.Enter += new System.EventHandler(this.cmbNameHesab_Enter);
+            // 
+            // allHesabTafzilisBindingSource1
+            // 
+            this.allHesabTafzilisBindingSource1.DataSource = typeof(Sandogh_PG.AllHesabTafzili);
             // 
             // cmbMonth
             // 
@@ -489,18 +524,7 @@
             this.cmbMonth.TabIndex = 4;
             this.cmbMonth.SelectedIndexChanged += new System.EventHandler(this.cmbMonth_SelectedIndexChanged);
             this.cmbMonth.Enter += new System.EventHandler(this.cmbMonth_Enter);
-            // 
-            // codeMoinsBindingSource
-            // 
-            this.codeMoinsBindingSource.DataSource = typeof(Sandogh_PG.CodeMoin);
-            // 
-            // allHesabTafzilisBindingSource1
-            // 
-            this.allHesabTafzilisBindingSource1.DataSource = typeof(Sandogh_PG.AllHesabTafzili);
-            // 
-            // allHesabTafzilisBindingSource
-            // 
-            this.allHesabTafzilisBindingSource.DataSource = typeof(Sandogh_PG.AllHesabTafzili);
+            this.cmbMonth.Leave += new System.EventHandler(this.cmbMonth_Leave);
             // 
             // FrmDaryaftHaghOzviat
             // 
@@ -513,7 +537,9 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(605, 387);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(605, 387);
             this.Name = "FrmDaryaftHaghOzviat";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -523,6 +549,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmDaryaftHaghOzviat_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPardakhtKonande.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtId.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeryal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSharh.Properties)).EndInit();
@@ -532,14 +559,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMablagh.Properties)).EndInit();
             this.xtraScrollableControl2.ResumeLayout(false);
             this.xtraScrollableControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSarresid.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMoin.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.codeMoinsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNameHesab.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbMonth.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.codeMoinsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.allHesabTafzilisBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbMonth.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -574,5 +601,7 @@
         private System.Windows.Forms.BindingSource allHesabTafzilisBindingSource1;
         public DevExpress.XtraEditors.LookUpEdit cmbMoin;
         private System.Windows.Forms.BindingSource codeMoinsBindingSource;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
+        public DevExpress.XtraEditors.TextEdit txtSarresid;
     }
 }

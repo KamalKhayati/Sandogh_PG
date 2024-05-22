@@ -17,6 +17,7 @@ using Word = Microsoft.Office.Interop.Word;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Diagnostics;
+using System.Net;
 
 namespace Sandogh_PG
 {
@@ -265,52 +266,98 @@ namespace Sandogh_PG
                     //EtmamGaranti.Visibility = q5.VersionType == "Orginal" ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
 
                     /////////////////////////////////اصلاح دیتابیس///////////////////////////////////
-                    var q11 = db.VamPardakhtis.Where(s => s.TarikhTasviyeVam == null && s.IsTasviye == true).AsParallel();
-                    if (q11 != null)
-                    {
-                        foreach (var item in q11)
-                        {
-                            var q21 = db.RizeAghsatVams.Where(s => s.VamPardakhtiId == item.Id && s.VamPardakhti1.IsTasviye == true).AsParallel();
+                    //var q11 = db.VamPardakhtis.Where(s => s.chkEditSdoorSanad == false).AsParallel();
+                    //if (q11 != null)
+                    //{
+                    //    foreach (var item in q11)
+                    //    {
+                    //        //var q21 = db.RizeAghsatVams.Where(s => s.VamPardakhtiId == item.Id && s.VamPardakhti1.IsTasviye == true).AsParallel();
 
-                            if (q21.Count() > 0)
-                            {
-                                item.TarikhTasviyeVam = q21.Max(s => s.TarikhDaryaft);
-                            }
+                    //        //if (q21.Count() > 0)
+                    //        {
+                    //            item.chkEditSdoorSanad = true;
+                    //        }
 
-                            //else if (q21.FirstOrDefault(s => s.AazaId == item.AllTafId && s.IsTasviye == true) != null)
-                            //{
-                            //    var q51 = db.RizeAghsatVams.Where(s => s.AazaId == item.AllTafId && s.VamPardakhti1.IsTasviye == true).Max(s => s.TarikhDaryaft);
-                            //    item.TarikhTasviyeVam = Convert.ToDateTime(q51);
-                            //}
-                            //else if (q21.FirstOrDefault(s => s.AazaId == item.AllTafId && s.IsTasviye == false) != null)
-                            //{
-                            //    item.TarikhTasviyeVam = item.TarikhOzviat;
-                            //}
+                    //        //else if (q21.FirstOrDefault(s => s.AazaId == item.AllTafId && s.IsTasviye == true) != null)
+                    //        //{
+                    //        //    var q51 = db.RizeAghsatVams.Where(s => s.AazaId == item.AllTafId && s.VamPardakhti1.IsTasviye == true).Max(s => s.TarikhDaryaft);
+                    //        //    item.TarikhTasviyeVam = Convert.ToDateTime(q51);
+                    //        //}
+                    //        //else if (q21.FirstOrDefault(s => s.AazaId == item.AllTafId && s.IsTasviye == false) != null)
+                    //        //{
+                    //        //    item.TarikhTasviyeVam = item.TarikhOzviat;
+                    //        //}
 
-                        }
-                        db.SaveChanges();
+                    //    }
+                    //    db.SaveChanges();
 
-                        //}
-                    }
+                    //    //}
+                    //}
+                    /////////////////////////////////اصلاح دیتابیس///////////////////////////////////
+                    //var q12 = db.Tanzimats.FirstOrDefault(s => s.SandoghId == _SId);
+                    //if (q12 != null)
+                    //{
+                    //    if (q12.Moin2DefaultId == 0 || q12.Moin2DefaultId == 0 )
+                    //    {
+                    //        var cm = db.CodeMoins.ToList();
+                    //        var at = db.AllHesabTafzilis.Where(s=>s.GroupTafzili1.Code==4|| s.GroupTafzili1.Code == 5).ToList();
+                    //        q12.Moin2DefaultId = cm.FirstOrDefault(s => s.Code == 8001).Id;
+                    //        q12.Moin3DefaultId = cm.FirstOrDefault(s => s.Code == 9001).Id;
+                    //        q12.Tafsili2DefaultId = at.FirstOrDefault(s => s.Code == 1000001).Id;
+                    //        q12.Tafsili3DefaultId = at.FirstOrDefault(s => s.Code == 2000001).Id;
+                    //    }
+                    //    db.SaveChanges();
+
+                    //    //}
+                    //}
+
+                    /////////////////////////////////اصلاح دیتابیس///////////////////////////////////
+                    //var q11 = db.VamPardakhtis.Where(s => s.TarikhTasviyeVam == null && s.IsTasviye == true).AsParallel();
+                    //if (q11 != null)
+                    //{
+                    //    foreach (var item in q11)
+                    //    {
+                    //        var q21 = db.RizeAghsatVams.Where(s => s.VamPardakhtiId == item.Id && s.VamPardakhti1.IsTasviye == true).AsParallel();
+
+                    //        if (q21.Count() > 0)
+                    //        {
+                    //            item.TarikhTasviyeVam = q21.Max(s => s.TarikhDaryaft);
+                    //        }
+
+                    //        //else if (q21.FirstOrDefault(s => s.AazaId == item.AllTafId && s.IsTasviye == true) != null)
+                    //        //{
+                    //        //    var q51 = db.RizeAghsatVams.Where(s => s.AazaId == item.AllTafId && s.VamPardakhti1.IsTasviye == true).Max(s => s.TarikhDaryaft);
+                    //        //    item.TarikhTasviyeVam = Convert.ToDateTime(q51);
+                    //        //}
+                    //        //else if (q21.FirstOrDefault(s => s.AazaId == item.AllTafId && s.IsTasviye == false) != null)
+                    //        //{
+                    //        //    item.TarikhTasviyeVam = item.TarikhOzviat;
+                    //        //}
+
+                    //    }
+                    //    db.SaveChanges();
+
+                    //    //}
+                    //}
                     ////////////////////////////////////////////////////////////////////
 
                     /////////////////////////////////اصلاح دیتابیس///////////////////////////////////
                     //
-                    var fo = Convert.ToDateTime("1278/10/11");
-                    var q12 = db.AazaSandoghs.Where(s => s.TarikhTasviyeVam == null || s.TarikhTasviyeVam == fo).AsParallel();
-                    //var q12 = db.AazaSandoghs.FirstOrDefault().TarikhTasviyeVam.ToString().Substring(0, 10);
-                    //if (q12== "1278/10/11")
-                    //{
+                    //var fo = Convert.ToDateTime("1278/10/11");
+                    //var q12 = db.AazaSandoghs.Where(s => s.TarikhTasviyeVam == null || s.TarikhTasviyeVam == fo).AsParallel();
+                    ////var q12 = db.AazaSandoghs.FirstOrDefault().TarikhTasviyeVam.ToString().Substring(0, 10);
+                    ////if (q12== "1278/10/11")
+                    ////{
 
+                    ////}
+                    //if (q12.Count() > 0)
+                    //{
+                    //    foreach (var item in q12)
+                    //    {
+                    //        item.TarikhTasviyeVam = item.TarikhOzviat;
+                    //    }
+                    //    db.SaveChanges();
                     //}
-                    if (q12.Count() > 0)
-                    {
-                        foreach (var item in q12)
-                        {
-                            item.TarikhTasviyeVam = item.TarikhOzviat;
-                        }
-                        db.SaveChanges();
-                    }
                     ////////////////////////////////////////////////////////////////////
 
                     ////// دستور مربوط به فرم یادآوری روزانه
@@ -797,7 +844,7 @@ namespace Sandogh_PG
                 ap.Visible = true;
                 object miss = Missing.Value;
                 //object path = Application.StartupPath + @"\Report\DarkhastVam\DarkhastVam.doc";
-                object path = FilePath + @"\DarkhastVam_Temp.doc";
+                object path = FilePath + @"\"+DarkhastVam+"_Temp.doc";
                 object readOnly = false;
                 object isVisible = true;
                 Word.Document doc = new Word.Document();
@@ -896,6 +943,7 @@ namespace Sandogh_PG
         }
 
         string FilePath = string.Empty;
+        string DarkhastVam = string.Empty;
         public void SetInFoToWord()
         {
             using (var db = new MyContext())
@@ -906,7 +954,7 @@ namespace Sandogh_PG
                     //  Just to kill WINWORD.EXE if it is running
                     KillProcess("winword");
                     //  copy letter format to temp.doc
-                    File.Copy(FilePath + @"\DarkhastVam_Org.doc", FilePath + @"\DarkhastVam_Temp.doc", true);
+                    File.Copy(FilePath + @"\"+DarkhastVam+"_Org.doc", FilePath + @"\"+DarkhastVam+"_Temp.doc", true);
                     //File.Copy(@"D:\Kamal Projects\Sandogh\Sandogh TG N1\Sandogh_PG\Sandogh_PG\bin\Debug\Report\Gharardade.docx", "c:\\temp.docx", true);
                     //File.Copy("D:\\Gharardade.docx", "D:\\temp.doc", true);
                     //  create missing object
@@ -916,7 +964,7 @@ namespace Sandogh_PG
                     //  create Word document object
                     Word.Document aDoc = null;
                     //  create & define filename object with temp.doc
-                    object filename = FilePath + @"\DarkhastVam_Temp.doc";
+                    object filename = FilePath + @"\"+DarkhastVam+"_Temp.doc";
                     //  if temp.doc available
                     if (File.Exists((string)filename))
                     {
@@ -947,13 +995,6 @@ namespace Sandogh_PG
                 }
             }
 
-        }
-
-        private void btnDarkhastVam_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            GetInfoForWord();
-            SetInFoToWord();
-            OpenFilWord();
         }
 
         private void btnMabaleghGhabelDaryaft_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -1001,22 +1042,8 @@ namespace Sandogh_PG
             frm.ShowDialog();
         }
 
-        public bool IsAllowed = false;
         public void btnSupportSetting_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (IsAllowed)
-            {
-                FrmAppRegister frm = new FrmAppRegister(this);
-
-                frm.ShowDialog();
-            }
-            else
-            {
-                FrmPassword1 frm = new FrmPassword1(this);
-                frm.labelControl4.Visible = false;
-                frm.ShowDialog();
-
-            }
 
         }
 
@@ -1366,6 +1393,89 @@ namespace Sandogh_PG
                     XtraMessageBox.Show("عملیات ذیل با خطا مواجه شد" + "\n" + "==> SetInFoToWord()" + "\n" + ex.Message,
                         "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+
+        }
+
+        private void btnDarkhastVamN1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            DarkhastVam = "DarkhastVamN1";
+            GetInfoForWord();
+            SetInFoToWord();
+            OpenFilWord();
+        }
+
+        private void btnDarkhastVamN2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            DarkhastVam = "DarkhastVamN2";
+            GetInfoForWord();
+            SetInFoToWord();
+            OpenFilWord();
+        }
+
+        private void IpAdress_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            string HostName = Dns.GetHostName();
+            string IPAdress = Dns.GetHostByName(HostName).AddressList[0].ToString();
+            XtraMessageBox.Show("نام کامپیوتر : " + HostName + "\n"+ "آیپی شبکه : "+ IPAdress , "پیغام", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnCodingAmval_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmCodingDaramadVHazine fm = new FrmCodingDaramadVHazine(this);
+            fm.Text = "تعریف کدینگ اموال";
+            fm.Name = "FrmCodingAmval";
+            fm.labelControl6.Visible = false;
+            fm.cmbGroupHesab.Visible = false;
+            //fm.btnCreate.Visible = true;
+            //fm.btnDelete.Visible = true;
+            //fm.btnSaveNext.Visible = true;
+            //fm.btnDisplyNotActiveList.Visible = true;
+            //fm.btnAdvancedSearch.Visible = true;
+            //fm.btnPrintPreview.Visible = true;
+            //fm.btnPrint.Visible = true;
+            //fm.labelControl2.Visible = true;
+            //fm.chkIsActive.Visible = true;
+            fm.gridView1.Columns["GroupName"].Visible = false;
+            //fm.gridView1.Columns["IsActive"].Visible = true;
+            //fm.gridView1.Columns["HesabName"].Width = 700;
+            //fm.gridView1.Columns["HesabName"].FieldName = "Name";
+            ActiveForm(fm);
+
+        }
+
+        public bool IsAllowed = false;
+        private void btnSabtLisens_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (IsAllowed)
+            {
+                FrmAppRegister frm = new FrmAppRegister(this);
+                frm.ShowDialog();
+            }
+            else
+            {
+                FrmPassword1 frm = new FrmPassword1(this);
+                frm.labelControl4.Visible = false;
+                frm.ShowDialog();
+
+            }
+
+        }
+
+        private void btnDatabaseChange_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+            if (IsAllowed)
+            {
+                RepairDataBase1 fmrd = new RepairDataBase1(this);
+                fmrd.ShowDialog();
+            }
+            else
+            {
+                FrmPassword1 frm = new FrmPassword1(this);
+                frm.labelControl4.Visible = false;
+                frm.ShowDialog();
+
             }
 
         }

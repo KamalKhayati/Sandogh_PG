@@ -670,6 +670,7 @@ namespace Sandogh_PG.Forms
 
 
         }
+
         private void btnTestInfo_Click(object sender, EventArgs e)
         {
             if (IsValidat())
@@ -738,6 +739,45 @@ namespace Sandogh_PG.Forms
 
                                 }
 
+                                string Day1 = "0";
+                                var pp = AazaSandogh.FirstOrDefault(s => s.Code == CodeHesabAaza);
+                                if (pp != null)
+                                {
+                                    Day1 = pp.TarikhOzviat.ToString().Substring(8, 2);
+                                }
+                                else
+                                {
+                                    Day1 = "01";
+                                }
+
+                                string _Day = Day1;
+
+                                if (Day1 == "31")
+                                {
+                                    if (cmbMonth1.SelectedIndex + 1 == 12)
+                                    {
+                                        //yyyy3 = yyyy3 + 1;
+                                        //MM3 = 1;
+                                        _Day = "29";
+                                    }
+                                    else if (cmbMonth1.SelectedIndex + 1 == 11 || cmbMonth1.SelectedIndex + 1 == 10 || cmbMonth1.SelectedIndex + 1 == 9 ||
+                                        cmbMonth1.SelectedIndex + 1 == 8 || cmbMonth1.SelectedIndex + 1 == 7)
+                                    {
+                                        //yyyy3 = ho1[i].Sal;
+                                        //MM3 = MM3 + 1;
+                                        _Day = "30";
+                                    }
+                                }
+                                else if (Day1 == "30")
+                                {
+                                    if (cmbMonth1.SelectedIndex + 1 == 12)
+                                    {
+                                        //yyyy3 = yyyy3 + 1;
+                                        //MM3 = 1;
+                                        _Day = "29";
+                                    }
+                                }
+
                                 var _allHesabtafsili = allHesabtafsili.FirstOrDefault(f => f.Code == CodeHesabAaza);
 
                                 if (MablaghPasandaz > 0)
@@ -756,6 +796,7 @@ namespace Sandogh_PG.Forms
                                     obj01.IndexMonth = IndexMonth;
                                     obj01.Month = NameMonth;
                                     obj01.Sal = Sal;
+                                    obj01.Tarikh = Convert.ToDateTime(Sal.ToString() + "/" + (IndexMonth + 1).ToString() + "/" + _Day);
                                     obj01.Sharh = _SharhPasandaz;
                                     obj01.SalMaliId = _SalMaliId;
                                     obj01.ShomareSanad = ShomarandeSanad;
@@ -809,9 +850,9 @@ namespace Sandogh_PG.Forms
                                 if (MablaghAghsat > 0 && CodeVam > 0)
                                 {
                                     var pp1 = db.RizeAghsatVams.Where(s => s.VamPardakhtiCode == CodeVam);
-                                    if (pp1.Count()==0)
+                                    if (pp1.Count() == 0)
                                     {
-                                        XtraMessageBox.Show("وام شماره "+ CodeVam + " "+ _allHesabtafsili.Name+" قسط بندی نشده است", "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        XtraMessageBox.Show("وام شماره " + CodeVam + " " + _allHesabtafsili.Name + " قسط بندی نشده است", "پیغام خطا", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         return;
                                     }
                                     var pp2 = pp1.Where(s => s.MablaghDaryafti == 0);
@@ -1122,7 +1163,7 @@ namespace Sandogh_PG.Forms
 
         private void btnExportInfoToExcel_Click(object sender, EventArgs e)
         {
-            HelpClass1.ExportDataGridViewToExcel(this,gridView1, gridView1.RowCount);
+            HelpClass1.ExportDataGridViewToExcel(this, gridView1, gridView1.RowCount);
         }
 
         private void btnGetInfoFromExcel_Click(object sender, EventArgs e)
@@ -1210,7 +1251,7 @@ namespace Sandogh_PG.Forms
         {
             if (e.Control && e.KeyCode == Keys.E)
             {
-                HelpClass1.ExportDataGridViewToExcel(this,gridView1, gridView1.RowCount);
+                HelpClass1.ExportDataGridViewToExcel(this, gridView1, gridView1.RowCount);
             }
 
         }
@@ -1320,7 +1361,7 @@ namespace Sandogh_PG.Forms
                                     }
                                     else
                                     {
-                                        DataTable1.Rows[i][4] =0;
+                                        DataTable1.Rows[i][4] = 0;
                                     }
                                 }
                                 else if (MablghAghsat > 0)

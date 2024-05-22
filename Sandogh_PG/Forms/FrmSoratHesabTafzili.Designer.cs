@@ -704,6 +704,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "نام حساب تفضیلی را انتخاب کنید", 500, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.cmbHesabTafzili.Properties.DataSource = this.allHesabTafzilisBindingSource;
             this.cmbHesabTafzili.Properties.DisplayMember = "Name";
+            this.cmbHesabTafzili.Properties.DropDownRows = 14;
             this.cmbHesabTafzili.Properties.ImmediatePopup = true;
             this.cmbHesabTafzili.Properties.MaxLength = 150;
             this.cmbHesabTafzili.Properties.NullText = "";

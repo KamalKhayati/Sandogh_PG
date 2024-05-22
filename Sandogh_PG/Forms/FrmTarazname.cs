@@ -142,7 +142,7 @@ namespace Sandogh_PG
                 frm.Text = "ریز حساب معین : " + RowMoinName;
                 frm.RowMoinId = Convert.ToInt32(gridView1.GetFocusedRowCellValue("HesabMoinId"));
                 frm._Az_Tarikh = new MyContext().AsnadeHesabdariRows.Min(f => f.Tarikh).ToString().Substring(0, 10);
-                frm._Ta_Tarikh = ChkTarikh.Checked ? txtTaTarikh.Text : DateTime.Now.ToString().Substring(0, 10);
+                frm._Ta_Tarikh = txtTaTarikh.Text ;
                 frm._SandoghName = Fm.ribbonControl1.ApplicationDocumentCaption; ;
                 frm.ShowDialog();
             }

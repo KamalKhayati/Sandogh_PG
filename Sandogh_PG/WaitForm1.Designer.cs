@@ -45,7 +45,7 @@
             this.progressPanel1.AppearanceCaption.Options.UseForeColor = true;
             this.progressPanel1.AppearanceDescription.Font = new System.Drawing.Font("IRANSans(FaNum)", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.progressPanel1.AppearanceDescription.Options.UseFont = true;
-            this.progressPanel1.Caption = "در حال بارگذاری ... لطفاً صبور باشید";
+            this.progressPanel1.Caption = "در حال پردازش ... لطفاً صبور باشید";
             this.progressPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressPanel1.ImageHorzOffset = 20;
             this.progressPanel1.Location = new System.Drawing.Point(0, 36);
@@ -97,8 +97,7 @@
         }
 
         #endregion
-
-        private DevExpress.XtraWaitForm.ProgressPanel progressPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        public DevExpress.XtraWaitForm.ProgressPanel progressPanel1;
     }
 }

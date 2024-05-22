@@ -547,7 +547,7 @@
 3.	اگر عضو مورد نظر فقط یکبار وام گرفته و مبلغ وام تسویه نشده و یا اینکه تاکنون وامی دریافت نکرده تاریخ عضویت جهت اعطای وام درج شود:
 </value>
   </data>
-  <data name="txtTarikhTasviyeVam.ToolTip" xml:space="preserve">
+  <data name="txtTarikhNobatVam.ToolTip" xml:space="preserve">
     <value>توجه :
 1.	اگر عضو مورد نظر بیشتر از یکبار وام گرفته تاریخ تسویه وام قبلی درج شود
 2.	اگر عضو مورد نظر فقط یکبار وام گرفته و مبلغ وام تسویه شده تاریخ تسویه وام درج شود 
@@ -572,7 +572,7 @@
 </value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>31</value>
+    <value>56</value>
   </metadata>
   <data name="FrmTarifAaza_1.IconOptions.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

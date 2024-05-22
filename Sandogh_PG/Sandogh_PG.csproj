@@ -264,6 +264,12 @@
     <Compile Include="Forms\FrmRizMoin.Designer.cs">
       <DependentUpon>FrmRizMoin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmRizTakhirVaTajil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmRizTakhirVaTajil.Designer.cs">
+      <DependentUpon>FrmRizTakhirVaTajil.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmShenaseVRamz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -293,6 +299,12 @@
     </Compile>
     <Compile Include="Forms\FrmYadavari.Designer.cs">
       <DependentUpon>FrmYadavari.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RepairDataBase1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RepairDataBase1.Designer.cs">
+      <DependentUpon>RepairDataBase1.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AllHesabTafzili.cs" />
     <Compile Include="Models\AllowedDevise.cs" />
@@ -502,6 +514,9 @@
     <EmbeddedResource Include="Forms\FrmRizMoin.resx">
       <DependentUpon>FrmRizMoin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmRizTakhirVaTajil.resx">
+      <DependentUpon>FrmRizTakhirVaTajil.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmShenaseVRamz.resx">
       <DependentUpon>FrmShenaseVRamz.cs</DependentUpon>
     </EmbeddedResource>
@@ -528,6 +543,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmYadavari.resx">
       <DependentUpon>FrmYadavari.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RepairDataBase1.resx">
+      <DependentUpon>RepairDataBase1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>

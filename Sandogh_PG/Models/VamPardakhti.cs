@@ -27,17 +27,19 @@ namespace Sandogh_PG
         public int? MablaghDirkard { get; set; }
         public bool checkEdit1 { get; set; }
         public bool checkEdit2 { get; set; }
-        [Column(TypeName = "Date")]
+        //[Column(TypeName = "Date")]
         public DateTime? TarikhDarkhast { get; set; }
         //[MaxLength(10)]
         public int ShomareDarkhast { get; set; }
         [Required]
         public int Code { get; set; }
-        [Required, Column(TypeName = "Date")]
+        //[Required, Column(TypeName = "Date")]
+        [Required]
         public DateTime TarikhPardakht { get; set; }
         [Required]
         public decimal MablaghAsli { get; set; }
         public decimal MablaghKarmozd { get; set; }
+        public decimal KarmozdeBanki { get; set; }
         [Required]
         public int IndexFaseleAghsat { get; set; }
         [Required, MaxLength(10)]
@@ -50,14 +52,14 @@ namespace Sandogh_PG
         public decimal? MandeVam { get; set; }
         [Required, Column(TypeName = "Date")]
         public DateTime SarresidAvalinGhest { get; set; }
-        [Required]
-        public int HesabMoinId { get; set; }
-        [Required, MaxLength(50)]
-        public string HesabMoinName { get; set; }
-        [Required]
-        public int HesabTafziliId { get; set; }
-        [Required, MaxLength(200)]
-        public string HesabTafziliName { get; set; }
+        //[Required]
+        //public int HesabMoinId { get; set; }
+        //[Required, MaxLength(50)]
+        //public string HesabMoinName { get; set; }
+        //[Required]
+        //public int HesabTafziliId { get; set; }
+        //[Required, MaxLength(200)]
+        //public string HesabTafziliName { get; set; }
         [MaxLength(200)]
         public string ZameninId { get; set; }
         [MaxLength(500)]
@@ -73,6 +75,7 @@ namespace Sandogh_PG
         [MaxLength(500)]
         public string Tozihat { get; set; }
         public DateTime? TarikhTasviyeVam { get; set; }
+        public bool chkEditSdoorSanad { get; set ; }
         public virtual AllHesabTafzili AllHesabTafzili1 { get; set; }
         public virtual ICollection<RizeAghsatVam> RizeAghsatVams { get; set; }
         public virtual ICollection<R_VamPardakhti_B_Zamenin> R_VamPardakhti_B_Zamenins { get; set; }

@@ -38,6 +38,8 @@ namespace Sandogh_PG
         public int ShomareSanad { get; set; }
         [Required]
         public int SalMaliId { get; set; }
+        public int TakhirVaTajil { get; set; }
+
         public virtual VamPardakhti VamPardakhti1 { get; set; }
 
     }

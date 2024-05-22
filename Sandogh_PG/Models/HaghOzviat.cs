@@ -17,8 +17,10 @@ namespace Sandogh_PG
         public string NameAaza { get; set; }
         [Required]
         public int Seryal { get; set; }
-        [Required,Column(TypeName = "Date")]
+        [Required, Column(TypeName = "Date")]
         public DateTime Tarikh { get; set; }
+        [Required, Column(TypeName = "Date")]
+        public DateTime Sarresid { get; set; }
         [Required]
         public decimal Mablagh { get; set; }
         [Required]
@@ -37,6 +39,9 @@ namespace Sandogh_PG
         public int SalMaliId { get; set; }
         [Required]
         public int ShomareSanad { get; set; }
+        public int TakhirVaTajil { get; set; }
+        //[Required]
+        //public bool IsTakhir { get; set; }
         public virtual AllHesabTafzili AllHesabTafzili1 { get; set; }
     }
 }
